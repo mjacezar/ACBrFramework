@@ -74,7 +74,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrUtil.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
         <UnitName Value="ACBrUtil"/>
         <WindowIndex Value="0"/>
         <TopLine Value="934"/>
@@ -83,7 +83,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
-        <Filename Value="..\..\..\Fontes\ACBrSerial\ACBrBALClass.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrBALClass.pas"/>
         <UnitName Value="ACBrBALClass"/>
         <EditorIndex Value="10"/>
         <WindowIndex Value="0"/>
@@ -114,7 +114,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
-        <Filename Value="..\..\..\Fontes\ACBrSerial\ACBrECF.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
         <UnitName Value="ACBrECF"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
@@ -125,7 +125,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
-        <Filename Value="..\..\..\Fontes\ACBrSerial\ACBrECFClass.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECFClass.pas"/>
         <UnitName Value="ACBrECFClass"/>
         <WindowIndex Value="0"/>
         <TopLine Value="2765"/>
@@ -134,7 +134,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit8>
       <Unit9>
-        <Filename Value="..\..\..\Fontes\ACBrSerial\ACBrDevice.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrDevice.pas"/>
         <UnitName Value="ACBrDevice"/>
         <WindowIndex Value="0"/>
         <TopLine Value="113"/>
@@ -150,7 +150,7 @@
         <UsageCount Value="2"/>
       </Unit10>
       <Unit11>
-        <Filename Value="..\..\..\Fontes\ACBrSerial\ACBrBAL.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrBAL.pas"/>
         <UnitName Value="ACBrBAL"/>
         <WindowIndex Value="0"/>
         <TopLine Value="103"/>
@@ -159,7 +159,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
-        <Filename Value="..\..\..\Exemplos\ACBrAAC\Delphi\Unit1.pas"/>
+        <Filename Value="..\..\ACBr\Exemplos\ACBrAAC\Delphi\Unit1.pas"/>
         <HasResources Value="True"/>
         <UnitName Value="Unit1"/>
         <WindowIndex Value="0"/>
@@ -181,7 +181,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit13>
       <Unit14>
-        <Filename Value="..\..\..\Exemplos\ACBrAAC\Delphi2\unit1.pas"/>
+        <Filename Value="..\..\ACBr\Exemplos\ACBrAAC\Delphi2\unit1.pas"/>
         <HasResources Value="True"/>
         <UnitName Value="Unit1"/>
         <WindowIndex Value="0"/>
@@ -191,7 +191,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit14>
       <Unit15>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrAAC.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrAAC.pas"/>
         <UnitName Value="ACBrAAC"/>
         <WindowIndex Value="0"/>
         <TopLine Value="609"/>
@@ -200,7 +200,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit15>
       <Unit16>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrPAFClass.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrPAFClass.pas"/>
         <UnitName Value="ACBrPAFClass"/>
         <WindowIndex Value="0"/>
         <TopLine Value="435"/>
@@ -232,7 +232,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit18>
       <Unit19>
-        <Filename Value="..\..\..\Fontes\ACBrTEFD\ACBrTEFDClass.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrTEFD\ACBrTEFDClass.pas"/>
         <UnitName Value="ACBrTEFDClass"/>
         <WindowIndex Value="0"/>
         <TopLine Value="109"/>
@@ -241,7 +241,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit19>
       <Unit20>
-        <Filename Value="..\..\..\Fontes\ACBrTEFD\ACBrTEFD.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrTEFD\ACBrTEFD.pas"/>
         <UnitName Value="ACBrTEFD"/>
         <WindowIndex Value="0"/>
         <TopLine Value="276"/>
@@ -250,7 +250,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit20>
       <Unit21>
-        <Filename Value="..\..\..\Fontes\ACBrPAF\ACBrPAF_D.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrPAF\ACBrPAF_D.pas"/>
         <UnitName Value="ACBrPAF_D"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
@@ -259,7 +259,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit21>
       <Unit22>
-        <Filename Value="..\..\..\Fontes\ACBrPAF\ACBrPAF_C.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrPAF\ACBrPAF_C.pas"/>
         <UnitName Value="ACBrPAF_C"/>
         <WindowIndex Value="0"/>
         <TopLine Value="79"/>
@@ -268,7 +268,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit22>
       <Unit23>
-        <Filename Value="..\..\..\Fontes\ACBrPAF\ACBrPAF.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrPAF\ACBrPAF.pas"/>
         <UnitName Value="ACBrPAF"/>
         <WindowIndex Value="0"/>
         <TopLine Value="564"/>
@@ -285,7 +285,7 @@
         <UsageCount Value="7"/>
       </Unit24>
       <Unit25>
-        <Filename Value="..\..\..\Fontes\ACBrPAF\ACBrPAF_B_Class.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrPAF\ACBrPAF_B_Class.pas"/>
         <UnitName Value="ACBrPAF_B_Class"/>
         <WindowIndex Value="0"/>
         <TopLine Value="46"/>
@@ -294,7 +294,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit25>
       <Unit26>
-        <Filename Value="..\..\..\Fontes\ACBrSPED\ACBrSped.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSPED\ACBrSped.pas"/>
         <UnitName Value="ACBrSped"/>
         <WindowIndex Value="0"/>
         <TopLine Value="23"/>
@@ -303,7 +303,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit26>
       <Unit27>
-        <Filename Value="..\..\..\Fontes\ACBrSPED\ACBrSpedUtils.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSPED\ACBrSpedUtils.pas"/>
         <UnitName Value="ACBrSpedUtils"/>
         <WindowIndex Value="0"/>
         <TopLine Value="31"/>
@@ -312,7 +312,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit27>
       <Unit28>
-        <Filename Value="..\..\..\Fontes\ACBrPAF\ACBrPAF.lrs"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrPAF\ACBrPAF.lrs"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="1"/>
@@ -332,7 +332,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrEAD.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrEAD.pas"/>
         <UnitName Value="ACBrEAD"/>
         <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
@@ -343,7 +343,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit30>
       <Unit31>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrConsts.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrConsts.pas"/>
         <UnitName Value="ACBrConsts"/>
         <WindowIndex Value="0"/>
         <TopLine Value="150"/>
@@ -366,7 +366,7 @@
         <UsageCount Value="9"/>
       </Unit33>
       <Unit34>
-        <Filename Value="..\..\..\Fontes\ACBrComum\OpenSSL.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\OpenSSL.pas"/>
         <UnitName Value="OpenSSL"/>
         <WindowIndex Value="0"/>
         <TopLine Value="109"/>
@@ -387,7 +387,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit35>
       <Unit36>
-        <Filename Value="..\..\..\Fontes\ACBrSintegra\ACBrSintegra.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSintegra\ACBrSintegra.pas"/>
         <UnitName Value="ACBrSintegra"/>
         <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
@@ -398,7 +398,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit36>
       <Unit37>
-        <Filename Value="..\..\..\Fontes\ACBrPAF\ACBrPAF_B.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrPAF\ACBrPAF_B.pas"/>
         <UnitName Value="ACBrPAF_B"/>
         <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
@@ -411,11 +411,11 @@
     </Units>
     <JumpHistory Count="25" HistoryIndex="24">
       <Position1>
-        <Filename Value="..\..\..\Fontes\ACBrSerial\ACBrECF.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
         <Caret Line="4780" Column="29" TopLine="4750"/>
       </Position1>
       <Position2>
-        <Filename Value="..\..\..\Fontes\ACBrSerial\ACBrECF.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
         <Caret Line="4791" Column="28" TopLine="4761"/>
       </Position2>
       <Position3>
@@ -463,43 +463,43 @@
         <Caret Line="295" Column="25" TopLine="271"/>
       </Position13>
       <Position14>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrEAD.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrEAD.pas"/>
         <Caret Line="154" Column="25" TopLine="139"/>
       </Position14>
       <Position15>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrEAD.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrEAD.pas"/>
         <Caret Line="155" Column="25" TopLine="139"/>
       </Position15>
       <Position16>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrEAD.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrEAD.pas"/>
         <Caret Line="156" Column="25" TopLine="139"/>
       </Position16>
       <Position17>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrEAD.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrEAD.pas"/>
         <Caret Line="714" Column="30" TopLine="687"/>
       </Position17>
       <Position18>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrEAD.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrEAD.pas"/>
         <Caret Line="723" Column="26" TopLine="693"/>
       </Position18>
       <Position19>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrEAD.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrEAD.pas"/>
         <Caret Line="729" Column="30" TopLine="699"/>
       </Position19>
       <Position20>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrEAD.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrEAD.pas"/>
         <Caret Line="736" Column="26" TopLine="706"/>
       </Position20>
       <Position21>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrEAD.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrEAD.pas"/>
         <Caret Line="742" Column="30" TopLine="712"/>
       </Position21>
       <Position22>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrEAD.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrEAD.pas"/>
         <Caret Line="749" Column="26" TopLine="719"/>
       </Position22>
       <Position23>
-        <Filename Value="..\..\..\Fontes\ACBrComum\ACBrEAD.pas"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrEAD.pas"/>
         <Caret Line="755" Column="30" TopLine="725"/>
       </Position23>
       <Position24>
@@ -513,14 +513,14 @@
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
-    <Version Value="11"/>
+    <Version Value="9"/>
     <PathDelim Value="\"/>
     <Target>
       <Filename Value="x64\ACBrFramework64"/>
     </Target>
     <SearchPaths>
-      <IncludeFiles Value="$(ProjOutDir);..\..\..\Fontes\ACBrComum"/>
-      <OtherUnitFiles Value="..\..\..\Fontes\ACBrSerial;..\..\..\Fontes\ACBrTCP;..\..\..\Fontes\ACBrComum;..\..\..\Fontes\ACBrDiversos;..\..\..\Fontes\ACBrPAF;..\..\..\Fontes\ACBrSintegra;..\..\..\Fontes\ACBrSPED;..\..\..\Fontes\synalist"/>
+      <IncludeFiles Value="$(ProjOutDir);..\..\ACBr\Fontes\ACBrComum"/>
+      <OtherUnitFiles Value="..\..\ACBr\Fontes\ACBrSerial;..\..\ACBr\Fontes\ACBrTCP;..\..\ACBr\Fontes\ACBrComum;..\..\ACBr\Fontes\ACBrDiversos;..\..\ACBr\Fontes\ACBrPAF;..\..\ACBr\Fontes\ACBrSintegra;..\..\ACBr\Fontes\ACBrSPED;..\..\ACBr\Fontes\synalist"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
@@ -534,7 +534,6 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <GenerateDebugInfo Value="False"/>
         <UseLineInfoUnit Value="False"/>
         <StripSymbols Value="True"/>
       </Debugging>
