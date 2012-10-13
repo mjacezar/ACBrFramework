@@ -12,7 +12,7 @@ uses
 
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
-   ChaveRSA : String;
+   ChaveRSA : AnsiString;
    procedure GetChaveRSA(var Chave : AnsiString);
 end;
 
@@ -726,7 +726,6 @@ Function PAF_SaveFileTXT_B(const pafHandle: PPAFHandle; const RegistroB1Rec : TR
       const RegistroB2Rec : array of TRegistroB2Rec; const CountB2 : Integer; const Arquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   i : Integer;
-  OldMask:string;
 begin
   if (pafHandle = nil) then
   begin
@@ -901,6 +900,7 @@ begin
             pafHandle^.PAF.PAF_D.LimpaRegistros;
             pafHandle^.UltimoErro := 'O numero de itens nas DAVs não pode ser Zero';
             Result := -1;
+            Exit;
          end;
 
          for D := 0 to RegistroD2Rec[i].QTD_D3 - 1 do
@@ -1254,6 +1254,7 @@ begin
             pafHandle^.PAF.PAF_R.LimpaRegistros;
             pafHandle^.UltimoErro := 'O numero de itens no registro R3 não pode ser Zero';
             Result := -1;
+            Exit;
          end;
 
          for D := 0 to RegistroR2Rec[i].QTD_R3 - 1 do
@@ -1296,6 +1297,7 @@ begin
             pafHandle^.PAF.PAF_R.LimpaRegistros;
             pafHandle^.UltimoErro := 'O numero de itens no registro R5 não pode ser Zero';
             Result := -1;
+            Exit;
          end;
 
          for D := 0 to RegistroR4Rec[i].QTD_R5 - 1 do
@@ -1363,6 +1365,7 @@ begin
             pafHandle^.PAF.PAF_R.LimpaRegistros;
             pafHandle^.UltimoErro := 'O numero de itens no registro R7 não pode ser Zero';
             Result := -1;
+            Exit;
          end;
 
          for D := 0 to RegistroR6Rec[i].QTD_R7 - 1 do

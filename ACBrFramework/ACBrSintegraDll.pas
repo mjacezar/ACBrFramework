@@ -80,6 +80,42 @@ type TRegistro51Rec = record
   ValorOutras   : Double;
 end;
 
+type TRegistro53Rec = record
+  CPFCNPJ           : array[0..14] of char;
+  Inscricao         : array[0..14] of char;
+  Estado            : array[0..2] of char;
+  Serie             : array[0..3] of char;
+  DataDocumento     : Double;
+  Cfop              : array[0..4] of char;
+  Numero            : array[0..6] of char;
+  Situacao          : array[0..3] of char;
+  CodigoAntecipacao : array[0..1] of char;
+  BaseST            : Double;
+  Modelo            : array[0..2] of char;
+  Emitente          : array[0..1] of char;
+  Despesas          : Double;
+  IcmsRetido        : Double;
+end;
+
+type TRegistro54Rec = record
+  Aliquota             : Double;
+  BaseST               : Double;
+  BasedeCalculo        : Double;
+  Quantidade           : Double;
+  ValorDescontoDespesa : Double;
+  ValorIpi             : Double;
+  Valor                : Double;
+  NumeroItem           : Integer;
+  CST                  : string;
+  Codigo               : array[0..14] of char;
+  CFOP                 : array[0..4] of char;
+  Descricao            : array[0..53] of char;
+  CPFCNPJ              : array[0..14] of char;
+  Numero               : array[0..6] of char;
+  Modelo               : array[0..2] of char;
+  Serie                : array[0..3] of char;
+end;
+
 {Ponteiro para o Handle }
 type PSINHandle = ^TSintegraHandle;
 
@@ -473,6 +509,100 @@ except
 end;
 end;
 
+function SIN_Registro53(const sinHandle: PSINHandle; const Registro53Rec : array of TRegistro53Rec; const Count : Integer): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  registro53: TRegistro53;
+  i : Integer;
+begin
+  if (sinHandle = nil) then
+    begin
+       Result := -2;
+       Exit;
+    end;
+try
+  if sinHandle^.Sintegra.Ativo then
+  begin
+    for i := 0 to Count - 1 do
+    begin
+    with sinHandle^.Sintegra do
+    begin
+      registro53                   := TRegistro53.Create;
+      registro53.CPFCNPJ           := Registro53Rec[i].CPFCNPJ;
+      registro53.Inscricao         := Registro53Rec[i].Inscricao;
+      registro53.Estado            := Registro53Rec[i].Estado;
+      registro53.Serie             := Registro53Rec[i].Serie;
+      registro53.DataDocumento     := Registro53Rec[i].DataDocumento;
+      registro53.Cfop              := Registro53Rec[i].Cfop;
+      registro53.Numero            := Registro53Rec[i].Numero;
+      registro53.Situacao          := Registro53Rec[i].Situacao;
+      registro53.CodigoAntecipacao := Registro53Rec[i].CodigoAntecipacao;
+      registro53.BaseST            := Registro53Rec[i].BaseST;
+      registro53.Modelo            := Registro53Rec[i].Modelo;
+      registro53.Emitente          := Registro53Rec[i].Emitente;
+      registro53.Despesas          := Registro53Rec[i].Despesas;
+      registro53.IcmsRetido        := Registro53Rec[i].IcmsRetido;
+      Registros53.Add(registro53);
+    end;
+    end;
+  end;
+  Result := 0;
+except
+   on exception : Exception do
+   begin
+      sinHandle^.UltimoErro := exception.Message;
+      Result := -1;
+   end
+end;
+end;
+
+function SIN_Registro54(const sinHandle: PSINHandle; const Registro54Rec : array of TRegistro54Rec; const Count : Integer): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  registro54: TRegistro54;
+  i : Integer;
+begin
+  if (sinHandle = nil) then
+    begin
+       Result := -2;
+       Exit;
+    end;
+try
+  if sinHandle^.Sintegra.Ativo then
+  begin
+    for i := 0 to Count - 1 do
+    begin
+    with sinHandle^.Sintegra do
+    begin
+      registro54                      := TRegistro54.Create;
+      registro54.Aliquota             := Registro54Rec[i].Aliquota;
+      registro54.BaseST               := Registro54Rec[i].BaseST;
+      registro54.BasedeCalculo        := Registro54Rec[i].BasedeCalculo;
+      registro54.Quantidade           := Registro54Rec[i].Quantidade;
+      registro54.ValorDescontoDespesa := Registro54Rec[i].ValorDescontoDespesa;
+      registro54.ValorIpi             := Registro54Rec[i].ValorIpi;
+      registro54.Valor                := Registro54Rec[i].Valor;
+      registro54.NumeroItem           := Registro54Rec[i].NumeroItem;
+      registro54.CST                  := Registro54Rec[i].CST;
+      registro54.Codigo               := Registro54Rec[i].Codigo;
+      registro54.CFOP                 := Registro54Rec[i].CFOP;
+      registro54.Descricao            := Registro54Rec[i].Descricao;
+      registro54.CPFCNPJ              := Registro54Rec[i].CPFCNPJ;
+      registro54.Numero               := Registro54Rec[i].Numero;
+      registro54.Modelo               := Registro54Rec[i].Modelo;
+      registro54.Serie                := Registro54Rec[i].Serie;
+      Registros54.Add(registro54);
+    end;
+    end;
+  end;
+  Result := 0;
+except
+   on exception : Exception do
+   begin
+      sinHandle^.UltimoErro := exception.Message;
+      Result := -1;
+   end
+end;
+end;
+
 exports
 { Funções }
 SIN_Create,
@@ -488,6 +618,7 @@ SIN_LimparRegistros,
 
 { Registros }
 SIN_Registro10, SIN_Registro11,
-SIN_Registro50, SIN_Registro51;
+SIN_Registro50, SIN_Registro51,
+SIN_Registro53, SIN_Registro54;
 end.
 
