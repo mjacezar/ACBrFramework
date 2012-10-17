@@ -22,7 +22,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="9"/>
-      <BuildNr Value="156"/>
+      <BuildNr Value="155"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -511,6 +511,10 @@
         <Caret Line="70" Column="31" TopLine="60"/>
       </Position25>
     </JumpHistory>
+    <CustomSessionData Count="2">
+      <Item0 Name="SVN active" Value="-1"/>
+      <Item1 Name="SVN repository" Value="..\..\ACBrFramework"/>
+    </CustomSessionData>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>

@@ -26,7 +26,7 @@ namespace ACBrFramework.ECFTeste
 
 			Popular();
 			PopularAAC();
-			PopularEAD();
+			InicializarEAD();
 		}
 
 		#endregion Constructor
@@ -770,8 +770,7 @@ namespace ACBrFramework.ECFTeste
 
 		#endregion ECF
 
-		#region PAF
-
+		#region PAF 
 		private void GerarArquivoC()
 		{
 			try
@@ -890,6 +889,76 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
+        private void GerarArquivoP()
+        {
+            try
+            {
+                ACBrPAFRegistroD1 RegistroD1 = new ACBrPAFRegistroD1();
+                List<ACBrPAFRegistroD2> RegistroD2 = new List<ACBrPAFRegistroD2>();
+
+                RegistroD1.RazaoSocial = txtRazaoSocial.Text;
+                RegistroD1.UF = txtUF.Text;
+                RegistroD1.CNPJ = txtCNPJ.Text;
+                RegistroD1.IE = txtIE.Text;
+                RegistroD1.IM = txtIM.Text;
+
+                for (int i = 0; i < 10; i++)
+                {
+                    ACBrPAFRegistroD2 ItemD2 = new ACBrPAFRegistroD2();
+                    ItemD2.NUM_FAB = NUM_FAB;
+                    ItemD2.MF_ADICIONAL = MF_ADICIONAL;
+                    ItemD2.TIPO_ECF = TIPO_ECF;
+                    ItemD2.MARCA_ECF = MARCA_ECF;
+                    ItemD2.MODELO_ECF = MODELO_ECF;
+                    ItemD2.COO = GerarDados('I', 6);
+                    ItemD2.NUM_DAV = GerarDados('I', 13);
+                    ItemD2.DT_DAV = DateTime.Now;
+                    ItemD2.TIT_DAV = "Pedido";
+                    ItemD2.VLT_DAV = Convert.ToDouble(GerarDados('I', 8));
+                    ItemD2.COO_DFV = "0";
+                    ItemD2.NUMERO_ECF = "1";
+                    ItemD2.NOME_CLIENTE = "Rafael Dias";
+                    ItemD2.CPF_CNPJ = GerarDados('I', 14);
+                    ItemD2.RegistroD3 = new List<ACBrPAFRegistroD3>();
+                    for (int d = 0; d < 5; d++)
+                    {
+                        ACBrPAFRegistroD3 ItemD3 = new ACBrPAFRegistroD3();
+                        ItemD3.DT_INCLUSAO = DateTime.Now;
+                        ItemD3.NUM_ITEM = d;
+                        ItemD3.COD_ITEM = GerarDados('I', 8);
+                        ItemD3.DESC_ITEM = "descricao do item";
+                        ItemD3.QTDE_ITEM = Convert.ToDouble(GerarDados('I', 8));
+                        ItemD3.UNI_ITEM = "UN";
+                        ItemD3.VL_UNIT = Convert.ToDouble(GerarDados('I', 8));
+                        ItemD3.VL_DESCTO = Convert.ToDouble(GerarDados('I', 8));
+                        ItemD3.VL_ACRES = Convert.ToDouble(GerarDados('I', 8));
+                        ItemD3.VL_TOTAL = Convert.ToDouble(GerarDados('I', 8));
+                        ItemD3.DEC_VL_UNIT = 2;
+                        ItemD3.DEC_QTDE_ITEM = 2;
+                        ItemD3.SIT_TRIB = "T";
+                        ItemD3.ALIQ = Convert.ToDouble(GerarDados('I', 8)); ;
+                        ItemD3.IND_CANC = "M";
+                        ItemD3.RegistroValido = true;
+                        ItemD2.RegistroD3.Add(ItemD3);
+                        ItemD3 = null;
+                    }
+
+                    ItemD2.RegistroValido = true;
+                    RegistroD2.Add(ItemD2);
+                    ItemD2 = null;
+                }
+
+                acbrPAF.Path = Path.GetDirectoryName(Application.ExecutablePath);
+                acbrPAF.SaveFileTXT_D(RegistroD1, RegistroD2.ToArray(), @"\PAF_D.txt");
+                MessageBox.Show("Arquivo PAF_D Gerado com sucesso");
+            }
+            catch (Exception exception)
+            {
+                messageToolStripStatusLabel.Text = "Exception";
+                descriptionToolStripStatusLabel.Text = exception.Message;
+            }
+        }
+
 		private string GerarDados(char tipo, int size)
 		{
 			Random random = new Random();
@@ -920,8 +989,24 @@ namespace ACBrFramework.ECFTeste
 		#endregion PAF
 
 		#region EAD
-		public void PopularEAD()
+        public void InicializarEAD()
 		{
+            acbrEAD.ChavePrivada = "-----BEGIN RSA PRIVATE KEY-----" + Environment.NewLine +
+                                   "MIICXwIBAAKBgQC+TZjfcw/a/SovoqQPOW5bbKn4CQw4DeZJA3Y9vJrYHKN4aCQv" + Environment.NewLine +
+                                   "z0i3AG9kGdsTSZdZ/clh4xv6tUwPsBdZJHrm21gH7wN/zKLTvXbs+i3x7U00ElCB" + Environment.NewLine +
+                                   "YyZ8BOXJWVMuye0UvSz7p4JwSopugzbjaImIGy+5LvgcjUCn3OZzWpwYWQIDAQAB" + Environment.NewLine +
+                                   "AoGBAKAycEtB8An37ghVkGfkf7rkmZxb+XZCdSXnjSThXTQpv46/lB7PDrZG3n5U" + Environment.NewLine +
+                                   "qa/t1kQCOQF3DnmZHqNiJ/V5mR7ApbciQj4WYVLkMCgltru3MmzIUQ9IiLtAgaCv" + Environment.NewLine +
+                                   "uHc0MAzt/OWgQ93uFnLf4ubp4+2PTHiiIChv2m78s605wX2lAkEA+3pPsPdXcaOe" + Environment.NewLine +
+                                   "7T7C4hn1qg93ksN96UutB1APF3YAjWVWuPwzZv4hExiMPc0uKvVK2H3tP4P5CkM5" + Environment.NewLine +
+                                   "YMIEGEkF2wJBAMG5qmoYksz+MFZ2cd7gt68mf3Oq9F59qkHHcoV+1ttXx5pfzwat" + Environment.NewLine +
+                                   "kelhKkN+LV1XsgS0bGAKu2NitOMBUAcnItsCQQCEJxqJ3PFO/rUd58VyHEJFRCuK" + Environment.NewLine +
+                                   "LMGWP/aFyUSlB5XyuDaCr8YzcYjgCB5qu9BvMshKTKLIpgnRotIcTtjoCjfRAkEA" + Environment.NewLine +
+                                   "tsqHn+Bb9A0McykDvPdwmlXLAMsYFWihk7urtYa/GOw0rNcmMvjnqrxB8rlF+MNc" + Environment.NewLine +
+                                   "d8/+SokV02s5ntCIQJeO7QJBAKp2BCOIck+uhMPDiw/1788yQLD6mVb/pBzClzBn" + Environment.NewLine +
+                                   "pTMAFPGJG2fO4YJn/pUHdtDtSenX8TibWve+gY6oFCFw/Ts=" + Environment.NewLine +
+                                   "-----END RSA PRIVATE KEY-----";
+
 			foreach (var hash in Enum.GetValues(typeof(EADDigest))) cmbHash.Items.Add(hash);
 		}
 
@@ -967,6 +1052,19 @@ namespace ACBrFramework.ECFTeste
 			if (menssagem)
 				MessageBox.Show("Chave privada salva com sucesso !!");
 		}
+
+        private void CalcularCHPUB()
+        {
+            try
+            {
+                txtChavePub.Text = acbrEAD.CalcularChavePublica();
+            }
+			catch (Exception exception)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = exception.Message;
+			}
+        }
 		#endregion EAD
 
 		#endregion Methods
@@ -1339,6 +1437,11 @@ namespace ACBrFramework.ECFTeste
 			GerarArquivoD();
 		}
 
+        private void btnTipoP_Click(object sender, EventArgs e)
+        {
+            GerarArquivoP();
+        }
+
 		private void btnNPChaves_Click(object sender, EventArgs e)
 		{
 			GerarChaves();
@@ -1354,7 +1457,11 @@ namespace ACBrFramework.ECFTeste
 			SalvarPubKey(true);
 		}
 
-		#endregion Event Handlers				
-		
+        private void btnCalcCP_Click(object sender, EventArgs e)
+        {
+            CalcularCHPUB();
+        }
+
+		#endregion Event Handlers		
 	}
 }
