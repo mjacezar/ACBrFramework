@@ -10,7 +10,7 @@ uses
 
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
-   ChavePrivada, ChavePublica : String;
+   ChavePrivada, ChavePublica : AnsiString;
    procedure GetChavePrivada(var Chave : AnsiString);
    procedure GetChavePublica(var Chave : AnsiString);
 end;
