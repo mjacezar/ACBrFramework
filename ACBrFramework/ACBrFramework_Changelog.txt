@@ -40,6 +40,8 @@ Símbolo : Significado
 [-]     : Correção de Bug (assim esperamos)
 
 Changelog
+17/10/2012(ACBrFramework 0.9.0.155)
+[+] Adicionado demostração de como o Arquivo P do Paf - ACBrFramework.Net - Rafael Dias.
 
 12/10/2012 (ACBrFramework 0.9.0.155)
 [+] Implementado a Função SIN_Registro53 e SIN_Registro54 - ACBrFramework - Rafael Dias.
