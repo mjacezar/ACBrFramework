@@ -282,7 +282,7 @@ namespace ACBrFramework.ECFTeste
 		public void Ativar()
 		{
 			try
-			{
+			{                
 				acbrECF.Modelo = (ModeloECF)modeloComboBox.SelectedItem;
 				acbrECF.Porta = (string)portaComboBox.SelectedItem;
 				acbrECF.Baud = (int)velocidadeComboBox.SelectedItem;
