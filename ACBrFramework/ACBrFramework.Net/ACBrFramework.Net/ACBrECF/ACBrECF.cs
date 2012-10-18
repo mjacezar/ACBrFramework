@@ -972,11 +972,23 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
+        public void PafMF_RelIdentificacaoPafECF(int indiceRelatorio)
+        {
+            int ret = ACBrECFInterop.ECF_PafMF_RelIdentificacaoPafECF(this.Handle, IntPtr.Zero, indiceRelatorio);
+            CheckResult(ret);
+        }
+
 		public void PafMF_RelIdentificacaoPafECF(ACBrECFIdenticacaoPaf identificacaoPAF, int indiceRelatorio)
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_RelIdentificacaoPafECF(this.Handle, identificacaoPAF.Handle, indiceRelatorio);
 			CheckResult(ret);
 		}
+
+        public void PafMF_RelParametrosConfiguracao(int indiceRelatorio)
+        {
+            int ret = ACBrECFInterop.ECF_PafMF_RelIdentificacaoPafECF(this.Handle, IntPtr.Zero, indiceRelatorio);
+            CheckResult(ret);
+        }
 
         public void PafMF_RelParametrosConfiguracao(ACBrECFInfoPaf infoPAF, int indiceRelatorio)
         {
