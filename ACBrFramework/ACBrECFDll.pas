@@ -4882,19 +4882,26 @@ Function ECF_PafMF_RelIdentificacaoPafECF(const ecfHandle: PECFHandle; const aac
 begin
 if (ecfHandle = nil) then
 begin
-Result := -2;
-Exit;
+   Result := -2;
+   Exit;
 end;
 
 try
-ecfHandle^.ECF.PafMF_RelIdentificacaoPafECF(aacHandle^.AAC.IdentPAF, indiceRelatorio);
-Result := 0;
+   if(aacHandle = nil) then
+   begin
+      ecfHandle^.ECF.PafMF_RelIdentificacaoPafECF(nil, indiceRelatorio);
+   end
+   else
+   begin
+     ecfHandle^.ECF.PafMF_RelIdentificacaoPafECF(aacHandle^.AAC.IdentPAF, indiceRelatorio);
+   end;
+   Result := 0;
 except
-on exception : Exception do
-begin
-ecfHandle^.UltimoErro := exception.Message;
-Result := -1;
-end
+   on exception : Exception do
+   begin
+   ecfHandle^.UltimoErro := exception.Message;
+   Result := -1;
+   end
 end;
 end;
 
@@ -4907,8 +4914,15 @@ begin
 end;
 
 try
-ecfHandle^.ECF.PafMF_RelParametrosConfiguracao(aacHandle^.AAC.IdentPAF.Paf, indiceRelatorio);
-Result := 0;
+   if(aacHandle = nil) then
+   begin
+     ecfHandle^.ECF.PafMF_RelParametrosConfiguracao(nil, indiceRelatorio);
+   end
+   else
+   begin
+     ecfHandle^.ECF.PafMF_RelParametrosConfiguracao(aacHandle^.AAC.IdentPAF.Paf, indiceRelatorio);
+   end;
+   Result := 0;
 except
    on exception : Exception do
    begin
