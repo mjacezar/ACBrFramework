@@ -27,6 +27,7 @@ namespace ACBrFramework.ECFTeste
 			Popular();
 			PopularAAC();
 			InicializarEAD();
+			InicializarPaf();
 		}
 
 		#endregion Constructor
@@ -265,6 +266,8 @@ namespace ACBrFramework.ECFTeste
 			velocidadeComboBox.SelectedItem = 9600;
 
 			ativarCheckButton.Checked = false;
+			acbrECF.EAD = acbrEAD;
+			acbrECF.AAC = acbrAAC;
 		}
 
 		public void Ativar()
@@ -770,7 +773,13 @@ namespace ACBrFramework.ECFTeste
 
 		#endregion ECF
 
-		#region PAF 
+		#region PAF
+		private void InicializarPaf()
+		{
+			acbrPAF.EAD = acbrEAD;
+			acbrPAF.AAC = acbrAAC;
+		}
+
 		private void GerarArquivoC()
 		{
 			try
@@ -791,18 +800,18 @@ namespace ACBrFramework.ECFTeste
 					ItemC2.TANQUE = "001";
 					ItemC2.BOMBA = "001";
 					ItemC2.BICO = "001";
-					ItemC2.COMBUSTIVEL = GerarDados('S', 14);
+					ItemC2.COMBUSTIVEL = (string)GerarDados('S', 14);
 					ItemC2.DATA_ABASTECIMENTO = DateTime.Now;
 					ItemC2.HORA_ABASTECIMENTO = DateTime.Now;
-					ItemC2.ENCERRANTE_INICIAL = Convert.ToInt32(GerarDados('I', 5));
-					ItemC2.ENCERRANTE_FINAL = Convert.ToInt32(GerarDados('I', 5));
+					ItemC2.ENCERRANTE_INICIAL = (int)GerarDados('I', 5);
+					ItemC2.ENCERRANTE_FINAL = (int)GerarDados('I', 5);
 					ItemC2.STATUS_ABASTECIMENTO = "EMITIDO CF";
-					ItemC2.NRO_SERIE_ECF = GerarDados('S', 14);
+					ItemC2.NRO_SERIE_ECF = (string)GerarDados('S', 14);
 					ItemC2.DATA = DateTime.Now;
 					ItemC2.HORA = DateTime.Now;
-					ItemC2.COO = Convert.ToInt32(GerarDados('I', 3));
-					ItemC2.NRO_NOTA_FISCAL = Convert.ToInt32(GerarDados('I', 4));
-					ItemC2.VOLUME = Convert.ToInt32(GerarDados('I', 2));
+					ItemC2.COO = (int)GerarDados('I', 3);
+					ItemC2.NRO_NOTA_FISCAL = (int)GerarDados('I', 4);
+					ItemC2.VOLUME = (int)GerarDados('I', 2);
 					ItemC2.RegistroValido = true;
 					RegistroC2.Add(ItemC2);
 					ItemC2 = null;
@@ -840,33 +849,33 @@ namespace ACBrFramework.ECFTeste
 					ItemD2.TIPO_ECF = TIPO_ECF;
 					ItemD2.MARCA_ECF = MARCA_ECF;
 					ItemD2.MODELO_ECF = MODELO_ECF;
-					ItemD2.COO = GerarDados('I', 6);
-					ItemD2.NUM_DAV = GerarDados('I', 13);
+					ItemD2.COO = GerarDados('I', 6).ToString();
+					ItemD2.NUM_DAV = GerarDados('I', 13).ToString();
 					ItemD2.DT_DAV = DateTime.Now;
 					ItemD2.TIT_DAV = "Pedido";
-					ItemD2.VLT_DAV = Convert.ToDouble(GerarDados('I', 8));
+					ItemD2.VLT_DAV = (double)GerarDados('D', 8);
 					ItemD2.COO_DFV = "0";
 					ItemD2.NUMERO_ECF = "1";
 					ItemD2.NOME_CLIENTE = "Rafael Dias";
-					ItemD2.CPF_CNPJ = GerarDados('I', 14);
+					ItemD2.CPF_CNPJ = GerarDados('I', 14).ToString();
 					ItemD2.RegistroD3 = new List<ACBrPAFRegistroD3>();
 					for (int d = 0; d < 5; d++)
 					{
 						ACBrPAFRegistroD3 ItemD3 = new ACBrPAFRegistroD3();
 						ItemD3.DT_INCLUSAO = DateTime.Now;
-						ItemD3.NUM_ITEM = d; 
-						ItemD3.COD_ITEM = GerarDados('I', 8);
+						ItemD3.NUM_ITEM = d;
+						ItemD3.COD_ITEM = GerarDados('I', 8).ToString();
 						ItemD3.DESC_ITEM = "descricao do item";
-						ItemD3.QTDE_ITEM = Convert.ToDouble(GerarDados('I', 8)); 
+						ItemD3.QTDE_ITEM = (double)GerarDados('D', 8); 
 						ItemD3.UNI_ITEM = "UN";
-						ItemD3.VL_UNIT = Convert.ToDouble(GerarDados('I', 8)); 
-						ItemD3.VL_DESCTO = Convert.ToDouble(GerarDados('I', 8)); 
-						ItemD3.VL_ACRES = Convert.ToDouble(GerarDados('I', 8)); 
-						ItemD3.VL_TOTAL = Convert.ToDouble(GerarDados('I', 8)); 
+						ItemD3.VL_UNIT = (double)GerarDados('D', 8); 
+						ItemD3.VL_DESCTO = (double)GerarDados('D', 8); 
+						ItemD3.VL_ACRES = (double)GerarDados('D', 8); 
+						ItemD3.VL_TOTAL = (double)GerarDados('D', 8); 
 						ItemD3.DEC_VL_UNIT = 2;
 						ItemD3.DEC_QTDE_ITEM = 2; 
 						ItemD3.SIT_TRIB = "T";
-						ItemD3.ALIQ = Convert.ToDouble(GerarDados('I', 8)); ;
+						ItemD3.ALIQ = (double)GerarDados('D', 8); ;
 						ItemD3.IND_CANC = "M";
 						ItemD3.RegistroValido = true;
 						ItemD2.RegistroD3.Add(ItemD3);
@@ -893,64 +902,34 @@ namespace ACBrFramework.ECFTeste
         {
             try
             {
-                ACBrPAFRegistroD1 RegistroD1 = new ACBrPAFRegistroD1();
-                List<ACBrPAFRegistroD2> RegistroD2 = new List<ACBrPAFRegistroD2>();
+                ACBrPAFRegistroP1 RegistroP1 = new ACBrPAFRegistroP1();
+                List<ACBrPAFRegistroP2> RegistroP2 = new List<ACBrPAFRegistroP2>();
 
-                RegistroD1.RazaoSocial = txtRazaoSocial.Text;
-                RegistroD1.UF = txtUF.Text;
-                RegistroD1.CNPJ = txtCNPJ.Text;
-                RegistroD1.IE = txtIE.Text;
-                RegistroD1.IM = txtIM.Text;
+                RegistroP1.RazaoSocial = txtRazaoSocial.Text;
+                RegistroP1.UF = txtUF.Text;
+                RegistroP1.CNPJ = txtCNPJ.Text;
+                RegistroP1.IE = txtIE.Text;
+                RegistroP1.IM = txtIM.Text;
 
                 for (int i = 0; i < 10; i++)
                 {
-                    ACBrPAFRegistroD2 ItemD2 = new ACBrPAFRegistroD2();
-                    ItemD2.NUM_FAB = NUM_FAB;
-                    ItemD2.MF_ADICIONAL = MF_ADICIONAL;
-                    ItemD2.TIPO_ECF = TIPO_ECF;
-                    ItemD2.MARCA_ECF = MARCA_ECF;
-                    ItemD2.MODELO_ECF = MODELO_ECF;
-                    ItemD2.COO = GerarDados('I', 6);
-                    ItemD2.NUM_DAV = GerarDados('I', 13);
-                    ItemD2.DT_DAV = DateTime.Now;
-                    ItemD2.TIT_DAV = "Pedido";
-                    ItemD2.VLT_DAV = Convert.ToDouble(GerarDados('I', 8));
-                    ItemD2.COO_DFV = "0";
-                    ItemD2.NUMERO_ECF = "1";
-                    ItemD2.NOME_CLIENTE = "Rafael Dias";
-                    ItemD2.CPF_CNPJ = GerarDados('I', 14);
-                    ItemD2.RegistroD3 = new List<ACBrPAFRegistroD3>();
-                    for (int d = 0; d < 5; d++)
-                    {
-                        ACBrPAFRegistroD3 ItemD3 = new ACBrPAFRegistroD3();
-                        ItemD3.DT_INCLUSAO = DateTime.Now;
-                        ItemD3.NUM_ITEM = d;
-                        ItemD3.COD_ITEM = GerarDados('I', 8);
-                        ItemD3.DESC_ITEM = "descricao do item";
-                        ItemD3.QTDE_ITEM = Convert.ToDouble(GerarDados('I', 8));
-                        ItemD3.UNI_ITEM = "UN";
-                        ItemD3.VL_UNIT = Convert.ToDouble(GerarDados('I', 8));
-                        ItemD3.VL_DESCTO = Convert.ToDouble(GerarDados('I', 8));
-                        ItemD3.VL_ACRES = Convert.ToDouble(GerarDados('I', 8));
-                        ItemD3.VL_TOTAL = Convert.ToDouble(GerarDados('I', 8));
-                        ItemD3.DEC_VL_UNIT = 2;
-                        ItemD3.DEC_QTDE_ITEM = 2;
-                        ItemD3.SIT_TRIB = "T";
-                        ItemD3.ALIQ = Convert.ToDouble(GerarDados('I', 8)); ;
-                        ItemD3.IND_CANC = "M";
-                        ItemD3.RegistroValido = true;
-                        ItemD2.RegistroD3.Add(ItemD3);
-                        ItemD3 = null;
-                    }
-
-                    ItemD2.RegistroValido = true;
-                    RegistroD2.Add(ItemD2);
-                    ItemD2 = null;
+                    ACBrPAFRegistroP2 ItemP2 = new ACBrPAFRegistroP2();
+					ItemP2.COD_MERC_SERV = (string)GerarDados('S', 6);
+					ItemP2.DESC_MERC_SERV = (string)GerarDados('S', 6);
+					ItemP2.UN_MED = (string)GerarDados('S', 2);
+					ItemP2.IAT = (string)GerarDados('S', 6);
+					ItemP2.IPPT = (string)GerarDados('S', 6);
+					ItemP2.ST = (string)GerarDados('S', 6);
+					ItemP2.ALIQ = (double)GerarDados('D', 6);
+					ItemP2.VL_UNIT = (double)GerarDados('D', 6);
+					ItemP2.RegistroValido = true;
+                    RegistroP2.Add(ItemP2);
+                    ItemP2 = null;
                 }
 
                 acbrPAF.Path = Path.GetDirectoryName(Application.ExecutablePath);
-                acbrPAF.SaveFileTXT_D(RegistroD1, RegistroD2.ToArray(), @"\PAF_D.txt");
-                MessageBox.Show("Arquivo PAF_D Gerado com sucesso");
+                acbrPAF.SaveFileTXT_P(RegistroP1, RegistroP2.ToArray(), @"\PAF_P.txt");
+                MessageBox.Show("Arquivo PAF_P Gerado com sucesso");
             }
             catch (Exception exception)
             {
@@ -959,7 +938,7 @@ namespace ACBrFramework.ECFTeste
             }
         }
 
-		private string GerarDados(char tipo, int size)
+		private object GerarDados(char tipo, int size)
 		{
 			Random random = new Random();
 			StringBuilder str = new StringBuilder(size);
@@ -978,12 +957,19 @@ namespace ACBrFramework.ECFTeste
 						nb = Convert.ToInt32(decimal.Round(Convert.ToDecimal(Math.Floor(26 * random.NextDouble() + 65)), 1));
 						str.Append(nb.ToString());
 						break;
+
+					case 'D':
+						nb = Convert.ToInt32(decimal.Round(Convert.ToDecimal(Math.Floor(26 * random.NextDouble() + 65)), 1));
+						str.Append(nb.ToString());
+						break;
 				}
 			}
 			if(tipo == 'I')
-				return str.ToString().ToUpper().Remove(size-1);
-
-			return str.ToString().ToUpper();
+				return Convert.ToInt32(str.ToString().ToUpper().Remove(size-1));
+			if (tipo == 'D')
+				return Convert.ToDouble(str.ToString().ToUpper().Remove(size - 1));
+			else
+				return str.ToString().ToUpper();
 		}
 
 		#endregion PAF
