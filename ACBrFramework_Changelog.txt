@@ -41,6 +41,9 @@ Símbolo : Significado
 
 Changelog
 
+18/10/2012(ACBrFramework 0.9.0.156)
+[+] Implementado o metodo ECF_PafMF_RelParametrosConfiguracao - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+
 17/10/2012(ACBrFramework 0.9.0.155)
 [+] Adicionado demo do ACBrEAD - ACBrFramework.Net - Rafael Dias.
 [+] Adicionado demo do ACBrPAF - ACBrFramework.Net - Rafael Dias.

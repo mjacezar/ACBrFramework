@@ -978,6 +978,12 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
+        public void PafMF_RelParametrosConfiguracao(ACBrECFInfoPaf infoPAF, int indiceRelatorio)
+        {
+            int ret = ACBrECFInterop.ECF_PafMF_RelIdentificacaoPafECF(this.Handle, infoPAF.Handle, indiceRelatorio);
+            CheckResult(ret);
+        }
+
 		#endregion PAF RelMeiosPagamento
 
 		#region PAF

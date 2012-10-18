@@ -300,6 +300,7 @@ ECF_PafMF_MFD_Espelho
 ECF_PafMF_MFD_Espelho_COO
 ECF_PafMF_RelDAVEmitidos
 ECF_PafMF_RelIdentificacaoPafECF
+ECF_PafMF_RelParametrosConfiguracao
 ECF_PafMF_RelMeiosPagamento
 ECF_ProgramaAliquota
 ECF_ProgramaComprovanteNaoFiscal

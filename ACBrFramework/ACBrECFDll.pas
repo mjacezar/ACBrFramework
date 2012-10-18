@@ -4898,6 +4898,26 @@ end
 end;
 end;
 
+Function ECF_PafMF_RelParametrosConfiguracao(const ecfHandle: PECFHandle; const aacHandle : PAACHandle; const indiceRelatorio : Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+if (ecfHandle = nil) then
+begin
+   Result := -2;
+   Exit;
+end;
+
+try
+ecfHandle^.ECF.PafMF_RelParametrosConfiguracao(aacHandle^.AAC.IdentPAF.Paf, indiceRelatorio);
+Result := 0;
+except
+   on exception : Exception do
+   begin
+   ecfHandle^.UltimoErro := exception.Message;
+   Result := -1;
+   end
+end;
+end;
+
 { Relatorio Gerencial }
 Function ECF_AbreRelatorioGerencial(const ecfHandle: PECFHandle; const Indice : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -5367,7 +5387,8 @@ ECF_DAV_Abrir, ECF_DAV_RegistrarItem,
 ECF_DAV_Fechar, ECF_PafMF_RelDAVEmitidos,
 
 {Paf Rels}
-ECF_PafMF_RelMeiosPagamento, ECF_PafMF_RelIdentificacaoPafECF;
+ECF_PafMF_RelMeiosPagamento, ECF_PafMF_RelIdentificacaoPafECF,
+ECF_PafMF_RelParametrosConfiguracao;
 
 {Não implementado}
 
