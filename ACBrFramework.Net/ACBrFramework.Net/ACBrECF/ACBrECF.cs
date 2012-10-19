@@ -953,7 +953,7 @@ namespace ACBrFramework
 
 		#endregion Métodos DAV
 
-		#region PAF RelMeiosPagamento
+		#region PAF Relatorios
 
 		public void PafMF_RelMeiosPagamento(ACBrECFFormaPagamento[] formasPagamento, string TituloRelatorio, int indiceRelatorio)
 		{
@@ -996,7 +996,7 @@ namespace ACBrFramework
             CheckResult(ret);
         }
 
-		#endregion PAF RelMeiosPagamento
+		#endregion PAF Relatorios
 
 		#region PAF
 
@@ -1009,6 +1009,32 @@ namespace ACBrFramework
 		public void PafMF_LX_Impressao()
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_LX_Impressao(this.Handle);
+			CheckResult(ret);
+		}
+
+		public void ArquivoMFD_DLL(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo)
+		{
+			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo), null, 0, -1);
+			CheckResult(ret);
+		}
+
+		public void ArquivoMFD_DLL(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo, ACBrECFFinalizaArqMFD Finaliza, params ACBrECFTipoDocumento[] Documentos)
+		{
+			int[] Docs = Array.ConvertAll(Documentos, value => (int)value);
+			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo), Docs, Docs.Length, (int)Finaliza);
+			CheckResult(ret);
+		}
+
+		public void ArquivoMFD_DLL(int COOInicial, int COOFinal, string CaminhoArquivo)
+		{
+			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL_COO(this.Handle, COOInicial, COOFinal, ToUTF8(CaminhoArquivo), null, 0, -1, -1);
+			CheckResult(ret);
+		}
+
+		public void ArquivoMFD_DLL(int COOInicial, int COOFinal, string CaminhoArquivo, ACBrECFFinalizaArqMFD Finaliza, ACBrECFTipoContador TipoContador, params ACBrECFTipoDocumento[] Documentos)
+		{
+			int[] Docs = Array.ConvertAll(Documentos, value => (int)value);
+			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL_COO(this.Handle, COOInicial, COOFinal, ToUTF8(CaminhoArquivo), Docs, Docs.Length, (int)Finaliza, (int)TipoContador);
 			CheckResult(ret);
 		}
 

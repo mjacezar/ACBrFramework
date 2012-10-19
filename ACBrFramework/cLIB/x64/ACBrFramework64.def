@@ -282,6 +282,10 @@ ECF_LinhaCupomVinculado
 ECF_LinhaRelatorioGerencial
 ECF_MudaArredondamento
 ECF_MudaHorarioVerao
+ECF_ArquivoMFD_DLL
+ECF_ArquivoMFD_DLL_COO
+ECF_EspelhoMFD_DLL
+ECF_EspelhoMFD_DLL_COO
 ECF_PafMF_GerarCAT52
 ECF_PafMF_LMFC_Cotepe1704
 ECF_PafMF_LMFC_Cotepe1704_CRZ

@@ -4678,6 +4678,151 @@ end
 end;
 end;
 
+{PAF Arquivos}
+Function ECF_ArquivoMFD_DLL( const ecfHandle: PECFHandle; const DataInicial, DataFinal: double; const Arquivo : pChar ;const Documentos: array of Integer; const QTD_DOC, Finalidade : Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  DocumentSet   : TACBrECFTipoDocumentoSet;
+  i             : Integer;
+begin
+if (ecfHandle = nil) then
+begin
+   Result := -2;
+   Exit;
+end;
+
+try
+if (QTD_DOC = 0) And (Finalidade = -1) then
+begin
+   ecfHandle^.ECF.ArquivoMFD_DLL(DataInicial, DataFinal, Arquivo);
+end
+else
+begin
+DocumentSet := [];
+for i := 0 to QTD_DOC - 1 do
+begin
+  Include(DocumentSet, TACBrECFTipoDocumento(Documentos[i]));
+end;
+ecfHandle^.ECF.ArquivoMFD_DLL(DataInicial, DataFinal, Arquivo, DocumentSet, TACBrECFFinalizaArqMFD(Finalidade));
+end;
+
+Result := 0;
+except
+on exception : Exception do
+begin
+ecfHandle^.UltimoErro := exception.Message;
+Result := -1;
+end
+end;
+end;
+
+Function ECF_ArquivoMFD_DLL_COO( const ecfHandle: PECFHandle; const COOInicial, COOFinal: Integer; const Arquivo : pChar ;const Documentos: array of Integer; const QTD_DOC, Finalidade, TipoContador : Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  DocumentSet   : TACBrECFTipoDocumentoSet;
+  i             : Integer;
+begin
+if (ecfHandle = nil) then
+begin
+   Result := -2;
+   Exit;
+end;
+
+try
+if (QTD_DOC = 0) And (Finalidade = -1) And (TipoContador = -1) then
+begin
+   ecfHandle^.ECF.ArquivoMFD_DLL(COOInicial, COOInicial, Arquivo);
+end
+else
+begin
+DocumentSet := [];
+for i := 0 to QTD_DOC - 1 do
+begin
+  Include(DocumentSet, TACBrECFTipoDocumento(Documentos[i]));
+end;
+ecfHandle^.ECF.ArquivoMFD_DLL(COOInicial, COOInicial, Arquivo, DocumentSet, TACBrECFFinalizaArqMFD(Finalidade), TACBrECFTipoContador(TipoContador));
+end;
+
+Result := 0;
+except
+on exception : Exception do
+begin
+ecfHandle^.UltimoErro := exception.Message;
+Result := -1;
+end
+end;
+end;
+
+Function ECF_EspelhoMFD_DLL( const ecfHandle: PECFHandle; const DataInicial, DataFinal: double; const Arquivo : pChar ;const Documentos: array of Integer; const QTD_DOC : Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  DocumentSet   : TACBrECFTipoDocumentoSet;
+  i             : Integer;
+begin
+if (ecfHandle = nil) then
+begin
+   Result := -2;
+   Exit;
+end;
+
+try
+if (QTD_DOC = 0)then
+begin
+   ecfHandle^.ECF.EspelhoMFD_DLL(DataInicial, DataFinal, Arquivo);
+end
+else
+begin
+DocumentSet := [];
+for i := 0 to QTD_DOC - 1 do
+begin
+  Include(DocumentSet, TACBrECFTipoDocumento(Documentos[i]));
+end;
+ecfHandle^.ECF.EspelhoMFD_DLL(DataInicial, DataFinal, Arquivo, DocumentSet);
+end;
+
+Result := 0;
+except
+on exception : Exception do
+begin
+ecfHandle^.UltimoErro := exception.Message;
+Result := -1;
+end
+end;
+end;
+
+Function ECF_EspelhoMFD_DLL_COO( const ecfHandle: PECFHandle; const COOInicial, COOFinal: Integer; const Arquivo : pChar ;const Documentos: array of Integer; const QTD_DOC: Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  DocumentSet   : TACBrECFTipoDocumentoSet;
+  i             : Integer;
+begin
+if (ecfHandle = nil) then
+begin
+   Result := -2;
+   Exit;
+end;
+
+try
+if (QTD_DOC = 0)then
+begin
+   ecfHandle^.ECF.EspelhoMFD_DLL(COOInicial, COOInicial, Arquivo);
+end
+else
+begin
+DocumentSet := [];
+for i := 0 to QTD_DOC - 1 do
+begin
+  Include(DocumentSet, TACBrECFTipoDocumento(Documentos[i]));
+end;
+ecfHandle^.ECF.EspelhoMFD_DLL(COOInicial, COOInicial, Arquivo, DocumentSet);
+end;
+
+Result := 0;
+except
+on exception : Exception do
+begin
+ecfHandle^.UltimoErro := exception.Message;
+Result := -1;
+end
+end;
+end;
+
 {PAF Arq. MFD}
 Function ECF_PafMF_MFD_Espelho( const ecfHandle: PECFHandle; const DataInicial, DataFinal: double; const CaminhoArquivo: pChar ) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -5380,6 +5525,10 @@ ECF_RelatorioGerencial,
 {PAF}
 ECF_PafMF_GerarCAT52, ECF_PafMF_LX_Impressao,
 ECF_IdentificaPAF,
+
+{PAF Arquivos}
+ECF_ArquivoMFD_DLL, ECF_ArquivoMFD_DLL_COO,
+ECF_EspelhoMFD_DLL, ECF_EspelhoMFD_DLL_COO,
 
 {PAF LMFC}
 ECF_PafMF_LMFC_Cotepe1704, ECF_PafMF_LMFC_Cotepe1704_CRZ,

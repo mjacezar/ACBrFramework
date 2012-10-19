@@ -713,6 +713,19 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_PafMF_LX_Impressao(IntPtr ecfHandle);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ArquivoMFD_DLL(IntPtr ecfHandle, double DaTaInicial, double DaTaFinal, string Arquivo, int[] Documentos, int QTD_DOC, int Finalidade);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ArquivoMFD_DLL_COO(IntPtr ecfHandle, int COOInicial, int COOFinal, string Arquivo, int[] Documentos, int QTD_DOC, int Finalidade, int TipoContador);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_EspelhoMFD_DLL(IntPtr ecfHandle, double DaTaInicial, double DaTaFinal, string Arquivo, int[] Documentos, int QTD_DOC);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_EspelhoMFD_DLL_COO(IntPtr ecfHandle, int COOInicial, int COOFinal, string Arquivo, int[] Documentos, int QTD_DOC);
+
+
 		#endregion PAF
 
 		#region PAF LMFC
