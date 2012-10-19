@@ -41,6 +41,13 @@ Símbolo : Significado
 
 Changelog
 
+18/10/2012(ACBrFramework 0.9.0.158)
+[+] Implementado o metodo ECF_ArquivoMFD_DLL - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo ECF_ArquivoMFD_DLL_COO - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo ECF_EspelhoMFD_DLL - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo ECF_EspelhoMFD_DLL_COO - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[*] Reorganização da Pasta ACBrECF - ACBrFramework.Net - Rafael Dias.
+
 18/10/2012(ACBrFramework 0.9.0.156)
 [+] Implementado o metodo ECF_PafMF_RelParametrosConfiguracao - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 
