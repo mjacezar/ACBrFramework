@@ -986,13 +986,13 @@ namespace ACBrFramework
 
         public void PafMF_RelParametrosConfiguracao(int indiceRelatorio)
         {
-            int ret = ACBrECFInterop.ECF_PafMF_RelIdentificacaoPafECF(this.Handle, IntPtr.Zero, indiceRelatorio);
+            int ret = ACBrECFInterop.ECF_PafMF_RelParametrosConfiguracao(this.Handle, IntPtr.Zero, indiceRelatorio);
             CheckResult(ret);
         }
 
         public void PafMF_RelParametrosConfiguracao(ACBrECFInfoPaf infoPAF, int indiceRelatorio)
         {
-            int ret = ACBrECFInterop.ECF_PafMF_RelIdentificacaoPafECF(this.Handle, infoPAF.Handle, indiceRelatorio);
+            int ret = ACBrECFInterop.ECF_PafMF_RelParametrosConfiguracao(this.Handle, infoPAF.Handle, indiceRelatorio);
             CheckResult(ret);
         }
 
