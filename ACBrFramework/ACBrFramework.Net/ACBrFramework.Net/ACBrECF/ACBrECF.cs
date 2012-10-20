@@ -1038,6 +1038,18 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
+		public void DoAtualizarValorGT()
+		{
+			int ret = ACBrECFInterop.ECF_DoAtualizarValorGT(this.Handle);
+			CheckResult(ret);
+		}
+
+		public void ECF_DoVerificaValorGT()
+		{
+			int ret = ACBrECFInterop.ECF_DoVerificaValorGT(this.Handle);
+			CheckResult(ret);
+		}
+
 		#endregion PAF
 
 		#region PAF LMFC

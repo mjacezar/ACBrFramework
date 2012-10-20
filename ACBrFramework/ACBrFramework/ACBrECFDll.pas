@@ -4431,6 +4431,48 @@ begin
   end;
 end;
 
+Function ECF_DoAtualizarValorGT(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.DoAtualizarValorGT;
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_DoVerificaValorGT(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.DoVerificaValorGT;
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 {PAF LMFC}
 Function ECF_PafMF_LMFC_Cotepe1704(const ecfHandle: PECFHandle; const DataInicial , DataFinal: double; const CaminhoArquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -4865,7 +4907,7 @@ end
 end;
 end;
 
-{Metodos DAV OK}
+{Metodos DAV }
 Function ECF_DAV_Abrir(const ecfHandle: PECFHandle; const AEmissao : double;
       const ADescrDocumento, ANumero, ASituacao, AVendedor, AObservacao,
       ACNPJCPF, ANomeCliente, AEndereco: pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
@@ -5524,7 +5566,8 @@ ECF_RelatorioGerencial,
 
 {PAF}
 ECF_PafMF_GerarCAT52, ECF_PafMF_LX_Impressao,
-ECF_IdentificaPAF,
+ECF_IdentificaPAF, ECF_DoAtualizarValorGT,
+ECF_DoVerificaValorGT,
 
 {PAF Arquivos}
 ECF_ArquivoMFD_DLL, ECF_ArquivoMFD_DLL_COO,
