@@ -287,6 +287,8 @@ ECF_ArquivoMFD_DLL_COO
 ECF_EspelhoMFD_DLL
 ECF_EspelhoMFD_DLL_COO
 ECF_PafMF_GerarCAT52
+ECF_DoAtualizarValorGT
+ECF_DoVerificaValorGT
 ECF_PafMF_LMFC_Cotepe1704
 ECF_PafMF_LMFC_Cotepe1704_CRZ
 ECF_PafMF_LMFC_Espelho

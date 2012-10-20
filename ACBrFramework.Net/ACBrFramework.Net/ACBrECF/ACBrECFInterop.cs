@@ -725,6 +725,12 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_EspelhoMFD_DLL_COO(IntPtr ecfHandle, int COOInicial, int COOFinal, string Arquivo, int[] Documentos, int QTD_DOC);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DoAtualizarValorGT(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DoVerificaValorGT(IntPtr ecfHandle);
+
 
 		#endregion PAF
 
