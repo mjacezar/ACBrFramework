@@ -65,16 +65,16 @@ namespace ACBrFramework
 		public static extern int EAD_GerarXMLeECFc_NP(IntPtr eadHandle, String NomeSH);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int EAD_ConverteXMLeECFcParaOpenSSL(IntPtr eadHandle, String Arquivo);
+		public static extern int EAD_ConverteXMLeECFcParaOpenSSL(IntPtr eadHandle, String Arquivo, StringBuilder Hash, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int EAD_CalcularHashArquivo(IntPtr eadHandle, String Arquivo, int HashType, StringBuilder Hash, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int EAD_CalcularEADArquivo(IntPtr eadHandle, String Arquivo, StringBuilder Hash, int bufferLen);
+		public static extern int EAD_CalcularEADArquivo(IntPtr eadHandle, String Arquivo, StringBuilder EAD, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int EAD_AssinarArquivoComEAD(IntPtr eadHandle, String Arquivo, bool Remove);
+		public static extern int EAD_AssinarArquivoComEAD(IntPtr eadHandle, String Arquivo, bool Remove, StringBuilder EAD, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int EAD_VerificarEADArquivo(IntPtr eadHandle, String Arquivo);
