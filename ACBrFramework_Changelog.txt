@@ -41,6 +41,9 @@ Símbolo : Significado
 
 Changelog
 
+21/10/2012(ACBrFramework 0.9.0.161)
+[*] Modificado os metodo do ACBrPAF - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+
 21/10/2012(ACBrFramework 0.9.0.160)
 [-] Corrigido o metodo EAD_ConverteXMLeECFcParaOpenSSL - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [-] Corrigido o metodo EAD_AssinarArquivoComEAD - ACBrFramework e ACBrFramework.Net - Rafael Dias.

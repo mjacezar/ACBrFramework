@@ -151,17 +151,19 @@ namespace ACBrFramework
 
 		#region AssinarArquivos
 
-		public void AssinarArquivoComEAD(string arquivo)
+		public Boolean AssinarArquivoComEAD(string arquivo)
 		{
 			int ret = ACBrPAFInterop.PAF_AssinarArquivoComEAD(this.Handle, arquivo);
 			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
 		}
 
 		#endregion AssinarArquivos
 
 		#region SaveFileTXT
 
-		public void SaveFileTXT_B(ACBrPAFRegistroB1 RegistroB1, ACBrPAFRegistroB2[] RegistroB2, string arquivo)
+		public Boolean SaveFileTXT_B(ACBrPAFRegistroB1 RegistroB1, ACBrPAFRegistroB2[] RegistroB2, string arquivo)
 		{
 			int i;
 
@@ -192,9 +194,11 @@ namespace ACBrFramework
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_B(this.Handle, RegistroB1Rec, RegistroB2Rec, RegistroB2.Length, ToUTF8(arquivo));
 			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
 		}
 
-		public void SaveFileTXT_C(ACBrPAFRegistroC1 RegistroC1, ACBrPAFRegistroC2[] RegistroC2, string arquivo)
+		public Boolean SaveFileTXT_C(ACBrPAFRegistroC1 RegistroC1, ACBrPAFRegistroC2[] RegistroC2, string arquivo)
 		{
 			int i;
 
@@ -229,9 +233,11 @@ namespace ACBrFramework
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_C(this.Handle, RegistroC1Rec, RegistroC2Rec, RegistroC2.Length, ToUTF8(arquivo));
 			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
 		}
 
-		public void SaveFileTXT_D(ACBrPAFRegistroD1 RegistroD1, ACBrPAFRegistroD2[] RegistroD2, string arquivo)
+		public Boolean SaveFileTXT_D(ACBrPAFRegistroD1 RegistroD1, ACBrPAFRegistroD2[] RegistroD2, string arquivo)
 		{
 			int i, ItemIndex = 0;
 			int D3 = 0;
@@ -294,9 +300,11 @@ namespace ACBrFramework
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_D(this.Handle, RegistroD1Rec, RegistroD2Rec, RegistroD2.Length, RegistroD3Rec, ToUTF8(arquivo));
 			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
 		}
 
-		public void SaveFileTXT_E(ACBrPAFRegistroE1 RegistroE1, ACBrPAFRegistroE2[] RegistroE2, string arquivo)
+		public Boolean SaveFileTXT_E(ACBrPAFRegistroE1 RegistroE1, ACBrPAFRegistroE2[] RegistroE2, string arquivo)
 		{
 			int i;
 
@@ -328,9 +336,11 @@ namespace ACBrFramework
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_E(this.Handle, RegistroE1Rec, RegistroE2Rec, RegistroE2.Length, ToUTF8(arquivo));
 			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
 		}
 
-		public void SaveFileTXT_H(ACBrPAFRegistroH1 RegistroH1, ACBrPAFRegistroH2[] RegistroH2, string arquivo)
+		public Boolean SaveFileTXT_H(ACBrPAFRegistroH1 RegistroH1, ACBrPAFRegistroH2[] RegistroH2, string arquivo)
 		{
 			int i;
 
@@ -365,9 +375,11 @@ namespace ACBrFramework
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_H(this.Handle, RegistroH1Rec, RegistroH2Rec, RegistroH2.Length, ToUTF8(arquivo));
 			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
 		}
 
-		public void SaveFileTXT_N(ACBrPAFRegistroN1 RegistroN1, ACBrPAFRegistroN2 RegistroN2, ACBrPAFRegistroN3[] RegistroN3, string arquivo)
+		public Boolean SaveFileTXT_N(ACBrPAFRegistroN1 RegistroN1, ACBrPAFRegistroN2 RegistroN2, ACBrPAFRegistroN3[] RegistroN3, string arquivo)
 		{
 			int i;
 
@@ -394,9 +406,11 @@ namespace ACBrFramework
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_N(this.Handle, RegistroN1Rec, RegistroN2Rec, RegistroN3Rec, ToUTF8(arquivo));
 			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
 		}
 
-		public void SaveFileTXT_P(ACBrPAFRegistroP1 RegistroP1, ACBrPAFRegistroP2[] RegistroP2, string arquivo)
+		public Boolean SaveFileTXT_P(ACBrPAFRegistroP1 RegistroP1, ACBrPAFRegistroP2[] RegistroP2, string arquivo)
 		{
 			int i;
 
@@ -424,9 +438,11 @@ namespace ACBrFramework
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_P(this.Handle, RegistroP1Rec, RegistroP2Rec, RegistroP2.Length, ToUTF8(arquivo));
 			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
 		}
 
-		public void SaveFileTXT_R(ACBrPAFRegistroR1 RegistroR1, ACBrPAFRegistroR2[] RegistroR2, ACBrPAFRegistroR4[] RegistroR4, ACBrPAFRegistroR6[] RegistroR6, string arquivo)
+		public Boolean SaveFileTXT_R(ACBrPAFRegistroR1 RegistroR1, ACBrPAFRegistroR2[] RegistroR2, ACBrPAFRegistroR4[] RegistroR4, ACBrPAFRegistroR6[] RegistroR6, string arquivo)
 		{
 			int i, ItemR3 = 0, ItemR5 = 0, ItemR7 = 0, R3 = 0, R5 = 0, R7 = 0;
 
@@ -594,6 +610,8 @@ namespace ACBrFramework
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_R(this.Handle, RegistroR1Rec, RegistroR2Rec, RegistroR2.Length, RegistroR3Rec, RegistroR4Rec, RegistroR4.Length, RegistroR5Rec, RegistroR6Rec, RegistroR6.Length, RegistroR7Rec, ToUTF8(arquivo));
 			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
 		}
 
 		#endregion SaveFileTXT
