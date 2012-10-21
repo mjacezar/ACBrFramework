@@ -48,6 +48,7 @@ namespace ACBrFramework.Net.PAFTeste
 								   "pTMAFPGJG2fO4YJn/pUHdtDtSenX8TibWve+gY6oFCFw/Ts=" + Environment.NewLine +
 								   "-----END RSA PRIVATE KEY-----";
 			acbrPAF.EAD = acbrEAD;
+			acbrPAF.Path = Path.GetDirectoryName(Application.ExecutablePath);
 		}
 
 		private void GerarArquivoC()
@@ -87,9 +88,10 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemC2 = null;
 				}
 
-				acbrPAF.Path = Path.GetDirectoryName(Application.ExecutablePath);
-				acbrPAF.SaveFileTXT_C(RegistroC1, RegistroC2.ToArray(), @"\PAF_C.txt");
-				WriteResp("Arquivo PAF_C Gerado com sucesso");
+				if(acbrPAF.SaveFileTXT_C(RegistroC1, RegistroC2.ToArray(), @"\PAF_C.txt"))
+					WriteResp("Arquivo PAF_C gerado com sucesso");
+				else
+					WriteResp("Arquivo PAF_C não foi gerado");
 			}
 			catch (Exception exception)
 			{
@@ -157,9 +159,10 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemD2 = null;
 				}
 
-				acbrPAF.Path = Path.GetDirectoryName(Application.ExecutablePath);
-				acbrPAF.SaveFileTXT_D(RegistroD1, RegistroD2.ToArray(), @"\PAF_D.txt");
-				WriteResp("Arquivo PAF_D Gerado com sucesso");
+				if(acbrPAF.SaveFileTXT_D(RegistroD1, RegistroD2.ToArray(), @"\PAF_D.txt"))
+					WriteResp("Arquivo PAF_D gerado com sucesso");
+				else
+					WriteResp("Arquivo PAF_D não foi gerado");
 			}
 			catch (Exception exception)
 			{
@@ -196,10 +199,11 @@ namespace ACBrFramework.Net.PAFTeste
 					RegistroP2.Add(ItemP2);
 					ItemP2 = null;
 				}
-
-				acbrPAF.Path = Path.GetDirectoryName(Application.ExecutablePath);
-				acbrPAF.SaveFileTXT_P(RegistroP1, RegistroP2.ToArray(), @"\PAF_P.txt");
-				WriteResp("Arquivo PAF_P Gerado com sucesso");
+				
+				if(acbrPAF.SaveFileTXT_P(RegistroP1, RegistroP2.ToArray(), @"\PAF_P.txt"))
+					WriteResp("Arquivo PAF_P gerado com sucesso");
+				else
+					WriteResp("Arquivo PAF_P não foi gerado");
 			}
 			catch (Exception exception)
 			{

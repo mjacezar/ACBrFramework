@@ -768,8 +768,10 @@ begin
    end;
    end;
 
-   pafHandle^.PAF.SaveFileTXT_B(Arquivo);
-   Result := 0;
+   if (pafHandle^.PAF.SaveFileTXT_B(Arquivo))then
+     Result := 1
+   else
+     Result := 0;
   except
   on exception : Exception do
   begin
@@ -786,20 +788,20 @@ var
   i : Integer;
   OldMask:string;
 begin
-  if (pafHandle = nil) then
-  begin
+  try
+   if (pafHandle = nil) then
+   begin
      Result := -2;
      Exit;
-  end;
+   end;
 
-  if(CountC2 <= 0) then
-  begin
+   if(CountC2 <= 0) then
+   begin
      pafHandle^.UltimoErro := 'O numero de Itens não pode ser Zero';
      Result := -1;
      Exit;
-  end;
+   end;
 
-  try
    pafHandle^.PAF.PAF_C.RegistroC1.RAZAOSOCIAL := RegistroC1Rec.RAZAOSOCIAL;
    pafHandle^.PAF.PAF_C.RegistroC1.UF          := RegistroC1Rec.UF;
    pafHandle^.PAF.PAF_C.RegistroC1.CNPJ        := RegistroC1Rec.CNPJ;
@@ -834,9 +836,18 @@ begin
 
    OldMask := pafHandle^.PAF.CurMascara;
    pafHandle^.PAF.CurMascara := '';
-   pafHandle^.PAF.SaveFileTXT_C(Arquivo);
-   pafHandle^.PAF.CurMascara := OldMask;
-   Result := 0;
+
+   if (pafHandle^.PAF.SaveFileTXT_C(Arquivo))then
+   begin
+      pafHandle^.PAF.CurMascara := OldMask;
+      Result := 1
+   end
+   else
+   begin
+       pafHandle^.PAF.CurMascara := OldMask;
+       Result := 0;
+   end
+
   except
   on exception : Exception do
   begin
@@ -929,8 +940,12 @@ begin
          end;
        end;
    end;
-  pafHandle^.PAF.SaveFileTXT_D(Arquivo);
-  Result := 0;
+
+   if (pafHandle^.PAF.SaveFileTXT_D(Arquivo))then
+     Result := 1
+   else
+     Result := 0;
+
   except
      on exception : Exception do
      begin
@@ -988,8 +1003,10 @@ begin
    end;
    end;
 
-   pafHandle^.PAF.SaveFileTXT_E(Arquivo);
-   Result := 0;
+   if (pafHandle^.PAF.SaveFileTXT_E(Arquivo))then
+       Result := 1
+     else
+       Result := 0;
   except
   on exception : Exception do
   begin
@@ -1050,8 +1067,10 @@ begin
    end;
    end;
 
-   pafHandle^.PAF.SaveFileTXT_H(Arquivo);
-   Result := 0;
+   if (pafHandle^.PAF.SaveFileTXT_H(Arquivo))then
+       Result := 1
+     else
+       Result := 0;
   except
   on exception : Exception do
   begin
@@ -1102,8 +1121,10 @@ begin
    end;
    end;
 
-   pafHandle^.PAF.SaveFileTXT_N(Arquivo);
-   Result := 0;
+   if (pafHandle^.PAF.SaveFileTXT_N(Arquivo))then
+       Result := 1
+     else
+       Result := 0;
   except
   on exception : Exception do
   begin
@@ -1157,8 +1178,12 @@ begin
    end;
    end;
 
-   pafHandle^.PAF.SaveFileTXT_P(Arquivo);
-   Result := 0;
+
+   if (pafHandle^.PAF.SaveFileTXT_P(Arquivo))then
+       Result := 1
+     else
+       Result := 0;
+
   except
   on exception : Exception do
   begin
@@ -1385,8 +1410,11 @@ begin
        end;
    end;
 
-  pafHandle^.PAF.SaveFileTXT_R(Arquivo);
-  Result := 0;
+  if (pafHandle^.PAF.SaveFileTXT_R(Arquivo))then
+       Result := 1
+     else
+       Result := 0;
+
   except
      on exception : Exception do
      begin
@@ -1446,8 +1474,11 @@ begin
    end;
    end;
 
-   pafHandle^.PAF.SaveFileTXT_T(Arquivo);
-   Result := 0;
+   if (pafHandle^.PAF.SaveFileTXT_T(Arquivo))then
+       Result := 1
+     else
+       Result := 0;
+
   except
   on exception : Exception do
   begin
@@ -1460,14 +1491,18 @@ end;
 
 Function PAF_AssinaArquivoComEAD(const pafHandle:PPAFHandle; const Arquivo: pChar) : Integer;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
-  if (pafHandle = nil) then
-  begin
+  try
+   if (pafHandle = nil) then
+   begin
      Result := -2;
      Exit;
-  end;
-  try
-   pafHandle^.PAF.AssinaArquivoComEAD(Arquivo);
-   Result := 0;
+   end;
+
+   if (pafHandle^.PAF.AssinaArquivoComEAD(Arquivo))then
+       Result := 1
+     else
+       Result := 0;
+
   except
   on exception : Exception do
   begin
