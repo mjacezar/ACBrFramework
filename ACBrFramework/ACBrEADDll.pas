@@ -258,7 +258,7 @@ begin
 
      StrPLCopy(ModuloBuffer, Modulo, BufferLen);
      StrPLCopy(ExpoenteBuffer, Expoente, BufferLen);
-     Result := 0;
+     Result := Length(ModuloBuffer) + Length(ExpoenteBuffer);
   except
      on exception : Exception do
      begin
@@ -282,7 +282,7 @@ begin
      Chave :=  eadHandle^.EAD.CalcularChavePublica;
      Chave := StringReplace( Chave, #10, sLineBreak, [rfReplaceAll] );
      StrPLCopy(ChavePUB, Chave, BufferLen);
-     Result := 0;
+     Result := Length(ChavePUB);
   except
      on exception : Exception do
      begin
@@ -332,7 +332,9 @@ begin
   end
 end;
 
-function EAD_ConverteXMLeECFcParaOpenSSL(const eadHandle: PEADHandle;const Arquivo: pChar): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+function EAD_ConverteXMLeECFcParaOpenSSL(const eadHandle: PEADHandle;const Arquivo: pChar; ChavePUB: pChar; const BufferLen : Integer): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  TempSTR : AnsiString ;
 begin
   try
      if (eadHandle = nil) then
@@ -341,8 +343,10 @@ begin
      Exit;
      end;
 
-     eadHandle^.EAD.ConverteXMLeECFcParaOpenSSL(Arquivo);
-     Result := 0;
+     TempSTR := eadHandle^.EAD.ConverteXMLeECFcParaOpenSSL(Arquivo);
+     TempSTR := StringReplace( TempSTR, #10, sLineBreak, [rfReplaceAll] );
+     StrPLCopy(ChavePUB, TempSTR, BufferLen);
+     Result := Length(ChavePUB);
   except
      on exception : Exception do
      begin
@@ -365,7 +369,7 @@ begin
 
      TempSTR := eadHandle^.EAD.CalcularHashArquivo(Arquivo, TACBrEADDgst(HashType));
      StrPLCopy(Hash, TempSTR, BufferLen);
-     Result := 0;
+     Result := Length(Hash);
   except
      on exception : Exception do
      begin
@@ -388,7 +392,7 @@ begin
 
      TempSTR := eadHandle^.EAD.CalcularEADArquivo(Arquivo);
      StrPLCopy(EAD, TempSTR, BufferLen);
-     Result := 0;
+     Result := Length(EAD);
   except
      on exception : Exception do
      begin
@@ -398,7 +402,9 @@ begin
   end
 end;
 
-function EAD_AssinarArquivoComEAD(const eadHandle: PEADHandle;const Arquivo: pChar; const Remove:Boolean): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+function EAD_AssinarArquivoComEAD(const eadHandle: PEADHandle; const Arquivo: pChar; const Remove:Boolean; EAD: pChar; const BufferLen : Integer): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  TempSTR : AnsiString ;
 begin
   try
      if (eadHandle = nil) then
@@ -407,8 +413,9 @@ begin
      Exit;
      end;
 
-     eadHandle^.EAD.AssinarArquivoComEAD(Arquivo, Remove);
-     Result := 0;
+     TempSTR := eadHandle^.EAD.AssinarArquivoComEAD(Arquivo, Remove);
+     StrPLCopy(EAD, TempSTR, BufferLen);
+     Result := Length(EAD);
   except
      on exception : Exception do
      begin

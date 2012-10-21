@@ -41,6 +41,11 @@ Símbolo : Significado
 
 Changelog
 
+21/10/2012(ACBrFramework 0.9.0.160)
+[-] Corrigido o metodo EAD_ConverteXMLeECFcParaOpenSSL - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[-] Corrigido o metodo EAD_AssinarArquivoComEAD - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[*] Terminando o Demo do ACBrEAD  - ACBrFramework.Net - Rafael Dias.
+
 20/10/2012(ACBrFramework 0.9.0.159)
 [+] Implementado o metodo ECF_DoAtualizarValorGT - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [+] Implementado o metodo ECF_DoVerificaValorGT - ACBrFramework e ACBrFramework.Net - Rafael Dias.
@@ -73,7 +78,6 @@ Changelog
 08/10/2012 (ACBrFramework 0.9.0.151)
 [*] Projeto jACBrFramework reorganizado e funcionando com as definições geradas pelo DefExport - Rafael Batiati
 [+] Adicionado os campos Endereco, Cep, Cidade, Uf, Telefone, Contato, Email, IE na identificação da Empresa no ACBrAAC - Rafael Batiati
-
 
 07/10/2012 (ACBrFramework - 0.9.0.150)
 [+] Implementado o Metodo SIN_Registro50 - ACBrFramework e ACBrFramework.Net - Rafael Dias.

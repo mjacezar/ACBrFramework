@@ -85,15 +85,18 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
-		public void ConverteXMLeECFcParaOpenSSL(string Arquivo)
+		public string ConverteXMLeECFcParaOpenSSL(string Arquivo)
 		{
-			int ret = ACBrEADInterop.EAD_ConverteXMLeECFcParaOpenSSL(this.Handle, Arquivo);
+			const int BUFFER_LEN = 512;
+			StringBuilder ChavePUB = new StringBuilder(BUFFER_LEN);
+			int ret = ACBrEADInterop.EAD_ConverteXMLeECFcParaOpenSSL(this.Handle, Arquivo, ChavePUB, BUFFER_LEN);
 			CheckResult(ret);
+			return ChavePUB.ToString();
 		}
 
 		public string CalcularHashArquivo(string Arquivo, EADDigest HashType)
 		{
-			const int BUFFER_LEN = 256;
+			const int BUFFER_LEN = 128;
 			StringBuilder Hash = new StringBuilder(BUFFER_LEN);
 			int ret = ACBrEADInterop.EAD_CalcularHashArquivo(this.Handle, Arquivo, (int)HashType, Hash, BUFFER_LEN);
 			CheckResult(ret);
@@ -118,10 +121,13 @@ namespace ACBrFramework
 			return ChavePUB.ToString();
 		}
 
-		public void AssinarArquivoComEAD(string Arquivo, bool Remover)
+		public string AssinarArquivoComEAD(string Arquivo, bool Remover)
 		{
-			int ret = ACBrEADInterop.EAD_AssinarArquivoComEAD(this.Handle, Arquivo, Remover);
+			const int BUFFER_LEN = 256;
+			StringBuilder EAD = new StringBuilder(BUFFER_LEN);
+			int ret = ACBrEADInterop.EAD_AssinarArquivoComEAD(this.Handle, Arquivo, Remover, EAD, BUFFER_LEN);
 			CheckResult(ret);
+			return EAD.ToString();
 		}
 
 		public bool VerificarEADArquivo(string Arquivo)
