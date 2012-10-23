@@ -41,6 +41,16 @@ Símbolo : Significado
 
 Changelog
 
+23/10/2012(ACBrFramework 0.9.0.162)
+[+] Implementado o metodo SIN_Registro55 - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro56 - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro60M - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro60A - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro60D - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro70 - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro74 - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro75 - ACBrFramework - Rafael Dias.
+
 21/10/2012(ACBrFramework 0.9.0.161)
 [*] Modificado os metodo do ACBrPAF - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 
