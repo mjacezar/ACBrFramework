@@ -1573,24 +1573,24 @@
 			// 
 			this.acbrECF.AAC = this.acbrAAC;
 			this.acbrECF.AguardaImpressao = false;
-			this.acbrECF.Baud = 9600;
+			this.acbrECF.Device.Baud = 9600;
 			this.acbrECF.ComandoLog = "VendaBruta";
-			this.acbrECF.DataBits = 8;
+			this.acbrECF.Device.DataBits = 8;
 			this.acbrECF.DecimaisPreco = 3;
 			this.acbrECF.DecimaisQtd = 3;
 			this.acbrECF.DescricaoGrande = false;
 			this.acbrECF.EAD = this.acbrEAD;
 			this.acbrECF.GavetaSinalInvertido = false;
-			this.acbrECF.HandShake = ACBrFramework.SerialHandShake.None;
-			this.acbrECF.HardFlow = false;
+			this.acbrECF.Device.HandShake = ACBrFramework.SerialHandShake.None;
+			this.acbrECF.Device.HardFlow = false;
 			this.acbrECF.IntervaloAposComando = 100;
 			this.acbrECF.LinhasEntreCupons = 7;
 			this.acbrECF.Modelo = ACBrFramework.ModeloECF.Nenhum;
 			this.acbrECF.Operador = "";
-			this.acbrECF.Parity = ACBrFramework.SerialParity.None;
+			this.acbrECF.Device.Parity = ACBrFramework.SerialParity.None;
 			this.acbrECF.Porta = "COM1";
-			this.acbrECF.SoftFlow = false;
-			this.acbrECF.StopBits = ACBrFramework.SerialStopBits.One;
+			this.acbrECF.Device.SoftFlow = false;
+			this.acbrECF.Device.StopBits = ACBrFramework.SerialStopBits.One;
 			this.acbrECF.TimeOut = 3;
 			// 
 			// acbrPAF

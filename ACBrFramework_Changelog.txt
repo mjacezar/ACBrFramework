@@ -42,6 +42,10 @@ Símbolo : Significado
 Changelog
 
 25/10/2012(ACBrFramework 0.9.0.163)
+[+] Inclusão da classe ACBrDevice que contém as propriedades referentes a comunicação Serial - Rafael Batiati.
+[+] Inclusão da propriedade Device nos componentes ECF, LCB e BAL - Rafael Batiati.
+[*] Removido do componente ECF as propriedades referentes a comunicação Serial (Baud,Parity,StopBits, etc..) - Rafael Batiati.
+[*] Estrutura de pastas do ACBrFramework.Net modificada, incluindo a pasta ACBrSerial e os componentes ACBrECF, ACBrBAL e ACBrLCB sob essa pasta. - Rafael Batiati.
 [+] Inclusão do campo MFAdicional em ACBrECF - ACBrFramework e ACBrFramework.Net- Rafael Batiati.
 [-] Remoção do campo DT_FIN no registro R2 em ACBrPAF - ACBrFramework e ACBrFramework.Net- Rafael Batiati.
 

@@ -6,6 +6,7 @@ library ACBrFramework;
 
 uses
   ACBrCommonDll,
+  ACBrDeviceDll,
   ACBrECFDll,
   ACBrPAFDll,
   ACBrEADDll,

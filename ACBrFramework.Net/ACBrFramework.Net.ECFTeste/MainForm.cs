@@ -276,6 +276,7 @@ namespace ACBrFramework.ECFTeste
 			ativarCheckButton.Checked = false;
 			acbrECF.EAD = acbrEAD;
 			acbrECF.AAC = acbrAAC;
+
 		}
 
 		public void Ativar()
@@ -284,7 +285,7 @@ namespace ACBrFramework.ECFTeste
 			{
 				acbrECF.Modelo = (ModeloECF)modeloComboBox.SelectedItem;
 				acbrECF.Porta = (string)portaComboBox.SelectedItem;
-				acbrECF.Baud = (int)velocidadeComboBox.SelectedItem;
+				acbrECF.Device.Baud = (int)velocidadeComboBox.SelectedItem;
 				acbrECF.TimeOut = (int)timeOutNumericUpDown.Value;
 
 				acbrECF.GavetaSinalInvertido = gavetaCheckBox.Checked;
