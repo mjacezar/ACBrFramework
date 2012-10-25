@@ -17,6 +17,7 @@
 		FiscNET,
 		Epson,
 		NCR,
-		SwedaSTX
+		SwedaSTX,
+        EscECF
 	}
 }
