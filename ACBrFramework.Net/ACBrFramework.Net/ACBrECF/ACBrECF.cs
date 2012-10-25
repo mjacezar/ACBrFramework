@@ -15,7 +15,7 @@ namespace ACBrFramework
 		private ACBrECFComprovanteNaoFiscal[] comprovantesNaoFiscais;
 		private ACBrECFRelatorioGerencial[] relatoriosGerenciais;
 		private ACBrAAC aac;
-        private ACBrEAD ead;
+		private ACBrEAD ead;
 
 		#endregion Fields
 
@@ -593,6 +593,14 @@ namespace ACBrFramework
 			}
 		}
 
+		public string MFAdicional
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetMFAdicional);
+			}
+		}
+
 		public bool IdentificaConsumidorRodape
 		{
 			get
@@ -821,7 +829,7 @@ namespace ACBrFramework
 		{
 			int ret = ACBrECFInterop.ECF_CorrigeEstadoErro(this.Handle, reducaoZ);
 			CheckResult(ret);
-		}		
+		}
 
 		#endregion Métodos ECF
 
@@ -972,11 +980,11 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
-        public void PafMF_RelIdentificacaoPafECF(int indiceRelatorio)
-        {
-            int ret = ACBrECFInterop.ECF_PafMF_RelIdentificacaoPafECF(this.Handle, IntPtr.Zero, indiceRelatorio);
-            CheckResult(ret);
-        }
+		public void PafMF_RelIdentificacaoPafECF(int indiceRelatorio)
+		{
+			int ret = ACBrECFInterop.ECF_PafMF_RelIdentificacaoPafECF(this.Handle, IntPtr.Zero, indiceRelatorio);
+			CheckResult(ret);
+		}
 
 		public void PafMF_RelIdentificacaoPafECF(ACBrECFIdenticacaoPaf identificacaoPAF, int indiceRelatorio)
 		{
@@ -984,17 +992,17 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
-        public void PafMF_RelParametrosConfiguracao(int indiceRelatorio)
-        {
-            int ret = ACBrECFInterop.ECF_PafMF_RelParametrosConfiguracao(this.Handle, IntPtr.Zero, indiceRelatorio);
-            CheckResult(ret);
-        }
+		public void PafMF_RelParametrosConfiguracao(int indiceRelatorio)
+		{
+			int ret = ACBrECFInterop.ECF_PafMF_RelParametrosConfiguracao(this.Handle, IntPtr.Zero, indiceRelatorio);
+			CheckResult(ret);
+		}
 
-        public void PafMF_RelParametrosConfiguracao(ACBrECFInfoPaf infoPAF, int indiceRelatorio)
-        {
-            int ret = ACBrECFInterop.ECF_PafMF_RelParametrosConfiguracao(this.Handle, infoPAF.Handle, indiceRelatorio);
-            CheckResult(ret);
-        }
+		public void PafMF_RelParametrosConfiguracao(ACBrECFInfoPaf infoPAF, int indiceRelatorio)
+		{
+			int ret = ACBrECFInterop.ECF_PafMF_RelParametrosConfiguracao(this.Handle, infoPAF.Handle, indiceRelatorio);
+			CheckResult(ret);
+		}
 
 		#endregion PAF Relatorios
 
@@ -1260,7 +1268,7 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
-		#endregion
+		#endregion Cupom Vinculado
 
 		#region Leitura X / Redução Z
 
@@ -1274,7 +1282,7 @@ namespace ACBrFramework
 		{
 			int ret = ACBrECFInterop.ECF_ReducaoZ(this.Handle);
 			CheckResult(ret);
-		}			
+		}
 
 		public string GetDadosUltimaReducaoZ()
 		{
@@ -1772,38 +1780,38 @@ namespace ACBrFramework
 
 		#endregion AAC
 
-        #region EAD
+		#region EAD
 
-        public ACBrEAD EAD
-        {
-            get
-            {
-                return this.ead;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    int ret = ACBrECFInterop.ECF_SetEAD(this.Handle, IntPtr.Zero);
-                    CheckResult(ret);
+		public ACBrEAD EAD
+		{
+			get
+			{
+				return this.ead;
+			}
+			set
+			{
+				if (value == null)
+				{
+					int ret = ACBrECFInterop.ECF_SetEAD(this.Handle, IntPtr.Zero);
+					CheckResult(ret);
 
-                    this.aac = null;
-                }
-                else
-                {
-                    int ret = ACBrECFInterop.ECF_SetEAD(this.Handle, value.Handle);
-                    CheckResult(ret);
+					this.aac = null;
+				}
+				else
+				{
+					int ret = ACBrECFInterop.ECF_SetEAD(this.Handle, value.Handle);
+					CheckResult(ret);
 
-                    this.ead = value;
-                }
-            }
-        }
+					this.ead = value;
+				}
+			}
+		}
 
-        #endregion EAD
+		#endregion EAD
 
-        #region Override Methods
+		#region Override Methods
 
-        protected internal override void OnInitializeComponent()
+		protected internal override void OnInitializeComponent()
 		{
 			CallCreate(ACBrECFInterop.ECF_Create);
 		}

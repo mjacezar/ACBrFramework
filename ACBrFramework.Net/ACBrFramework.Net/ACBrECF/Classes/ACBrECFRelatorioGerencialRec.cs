@@ -3,6 +3,7 @@ namespace ACBrFramework
 	public class ACBrECFRelatorioGerencialRec
 	{
 		public int Count { get; set; }
+
 		public string[] Linhas { get; set; }
 
 		public ACBrECFRelatorioGerencialRec()

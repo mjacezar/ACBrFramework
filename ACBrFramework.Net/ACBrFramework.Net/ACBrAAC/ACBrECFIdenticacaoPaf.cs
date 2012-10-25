@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+
 namespace ACBrFramework
 {
 	public sealed class ACBrECFIdenticacaoPaf : ACBrComposedComponent

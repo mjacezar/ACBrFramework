@@ -62,22 +62,22 @@ namespace ACBrFramework
 		{
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 29)]
 			public string Responsavel;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
 			public string Bairro;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 9)]
 			public string Cep;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 6)]
 			public string Numero;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 23)]
 			public string Complemento;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 35)]
 			public string Endereco;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 13)]
 			public string Telefone;
 		}
@@ -90,46 +90,46 @@ namespace ACBrFramework
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
 			public string Inscricao;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string UF;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
 			public string Situacao;
-			
+
 			[MarshalAs(UnmanagedType.R8)]
 			public double Aliquota;
-			
+
 			[MarshalAs(UnmanagedType.R8)]
 			public double Isentas;
-			
+
 			[MarshalAs(UnmanagedType.R8)]
 			public double Icms;
-			
+
 			[MarshalAs(UnmanagedType.R8)]
 			public double ValorContabil;
-			
+
 			[MarshalAs(UnmanagedType.R8)]
 			public double BasedeCalculo;
-			
+
 			[MarshalAs(UnmanagedType.R8)]
 			public double Outras;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
 			public string EmissorDocumento;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
-			public string Cfop;			
-			
+			public string Cfop;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
-			public string Serie;			
-			
+			public string Serie;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string Modelo;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string Numero;
-			
+
 			[MarshalAs(UnmanagedType.R8)]
 			public double DataDocumento;
 		}
@@ -145,10 +145,10 @@ namespace ACBrFramework
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string Estado;
-	
+
 			[MarshalAs(UnmanagedType.R8)]
 			public double ValorIpi;
-			
+
 			[MarshalAs(UnmanagedType.R8)]
 			public double ValorContabil;
 
@@ -166,12 +166,12 @@ namespace ACBrFramework
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
 			public string Situacao;
-			
-			[MarshalAs(UnmanagedType.R8)]
-			public double ValorIsentas ;
 
 			[MarshalAs(UnmanagedType.R8)]
-			public double ValorOutras;			
+			public double ValorIsentas;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double ValorOutras;
 		}
 
 		#endregion Interop Types
