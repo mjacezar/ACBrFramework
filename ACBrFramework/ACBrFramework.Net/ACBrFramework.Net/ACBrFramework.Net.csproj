@@ -134,29 +134,31 @@
     <Compile Include="ACBrAAC\ACBrECFEmpresa.cs" />
     <Compile Include="ACBrAAC\ACBrECFIdenticacaoPaf.cs" />
     <Compile Include="ACBrAAC\ACBrECFInfoPaf.cs" />
-    <Compile Include="ACBrBAL\ACBrBAL.cs" />
-    <Compile Include="ACBrBAL\ACBrBALInterop.cs" />
+    <Compile Include="ACBrSerial\ACBrBAL\ACBrBAL.cs" />
+    <Compile Include="ACBrSerial\ACBrBAL\ACBrBALInterop.cs" />
     <Compile Include="ACBrComponent.cs" />
     <Compile Include="ACBrComposedComponent.cs" />
-    <Compile Include="ACBrECF\ACBrECFInterop.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\ACBrECFInterop.cs" />
     <Compile Include="ACBrEAD\ACBrEADInterop.cs" />
-    <Compile Include="ACBrECF\ACBrECF.cs" />
-    <Compile Include="ACBrECF\Classes\ACBrECFComprovanteNaoFiscal.cs" />
-    <Compile Include="ACBrECF\Classes\ACBrECFDAVs.cs" />
-    <Compile Include="ACBrECF\ACBrECFException.cs" />
-    <Compile Include="ACBrECF\Classes\ACBrECFFinalizaArqMFD.cs" />
-    <Compile Include="ACBrECF\Classes\ACBrECFRelatorioGerencialRec.cs" />
-    <Compile Include="ACBrECF\Classes\ACBrECFTipoContador.cs" />
-    <Compile Include="ACBrECF\Classes\ACBrECFTipoDocumento.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\ACBrECF.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFComprovanteNaoFiscal.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFDAVs.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\ACBrECFException.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFFinalizaArqMFD.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFRelatorioGerencialRec.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFTipoContador.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFTipoDocumento.cs" />
     <Compile Include="ACBrException.cs" />
-    <Compile Include="ACBrECF\Classes\ACBrECFAliquota.cs" />
-    <Compile Include="ACBrECF\Classes\ACBrECFFormaPagamento.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFAliquota.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFFormaPagamento.cs" />
     <Compile Include="ACBrEAD\EADDigest.cs" />
-    <Compile Include="ACBrLCB\ACBrLCBInterop.cs" />
+    <Compile Include="ACBrSerial\ACBrLCB\ACBrLCBInterop.cs" />
     <Compile Include="ACBrPAF\ACBrPAFInterop.cs" />
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroN1.cs" />
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroN2.cs" />
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroN3.cs" />
+    <Compile Include="ACBrSerial\ACBrDevice.cs" />
+    <Compile Include="ACBrSerial\ACBrDeviceInterop.cs" />
     <Compile Include="ACBrSintegra\ACBrSintegraInterop.cs" />
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro10.cs" />
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro11.cs" />
@@ -164,9 +166,9 @@
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro51.cs" />
     <Compile Include="ACBrSintegra\VersaoEan.cs" />
     <Compile Include="ACBrSintegra\VersaoValidador.cs" />
-    <Compile Include="ACBrLCB\ACBrLCB.cs" />
-    <Compile Include="ACBrECF\Classes\ACBrECFDadosRZ.cs" />
-    <Compile Include="ACBrECF\Classes\ACBrECFRelatorioGerencial.cs" />
+    <Compile Include="ACBrSerial\ACBrLCB\ACBrLCB.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFDadosRZ.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFRelatorioGerencial.cs" />
     <Compile Include="ACBrEAD\ACBrEAD.cs" />
     <Compile Include="ACBrPAF\ACBrPAF.cs" />
     <Compile Include="ACBrSintegra\ACBrSintegra.cs" />
@@ -187,9 +189,9 @@
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroR2.cs" />
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroR3.cs" />
     <Compile Include="ACBrPAF\ACBrPAFTipoIntegracao.cs" />
-    <Compile Include="ACBrECF\Classes\EstadoECF.cs" />
-    <Compile Include="ACBrBAL\ModeloBal.cs" />
-    <Compile Include="ACBrECF\Classes\ModeloECF.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\EstadoECF.cs" />
+    <Compile Include="ACBrSerial\ACBrBAL\ModeloBal.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\ModeloECF.cs" />
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroR4.cs" />
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroR5.cs" />
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroR6.cs" />
@@ -206,9 +208,9 @@
       <DependentUpon>Framework64.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ACBrECF\Classes\SerialHandShake.cs" />
-    <Compile Include="ACBrECF\Classes\SerialParity.cs" />
-    <Compile Include="ACBrECF\Classes\SerialStopBits.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\SerialHandShake.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\SerialParity.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\Classes\SerialStopBits.cs" />
     <Compile Include="ACBrPAF\ACBrPAFTipoDesenvolvimento.cs" />
     <Compile Include="ACBrPAF\ACBrPAFTipoFuncionamento.cs" />
     <Compile Include="UnmanagedResources.cs" />
@@ -244,10 +246,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ACBrBAL\ico.bmp" />
+    <EmbeddedResource Include="ACBrSerial\ACBrBAL\ico.bmp" />
     <EmbeddedResource Include="ACBrEAD\ico.bmp" />
-    <EmbeddedResource Include="ACBrECF\ico.bmp" />
-    <EmbeddedResource Include="ACBrLCB\ico.bmp" />
+    <EmbeddedResource Include="ACBrSerial\ACBrECF\ico.bmp" />
+    <EmbeddedResource Include="ACBrSerial\ACBrLCB\ico.bmp" />
     <EmbeddedResource Include="ACBrSintegra\ico.bmp" />
   </ItemGroup>
   <ItemGroup>
