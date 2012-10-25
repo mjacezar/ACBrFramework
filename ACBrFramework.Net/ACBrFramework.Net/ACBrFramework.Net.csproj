@@ -208,9 +208,9 @@
       <DependentUpon>Framework64.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ACBrSerial\ACBrECF\Classes\SerialHandShake.cs" />
-    <Compile Include="ACBrSerial\ACBrECF\Classes\SerialParity.cs" />
-    <Compile Include="ACBrSerial\ACBrECF\Classes\SerialStopBits.cs" />
+    <Compile Include="ACBrSerial\SerialHandShake.cs" />
+    <Compile Include="ACBrSerial\SerialParity.cs" />
+    <Compile Include="ACBrSerial\SerialStopBits.cs" />
     <Compile Include="ACBrPAF\ACBrPAFTipoDesenvolvimento.cs" />
     <Compile Include="ACBrPAF\ACBrPAFTipoFuncionamento.cs" />
     <Compile Include="UnmanagedResources.cs" />
