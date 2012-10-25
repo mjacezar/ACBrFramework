@@ -41,6 +41,10 @@ Símbolo : Significado
 
 Changelog
 
+25/10/2012(ACBrFramework 0.9.0.163)
+[+] Inclusão do campo MFAdicional em ACBrECF - ACBrFramework e ACBrFramework.Net- Rafael Batiati.
+[-] Remoção do campo DT_FIN no registro R2 em ACBrPAF - ACBrFramework e ACBrFramework.Net- Rafael Batiati.
+
 25/10/2012 (ACBrFramework 0.9.0.162)
 [+] Adicionado novo modelo de ECF, ecfEscECF - ACBrFramework.Net - Rafael Dias.
 
