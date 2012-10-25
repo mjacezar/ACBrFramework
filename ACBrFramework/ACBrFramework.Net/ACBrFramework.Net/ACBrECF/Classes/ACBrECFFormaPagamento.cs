@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace ACBrFramework
 {
 	public sealed class ACBrECFFormaPagamento

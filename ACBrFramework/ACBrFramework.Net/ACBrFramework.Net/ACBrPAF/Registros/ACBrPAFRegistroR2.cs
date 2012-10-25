@@ -25,8 +25,6 @@ namespace ACBrFramework
 
 		public string PAR_ECF { get; set; }
 
-		public DateTime DT_FIN { get; set; }
-
 		public bool RegistroValido { get; set; }
 	}
 }

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -22,14 +19,17 @@ namespace ACBrFramework.Net.PAFTeste
 		#endregion Fields
 
 		#region Constructor
+
 		public Form1()
 		{
 			InitializeComponent();
 			InicializarPaf();
 		}
+
 		#endregion Constructor
 
 		#region Methods
+
 		private void InicializarPaf()
 		{
 			acbrEAD.ChavePrivada = "-----BEGIN RSA PRIVATE KEY-----" + Environment.NewLine +
@@ -88,7 +88,7 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemC2 = null;
 				}
 
-				if(acbrPAF.SaveFileTXT_C(RegistroC1, RegistroC2.ToArray(), @"\PAF_C.txt"))
+				if (acbrPAF.SaveFileTXT_C(RegistroC1, RegistroC2.ToArray(), @"\PAF_C.txt"))
 					WriteResp("Arquivo PAF_C gerado com sucesso");
 				else
 					WriteResp("Arquivo PAF_C não foi gerado");
@@ -159,7 +159,7 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemD2 = null;
 				}
 
-				if(acbrPAF.SaveFileTXT_D(RegistroD1, RegistroD2.ToArray(), @"\PAF_D.txt"))
+				if (acbrPAF.SaveFileTXT_D(RegistroD1, RegistroD2.ToArray(), @"\PAF_D.txt"))
 					WriteResp("Arquivo PAF_D gerado com sucesso");
 				else
 					WriteResp("Arquivo PAF_D não foi gerado");
@@ -199,8 +199,8 @@ namespace ACBrFramework.Net.PAFTeste
 					RegistroP2.Add(ItemP2);
 					ItemP2 = null;
 				}
-				
-				if(acbrPAF.SaveFileTXT_P(RegistroP1, RegistroP2.ToArray(), @"\PAF_P.txt"))
+
+				if (acbrPAF.SaveFileTXT_P(RegistroP1, RegistroP2.ToArray(), @"\PAF_P.txt"))
 					WriteResp("Arquivo PAF_P gerado com sucesso");
 				else
 					WriteResp("Arquivo PAF_P não foi gerado");
@@ -262,6 +262,7 @@ namespace ACBrFramework.Net.PAFTeste
 		#endregion Methods
 
 		#region Event Handlers
+
 		private void btnTipoC_Click(object sender, EventArgs e)
 		{
 			GerarArquivoC();
@@ -276,6 +277,7 @@ namespace ACBrFramework.Net.PAFTeste
 		{
 			GerarArquivoP();
 		}
+
 		#endregion Event Handlers
 	}
 }

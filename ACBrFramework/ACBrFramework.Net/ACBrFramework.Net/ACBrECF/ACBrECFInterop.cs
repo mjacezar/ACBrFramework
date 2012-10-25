@@ -274,15 +274,15 @@ namespace ACBrFramework
 		public struct RelatorioGerencialLinha
 		{
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 49)]
-			public string Texto;			
+			public string Texto;
 		}
-		
+
 		[StructLayout(LayoutKind.Sequential)]
 		public struct RelatorioGerencial
 		{
 			[MarshalAs(UnmanagedType.I4)]
 			public int Count;
-			
+
 			public RelatorioGerencialLinha[] Linhas;
 		}
 
@@ -558,6 +558,9 @@ namespace ACBrFramework
 		public static extern int ECF_GetMFD(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetMFAdicional(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetIdentificaConsumidorRodape(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
@@ -629,7 +632,7 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetAAC(IntPtr ecfHandle, IntPtr aacHandle);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetEAD(IntPtr ecfHandle, IntPtr eadHandle);
 
 		#endregion Propriedades do Componente
@@ -704,8 +707,8 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_PafMF_RelIdentificacaoPafECF(IntPtr ecfHandle, IntPtr aacHandle, int IndiceRelatorio);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_PafMF_RelParametrosConfiguracao(IntPtr ecfHandle, IntPtr aacHandle, int IndiceRelatorio);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_PafMF_RelParametrosConfiguracao(IntPtr ecfHandle, IntPtr aacHandle, int IndiceRelatorio);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_PafMF_GerarCAT52(IntPtr ecfHandle, double DataInicial, double DataFinal, string CaminhoArquivo);
@@ -730,7 +733,6 @@ namespace ACBrFramework
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DoVerificaValorGT(IntPtr ecfHandle);
-
 
 		#endregion PAF
 
@@ -798,7 +800,7 @@ namespace ACBrFramework
 		public static extern int ECF_LeituraX(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_ReducaoZ(IntPtr ecfHandle);		
+		public static extern int ECF_ReducaoZ(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_AbreCupomVinculado(IntPtr ecfHandle, string coo, string codFormaPagto, double valor);

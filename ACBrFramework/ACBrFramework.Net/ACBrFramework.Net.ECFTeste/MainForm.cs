@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -15,7 +14,7 @@ namespace ACBrFramework.ECFTeste
 
 			InicializarECF();
 			Popular();
-			PopularAAC();			
+			PopularAAC();
 		}
 
 		#endregion Constructor
@@ -282,7 +281,7 @@ namespace ACBrFramework.ECFTeste
 		public void Ativar()
 		{
 			try
-			{                
+			{
 				acbrECF.Modelo = (ModeloECF)modeloComboBox.SelectedItem;
 				acbrECF.Porta = (string)portaComboBox.SelectedItem;
 				acbrECF.Baud = (int)velocidadeComboBox.SelectedItem;
@@ -595,58 +594,58 @@ namespace ACBrFramework.ECFTeste
 		}
 
 		private void Ler_TodasVariaveis()
-        {
-            var type = typeof(ACBrECF);
-            foreach (var property in type.GetProperties())
-            {
-                try
-                {
-                    object value = property.GetValue(acbrECF, null);
+		{
+			var type = typeof(ACBrECF);
+			foreach (var property in type.GetProperties())
+			{
+				try
+				{
+					object value = property.GetValue(acbrECF, null);
 
-                    if (value is System.Collections.ICollection)
-                    {
-                        var collection = (System.Collections.ICollection)value;
-                        respListBox.Items.Add(string.Format("{0}:", property.Name));
+					if (value is System.Collections.ICollection)
+					{
+						var collection = (System.Collections.ICollection)value;
+						respListBox.Items.Add(string.Format("{0}:", property.Name));
 
-                        foreach (var element in collection)
-                        {
-                            if (element == null) continue;
+						foreach (var element in collection)
+						{
+							if (element == null) continue;
 
-                            respListBox.Items.Add("");
+							respListBox.Items.Add("");
 
-                            Type elementType = element.GetType();
+							Type elementType = element.GetType();
 
-                            foreach (var elementProperty in elementType.GetProperties())
-                            {
-                                object elementValue = elementProperty.GetValue(element, null);
-                                respListBox.Items.Add(string.Format("{0}: {1}", elementProperty.Name, elementValue));
-                            }
-                        }
+							foreach (var elementProperty in elementType.GetProperties())
+							{
+								object elementValue = elementProperty.GetValue(element, null);
+								respListBox.Items.Add(string.Format("{0}: {1}", elementProperty.Name, elementValue));
+							}
+						}
 
-                        respListBox.Items.Add("");
-                        WriteResp(string.Format("{0} elemento(s)", collection.Count));
-                    }
-                    else
-                    {
-                        WriteResp(string.Format("{0}: {1}", property.Name, value));
-                    }
+						respListBox.Items.Add("");
+						WriteResp(string.Format("{0} elemento(s)", collection.Count));
+					}
+					else
+					{
+						WriteResp(string.Format("{0}: {1}", property.Name, value));
+					}
 
-                    descriptionToolStripStatusLabel.Text = string.Empty;
-                }
-                catch (NullReferenceException)
-                {
-                    messageToolStripStatusLabel.Text = "Não inicializado.";
-                    descriptionToolStripStatusLabel.Text = string.Empty;
-                }
-                catch (Exception exception)
-                {
-                    messageToolStripStatusLabel.Text = "Exception";
-                    descriptionToolStripStatusLabel.Text = exception.Message;
-                }
+					descriptionToolStripStatusLabel.Text = string.Empty;
+				}
+				catch (NullReferenceException)
+				{
+					messageToolStripStatusLabel.Text = "Não inicializado.";
+					descriptionToolStripStatusLabel.Text = string.Empty;
+				}
+				catch (Exception exception)
+				{
+					messageToolStripStatusLabel.Text = "Exception";
+					descriptionToolStripStatusLabel.Text = exception.Message;
+				}
 
-                Application.DoEvents();
-            }
-        }
+				Application.DoEvents();
+			}
+		}
 
 		private void TestaCupomFiscal()
 		{
@@ -719,13 +718,13 @@ namespace ACBrFramework.ECFTeste
 					for (int i = 0; i < 10; i++)
 					{
 						respListBox.Items.Add(String.Format("DAV Item #{0} ...", i));
-						acbrECF.DAV_RegistrarItem(string.Format("{0:0000000000000}", i + 1), "PRODUTO àáèéìíòóùúü " + i, "UN", 1, 1.99, 0, 0, false);	
+						acbrECF.DAV_RegistrarItem(string.Format("{0:0000000000000}", i + 1), "PRODUTO àáèéìíòóùúü " + i, "UN", 1, 1.99, 0, 0, false);
 					}
 
 					acbrECF.DAV_Fechar("Mensagem àáèéìíòóùúü FechaDAV ACBr.NET");
 					respListBox.Items.Add("Fecha DAV ...");
 					WriteResp("Finalizado!");
-				}				
+				}
 			}
 			catch (NullReferenceException)
 			{
@@ -780,7 +779,7 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
-		#endregion ECF			
+		#endregion ECF
 
 		#endregion Methods
 
@@ -1142,6 +1141,6 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
-		#endregion Event Handlers		
+		#endregion Event Handlers
 	}
 }

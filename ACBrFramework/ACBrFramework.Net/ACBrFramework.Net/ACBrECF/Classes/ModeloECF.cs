@@ -18,6 +18,6 @@
 		Epson,
 		NCR,
 		SwedaSTX,
-        EscECF
+		EscECF
 	}
 }

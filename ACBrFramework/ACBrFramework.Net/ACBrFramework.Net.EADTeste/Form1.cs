@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace ACBrFramework.Net.EADTeste
 {
@@ -90,13 +88,13 @@ namespace ACBrFramework.Net.EADTeste
 
 				FolderBrowserDialog dlg = new FolderBrowserDialog();
 
-				if(dlg.ShowDialog().Equals(DialogResult.OK))
+				if (dlg.ShowDialog().Equals(DialogResult.OK))
 				{
 					string XML = String.Format(@"{0}\{1}.xml", dlg.SelectedPath, SH);
-					if(File.Exists(XML))
+					if (File.Exists(XML))
 					{
-						if(MessageBox.Show("Arquivo já existe, sobrescrever ?", "ACBrEAD", MessageBoxButtons.YesNo).Equals(DialogResult.Yes))
-							acbrEAD.GerarXMLeECFc(SH, XML);					
+						if (MessageBox.Show("Arquivo já existe, sobrescrever ?", "ACBrEAD", MessageBoxButtons.YesNo).Equals(DialogResult.Yes))
+							acbrEAD.GerarXMLeECFc(SH, XML);
 					}
 					else
 					{
@@ -163,7 +161,6 @@ namespace ACBrFramework.Net.EADTeste
 				sw.Write(txtChavePub.Text);
 				sw.Close();
 				WriteResp("Chave privada salva com sucesso !!");
-
 			}
 			catch (Exception exception)
 			{
@@ -193,7 +190,7 @@ namespace ACBrFramework.Net.EADTeste
 				string modulo, expoente;
 				modulo = string.Empty;
 				expoente = string.Empty;
-				
+
 				acbrEAD.CalcularModuloeExpoente(out modulo, out expoente);
 
 				WriteResp(string.Format("Modulo: {0}", modulo));
@@ -228,7 +225,7 @@ namespace ACBrFramework.Net.EADTeste
 		{
 			try
 			{
-				if(!File.Exists(txtArqEntrada.Text))
+				if (!File.Exists(txtArqEntrada.Text))
 					return;
 
 				string EAD = acbrEAD.CalcularEADArquivo(txtArqEntrada.Text);
@@ -299,7 +296,7 @@ namespace ACBrFramework.Net.EADTeste
 
 					txtChavePri.Clear();
 					while ((linha = sr.ReadLine()) != null)
-						txtChavePri.Text += String.Format("{0}{1}", linha, Environment.NewLine);					
+						txtChavePri.Text += String.Format("{0}{1}", linha, Environment.NewLine);
 				}
 
 				acbrEAD.ChavePrivada = txtChavePri.Text;
@@ -358,7 +355,7 @@ namespace ACBrFramework.Net.EADTeste
 				};
 
 				if (dlg.ShowDialog() == DialogResult.OK)
-					txtArqEntrada.Text = dlg.FileName;							
+					txtArqEntrada.Text = dlg.FileName;
 			}
 			catch (Exception exception)
 			{
@@ -496,6 +493,6 @@ namespace ACBrFramework.Net.EADTeste
 			ConverterXML();
 		}
 
-		#endregion Event Handlers		
+		#endregion Event Handlers
 	}
 }

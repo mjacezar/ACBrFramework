@@ -90,7 +90,7 @@ namespace ACBrFramework
 			record.Numero = ToUTF8(registro11.Numero.ToString());
 			record.Complemento = ToUTF8(registro11.Complemento);
 			record.Endereco = ToUTF8(registro11.Endereco);
-			record.Telefone = ToUTF8(registro11.Telefone.ToString());	
+			record.Telefone = ToUTF8(registro11.Telefone.ToString());
 
 			int ret = ACBrSintegraInterop.SIN_Registro11(this.Handle, record);
 			CheckResult(ret);
@@ -136,7 +136,7 @@ namespace ACBrFramework
 				record[i].Serie = ToUTF8(registro51[i].Serie);
 				record[i].Numero = ToUTF8(registro51[i].Numero.ToString());
 				record[i].DataDocumento = registro51[i].DataDocumento.ToOADate();
-				record[i].ValorIpi  = registro51[i].ValorIpi;
+				record[i].ValorIpi = registro51[i].ValorIpi;
 				record[i].Situacao = ToUTF8(registro51[i].Situacao);
 				record[i].ValorIsentas = registro51[i].ValorIsentas;
 				record[i].ValorOutras = registro51[i].ValorOutras;
