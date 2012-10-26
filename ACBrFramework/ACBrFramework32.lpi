@@ -22,7 +22,8 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="9"/>
-      <BuildNr Value="179"/>
+      <RevisionNr Value="1"/>
+      <BuildNr Value="1"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -483,7 +484,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit46>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="ACBrEADDll.pas"/>
         <Caret Line="139" Column="20" TopLine="122"/>
@@ -506,104 +507,100 @@
       </Position5>
       <Position6>
         <Filename Value="ACBrEADDll.pas"/>
-        <Caret Line="74" Column="38" TopLine="454"/>
+        <Caret Line="147" Column="20" TopLine="130"/>
       </Position6>
       <Position7>
-        <Filename Value="ACBrEADDll.pas"/>
-        <Caret Line="147" Column="20" TopLine="130"/>
-      </Position7>
-      <Position8>
         <Filename Value="ACBrSintegraDll.pas"/>
         <Caret Line="871" Column="90" TopLine="864"/>
-      </Position8>
-      <Position9>
+      </Position7>
+      <Position8>
         <Filename Value="ACBrEADDll.pas"/>
         <Caret Line="526" Column="4" TopLine="495"/>
-      </Position9>
-      <Position10>
+      </Position8>
+      <Position9>
         <Filename Value="ACBrFramework.lpr"/>
         <Caret Line="16" Column="11" TopLine="1"/>
+      </Position9>
+      <Position10>
+        <Filename Value="ACBrAACDll.pas"/>
+        <Caret Line="16" Column="36" TopLine="5"/>
       </Position10>
       <Position11>
         <Filename Value="ACBrAACDll.pas"/>
-        <Caret Line="16" Column="36" TopLine="5"/>
+        <Caret Line="2540" Column="20" TopLine="2507"/>
       </Position11>
       <Position12>
         <Filename Value="ACBrAACDll.pas"/>
-        <Caret Line="2540" Column="20" TopLine="2507"/>
+        <Caret Line="2447" Column="39" TopLine="2430"/>
       </Position12>
       <Position13>
         <Filename Value="ACBrAACDll.pas"/>
-        <Caret Line="2447" Column="39" TopLine="2430"/>
+        <Caret Line="2437" Column="89" TopLine="2430"/>
       </Position13>
       <Position14>
         <Filename Value="ACBrAACDll.pas"/>
-        <Caret Line="2437" Column="89" TopLine="2430"/>
+        <Caret Line="2452" Column="46" TopLine="2435"/>
       </Position14>
       <Position15>
         <Filename Value="ACBrAACDll.pas"/>
-        <Caret Line="2452" Column="46" TopLine="2435"/>
+        <Caret Line="2457" Column="30" TopLine="2433"/>
       </Position15>
       <Position16>
-        <Filename Value="ACBrAACDll.pas"/>
-        <Caret Line="2457" Column="30" TopLine="2433"/>
+        <Filename Value="ACBrBALDll.pas"/>
+        <Caret Line="140" Column="19" TopLine="122"/>
       </Position16>
       <Position17>
         <Filename Value="ACBrBALDll.pas"/>
-        <Caret Line="140" Column="19" TopLine="122"/>
+        <Caret Line="13" Column="12" TopLine="1"/>
       </Position17>
       <Position18>
-        <Filename Value="ACBrBALDll.pas"/>
-        <Caret Line="13" Column="12" TopLine="1"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrBAL.pas"/>
+        <Caret Line="86" Column="71" TopLine="74"/>
       </Position18>
       <Position19>
         <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrBAL.pas"/>
-        <Caret Line="86" Column="71" TopLine="74"/>
+        <Caret Line="2" Column="18" TopLine="1"/>
       </Position19>
       <Position20>
         <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrBAL.pas"/>
-        <Caret Line="2" Column="18" TopLine="1"/>
+        <Caret Line="77" Column="10" TopLine="59"/>
       </Position20>
       <Position21>
         <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrBAL.pas"/>
-        <Caret Line="77" Column="10" TopLine="59"/>
+        <Caret Line="118" Column="33" TopLine="96"/>
       </Position21>
       <Position22>
-        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrBAL.pas"/>
-        <Caret Line="118" Column="33" TopLine="96"/>
-      </Position22>
-      <Position23>
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="191" Column="70" TopLine="174"/>
-      </Position23>
-      <Position24>
+      </Position22>
+      <Position23>
         <Filename Value="ACBrBALDll.pas"/>
         <Caret Line="416" Column="84" TopLine="398"/>
-      </Position24>
-      <Position25>
+      </Position23>
+      <Position24>
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="2030" Column="70" TopLine="2019"/>
+      </Position24>
+      <Position25>
+        <Filename Value="ACBrBALDll.pas"/>
+        <Caret Line="55" Column="31" TopLine="38"/>
       </Position25>
       <Position26>
         <Filename Value="ACBrBALDll.pas"/>
-        <Caret Line="55" Column="31" TopLine="38"/>
+        <Caret Line="485" Column="16" TopLine="328"/>
       </Position26>
       <Position27>
         <Filename Value="ACBrBALDll.pas"/>
-        <Caret Line="485" Column="16" TopLine="328"/>
+        <Caret Line="155" Column="27" TopLine="138"/>
       </Position27>
       <Position28>
         <Filename Value="ACBrBALDll.pas"/>
-        <Caret Line="155" Column="27" TopLine="138"/>
+        <Caret Line="432" Column="39" TopLine="397"/>
       </Position28>
       <Position29>
-        <Filename Value="ACBrBALDll.pas"/>
-        <Caret Line="432" Column="39" TopLine="397"/>
-      </Position29>
-      <Position30>
         <Filename Value="ACBrSintegraDll.pas"/>
         <Caret Line="921" Column="61" TopLine="908"/>
-      </Position30>
+      </Position29>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
@@ -611,7 +608,7 @@
     </CustomSessionData>
   </ProjectOptions>
   <CompilerOptions>
-    <Version Value="9"/>
+    <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
       <Filename Value="x86\ACBrFramework32"/>
@@ -632,6 +629,7 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
+        <GenerateDebugInfo Value="False"/>
         <UseLineInfoUnit Value="False"/>
         <StripSymbols Value="True"/>
       </Debugging>

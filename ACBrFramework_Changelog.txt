@@ -41,14 +41,14 @@ Símbolo : Significado
 
 Changelog
 
-26/10/2012 (ACBrFramework 0.9.0.172)
-[+] Adicionado aplicativo ACBrFramework.Net.BALTeste - Rafael Batiati
-[+] Adicionado evento OnLePeso e propriedade MonitorarBalanca no componente BAL - Rafael Batiati
-[+] Adicionado eventos no componente EAD OnGetChavePublica e OnGetChavePrivada - Rafael Batiati
-[+] Adicionado eventos no componente ECF OnPoucoPapel - Rafael Batiati
-[+] Adicionado eventos no componente AAC OnGetChave - Rafael Batiati
-[-] Corrigido o ícone dos componentes - Rafael Batiati
-[*] Propriedade DadosReducaoZ transformado em método GetDadosReducaoZ() - Rafael Batiati
+26/10/2012 (ACBrFramework 0.9.0.1)
+[+] Adicionado aplicativo ACBrFramework.Net.BALTeste - ACBrFramework.Net - Rafael Batiati
+[+] Adicionado evento OnLePeso e propriedade MonitorarBalanca no componente BAL - ACBrFramework e ACBrFramework.Net - Rafael Batiati
+[+] Adicionado eventos no componente EAD OnGetChavePublica e OnGetChavePrivada - ACBrFramework e ACBrFramework.Net - Rafael Batiati
+[+] Adicionado eventos no componente ECF OnPoucoPapel - ACBrFramework e ACBrFramework.Net - Rafael Batiati
+[+] Adicionado eventos no componente AAC OnGetChave - ACBrFramework e ACBrFramework.Net - Rafael Batiati
+[-] Corrigido o ícone dos componentes - ACBrFramework.Net - Rafael Batiati
+[*] Propriedade DadosReducaoZ transformado em método GetDadosReducaoZ() - ACBrFramework.Net - Rafael Batiati
 
 25/10/2012 (ACBrFramework 0.9.0.172)
 [+] SUPORTE A EVENTOS nos componentes ACBrFramework.Net: Evento do componente LCB.OnLeCodigo implementado. - ACBrFramework e ACBrFramework.Net - Rafael Batiati
