@@ -41,7 +41,8 @@ Símbolo : Significado
 
 Changelog
 
-26/10/2012 (ACBrFramework 0.9.0.1)
+26/10/2012 (ACBrFramework 0.9.1.0)
+[+] Adicionado instalador dos componentes - ACBrFramework.Net - Rafael Dias.
 [+] Adicionado aplicativo ACBrFramework.Net.BALTeste - ACBrFramework.Net - Rafael Batiati
 [+] Adicionado evento OnLePeso e propriedade MonitorarBalanca no componente BAL - ACBrFramework e ACBrFramework.Net - Rafael Batiati
 [+] Adicionado eventos no componente EAD OnGetChavePublica e OnGetChavePrivada - ACBrFramework e ACBrFramework.Net - Rafael Batiati

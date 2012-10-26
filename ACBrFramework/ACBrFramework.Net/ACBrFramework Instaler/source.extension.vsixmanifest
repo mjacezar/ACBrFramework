@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
+  <Identifier Id="ACBrFramework_Instaler..84fa2a39-fc9d-4dfe-b17a-a5d878b566e5">
+    <Name>ACBrFramework.Net</Name>
+    <Author>ACBr</Author>
+    <Version>0.9.1.0</Version>
+    <Description xml:space="preserve">Componente ACBr para uso no .Net.</Description>
+    <Locale>1033</Locale>
+    <Icon>ACBrMonitor.ico</Icon>
+    <SupportedProducts>
+      <VisualStudio Version="10.0">
+        <Edition>Ultimate</Edition>
+        <Edition>Premium</Edition>
+        <Edition>Pro</Edition>
+        <Edition>Express_All</Edition>
+      </VisualStudio>
+      <VisualStudio Version="11.0">
+        <Edition>Ultimate</Edition>
+        <Edition>Premium</Edition>
+        <Edition>Pro</Edition>
+        <Edition>Express_All</Edition>
+      </VisualStudio>
+    </SupportedProducts>
+    <SupportedFrameworkRuntimeEdition MinVersion="3.5" MaxVersion="4.0" />
+  </Identifier>
+  <References />
+  <Content>
+    <ToolboxControl>|ACBrFramework.Net;BuiltProjectOutputGroup|</ToolboxControl>
+  </Content>
+</Vsix>
