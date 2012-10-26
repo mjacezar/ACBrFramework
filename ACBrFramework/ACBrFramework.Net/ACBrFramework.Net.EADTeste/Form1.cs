@@ -497,7 +497,7 @@ namespace ACBrFramework.Net.EADTeste
 
 		private void acbrEAD_OnGetChavePublica(object sender, ChaveEventArgs e)
 		{
-			e.Chave = txtChavePri.Text;
+			e.Chave = txtChavePub.Text;
 		}
 
 		#endregion Event Handlers
