@@ -70,7 +70,20 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int BAL_LePeso(IntPtr balHandle, int timeout, ref double peso);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int BAL_GetMonitoraBalanca(IntPtr balHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int BAL_SetMonitoraBalanca(IntPtr balHandle, bool monitora);
+
 		#endregion Propriedades do Componente
+
+		#region Eventos
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int BAL_SetOnLePeso(IntPtr balHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+
+		#endregion Eventos
 
 		#endregion ACBrBal
 	}

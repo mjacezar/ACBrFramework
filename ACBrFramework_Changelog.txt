@@ -42,6 +42,8 @@ Símbolo : Significado
 Changelog
 
 26/10/2012 (ACBrFramework 0.9.0.172)
+[+] Adicionado aplicativo ACBrFramework.Net.BALTeste - Rafael Batiati
+[+] Adicionado evento OnLePeso e propriedade MonitorarBalanca no componente BAL - Rafael Batiati
 [+] Adicionado eventos no componente EAD OnGetChavePublica e OnGetChavePrivada - Rafael Batiati
 [+] Adicionado eventos no componente ECF OnPoucoPapel - Rafael Batiati
 [+] Adicionado eventos no componente AAC OnGetChave - Rafael Batiati

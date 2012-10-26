@@ -878,6 +878,8 @@ namespace ACBrFramework
 
 		#endregion Comprovante não fiscal
 
+		#region Metodos
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_Sangria(IntPtr ecfHandle, double valor, string obs);
 
@@ -908,8 +910,14 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_LeituraMemoriaFiscalArquivoData(IntPtr ecfHandle, double dataInicial, double dataFinal, string nomeArquivo, bool simplificada);
 
+		#endregion Metodos
+
+		#region Eventos
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnPoucoPapel(IntPtr ecfHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+
+		#endregion Eventos
 
 		#endregion ACBrECF
 	}

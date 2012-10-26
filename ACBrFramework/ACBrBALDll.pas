@@ -5,12 +5,20 @@ interface
 uses
   SysUtils,
   Classes,
-  ACBrBal;
+  ACBrBal,
+  ACBrCommonDll;
+
+{Classe que armazena os EventHandlers para o componente ACBr}
+type TEventHandlers = class
+    OnLePesoPtr : TDoubleProcedurePrt;
+    procedure OnLePeso(Peso : Double; Resposta : AnsiString);
+end;
 
 {Handle para o componente TACBrBAL }
 type TBALHandle = record
   UltimoErro : String;
   BAL : TACBrBAL;
+  EventHandlers : TEventHandlers;
 end;
 
 {Ponteiro para o Handle}
@@ -44,6 +52,11 @@ PADRONIZAÇÃO DAS FUNÇÕES:
                   A função "UltimoErro" retornará a mensagem da última exception disparada pelo componente.
 }
 
+procedure TEventHandlers.OnLePeso(Peso : Double; Resposta : AnsiString);
+begin
+     OnLePesoPtr(Peso);
+end;
+
 {
 CRIA um novo componente TACBrBAL retornando o ponteiro para o objeto criado.
 Este ponteiro deve ser armazenado pela aplicação que utiliza a DLL e informado
@@ -57,8 +70,10 @@ begin
      New(balHandle);
 
      balHandle^.BAL := TACBrBAL.Create(nil);
+     balHandle^.EventHandlers := TEventHandlers.Create();
      balHandle^.BAL.MonitorarBalanca := False;
      balHandle^.UltimoErro := '';
+     balHandle^.BAL.OnLePeso := balHandle^.EventHandlers.OnLePeso;
 
      Result := 0;
 
@@ -332,7 +347,6 @@ begin
 
 end;
 
-
 Function BAL_GetUltimaResposta(const balHandle: PBALHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
@@ -380,6 +394,74 @@ begin
 
 end;
 
+Function BAL_GetMonitoraBalanca(const balHandle: PBALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (balHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     If balHandle^.BAL.MonitorarBalanca then
+        Result := 1
+     Else
+        Result := 0;
+
+  except
+     on exception : Exception do
+     begin
+        balHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function BAL_SetMonitoraBalanca(const balHandle: PBALHandle; const monitora : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (balHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+
+     balHandle^.BAL.MonitorarBalanca := monitora;
+
+  except
+     on exception : Exception do
+     begin
+        balHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function BAL_SetOnLePeso(const balHandle: PBALHandle; const method : TDoubleProcedurePrt) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (balHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+        balHandle^.EventHandlers.OnLePesoPtr := method;
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        balHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 exports
 
 { Funções }
@@ -394,7 +476,13 @@ BAL_GetModelo, BAL_SetModelo, BAL_GetModeloStr,
 BAL_GetPorta, BAL_SetPorta,
 BAL_GetAtivo,
 BAL_GetUltimoPesoLido, BAL_GetUltimaResposta,
-BAL_LePeso;
+BAL_GetMonitoraBalanca, BAL_SetMonitoraBalanca,
+
+{Métodos}
+BAL_LePeso,
+
+{Eventos}
+BAL_SetOnLePeso;
 
 
 end.
