@@ -6,6 +6,24 @@ namespace ACBrFramework
 	[ToolboxBitmap(typeof(ACBrLCB), @"ACBrLCB.ico.bmp")]
 	public sealed class ACBrLCB : ACBrComponent, IDisposable
 	{
+		#region InnerTypes
+
+		private delegate void OnLePesoDelegate();
+
+		#endregion InnerTypes
+
+		#region Events
+
+		public event EventHandler OnLeCodigo;
+
+		#endregion Events
+
+		#region Fields
+
+		private OnLePesoDelegate onLeCodigoHandler;
+
+		#endregion Fields
+
 		#region Constructor
 
 		public ACBrLCB()
@@ -38,6 +56,14 @@ namespace ACBrFramework
 
 		public ACBrDevice Device { get; private set; }
 
+		public string UltimoCodigo
+		{
+			get
+			{
+				return GetString(ACBrLCBInterop.LCB_GetUltimoErro);
+			}
+		}
+
 		#endregion Properties
 
 		#region Methods
@@ -54,12 +80,36 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
+		public void Test()
+		{
+			int ret = ACBrLCBInterop.LCB_Test(this.Handle);
+			CheckResult(ret);
+		}
+
+		private void InitializeEventHandlers()
+		{
+			onLeCodigoHandler = new OnLePesoDelegate(lcb_OnLeCodigo);
+			int ret = ACBrLCBInterop.LCB_SetOnLeCodigo(this.Handle, onLeCodigoHandler);
+			CheckResult(ret);
+		}
+
+		#region EventHandlers
+
+		private void lcb_OnLeCodigo()
+		{
+			if (OnLeCodigo != null) OnLeCodigo(this, EventArgs.Empty);
+		}
+
+		#endregion EventHandlers
+
 		#region Override Methods
 
 		protected internal override void OnInitializeComponent()
 		{
 			CallCreate(ACBrLCBInterop.LCB_Create);
 			Device = new ACBrDevice(this);
+
+			InitializeEventHandlers();
 		}
 
 		protected internal override void CheckResult(int ret)
