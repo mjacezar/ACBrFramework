@@ -41,14 +41,16 @@ Símbolo : Significado
 
 Changelog
 
-25/10/2012(ACBrFramework 0.9.0.163)
-[+] SUPORTE A EVENTOS nos componentes ACBrFramework.Net: Evento do componente LCB.OnLeCodigo implementado. - Rafael Batiati
+25/10/2012 (ACBrFramework 0.9.0.172)
+[+] SUPORTE A EVENTOS nos componentes ACBrFramework.Net: Evento do componente LCB.OnLeCodigo implementado. - ACBrFramework e ACBrFramework.Net - Rafael Batiati
 [+] Inclusão da classe ACBrDevice que contém as propriedades referentes a comunicação Serial - Rafael Batiati.
-[+] Inclusão da propriedade Device nos componentes ECF, LCB e BAL - Rafael Batiati.
-[*] Removido do componente ECF as propriedades referentes a comunicação Serial (Baud,Parity,StopBits, etc..) - Rafael Batiati.
-[*] Estrutura de pastas do ACBrFramework.Net modificada, incluindo a pasta ACBrSerial e os componentes ACBrECF, ACBrBAL e ACBrLCB sob essa pasta. - Rafael Batiati.
-[+] Inclusão do campo MFAdicional em ACBrECF - ACBrFramework e ACBrFramework.Net- Rafael Batiati.
-[-] Remoção do campo DT_FIN no registro R2 em ACBrPAF - ACBrFramework e ACBrFramework.Net- Rafael Batiati.
+[+] Inclusão da propriedade Device nos componentes ECF, LCB e BAL - ACBrFramework.Net - Rafael Batiati.
+[*] Removido do componente ECF as propriedades referentes a comunicação Serial (Baud,Parity,StopBits, etc..). - ACBrFramework.Net - Rafael Batiati.
+[*] Estrutura de pastas do ACBrFramework.Net modificada, incluindo a pasta ACBrSerial e os componentes ACBrECF, ACBrBAL e ACBrLCB sob essa pasta. - ACBrFramework.Net - Rafael Batiati.
+
+25/10/2012(ACBrFramework 0.9.0.163)
+[+] Inclusão do campo MFAdicional em ACBrECF - ACBrFramework e ACBrFramework.Net - Rafael Batiati.
+[-] Remoção do campo DT_FIN no registro R2 em ACBrPAF - ACBrFramework e ACBrFramework.Net - Rafael Batiati.
 
 25/10/2012 (ACBrFramework 0.9.0.162)
 [+] Adicionado novo modelo de ECF, ecfEscECF - ACBrFramework.Net - Rafael Dias.
