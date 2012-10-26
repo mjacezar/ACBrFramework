@@ -52,7 +52,16 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int LCB_GetAtivo(IntPtr lcbHandle);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int LCB_GetUltimoCodigo(IntPtr lcbHandle, StringBuilder buffer, int bufferLen);
+
 		#endregion Propriedades do Componente
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int LCB_SetOnLeCodigo(IntPtr lcbHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int LCB_Test(IntPtr lcbHandle);
 
 		#endregion ACBrLCB
 	}

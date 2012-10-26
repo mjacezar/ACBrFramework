@@ -7,14 +7,26 @@ uses
   Classes,
   ACBrLCB;
 
+{ Ponteiro de função para o Handler }
+type TFunctionPtr = procedure ();
+
+{ Classe que armazena os ponteiros de função para os Handlers }
+type TEventHandlers = class
+  OnLeCodigoPtr : TFunctionPtr;
+  procedure OnLeCodigo(Sender: TObject);
+end;
+
 {Handle para o componente TACBrLCB }
 type TLCBHandle = record
   UltimoErro : String;
   LCB : TACBrLCB;
+  EventHandlers : TEventHandlers;
 end;
 
 {Ponteiro para o Handle}
 type PLCBHandle = ^TLCBHandle;
+
+
 
 implementation
 
@@ -49,6 +61,13 @@ CRIA um novo componente TACBrLCB retornando o ponteiro para o objeto criado.
 Este ponteiro deve ser armazenado pela aplicação que utiliza a DLL e informado
 em todas as chamadas de função relativas ao TACBrLCB
 }
+
+procedure TEventHandlers.OnLeCodigo(Sender: TObject);
+begin
+     OnLeCodigoPtr();
+end;
+
+
 Function LCB_Create(var lcbHandle: PLCBHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -57,7 +76,9 @@ begin
      New(lcbHandle);
 
      lcbHandle^.LCB := TACBrLCB.Create(nil);
+     lcbHandle^.EventHandlers := TEventHandlers.Create();
      lcbHandle^.UltimoErro := '';
+     lcbHandle^.LCB.OnLeCodigo:= lcbHandle^.EventHandlers.OnLeCodigo;
 
      Result := 0;
 
@@ -241,7 +262,7 @@ begin
 
 end;
 
-Function LCB_SetOnLeCodigo(const lcbHandle: PLCBHandle; const method : TNotifyEvent) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function LCB_SetOnLeCodigo(const lcbHandle: PLCBHandle; const method : TFunctionPtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (lcbHandle = nil) then
@@ -251,7 +272,7 @@ begin
   end;
 
   try
-        lcbHandle^.LCB.OnLeCodigo := method;
+        lcbHandle^.EventHandlers.OnLeCodigoPtr := method;
         Result := 0;
   except
      on exception : Exception do
@@ -263,6 +284,54 @@ begin
 
 end;
 
+Function LCB_GetUltimoCodigo(const lcbHandle: PLCBHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (lcbHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := lcbHandle^.LCB.UltimoCodigo;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        lcbHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function LCB_Test(const lcbHandle: PLCBHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (lcbHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+        lcbHandle^.EventHandlers.OnLeCodigoPtr();
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lcbHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+
 exports
 
 { Funções }
@@ -273,7 +342,9 @@ LCB_Ativar, LCB_Desativar,
 
 { Propriedades do Componente }
 
-LCB_GetAtivo, LCB_SetOnLeCodigo;
-
+LCB_GetPorta, LCB_SetPorta,
+LCB_GetAtivo, LCB_SetOnLeCodigo,
+LCB_GetUltimoCodigo,
+LCB_Test;
 
 end.
