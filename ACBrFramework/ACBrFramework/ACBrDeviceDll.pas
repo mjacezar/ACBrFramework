@@ -416,7 +416,6 @@ begin
 
 end;
 
-
 Function GetDevice(const deviceHandle: PDeviceHandle) : TACBrDevice;
 begin
 
