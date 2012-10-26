@@ -6,6 +6,18 @@ namespace ACBrFramework
 	[ToolboxBitmap(typeof(ACBrBAL), @"ACBrSerial.ACBrBAL.ico.bmp")]
 	public sealed class ACBrBAL : ACBrComponent, IDisposable
 	{
+		#region Events
+
+		public event EventHandler<LePesoEventArgs> OnLePeso;
+
+		#endregion Events
+
+		#region Fields
+
+		DoubleProcedureDelegate onLePeso;
+
+		#endregion Fields
+
 		#region Constructor
 
 		public ACBrBAL()
@@ -57,6 +69,18 @@ namespace ACBrFramework
 		}
 
 		public ACBrDevice Device { get; private set; }
+
+		public bool MonitoraBalanca
+		{
+			get
+			{
+				return GetBool(ACBrBALInterop.BAL_GetMonitoraBalanca);
+			}
+			set
+			{
+				SetBool(ACBrBALInterop.BAL_SetMonitoraBalanca, value);
+			}
+		}
 
 		public decimal UltimoPesoLido
 		{
@@ -126,7 +150,19 @@ namespace ACBrFramework
 		{
 			CallCreate(ACBrBALInterop.BAL_Create);
 			Device = new ACBrDevice(this);
+
+			InitializeEvents();
 		}
+
+		private void InitializeEvents()
+		{
+			int ret;
+
+			onLePeso = new DoubleProcedureDelegate(bal_OnLePeso);
+			ret = ACBrBALInterop.BAL_SetOnLePeso(this.Handle, onLePeso);
+			CheckResult(ret);
+		}
+
 
 		protected override void OnDisposing()
 		{
@@ -137,6 +173,20 @@ namespace ACBrFramework
 		}
 
 		#endregion Override Methods
+
+		#region EventHandlers
+
+		private void bal_OnLePeso(double value)
+		{
+			if (OnLePeso != null)
+			{
+				LePesoEventArgs e = new LePesoEventArgs();
+				e.Peso = Convert.ToDecimal(value);
+				OnLePeso(this, e);
+			}
+		}
+
+		#endregion EventHandlers
 
 		#endregion Methods
 	}
