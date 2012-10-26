@@ -41,6 +41,10 @@ Símbolo : Significado
 
 Changelog
 
+26/10/2012 (ACBrFramework 0.9.0.172)
+[+] Adicionado eventos no componente EAD OnGetChavePublica e OnGetChavePrivada - Rafael Batiati
+[+] Adicionado eventos no componente ECF OnPoucoPapel - Rafael Batiati
+
 25/10/2012 (ACBrFramework 0.9.0.172)
 [+] SUPORTE A EVENTOS nos componentes ACBrFramework.Net: Evento do componente LCB.OnLeCodigo implementado. - ACBrFramework e ACBrFramework.Net - Rafael Batiati
 [+] Inclusão da classe ACBrDevice que contém as propriedades referentes a comunicação Serial - Rafael Batiati.

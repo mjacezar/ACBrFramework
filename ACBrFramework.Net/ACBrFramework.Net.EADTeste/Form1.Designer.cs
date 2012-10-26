@@ -397,6 +397,8 @@
 			// 
 			this.acbrEAD.ChavePrivada = "";
 			this.acbrEAD.ChavePublica = "";
+			this.acbrEAD.OnGetChavePublica += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrEAD_OnGetChavePublica);
+			this.acbrEAD.OnGetChavePrivada += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrEAD_OnGetChavePrivada);
 			// 
 			// Form1
 			// 

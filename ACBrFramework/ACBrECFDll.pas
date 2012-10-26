@@ -9,12 +9,14 @@ uses
   ACBrECFClass,
   ACBrDevice,
   ACBrUtil,
+  ACBrCommonDll,
   ACBrAACDLL,
   ACBrEADDll,
   ACBrPAFClass;
 
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
+    OnPoucoPapelPtr : TProcedurePtr;
     procedure OnMsgPoucoPapel(Sender: TObject);
 end;
 
@@ -168,7 +170,7 @@ PADRONIZAÇÃO DAS FUNÇÕES:
 
  procedure TEventHandlers.OnMsgPoucoPapel(Sender: TObject);
  begin
-   {Handler para o evento OnMsgPoucoPapel - Esta procedure não faz nada, apenas substitui a notificação padrão do ACBr}
+      OnPoucoPapelPtr();
  end;
 
 {
@@ -5019,6 +5021,29 @@ begin
   end;
 end;
 
+Function ECF_SetOnPoucoPapel(const ecfHandle: PECFHandle; const method : TProcedurePtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+        ecfHandle^.EventHandlers.OnPoucoPapelPtr := method;
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+
 {
 NÀO IMPLEMENTADO
 
@@ -5313,7 +5338,11 @@ ECF_DAV_Fechar, ECF_PafMF_RelDAVEmitidos,
 
 {Paf Rels}
 ECF_PafMF_RelMeiosPagamento, ECF_PafMF_RelIdentificacaoPafECF,
-ECF_PafMF_RelParametrosConfiguracao;
+ECF_PafMF_RelParametrosConfiguracao,
+
+{Eventos}
+ECF_SetOnPoucoPapel
+;
 
 {Não implementado}
 

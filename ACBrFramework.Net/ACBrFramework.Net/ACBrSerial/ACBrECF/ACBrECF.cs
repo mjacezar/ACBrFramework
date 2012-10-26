@@ -8,6 +8,12 @@ namespace ACBrFramework
 	[ToolboxBitmap(typeof(ACBrECF), @"ACBrECF.ico.bmp")]
 	public class ACBrECF : ACBrComponent, IDisposable
 	{
+		#region Events
+
+		public event EventHandler OnPoucoPapel;
+
+		#endregion Events
+
 		#region Fields
 
 		private ACBrECFAliquota[] aliquotas;
@@ -16,6 +22,8 @@ namespace ACBrFramework
 		private ACBrECFRelatorioGerencial[] relatoriosGerenciais;
 		private ACBrAAC aac;
 		private ACBrEAD ead;
+
+		private ProcedureDelegate onPoucoPapel;
 
 		#endregion Fields
 
@@ -1733,6 +1741,17 @@ namespace ACBrFramework
 		{
 			CallCreate(ACBrECFInterop.ECF_Create);
 			Device = new ACBrDevice(this);
+
+			InitializeEvents();
+		}
+
+		private void InitializeEvents()
+		{
+			int ret;
+
+			onPoucoPapel = new ProcedureDelegate(ecf_OnPoucoPapel);
+			ret = ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, onPoucoPapel);
+			CheckResult(ret);
 		}
 
 		protected internal override void CheckResult(int ret)
@@ -1759,6 +1778,18 @@ namespace ACBrFramework
 		}
 
 		#endregion Override Methods
+
+		#region EventHandlers
+
+		private void ecf_OnPoucoPapel()
+		{
+			if (OnPoucoPapel != null)
+			{
+				OnPoucoPapel(this, EventArgs.Empty);
+			}
+		}
+
+		#endregion EventHandlers
 
 		#endregion Methods
 	}

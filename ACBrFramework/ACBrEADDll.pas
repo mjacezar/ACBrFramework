@@ -6,11 +6,15 @@ uses
   SysUtils,
   Classes,
   ACBrEAD,
-  ACBrUtil;
+  ACBrUtil,
+  ACBrCommonDll;
 
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
-   ChavePrivada, ChavePublica : AnsiString;
+   ChavePrivada : AnsiString;
+   ChavePublica : AnsiString;
+   OnGetChavePrivadaPtr : TStrFunctionPtr;
+   OnGetChavePublicaPtr : TStrFunctionPtr;
    procedure GetChavePrivada(var Chave : AnsiString);
    procedure GetChavePublica(var Chave : AnsiString);
 end;
@@ -132,12 +136,18 @@ end;
 {Procedures}
 procedure TEventHandlers.GetChavePrivada(var Chave : AnsiString);
 begin
-  Chave := ChavePrivada;
+  if (Length(ChavePrivada) > 0) then
+    Chave := ChavePrivada
+  else
+     Chave := OnGetChavePrivadaPtr();
 end;
 
 procedure TEventHandlers.GetChavePublica(var Chave : AnsiString);
 begin
-  Chave := ChavePublica;
+  if (Length(ChavePublica) > 0) then
+    Chave := ChavePublica
+  else
+     Chave := OnGetChavePublicaPtr();
 end;
 
 { Funções mapeando as propriedades do componente }
@@ -448,6 +458,51 @@ begin
   end
 end;
 
+
+Function EAD_SetOnGetChavePublica(const eadHandle: PEADHandle; const method : TStrFunctionPtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (eadHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+        eadHandle^.EventHandlers.OnGetChavePublicaPtr := method;
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        eadHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function EAD_SetOnGetChavePrivada(const eadHandle: PEADHandle; const method : TStrFunctionPtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (eadHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+        eadHandle^.EventHandlers.OnGetChavePrivadaPtr := method;
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        eadHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 exports
 
 { Funções }
@@ -464,6 +519,11 @@ EAD_GerarChaves, EAD_CalcularModuloeExpoente,
 EAD_GerarXMLeECFc, EAD_GerarXMLeECFc_NP,
 EAD_ConverteXMLeECFcParaOpenSSL,EAD_CalcularHashArquivo,
 EAD_CalcularEADArquivo, EAD_AssinarArquivoComEAD,
-EAD_VerificarEADArquivo, EAD_CalcularChavePublica;
+EAD_VerificarEADArquivo, EAD_CalcularChavePublica,
+
+{Eventos}
+EAD_SetOnGetChavePrivada,
+EAD_SetOnGetChavePublica
+;
 
 end.
