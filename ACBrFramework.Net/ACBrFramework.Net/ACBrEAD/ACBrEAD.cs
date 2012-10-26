@@ -16,8 +16,8 @@ namespace ACBrFramework
 
 		#region Fields
 
-		private StrFunctionDelegate onGetChavePublica;
-		private StrFunctionDelegate onGetChavePrivada;
+		private StrFunctionPtrDelegate onGetChavePublica;
+		private StrFunctionPtrDelegate onGetChavePrivada;
 
 		#endregion Fields
 
@@ -167,8 +167,8 @@ namespace ACBrFramework
 		{
 			int ret;
 
-			onGetChavePublica = new StrFunctionDelegate(ead_OnGetChavePublica);
-			onGetChavePrivada = new StrFunctionDelegate(ead_OnGetChavePrivada);
+			onGetChavePublica = new StrFunctionPtrDelegate(ead_OnGetChavePublica);
+			onGetChavePrivada = new StrFunctionPtrDelegate(ead_OnGetChavePrivada);
 
 			ret = ACBrEADInterop.EAD_SetOnGetChavePublica(this.Handle, onGetChavePublica);
 			CheckResult(ret);

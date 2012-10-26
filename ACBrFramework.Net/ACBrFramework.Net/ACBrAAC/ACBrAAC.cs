@@ -15,7 +15,7 @@ namespace ACBrFramework
 
 		#region Fields
 
-		private StrFunctionDelegate onGetChave;
+		private StrFunctionPtrDelegate onGetChave;
 
 		#endregion Fields
 
@@ -140,7 +140,7 @@ namespace ACBrFramework
 		{
 			int ret;
 
-			onGetChave = new StrFunctionDelegate(aac_OnGetChave);
+			onGetChave = new StrFunctionPtrDelegate(aac_OnGetChave);
 			ret = ACBrAACInterop.AAC_SetOnGetChave(this.Handle, onGetChave);
 			CheckResult(ret);
 		}

@@ -7,6 +7,12 @@ namespace ACBrFramework
 	{
 		#region Inner Types
 
+		protected delegate void ProcedurePtrDelegate();
+
+		protected delegate void DoubleProcedurePtrDelegate(double value);
+
+		protected delegate string StrFunctionPtrDelegate();
+
 		protected delegate int GetStringEntryPointDelegate(IntPtr handle, StringBuilder buffer, int bufferLen);
 
 		protected delegate int GetdoubleEntryPointDelegate(IntPtr handle, ref double value);
