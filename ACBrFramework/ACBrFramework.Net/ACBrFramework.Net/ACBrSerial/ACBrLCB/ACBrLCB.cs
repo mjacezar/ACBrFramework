@@ -14,7 +14,7 @@ namespace ACBrFramework
 
 		#region Fields
 
-		private ProcedureDelegate onLeCodigoHandler;
+		private ProcedurePtrDelegate onLeCodigoHandler;
 
 		#endregion Fields
 
@@ -101,7 +101,7 @@ namespace ACBrFramework
 
 		private void InitializeEvents()
 		{
-			onLeCodigoHandler = new ProcedureDelegate(lcb_OnLeCodigo);
+			onLeCodigoHandler = new ProcedurePtrDelegate(lcb_OnLeCodigo);
 			int ret = ACBrLCBInterop.LCB_SetOnLeCodigo(this.Handle, onLeCodigoHandler);
 			CheckResult(ret);
 		}

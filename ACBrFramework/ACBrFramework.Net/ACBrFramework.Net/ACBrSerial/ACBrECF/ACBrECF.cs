@@ -23,7 +23,7 @@ namespace ACBrFramework
 		private ACBrAAC aac;
 		private ACBrEAD ead;
 
-		private ProcedureDelegate onPoucoPapel;
+		private ProcedurePtrDelegate onPoucoPapel;
 
 		#endregion Fields
 
@@ -1746,7 +1746,7 @@ namespace ACBrFramework
 		{
 			int ret;
 
-			onPoucoPapel = new ProcedureDelegate(ecf_OnPoucoPapel);
+			onPoucoPapel = new ProcedurePtrDelegate(ecf_OnPoucoPapel);
 			ret = ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, onPoucoPapel);
 			CheckResult(ret);
 		}

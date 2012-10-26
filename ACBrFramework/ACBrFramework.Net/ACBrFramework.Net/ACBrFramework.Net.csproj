@@ -199,9 +199,6 @@
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroR6.cs" />
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroR7.cs" />
     <Compile Include="ACBrInteropBase.cs" />
-    <Compile Include="DoubleProcedureDelegate.cs" />
-    <Compile Include="StrFunctionDelegate.cs" />
-    <Compile Include="ProcedureDelegate.cs" />
     <Compile Include="Properties\Framework32.Designer.cs" Condition=" $(Platform) == x86 ">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

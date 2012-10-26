@@ -14,7 +14,7 @@ namespace ACBrFramework
 
 		#region Fields
 
-		DoubleProcedureDelegate onLePeso;
+		DoubleProcedurePtrDelegate onLePeso;
 
 		#endregion Fields
 
@@ -158,7 +158,7 @@ namespace ACBrFramework
 		{
 			int ret;
 
-			onLePeso = new DoubleProcedureDelegate(bal_OnLePeso);
+			onLePeso = new DoubleProcedurePtrDelegate(bal_OnLePeso);
 			ret = ACBrBALInterop.BAL_SetOnLePeso(this.Handle, onLePeso);
 			CheckResult(ret);
 		}
