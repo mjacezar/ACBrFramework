@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace ACBrFramework
 {
-	[ToolboxBitmap(typeof(ACBrLCB), @"ACBrLCB.ico.bmp")]
+	[ToolboxBitmap(typeof(ACBrLCB), @"ACBrSerial.ACBrLCB.ico.bmp")]
 	public sealed class ACBrLCB : ACBrComponent, IDisposable
 	{
 		#region Events

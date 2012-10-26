@@ -398,6 +398,13 @@ namespace ACBrFramework
 
 		#endregion Propriedades do Componente
 
+		#region Events
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_SetOnGetChave(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+
+		#endregion Events
+
 		#endregion ACBrACC
 	}
 }

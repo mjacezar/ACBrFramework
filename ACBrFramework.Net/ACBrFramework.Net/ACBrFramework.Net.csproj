@@ -134,7 +134,7 @@
     <Compile Include="ACBrAAC\ACBrECFEmpresa.cs" />
     <Compile Include="ACBrAAC\ACBrECFIdenticacaoPaf.cs" />
     <Compile Include="ACBrAAC\ACBrECFInfoPaf.cs" />
-    <Compile Include="ACBrEAD\ChaveEventArgs.cs" />
+    <Compile Include="ChaveEventArgs.cs" />
     <Compile Include="ACBrSerial\ACBrBAL\ACBrBAL.cs" />
     <Compile Include="ACBrSerial\ACBrBAL\ACBrBALInterop.cs" />
     <Compile Include="ACBrComponent.cs" />

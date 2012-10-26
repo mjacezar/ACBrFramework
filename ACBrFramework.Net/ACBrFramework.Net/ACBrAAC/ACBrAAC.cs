@@ -7,6 +7,18 @@ namespace ACBrFramework
 	[ToolboxBitmap(typeof(ACBrAAC), @"ACBrAAC.ico.bmp")]
 	public class ACBrAAC : ACBrComponent, IDisposable
 	{
+		#region EventHandlers
+
+		public event EventHandler<ChaveEventArgs> OnGetChave;
+
+		#endregion EventHandlers
+
+		#region Fields
+
+		private StrFunctionDelegate onGetChave;
+
+		#endregion Fields
+
 		#region Constructor
 
 		public ACBrAAC()
@@ -26,18 +38,6 @@ namespace ACBrFramework
 			set
 			{
 				SetString(ACBrAACInterop.AAC_SetNomeArquivoAux, value);
-			}
-		}
-
-		public string Chave
-		{
-			get
-			{
-				return GetString(ACBrAACInterop.AAC_GetChave);
-			}
-			set
-			{
-				SetString(ACBrAACInterop.AAC_SetChave, value);
 			}
 		}
 
@@ -132,9 +132,36 @@ namespace ACBrFramework
 		{
 			CallCreate(ACBrAACInterop.AAC_Create);
 			IdentPaf = new ACBrECFIdenticacaoPaf(this);
+
+			InitializeEvents();
+		}
+
+		private void InitializeEvents()
+		{
+			int ret;
+
+			onGetChave = new StrFunctionDelegate(aac_OnGetChave);
+			ret = ACBrAACInterop.AAC_SetOnGetChave(this.Handle, onGetChave);
+			CheckResult(ret);
 		}
 
 		#endregion Overrides Methods
+
+		#region EventHandlers
+
+		private string aac_OnGetChave()
+		{
+			ChaveEventArgs e = new ChaveEventArgs();
+			
+			if (OnGetChave != null)
+			{
+				OnGetChave(this, e);
+			}
+
+			return e.Chave;
+		}
+
+		#endregion EventHandlers
 
 		#endregion Methods
 	}
