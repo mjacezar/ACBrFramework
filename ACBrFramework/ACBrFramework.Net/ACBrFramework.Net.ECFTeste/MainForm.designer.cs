@@ -174,6 +174,7 @@
 			this.acbrEAD = new ACBrFramework.ACBrEAD();
 			this.acbrECF = new ACBrFramework.ACBrECF();
 			this.acbrPAF = new ACBrFramework.ACBrPAF();
+			this.acBrECF1 = new ACBrFramework.ACBrECF();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl.SuspendLayout();
@@ -226,7 +227,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
 			this.descriptionToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
 			this.descriptionToolStripStatusLabel.Name = "descriptionToolStripStatusLabel";
-			this.descriptionToolStripStatusLabel.Size = new System.Drawing.Size(474, 17);
+			this.descriptionToolStripStatusLabel.Size = new System.Drawing.Size(505, 17);
 			this.descriptionToolStripStatusLabel.Spring = true;
 			this.descriptionToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -1559,38 +1560,31 @@
 			// 
 			// acbrAAC
 			// 
-			this.acbrAAC.Chave = "";
 			this.acbrAAC.NomeArquivoAuxiliar = "";
 			this.acbrAAC.NomeArquivoLog = "";
 			this.acbrAAC.Parametros = "";
+			this.acbrAAC.OnGetChave += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrAAC_OnGetChave);
 			// 
 			// acbrEAD
 			// 
-			this.acbrEAD.ChavePrivada = "";
-			this.acbrEAD.ChavePublica = "";
+			this.acbrEAD.OnGetChavePublica += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrEAD_OnGetChavePublica);
+			this.acbrEAD.OnGetChavePrivada += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrEAD_OnGetChavePrivada);
 			// 
 			// acbrECF
 			// 
 			this.acbrECF.AAC = this.acbrAAC;
 			this.acbrECF.AguardaImpressao = false;
-			this.acbrECF.Device.Baud = 9600;
 			this.acbrECF.ComandoLog = "VendaBruta";
-			this.acbrECF.Device.DataBits = 8;
 			this.acbrECF.DecimaisPreco = 3;
 			this.acbrECF.DecimaisQtd = 3;
 			this.acbrECF.DescricaoGrande = false;
 			this.acbrECF.EAD = this.acbrEAD;
 			this.acbrECF.GavetaSinalInvertido = false;
-			this.acbrECF.Device.HandShake = ACBrFramework.SerialHandShake.None;
-			this.acbrECF.Device.HardFlow = false;
 			this.acbrECF.IntervaloAposComando = 100;
 			this.acbrECF.LinhasEntreCupons = 7;
 			this.acbrECF.Modelo = ACBrFramework.ModeloECF.Nenhum;
 			this.acbrECF.Operador = "";
-			this.acbrECF.Device.Parity = ACBrFramework.SerialParity.None;
 			this.acbrECF.Porta = "COM1";
-			this.acbrECF.Device.SoftFlow = false;
-			this.acbrECF.Device.StopBits = ACBrFramework.SerialStopBits.One;
 			this.acbrECF.TimeOut = 3;
 			// 
 			// acbrPAF
@@ -1603,6 +1597,23 @@
 			this.acbrPAF.EAD = this.acbrEAD;
 			this.acbrPAF.Path = "c:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\IDE\\";
 			this.acbrPAF.TrimString = true;
+			// 
+			// acBrECF1
+			// 
+			this.acBrECF1.AAC = null;
+			this.acBrECF1.AguardaImpressao = false;
+			this.acBrECF1.ComandoLog = "";
+			this.acBrECF1.DecimaisPreco = 3;
+			this.acBrECF1.DecimaisQtd = 3;
+			this.acBrECF1.DescricaoGrande = false;
+			this.acBrECF1.EAD = null;
+			this.acBrECF1.GavetaSinalInvertido = false;
+			this.acBrECF1.IntervaloAposComando = 100;
+			this.acBrECF1.LinhasEntreCupons = 7;
+			this.acBrECF1.Modelo = ACBrFramework.ModeloECF.Nenhum;
+			this.acBrECF1.Operador = "";
+			this.acBrECF1.Porta = "COM1";
+			this.acBrECF1.TimeOut = 3;
 			// 
 			// MainForm
 			// 
@@ -1802,6 +1813,7 @@
 		private ACBrEAD acbrEAD;
 		private ACBrECF acbrECF;
 		private ACBrPAF acbrPAF;
+		private ACBrECF acBrECF1;
     }
 }
 

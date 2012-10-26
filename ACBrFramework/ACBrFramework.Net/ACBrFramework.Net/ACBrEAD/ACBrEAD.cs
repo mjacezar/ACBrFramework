@@ -21,34 +21,6 @@ namespace ACBrFramework
 
 		#endregion Fields
 
-		#region Propriedaes
-
-		public string ChavePrivada
-		{
-			get
-			{
-				return GetString(ACBrEADInterop.EAD_GetChavePrivada, 1024);
-			}
-			set
-			{
-				SetString(ACBrEADInterop.EAD_SetChavePrivada, value);
-			}
-		}
-
-		public string ChavePublica
-		{
-			get
-			{
-				return GetString(ACBrEADInterop.EAD_GetChavePublica, 512);
-			}
-			set
-			{
-				SetString(ACBrEADInterop.EAD_SetChavePublica, value);
-			}
-		}
-
-		#endregion Propriedaes
-
 		#region Constructor
 
 		public ACBrEAD()

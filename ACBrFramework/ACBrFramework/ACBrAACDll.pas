@@ -7,11 +7,13 @@ uses
   Classes,
   ACBrPAFClass,
   ACBrAAC,
-  ACBrUtil;
+  ACBrUtil,
+  ACBrCommonDll;
 
 {Classe para armazenar EventHandlers do componente }
 type TEventHandlers = class
      ChaveCriptografia : String;
+     OnGetChavePtr : TStrFunctionPtr;
      procedure OnGetChave(var Chave: AnsiString);
 end;
 
@@ -39,7 +41,10 @@ implementation
 
 procedure TEventHandlers.OnGetChave(var Chave: AnsiString);
 begin
-   Chave :=  ChaveCriptografia;
+  if (Length(ChaveCriptografia) > 0) then
+   Chave :=  ChaveCriptografia
+  else
+    Chave:= OnGetChavePtr();
 end;
 
 {
@@ -2429,6 +2434,29 @@ begin
 end;
 
 
+Function AAC_SetOnGetChave(const aacHandle: PAACHandle; const method : TStrFunctionPtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+        aacHandle^.EventHandlers.OnGetChavePtr := method;
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+
 /////////////FIM IDENTIFICAÇÃO PAF
 
 /////////////////////////////////FIM PROPRIEDADES DO AAC///////////////////////////////////////////////////
@@ -2505,7 +2533,11 @@ AAC_SalvarArquivo,
 AAC_IdentPaf_ECFsAutorizados_Clear,
 AAC_IdentPaf_ECFsAutorizados_New,
 AAC_IdentPaf_ECFsAutorizados_Get,
-AAC_IdentPaf_ECFsAutorizados_Count;
+AAC_IdentPaf_ECFsAutorizados_Count,
+
+{Eventos}
+AAC_SetOnGetChave
+;
 
 
 

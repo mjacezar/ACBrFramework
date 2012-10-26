@@ -282,7 +282,6 @@ namespace ACBrFramework.Net.EADTeste
 						txtChavePri.Text += String.Format("{0}{1}", linha, Environment.NewLine);
 				}
 
-				acbrEAD.ChavePrivada = txtChavePri.Text;
 				WriteResp("Chave Privada Lida com Sucesso");
 			}
 			catch (Exception exception)
@@ -315,7 +314,6 @@ namespace ACBrFramework.Net.EADTeste
 						txtChavePub.Text += String.Format("{0}{1}", linha, Environment.NewLine);
 				}
 
-				acbrEAD.ChavePublica = txtChavePub.Text;
 				WriteResp("Chave Publica Lida com Sucesso");
 			}
 			catch (Exception exception)
@@ -499,7 +497,7 @@ namespace ACBrFramework.Net.EADTeste
 
 		private void acbrEAD_OnGetChavePublica(object sender, ChaveEventArgs e)
 		{
-			e.Chave = acbrEAD.CalcularChavePublica();
+			e.Chave = txtChavePri.Text;
 		}
 
 		#endregion Event Handlers

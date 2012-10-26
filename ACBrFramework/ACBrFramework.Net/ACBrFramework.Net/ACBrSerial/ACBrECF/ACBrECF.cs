@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ACBrFramework
 {
-	[ToolboxBitmap(typeof(ACBrECF), @"ACBrECF.ico.bmp")]
+	[ToolboxBitmap(typeof(ACBrECF), @"ACBrSerial.ACBrECF.ico.bmp")]
 	public class ACBrECF : ACBrComponent, IDisposable
 	{
 		#region Events
@@ -687,15 +687,6 @@ namespace ACBrFramework
 			}
 		}
 
-		public string DadosReducaoZ
-		{
-			get
-			{
-				const int BUFFER_LEN = 16384;
-				return GetString(ACBrECFInterop.ECF_GetDadosReducaoZ, BUFFER_LEN);
-			}
-		}
-
 		#endregion Properties
 
 		#region Methods
@@ -1214,6 +1205,12 @@ namespace ACBrFramework
 		{
 			const int BUFFER_LEN = 16384;
 			return GetString(ACBrECFInterop.ECF_GetDadosUltimaReducaoZ, BUFFER_LEN);
+		}
+
+		public string GetDadosReducaoZ()
+		{
+			const int BUFFER_LEN = 16384;
+			return GetString(ACBrECFInterop.ECF_GetDadosReducaoZ, BUFFER_LEN);
 		}
 
 		public ACBrECFDadosRZ GetDadosReducaoZClass()
