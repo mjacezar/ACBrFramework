@@ -5,14 +5,12 @@ interface
 uses
   SysUtils,
   Classes,
+  ACBrCommonDll,
   ACBrLCB;
-
-{ Ponteiro de função para o Handler }
-type TFunctionPtr = procedure ();
 
 { Classe que armazena os ponteiros de função para os Handlers }
 type TEventHandlers = class
-  OnLeCodigoPtr : TFunctionPtr;
+  OnLeCodigoPtr : TProcedurePtr;
   procedure OnLeCodigo(Sender: TObject);
 end;
 
@@ -262,7 +260,7 @@ begin
 
 end;
 
-Function LCB_SetOnLeCodigo(const lcbHandle: PLCBHandle; const method : TFunctionPtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function LCB_SetOnLeCodigo(const lcbHandle: PLCBHandle; const method : TProcedurePtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (lcbHandle = nil) then

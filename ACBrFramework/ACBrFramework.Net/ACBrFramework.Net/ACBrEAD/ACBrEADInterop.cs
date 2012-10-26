@@ -79,6 +79,12 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int EAD_VerificarEADArquivo(IntPtr eadHandle, String Arquivo);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int EAD_SetOnGetChavePublica(IntPtr eadHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int EAD_SetOnGetChavePrivada(IntPtr eadHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+
 		#endregion Methods
 
 		#endregion ACBrEAD

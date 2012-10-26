@@ -7,6 +7,20 @@ namespace ACBrFramework
 	[ToolboxBitmap(typeof(ACBrEAD), @"ACBrEAD.ico.bmp")]
 	public class ACBrEAD : ACBrComponent, IDisposable
 	{
+		#region Events
+
+		public event EventHandler<ChaveEventArgs> OnGetChavePublica;
+		public event EventHandler<ChaveEventArgs> OnGetChavePrivada;
+
+		#endregion Events
+
+		#region Fields
+
+		private StrFunctionDelegate onGetChavePublica;
+		private StrFunctionDelegate onGetChavePrivada;
+
+		#endregion Fields
+
 		#region Propriedaes
 
 		public string ChavePrivada
@@ -140,11 +154,55 @@ namespace ACBrFramework
 
 		#endregion Funções
 
+		#region EventHandlers
+
+		private string ead_OnGetChavePublica()
+		{
+			ChaveEventArgs e = new ChaveEventArgs();
+
+			if (OnGetChavePublica != null)
+			{
+				OnGetChavePublica(this, e);
+			}
+
+			return e.Chave;
+		}
+
+		private string ead_OnGetChavePrivada()
+		{
+			ChaveEventArgs e = new ChaveEventArgs();
+
+			if (onGetChavePrivada != null)
+			{
+				OnGetChavePrivada(this, e);
+			}
+
+			return e.Chave;
+		}
+
+		#endregion EventHandlers
+
 		#region Override Methods
 
 		protected internal override void OnInitializeComponent()
 		{
 			CallCreate(ACBrEADInterop.EAD_Create);
+
+			InitializeEvents();
+		}
+
+		private void InitializeEvents()
+		{
+			int ret;
+
+			onGetChavePublica = new StrFunctionDelegate(ead_OnGetChavePublica);
+			onGetChavePrivada = new StrFunctionDelegate(ead_OnGetChavePrivada);
+
+			ret = ACBrEADInterop.EAD_SetOnGetChavePublica(this.Handle, onGetChavePublica);
+			CheckResult(ret);
+
+			ret = ACBrEADInterop.EAD_SetOnGetChavePrivada(this.Handle, onGetChavePrivada);
+			CheckResult(ret);
 		}
 
 		protected internal override void CheckResult(int ret)
