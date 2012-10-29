@@ -1,5 +1,10 @@
 using System;
+using System.Linq;
 using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Collections.Generic;
+using System.IO;
 
 namespace ACBrFramework
 {
@@ -96,7 +101,17 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
-		public void Registro50(SintegraRegistro50[] registro50)
+        public void Registro50(List<SintegraRegistro50> registro50)
+        {
+            Registro50(registro50.ToArray());
+        }
+
+        public void Registro50(IEnumerable<SintegraRegistro50> registro50)
+        {
+            Registro50(registro50.ToArray());
+        }
+
+ 		public void Registro50(SintegraRegistro50[] registro50)
 		{
 			ACBrSintegraInterop.Registro50Rec[] record = new ACBrSintegraInterop.Registro50Rec[registro50.Length];
 			for (int i = 0; i < registro50.Length; i++)
@@ -123,6 +138,16 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
+        public void Registro51(List<SintegraRegistro51> registro51)
+        {
+            Registro51(registro51.ToArray());
+        }
+
+        public void Registro51(IEnumerable<SintegraRegistro51> registro51)
+        {
+            Registro51(registro51.ToArray());
+        }
+
 		public void Registro51(SintegraRegistro51[] registro51)
 		{
 			ACBrSintegraInterop.Registro51Rec[] record = new ACBrSintegraInterop.Registro51Rec[registro51.Length];
@@ -145,6 +170,78 @@ namespace ACBrFramework
 			int ret = ACBrSintegraInterop.SIN_Registro51(this.Handle, record, registro51.Length);
 			CheckResult(ret);
 		}
+
+        public void Registro53(List<SintegraRegistro53> registro53)
+        {
+            Registro53(registro53.ToArray());
+        }
+
+        public void Registro53(IEnumerable<SintegraRegistro53> registro53)
+        {
+            Registro53(registro53.ToArray());
+        }
+
+        public void Registro53(SintegraRegistro53[] registro53)
+        {
+            ACBrSintegraInterop.Registro53Rec[] record = new ACBrSintegraInterop.Registro53Rec[registro53.Length];
+            for (int i = 0; i < registro53.Length; i++)
+            {
+                record[i].CPFCNPJ = registro53[i].CPFCNPJ;
+                record[i].Inscricao = registro53[i].Inscricao;
+                record[i].Estado = registro53[i].Estado;
+                record[i].Serie = registro53[i].Serie;
+                record[i].DataDocumento = registro53[i].DataDocumento.ToOADate();
+                record[i].Cfop = registro53[i].Cfop;
+                record[i].Numero = registro53[i].Numero;
+                record[i].Situacao = registro53[i].Situacao;
+                record[i].CodigoAntecipacao = registro53[i].CodigoAntecipacao;
+                record[i].BaseST = registro53[i].BaseST;
+                record[i].Modelo = registro53[i].Modelo;
+                record[i].Emitente = registro53[i].Emitente;
+                record[i].Despesas = registro53[i].Despesas;
+                record[i].IcmsRetido = registro53[i].IcmsRetido; 
+            }
+
+            int ret = ACBrSintegraInterop.SIN_Registro53(this.Handle, record, registro53.Length);
+            CheckResult(ret);
+        }
+
+        public void Registro54(List<SintegraRegistro54> registro54)
+        {
+            Registro54(registro54.ToArray());
+        }
+
+        public void Registro54(IEnumerable<SintegraRegistro54> registro54)
+        {
+            Registro54(registro54.ToArray());
+        }
+
+        public void Registro54(SintegraRegistro54[] registro54)
+        {
+            ACBrSintegraInterop.Registro54Rec[] record = new ACBrSintegraInterop.Registro54Rec[registro54.Length];
+            for (int i = 0; i < registro54.Length; i++)
+            {
+                record[i].CPFCNPJ = registro54[i].CPFCNPJ;
+                record[i].Aliquota = registro54[i].Aliquota;
+                record[i].BaseST = registro54[i].BaseST;
+                record[i].BasedeCalculo = registro54[i].BasedeCalculo;
+                record[i].Quantidade = registro54[i].Quantidade;
+                record[i].ValorDescontoDespesa = registro54[i].ValorDescontoDespesa;
+                record[i].ValorIpi = registro54[i].ValorIpi;
+                record[i].Valor = registro54[i].Valor;
+                record[i].NumeroItem = registro54[i].NumeroItem;
+                record[i].CST = registro54[i].CST;
+                record[i].Codigo = registro54[i].Codigo;
+                record[i].CFOP = registro54[i].CFOP;
+                record[i].Descricao = registro54[i].Descricao;
+                record[i].Numero = registro54[i].Numero;
+                record[i].Modelo = registro54[i].Modelo;
+                record[i].Serie = registro54[i].Serie;
+            }
+
+            int ret = ACBrSintegraInterop.SIN_Registro54(this.Handle, record, registro54.Length);
+            CheckResult(ret);
+        }
 
 		#region Override Methods
 
