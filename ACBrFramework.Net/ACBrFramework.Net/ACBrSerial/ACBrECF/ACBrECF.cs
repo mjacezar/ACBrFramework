@@ -748,6 +748,12 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
+		public void MudaHorarioVerao()
+		{
+			int ret = ACBrECFInterop.ECF_MudaHorarioVerao(this.Handle);
+			CheckResult(ret);
+		}
+
 		#endregion Métodos ECF
 
 		#region Métodos do Cupom Fiscal

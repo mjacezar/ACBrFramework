@@ -41,6 +41,18 @@ Símbolo : Significado
 
 Changelog
 
+29/10/2012 (ACBrFramework 0.9.1.1)
+[+] Implementado o metodo ECF_MudaHorarioVerao - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro60I - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro60R - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro61I - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro61R - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro71 - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro76 - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro77 - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro85 - ACBrFramework - Rafael Dias.
+[+] Implementado o metodo SIN_Registro86 - ACBrFramework - Rafael Dias.
+
 26/10/2012 (ACBrFramework 0.9.1.0)
 [+] Adicionado instalador dos componentes - ACBrFramework.Net - Rafael Dias.
 [+] Adicionado aplicativo ACBrFramework.Net.BALTeste - ACBrFramework.Net - Rafael Batiati
