@@ -135,7 +135,7 @@
     <Compile Include="ACBrAAC\ACBrECFIdenticacaoPaf.cs" />
     <Compile Include="ACBrAAC\ACBrECFInfoPaf.cs" />
     <Compile Include="ACBrSerial\ACBrBAL\LePesoEventArgs.cs" />
-    <Compile Include="ACBrSintegra\TipoReceita.cs" />
+    <Compile Include="ACBrSintegra\ACBrSintegraTipoReceita.cs" />
     <Compile Include="ChaveEventArgs.cs" />
     <Compile Include="ACBrSerial\ACBrBAL\ACBrBAL.cs" />
     <Compile Include="ACBrSerial\ACBrBAL\ACBrBALInterop.cs" />
@@ -167,8 +167,8 @@
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro11.cs" />
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro50.cs" />
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro51.cs" />
-    <Compile Include="ACBrSintegra\VersaoEan.cs" />
-    <Compile Include="ACBrSintegra\VersaoValidador.cs" />
+    <Compile Include="ACBrSintegra\ACBrSintegraVersaoEan.cs" />
+    <Compile Include="ACBrSintegra\ACBrSintegraVersaoValidador.cs" />
     <Compile Include="ACBrSerial\ACBrLCB\ACBrLCB.cs" />
     <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFDadosRZ.cs" />
     <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFRelatorioGerencial.cs" />

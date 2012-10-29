@@ -23,7 +23,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="2"/>
+      <BuildNr Value="1"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -57,20 +57,19 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="60" Y="12"/>
-        <UsageCount Value="124"/>
+        <UsageCount Value="125"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="5287"/>
         <CursorPos X="1" Y="5294"/>
         <FoldState Value=" T3ng0J4 pidjP0K[94fjS0N[94ejU0M[94gjV[95j2jY0J[I6S[I65jb0N[R6Z0M[\6S[a6XjJ0J[995]aCk20N[{I6V0M[{I6T[96bjQ0J[96N0I[j47je[{+7[{0JL[IB3[97X]IjBkD0c3[\4]+U[94ajX]a[R5c[s6YjK0J5[}M5a[{a8P]a[R5I0L]IlZmP[}w63jb0J[{+6d0I5[}%7I]jj1jS0Y4[R4kA0M[I4Gk40P[~Z6Z0J[{s6L0K TLi(60d p0~E0{@?"/>
-        <UsageCount Value="170"/>
+        <UsageCount Value="171"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
@@ -100,7 +99,7 @@
         <TopLine Value="432"/>
         <CursorPos X="1" Y="479"/>
         <FoldState Value=" T3kb0K4 pigjT0[99M011W"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="163"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit5>
       <Unit6>
@@ -110,7 +109,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="254"/>
         <CursorPos X="1" Y="263"/>
-        <UsageCount Value="161"/>
+        <UsageCount Value="162"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -173,7 +172,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="2432"/>
         <CursorPos X="23" Y="2459"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="197"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit13>
       <Unit14>
@@ -211,7 +210,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="43" Y="22"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="139"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit17>
       <Unit18>
@@ -319,7 +318,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="454"/>
         <CursorPos X="70" Y="481"/>
-        <UsageCount Value="110"/>
+        <UsageCount Value="111"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
@@ -367,12 +366,13 @@
         <Filename Value="ACBrSintegraDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrSintegraDll"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1036"/>
-        <CursorPos X="1" Y="1397"/>
-        <FoldState Value=" TCOMC6 pidjMMD8]9cjQMH6 TLpL0O2 T3q90I4[Y5U[95jCjf0i2[I4k3[96ak00c3]R3k60S[94Ek7[I6FkI[964k80Iu"/>
-        <UsageCount Value="96"/>
+        <TopLine Value="48"/>
+        <CursorPos X="36" Y="109"/>
+        <FoldState Value=" TCOMC418 pidlKN76 pj3jOMF1 TLpL0O2 T3q90I4[Y4jU]9]YCjf0i2[I4k3[96ak00c3[z4k60S[94Ek7[I6FkI[964k80IZ"/>
+        <UsageCount Value="97"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit35>
