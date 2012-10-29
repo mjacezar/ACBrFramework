@@ -270,22 +270,6 @@ namespace ACBrFramework
 			public double TotalTroco;
 		}
 
-		[StructLayout(LayoutKind.Sequential)]
-		public struct RelatorioGerencialLinha
-		{
-			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 49)]
-			public string Texto;
-		}
-
-		[StructLayout(LayoutKind.Sequential)]
-		public struct RelatorioGerencial
-		{
-			[MarshalAs(UnmanagedType.I4)]
-			public int Count;
-
-			public RelatorioGerencialLinha[] Linhas;
-		}
-
 		#endregion Interop Types
 
 		#region Constructors/Erro Handler
@@ -873,7 +857,7 @@ namespace ACBrFramework
 		public static extern int ECF_CarregaRelatoriosGerenciais(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_RelatorioGerencial(IntPtr ecfHandle, RelatorioGerencial Relatorio, int Via, int Indice);
+		public static extern int ECF_RelatorioGerencial(IntPtr ecfHandle, string[] linhas, int linhasCount, int Via, int Indice);
 
 		#endregion Relatorio Gerencial
 

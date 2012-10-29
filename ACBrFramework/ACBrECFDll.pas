@@ -12,7 +12,8 @@ uses
   ACBrCommonDll,
   ACBrAACDLL,
   ACBrEADDll,
-  ACBrPAFClass;
+  ACBrPAFClass
+  ;
 
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
@@ -126,15 +127,6 @@ type TDadosRZRec = record
      NumeroDeSerieMFD: array[0..29] of char;
      NumeroDaLoja: array[0..29] of char;
      TotalTroco: double;
-end;
-
-type TRelatorioGerencialLinha = record
-     Texto : array[0..48] of char;
-end;
-
-type TRelatorioGerencial = record
-     Count : Integer;
-     Linhas : array of TRelatorioGerencialLinha;
 end;
 
 {Ponteiro para o Handle }
@@ -4998,7 +4990,7 @@ begin
    end;
 end;
 
-Function ECF_RelatorioGerencial(const ecfHandle: PECFHandle; const Relatorio : TRelatorioGerencial; const Vias : Integer; const Indice: Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_RelatorioGerencial(const ecfHandle: PECFHandle; const linhas : array of PChar; const LinhasCount : Integer;  const Vias : Integer; const Indice: Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   i: Integer;
   Lista: TStringList;
@@ -5011,9 +5003,10 @@ begin
   end;
 
   try
-  for i := 0 to Relatorio.Count - 1 do
+  Lista := TStringList.Create();
+  for i := 0 to LinhasCount - 1 do
   begin
-  Lista.Add(Relatorio.Linhas[i].Texto);
+  Lista.Add(String(linhas[i]));
   end;
   ecfHandle^.ECF.RelatorioGerencial(Lista, Vias, Indice);
   Result := 0 ;

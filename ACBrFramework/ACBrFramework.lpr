@@ -13,7 +13,7 @@ uses
   ACBrSintegraDll,
   ACBrBALDll,
   ACBrLCBDll,
-  ACBrAACDll;
+  ACBrAACDLL;
 
 
 {$R *.res}

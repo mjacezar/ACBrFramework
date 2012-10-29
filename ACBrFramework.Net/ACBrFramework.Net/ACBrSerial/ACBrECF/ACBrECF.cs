@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Collections.Generic;
+using System.IO;
 
 namespace ACBrFramework
 {
@@ -1382,9 +1385,14 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
+		public void ProgramaRelatoriosGerenciais(string descricao)
+		{
+			ProgramaRelatoriosGerenciais(descricao, String.Empty);
+		}
+
 		public void ProgramaRelatoriosGerenciais(string descricao, string posicao)
 		{
-			int ret = ACBrECFInterop.ECF_ProgramaRelatoriosGerenciais(this.Handle, descricao, posicao);
+			int ret = ACBrECFInterop.ECF_ProgramaRelatoriosGerenciais(this.Handle, ToUTF8(descricao), posicao);
 			CheckResult(ret);
 		}
 
@@ -1417,7 +1425,7 @@ namespace ACBrFramework
 				ACBrECFRelatorioGerencial relatorio = new ACBrECFRelatorioGerencial()
 				{
 					Indice = FromUTF8(record.Indice),
-					Descricao = FromUTF8(record.Indice),
+					Descricao = FromUTF8(record.Descricao),
 					Contador = record.Contador
 				};
 
@@ -1425,18 +1433,19 @@ namespace ACBrFramework
 			}
 		}
 
-		public void RelatorioGerencial(ACBrECFRelatorioGerencialRec Relatorio, int Vias, int Indice)
+		public void RelatorioGerencial(List<string> relatorio, int vias, int indice)
 		{
-			ACBrECFInterop.RelatorioGerencial record = new ACBrECFInterop.RelatorioGerencial();
-			ACBrECFInterop.RelatorioGerencialLinha[] record2 = new ACBrECFInterop.RelatorioGerencialLinha[Relatorio.Linhas.Length];
+			RelatorioGerencial(relatorio.ToArray(), vias, indice);
+		}
 
-			for (int i = 0; i < Relatorio.Linhas.Length; i++)
-				record2[i].Texto = Relatorio.Linhas[i];
+		public void RelatorioGerencial(IEnumerable<string> relatorio, int vias, int indice)
+		{
+			RelatorioGerencial(relatorio.ToArray(), vias, indice);
+		}
 
-			record.Count = Relatorio.Linhas.Length;
-			record.Linhas = record2;
-
-			int ret = ACBrECFInterop.ECF_RelatorioGerencial(this.Handle, record, Vias, Indice);
+		public void RelatorioGerencial(string[] relatorio, int vias, int indice)
+		{
+			int ret = ACBrECFInterop.ECF_RelatorioGerencial(this.Handle, relatorio, relatorio.Length, vias, indice);
 			CheckResult(ret);
 		}
 
