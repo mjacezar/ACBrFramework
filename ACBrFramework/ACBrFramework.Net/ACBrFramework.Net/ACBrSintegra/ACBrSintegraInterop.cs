@@ -680,117 +680,238 @@ namespace ACBrFramework
 			public double Quantidade;
         }
         
-        /*
         [StructLayout(LayoutKind.Sequential)]
 		public struct Registro75Rec
         {
-            Codigo       : array[0..14] of char;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string Codigo;
 
-            Descricao    : array[0..53] of char;
-
-            [MarshalAs(UnmanagedType.R8)]
-			public double Reducao      : Double;
-
-            [MarshalAs(UnmanagedType.R8)]
-			public double BaseST       : Double;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 54)]
+			public string Descricao;
 
             [MarshalAs(UnmanagedType.R8)]
-			public double AliquotaIpi  : Double;
-
-            NCM          : array[0..8] of char;
-
-            Unidade      : array[0..6] of char;
+			public double Reducao;
 
             [MarshalAs(UnmanagedType.R8)]
-			public double AliquotaICMS : Double;
+			public double BaseST;
 
             [MarshalAs(UnmanagedType.R8)]
-			public double DataFinal    : Double;
+			public double AliquotaIpi;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 9)]
+			public string NCM;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string Unidade;
 
             [MarshalAs(UnmanagedType.R8)]
-			public double DataInicial  : Double;
+			public double AliquotaICMS;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double DataFinal;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double DataInicial;
         }
         
         [StructLayout(LayoutKind.Sequential)]
 		public struct Registro76Rec
         {
-            Isentas       : Double;
-            ValorTotal    : Double;
-            Icms          : Double;
-            BasedeCalculo : Double;
-            Outras        : Double;
-            Modelo        : Integer;
-            Numero        : Integer;
-            Situacao      : array[0..1] of char;
-            Inscricao     : array[0..14] of char;
-            SubSerie      : array[0..2] of char;
-            Uf            : array[0..2] of char;
-            Serie         : array[0..2] of char;
-            Cfop          : array[0..4] of char;
-            CPFCNPJ       : array[0..14] of char;
-            DataDocumento : Double;
-            TipoReceita   : Integer;
-            Aliquota      : Integer;
+            [MarshalAs(UnmanagedType.R8)]
+			public double Isentas;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double ValorTotal;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double Icms;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double BasedeCalculo;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double Outras;
+
+            [MarshalAs(UnmanagedType.I4)]
+			public int Modelo;
+
+            [MarshalAs(UnmanagedType.I4)]
+			public int Numero;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
+			public string Situacao;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string Inscricao;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string SubSerie;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string Uf;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string Serie;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string Cfop;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CPFCNPJ;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double DataDocumento;
+
+            [MarshalAs(UnmanagedType.I4)]
+			public int TipoReceita;
+
+            [MarshalAs(UnmanagedType.I4)]
+			public int Aliquota;
         }
         
         [StructLayout(LayoutKind.Sequential)]
 		public struct Registro77Rec
         {
-            Quantidade     : Double;
-            ValorServico   : Double;
-            ValorDesconto  : Double;
-            BaseDeCalculo  : Double;
-            Modelo         : Integer;
-            Numero         : Integer;
-            NumeroTerminal : Integer;
-            NumeroItem     : Integer;
-            Aliquota       : Integer;
-            CNPJMF         : array[0..14] of char;
-            Cfop           : array[0..4] of char;
-            Codigo         : array[0..11] of char;
-            SubSerie       : array[0..2] of char;
-            CPFCNPJ        : array[0..14] of char;
-            Serie          : array[0..2] of char;
-            TipoReceita    : Integer;
+            [MarshalAs(UnmanagedType.R8)]
+			public double Quantidade;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double ValorServico;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double ValorDesconto;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double BaseDeCalculo;
+
+            [MarshalAs(UnmanagedType.I4)]
+			public int Modelo;
+
+            [MarshalAs(UnmanagedType.I4)]
+			public int Numero;
+
+            [MarshalAs(UnmanagedType.I4)]
+			public int NumeroTerminal;
+
+            [MarshalAs(UnmanagedType.I4)]
+			public int NumeroItem;
+
+            [MarshalAs(UnmanagedType.I4)]
+			public int Aliquota;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CNPJMF;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string Cfop;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 12)]
+			public string Codigo;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string SubSerie;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CPFCNPJ;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string Serie;
+
+            [MarshalAs(UnmanagedType.I4)]
+			public int TipoReceita;
         }
         
         [StructLayout(LayoutKind.Sequential)]
 		public struct Registro85Rec
         {
-            Declaracao         : array[0..11] of char;
-            DataDeclaracao     : Double;
-            NaturezaExportacao : array[0..1] of char;
-            RegistroExportacao : array[0..12] of char;
-            DataRegistro       : Double;
-            Conhecimento       : array[0..16] of char;
-            DataConhecimento   : Double;
-            TipoConhecimento   : array[0..2] of char;
-            Pais               : array[0..4] of char;
-            DataAverbacao      : Double;
-            NumeroNotaFiscal   : array[0..6] of char;
-            DataNotaFiscal     : Double;
-            Modelo             : array[0..2] of char;
-            Serie              : array[0..3] of char;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 12)]
+			public string Declaracao;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double DataDeclaracao;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
+			public string NaturezaExportacao;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 13)]
+			public string RegistroExportacao;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double DataRegistro;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 17)]
+			public string Conhecimento;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double DataConhecimento;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string TipoConhecimento;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string Pais;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double DataAverbacao;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string NumeroNotaFiscal;
+
+            [MarshalAs(UnmanagedType.R8)]
+            public double DataNotaFiscal;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string Modelo;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string Serie;
         }
         
         [StructLayout(LayoutKind.Sequential)]
 		public struct Registro86Rec
         {
-            RegistroExportacao : array[0..12] of char;
-            DataRegistro       : Double;
-            CPFCNPJ            : array[0..14] of char;
-            Inscricao          : array[0..14] of char;
-            UF                 : array[0..2] of char;
-            NumeroNotaFiscal   : array[0..6] of char;
-            DataDocumento      : Double;
-            Modelo             : array[0..2] of char;
-            Serie              : array[0..3] of char;
-            Codigo             : array[0..14] of char;
-            Quantidade         : Double;
-            ValorUnitario      : Double;
-            ValorTotalProduto  : Double;
-            Relacionamento     : array[0..1] of char;  
-        }*/
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 13)]
+			public string RegistroExportacao;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double DataRegistro;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CPFCNPJ;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string Inscricao;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string UF;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string NumeroNotaFiscal;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double DataDocumento;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string Modelo;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string Serie;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string Codigo;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double Quantidade;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double ValorUnitario;
+
+            [MarshalAs(UnmanagedType.R8)]
+			public double ValorTotalProduto;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
+			public string Relacionamento;
+        }
 
 		#endregion Interop Types
 
@@ -831,6 +952,9 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SIN_LimparRegistros(IntPtr sinHandle);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_GeraArquivo(IntPtr sinHandle);
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SIN_Registro10(IntPtr sinHandle, Registro10Rec registro10);
 
@@ -842,6 +966,63 @@ namespace ACBrFramework
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SIN_Registro51(IntPtr sinHandle, Registro51Rec[] registro51, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro53(IntPtr sinHandle, Registro53Rec[] registro53, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro54(IntPtr sinHandle, Registro54Rec[] registro54, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro55(IntPtr sinHandle, Registro55Rec[] registro55, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro56(IntPtr sinHandle, Registro56Rec[] registro56, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro60A(IntPtr sinHandle, Registro60ARec[] registro60A, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro60D(IntPtr sinHandle, Registro60DRec[] registro60D, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro60I(IntPtr sinHandle, Registro60IRec[] registro60I, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro60M(IntPtr sinHandle, Registro60MRec[] registro60M, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro60R(IntPtr sinHandle, Registro60RRec[] registro60R, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro61(IntPtr sinHandle, Registro61Rec[] registro61, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro61R(IntPtr sinHandle, Registro61RRec[] registro61R, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro70(IntPtr sinHandle, Registro70Rec[] registro70, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro71(IntPtr sinHandle, Registro71Rec[] registro71, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro74(IntPtr sinHandle, Registro74Rec[] registro74, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro75(IntPtr sinHandle, Registro75Rec[] registro75, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro76(IntPtr sinHandle, Registro76Rec[] registro76, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro77(IntPtr sinHandle, Registro77Rec[] registro77, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro85(IntPtr sinHandle, Registro85Rec[] registro85, int count);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SIN_Registro86(IntPtr sinHandle, Registro86Rec[] registr86, int count);
 
 		#endregion Methods
 
