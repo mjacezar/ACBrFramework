@@ -106,7 +106,7 @@ type TRegistro54Rec = record
   ValorIpi             : Double;
   Valor                : Double;
   NumeroItem           : Integer;
-  CST                  : string;
+  CST                  : array[0..3] of char;
   Codigo               : array[0..14] of char;
   CFOP                 : array[0..4] of char;
   Descricao            : array[0..53] of char;

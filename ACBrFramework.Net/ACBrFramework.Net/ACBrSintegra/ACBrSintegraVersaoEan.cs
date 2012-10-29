@@ -1,6 +1,6 @@
 namespace ACBrFramework
 {
-	public enum VersaoEan
+public enum ACBrSintegraVersaoEan
 	{
 		eanIndefinido,
 		ean8,
