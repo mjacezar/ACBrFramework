@@ -8,9 +8,6 @@ namespace ACBrFramework.ECFTeste
 		[STAThread]
 		private static void Main()
 		{
-
-			//acbrAAC.Chave = aacChaveTextBox.Text;
-
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainForm());

@@ -42,6 +42,7 @@ Símbolo : Significado
 Changelog
 
 29/10/2012 (ACBrFramework 0.9.1.1)
+[*] Corrigido método RelatorioGerencial - ACBrFrameowrk.Net - Rafael Batiati
 [+] Implementado o metodo ECF_MudaHorarioVerao - ACBrFramework.Net - Rafael Dias.
 [+] Implementado o metodo SIN_Registro60I - ACBrFramework - Rafael Dias.
 [+] Implementado o metodo SIN_Registro60R - ACBrFramework - Rafael Dias.

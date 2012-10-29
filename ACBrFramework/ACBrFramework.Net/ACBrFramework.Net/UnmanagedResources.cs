@@ -31,13 +31,6 @@ namespace ACBrFramework
 			string tempPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 			string path = Path.Combine(tempPath, folderName);
 
-			Assembly entryAssembly = Assembly.GetEntryAssembly();
-			if (entryAssembly != null)
-			{
-				AssemblyName entryAssemblyName = entryAssembly.GetName();
-				path = Path.Combine(path, entryAssemblyName.Name);
-			}
-
 			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
 
 			return path;

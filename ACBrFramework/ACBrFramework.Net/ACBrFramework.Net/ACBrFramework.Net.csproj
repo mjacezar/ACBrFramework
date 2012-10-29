@@ -148,7 +148,6 @@
     <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFDAVs.cs" />
     <Compile Include="ACBrSerial\ACBrECF\ACBrECFException.cs" />
     <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFFinalizaArqMFD.cs" />
-    <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFRelatorioGerencialRec.cs" />
     <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFTipoContador.cs" />
     <Compile Include="ACBrSerial\ACBrECF\Classes\ACBrECFTipoDocumento.cs" />
     <Compile Include="ACBrException.cs" />
