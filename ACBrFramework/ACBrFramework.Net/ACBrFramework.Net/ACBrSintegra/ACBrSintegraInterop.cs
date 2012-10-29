@@ -211,7 +211,7 @@ namespace ACBrFramework
 			public string Modelo;
 
            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
-			public string Emitente
+           public string Emitente;
 
            [MarshalAs(UnmanagedType.R8)]
 			public double Despesas;
@@ -688,21 +688,27 @@ namespace ACBrFramework
 
             Descricao    : array[0..53] of char;
 
-            Reducao      : Double;
+            [MarshalAs(UnmanagedType.R8)]
+			public double Reducao      : Double;
 
-            BaseST       : Double;
+            [MarshalAs(UnmanagedType.R8)]
+			public double BaseST       : Double;
 
-            AliquotaIpi  : Double;
+            [MarshalAs(UnmanagedType.R8)]
+			public double AliquotaIpi  : Double;
 
             NCM          : array[0..8] of char;
 
             Unidade      : array[0..6] of char;
 
-            AliquotaICMS : Double;
+            [MarshalAs(UnmanagedType.R8)]
+			public double AliquotaICMS : Double;
 
-            DataFinal    : Double;
+            [MarshalAs(UnmanagedType.R8)]
+			public double DataFinal    : Double;
 
-            DataInicial  : Double;
+            [MarshalAs(UnmanagedType.R8)]
+			public double DataInicial  : Double;
         }
         
         [StructLayout(LayoutKind.Sequential)]
@@ -785,6 +791,7 @@ namespace ACBrFramework
             ValorTotalProduto  : Double;
             Relacionamento     : array[0..1] of char;  
         }*/
+
 		#endregion Interop Types
 
 		#region Propriedades do Componente
