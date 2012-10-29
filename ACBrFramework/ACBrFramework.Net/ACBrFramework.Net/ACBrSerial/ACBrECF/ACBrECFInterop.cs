@@ -319,6 +319,21 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_AcharPorta(IntPtr ecfHandle, int TimeOut);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_MudaHorarioVerao(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_Sangria(IntPtr ecfHandle, double valor, string obs);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_Suprimento(IntPtr ecfHandle, double valor, string obs);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_AbreGaveta(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_CorrigeEstadoErro(IntPtr ecfHandle, bool reducaoZ);
+
 		#endregion Métodos ECF
 
 		#region Propriedades do Componente
@@ -878,19 +893,7 @@ namespace ACBrFramework
 
 		#endregion Comprovante não fiscal
 
-		#region Metodos
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_Sangria(IntPtr ecfHandle, double valor, string obs);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_Suprimento(IntPtr ecfHandle, double valor, string obs);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_AbreGaveta(IntPtr ecfHandle);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_CorrigeEstadoErro(IntPtr ecfHandle, bool reducaoZ);
+		#region LeituraMemoriaFiscal
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_LeituraMemoriaFiscalReducao(IntPtr ecfHandle, int reducaoInicial, int reducaoFinal, bool simplificada);
@@ -910,7 +913,7 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_LeituraMemoriaFiscalArquivoData(IntPtr ecfHandle, double dataInicial, double dataFinal, string nomeArquivo, bool simplificada);
 
-		#endregion Metodos
+		#endregion LeituraMemoriaFiscal
 
 		#region Eventos
 

@@ -1855,8 +1855,6 @@ begin
 
 end;
 
-
-
 Function ECF_GetIdentificaConsumidorRodape(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -3358,6 +3356,8 @@ end;
 
 }
 
+{ Metodos ECF }
+
 Function ECF_TestaPodeAbrirCupom(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -3628,6 +3628,54 @@ begin
   end;
 end;
 
+Function ECF_AcharECF(const ecfHandle: PECFHandle; const ProcuraModelo : Boolean; const ProcuraPorta  : Boolean; const TimeOut : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if (ecfHandle^.ECF.AcharECF(ProcuraModelo, ProcuraPorta, TimeOut)) then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_AcharPorta(const ecfHandle: PECFHandle; const TimeOut : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if (ecfHandle^.ECF.AcharPorta(TimeOut))then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{ Leitura Memoria Fiscal }
+
 Function ECF_LeituraMemoriaFiscalReducao(const ecfHandle: PECFHandle; const ReducaoInicial : Integer; const ReducaoFinal: Integer; const Simplificada : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -3776,6 +3824,7 @@ begin
   end;
 end;
 
+{ Programação }
 Function ECF_IdentificaPAF(const ecfHandle: PECFHandle; const NomeVersao : pChar; const MD5 : pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -3799,6 +3848,7 @@ begin
   end;
 end;
 
+{ Dados Redução Z }
 Function ECF_GetDadosReducaoZ(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
@@ -4015,6 +4065,7 @@ begin
    end;
 end;
 
+{ Componentes ACBr }
 Function ECF_SetAAC(const ecfHandle: PECFHandle; const aacHandle : PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -4068,52 +4119,6 @@ begin
          Result := -1;
          end
     end;
-  end;
-end;
-
-Function ECF_AcharECF(const ecfHandle: PECFHandle; const ProcuraModelo : Boolean; const ProcuraPorta  : Boolean; const TimeOut : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     if (ecfHandle^.ECF.AcharECF(ProcuraModelo, ProcuraPorta, TimeOut)) then
-       Result := 1
-     else
-       Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_AcharPorta(const ecfHandle: PECFHandle; const TimeOut : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     if (ecfHandle^.ECF.AcharPorta(TimeOut))then
-       Result := 1
-     else
-       Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
   end;
 end;
 
