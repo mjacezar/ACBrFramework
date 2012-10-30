@@ -43,6 +43,24 @@ Changelog
 
 29/10/2012 (ACBrFramework 0.9.1.2)
 [*] Corrigido método RelatorioGerencial - ACBrFramework e ACBrFrameowrk.Net - Rafael Batiati
+[+] Implementado o metodo SIN_GeraArquivo - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro60I - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro60R - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro61I - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro61R - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro71 - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro76 - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro77 - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro85 - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro86 - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro55 - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro56 - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro60M - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro60A - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro60D - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro70 - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro74 - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo SIN_Registro75 - ACBrFramework.Net - Rafael Dias.
 
 29/10/2012 (ACBrFramework 0.9.1.1)
 [+] Implementado o metodo ECF_MudaHorarioVerao - ACBrFramework.Net - Rafael Dias.

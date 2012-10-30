@@ -4,7 +4,7 @@ namespace ACBrFramework
 {
     public class SintegraRegistro61
     {
-        public double Emissao { get; set; }
+        public DateTime Emissao { get; set; }
         public double Valor { get; set; }
         public double ValorIcms { get; set; }
         public double Outras { get; set; }
