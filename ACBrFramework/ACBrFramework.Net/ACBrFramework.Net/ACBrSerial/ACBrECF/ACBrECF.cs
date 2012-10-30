@@ -14,6 +14,7 @@ namespace ACBrFramework
 		#region Events
 
         private EventHandler onPoucoPapelHandler;
+        private EventHandler<BobinaEventArgs> onBobinaAdicionaLinhasHandler;
 
         public event EventHandler OnPoucoPapel
         {
@@ -40,6 +41,31 @@ namespace ACBrFramework
             }
         }
 
+        public event EventHandler<BobinaEventArgs> OnBobinaAdicionaLinhas
+        {
+            add
+            {
+                bool isAssigned = onBobinaAdicionaLinhasHandler != null;
+                onBobinaAdicionaLinhasHandler = (EventHandler<BobinaEventArgs>)Delegate.Combine(onBobinaAdicionaLinhasHandler, value);
+
+                if (!isAssigned)
+                {
+                    int ret = ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas(this.Handle, (BobinaProcedurePtrDelegate)ecf_OnBobinaAdicionaLinhas);
+                    CheckResult(ret);
+                }
+            }
+            remove
+            {
+                onBobinaAdicionaLinhasHandler = (EventHandler<BobinaEventArgs>)Delegate.Remove(onBobinaAdicionaLinhasHandler, value);
+
+                if (onBobinaAdicionaLinhasHandler == null)
+                {
+                    int ret = ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas(this.Handle, null);
+                    CheckResult(ret);
+                }
+            }
+        }
+
 		#endregion Events
 
 		#region Fields
@@ -47,7 +73,7 @@ namespace ACBrFramework
 		private ACBrECFAliquota[] aliquotas;
 		private ACBrECFFormaPagamento[] formasPagamento;
 		private ACBrECFComprovanteNaoFiscal[] comprovantesNaoFiscais;
-		private ACBrECFRelatorioGerencial[] relatoriosGerenciais;
+		private ACBrECFRelatorioGerencial[] relatoriosGerenciais;        
 		private ACBrAAC aac;
 		private ACBrEAD ead;
 
@@ -640,6 +666,14 @@ namespace ACBrFramework
 				SetString(ACBrECFInterop.ECF_SetOperador, value);
 			}
 		}
+
+        public string MemoParams
+        {
+            set
+            {
+                SetString(ACBrECFInterop.ECF_SetMemoParams, value);
+            }
+        }
 
 		public int LinhasEntreCupons
 		{
@@ -1813,6 +1847,17 @@ namespace ACBrFramework
                 onPoucoPapelHandler(this, EventArgs.Empty);
 			}
 		}
+
+        private void ecf_OnBobinaAdicionaLinhas(string Linhas, string Operacao)
+        {
+            if (onBobinaAdicionaLinhasHandler != null)
+            {
+                BobinaEventArgs e = new BobinaEventArgs();
+                e.Linhas = Linhas;
+                e.Operacao = Operacao;
+                onBobinaAdicionaLinhasHandler(this, e);
+            }
+        }
 
 		#endregion EventHandlers
 
