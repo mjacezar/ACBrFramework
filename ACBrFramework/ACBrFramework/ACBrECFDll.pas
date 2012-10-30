@@ -18,7 +18,9 @@ uses
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
     OnPoucoPapelPtr : TProcedurePtr;
+    OnBobinaAdicionaLinhasPtr : TBobinaProcedurePTR;
     procedure OnMsgPoucoPapel(Sender: TObject);
+    procedure OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
 end;
 
 
@@ -160,11 +162,6 @@ PADRONIZAÇÃO DAS FUNÇÕES:
                   A função "UltimoErro" retornará a mensagem da última exception disparada pelo componente.
 }
 
- procedure TEventHandlers.OnMsgPoucoPapel(Sender: TObject);
- begin
-      OnPoucoPapelPtr();
- end;
-
 {
 CRIA um novo componente TACBrECF retornando o ponteiro para o objeto criado.
 Este ponteiro deve ser armazenado pela aplicação que utiliza a DLL e informado
@@ -183,7 +180,6 @@ begin
      ecfHandle^.ECF.ExibeMensagem := False;
      ecfHandle^.ECF.BloqueiaMouseTeclado := False;
      ecfHandle^.UltimoErro := '';
-     ecfHandle^.ECF.OnMsgPoucoPapel := ecfHandle^.EventHandlers.OnMsgPoucoPapel;
      Result := 0;
 
   except
@@ -5019,6 +5015,22 @@ begin
   end;
 end;
 
+{ Eventos }
+procedure TEventHandlers.OnMsgPoucoPapel(Sender: TObject);
+begin
+     OnPoucoPapelPtr();
+end;
+
+procedure TEventHandlers.OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
+var
+  pLinhas: PChar;
+  pOperacao: PChar;
+begin
+     pLinhas := PChar(Linhas);
+     pOperacao := PChar(Operacao);
+     OnBobinaAdicionaLinhasPtr( pLinhas, pOperacao);
+end;
+
 Function ECF_SetOnPoucoPapel(const ecfHandle: PECFHandle; const method : TProcedurePtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -5029,8 +5041,18 @@ begin
   end;
 
   try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnMsgPoucoPapel := ecfHandle^.EventHandlers.OnMsgPoucoPapel;
         ecfHandle^.EventHandlers.OnPoucoPapelPtr := method;
         Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnMsgPoucoPapel := nil;
+        ecfHandle^.EventHandlers.OnPoucoPapelPtr := nil;
+        Result := 0;
+  end;
   except
      on exception : Exception do
      begin
@@ -5038,7 +5060,67 @@ begin
         Result := -1;
      end
   end;
+end;
 
+Function ECF_SetOnBobinaAdicionaLinhas(const ecfHandle: PECFHandle; const method : TBobinaProcedurePTR) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnBobinaAdicionaLinhas := ecfHandle^.EventHandlers.OnBobinaAdicionaLinhas();
+        ecfHandle^.EventHandlers.OnBobinaAdicionaLinhasPtr:= method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnBobinaAdicionaLinhas := nil;
+        ecfHandle^.EventHandlers.OnBobinaAdicionaLinhasPtr := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{ Metodos Bobina }
+Function ECF_MemoParams(const ecfHandle: PECFHandle; const linhas : array of PChar; const LinhasCount : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  i: Integer;
+  Lista: TStringList;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  Lista := TStringList.Create();
+  for i := 0 to LinhasCount - 1 do
+  begin
+  Lista.Add(String(linhas[i]));
+  end;
+  ecfHandle^.ECF.MemoParams := Lista;
+  Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
 end;
 
 
@@ -5338,9 +5420,11 @@ ECF_DAV_Fechar, ECF_PafMF_RelDAVEmitidos,
 ECF_PafMF_RelMeiosPagamento, ECF_PafMF_RelIdentificacaoPafECF,
 ECF_PafMF_RelParametrosConfiguracao,
 
+{ Bobina }
+ECF_MemoParams,
+
 {Eventos}
-ECF_SetOnPoucoPapel
-;
+ECF_SetOnPoucoPapel, ECF_SetOnBobinaAdicionaLinhas;
 
 {Não implementado}
 
