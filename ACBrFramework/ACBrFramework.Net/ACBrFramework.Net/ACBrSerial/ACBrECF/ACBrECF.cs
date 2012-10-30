@@ -14,18 +14,33 @@ namespace ACBrFramework
 		#region Events
 
         private EventHandler onPoucoPapelHandler;
+        private EventHandler<BobinaEventArgs> OnBobinaAdicionaLinhasHandler;
 
         public event EventHandler OnPoucoPapel
         {
             add
             {
-                onPoucoPapel = (ProcedurePtrDelegate)Delegate.Combine(onPoucoPapelHandler, value);
+                onPoucoPapelHandler = (EventHandler)Delegate.Combine(onPoucoPapelHandler, value);
                 ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, (ProcedurePtrDelegate)ecf_OnPoucoPapel);
             }
             remove
             {
-                onPoucoPapel = (ProcedurePtrDelegate)Delegate.Remove(onPoucoPapelHandler, value);
+                onPoucoPapelHandler = (EventHandler)Delegate.Remove(onPoucoPapelHandler, value);
                 ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, null);
+            }
+        }
+
+        public event EventHandler<BobinaEventArgs> OnBobinaAdicionaLinhas
+        {
+            add
+            {
+                OnBobinaAdicionaLinhasHandler = (EventHandler<BobinaEventArgs>)Delegate.Combine(OnBobinaAdicionaLinhasHandler, value);
+                ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas(this.Handle, (BobinaProcedurePtrDelegate)ecf_OnBobinaAdicionaLinhas);
+            }
+            remove
+            {
+                OnBobinaAdicionaLinhasHandler = (EventHandler<BobinaEventArgs>)Delegate.Remove(OnBobinaAdicionaLinhasHandler, value);
+                ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas(this.Handle, null);
             }
         }
 
@@ -41,6 +56,7 @@ namespace ACBrFramework
 		private ACBrEAD ead;
 
 		private ProcedurePtrDelegate onPoucoPapel;
+        private BobinaProcedurePtrDelegate onBobinaAdicionaLinhas;
 
 		#endregion Fields
 
@@ -1814,6 +1830,17 @@ namespace ACBrFramework
                 onPoucoPapelHandler(this, EventArgs.Empty);
 			}
 		}
+
+        private void ecf_OnBobinaAdicionaLinhas(string Linhas, string Operacao)
+        {
+            if (OnBobinaAdicionaLinhasHandler != null)
+            {
+                BobinaEventArgs e = new BobinaEventArgs();
+                e.Linhas = Linhas;
+                e.Operacao = Operacao;
+                OnBobinaAdicionaLinhasHandler(this, e);
+            }
+        }
 
 		#endregion EventHandlers
 

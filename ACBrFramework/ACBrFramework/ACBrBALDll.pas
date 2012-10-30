@@ -10,7 +10,7 @@ uses
 
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
-    OnLePesoPtr : TDoubleProcedurePrt;
+    OnLePesoPtr : TDoubleProcedurePtr;
     procedure OnLePeso(Peso : Double; Resposta : AnsiString);
 end;
 

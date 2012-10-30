@@ -155,6 +155,7 @@
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro85.cs" />
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro86.cs" />
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro56.cs" />
+    <Compile Include="ACBrSerial\ACBrECF\BobinaEventArgs.cs" />
     <Compile Include="ChaveEventArgs.cs" />
     <Compile Include="ACBrSerial\ACBrBAL\ACBrBAL.cs" />
     <Compile Include="ACBrSerial\ACBrBAL\ACBrBALInterop.cs" />

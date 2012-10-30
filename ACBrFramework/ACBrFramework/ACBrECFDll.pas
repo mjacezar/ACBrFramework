@@ -18,7 +18,7 @@ uses
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
     OnPoucoPapelPtr : TProcedurePtr;
-    OnBobinaAdicionaLinhasPtr : TBobinaProcedurePTR;
+    OnBobinaAdicionaLinhasPtr : TBobinaProcedurePtr;
     procedure OnMsgPoucoPapel(Sender: TObject);
     procedure OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
 end;
