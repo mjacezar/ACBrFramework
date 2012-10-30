@@ -904,6 +904,10 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnPoucoPapel(IntPtr ecfHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_SetOnBobinaAdicionaLinhas(IntPtr ecfHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+
+
 		#endregion Eventos
 
 		#endregion ACBrECF
