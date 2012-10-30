@@ -440,7 +440,7 @@ begin
   end;
 end;
 
-Function BAL_SetOnLePeso(const balHandle: PBALHandle; const method : TDoubleProcedurePrt) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function BAL_SetOnLePeso(const balHandle: PBALHandle; const method : TDoubleProcedurePtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (balHandle = nil) then

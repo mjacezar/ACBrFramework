@@ -1650,6 +1650,28 @@ begin
    end;
 end;
 
+{ Metodos Bobina }
+Function ECF_SetMemoParams(const ecfHandle: PECFHandle; const linhas : PChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  ecfHandle^.ECF.MemoParams := TStrings(linhas);
+  Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 { ECF - Flags }
 
 Function ECF_GetEmLinha(const ecfHandle: PECFHandle; const TimeOut : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -5093,37 +5115,6 @@ begin
   end;
 end;
 
-{ Metodos Bobina }
-Function ECF_MemoParams(const ecfHandle: PECFHandle; const linhas : array of PChar; const LinhasCount : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  i: Integer;
-  Lista: TStringList;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-  Lista := TStringList.Create();
-  for i := 0 to LinhasCount - 1 do
-  begin
-  Lista.Add(String(linhas[i]));
-  end;
-  ecfHandle^.ECF.MemoParams := Lista;
-  Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-
 {
 NÀO IMPLEMENTADO
 
@@ -5421,7 +5412,7 @@ ECF_PafMF_RelMeiosPagamento, ECF_PafMF_RelIdentificacaoPafECF,
 ECF_PafMF_RelParametrosConfiguracao,
 
 { Bobina }
-ECF_MemoParams,
+ECF_SetMemoParams,
 
 {Eventos}
 ECF_SetOnPoucoPapel, ECF_SetOnBobinaAdicionaLinhas;

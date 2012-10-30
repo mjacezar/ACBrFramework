@@ -899,15 +899,21 @@ namespace ACBrFramework
 
 		#endregion LeituraMemoriaFiscal
 
-		#region Eventos
+        #region Bobina
 
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_SetMemoParams(IntPtr ecfHandle, string linhas);
+
+        #endregion Bobina
+
+        #region Eventos
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnPoucoPapel(IntPtr ecfHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
 
         [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
         public static extern int ECF_SetOnBobinaAdicionaLinhas(IntPtr ecfHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
-
-
+        
 		#endregion Eventos
 
 		#endregion ACBrECF
