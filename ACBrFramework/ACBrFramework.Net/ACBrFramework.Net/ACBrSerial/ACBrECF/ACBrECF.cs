@@ -14,33 +14,29 @@ namespace ACBrFramework
 		#region Events
 
         private EventHandler onPoucoPapelHandler;
-        private EventHandler<BobinaEventArgs> OnBobinaAdicionaLinhasHandler;
 
         public event EventHandler OnPoucoPapel
         {
             add
             {
+				bool isAssigned = onPoucoPapelHandler != null;
                 onPoucoPapelHandler = (EventHandler)Delegate.Combine(onPoucoPapelHandler, value);
-                ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, (ProcedurePtrDelegate)ecf_OnPoucoPapel);
-            }
-            remove
-            {
-                onPoucoPapelHandler = (EventHandler)Delegate.Remove(onPoucoPapelHandler, value);
-                ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, null);
-            }
-        }
 
-        public event EventHandler<BobinaEventArgs> OnBobinaAdicionaLinhas
-        {
-            add
-            {
-                OnBobinaAdicionaLinhasHandler = (EventHandler<BobinaEventArgs>)Delegate.Combine(OnBobinaAdicionaLinhasHandler, value);
-                ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas(this.Handle, (BobinaProcedurePtrDelegate)ecf_OnBobinaAdicionaLinhas);
+				if (!isAssigned)
+				{
+					int ret = ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, (ProcedurePtrDelegate)ecf_OnPoucoPapel);
+					CheckResult(ret);
+				}
             }
             remove
             {
-                OnBobinaAdicionaLinhasHandler = (EventHandler<BobinaEventArgs>)Delegate.Remove(OnBobinaAdicionaLinhasHandler, value);
-                ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas(this.Handle, null);
+				onPoucoPapelHandler = (EventHandler)Delegate.Remove(onPoucoPapelHandler, value);
+
+				if (onPoucoPapelHandler == null)
+				{
+					int ret = ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, null);
+					CheckResult(ret);
+				}
             }
         }
 
@@ -54,9 +50,6 @@ namespace ACBrFramework
 		private ACBrECFRelatorioGerencial[] relatoriosGerenciais;
 		private ACBrAAC aac;
 		private ACBrEAD ead;
-
-		private ProcedurePtrDelegate onPoucoPapel;
-        private BobinaProcedurePtrDelegate onBobinaAdicionaLinhas;
 
 		#endregion Fields
 
@@ -1784,16 +1777,6 @@ namespace ACBrFramework
 			CallCreate(ACBrECFInterop.ECF_Create);
 			Device = new ACBrDevice(this);
 
-			InitializeEvents();
-		}
-
-		private void InitializeEvents()
-		{
-			int ret;
-
-			onPoucoPapel = new ProcedurePtrDelegate(ecf_OnPoucoPapel);
-			ret = ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, onPoucoPapel);
-			CheckResult(ret);
 		}
 
 		protected internal override void CheckResult(int ret)
@@ -1830,17 +1813,6 @@ namespace ACBrFramework
                 onPoucoPapelHandler(this, EventArgs.Empty);
 			}
 		}
-
-        private void ecf_OnBobinaAdicionaLinhas(string Linhas, string Operacao)
-        {
-            if (OnBobinaAdicionaLinhasHandler != null)
-            {
-                BobinaEventArgs e = new BobinaEventArgs();
-                e.Linhas = Linhas;
-                e.Operacao = Operacao;
-                OnBobinaAdicionaLinhasHandler(this, e);
-            }
-        }
 
 		#endregion EventHandlers
 
