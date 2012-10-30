@@ -556,6 +556,9 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOperador(IntPtr ecfHandle, string operador);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_SetMemoParams(IntPtr ecfHandle, string linhas);
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetLinhasEntreCupons(IntPtr ecfHandle);
 
@@ -898,13 +901,6 @@ namespace ACBrFramework
 		public static extern int ECF_LeituraMemoriaFiscalArquivoData(IntPtr ecfHandle, double dataInicial, double dataFinal, string nomeArquivo, bool simplificada);
 
 		#endregion LeituraMemoriaFiscal
-
-        #region Bobina
-
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_SetMemoParams(IntPtr ecfHandle, string linhas);
-
-        #endregion Bobina
 
         #region Eventos
 

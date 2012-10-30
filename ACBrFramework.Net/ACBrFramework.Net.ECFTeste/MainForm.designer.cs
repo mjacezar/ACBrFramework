@@ -169,6 +169,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.aacParametrosTabPage = new System.Windows.Forms.TabPage();
             this.aacParamsTextBox = new System.Windows.Forms.TextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.wbBobina = new System.Windows.Forms.WebBrowser();
             this.ativarCheckButton = new System.Windows.Forms.CheckBox();
             this.acbrAAC = new ACBrFramework.ACBrAAC();
             this.acbrEAD = new ACBrFramework.ACBrEAD();
@@ -195,6 +197,7 @@
             this.aacECFsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.aacECFsAutorizadaDataGridView)).BeginInit();
             this.aacParametrosTabPage.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -514,6 +517,7 @@
             this.tabControl.Controls.Add(this.ecfTabPage);
             this.tabControl.Controls.Add(this.cmdTabPage);
             this.tabControl.Controls.Add(this.aacTabPage);
+            this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Location = new System.Drawing.Point(10, 27);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -1543,6 +1547,26 @@
             this.aacParamsTextBox.Size = new System.Drawing.Size(552, 145);
             this.aacParamsTextBox.TabIndex = 0;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.wbBobina);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(640, 360);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Bobina";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // wbBobina
+            // 
+            this.wbBobina.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wbBobina.Location = new System.Drawing.Point(3, 3);
+            this.wbBobina.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wbBobina.Name = "wbBobina";
+            this.wbBobina.Size = new System.Drawing.Size(634, 354);
+            this.wbBobina.TabIndex = 0;
+            // 
             // ativarCheckButton
             // 
             this.ativarCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -1573,7 +1597,7 @@
             // 
             this.acbrECF.AAC = this.acbrAAC;
             this.acbrECF.AguardaImpressao = false;
-            this.acbrECF.ComandoLog = "VendaBruta";
+            this.acbrECF.ComandoLog = "CNPJ";
             this.acbrECF.DecimaisPreco = 3;
             this.acbrECF.DecimaisQtd = 3;
             this.acbrECF.DescricaoGrande = false;
@@ -1642,6 +1666,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.aacECFsAutorizadaDataGridView)).EndInit();
             this.aacParametrosTabPage.ResumeLayout(false);
             this.aacParametrosTabPage.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1795,6 +1820,8 @@
 		private ACBrEAD acbrEAD;
 		private ACBrECF acbrECF;
         private ACBrPAF acbrPAF;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.WebBrowser wbBobina;
     }
 }
 
