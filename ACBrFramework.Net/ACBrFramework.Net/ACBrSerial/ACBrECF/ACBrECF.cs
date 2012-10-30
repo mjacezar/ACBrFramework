@@ -13,7 +13,21 @@ namespace ACBrFramework
 	{
 		#region Events
 
-		public event EventHandler OnPoucoPapel;
+        private EventHandler onPoucoPapelHandler;
+
+        public event EventHandler OnPoucoPapel
+        {
+            add
+            {
+                onPoucoPapel = (ProcedurePtrDelegate)Delegate.Combine(onPoucoPapelHandler, value);
+                ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, (ProcedurePtrDelegate)ecf_OnPoucoPapel);
+            }
+            remove
+            {
+                onPoucoPapel = (ProcedurePtrDelegate)Delegate.Remove(onPoucoPapelHandler, value);
+                ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, null);
+            }
+        }
 
 		#endregion Events
 
@@ -1795,9 +1809,9 @@ namespace ACBrFramework
 
 		private void ecf_OnPoucoPapel()
 		{
-			if (OnPoucoPapel != null)
+            if (onPoucoPapelHandler != null)
 			{
-				OnPoucoPapel(this, EventArgs.Empty);
+                onPoucoPapelHandler(this, EventArgs.Empty);
 			}
 		}
 
