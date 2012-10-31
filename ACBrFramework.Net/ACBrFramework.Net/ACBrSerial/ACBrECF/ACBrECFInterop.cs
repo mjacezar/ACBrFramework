@@ -557,7 +557,7 @@ namespace ACBrFramework
 		public static extern int ECF_SetOperador(IntPtr ecfHandle, string operador);
 
         [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_SetMemoParams(IntPtr ecfHandle, string linhas);
+        public static extern int ECF_SetMemoParams(IntPtr ecfHandle, string[] linhas, int count);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetLinhasEntreCupons(IntPtr ecfHandle);
