@@ -19,8 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testes", "Testes", "{61B71D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACBrFramework.Net.BALTeste", "ACBrFramework.Net.BALTeste\ACBrFramework.Net.BALTeste.csproj", "{9026C8D5-82E9-4874-BFD5-A101A8B06071}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACBrFramework Instaler", "ACBrFramework Instaler\ACBrFramework Instaler.csproj", "{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,18 +111,6 @@ Global
 		{9026C8D5-82E9-4874-BFD5-A101A8B06071}.Release|x64.ActiveCfg = Release|x86
 		{9026C8D5-82E9-4874-BFD5-A101A8B06071}.Release|x86.ActiveCfg = Release|x86
 		{9026C8D5-82E9-4874-BFD5-A101A8B06071}.Release|x86.Build.0 = Release|x86
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}.Release|x64.ActiveCfg = Release|Any CPU
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -136,6 +122,5 @@ Global
 		{7D3D0596-A97E-4E91-9EF9-AAC50A5DB9B2} = {61B71D35-B593-448F-B445-9665701D7C1D}
 		{9026C8D5-82E9-4874-BFD5-A101A8B06071} = {61B71D35-B593-448F-B445-9665701D7C1D}
 		{369E4C1E-B9DF-4E24-8CA4-2D1812AE519B} = {958C3CC1-2F49-4720-ABD1-923853A3C757}
-		{C79C7086-0E78-4EB4-B95A-5348F29ADC9B} = {958C3CC1-2F49-4720-ABD1-923853A3C757}
 	EndGlobalSection
 EndGlobal

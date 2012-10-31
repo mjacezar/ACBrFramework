@@ -5,6 +5,7 @@ interface
 uses
   SysUtils,
   Classes,
+  ACBrCommonDLL,
   ACBrPAF,
   ACBrAACDLL,
   ACBrEADDLL,
@@ -13,6 +14,7 @@ uses
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
    ChaveRSA : AnsiString;
+   OnGetChaveRSAPtr : TStrFunctionPtr;
    procedure GetChaveRSA(var Chave : AnsiString);
 end;
 
@@ -296,6 +298,7 @@ type TRegistroT2Rec = record
    VL_OUTRAS      : Double;
    RegistroValido : boolean;
 end;
+
 implementation
 
 {
@@ -336,7 +339,6 @@ begin
      New(pafHandle);
      pafHandle^.PAF := TACBrPAF.Create(nil);
      pafHandle^.EventHandlers := TEventHandlers.Create();
-     pafHandle^.PAF.OnPAFGetKeyRSA := pafHandle^.EventHandlers.GetChaveRSA;
      pafHandle^.UltimoErro:= '';
      Result := 0;
   except
@@ -394,12 +396,6 @@ begin
         Result := -1;
      end
   end;
-end;
-
-{Procedures}
-procedure TEventHandlers.GetChaveRSA(var Chave : AnsiString);
-begin
-  Chave := ChaveRSA;
 end;
 
 { Funções mapeando as propriedades do componente }
@@ -653,6 +649,10 @@ Function PAF_SetChaveRSA(const pafHandle: PPAFHandle; const Chave : pChar) : Int
 begin
 
   try
+     if not Assigned(pafHandle^.PAF.OnPAFGetKeyRSA) then
+     begin
+        pafHandle^.PAF.OnPAFGetKeyRSA := pafHandle^.EventHandlers.GetChaveRSA;
+     end;
      pafHandle^.EventHandlers.ChaveRSA := Chave;
      Result := 0;
   except
@@ -1512,10 +1512,53 @@ begin
   end;
 end;
 
+{Eventos}
+procedure TEventHandlers.GetChaveRSA(var Chave : AnsiString);
+begin
+  if (Length(ChaveRSA) > 0) then
+    Chave := ChaveRSA
+  else
+     Chave := OnGetChaveRSAPtr();
+end;
+
+Function PAF_SetOnPAFGetKeyRSA(const pafHandle:PPAFHandle; const method : TStrFunctionPtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (pafHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if Assigned(method) then
+     begin
+        pafHandle^.PAF.OnPAFGetKeyRSA := pafHandle^.EventHandlers.GetChaveRSA;
+        pafHandle^.EventHandlers.OnGetChaveRSAPtr := method;
+        Result := 0;
+     end
+     else
+     begin
+        pafHandle^.PAF.OnPAFGetKeyRSA := nil;
+        pafHandle^.EventHandlers.OnGetChaveRSAPtr := nil;
+        Result := 0;
+     end;
+  except
+     on exception : Exception do
+     begin
+        pafHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 exports
 
 { Funções }
 PAF_Create, PAF_Destroy, PAF_GetUltimoErro,
+
+{Eventos}
+PAF_SetOnPAFGetKeyRSA,
 
 { Propriedades Componente }
 PAF_GetPath, PAF_SetPath,

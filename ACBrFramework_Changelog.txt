@@ -42,13 +42,16 @@ Símbolo : Significado
 Changelog
 
 31/10/2012
+[*] Alterado os tipos de dados double para decimal - ACBrFramework.Net - Rafael Batiati.
+[*] Melhorado o disparo de eventos nos componentes BAL e LCB - ACBrFramework e ACBrFramework.Net - Rafael Batiati.
+[*] Melhorado o disparo de eventos nos componentes ECF, AAC e EAD - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado o evento OnPAFGetKeyRSA no PAF - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado o evento OnBobinaAdicionaLinhas no ECF - ACBrFramework e ACBrFramework.Net - Rafael Dias/Rafael Batiati.
 [*] Métodos SaveTXT_??? do ACBrPAF recebem arrays ou IEnumerables para facilitar a utilização - Rafael Batiati
 [*] Listas de registros do ACBrPAF trocadas para readonly e instanciadas no construtor - Rafael Batiati
-[*] Alterado os tipos de dados double para decimal no ACBrFramework.Net - Rafael Batiati
-[*] Corrigido o disparo de eventos nos componentes BAL e LCB  - Rafael Batiati
 
 29/10/2012 (ACBrFramework 0.9.1.2)
-[*] Corrigido método RelatorioGerencial - ACBrFramework e ACBrFrameowrk.Net - Rafael Batiati
+[-] Corrigido método RelatorioGerencial - ACBrFramework e ACBrFrameowrk.Net - Rafael Batiati
 [+] Implementado o metodo SIN_GeraArquivo - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [+] Implementado o metodo SIN_Registro60I - ACBrFramework.Net - Rafael Dias.
 [+] Implementado o metodo SIN_Registro60R - ACBrFramework.Net - Rafael Dias.

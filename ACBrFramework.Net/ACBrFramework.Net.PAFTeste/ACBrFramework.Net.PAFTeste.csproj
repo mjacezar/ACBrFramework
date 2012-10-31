@@ -37,9 +37,6 @@
     <ApplicationIcon>ACBrMonitor.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ACBrFramework.Net">
-      <HintPath>..\ACBrFramework.Net\obj\x86\Debug\ACBrFramework.Net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -84,6 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ACBrMonitor.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ACBrFramework.Net\ACBrFramework.Net.csproj">
+      <Project>{C66AC69F-8537-46AD-A6DB-576A61670FA4}</Project>
+      <Name>ACBrFramework.Net</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

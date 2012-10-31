@@ -39,13 +39,6 @@ end;
 
 implementation
 
-procedure TEventHandlers.OnGetChave(var Chave: AnsiString);
-begin
-  if (Length(ChaveCriptografia) > 0) then
-   Chave :=  ChaveCriptografia
-  else
-    Chave:= OnGetChavePtr();
-end;
 
 {
 PADRONIZAÇÃO DAS FUNÇÕES:
@@ -87,7 +80,6 @@ begin
      aacHandle^.AAC := TACBrAAC.Create(nil);
      aacHandle^.EventHandlers := TEventHandlers.Create();
      aacHandle^.UltimoErro := '';
-     aacHandle^.AAC.OnGetChave := aacHandle^.EventHandlers.OnGetChave;
      Result := 0;
   except
      on exception : Exception do
@@ -313,6 +305,10 @@ Function AAC_SetChave(const aacHandle: PAACHandle; const Chave : pChar) : Intege
 begin
 
   try
+     if not Assigned(aacHandle^.AAC.OnGetChave) then
+     begin
+     aacHandle^.AAC.OnGetChave := aacHandle^.EventHandlers.OnGetChave;
+     end;
      aacHandle^.EventHandlers.ChaveCriptografia := Chave;
      Result := 0;
   except
@@ -2433,6 +2429,14 @@ begin
 
 end;
 
+{ eventos }
+procedure TEventHandlers.OnGetChave(var Chave: AnsiString);
+begin
+  if (Length(ChaveCriptografia) > 0) then
+   Chave :=  ChaveCriptografia
+  else
+    Chave:= OnGetChavePtr();
+end;
 
 Function AAC_SetOnGetChave(const aacHandle: PAACHandle; const method : TStrFunctionPtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -2444,8 +2448,18 @@ begin
   end;
 
   try
-        aacHandle^.EventHandlers.OnGetChavePtr := method;
+     if Assigned(method) then
+     begin
+     aacHandle^.AAC.OnGetChave := aacHandle^.EventHandlers.OnGetChave;
+     aacHandle^.EventHandlers.OnGetChavePtr := method;
+     Result := 0;
+     end
+     else
+     begin
+        aacHandle^.AAC.OnGetChave := nil;
+        aacHandle^.EventHandlers.OnGetChavePtr := nil;
         Result := 0;
+     end;
   except
      on exception : Exception do
      begin

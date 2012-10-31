@@ -14,6 +14,7 @@ namespace ACBrFramework
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		protected delegate void DoubleProcedurePtrDelegate(double value);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		protected delegate string StrFunctionPtrDelegate();
 
 		protected delegate int GetStringEntryPointDelegate(IntPtr handle, StringBuilder buffer, int bufferLen);
