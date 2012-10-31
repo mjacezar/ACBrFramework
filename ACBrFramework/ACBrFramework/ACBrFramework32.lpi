@@ -47,7 +47,7 @@
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="16" Y="12"/>
+        <CursorPos X="10" Y="15"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -56,11 +56,10 @@
         <Filename Value="ACBrCommonDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrCommonDll"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="2"/>
-        <CursorPos X="43" Y="10"/>
+        <TopLine Value="1"/>
+        <CursorPos X="43" Y="18"/>
         <UsageCount Value="127"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -71,8 +70,8 @@
         <UnitName Value="ACBrECFDll"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1650"/>
-        <CursorPos X="55" Y="1658"/>
+        <TopLine Value="161"/>
+        <CursorPos X="15" Y="163"/>
         <UsageCount Value="173"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -101,8 +100,8 @@
         <UnitName Value="ACBrBALDll"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="435"/>
-        <CursorPos X="89" Y="443"/>
+        <TopLine Value="441"/>
+        <CursorPos X="17" Y="463"/>
         <UsageCount Value="165"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -111,10 +110,13 @@
         <Filename Value="ACBrLCBDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrLCBDll"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="254"/>
-        <CursorPos X="1" Y="263"/>
+        <TopLine Value="258"/>
+        <CursorPos X="12" Y="282"/>
         <UsageCount Value="164"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -174,7 +176,7 @@
         <Filename Value="ACBrAACDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrAACDLL"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="54"/>
         <CursorPos X="6" Y="62"/>
@@ -373,7 +375,7 @@
         <Filename Value="ACBrSintegraDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrSintegraDll"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="864"/>
         <CursorPos X="61" Y="881"/>
@@ -482,7 +484,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit47>
     </Units>
-    <JumpHistory Count="16" HistoryIndex="15">
+    <JumpHistory Count="23" HistoryIndex="22">
       <Position1>
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="21" Column="53" TopLine="13"/>
@@ -547,6 +549,34 @@
         <Filename Value="ACBrCommonDll.pas"/>
         <Caret Line="13" Column="43" TopLine="1"/>
       </Position16>
+      <Position17>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="102" Column="91" TopLine="94"/>
+      </Position17>
+      <Position18>
+        <Filename Value="ACBrBALDll.pas"/>
+        <Caret Line="464" Column="11" TopLine="445"/>
+      </Position18>
+      <Position19>
+        <Filename Value="ACBrBALDll.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position19>
+      <Position20>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="5072" Column="52" TopLine="5063"/>
+      </Position20>
+      <Position21>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position21>
+      <Position22>
+        <Filename Value="ACBrFramework.lpr"/>
+        <Caret Line="15" Column="10" TopLine="1"/>
+      </Position22>
+      <Position23>
+        <Filename Value="ACBrBALDll.pas"/>
+        <Caret Line="76" Column="1" TopLine="62"/>
+      </Position23>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
@@ -554,7 +584,7 @@
     </CustomSessionData>
   </ProjectOptions>
   <CompilerOptions>
-    <Version Value="11"/>
+    <Version Value="9"/>
     <PathDelim Value="\"/>
     <Target>
       <Filename Value="x86\ACBrFramework32"/>
@@ -575,7 +605,6 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <GenerateDebugInfo Value="False"/>
         <UseLineInfoUnit Value="False"/>
         <StripSymbols Value="True"/>
       </Debugging>

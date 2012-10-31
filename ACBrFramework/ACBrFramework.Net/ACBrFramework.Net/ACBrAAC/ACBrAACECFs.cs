@@ -39,7 +39,7 @@ namespace ACBrFramework
 		public void New(ACBrAACECF aacECF)
 		{
 			ACBrAACInterop.TECFAutorizado item = new ACBrAACInterop.TECFAutorizado();
-			item.ValorGT = aacECF.ValorGT;
+			item.ValorGT = Convert.ToDouble(aacECF.ValorGT);
 			item.NumeroSerie = aacECF.NumeroSerie;
 			item.CNI = aacECF.CNI;
 			item.CRO = aacECF.CRO;
@@ -61,7 +61,7 @@ namespace ACBrFramework
 			CheckResult(ret);
 
 			ACBrAACECF aacECF = new ACBrAACECF();
-			aacECF.ValorGT = item.ValorGT;
+			aacECF.ValorGT = Convert.ToDecimal(item.ValorGT);
 			aacECF.NumeroSerie = item.NumeroSerie;
 			aacECF.CNI = item.CNI;
 			aacECF.CRO = item.CRO;

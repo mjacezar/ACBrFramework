@@ -84,10 +84,13 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
-		public int VerificarGrandeTotal(string numSerie, double grandTotal)
+		public int VerificarGTECF(string numSerie, ref decimal grandeTotal)
 		{
-			int ret = ACBrAACInterop.AAC_VerificarGTECF(this.Handle, numSerie, ref grandTotal);
+			double _grandeTotal = 0d;
+			int ret = ACBrAACInterop.AAC_VerificarGTECF(this.Handle, numSerie, ref _grandeTotal);
+			CheckResult(ret);
 
+			grandeTotal = Convert.ToDecimal(_grandeTotal);
 			return ret;
 		}
 
@@ -96,7 +99,6 @@ namespace ACBrFramework
 			get
 			{
 				int ret = ACBrAACInterop.AAC_IdentPaf_ECFsAutorizados_Count(this.Handle);
-
 				CheckResult(ret);
 
 				return ret;

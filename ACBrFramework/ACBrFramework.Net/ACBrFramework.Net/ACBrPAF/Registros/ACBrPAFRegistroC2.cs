@@ -18,9 +18,9 @@ namespace ACBrFramework
 
 		public DateTime HORA_ABASTECIMENTO { get; set; }
 
-		public double ENCERRANTE_INICIAL { get; set; }
+		public decimal ENCERRANTE_INICIAL { get; set; }
 
-		public double ENCERRANTE_FINAL { get; set; }
+		public decimal ENCERRANTE_FINAL { get; set; }
 
 		public string STATUS_ABASTECIMENTO { get; set; }
 
@@ -34,7 +34,7 @@ namespace ACBrFramework
 
 		public int NRO_NOTA_FISCAL { get; set; }
 
-		public Double VOLUME { get; set; }
+		public decimal VOLUME { get; set; }
 
 		public bool RegistroValido { get; set; }
 	}

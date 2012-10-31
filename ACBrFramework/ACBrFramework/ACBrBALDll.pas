@@ -73,7 +73,6 @@ begin
      balHandle^.EventHandlers := TEventHandlers.Create();
      balHandle^.BAL.MonitorarBalanca := False;
      balHandle^.UltimoErro := '';
-     balHandle^.BAL.OnLePeso := balHandle^.EventHandlers.OnLePeso;
 
      Result := 0;
 
@@ -450,8 +449,18 @@ begin
   end;
 
   try
-        balHandle^.EventHandlers.OnLePesoPtr := method;
-        Result := 0;
+     if Assigned(method) then
+       begin
+             balHandle^.BAL.OnLePeso := balHandle^.EventHandlers.OnLePeso;
+             balHandle^.EventHandlers.OnLePesoPtr := method;
+             Result := 0;
+       end
+       else
+       begin
+             balHandle^.BAL.OnLePeso := nil;
+             balHandle^.EventHandlers.OnLePesoPtr := nil;
+             Result := 0;
+       end;
   except
      on exception : Exception do
      begin

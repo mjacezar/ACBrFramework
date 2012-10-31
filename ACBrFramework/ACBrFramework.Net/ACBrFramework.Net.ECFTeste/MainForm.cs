@@ -207,7 +207,7 @@ namespace ACBrFramework.ECFTeste
 			{
 				ACBrAACECF ecfAutorizado = new ACBrAACECF();
 
-				ecfAutorizado.ValorGT = Convert.ToDouble(row.Cells["valorGTColumn"].Value);
+				ecfAutorizado.ValorGT = Convert.ToDecimal(row.Cells["valorGTColumn"].Value);
 				ecfAutorizado.NumeroSerie = row.Cells["numSerieColumn"].Value.ToString();
 				ecfAutorizado.CRO = Convert.ToInt32(row.Cells["CROColumn"].Value);
 				ecfAutorizado.CNI = Convert.ToInt32(row.Cells["CNIColumn"].Value);
@@ -1134,9 +1134,9 @@ namespace ACBrFramework.ECFTeste
 					acbrAAC.NomeArquivoAuxiliar = aacNomeArquivoTextbox.Text;
 
 					string numSerie = aacECFsAutorizadaDataGridView.SelectedRows[0].Cells["numSerieColumn"].Value.ToString();
-					double grandTotal = Convert.ToDouble(aacECFsAutorizadaDataGridView.SelectedRows[0].Cells["valorGTColumn"].Value);
+					decimal grandeTotal = Convert.ToDecimal(aacECFsAutorizadaDataGridView.SelectedRows[0].Cells["valorGTColumn"].Value);
 
-					int retorno = acbrAAC.VerificarGrandeTotal(numSerie, grandTotal);
+					int retorno = acbrAAC.VerificarGTECF(numSerie, ref grandeTotal);
 
 					if (retorno == 0)
 					{

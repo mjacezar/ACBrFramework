@@ -14,9 +14,9 @@
 
 		public string ST { get; set; }
 
-		public double ALIQ { get; set; }
+		public decimal ALIQ { get; set; }
 
-		public double VL_UNIT { get; set; }
+		public decimal VL_UNIT { get; set; }
 
 		public bool RegistroValido { get; set; }
 	}

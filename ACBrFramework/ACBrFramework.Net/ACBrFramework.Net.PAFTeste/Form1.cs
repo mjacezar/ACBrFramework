@@ -110,7 +110,7 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemD2.NUM_DAV = GerarDados('I', 13).ToString();
 					ItemD2.DT_DAV = DateTime.Now;
 					ItemD2.TIT_DAV = "Pedido";
-					ItemD2.VLT_DAV = (double)GerarDados('D', 8);
+					ItemD2.VLT_DAV = (decimal)GerarDados('D', 8);
 					ItemD2.COO_DFV = "0";
 					ItemD2.NUMERO_ECF = "1";
 					ItemD2.NOME_CLIENTE = "Rafael Dias";
@@ -123,16 +123,16 @@ namespace ACBrFramework.Net.PAFTeste
 						ItemD3.NUM_ITEM = d;
 						ItemD3.COD_ITEM = GerarDados('I', 8).ToString();
 						ItemD3.DESC_ITEM = "descricao do item";
-						ItemD3.QTDE_ITEM = (double)GerarDados('D', 8);
+						ItemD3.QTDE_ITEM = (decimal)GerarDados('D', 8);
 						ItemD3.UNI_ITEM = "UN";
-						ItemD3.VL_UNIT = (double)GerarDados('D', 8);
-						ItemD3.VL_DESCTO = (double)GerarDados('D', 8);
-						ItemD3.VL_ACRES = (double)GerarDados('D', 8);
-						ItemD3.VL_TOTAL = (double)GerarDados('D', 8);
+						ItemD3.VL_UNIT = (decimal)GerarDados('D', 8);
+						ItemD3.VL_DESCTO = (decimal)GerarDados('D', 8);
+						ItemD3.VL_ACRES = (decimal)GerarDados('D', 8);
+						ItemD3.VL_TOTAL = (decimal)GerarDados('D', 8);
 						ItemD3.DEC_VL_UNIT = 2;
 						ItemD3.DEC_QTDE_ITEM = 2;
 						ItemD3.SIT_TRIB = "T";
-						ItemD3.ALIQ = (double)GerarDados('D', 8); ;
+						ItemD3.ALIQ = (decimal)GerarDados('D', 8); ;
 						ItemD3.IND_CANC = "M";
 						ItemD3.RegistroValido = true;
 						ItemD2.RegistroD3.Add(ItemD3);
@@ -178,8 +178,8 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemP2.IAT = (string)GerarDados('S', 6);
 					ItemP2.IPPT = (string)GerarDados('S', 6);
 					ItemP2.ST = (string)GerarDados('S', 6);
-					ItemP2.ALIQ = (double)GerarDados('D', 6);
-					ItemP2.VL_UNIT = (double)GerarDados('D', 6);
+					ItemP2.ALIQ = (decimal)GerarDados('D', 6);
+					ItemP2.VL_UNIT = (decimal)GerarDados('D', 6);
 					ItemP2.RegistroValido = true;
 					RegistroP2.Add(ItemP2);
 					ItemP2 = null;
@@ -226,7 +226,7 @@ namespace ACBrFramework.Net.PAFTeste
 			if (tipo == 'I')
 				return Convert.ToInt32(str.ToString().ToUpper().Remove(size - 1));
 			if (tipo == 'D')
-				return Convert.ToDouble(str.ToString().ToUpper().Remove(size - 1));
+				return Convert.ToDecimal(str.ToString().ToUpper().Remove(size - 1));
 			else
 				return str.ToString().ToUpper();
 		}

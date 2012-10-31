@@ -8,7 +8,7 @@
 
 		public string UN_MED { get; set; }
 
-		public double QTDE_EST { get; set; }
+		public decimal QTDE_EST { get; set; }
 
 		public bool RegistroValido { get; set; }
 	}

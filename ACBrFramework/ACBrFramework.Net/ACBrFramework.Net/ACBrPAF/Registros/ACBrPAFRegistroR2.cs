@@ -19,9 +19,9 @@ namespace ACBrFramework
 
 		public DateTime DT_EMI { get; set; }
 
-		public double HR_EMI { get; set; }
+		public DateTime HR_EMI { get; set; }
 
-		public double VL_VBD { get; set; }
+		public decimal VL_VBD { get; set; }
 
 		public string PAR_ECF { get; set; }
 

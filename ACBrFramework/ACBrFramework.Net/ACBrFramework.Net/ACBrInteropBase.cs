@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace ACBrFramework
@@ -7,8 +8,10 @@ namespace ACBrFramework
 	{
 		#region Inner Types
 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		protected delegate void ProcedurePtrDelegate();
 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		protected delegate void DoubleProcedurePtrDelegate(double value);
 
 		protected delegate string StrFunctionPtrDelegate();
