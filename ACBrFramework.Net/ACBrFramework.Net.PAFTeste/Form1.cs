@@ -115,7 +115,7 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemD2.NUMERO_ECF = "1";
 					ItemD2.NOME_CLIENTE = "Rafael Dias";
 					ItemD2.CPF_CNPJ = GerarDados('I', 14).ToString();
-					ItemD2.RegistroD3 = new List<ACBrPAFRegistroD3>();
+					
 					for (int d = 0; d < 5; d++)
 					{
 						ACBrPAFRegistroD3 ItemD3 = new ACBrPAFRegistroD3();

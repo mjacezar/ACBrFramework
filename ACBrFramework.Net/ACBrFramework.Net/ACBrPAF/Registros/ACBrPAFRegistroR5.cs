@@ -2,6 +2,8 @@ namespace ACBrFramework
 {
 	public class ACBrPAFRegistroR5
 	{
+		#region Properties
+
 		public int NUM_ITEM { get; set; }
 
 		public string COD_ITEM { get; set; }
@@ -39,5 +41,7 @@ namespace ACBrFramework
 		public int VL_DECIMAL { get; set; }
 
 		public bool RegistroValido { get; set; }
+
+		#endregion Properties
 	}
 }

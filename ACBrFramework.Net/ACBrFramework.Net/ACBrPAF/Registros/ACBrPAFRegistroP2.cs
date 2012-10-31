@@ -2,6 +2,8 @@
 {
 	public class ACBrPAFRegistroP2
 	{
+		#region Properties
+
 		public string COD_MERC_SERV { get; set; }
 
 		public string DESC_MERC_SERV { get; set; }
@@ -19,5 +21,7 @@
 		public decimal VL_UNIT { get; set; }
 
 		public bool RegistroValido { get; set; }
+
+		#endregion Properties
 	}
 }

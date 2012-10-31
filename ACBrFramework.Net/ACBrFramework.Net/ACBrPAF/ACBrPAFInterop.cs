@@ -452,10 +452,10 @@ namespace ACBrFramework
 			public string ER_PAF_ECF;
 
 			[MarshalAs(UnmanagedType.U1)]
-			public Boolean InclusaoExclusao;
+			public bool InclusaoExclusao;
 
 			[MarshalAs(UnmanagedType.U1)]
-			public Boolean RegistroValido;
+			public bool RegistroValido;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -495,7 +495,7 @@ namespace ACBrFramework
 			public double DT_FIN;
 
 			[MarshalAs(UnmanagedType.U1)]
-			public Boolean RegistroValido;
+			public bool RegistroValido;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -508,7 +508,7 @@ namespace ACBrFramework
 			public double VL_ACUM;
 
 			[MarshalAs(UnmanagedType.U1)]
-			public Boolean RegistroValido;
+			public bool RegistroValido;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -566,7 +566,7 @@ namespace ACBrFramework
 			public string CNPJ_CPF;
 
 			[MarshalAs(UnmanagedType.U1)]
-			public Boolean RegistroValido;
+			public bool RegistroValido;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -627,7 +627,7 @@ namespace ACBrFramework
 			public int VL_DECIMAL;
 
 			[MarshalAs(UnmanagedType.U1)]
-			public Boolean RegistroValido;
+			public bool RegistroValido;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -661,7 +661,7 @@ namespace ACBrFramework
 			public double HR_FIN;
 
 			[MarshalAs(UnmanagedType.U1)]
-			public Boolean RegistroValido;
+			public bool RegistroValido;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -686,7 +686,7 @@ namespace ACBrFramework
 			public double VL_EST;
 
 			[MarshalAs(UnmanagedType.U1)]
-			public Boolean RegistroValido;
+			public bool RegistroValido;
 		}
 
 		#endregion Interop Types
@@ -728,13 +728,13 @@ namespace ACBrFramework
 		public static extern int PAF_GetTrimString(IntPtr pafHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SetTrimString(IntPtr pafHandle, Boolean TrimString);
+		public static extern int PAF_SetTrimString(IntPtr pafHandle, bool TrimString);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int PAF_GetAssinarArquivo(IntPtr pafHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SetAssinarArquivo(IntPtr pafHandle, Boolean Assinar);
+		public static extern int PAF_SetAssinarArquivo(IntPtr pafHandle, bool Assinar);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int PAF_GetChaveRSA(IntPtr aacHandle, StringBuilder buffer, int bufferLen);

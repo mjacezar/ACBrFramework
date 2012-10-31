@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace ACBrFramework
 {
@@ -59,7 +61,7 @@ namespace ACBrFramework
 			}
 		}
 
-		public Boolean TrimString
+		public bool TrimString
 		{
 			get
 			{
@@ -71,7 +73,7 @@ namespace ACBrFramework
 			}
 		}
 
-		public Boolean AssinarArquivo
+		public bool AssinarArquivo
 		{
 			get
 			{
@@ -151,7 +153,7 @@ namespace ACBrFramework
 
 		#region AssinarArquivos
 
-		public Boolean AssinarArquivoComEAD(string arquivo)
+		public bool AssinarArquivoComEAD(string arquivo)
 		{
 			int ret = ACBrPAFInterop.PAF_AssinarArquivoComEAD(this.Handle, arquivo);
 			CheckResult(ret);
@@ -163,7 +165,12 @@ namespace ACBrFramework
 
 		#region SaveFileTXT
 
-		public Boolean SaveFileTXT_B(ACBrPAFRegistroB1 RegistroB1, ACBrPAFRegistroB2[] RegistroB2, string arquivo)
+		public bool SaveFileTXT_B(ACBrPAFRegistroB1 RegistroB1, IEnumerable<ACBrPAFRegistroB2> RegistroB2, string arquivo)
+		{
+			return SaveFileTXT_B(RegistroB1, RegistroB2.ToArray(), arquivo);
+		}
+
+		public bool SaveFileTXT_B(ACBrPAFRegistroB1 RegistroB1, ACBrPAFRegistroB2[] RegistroB2, string arquivo)
 		{
 			int i;
 
@@ -198,7 +205,12 @@ namespace ACBrFramework
 			return Convert.ToBoolean(ret);
 		}
 
-		public Boolean SaveFileTXT_C(ACBrPAFRegistroC1 RegistroC1, ACBrPAFRegistroC2[] RegistroC2, string arquivo)
+		public bool SaveFileTXT_C(ACBrPAFRegistroC1 RegistroC1, IEnumerable<ACBrPAFRegistroC2> RegistroC2, string arquivo)
+		{
+			return SaveFileTXT_C(RegistroC1, RegistroC2.ToArray(), arquivo);
+		}
+
+		public bool SaveFileTXT_C(ACBrPAFRegistroC1 RegistroC1, ACBrPAFRegistroC2[] RegistroC2, string arquivo)
 		{
 			int i;
 
@@ -227,7 +239,7 @@ namespace ACBrFramework
 				RegistroC2Rec[i].HORA = RegistroC2[i].HORA.ToOADate();
 				RegistroC2Rec[i].COO = RegistroC2[i].COO;
 				RegistroC2Rec[i].NRO_NOTA_FISCAL = RegistroC2[i].NRO_NOTA_FISCAL;
-				RegistroC2Rec[i].VOLUME =Convert.ToDouble( RegistroC2[i].VOLUME);
+				RegistroC2Rec[i].VOLUME = Convert.ToDouble(RegistroC2[i].VOLUME);
 				RegistroC2Rec[i].RegistroValido = RegistroC2[i].RegistroValido;
 			}
 
@@ -237,7 +249,12 @@ namespace ACBrFramework
 			return Convert.ToBoolean(ret);
 		}
 
-		public Boolean SaveFileTXT_D(ACBrPAFRegistroD1 RegistroD1, ACBrPAFRegistroD2[] RegistroD2, string arquivo)
+		public bool SaveFileTXT_D(ACBrPAFRegistroD1 RegistroD1, IEnumerable<ACBrPAFRegistroD2> RegistroD2, string arquivo)
+		{
+			return SaveFileTXT_D(RegistroD1, RegistroD2.ToArray(), arquivo);
+		}
+
+		public bool SaveFileTXT_D(ACBrPAFRegistroD1 RegistroD1, ACBrPAFRegistroD2[] RegistroD2, string arquivo)
 		{
 			int i, ItemIndex = 0;
 			int D3 = 0;
@@ -304,7 +321,12 @@ namespace ACBrFramework
 			return Convert.ToBoolean(ret);
 		}
 
-		public Boolean SaveFileTXT_E(ACBrPAFRegistroE1 RegistroE1, ACBrPAFRegistroE2[] RegistroE2, string arquivo)
+		public bool SaveFileTXT_E(ACBrPAFRegistroE1 RegistroE1, IEnumerable<ACBrPAFRegistroE2> RegistroE2, string arquivo)
+		{
+			return SaveFileTXT_E(RegistroE1, RegistroE2.ToArray(), arquivo);
+		}
+
+		public bool SaveFileTXT_E(ACBrPAFRegistroE1 RegistroE1, ACBrPAFRegistroE2[] RegistroE2, string arquivo)
 		{
 			int i;
 
@@ -340,7 +362,12 @@ namespace ACBrFramework
 			return Convert.ToBoolean(ret);
 		}
 
-		public Boolean SaveFileTXT_H(ACBrPAFRegistroH1 RegistroH1, ACBrPAFRegistroH2[] RegistroH2, string arquivo)
+		public bool SaveFileTXT_H(ACBrPAFRegistroH1 RegistroH1, IEnumerable<ACBrPAFRegistroH2> RegistroH2, string arquivo)
+		{
+			return SaveFileTXT_H(RegistroH1, RegistroH2.ToArray(), arquivo);
+		}
+
+		public bool SaveFileTXT_H(ACBrPAFRegistroH1 RegistroH1, ACBrPAFRegistroH2[] RegistroH2, string arquivo)
 		{
 			int i;
 
@@ -379,7 +406,12 @@ namespace ACBrFramework
 			return Convert.ToBoolean(ret);
 		}
 
-		public Boolean SaveFileTXT_N(ACBrPAFRegistroN1 RegistroN1, ACBrPAFRegistroN2 RegistroN2, ACBrPAFRegistroN3[] RegistroN3, string arquivo)
+		public bool SaveFileTXT_N(ACBrPAFRegistroN1 RegistroN1, ACBrPAFRegistroN2 RegistroN2, IEnumerable<ACBrPAFRegistroN3> RegistroN3, string arquivo)
+		{
+			return SaveFileTXT_N(RegistroN1, RegistroN2, RegistroN3.ToArray(), arquivo);
+		}
+
+		public bool SaveFileTXT_N(ACBrPAFRegistroN1 RegistroN1, ACBrPAFRegistroN2 RegistroN2, ACBrPAFRegistroN3[] RegistroN3, string arquivo)
 		{
 			int i;
 
@@ -410,7 +442,12 @@ namespace ACBrFramework
 			return Convert.ToBoolean(ret);
 		}
 
-		public Boolean SaveFileTXT_P(ACBrPAFRegistroP1 RegistroP1, ACBrPAFRegistroP2[] RegistroP2, string arquivo)
+		public bool SaveFileTXT_P(ACBrPAFRegistroP1 RegistroP1, IEnumerable<ACBrPAFRegistroP2> RegistroP2, string arquivo)
+		{
+			return SaveFileTXT_P(RegistroP1, RegistroP2.ToArray(), arquivo);
+		}
+
+		public bool SaveFileTXT_P(ACBrPAFRegistroP1 RegistroP1, ACBrPAFRegistroP2[] RegistroP2, string arquivo)
 		{
 			int i;
 
@@ -442,7 +479,12 @@ namespace ACBrFramework
 			return Convert.ToBoolean(ret);
 		}
 
-		public Boolean SaveFileTXT_R(ACBrPAFRegistroR1 RegistroR1, ACBrPAFRegistroR2[] RegistroR2, ACBrPAFRegistroR4[] RegistroR4, ACBrPAFRegistroR6[] RegistroR6, string arquivo)
+		public bool SaveFileTXT_R(ACBrPAFRegistroR1 RegistroR1, IEnumerable<ACBrPAFRegistroR2> RegistroR2, IEnumerable<ACBrPAFRegistroR4[]> RegistroR4, IEnumerable<ACBrPAFRegistroR6[]> RegistroR6, string arquivo)
+		{
+			return SaveFileTXT_R(RegistroR1, RegistroR2.ToArray(), RegistroR4.ToArray(), RegistroR6.ToArray(), arquivo);
+		}
+
+		public bool SaveFileTXT_R(ACBrPAFRegistroR1 RegistroR1, ACBrPAFRegistroR2[] RegistroR2, ACBrPAFRegistroR4[] RegistroR4, ACBrPAFRegistroR6[] RegistroR6, string arquivo)
 		{
 			int i, ItemR3 = 0, ItemR5 = 0, ItemR7 = 0, R3 = 0, R5 = 0, R7 = 0;
 
@@ -559,7 +601,7 @@ namespace ACBrFramework
 					RegistroR5Rec[ItemR5].IND_CANC = RegistroR5.IND_CANC;
 					RegistroR5Rec[ItemR5].QTDE_CANC = Convert.ToDouble(RegistroR5.QTDE_CANC);
 					RegistroR5Rec[ItemR5].VL_CANC = Convert.ToDouble(RegistroR5.VL_CANC);
-					RegistroR5Rec[ItemR5].VL_CANC_ACRES =Convert.ToDouble( RegistroR5.VL_CANC_ACRES);
+					RegistroR5Rec[ItemR5].VL_CANC_ACRES = Convert.ToDouble(RegistroR5.VL_CANC_ACRES);
 					RegistroR5Rec[ItemR5].IAT = RegistroR5.IAT;
 					RegistroR5Rec[ItemR5].IPPT = RegistroR5.IPPT;
 					RegistroR5Rec[ItemR5].QTDE_DECIMAL = RegistroR5.QTDE_DECIMAL;

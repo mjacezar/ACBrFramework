@@ -42,6 +42,8 @@ Símbolo : Significado
 Changelog
 
 31/10/2012
+[*] Métodos SaveTXT_??? do ACBrPAF recebem arrays ou IEnumerables para facilitar a utilização - Rafael Batiati
+[*] Listas de registros do ACBrPAF trocadas para readonly e instanciadas no construtor - Rafael Batiati
 [*] Alterado os tipos de dados double para decimal no ACBrFramework.Net - Rafael Batiati
 [*] Corrigido o disparo de eventos nos componentes BAL e LCB  - Rafael Batiati
 

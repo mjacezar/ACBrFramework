@@ -4,6 +4,8 @@ namespace ACBrFramework
 {
 	public class ACBrPAFRegistroE1
 	{
+		#region Properties
+
 		public string RazaoSocial { get; set; }
 
 		public string UF { get; set; }
@@ -29,5 +31,7 @@ namespace ACBrFramework
 		public bool RegistroValido { get; set; }
 
 		public bool InclusaoExclusao { get; set; }
+
+		#endregion Properties
 	}
 }
