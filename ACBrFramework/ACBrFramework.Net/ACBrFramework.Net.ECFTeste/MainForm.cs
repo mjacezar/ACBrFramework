@@ -684,7 +684,7 @@ namespace ACBrFramework.ECFTeste
 					for (int i = 0; i < 10; i++)
 					{
 						respListBox.Items.Add(String.Format("Vende Item #{0} ...", i));
-						acbrECF.VendeItem(string.Format("{0:0000000000000}", i + 1), "PRODUTO àáèéìíòóùúü " + i, "7", 1, 1.99M, 0M, "UN", "%", "D");
+						acbrECF.VendeItem(string.Format("{0:0000000000000}", i + 1), "PRODUTO àáèéìíòóùúü " + i, "I", 1, 1.99M, 0M, "UN", "%", "D");
 						Application.DoEvents();
 					}
 
@@ -1198,5 +1198,17 @@ namespace ACBrFramework.ECFTeste
         }
 
 		#endregion Event Handlers        
+
+		StringBuilder bobina = new StringBuilder();
+		private void acbrECF_OnBobinaAdicionaLinhas_1(object sender, BobinaEventArgs e)
+		{
+			bobina.Append(e.Operacao);
+
+			wbBobina.Navigate("about:blank");
+			HtmlDocument doc = wbBobina.Document;
+			doc.Write(string.Format("<HTML>{0}</HTML>", bobina));
+			
+			wbBobina.Refresh();
+		}
 	}
 }

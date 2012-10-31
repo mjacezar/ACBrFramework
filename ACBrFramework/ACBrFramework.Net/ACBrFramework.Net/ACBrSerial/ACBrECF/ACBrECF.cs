@@ -11,10 +11,18 @@ namespace ACBrFramework
 	[ToolboxBitmap(typeof(ACBrECF), @"ACBrSerial.ACBrECF.ico.bmp")]
 	public class ACBrECF : ACBrComponent, IDisposable
 	{
-		#region Events
+		#region InnerTypes
 
-        private EventHandler onPoucoPapelHandler;
-        private EventHandler<BobinaEventArgs> onBobinaAdicionaLinhasHandler;
+		#region Documentation
+		/// <summary>
+		/// Delegate com a assinatura do ponteiro de função utilizado no Interop
+		/// </summary>
+		#endregion Documentation
+		private delegate void OnBobinaAdicionaLinhasPtrDelegate(string linhas, string operacao);
+
+		#endregion InnerTypes
+
+		#region Events
 
         public event EventHandler OnPoucoPapel
         {
@@ -25,7 +33,8 @@ namespace ACBrFramework
 
 				if (!isAssigned)
 				{
-					int ret = ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, (ProcedurePtrDelegate)ecf_OnPoucoPapel);
+					onPoucoPapelCallback = new ProcedurePtrDelegate(ecf_OnPoucoPapel);
+					int ret = ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, onPoucoPapelCallback);
 					CheckResult(ret);
 				}
             }
@@ -37,6 +46,8 @@ namespace ACBrFramework
 				{
 					int ret = ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, null);
 					CheckResult(ret);
+
+					onPoucoPapelCallback = null;
 				}
             }
         }
@@ -50,7 +61,9 @@ namespace ACBrFramework
 
                 if (!isAssigned)
                 {
-                    int ret = ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas(this.Handle, (BobinaProcedurePtrDelegate)ecf_OnBobinaAdicionaLinhas);
+					onBobinaAdicionaLinhasCallback = new OnBobinaAdicionaLinhasPtrDelegate(ecf_OnBobinaAdicionaLinhas);
+                    
+					int ret = ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas(this.Handle, onBobinaAdicionaLinhasCallback);
                     CheckResult(ret);
                 }
             }
@@ -62,6 +75,8 @@ namespace ACBrFramework
                 {
                     int ret = ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas(this.Handle, null);
                     CheckResult(ret);
+
+					onBobinaAdicionaLinhasCallback = null;
                 }
             }
         }
@@ -76,6 +91,13 @@ namespace ACBrFramework
 		private ACBrECFRelatorioGerencial[] relatoriosGerenciais;        
 		private ACBrAAC aac;
 		private ACBrEAD ead;
+
+		private ProcedurePtrDelegate onPoucoPapelCallback;
+		private EventHandler onPoucoPapelHandler;
+
+		private OnBobinaAdicionaLinhasPtrDelegate onBobinaAdicionaLinhasCallback;
+		private EventHandler<BobinaEventArgs> onBobinaAdicionaLinhasHandler;
+
 
 		#endregion Fields
 
