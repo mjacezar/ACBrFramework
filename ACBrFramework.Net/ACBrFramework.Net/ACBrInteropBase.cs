@@ -13,8 +13,6 @@ namespace ACBrFramework
 
 		protected delegate string StrFunctionPtrDelegate();
 
-        protected delegate void BobinaProcedurePtrDelegate(string linhas, string operacao);
-
 		protected delegate int GetStringEntryPointDelegate(IntPtr handle, StringBuilder buffer, int bufferLen);
 
 		protected delegate int GetdoubleEntryPointDelegate(IntPtr handle, ref double value);
