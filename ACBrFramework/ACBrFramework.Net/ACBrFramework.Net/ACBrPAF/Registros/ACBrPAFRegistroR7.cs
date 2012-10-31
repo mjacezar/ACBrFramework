@@ -2,6 +2,8 @@ namespace ACBrFramework
 {
 	public class ACBrPAFRegistroR7
 	{
+		#region Properties
+
 		public int CCF { get; set; }
 
 		public int GNF { get; set; }
@@ -15,5 +17,7 @@ namespace ACBrFramework
 		public decimal VL_EST { get; set; }
 
 		public bool RegistroValido { get; set; }
+
+		#endregion Properties
 	}
 }

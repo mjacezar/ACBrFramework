@@ -2,6 +2,8 @@ namespace ACBrFramework
 {
 	public class ACBrPAFRegistroB1
 	{
+		#region Properties
+
 		public string RazaoSocial { get; set; }
 
 		public string UF { get; set; }
@@ -11,5 +13,7 @@ namespace ACBrFramework
 		public string IE { get; set; }
 
 		public string IM { get; set; }
+
+		#endregion Properties
 	}
 }

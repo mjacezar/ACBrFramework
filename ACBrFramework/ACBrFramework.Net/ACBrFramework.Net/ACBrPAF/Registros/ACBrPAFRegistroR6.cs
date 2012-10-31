@@ -5,7 +5,18 @@ namespace ACBrFramework
 {
 	public class ACBrPAFRegistroR6
 	{
-		public List<ACBrPAFRegistroR7> RegistroR7 { get; set; }
+		#region Constructor
+
+		public ACBrPAFRegistroR6()
+		{
+			RegistroR7 = new List<ACBrPAFRegistroR7>();
+		}
+
+		#endregion Constructor
+
+		#region Properties
+
+		public List<ACBrPAFRegistroR7> RegistroR7 { get; private set; }
 
 		public int NUM_USU { get; set; }
 
@@ -24,5 +35,7 @@ namespace ACBrFramework
 		public DateTime HR_FIN { get; set; }
 
 		public bool RegistroValido { get; set; }
+
+		#endregion Properties
 	}
 }

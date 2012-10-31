@@ -792,7 +792,7 @@ namespace ACBrFramework
 
 		#region Métodos ECF
 
-		public Boolean AcharECF(Boolean Modelo, Boolean Porta, int TimeOut)
+		public bool AcharECF(bool Modelo, bool Porta, int TimeOut)
 		{
 			int ret = ACBrECFInterop.ECF_AcharECF(this.Handle, Modelo, Porta, TimeOut);
 			CheckResult(ret);
@@ -800,7 +800,7 @@ namespace ACBrFramework
 			return Convert.ToBoolean(ret);
 		}
 
-		public Boolean AcharPorta(int TimeOut)
+		public bool AcharPorta(int TimeOut)
 		{
 			int ret = ACBrECFInterop.ECF_AcharPorta(this.Handle, TimeOut);
 			CheckResult(ret);

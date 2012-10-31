@@ -298,7 +298,7 @@ namespace ACBrFramework
 		#region Métodos ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_AcharECF(IntPtr ecfHandle, Boolean Modelo, Boolean Porta, int TimeOut);
+		public static extern int ECF_AcharECF(IntPtr ecfHandle, bool Modelo, bool Porta, int TimeOut);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_AcharPorta(IntPtr ecfHandle, int TimeOut);

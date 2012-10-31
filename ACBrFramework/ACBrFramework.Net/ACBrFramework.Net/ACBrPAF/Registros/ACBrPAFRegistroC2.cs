@@ -4,6 +4,8 @@ namespace ACBrFramework
 {
 	public class ACBrPAFRegistroC2
 	{
+		#region Properties
+
 		public string ID_ABASTECIMENTO { get; set; }
 
 		public string TANQUE { get; set; }
@@ -37,5 +39,7 @@ namespace ACBrFramework
 		public decimal VOLUME { get; set; }
 
 		public bool RegistroValido { get; set; }
+
+		#endregion Properties
 	}
 }

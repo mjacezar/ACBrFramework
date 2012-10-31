@@ -4,6 +4,8 @@ namespace ACBrFramework
 {
 	public class ACBrPAFRegistroD3
 	{
+		#region Properties
+
 		public DateTime DT_INCLUSAO { get; set; }
 
 		public int NUM_ITEM { get; set; }
@@ -35,5 +37,7 @@ namespace ACBrFramework
 		public string IND_CANC { get; set; }
 
 		public bool RegistroValido { get; set; }
+
+		#endregion Properties
 	}
 }

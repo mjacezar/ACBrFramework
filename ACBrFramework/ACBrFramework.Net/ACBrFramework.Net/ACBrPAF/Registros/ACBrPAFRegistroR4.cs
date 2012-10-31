@@ -5,9 +5,21 @@ namespace ACBrFramework
 {
 	public class ACBrPAFRegistroR4
 	{
-		public List<ACBrPAFRegistroR5> RegistroR5 { get; set; }
+		#region Constructor
 
-		public List<ACBrPAFRegistroR7> RegistroR7 { get; set; }
+		public ACBrPAFRegistroR4()
+		{
+			RegistroR5 = new List<ACBrPAFRegistroR5>();
+			RegistroR7 = new List<ACBrPAFRegistroR7>();
+		}
+
+		#endregion Constructor
+
+		#region Properties
+
+		public List<ACBrPAFRegistroR5> RegistroR5 { get; private set; }
+
+		public List<ACBrPAFRegistroR7> RegistroR7 { get; private set; }
 
 		public int NUM_USU { get; set; }
 
@@ -40,5 +52,7 @@ namespace ACBrFramework
 		public string CNPJ_CPF { get; set; }
 
 		public bool RegistroValido { get; set; }
+
+		#endregion Properties
 	}
 }

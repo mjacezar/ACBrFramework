@@ -37,7 +37,7 @@ namespace ACBrDefExporter
 			TypeNames[typeof(Int16)] = "short";
 			TypeNames[typeof(Int32)] = "int";
 			TypeNames[typeof(Int64)] = "long";
-			TypeNames[typeof(Boolean)] = "BOOL";
+			TypeNames[typeof(bool)] = "BOOL";
 			TypeNames[typeof(Double)] = "double";
 			TypeNames[typeof(String)] = "PCHAR";
 			TypeNames[typeof(Char)] = "char";

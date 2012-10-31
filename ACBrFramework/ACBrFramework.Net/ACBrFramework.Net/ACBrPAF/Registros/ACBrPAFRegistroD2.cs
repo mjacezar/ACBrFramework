@@ -5,6 +5,17 @@ namespace ACBrFramework
 {
 	public class ACBrPAFRegistroD2
 	{
+		#region Constructor
+
+		public ACBrPAFRegistroD2()
+		{
+			RegistroD3 = new List<ACBrPAFRegistroD3>();
+		}
+
+		#endregion Constructor
+
+		#region Properties
+
 		public string NUM_FAB { get; set; }
 
 		public string MF_ADICIONAL { get; set; }
@@ -33,8 +44,10 @@ namespace ACBrFramework
 
 		public string CPF_CNPJ { get; set; }
 
-		public List<ACBrPAFRegistroD3> RegistroD3 { get; set; }
+		public List<ACBrPAFRegistroD3> RegistroD3 { get; private set; }
 
 		public bool RegistroValido { get; set; }
+
+		#endregion Properties
 	}
 }

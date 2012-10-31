@@ -4,6 +4,8 @@ namespace ACBrFramework
 {
 	public class ACBrPAFRegistroR1
 	{
+		#region Properties
+
 		public string NUM_FAB { get; set; }
 
 		public string MF_ADICIONAL { get; set; }
@@ -46,8 +48,10 @@ namespace ACBrFramework
 
 		public string ER_PAF_ECF { get; set; }
 
-		public Boolean InclusaoExclusao { get; set; }
+		public bool InclusaoExclusao { get; set; }
 
-		public Boolean RegistroValido { get; set; }
+		public bool RegistroValido { get; set; }
+
+		#endregion Properties
 	}
 }

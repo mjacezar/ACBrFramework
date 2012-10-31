@@ -4,6 +4,8 @@ namespace ACBrFramework
 {
 	public class ACBrPAFRegistroH2
 	{
+		#region Properties
+
 		public string CNPJ_CRED_CARTAO { get; set; }
 
 		public int COO { get; set; }
@@ -19,5 +21,7 @@ namespace ACBrFramework
 		public string Titulo { get; set; }
 
 		public bool RegistroValido { get; set; }
+
+		#endregion Properties
 	}
 }
