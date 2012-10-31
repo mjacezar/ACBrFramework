@@ -689,7 +689,7 @@ namespace ACBrFramework
 			}
 		}
 
-        public string MemoParams
+        public string[] MemoParams
         {
             set
             {
@@ -1057,7 +1057,7 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
-		public void ECF_DoVerificaValorGT()
+		public void DoVerificaValorGT()
 		{
 			int ret = ACBrECFInterop.ECF_DoVerificaValorGT(this.Handle);
 			CheckResult(ret);
@@ -1875,8 +1875,8 @@ namespace ACBrFramework
             if (onBobinaAdicionaLinhasHandler != null)
             {
                 BobinaEventArgs e = new BobinaEventArgs();
-                e.Linhas = Linhas;
-                e.Operacao = Operacao;
+                e.Linhas = FromUTF8(Linhas);
+                e.Operacao = FromUTF8(Operacao);
                 onBobinaAdicionaLinhasHandler(this, e);
             }
         }

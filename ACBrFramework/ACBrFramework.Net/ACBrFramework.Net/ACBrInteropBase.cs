@@ -21,6 +21,8 @@ namespace ACBrFramework
 
 		protected delegate int SetStringEntryPointDelegate(IntPtr handle, string value);
 
+		protected delegate int SetArrayStringEntryPointDelegate(IntPtr handle, string[] value, int count);
+
 		protected delegate int SetdoubleEntryPointDelegate(IntPtr handle, double value);
 
 		protected delegate int SetInt32EntryPointDelegate(IntPtr handle, int value);
@@ -77,6 +79,15 @@ namespace ACBrFramework
 		protected void SetString(SetStringEntryPointDelegate entryPoint, string value)
 		{
 			int ret = entryPoint(Handle, ToUTF8(value));
+			CheckResult(ret);
+		}
+
+		protected void SetString(SetArrayStringEntryPointDelegate entryPoint, string[] value)
+		{
+			for (int i = 0; i < value.Length; i++)
+				value[i] = ToUTF8(value[i]);
+
+			int ret = entryPoint(Handle, value, value.Length);
 			CheckResult(ret);
 		}
 

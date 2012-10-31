@@ -1609,7 +1609,7 @@
 			this.acbrECF.Operador = "";
 			this.acbrECF.Porta = "COM1";
 			this.acbrECF.TimeOut = 3;
-			this.acbrECF.OnBobinaAdicionaLinhas += new System.EventHandler<ACBrFramework.BobinaEventArgs>(this.acbrECF_OnBobinaAdicionaLinhas_1);
+			this.acbrECF.OnBobinaAdicionaLinhas += new System.EventHandler<ACBrFramework.BobinaEventArgs>(this.acbrECF_OnBobinaAdicionaLinhas);
 			// 
 			// acbrPAF
 			// 
