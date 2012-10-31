@@ -10,7 +10,7 @@ namespace ACBrFramework
 
 		public int CCF { get; set; }
 
-		public double VLR_TROCO { get; set; }
+		public decimal VLR_TROCO { get; set; }
 
 		public DateTime DT_TROCO { get; set; }
 

@@ -76,8 +76,6 @@ begin
      lcbHandle^.LCB := TACBrLCB.Create(nil);
      lcbHandle^.EventHandlers := TEventHandlers.Create();
      lcbHandle^.UltimoErro := '';
-     lcbHandle^.LCB.OnLeCodigo:= lcbHandle^.EventHandlers.OnLeCodigo;
-
      Result := 0;
 
   except
@@ -270,8 +268,18 @@ begin
   end;
 
   try
-        lcbHandle^.EventHandlers.OnLeCodigoPtr := method;
-        Result := 0;
+     if Assigned(method) then
+       begin
+             lcbHandle^.LCB.OnLeCodigo := lcbHandle^.EventHandlers.OnLeCodigo;
+             lcbHandle^.EventHandlers.OnLeCodigoPtr := method;
+             Result := 0;
+       end
+       else
+       begin
+             lcbHandle^.LCB.OnLeCodigo := nil;
+             lcbHandle^.EventHandlers.OnLeCodigoPtr := nil;
+             Result := 0;
+       end;
   except
      on exception : Exception do
      begin
@@ -307,29 +315,6 @@ begin
 
 end;
 
-Function LCB_Test(const lcbHandle: PLCBHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (lcbHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-        lcbHandle^.EventHandlers.OnLeCodigoPtr();
-        Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lcbHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-
-end;
-
-
 exports
 
 { Funções }
@@ -342,7 +327,6 @@ LCB_Ativar, LCB_Desativar,
 
 LCB_GetPorta, LCB_SetPorta,
 LCB_GetAtivo, LCB_SetOnLeCodigo,
-LCB_GetUltimoCodigo,
-LCB_Test;
+LCB_GetUltimoCodigo;
 
 end.

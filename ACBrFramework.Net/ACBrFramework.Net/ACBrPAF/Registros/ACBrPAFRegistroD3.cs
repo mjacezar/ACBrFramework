@@ -12,17 +12,17 @@ namespace ACBrFramework
 
 		public string DESC_ITEM { get; set; }
 
-		public double QTDE_ITEM { get; set; }
+		public decimal QTDE_ITEM { get; set; }
 
 		public string UNI_ITEM { get; set; }
 
-		public double VL_UNIT { get; set; }
+		public decimal VL_UNIT { get; set; }
 
-		public double VL_DESCTO { get; set; }
+		public decimal VL_DESCTO { get; set; }
 
-		public double VL_ACRES { get; set; }
+		public decimal VL_ACRES { get; set; }
 
-		public double VL_TOTAL { get; set; }
+		public decimal VL_TOTAL { get; set; }
 
 		public int DEC_VL_UNIT { get; set; }
 
@@ -30,7 +30,7 @@ namespace ACBrFramework
 
 		public string SIT_TRIB { get; set; }
 
-		public double ALIQ { get; set; }
+		public decimal ALIQ { get; set; }
 
 		public string IND_CANC { get; set; }
 

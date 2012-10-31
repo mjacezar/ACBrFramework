@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework
 {
@@ -8,13 +9,40 @@ namespace ACBrFramework
 	{
 		#region Events
 
-		public event EventHandler OnLeCodigo;
+		public event EventHandler OnLeCodigo
+		{
+			add
+			{
+				bool isAssigned = onLeCodigoHandler != null;
+				onLeCodigoHandler = (EventHandler)Delegate.Combine(onLeCodigoHandler, value);
+
+				if (!isAssigned)
+				{
+					onLeCodigoCallback = new ProcedurePtrDelegate(lcb_OnLeCodigo);
+					int ret = ACBrLCBInterop.LCB_SetOnLeCodigo(this.Handle, onLeCodigoCallback);
+					CheckResult(ret);
+				}
+			}
+			remove
+			{
+				onLeCodigoHandler = (EventHandler)Delegate.Remove(onLeCodigoHandler, value);
+
+				if (onLeCodigoHandler == null)
+				{
+					int ret = ACBrLCBInterop.LCB_SetOnLeCodigo(this.Handle, null);
+					CheckResult(ret);
+
+					onLeCodigoCallback = null;
+				}
+			}
+		}
 
 		#endregion Events
 
 		#region Fields
 
-		private ProcedurePtrDelegate onLeCodigoHandler;
+		private ProcedurePtrDelegate onLeCodigoCallback;
+		private EventHandler onLeCodigoHandler;
 
 		#endregion Fields
 
@@ -74,17 +102,15 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
-		public void Test()
-		{
-			int ret = ACBrLCBInterop.LCB_Test(this.Handle);
-			CheckResult(ret);
-		}
-
 		#region EventHandlers
 
+		[AllowReversePInvokeCalls]
 		private void lcb_OnLeCodigo()
 		{
-			if (OnLeCodigo != null) OnLeCodigo(this, EventArgs.Empty);
+			if (onLeCodigoHandler != null)
+			{
+				onLeCodigoHandler(this, EventArgs.Empty);
+			}
 		}
 
 		#endregion EventHandlers
@@ -101,8 +127,8 @@ namespace ACBrFramework
 
 		private void InitializeEvents()
 		{
-			onLeCodigoHandler = new ProcedurePtrDelegate(lcb_OnLeCodigo);
-			int ret = ACBrLCBInterop.LCB_SetOnLeCodigo(this.Handle, onLeCodigoHandler);
+			onLeCodigoCallback = new ProcedurePtrDelegate(lcb_OnLeCodigo);
+			int ret = ACBrLCBInterop.LCB_SetOnLeCodigo(this.Handle, onLeCodigoCallback);
 			CheckResult(ret);
 		}
 

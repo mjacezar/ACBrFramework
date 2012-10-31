@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework
 {
@@ -8,13 +9,41 @@ namespace ACBrFramework
 	{
 		#region Events
 
-		public event EventHandler<LePesoEventArgs> OnLePeso;
+		public event EventHandler<LePesoEventArgs> OnLePeso
+		{
+			add
+			{
+				bool isAssigned = onLePesoHandler != null;
+				onLePesoHandler = (EventHandler<LePesoEventArgs>)Delegate.Combine(onLePesoHandler, value);
+
+				if (!isAssigned)
+				{
+					onLePesoCallback = new DoubleProcedurePtrDelegate(bal_OnLePeso);
+					int ret = ACBrBALInterop.BAL_SetOnLePeso(this.Handle, onLePesoCallback);
+					CheckResult(ret);
+				}
+			}
+			remove
+			{
+				onLePesoHandler = (EventHandler<LePesoEventArgs>)Delegate.Remove(onLePesoHandler, value);
+
+				if (onLePesoHandler == null)
+				{
+					int ret = ACBrBALInterop.BAL_SetOnLePeso(this.Handle, null);
+					CheckResult(ret);
+
+					onLePesoCallback = null;
+				}
+			}
+		}
+
 
 		#endregion Events
 
 		#region Fields
 
-		DoubleProcedurePtrDelegate onLePeso;
+		private DoubleProcedurePtrDelegate onLePesoCallback;
+		private EventHandler<LePesoEventArgs> onLePesoHandler;
 
 		#endregion Fields
 
@@ -150,19 +179,7 @@ namespace ACBrFramework
 		{
 			CallCreate(ACBrBALInterop.BAL_Create);
 			Device = new ACBrDevice(this);
-
-			InitializeEvents();
 		}
-
-		private void InitializeEvents()
-		{
-			int ret;
-
-			onLePeso = new DoubleProcedurePtrDelegate(bal_OnLePeso);
-			ret = ACBrBALInterop.BAL_SetOnLePeso(this.Handle, onLePeso);
-			CheckResult(ret);
-		}
-
 
 		protected override void OnDisposing()
 		{
@@ -176,13 +193,14 @@ namespace ACBrFramework
 
 		#region EventHandlers
 
+		[AllowReversePInvokeCalls]
 		private void bal_OnLePeso(double value)
 		{
-			if (OnLePeso != null)
+			if (onLePesoHandler != null)
 			{
 				LePesoEventArgs e = new LePesoEventArgs();
 				e.Peso = Convert.ToDecimal(value);
-				OnLePeso(this, e);
+				onLePesoHandler(this, e);
 			}
 		}
 

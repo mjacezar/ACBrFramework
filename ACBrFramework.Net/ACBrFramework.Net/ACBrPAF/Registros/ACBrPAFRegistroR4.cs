@@ -17,21 +17,21 @@ namespace ACBrFramework
 
 		public DateTime DT_INI { get; set; }
 
-		public double SUB_DOCTO { get; set; }
+		public decimal SUB_DOCTO { get; set; }
 
-		public double SUB_DESCTO { get; set; }
+		public decimal SUB_DESCTO { get; set; }
 
 		public string TP_DESCTO { get; set; }
 
-		public double SUB_ACRES { get; set; }
+		public decimal SUB_ACRES { get; set; }
 
 		public string TP_ACRES { get; set; }
 
-		public double VL_TOT { get; set; }
+		public decimal VL_TOT { get; set; }
 
 		public string CANC { get; set; }
 
-		public double VL_CA { get; set; }
+		public decimal VL_CA { get; set; }
 
 		public string ORDEM_DA { get; set; }
 

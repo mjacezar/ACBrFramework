@@ -6,7 +6,7 @@ namespace ACBrFramework
 	{
 		#region Properties
 
-		public double ValorGT { get; set; }
+		public decimal ValorGT { get; set; }
 
 		public string NumeroSerie { get; set; }
 

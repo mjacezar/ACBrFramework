@@ -63,10 +63,10 @@ namespace ACBrFramework
 		public static extern int AAC_SalvarArquivo(IntPtr aacHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int AAC_VerificarGTECF(IntPtr aacHandle, string numSerie, ref double grandTotal);
+		public static extern int AAC_VerificarGTECF(IntPtr aacHandle, string numSerie, ref double grandeTotal);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int AAC_AtualizarValorGT(IntPtr aacHandle, string numSerie, ref double grandTotal);
+		public static extern int AAC_AtualizarValorGT(IntPtr aacHandle, string numSerie, ref double grandeTotal);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int AAC_GetNomeArquivoAux(IntPtr aacHandle, StringBuilder buffer, int bufferLen);

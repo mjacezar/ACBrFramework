@@ -23,7 +23,7 @@ namespace ACBrFramework
 
 		public string TIT_DAV { get; set; }
 
-		public double VLT_DAV { get; set; }
+		public decimal VLT_DAV { get; set; }
 
 		public string COO_DFV { get; set; }
 

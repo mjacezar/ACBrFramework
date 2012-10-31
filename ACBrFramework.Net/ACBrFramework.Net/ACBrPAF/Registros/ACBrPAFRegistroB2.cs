@@ -13,8 +13,8 @@ namespace ACBrFramework
 		public string CPF_TECNICO;
 		public string NRO_LACRE_ANTES;
 		public string NRO_LACRE_APOS;
-		public double ENCERRANTE_ANTES;
-		public double ENCERRANTE_APOS;
+		public decimal ENCERRANTE_ANTES;
+		public decimal ENCERRANTE_APOS;
 		public bool RegistroValido;
 	}
 }

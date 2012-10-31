@@ -18,6 +18,7 @@ namespace ACBrFramework
 		/// Delegate com a assinatura do ponteiro de função utilizado no Interop
 		/// </summary>
 		#endregion Documentation
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		private delegate void OnBobinaAdicionaLinhasPtrDelegate(string linhas, string operacao);
 
 		#endregion InnerTypes
@@ -1862,6 +1863,7 @@ namespace ACBrFramework
 
 		#region EventHandlers
 
+		[AllowReversePInvokeCalls]
 		private void ecf_OnPoucoPapel()
 		{
             if (onPoucoPapelHandler != null)
@@ -1870,6 +1872,7 @@ namespace ACBrFramework
 			}
 		}
 
+		[AllowReversePInvokeCalls]
         private void ecf_OnBobinaAdicionaLinhas(string Linhas, string Operacao)
         {
             if (onBobinaAdicionaLinhasHandler != null)
