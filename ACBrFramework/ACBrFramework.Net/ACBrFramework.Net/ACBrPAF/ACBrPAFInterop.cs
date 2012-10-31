@@ -779,6 +779,9 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int PAF_AssinarArquivoComEAD(IntPtr eadHandle, String Arquivo);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_SetOnPAFGetKeyRSA(IntPtr eadHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+        
 		#endregion Methods
 
 		#endregion ACBrPAF

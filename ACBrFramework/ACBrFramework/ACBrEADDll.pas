@@ -71,8 +71,6 @@ begin
      New(eadHandle);
      eadHandle^.EAD := TACBrEAD.Create(nil);
      eadHandle^.EventHandlers := TEventHandlers.Create();
-     eadHandle^.EAD.OnGetChavePrivada := eadHandle^.EventHandlers.GetChavePrivada;
-     eadHandle^.EAD.OnGetChavePublica := eadHandle^.EventHandlers.GetChavePublica;
      eadHandle^.UltimoErro:= '';
      Result := 0;
   except
@@ -133,22 +131,6 @@ begin
   end;
 end;
 
-{Procedures}
-procedure TEventHandlers.GetChavePrivada(var Chave : AnsiString);
-begin
-  if (Length(ChavePrivada) > 0) then
-    Chave := ChavePrivada
-  else
-     Chave := OnGetChavePrivadaPtr();
-end;
-
-procedure TEventHandlers.GetChavePublica(var Chave : AnsiString);
-begin
-  if (Length(ChavePublica) > 0) then
-    Chave := ChavePublica
-  else
-     Chave := OnGetChavePublicaPtr();
-end;
 
 { Funções mapeando as propriedades do componente }
 Function EAD_GetChavePrivada(const eadHandle: PEADHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -174,6 +156,10 @@ Function EAD_SetChavePrivada(const eadHandle: PEADHandle; const Chave : pChar) :
 begin
 
   try
+     if not Assigned(eadHandle^.EAD.OnGetChavePrivada) then
+     begin
+     eadHandle^.EAD.OnGetChavePrivada := eadHandle^.EventHandlers.GetChavePrivada;
+     end;
      eadHandle^.EventHandlers.ChavePrivada := Chave;
      Result := 0;
   except
@@ -208,6 +194,10 @@ end;
 Function EAD_SetChavePublica(const eadHandle: PEADHandle; const Chave : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
   try
+     if not Assigned(eadHandle^.EAD.OnGetChavePublica) then
+     begin
+     eadHandle^.EAD.OnGetChavePublica := eadHandle^.EventHandlers.GetChavePublica;
+     end;
      eadHandle^.EventHandlers.ChavePublica := Chave;
      Result := 0;
   except
@@ -458,6 +448,23 @@ begin
   end
 end;
 
+/////Eventos
+
+procedure TEventHandlers.GetChavePrivada(var Chave : AnsiString);
+begin
+  if (Length(ChavePrivada) > 0) then
+    Chave := ChavePrivada
+  else
+     Chave := OnGetChavePrivadaPtr();
+end;
+
+procedure TEventHandlers.GetChavePublica(var Chave : AnsiString);
+begin
+  if (Length(ChavePublica) > 0) then
+    Chave := ChavePublica
+  else
+     Chave := OnGetChavePublicaPtr();
+end;
 
 Function EAD_SetOnGetChavePublica(const eadHandle: PEADHandle; const method : TStrFunctionPtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -469,8 +476,18 @@ begin
   end;
 
   try
+     if Assigned(method) then
+     begin
+        eadHandle^.EAD.OnGetChavePublica := eadHandle^.EventHandlers.GetChavePublica;
         eadHandle^.EventHandlers.OnGetChavePublicaPtr := method;
         Result := 0;
+     end
+     else
+     begin
+        eadHandle^.EAD.OnGetChavePublica := nil;
+        eadHandle^.EventHandlers.OnGetChavePublicaPtr := nil;
+        Result := 0;
+     end;
   except
      on exception : Exception do
      begin
@@ -491,8 +508,18 @@ begin
   end;
 
   try
+     if Assigned(method) then
+     begin
+        eadHandle^.EAD.OnGetChavePrivada := eadHandle^.EventHandlers.GetChavePrivada;
         eadHandle^.EventHandlers.OnGetChavePrivadaPtr := method;
         Result := 0;
+     end
+     else
+     begin
+        eadHandle^.EAD.OnGetChavePrivada := nil;
+        eadHandle^.EventHandlers.OnGetChavePrivadaPtr := nil;
+        Result := 0;
+     end;
   except
      on exception : Exception do
      begin
@@ -500,9 +527,9 @@ begin
         Result := -1;
      end
   end;
-
 end;
 
+///Fim Eventos
 exports
 
 { Funções }

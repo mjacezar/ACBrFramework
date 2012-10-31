@@ -1,0 +1,9 @@
+<VSContent xmlns="http://schemas.microsoft.com/developer/vscontent/2005">
+    <Content>
+        <FileName>ACBrFramework\ACBrFramework.Net.dll</FileName>
+        <DisplayName>ACBrFramework.Net</DisplayName>
+        <Description>Componentes ACBr.</Description>
+        <FileContentType>Toolbox Control</FileContentType>
+        <ContentVersion>2.0</ContentVersion>
+    </Content>
+</VSContent>

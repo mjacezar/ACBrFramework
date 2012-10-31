@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Linq;
 
@@ -8,7 +9,42 @@ namespace ACBrFramework
 	[ToolboxBitmap(typeof(ACBrPAF), @"ACBrPAF.ico.bmp")]
 	public class ACBrPAF : ACBrComponent, IDisposable
 	{
-		#region Fields
+        #region EventHandlers
+
+        public event EventHandler<ChaveEventArgs> OnPAFGetKeyRSA
+        {
+            add
+            {
+                bool isAssigned = OnPAFGetKeyRSAHandler != null;
+                OnPAFGetKeyRSAHandler = (EventHandler<ChaveEventArgs>)Delegate.Combine(OnPAFGetKeyRSAHandler, value);
+
+                if (!isAssigned)
+                {
+                    OnPAFGetKeyRSACallback = new StrFunctionPtrDelegate(paf_OnPAFGetKeyRSA);
+                    int ret = ACBrPAFInterop.PAF_SetOnPAFGetKeyRSA(this.Handle, OnPAFGetKeyRSACallback);
+                    CheckResult(ret);
+                }
+            }
+            remove
+            {
+                OnPAFGetKeyRSAHandler = (EventHandler<ChaveEventArgs>)Delegate.Remove(OnPAFGetKeyRSAHandler, value);
+
+                if (OnPAFGetKeyRSAHandler == null)
+                {
+                    int ret = ACBrPAFInterop.PAF_SetOnPAFGetKeyRSA(this.Handle, null);
+                    CheckResult(ret);
+
+                    OnPAFGetKeyRSACallback = null;
+                }
+            }
+        }
+
+        #endregion EventHandlers
+
+        #region Fields
+
+        private StrFunctionPtrDelegate OnPAFGetKeyRSACallback;
+        private event EventHandler<ChaveEventArgs> OnPAFGetKeyRSAHandler;
 
 		private ACBrAAC aac;
 		private ACBrEAD ead;
@@ -689,6 +725,23 @@ namespace ACBrFramework
 		}
 
 		#endregion Override Methods
+
+        #region EventHandlers
+
+        [AllowReversePInvokeCalls]
+        private string paf_OnPAFGetKeyRSA()
+        {
+            ChaveEventArgs e = new ChaveEventArgs();
+
+            if (OnPAFGetKeyRSAHandler != null)
+            {
+                OnPAFGetKeyRSAHandler(this, e);
+            }
+
+            return e.Chave;
+        }
+
+        #endregion EventHandlers
 
 		#endregion Methods
 	}

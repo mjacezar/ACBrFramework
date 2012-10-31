@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace ACBrFramework
@@ -9,15 +10,71 @@ namespace ACBrFramework
 	{
 		#region Events
 
-		public event EventHandler<ChaveEventArgs> OnGetChavePublica;
-		public event EventHandler<ChaveEventArgs> OnGetChavePrivada;
+        public event EventHandler<ChaveEventArgs> OnGetChavePublica
+        {
+            add
+            {
+                bool isAssigned = onGetChavePublicaHandler != null;
+                onGetChavePublicaHandler = (EventHandler<ChaveEventArgs>)Delegate.Combine(onGetChavePublicaHandler, value);
+
+                if (!isAssigned)
+                {
+                    onGetChavePublicaCallback = new StrFunctionPtrDelegate(ead_OnGetChavePublica);
+                    int ret = ACBrEADInterop.EAD_SetOnGetChavePublica(this.Handle, onGetChavePublicaCallback);
+                    CheckResult(ret);
+                }
+            }
+            remove
+            {
+                onGetChavePublicaHandler = (EventHandler<ChaveEventArgs>)Delegate.Remove(onGetChavePublicaHandler, value);
+
+                if (onGetChavePublicaHandler == null)
+                {
+                    int ret = ACBrEADInterop.EAD_SetOnGetChavePublica(this.Handle, null);
+                    CheckResult(ret);
+
+                    onGetChavePublicaCallback = null;
+                }
+            }
+        }
+
+		public event EventHandler<ChaveEventArgs> OnGetChavePrivada
+        {
+            add
+            {
+                bool isAssigned = onGetChavePrivadaHandler != null;
+                onGetChavePrivadaHandler = (EventHandler<ChaveEventArgs>)Delegate.Combine(onGetChavePrivadaHandler, value);
+
+                if (!isAssigned)
+                {
+                    onGetChavePrivadaCallback = new StrFunctionPtrDelegate(ead_OnGetChavePrivada);
+                    int ret = ACBrEADInterop.EAD_SetOnGetChavePrivada(this.Handle, onGetChavePrivadaCallback);
+                    CheckResult(ret);
+                }
+            }
+            remove
+            {
+                onGetChavePrivadaHandler = (EventHandler<ChaveEventArgs>)Delegate.Remove(onGetChavePrivadaHandler, value);
+
+                if (onGetChavePrivadaHandler == null)
+                {
+                    int ret = ACBrEADInterop.EAD_SetOnGetChavePrivada(this.Handle, null);
+                    CheckResult(ret);
+
+                    onGetChavePrivadaCallback = null;
+                }
+            }
+        }
 
 		#endregion Events
 
 		#region Fields
 
-		private StrFunctionPtrDelegate onGetChavePublica;
-		private StrFunctionPtrDelegate onGetChavePrivada;
+        private StrFunctionPtrDelegate onGetChavePublicaCallback;
+        private StrFunctionPtrDelegate onGetChavePrivadaCallback;
+
+        private EventHandler<ChaveEventArgs> onGetChavePublicaHandler;
+        private EventHandler<ChaveEventArgs> onGetChavePrivadaHandler;
 
 		#endregion Fields
 
@@ -128,25 +185,27 @@ namespace ACBrFramework
 
 		#region EventHandlers
 
+        [AllowReversePInvokeCalls]
 		private string ead_OnGetChavePublica()
 		{
 			ChaveEventArgs e = new ChaveEventArgs();
 
-			if (OnGetChavePublica != null)
+			if (onGetChavePublicaHandler != null)
 			{
-				OnGetChavePublica(this, e);
+                onGetChavePublicaHandler(this, e);
 			}
 
 			return e.Chave;
 		}
 
+        [AllowReversePInvokeCalls]
 		private string ead_OnGetChavePrivada()
 		{
 			ChaveEventArgs e = new ChaveEventArgs();
 
-			if (onGetChavePrivada != null)
+            if (onGetChavePrivadaHandler != null)
 			{
-				OnGetChavePrivada(this, e);
+                onGetChavePrivadaHandler(this, e);
 			}
 
 			return e.Chave;
@@ -158,23 +217,7 @@ namespace ACBrFramework
 
 		protected internal override void OnInitializeComponent()
 		{
-			CallCreate(ACBrEADInterop.EAD_Create);
-
-			InitializeEvents();
-		}
-
-		private void InitializeEvents()
-		{
-			int ret;
-
-			onGetChavePublica = new StrFunctionPtrDelegate(ead_OnGetChavePublica);
-			onGetChavePrivada = new StrFunctionPtrDelegate(ead_OnGetChavePrivada);
-
-			ret = ACBrEADInterop.EAD_SetOnGetChavePublica(this.Handle, onGetChavePublica);
-			CheckResult(ret);
-
-			ret = ACBrEADInterop.EAD_SetOnGetChavePrivada(this.Handle, onGetChavePrivada);
-			CheckResult(ret);
+			CallCreate(ACBrEADInterop.EAD_Create);	
 		}
 
 		protected internal override void CheckResult(int ret)

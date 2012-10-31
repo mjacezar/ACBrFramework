@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using System.Drawing;
 
 namespace ACBrFramework
@@ -9,13 +10,40 @@ namespace ACBrFramework
 	{
 		#region EventHandlers
 
-		public event EventHandler<ChaveEventArgs> OnGetChave;
+        public event EventHandler<ChaveEventArgs> OnGetChave
+        {
+            add
+            {
+                bool isAssigned = OnGetChaveHandler != null;
+                OnGetChaveHandler = (EventHandler<ChaveEventArgs>)Delegate.Combine(OnGetChaveHandler, value);
+
+                if (!isAssigned)
+                {
+                    onGetChaveCallback = new StrFunctionPtrDelegate(aac_OnGetChave);
+                    int ret = ACBrEADInterop.EAD_SetOnGetChavePrivada(this.Handle, onGetChaveCallback);
+                    CheckResult(ret);
+                }
+            }
+            remove
+            {
+                OnGetChaveHandler = (EventHandler<ChaveEventArgs>)Delegate.Remove(OnGetChaveHandler, value);
+
+                if (OnGetChaveHandler == null)
+                {
+                    int ret = ACBrEADInterop.EAD_SetOnGetChavePrivada(this.Handle, null);
+                    CheckResult(ret);
+
+                    onGetChaveCallback = null;
+                }
+            }
+        }
 
 		#endregion EventHandlers
 
 		#region Fields
 
-		private StrFunctionPtrDelegate onGetChave;
+        private StrFunctionPtrDelegate onGetChaveCallback;
+        private event EventHandler<ChaveEventArgs> OnGetChaveHandler;
 
 		#endregion Fields
 
@@ -134,30 +162,20 @@ namespace ACBrFramework
 		{
 			CallCreate(ACBrAACInterop.AAC_Create);
 			IdentPaf = new ACBrECFIdenticacaoPaf(this);
-
-			InitializeEvents();
-		}
-
-		private void InitializeEvents()
-		{
-			int ret;
-
-			onGetChave = new StrFunctionPtrDelegate(aac_OnGetChave);
-			ret = ACBrAACInterop.AAC_SetOnGetChave(this.Handle, onGetChave);
-			CheckResult(ret);
-		}
-
+        }
+        
 		#endregion Overrides Methods
 
 		#region EventHandlers
 
+        [AllowReversePInvokeCalls]
 		private string aac_OnGetChave()
 		{
 			ChaveEventArgs e = new ChaveEventArgs();
-			
-			if (OnGetChave != null)
+
+            if (OnGetChaveHandler != null)
 			{
-				OnGetChave(this, e);
+                OnGetChaveHandler(this, e);
 			}
 
 			return e.Chave;
