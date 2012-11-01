@@ -30,7 +30,7 @@ namespace ACBrFramework
 
                 if (OnGetChaveHandler == null)
                 {
-                    int ret = ACBrEADInterop.EAD_SetOnGetChavePrivada(this.Handle, null);
+                    int ret = ACBrAACInterop.AAC_SetOnGetChave(this.Handle, null);
                     CheckResult(ret);
 
                     onGetChaveCallback = null;
