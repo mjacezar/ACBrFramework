@@ -20,7 +20,7 @@ namespace ACBrFramework
                 if (!isAssigned)
                 {
                     onGetChaveCallback = new StrFunctionPtrDelegate(aac_OnGetChave);
-                    int ret = ACBrEADInterop.EAD_SetOnGetChavePrivada(this.Handle, onGetChaveCallback);
+                    int ret = ACBrAACInterop.AAC_SetOnGetChave(this.Handle, onGetChaveCallback);
                     CheckResult(ret);
                 }
             }

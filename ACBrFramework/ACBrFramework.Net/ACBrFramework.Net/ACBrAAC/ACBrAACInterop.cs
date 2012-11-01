@@ -78,9 +78,6 @@ namespace ACBrFramework
 		public static extern int AAC_GetChave(IntPtr aacHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int AAC_SetChave(IntPtr aacHandle, string chave);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int AAC_GetArqLOG(IntPtr aacHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
