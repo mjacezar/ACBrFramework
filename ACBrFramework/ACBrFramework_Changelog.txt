@@ -41,7 +41,10 @@ Símbolo : Significado
 
 Changelog
 
-31/10/2012
+01/11/2012 (ACBrFramework 0.9.1.4)
+[-] Corrigido erro no evento OnGetChave do AAC - ACBrFramework.Net - Rafael Dias.
+
+31/10/2012 (ACBrFramework 0.9.1.4)
 [*] Alterado os tipos de dados double para decimal - ACBrFramework.Net - Rafael Batiati.
 [*] Melhorado o disparo de eventos nos componentes BAL e LCB - ACBrFramework e ACBrFramework.Net - Rafael Batiati.
 [*] Melhorado o disparo de eventos nos componentes ECF, AAC e EAD - ACBrFramework e ACBrFramework.Net - Rafael Dias.
