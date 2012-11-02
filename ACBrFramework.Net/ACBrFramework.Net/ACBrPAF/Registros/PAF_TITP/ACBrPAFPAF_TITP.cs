@@ -4,14 +4,13 @@ using System.Collections.Generic;
 
 namespace ACBrFramework
 {
-	public sealed class ACBrPAFPAF_TITP : ACBrComposedComponent
+	public sealed class ACBrPAFPAF_TITP
 	{
 		#region Constructor
 
-		internal ACBrPAFPAF_TITP(ACBrPAF acbrPAF) 
-			: base(acbrPAF) 
+		internal ACBrPAFPAF_TITP() 
 		{
-			this.Mercadorias = new ACBrPAFRegistroMercadorias(this);
+			this.Mercadorias = new ACBrPAFRegistroMercadorias();
 		}
 
 		#endregion Constructor
@@ -27,8 +26,7 @@ namespace ACBrFramework
 
 		public void LimparRegistros()
 		{
-			int ret = ACBrPAFInterop.PAF_TITP_LimpaRegistros(this.Handle);
-			CheckResult(ret);
+			Mercadorias.Clear();
 		}
 
 		#endregion Methods
