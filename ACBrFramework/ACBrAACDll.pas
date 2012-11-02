@@ -37,8 +37,12 @@ type TECFAutorizado = record
      DtHrAtualizado : double;
 end;
 
-implementation
+type TECFArquivo = record
+     NOME_ARQUIVO : array[0..50] of char;
+     MD5          : array[0..32] of char;
+end;
 
+implementation
 
 {
 PADRONIZAÇÃO DAS FUNÇÕES:
@@ -519,6 +523,108 @@ begin
 
   try
      Result := aacHandle^.AAC.IdentPAF.ECFsAutorizados.Count;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+// Dados de Outros Arquivos
+
+Function AAC_IdentPaf_OutrosArquivos_Clear(const aacHandle: PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.OutrosArquivos.Clear;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_OutrosArquivos_Get(const aacHandle: PAACHandle; var retECFArquivos :  TECFArquivo; const index : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  ecfArquivo : TACBrECFArquivo;
+begin
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+      if (index >= 0) and (index < aacHandle^.AAC.IdentPAF.OutrosArquivos.Count) then
+         begin
+              ecfArquivo :=  aacHandle^.AAC.IdentPAF.OutrosArquivos[index];
+              retECFArquivos.NOME_ARQUIVO := pChar(ecfArquivo.Nome);
+              retECFArquivos.MD5 := pChar(ecfArquivo.MD5);
+              Result := 0;
+      end
+      else
+      begin
+              Result := -3;
+      end;
+
+   except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function AAC_IdentPaf_OutrosArquivos_New(const aacHandle: PAACHandle;  const ECFArquivos : TECFArquivo) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with aacHandle^.AAc.IdentPAF.OutrosArquivos.New do
+     begin
+        Nome := ECFArquivos.NOME_ARQUIVO;
+        MD5  := ECFArquivos.MD5;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function AAC_IdentPaf_OutrosArquivos_Count(const aacHandle: PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := aacHandle^.AAC.IdentPAF.OutrosArquivos.Count;
   except
      on exception : Exception do
      begin
@@ -2544,14 +2650,21 @@ AAC_IdentPaf_Paf_GetMinasLegal,AAC_IdentPaf_Paf_SetMinasLegal,
 { Métodos do Componente }
 AAC_AbrirArquivo,
 AAC_SalvarArquivo,
+
+{ ECFs Autorizados }
 AAC_IdentPaf_ECFsAutorizados_Clear,
 AAC_IdentPaf_ECFsAutorizados_New,
 AAC_IdentPaf_ECFsAutorizados_Get,
 AAC_IdentPaf_ECFsAutorizados_Count,
 
+{ Outros Arquivos }
+AAC_IdentPaf_OutrosArquivos_Clear,
+AAC_IdentPaf_OutrosArquivos_New,
+AAC_IdentPaf_OutrosArquivos_Get,
+AAC_IdentPaf_OutrosArquivos_Count,
+
 {Eventos}
-AAC_SetOnGetChave
-;
+AAC_SetOnGetChave;
 
 
 

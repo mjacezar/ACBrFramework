@@ -39,6 +39,16 @@ namespace ACBrFramework
 			public double DtHrAtualizado;
 		}
 
+		[StructLayout(LayoutKind.Sequential)]
+		public struct TECFArquivo
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 51)]
+			public string NOME_ARQUIVO;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 33)]
+			public string MD5; 
+		}
+
 		#endregion Interop Types
 
 		#region Constructors/Erro Handler
@@ -96,6 +106,22 @@ namespace ACBrFramework
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int AAC_IdentPaf_ECFsAutorizados_Count(IntPtr aacHandle);
+
+		#endregion ECFs Autorizadas
+
+		#region Outros Arquivos
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_OutrosArquivos_Clear(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_OutrosArquivos_New(IntPtr aacHandle, TECFArquivo ecfArquivo);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_OutrosArquivos_Get(IntPtr aacHandle, ref TECFArquivo ecfArquivo, int index);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_OutrosArquivos_Count(IntPtr aacHandle);
 
 		#endregion ECFs Autorizadas
 

@@ -128,12 +128,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ACBrAAC\ACBrAAC.cs" />
+    <Compile Include="ACBrAAC\ACBrAACArquivo.cs" />
+    <Compile Include="ACBrAAC\ACBrAACArquivos.cs" />
     <Compile Include="ACBrAAC\ACBrAACECF.cs" />
     <Compile Include="ACBrAAC\ACBrAACECFs.cs" />
     <Compile Include="ACBrAAC\ACBrAACInterop.cs" />
     <Compile Include="ACBrAAC\ACBrECFEmpresa.cs" />
     <Compile Include="ACBrAAC\ACBrECFIdenticacaoPaf.cs" />
     <Compile Include="ACBrAAC\ACBrECFInfoPaf.cs" />
+    <Compile Include="ACBrPAF\Registros\PAF_TITP\ACBrPAFRegistroInsumos.cs" />
+    <Compile Include="ACBrPAF\Registros\PAF_TITP\ACBrPAFRegistroMercadorias.cs" />
+    <Compile Include="ACBrPAF\Registros\PAF_TITP\ACBrPAFPAF_TITP.cs" />
+    <Compile Include="ACBrPAF\Registros\PAF_TITP\ACBrPAFRegistroInsumo.cs" />
+    <Compile Include="ACBrPAF\Registros\PAF_TITP\ACBrPAFRegistroMercadoria.cs" />
     <Compile Include="ACBrSerial\ACBrBAL\LePesoEventArgs.cs" />
     <Compile Include="ACBrSintegra\ACBrSintegraTipoReceita.cs" />
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro53.cs" />

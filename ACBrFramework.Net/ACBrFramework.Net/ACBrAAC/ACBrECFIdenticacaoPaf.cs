@@ -12,6 +12,7 @@ namespace ACBrFramework
 			this.Empresa = new ACBrECFEmpresa(this);
 			this.Paf = new ACBrECFInfoPaf(this);
 			this.ECFsAutorizados = new ACBrAACECFs(this);
+			this.OutrosArquivos = new ACBrAACArquivos(this);
 		}
 
 		#endregion Constructor
@@ -26,6 +27,9 @@ namespace ACBrFramework
 
 		[Browsable(true)]
 		public ACBrAACECFs ECFsAutorizados { get; private set; }
+
+		[Browsable(true)]
+		public ACBrAACArquivos OutrosArquivos { get; private set; }
 
 		public string NumeroLaudo
 		{

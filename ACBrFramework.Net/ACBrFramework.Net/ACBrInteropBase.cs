@@ -22,6 +22,8 @@ namespace ACBrFramework
 		protected delegate int GetdoubleEntryPointDelegate(IntPtr handle, ref double value);
 
 		protected delegate int GetInt32EntryPointDelegate(IntPtr handle);
+	
+		protected delegate int GetInt32CountEntryPointDelegate(IntPtr handle, int count);
 
 		protected delegate int SetStringEntryPointDelegate(IntPtr handle, string value);
 
@@ -124,6 +126,14 @@ namespace ACBrFramework
 		{
 			int ret = entryPoint(Handle, Convert.ToDouble(value));
 			CheckResult(ret);
+		}
+
+		protected int GetInt32Count(GetInt32CountEntryPointDelegate entryPoint, int value)
+		{
+			int ret = entryPoint(Handle, value);
+			CheckResult(ret);
+
+			return ret;
 		}
 
 		protected int GetInt32(GetInt32EntryPointDelegate entryPoint)
