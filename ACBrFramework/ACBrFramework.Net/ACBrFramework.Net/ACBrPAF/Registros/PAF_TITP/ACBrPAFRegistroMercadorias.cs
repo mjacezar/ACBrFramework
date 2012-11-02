@@ -1,22 +1,23 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace ACBrFramework
 {
-	public sealed class ACBrPAFRegistroMercadorias : ACBrComposedComponent, IEnumerable<ACBrPAFRegistroMercadoria>
+	public sealed class ACBrPAFRegistroMercadorias : ICollection<ACBrPAFRegistroMercadoria>
 	{
 		#region Fields
 
-		internal int position = -1;
+		private List<ACBrPAFRegistroMercadoria> list;
 
 		#endregion Fields
 
 		#region Constructor
 
-		internal ACBrPAFRegistroMercadorias(ACBrPAFPAF_TITP PAF_TITP) : base(PAF_TITP.Parent) { }
+		internal ACBrPAFRegistroMercadorias()
+		{
+			this.list = new List<ACBrPAFRegistroMercadoria>();
+		}
 
 		#endregion Constructor
 
@@ -26,7 +27,15 @@ namespace ACBrFramework
 		{
 			get
 			{
-				return GetInt32(ACBrPAFInterop.PAF_TITP_Mercadorias_Count);
+				return list.Count;
+			}
+		}
+
+		public bool IsReadOnly
+		{
+			get
+			{
+				return false;
 			}
 		}
 
@@ -35,56 +44,46 @@ namespace ACBrFramework
 		{
 			get
 			{
-				return Get(index);
+				return list[index];
+			}
+			set
+			{
+				list[index] = value;
 			}
 		}
-
-		[Browsable(true)]
-		public ACBrPAFRegistroInsumos Insumos { get; private set; }
 
 		#endregion Properties
 
 		#region Methods
 
-		public void New(ACBrPAFRegistroMercadoria mercadoria)
+		public void Add(ACBrPAFRegistroMercadoria mercadoria)
 		{
-			ACBrPAFInterop.RegistroTITPRec item = new ACBrPAFInterop.RegistroTITPRec();
-			item.Codigo = ToUTF8(mercadoria.Codigo);
-			item.Descricao = ToUTF8(mercadoria.Descricao);
-			item.Aliquota = mercadoria.Aliquota;
-			item.Unidade = ToUTF8(mercadoria.Unidade);
-			item.Quantidade = mercadoria.Quantidade;
-			item.Ean = ToUTF8(mercadoria.Ean);
-			item.CST = ToUTF8(mercadoria.CST);
-			item.VlrUnitario = mercadoria.VlrUnitario;
-			int ret = ACBrPAFInterop.PAF_TITP_Mercadorias_New(this.Handle, item);
-			CheckResult(ret);
+			list.Add(mercadoria);
+		}
+
+		public void AddRange(ACBrPAFRegistroMercadoria[] mercadorias)
+		{
+			list.AddRange(mercadorias);
+		}
+
+		public bool Contains(ACBrPAFRegistroMercadoria item)
+		{
+			return list.Contains(item);
+		}
+
+		public void CopyTo(ACBrPAFRegistroMercadoria[] array, int arrayIndex)
+		{
+			list.CopyTo(array, arrayIndex);
+		}
+
+		public bool Remove(ACBrPAFRegistroMercadoria item)
+		{
+			return list.Remove(item);
 		}
 
 		public void Clear()
 		{
-			int ret = ACBrPAFInterop.PAF_TITP_Mercadorias_Clear(this.Handle);
-			CheckResult(ret);
-		}
-
-		private ACBrPAFRegistroMercadoria Get(int index)
-		{
-			ACBrPAFInterop.RegistroTITPRec item = new ACBrPAFInterop.RegistroTITPRec();
-			int ret = ACBrPAFInterop.PAF_TITP_Mercadorias_Get(this.Handle, ref item, index);
-			CheckResult(ret);
-
-			position = index;
-
-			ACBrPAFRegistroMercadoria mercadoria = new ACBrPAFRegistroMercadoria();
-			mercadoria.Codigo = FromUTF8(item.Codigo);
-			mercadoria.Descricao = FromUTF8(item.Descricao);
-			mercadoria.Aliquota = item.Aliquota;
-			mercadoria.Unidade = FromUTF8(item.Unidade);
-			mercadoria.Quantidade = item.Quantidade;
-			mercadoria.Ean = FromUTF8(item.Ean);
-			mercadoria.CST = FromUTF8(item.CST);
-			mercadoria.VlrUnitario = item.VlrUnitario;
-			return mercadoria;
+			list.Clear();
 		}
 
 		#endregion Methods
@@ -93,16 +92,12 @@ namespace ACBrFramework
 
 		public IEnumerator<ACBrPAFRegistroMercadoria> GetEnumerator()
 		{
-			int count = Count;
-			for (int i = 0; i < count; i++)
-			{
-				yield return Get(i);
-			}
+			return list.GetEnumerator();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			return this.GetEnumerator();
+			return list.GetEnumerator();
 		}
 
 		#endregion IEnumerable<ACBrPAFRegistroMercadoria>

@@ -4,6 +4,15 @@ namespace ACBrFramework
 {
 	public sealed class ACBrPAFRegistroMercadoria
 	{
+		#region Constructor
+
+		public ACBrPAFRegistroMercadoria()
+		{
+			Insumos = new ACBrPAFRegistroInsumos();
+		}
+
+		#endregion Constructor
+
 		#region Properties
 
 		public string Descricao { get; set; }
@@ -21,6 +30,8 @@ namespace ACBrFramework
 		public string CST { get; set; }
 
 		public double VlrUnitario { get; set; }		
+
+		public ACBrPAFRegistroInsumos Insumos { get; private set; }
 
 		#endregion Properties
 	}

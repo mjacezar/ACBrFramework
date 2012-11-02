@@ -5,13 +5,20 @@ using System.Runtime.CompilerServices;
 
 namespace ACBrFramework
 {
-	public sealed class ACBrPAFRegistroInsumos : ACBrComposedComponent, IEnumerable<ACBrPAFRegistroInsumo>
+	public sealed class ACBrPAFRegistroInsumos : ICollection<ACBrPAFRegistroInsumo>
 	{
+		#region Fields
+
+		private List<ACBrPAFRegistroInsumo> list;
+
+		#endregion Fields
+
 		#region Constructor
 
-		int MercadoriaIndex = -1;
-
-		internal ACBrPAFRegistroInsumos(ACBrPAFRegistroMercadorias Mercadoria): base(Mercadoria.Parent)	{}
+		internal ACBrPAFRegistroInsumos()
+		{
+			this.list = new List<ACBrPAFRegistroInsumo>();
+		}
 
 		#endregion Constructor
 
@@ -21,7 +28,15 @@ namespace ACBrFramework
 		{
 			get
 			{
-				return GetInt32Count(ACBrPAFInterop.PAF_TITP_Insumos_Count, 0);
+				return list.Count;
+			}
+		}
+
+		public bool IsReadOnly
+		{
+			get
+			{
+				return false;
 			}
 		}
 
@@ -30,7 +45,11 @@ namespace ACBrFramework
 		{
 			get
 			{
-				return Get(index);
+				return list[index];
+			}
+			set
+			{
+				list[index] = value;
 			}
 		}
 
@@ -38,43 +57,34 @@ namespace ACBrFramework
 
 		#region Methods
 
-		public void New(ACBrPAFRegistroInsumo Insumo)
+		public void Add(ACBrPAFRegistroInsumo mercadoria)
 		{
-			ACBrPAFInterop.RegistroTITPRec item = new ACBrPAFInterop.RegistroTITPRec();
-			item.Codigo = ToUTF8(Insumo.Codigo);
-			item.Descricao = ToUTF8(Insumo.Descricao);
-			item.Aliquota = Insumo.Aliquota;
-			item.Unidade = ToUTF8(Insumo.Unidade);
-			item.Quantidade = Insumo.Quantidade;
-			item.Ean = ToUTF8(Insumo.Ean);
-			item.CST = ToUTF8(Insumo.CST);
-			item.VlrUnitario = Insumo.VlrUnitario;
-			int ret = ACBrPAFInterop.PAF_TITP_Insumos_New(this.Handle, item, 0);
-			CheckResult(ret);
+			list.Add(mercadoria);
+		}
+
+		public void AddRange(ACBrPAFRegistroInsumo[] mercadorias)
+		{
+			list.AddRange(mercadorias);
+		}
+
+		public bool Contains(ACBrPAFRegistroInsumo item)
+		{
+			return list.Contains(item);
+		}
+
+		public void CopyTo(ACBrPAFRegistroInsumo[] array, int arrayIndex)
+		{
+			list.CopyTo(array, arrayIndex);
+		}
+
+		public bool Remove(ACBrPAFRegistroInsumo item)
+		{
+			return list.Remove(item);
 		}
 
 		public void Clear()
 		{
-			int ret = ACBrPAFInterop.PAF_TITP_Insumos_Clear(this.Handle, 0);
-			CheckResult(ret);
-		}
-
-		private ACBrPAFRegistroInsumo Get(int index)
-		{
-			ACBrPAFInterop.RegistroTITPRec item = new ACBrPAFInterop.RegistroTITPRec();
-			int ret = ACBrPAFInterop.PAF_TITP_Insumos_Get(this.Handle, ref item, MercadoriaIndex, index);
-			CheckResult(ret);
-
-			ACBrPAFRegistroInsumo insumo = new ACBrPAFRegistroInsumo();
-			insumo.Codigo = FromUTF8(item.Codigo);
-			insumo.Descricao = FromUTF8(item.Descricao);
-			insumo.Aliquota = item.Aliquota;
-			insumo.Unidade = FromUTF8(item.Unidade);
-			insumo.Quantidade = item.Quantidade;
-			insumo.Ean = FromUTF8(item.Ean);
-			insumo.CST = FromUTF8(item.CST);
-			insumo.VlrUnitario = item.VlrUnitario;
-			return insumo;
+			list.Clear();
 		}
 
 		#endregion Methods
@@ -83,16 +93,12 @@ namespace ACBrFramework
 
 		public IEnumerator<ACBrPAFRegistroInsumo> GetEnumerator()
 		{
-			int count = Count;
-			for (int i = 0; i < count; i++)
-			{
-				yield return Get(i);
-			}
+			return list.GetEnumerator();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			return this.GetEnumerator();
+			return list.GetEnumerator();
 		}
 
 		#endregion IEnumerable<ACBrPAFRegistroInsumo>
