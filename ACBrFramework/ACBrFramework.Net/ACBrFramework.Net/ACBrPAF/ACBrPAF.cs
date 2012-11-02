@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Drawing;
@@ -121,18 +122,9 @@ namespace ACBrFramework
 			}
 		}
 
-		public string ChaveRSA
-		{
-			get
-			{
-				return GetString(ACBrPAFInterop.PAF_GetChaveRSA, 1024);
-			}
-			set
-			{
-				SetString(ACBrPAFInterop.PAF_SetChaveRSA, value);
-			}
-		}
-
+		[Browsable(true)]
+		public ACBrPAFPAF_TITP PAF_TITP { get; private set; }
+		 
 		public ACBrAAC AAC
 		{
 			get
@@ -699,6 +691,7 @@ namespace ACBrFramework
 		protected internal override void OnInitializeComponent()
 		{
 			CallCreate(ACBrPAFInterop.PAF_Create);
+			PAF_TITP = new ACBrPAFPAF_TITP(this);
 		}
 
 		protected internal override void CheckResult(int ret)
