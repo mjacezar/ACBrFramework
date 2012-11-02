@@ -156,6 +156,31 @@
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro86.cs" />
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro56.cs" />
     <Compile Include="ACBrSerial\ACBrECF\BobinaEventArgs.cs" />
+    <Compile Include="ACBrTEFD\ACBrTEFD.cs" />
+    <Compile Include="ACBrTEFD\ACBrTEFDRespEstado.cs" />
+    <Compile Include="ACBrTEFD\ACBrTEFInterop.cs" />
+    <Compile Include="ACBrTEFD\AguardaRespEventArgs.cs" />
+    <Compile Include="ACBrTEFD\AntesFinalizarRequisicaoEventArgs.cs" />
+    <Compile Include="ACBrTEFD\BloqueiaMouseTecladoEventArgs.cs" />
+    <Compile Include="ACBrTEFD\ComandaECFAbreVinculadoEventArgs.cs" />
+    <Compile Include="ACBrTEFD\ComandaECFEventArgs.cs" />
+    <Compile Include="ACBrTEFD\ComandaECFImprimeViaEventArgs.cs" />
+    <Compile Include="ACBrTEFD\ComandaECFPagamentoEventArgs.cs" />
+    <Compile Include="ACBrTEFD\ComandaECFSubtotalizaEventArgs.cs" />
+    <Compile Include="ACBrTEFD\AntesCancelarTransacaoEventArgs.cs" />
+    <Compile Include="ACBrTEFD\DepoisCancelarTransacoesEventArgs.cs" />
+    <Compile Include="ACBrTEFD\DepoisConfirmarTransacoesEventArgs.cs" />
+    <Compile Include="ACBrTEFD\ExecutaAcaoEventArgs.cs" />
+    <Compile Include="ACBrTEFD\ExibeMensagemEventArgs.cs" />
+    <Compile Include="ACBrTEFD\InfoECFEventArgs.cs" />
+    <Compile Include="ACBrTEFD\ModalResult.cs" />
+    <Compile Include="ACBrTEFD\ACBrTEFDInfoECF.cs" />
+    <Compile Include="ACBrTEFD\ACBrTEFDOperacaoECF.cs" />
+    <Compile Include="ACBrTEFD\ACBrTEFDOperacaoMensagem.cs" />
+    <Compile Include="ACBrTEFD\ACBrTEFDReqEstado.cs" />
+    <Compile Include="ACBrTEFD\ACBrTEFDTipoRelatorio.cs" />
+    <Compile Include="ACBrTEFD\MudaEstadoReqEventArgs.cs" />
+    <Compile Include="ACBrTEFD\MudaEstadoRespEventArgs.cs" />
     <Compile Include="ChaveEventArgs.cs" />
     <Compile Include="ACBrSerial\ACBrBAL\ACBrBAL.cs" />
     <Compile Include="ACBrSerial\ACBrBAL\ACBrBALInterop.cs" />
@@ -219,6 +244,7 @@
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroR6.cs" />
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroR7.cs" />
     <Compile Include="ACBrInteropBase.cs" />
+    <Compile Include="InteropEventHandler.cs" />
     <Compile Include="Properties\Framework32.Designer.cs" Condition=" $(Platform) == x86 ">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -280,6 +306,7 @@
   <ItemGroup>
     <None Include="ACBrFramework.snk" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
