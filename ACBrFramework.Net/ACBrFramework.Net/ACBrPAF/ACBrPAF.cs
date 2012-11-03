@@ -691,7 +691,7 @@ namespace ACBrFramework
 		protected internal override void OnInitializeComponent()
 		{
 			CallCreate(ACBrPAFInterop.PAF_Create);
-			PAF_TITP = new ACBrPAFPAF_TITP(this);
+			PAF_TITP = new ACBrPAFPAF_TITP();
 		}
 
 		protected internal override void CheckResult(int ret)
