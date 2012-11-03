@@ -8,9 +8,11 @@ uses
   ACBrBal,
   ACBrCommonDll;
 
+type TLePesoCallback = procedure(const value : Double); cdecl;
+
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
-    OnLePesoPtr : TDoubleProcedurePtr;
+    OnLePesoCallback : TLePesoCallback;
     procedure OnLePeso(Peso : Double; Resposta : AnsiString);
 end;
 
@@ -54,7 +56,7 @@ PADRONIZAÇÃO DAS FUNÇÕES:
 
 procedure TEventHandlers.OnLePeso(Peso : Double; Resposta : AnsiString);
 begin
-     OnLePesoPtr(Peso);
+     OnLePesoCallback(Peso);
 end;
 
 {
@@ -439,7 +441,7 @@ begin
   end;
 end;
 
-Function BAL_SetOnLePeso(const balHandle: PBALHandle; const method : TDoubleProcedurePtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function BAL_SetOnLePeso(const balHandle: PBALHandle; const method : TLePesoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (balHandle = nil) then
@@ -452,13 +454,13 @@ begin
      if Assigned(method) then
        begin
              balHandle^.BAL.OnLePeso := balHandle^.EventHandlers.OnLePeso;
-             balHandle^.EventHandlers.OnLePesoPtr := method;
+             balHandle^.EventHandlers.OnLePesoCallback := method;
              Result := 0;
        end
        else
        begin
              balHandle^.BAL.OnLePeso := nil;
-             balHandle^.EventHandlers.OnLePesoPtr := nil;
+             balHandle^.EventHandlers.OnLePesoCallback := nil;
              Result := 0;
        end;
   except
