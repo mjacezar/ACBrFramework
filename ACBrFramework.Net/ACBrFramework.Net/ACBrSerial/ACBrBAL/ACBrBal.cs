@@ -13,37 +13,19 @@ namespace ACBrFramework
 		{
 			add
 			{
-				bool isAssigned = onLePesoHandler != null;
-				onLePesoHandler = (EventHandler<LePesoEventArgs>)Delegate.Combine(onLePesoHandler, value);
-
-				if (!isAssigned)
-				{
-					onLePesoCallback = new DoubleProcedurePtrDelegate(bal_OnLePeso);
-					int ret = ACBrBALInterop.BAL_SetOnLePeso(this.Handle, onLePesoCallback);
-					CheckResult(ret);
-				}
+				onLePeso.Add(value);
 			}
 			remove
 			{
-				onLePesoHandler = (EventHandler<LePesoEventArgs>)Delegate.Remove(onLePesoHandler, value);
-
-				if (onLePesoHandler == null)
-				{
-					int ret = ACBrBALInterop.BAL_SetOnLePeso(this.Handle, null);
-					CheckResult(ret);
-
-					onLePesoCallback = null;
-				}
+				onLePeso.Remove(value);
 			}
 		}
-
 
 		#endregion Events
 
 		#region Fields
 
-		private DoubleProcedurePtrDelegate onLePesoCallback;
-		private EventHandler<LePesoEventArgs> onLePesoHandler;
+		private readonly ACBrEventHandler<LePesoEventArgs, ACBrBALInterop.LePesoCallback> onLePeso;
 
 		#endregion Fields
 
@@ -51,6 +33,7 @@ namespace ACBrFramework
 
 		public ACBrBAL()
 		{
+			onLePeso = new ACBrEventHandler<LePesoEventArgs, ACBrBALInterop.LePesoCallback>(this, OnLePesoCallback, ACBrBALInterop.BAL_SetOnLePeso);
 		}
 
 		#endregion Constructor
@@ -194,13 +177,13 @@ namespace ACBrFramework
 		#region EventHandlers
 
 		[AllowReversePInvokeCalls]
-		private void bal_OnLePeso(double value)
+		private void OnLePesoCallback(double value)
 		{
-			if (onLePesoHandler != null)
+			if (onLePeso.IsAssigned)
 			{
 				LePesoEventArgs e = new LePesoEventArgs();
 				e.Peso = Convert.ToDecimal(value);
-				onLePesoHandler(this, e);
+				onLePeso.Raise(e);
 			}
 		}
 

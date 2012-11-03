@@ -8,12 +8,6 @@ namespace ACBrFramework
 	{
 		#region Inner Types
 
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		protected delegate void ProcedurePtrDelegate();
-
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		protected delegate void DoubleProcedurePtrDelegate(double value);
-
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		protected delegate string StrFunctionPtrDelegate();
 

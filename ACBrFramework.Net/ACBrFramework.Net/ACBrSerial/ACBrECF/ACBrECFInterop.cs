@@ -20,6 +20,14 @@ namespace ACBrFramework
 
 		#region Interop Types
 
+		#region Documentation
+		/// <summary>
+		/// Delegate com a assinatura do ponteiro de função utilizado no Interop
+		/// </summary>
+		#endregion Documentation
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void BobinaAdicionaLinhasCallback(string linhas, string operacao);
+
 		[StructLayout(LayoutKind.Sequential)]
 		public struct AliquotaRec
 		{

@@ -80,6 +80,18 @@ namespace ACBrFramework.ACBrTEFD
 		public static extern int TEF_GetUltimoErro(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_Inicializar(IntPtr tefHandle, int gp);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_CRT(IntPtr tefHandle, double Valor, string IndiceFPG_ECF, string DocumentoVinculado, int Moeda);
+		
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_GetGPAtual(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_SetGPAtual(IntPtr tefHandle, int gp);
+                                  
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_SetOnAguardaResp(IntPtr tefHandler, AguardaRespCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]

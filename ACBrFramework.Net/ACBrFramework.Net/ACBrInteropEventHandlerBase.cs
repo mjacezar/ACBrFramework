@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace ACBrFramework
 {
-	public class InteropEventHandler<T, TCallback>
-		where T : EventArgs
+	internal abstract class ACBrInteropEventHandlerBase<TEventHandler, TCallback>
+		where TEventHandler : class
 		where TCallback : class
 	{
 		#region InnerTypes
@@ -18,7 +21,7 @@ namespace ACBrFramework
 		private readonly TCallback callback;
 		private readonly SetCallbackEntryPointDelegate setCallback;
 
-		private EventHandler<T> eventHandler;
+		private Delegate eventHandler;
 
 		#endregion Fields
 
@@ -36,7 +39,7 @@ namespace ACBrFramework
 
 		#region Constructor
 
-		public InteropEventHandler(ACBrInteropBase component, TCallback callback, SetCallbackEntryPointDelegate setCallback)
+		protected ACBrInteropEventHandlerBase(ACBrInteropBase component, TCallback callback, SetCallbackEntryPointDelegate setCallback)
 		{
 			this.component = component;
 			this.callback = callback;
@@ -47,10 +50,10 @@ namespace ACBrFramework
 
 		#region Methods
 
-		public void Add(EventHandler<T> value)
+		protected void Add(Delegate value)
 		{
 			bool isAssigned = this.IsAssigned;
-			eventHandler = (EventHandler<T>)Delegate.Combine(eventHandler, value);
+			eventHandler = Delegate.Combine(eventHandler, value);
 
 			if (!isAssigned)
 			{
@@ -59,9 +62,9 @@ namespace ACBrFramework
 			}
 		}
 
-		public void Remove(EventHandler<T> value)
+		protected void Remove(Delegate value)
 		{
-			eventHandler = (EventHandler<T>)Delegate.Remove(eventHandler, value);
+			eventHandler = Delegate.Remove(eventHandler, value);
 
 			if (eventHandler == null)
 			{
@@ -70,29 +73,15 @@ namespace ACBrFramework
 			}
 		}
 
-		public void Raise(T e)
+		protected void Raise(EventArgs e)
 		{
 			if (eventHandler != null)
 			{
-				eventHandler(component, e);
+				eventHandler.DynamicInvoke(this, e);
 			}
 		}
 
 		#endregion Methods
-	}
-
-	public class InteropEventHandler<TCallback> : InteropEventHandler<EventArgs, TCallback> where TCallback : class
-	{
-
-		#region Constructor
-
-		public InteropEventHandler(ACBrInteropBase component, TCallback callback, SetCallbackEntryPointDelegate setCallback)
-			: base(component, callback, setCallback)
-		{
-		}
-
-		#endregion Constructor
-
 	}
 
 }
