@@ -218,23 +218,23 @@ namespace ACBrFramework.ACBrTEFD
 
 		#region Fields
 
-		private readonly InteropEventHandler<AguardaRespEventArgs, ACBrTEFInterop.AguardaRespCallback> onAguardaResp;
-		private readonly InteropEventHandler<ExibeMensagemEventArgs, ACBrTEFInterop.ExibeMsgCallback> onExibeMensagem;
-		private readonly InteropEventHandler<BloqueiaMouseTecladoEventArgs, ACBrTEFInterop.BloqueiaMouseTecladoCallback> onBloqueiaMouseTeclado;
-		private readonly InteropEventHandler<ExecutaAcaoEventArgs, ACBrTEFInterop.ExecutaAcaoCallback> onRestauraFocoAplicacao;
-		private readonly InteropEventHandler<ExecutaAcaoEventArgs, ACBrTEFInterop.ExecutaAcaoCallback> onLimpaTeclado;
-		private readonly InteropEventHandler<ComandaECFEventArgs, ACBrTEFInterop.ComandaECFCallback> onComandaECF;
-		private readonly InteropEventHandler<ComandaECFSubtotalizaEventArgs, ACBrTEFInterop.ComandaECFSubtotalizaCallback> onComandaECFSubtotaliza;
-		private readonly InteropEventHandler<ComandaECFPagamentoEventArgs, ACBrTEFInterop.ComandaECFPagamentoCallback> onComandaECFPagamento;
-		private readonly InteropEventHandler<ComandaECFAbreVinculadoEventArgs, ACBrTEFInterop.ComandaECFAbreVinculadoCallback> onComandaECFAbreVinculado;
-		private readonly InteropEventHandler<ComandaECFImprimeViaEventArgs, ACBrTEFInterop.ComandaECFImprimeViaCallback> onComandaECFImprimeVia;
-		private readonly InteropEventHandler<InfoECFEventArgs, ACBrTEFInterop.InfoECFCallback> onInfoECF;
-		private readonly InteropEventHandler<AntesFinalizarRequisicaoEventArgs, ACBrTEFInterop.AntesFinalizarRequisicaoCallback> onAntesFinalizarRequisicao;
-		private readonly InteropEventHandler<DepoisConfirmarTransacoesEventArgs, ACBrTEFInterop.DepoisConfirmarTransacoesCallback> onDepoisConfirmarTransacoes;
-		private readonly InteropEventHandler<AntesCancelarTransacaoEventArgs, ACBrTEFInterop.AntesCancelarTransacaoCallback> onAntesCancelarTransacao;
-		private readonly InteropEventHandler<DepoisCancelarTransacoesEventArgs, ACBrTEFInterop.DepoisCancelarTransacoesCallback> onDepoisCancelarTransacoes;
-		private readonly InteropEventHandler<MudaEstadoReqEventArgs, ACBrTEFInterop.MudaEstadoReqCallback> onMudaEstadoReq;
-		private readonly InteropEventHandler<MudaEstadoRespEventArgs, ACBrTEFInterop.MudaEstadoRespCallback> onMudaEstadoResp;
+		private readonly ACBrEventHandler<AguardaRespEventArgs, ACBrTEFInterop.AguardaRespCallback> onAguardaResp;
+		private readonly ACBrEventHandler<ExibeMensagemEventArgs, ACBrTEFInterop.ExibeMsgCallback> onExibeMensagem;
+		private readonly ACBrEventHandler<BloqueiaMouseTecladoEventArgs, ACBrTEFInterop.BloqueiaMouseTecladoCallback> onBloqueiaMouseTeclado;
+		private readonly ACBrEventHandler<ExecutaAcaoEventArgs, ACBrTEFInterop.ExecutaAcaoCallback> onRestauraFocoAplicacao;
+		private readonly ACBrEventHandler<ExecutaAcaoEventArgs, ACBrTEFInterop.ExecutaAcaoCallback> onLimpaTeclado;
+		private readonly ACBrEventHandler<ComandaECFEventArgs, ACBrTEFInterop.ComandaECFCallback> onComandaECF;
+		private readonly ACBrEventHandler<ComandaECFSubtotalizaEventArgs, ACBrTEFInterop.ComandaECFSubtotalizaCallback> onComandaECFSubtotaliza;
+		private readonly ACBrEventHandler<ComandaECFPagamentoEventArgs, ACBrTEFInterop.ComandaECFPagamentoCallback> onComandaECFPagamento;
+		private readonly ACBrEventHandler<ComandaECFAbreVinculadoEventArgs, ACBrTEFInterop.ComandaECFAbreVinculadoCallback> onComandaECFAbreVinculado;
+		private readonly ACBrEventHandler<ComandaECFImprimeViaEventArgs, ACBrTEFInterop.ComandaECFImprimeViaCallback> onComandaECFImprimeVia;
+		private readonly ACBrEventHandler<InfoECFEventArgs, ACBrTEFInterop.InfoECFCallback> onInfoECF;
+		private readonly ACBrEventHandler<AntesFinalizarRequisicaoEventArgs, ACBrTEFInterop.AntesFinalizarRequisicaoCallback> onAntesFinalizarRequisicao;
+		private readonly ACBrEventHandler<DepoisConfirmarTransacoesEventArgs, ACBrTEFInterop.DepoisConfirmarTransacoesCallback> onDepoisConfirmarTransacoes;
+		private readonly ACBrEventHandler<AntesCancelarTransacaoEventArgs, ACBrTEFInterop.AntesCancelarTransacaoCallback> onAntesCancelarTransacao;
+		private readonly ACBrEventHandler<DepoisCancelarTransacoesEventArgs, ACBrTEFInterop.DepoisCancelarTransacoesCallback> onDepoisCancelarTransacoes;
+		private readonly ACBrEventHandler<MudaEstadoReqEventArgs, ACBrTEFInterop.MudaEstadoReqCallback> onMudaEstadoReq;
+		private readonly ACBrEventHandler<MudaEstadoRespEventArgs, ACBrTEFInterop.MudaEstadoRespCallback> onMudaEstadoResp;
 
 		#endregion Fields
 
@@ -242,32 +242,58 @@ namespace ACBrFramework.ACBrTEFD
 
 		public ACBrTEF()
 		{
-			onAguardaResp = new InteropEventHandler<AguardaRespEventArgs, ACBrTEFInterop.AguardaRespCallback>(this, OnAguardaRespCallback, ACBrTEFInterop.TEF_SetOnAguardaResp);
-			onExibeMensagem = new InteropEventHandler<ExibeMensagemEventArgs, ACBrTEFInterop.ExibeMsgCallback>(this, OnExibeMensagemCallback, ACBrTEFInterop.TEF_SetOnExibeMsg);
-			onBloqueiaMouseTeclado = new InteropEventHandler<BloqueiaMouseTecladoEventArgs, ACBrTEFInterop.BloqueiaMouseTecladoCallback>(this, OnBloqueiaMouseTecladoCallback, ACBrTEFInterop.TEF_SetOnBloqueiaMouseTeclado);
-			onRestauraFocoAplicacao = new InteropEventHandler<ExecutaAcaoEventArgs, ACBrTEFInterop.ExecutaAcaoCallback>(this, OnRestauraFocoAplicacaoCallback, ACBrTEFInterop.TEF_SetOnRestauraFocoAplicacao);
-			onLimpaTeclado = new InteropEventHandler<ExecutaAcaoEventArgs, ACBrTEFInterop.ExecutaAcaoCallback>(this, OnLimpaTecladoCallback, ACBrTEFInterop.TEF_SetOnRestauraFocoAplicacao);
-			onComandaECF = new InteropEventHandler<ComandaECFEventArgs, ACBrTEFInterop.ComandaECFCallback>(this, OnComandaECFCallback, ACBrTEFInterop.TEF_SetOnComandaECF);
-			onComandaECFSubtotaliza = new InteropEventHandler<ComandaECFSubtotalizaEventArgs, ACBrTEFInterop.ComandaECFSubtotalizaCallback>(this, OnComandaECFSubtotalizaCallback, ACBrTEFInterop.TEF_SetOnComandaECFSubtotaliza);
-			onComandaECFPagamento = new InteropEventHandler<ComandaECFPagamentoEventArgs, ACBrTEFInterop.ComandaECFPagamentoCallback>(this, OnComandaECFPagamentoCallback, ACBrTEFInterop.TEF_SetOnComandaECFPagamento);
-			onComandaECFAbreVinculado = new InteropEventHandler<ComandaECFAbreVinculadoEventArgs, ACBrTEFInterop.ComandaECFAbreVinculadoCallback>(this, OnComandaECFAbreVinculadoCallback, ACBrTEFInterop.TEF_SetOnComandaECFAbreVinculado);
-			onComandaECFImprimeVia = new InteropEventHandler<ComandaECFImprimeViaEventArgs, ACBrTEFInterop.ComandaECFImprimeViaCallback>(this, OnComandaECFImprimeViaCallback, ACBrTEFInterop.TEF_SetOnComandaECFImprimeVia);
-			onInfoECF = new InteropEventHandler<InfoECFEventArgs, ACBrTEFInterop.InfoECFCallback>(this, OnInfoECFCallback, ACBrTEFInterop.TEF_SetOnInfoECF);
-			onAntesFinalizarRequisicao = new InteropEventHandler<AntesFinalizarRequisicaoEventArgs, ACBrTEFInterop.AntesFinalizarRequisicaoCallback>(this, OnAntesFinalizarRequisicaoCallback, ACBrTEFInterop.TEF_SetOnAntesFinalizarRequisicao);
-			onDepoisConfirmarTransacoes = new InteropEventHandler<DepoisConfirmarTransacoesEventArgs, ACBrTEFInterop.DepoisConfirmarTransacoesCallback>(this, OnDepoisConfirmarTransacoesCallback, ACBrTEFInterop.TEF_SetOnDepoisConfirmarTransacoes);
-			onAntesCancelarTransacao = new InteropEventHandler<AntesCancelarTransacaoEventArgs, ACBrTEFInterop.AntesCancelarTransacaoCallback>(this, OnAntesCancelarTransacaoCallback, ACBrTEFInterop.TEF_SetOnAntesCancelarTransacao);
-			onDepoisCancelarTransacoes = new InteropEventHandler<DepoisCancelarTransacoesEventArgs, ACBrTEFInterop.DepoisCancelarTransacoesCallback>(this, OnDepoisCancelarTransacoesCallback, ACBrTEFInterop.TEF_SetOnDepoisCancelarTransacoes);
-			onMudaEstadoReq = new InteropEventHandler<MudaEstadoReqEventArgs, ACBrTEFInterop.MudaEstadoReqCallback>(this, OnMudaEstadoReqCallback, ACBrTEFInterop.TEF_SetOnMudaEstadoReq);
-			onMudaEstadoResp = new InteropEventHandler<MudaEstadoRespEventArgs, ACBrTEFInterop.MudaEstadoRespCallback>(this, OnMudaEstadoRespCallback, ACBrTEFInterop.TEF_SetOnMudaEstadoResp);
+			onAguardaResp = new ACBrEventHandler<AguardaRespEventArgs, ACBrTEFInterop.AguardaRespCallback>(this, OnAguardaRespCallback, ACBrTEFInterop.TEF_SetOnAguardaResp);
+			onExibeMensagem = new ACBrEventHandler<ExibeMensagemEventArgs, ACBrTEFInterop.ExibeMsgCallback>(this, OnExibeMensagemCallback, ACBrTEFInterop.TEF_SetOnExibeMsg);
+			onBloqueiaMouseTeclado = new ACBrEventHandler<BloqueiaMouseTecladoEventArgs, ACBrTEFInterop.BloqueiaMouseTecladoCallback>(this, OnBloqueiaMouseTecladoCallback, ACBrTEFInterop.TEF_SetOnBloqueiaMouseTeclado);
+			onRestauraFocoAplicacao = new ACBrEventHandler<ExecutaAcaoEventArgs, ACBrTEFInterop.ExecutaAcaoCallback>(this, OnRestauraFocoAplicacaoCallback, ACBrTEFInterop.TEF_SetOnRestauraFocoAplicacao);
+			onLimpaTeclado = new ACBrEventHandler<ExecutaAcaoEventArgs, ACBrTEFInterop.ExecutaAcaoCallback>(this, OnLimpaTecladoCallback, ACBrTEFInterop.TEF_SetOnRestauraFocoAplicacao);
+			onComandaECF = new ACBrEventHandler<ComandaECFEventArgs, ACBrTEFInterop.ComandaECFCallback>(this, OnComandaECFCallback, ACBrTEFInterop.TEF_SetOnComandaECF);
+			onComandaECFSubtotaliza = new ACBrEventHandler<ComandaECFSubtotalizaEventArgs, ACBrTEFInterop.ComandaECFSubtotalizaCallback>(this, OnComandaECFSubtotalizaCallback, ACBrTEFInterop.TEF_SetOnComandaECFSubtotaliza);
+			onComandaECFPagamento = new ACBrEventHandler<ComandaECFPagamentoEventArgs, ACBrTEFInterop.ComandaECFPagamentoCallback>(this, OnComandaECFPagamentoCallback, ACBrTEFInterop.TEF_SetOnComandaECFPagamento);
+			onComandaECFAbreVinculado = new ACBrEventHandler<ComandaECFAbreVinculadoEventArgs, ACBrTEFInterop.ComandaECFAbreVinculadoCallback>(this, OnComandaECFAbreVinculadoCallback, ACBrTEFInterop.TEF_SetOnComandaECFAbreVinculado);
+			onComandaECFImprimeVia = new ACBrEventHandler<ComandaECFImprimeViaEventArgs, ACBrTEFInterop.ComandaECFImprimeViaCallback>(this, OnComandaECFImprimeViaCallback, ACBrTEFInterop.TEF_SetOnComandaECFImprimeVia);
+			onInfoECF = new ACBrEventHandler<InfoECFEventArgs, ACBrTEFInterop.InfoECFCallback>(this, OnInfoECFCallback, ACBrTEFInterop.TEF_SetOnInfoECF);
+			onAntesFinalizarRequisicao = new ACBrEventHandler<AntesFinalizarRequisicaoEventArgs, ACBrTEFInterop.AntesFinalizarRequisicaoCallback>(this, OnAntesFinalizarRequisicaoCallback, ACBrTEFInterop.TEF_SetOnAntesFinalizarRequisicao);
+			onDepoisConfirmarTransacoes = new ACBrEventHandler<DepoisConfirmarTransacoesEventArgs, ACBrTEFInterop.DepoisConfirmarTransacoesCallback>(this, OnDepoisConfirmarTransacoesCallback, ACBrTEFInterop.TEF_SetOnDepoisConfirmarTransacoes);
+			onAntesCancelarTransacao = new ACBrEventHandler<AntesCancelarTransacaoEventArgs, ACBrTEFInterop.AntesCancelarTransacaoCallback>(this, OnAntesCancelarTransacaoCallback, ACBrTEFInterop.TEF_SetOnAntesCancelarTransacao);
+			onDepoisCancelarTransacoes = new ACBrEventHandler<DepoisCancelarTransacoesEventArgs, ACBrTEFInterop.DepoisCancelarTransacoesCallback>(this, OnDepoisCancelarTransacoesCallback, ACBrTEFInterop.TEF_SetOnDepoisCancelarTransacoes);
+			onMudaEstadoReq = new ACBrEventHandler<MudaEstadoReqEventArgs, ACBrTEFInterop.MudaEstadoReqCallback>(this, OnMudaEstadoReqCallback, ACBrTEFInterop.TEF_SetOnMudaEstadoReq);
+			onMudaEstadoResp = new ACBrEventHandler<MudaEstadoRespEventArgs, ACBrTEFInterop.MudaEstadoRespCallback>(this, OnMudaEstadoRespCallback, ACBrTEFInterop.TEF_SetOnMudaEstadoResp);
 		}
 
 		#endregion Constructor
 
 		#region Properties
 
+		public ACBrTEFDTipo GPAtual
+		{
+			get
+			{
+				return (ACBrTEFDTipo)GetInt32(ACBrTEFInterop.TEF_GetGPAtual);
+			}
+			set
+			{
+				SetInt32(ACBrTEFInterop.TEF_SetGPAtual, (int)value);
+			}
+		}
+
 		#endregion Properties
 
 		#region Methods
+
+		public void Initializar(ACBrTEFDTipo gp)
+		{
+			int ret = ACBrTEFInterop.TEF_Inicializar(this.Handle, (int)gp);
+			CheckResult(ret);
+		}
+
+		public bool CRT(decimal valor, string indiceFPG_ECF, string documentoVinculado, int moeda)
+		{
+			int ret = ACBrTEFInterop.TEF_CRT(this.Handle, Convert.ToDouble(valor), indiceFPG_ECF, documentoVinculado, moeda);
+			CheckResult(ret);
+
+			return ret == 1;
+		}
 
 		#region Override Methods
 

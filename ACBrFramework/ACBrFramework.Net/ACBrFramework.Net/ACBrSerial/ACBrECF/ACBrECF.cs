@@ -1,86 +1,40 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Collections.Generic;
-using System.IO;
 
 namespace ACBrFramework
 {
 	[ToolboxBitmap(typeof(ACBrECF), @"ACBrSerial.ACBrECF.ico.bmp")]
 	public class ACBrECF : ACBrComponent, IDisposable
 	{
-		#region InnerTypes
-
-		#region Documentation
-		/// <summary>
-		/// Delegate com a assinatura do ponteiro de função utilizado no Interop
-		/// </summary>
-		#endregion Documentation
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		private delegate void OnBobinaAdicionaLinhasPtrDelegate(string linhas, string operacao);
-
-		#endregion InnerTypes
-
 		#region Events
 
-        public event EventHandler OnPoucoPapel
-        {
-            add
-            {
-				bool isAssigned = onPoucoPapelHandler != null;
-                onPoucoPapelHandler = (EventHandler)Delegate.Combine(onPoucoPapelHandler, value);
+		public event EventHandler OnPoucoPapel
+		{
+			add
+			{
+				onPoucoPapel.Add(value);
+			}
+			remove
+			{
+				onPoucoPapel.Remove(value);
+			}
+		}
 
-				if (!isAssigned)
-				{
-					onPoucoPapelCallback = new ProcedurePtrDelegate(ecf_OnPoucoPapel);
-					int ret = ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, onPoucoPapelCallback);
-					CheckResult(ret);
-				}
-            }
-            remove
-            {
-				onPoucoPapelHandler = (EventHandler)Delegate.Remove(onPoucoPapelHandler, value);
-
-				if (onPoucoPapelHandler == null)
-				{
-					int ret = ACBrECFInterop.ECF_SetOnPoucoPapel(this.Handle, null);
-					CheckResult(ret);
-
-					onPoucoPapelCallback = null;
-				}
-            }
-        }
-
-        public event EventHandler<BobinaEventArgs> OnBobinaAdicionaLinhas
-        {
-            add
-            {
-                bool isAssigned = onBobinaAdicionaLinhasHandler != null;
-                onBobinaAdicionaLinhasHandler = (EventHandler<BobinaEventArgs>)Delegate.Combine(onBobinaAdicionaLinhasHandler, value);
-
-                if (!isAssigned)
-                {
-					onBobinaAdicionaLinhasCallback = new OnBobinaAdicionaLinhasPtrDelegate(ecf_OnBobinaAdicionaLinhas);
-                    
-					int ret = ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas(this.Handle, onBobinaAdicionaLinhasCallback);
-                    CheckResult(ret);
-                }
-            }
-            remove
-            {
-                onBobinaAdicionaLinhasHandler = (EventHandler<BobinaEventArgs>)Delegate.Remove(onBobinaAdicionaLinhasHandler, value);
-
-                if (onBobinaAdicionaLinhasHandler == null)
-                {
-                    int ret = ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas(this.Handle, null);
-                    CheckResult(ret);
-
-					onBobinaAdicionaLinhasCallback = null;
-                }
-            }
-        }
+		public event EventHandler<BobinaEventArgs> OnBobinaAdicionaLinhas
+		{
+			add
+			{
+				onBobinaAdicionaLinhas.Add(value);
+			}
+			remove
+			{
+				onBobinaAdicionaLinhas.Remove(value);
+			}
+		}
 
 		#endregion Events
 
@@ -89,16 +43,12 @@ namespace ACBrFramework
 		private ACBrECFAliquota[] aliquotas;
 		private ACBrECFFormaPagamento[] formasPagamento;
 		private ACBrECFComprovanteNaoFiscal[] comprovantesNaoFiscais;
-		private ACBrECFRelatorioGerencial[] relatoriosGerenciais;        
+		private ACBrECFRelatorioGerencial[] relatoriosGerenciais;
 		private ACBrAAC aac;
 		private ACBrEAD ead;
 
-		private ProcedurePtrDelegate onPoucoPapelCallback;
-		private EventHandler onPoucoPapelHandler;
-
-		private OnBobinaAdicionaLinhasPtrDelegate onBobinaAdicionaLinhasCallback;
-		private EventHandler<BobinaEventArgs> onBobinaAdicionaLinhasHandler;
-
+		private readonly ACBrEventHandler onPoucoPapel;
+		private readonly ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback> onBobinaAdicionaLinhas;
 
 		#endregion Fields
 
@@ -106,6 +56,8 @@ namespace ACBrFramework
 
 		public ACBrECF()
 		{
+			onPoucoPapel = new ACBrEventHandler(this, OnPoucoPapelCallback, ACBrECFInterop.ECF_SetOnPoucoPapel);
+			onBobinaAdicionaLinhas = new ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback>(this, OnBobinaAdicionaLinhasCallback, ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas);
 		}
 
 		#endregion Constructor
@@ -690,13 +642,13 @@ namespace ACBrFramework
 			}
 		}
 
-        public string[] MemoParams
-        {
-            set
-            {
-                SetString(ACBrECFInterop.ECF_SetMemoParams, value);
-            }
-        }
+		public string[] MemoParams
+		{
+			set
+			{
+				SetString(ACBrECFInterop.ECF_SetMemoParams, value);
+			}
+		}
 
 		public int LinhasEntreCupons
 		{
@@ -1833,7 +1785,6 @@ namespace ACBrFramework
 		{
 			CallCreate(ACBrECFInterop.ECF_Create);
 			Device = new ACBrDevice(this);
-
 		}
 
 		protected internal override void CheckResult(int ret)
@@ -1861,30 +1812,30 @@ namespace ACBrFramework
 
 		#endregion Override Methods
 
-		#region EventHandlers
+		#region Callback EventHandlers
 
 		[AllowReversePInvokeCalls]
-		private void ecf_OnPoucoPapel()
+		private void OnPoucoPapelCallback()
 		{
-            if (onPoucoPapelHandler != null)
+			if (onPoucoPapel.IsAssigned)
 			{
-                onPoucoPapelHandler(this, EventArgs.Empty);
+				onPoucoPapel.Raise();
 			}
 		}
 
 		[AllowReversePInvokeCalls]
-        private void ecf_OnBobinaAdicionaLinhas(string Linhas, string Operacao)
-        {
-            if (onBobinaAdicionaLinhasHandler != null)
-            {
-                BobinaEventArgs e = new BobinaEventArgs();
-                e.Linhas = FromUTF8(Linhas);
-                e.Operacao = FromUTF8(Operacao);
-                onBobinaAdicionaLinhasHandler(this, e);
-            }
-        }
+		private void OnBobinaAdicionaLinhasCallback(string Linhas, string Operacao)
+		{
+			if (onBobinaAdicionaLinhas.IsAssigned)
+			{
+				BobinaEventArgs e = new BobinaEventArgs();
+				e.Linhas = FromUTF8(Linhas);
+				e.Operacao = FromUTF8(Operacao);
+				onBobinaAdicionaLinhas.Raise(e);
+			}
+		}
 
-		#endregion EventHandlers
+		#endregion Callback EventHandlers
 
 		#endregion Methods
 	}

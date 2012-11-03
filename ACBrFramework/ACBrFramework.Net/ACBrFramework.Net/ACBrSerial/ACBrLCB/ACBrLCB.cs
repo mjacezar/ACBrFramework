@@ -13,27 +13,11 @@ namespace ACBrFramework
 		{
 			add
 			{
-				bool isAssigned = onLeCodigoHandler != null;
-				onLeCodigoHandler = (EventHandler)Delegate.Combine(onLeCodigoHandler, value);
-
-				if (!isAssigned)
-				{
-					onLeCodigoCallback = new ProcedurePtrDelegate(lcb_OnLeCodigo);
-					int ret = ACBrLCBInterop.LCB_SetOnLeCodigo(this.Handle, onLeCodigoCallback);
-					CheckResult(ret);
-				}
+				onLeCodigo.Add(value);
 			}
 			remove
 			{
-				onLeCodigoHandler = (EventHandler)Delegate.Remove(onLeCodigoHandler, value);
-
-				if (onLeCodigoHandler == null)
-				{
-					int ret = ACBrLCBInterop.LCB_SetOnLeCodigo(this.Handle, null);
-					CheckResult(ret);
-
-					onLeCodigoCallback = null;
-				}
+				onLeCodigo.Remove(value);
 			}
 		}
 
@@ -41,8 +25,7 @@ namespace ACBrFramework
 
 		#region Fields
 
-		private ProcedurePtrDelegate onLeCodigoCallback;
-		private EventHandler onLeCodigoHandler;
+		private readonly ACBrEventHandler onLeCodigo;
 
 		#endregion Fields
 
@@ -50,6 +33,7 @@ namespace ACBrFramework
 
 		public ACBrLCB()
 		{
+			onLeCodigo = new ACBrEventHandler(this, OnLeCodigoCallback, ACBrLCBInterop.LCB_SetOnLeCodigo);
 		}
 
 		#endregion Constructor
@@ -102,14 +86,14 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
-		#region EventHandlers
+		#region Callback EventHandlers
 
 		[AllowReversePInvokeCalls]
-		private void lcb_OnLeCodigo()
+		private void OnLeCodigoCallback()
 		{
-			if (onLeCodigoHandler != null)
+			if (onLeCodigo.IsAssigned)
 			{
-				onLeCodigoHandler(this, EventArgs.Empty);
+				onLeCodigo.Raise();
 			}
 		}
 
@@ -121,15 +105,6 @@ namespace ACBrFramework
 		{
 			CallCreate(ACBrLCBInterop.LCB_Create);
 			Device = new ACBrDevice(this);
-
-			InitializeEvents();
-		}
-
-		private void InitializeEvents()
-		{
-			onLeCodigoCallback = new ProcedurePtrDelegate(lcb_OnLeCodigo);
-			int ret = ACBrLCBInterop.LCB_SetOnLeCodigo(this.Handle, onLeCodigoCallback);
-			CheckResult(ret);
 		}
 
 		protected internal override void CheckResult(int ret)

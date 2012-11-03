@@ -18,6 +18,13 @@ namespace ACBrFramework
 
 		#region ACBrBal
 
+		#region InteropTypes
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void LePesoCallback(double value);
+
+		#endregion
+
 		#region Constructors/Erro Handler
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]

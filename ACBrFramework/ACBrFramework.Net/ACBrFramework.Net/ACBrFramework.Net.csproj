@@ -136,11 +136,13 @@
     <Compile Include="ACBrAAC\ACBrECFEmpresa.cs" />
     <Compile Include="ACBrAAC\ACBrECFIdenticacaoPaf.cs" />
     <Compile Include="ACBrAAC\ACBrECFInfoPaf.cs" />
-    <Compile Include="ACBrPAF\Registros\PAF_TITP\ACBrPAFRegistroInsumos.cs" />
-    <Compile Include="ACBrPAF\Registros\PAF_TITP\ACBrPAFRegistroMercadorias.cs" />
+    <Compile Include="ACBrEventHandler.cs" />
+    <Compile Include="ACBrInteropEventHandlerBase.cs" />
     <Compile Include="ACBrPAF\Registros\PAF_TITP\ACBrPAFPAF_TITP.cs" />
     <Compile Include="ACBrPAF\Registros\PAF_TITP\ACBrPAFRegistroInsumo.cs" />
+    <Compile Include="ACBrPAF\Registros\PAF_TITP\ACBrPAFRegistroInsumos.cs" />
     <Compile Include="ACBrPAF\Registros\PAF_TITP\ACBrPAFRegistroMercadoria.cs" />
+    <Compile Include="ACBrPAF\Registros\PAF_TITP\ACBrPAFRegistroMercadorias.cs" />
     <Compile Include="ACBrSerial\ACBrBAL\LePesoEventArgs.cs" />
     <Compile Include="ACBrSintegra\ACBrSintegraTipoReceita.cs" />
     <Compile Include="ACBrSintegra\Registro\SintegraRegistro53.cs" />
@@ -165,6 +167,7 @@
     <Compile Include="ACBrSerial\ACBrECF\BobinaEventArgs.cs" />
     <Compile Include="ACBrTEFD\ACBrTEFD.cs" />
     <Compile Include="ACBrTEFD\ACBrTEFDRespEstado.cs" />
+    <Compile Include="ACBrTEFD\ACBrTEFDTipo.cs" />
     <Compile Include="ACBrTEFD\ACBrTEFInterop.cs" />
     <Compile Include="ACBrTEFD\AguardaRespEventArgs.cs" />
     <Compile Include="ACBrTEFD\AntesFinalizarRequisicaoEventArgs.cs" />
@@ -251,7 +254,6 @@
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroR6.cs" />
     <Compile Include="ACBrPAF\Registros\ACBrPAFRegistroR7.cs" />
     <Compile Include="ACBrInteropBase.cs" />
-    <Compile Include="InteropEventHandler.cs" />
     <Compile Include="Properties\Framework32.Designer.cs" Condition=" $(Platform) == x86 ">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
