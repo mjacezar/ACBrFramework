@@ -10,7 +10,7 @@ uses
 
 { Classe que armazena os ponteiros de função para os Handlers }
 type TEventHandlers = class
-  OnLeCodigoPtr : TProcedurePtr;
+  OnLeCodigoCallback : TCallback;
   procedure OnLeCodigo(Sender: TObject);
 end;
 
@@ -62,7 +62,7 @@ em todas as chamadas de função relativas ao TACBrLCB
 
 procedure TEventHandlers.OnLeCodigo(Sender: TObject);
 begin
-     OnLeCodigoPtr();
+     OnLeCodigoCallback();
 end;
 
 
@@ -258,7 +258,7 @@ begin
 
 end;
 
-Function LCB_SetOnLeCodigo(const lcbHandle: PLCBHandle; const method : TProcedurePtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function LCB_SetOnLeCodigo(const lcbHandle: PLCBHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (lcbHandle = nil) then
@@ -271,13 +271,13 @@ begin
      if Assigned(method) then
        begin
              lcbHandle^.LCB.OnLeCodigo := lcbHandle^.EventHandlers.OnLeCodigo;
-             lcbHandle^.EventHandlers.OnLeCodigoPtr := method;
+             lcbHandle^.EventHandlers.OnLeCodigoCallback := method;
              Result := 0;
        end
        else
        begin
              lcbHandle^.LCB.OnLeCodigo := nil;
-             lcbHandle^.EventHandlers.OnLeCodigoPtr := nil;
+             lcbHandle^.EventHandlers.OnLeCodigoCallback := nil;
              Result := 0;
        end;
   except

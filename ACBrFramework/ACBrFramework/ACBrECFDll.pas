@@ -15,10 +15,13 @@ uses
   ACBrPAFClass
   ;
 
+{ Ponteiros de função }
+type TBobinaProcedureCallback = procedure(const Linhas : PChar; const Operacao : PChar); cdecl;
+
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
-    OnPoucoPapelPtr : TProcedurePtr;
-    OnBobinaAdicionaLinhasPtr : TBobinaProcedurePtr;
+    OnPoucoPapelCallback : TCallback;
+    OnBobinaAdicionaLinhasCallback : TBobinaProcedureCallback;
     procedure OnMsgPoucoPapel(Sender: TObject);
     procedure OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
 end;
@@ -5048,7 +5051,7 @@ end;
 { Eventos }
 procedure TEventHandlers.OnMsgPoucoPapel(Sender: TObject);
 begin
-     OnPoucoPapelPtr();
+     OnPoucoPapelCallback();
 end;
 
 procedure TEventHandlers.OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
@@ -5058,10 +5061,10 @@ var
 begin
      pLinhas := PChar(Linhas);
      pOperacao := PChar(Operacao);
-     OnBobinaAdicionaLinhasPtr( pLinhas, pOperacao);
+     OnBobinaAdicionaLinhasCallback(pLinhas, pOperacao);
 end;
 
-Function ECF_SetOnPoucoPapel(const ecfHandle: PECFHandle; const method : TProcedurePtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnPoucoPapel(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -5074,13 +5077,13 @@ begin
   if Assigned(method) then
   begin
         ecfHandle^.ECF.OnMsgPoucoPapel := ecfHandle^.EventHandlers.OnMsgPoucoPapel;
-        ecfHandle^.EventHandlers.OnPoucoPapelPtr := method;
+        ecfHandle^.EventHandlers.OnPoucoPapelCallback := method;
         Result := 0;
   end
   else
   begin
         ecfHandle^.ECF.OnMsgPoucoPapel := nil;
-        ecfHandle^.EventHandlers.OnPoucoPapelPtr := nil;
+        ecfHandle^.EventHandlers.OnPoucoPapelCallback := nil;
         Result := 0;
   end;
   except
@@ -5092,7 +5095,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnBobinaAdicionaLinhas(const ecfHandle: PECFHandle; const method : TBobinaProcedurePTR) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnBobinaAdicionaLinhas(const ecfHandle: PECFHandle; const method : TBobinaProcedureCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -5104,14 +5107,14 @@ begin
   try
   if Assigned(method) then
   begin
-        ecfHandle^.ECF.OnBobinaAdicionaLinhas := ecfHandle^.EventHandlers.OnBobinaAdicionaLinhas();
-        ecfHandle^.EventHandlers.OnBobinaAdicionaLinhasPtr:= method;
+        ecfHandle^.ECF.OnBobinaAdicionaLinhas := ecfHandle^.EventHandlers.OnBobinaAdicionaLinhas;
+        ecfHandle^.EventHandlers.OnBobinaAdicionaLinhasCallback := method;
         Result := 0;
   end
   else
   begin
         ecfHandle^.ECF.OnBobinaAdicionaLinhas := nil;
-        ecfHandle^.EventHandlers.OnBobinaAdicionaLinhasPtr := nil;
+        ecfHandle^.EventHandlers.OnBobinaAdicionaLinhasCallback := nil;
         Result := 0;
   end;
   except
