@@ -4,7 +4,10 @@
 	{
 		#region Constructor
 
-		internal ACBrDevice(ACBrComponent owner) : base(owner) { }
+		internal ACBrDevice(ACBrComponent owner)
+			: base(owner)
+		{
+		}
 
 		#endregion Constructor
 

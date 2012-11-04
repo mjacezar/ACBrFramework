@@ -9,7 +9,10 @@ namespace ACBrFramework
 	{
 		#region Constructor
 
-		internal ACBrAACECFs(ACBrECFIdenticacaoPaf identPaf) : base(identPaf.Parent) { }
+		internal ACBrAACECFs(ACBrECFIdenticacaoPaf identPaf)
+			: base(identPaf.Parent)
+		{
+		}
 
 		#endregion Constructor
 

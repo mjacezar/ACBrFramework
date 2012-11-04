@@ -1,22 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace ACBrFramework.ECFTeste
 {
 	public partial class MainForm : Form
-    {
-        #region Fields
+	{
+		#region Fields
 
-		StringBuilder bobina = new StringBuilder();
+		private StringBuilder bobina = new StringBuilder();
 
-        #endregion Fields
+		#endregion Fields
 
-        #region Constructor
+		#region Constructor
 
-        public MainForm()
+		public MainForm()
 		{
 			InitializeComponent();
 
@@ -236,34 +236,34 @@ namespace ACBrFramework.ECFTeste
 			acbrECF.AAC = acbrAAC;
 
 			List<string> fsMemoParams = new List<string>();
-            fsMemoParams.Add("[Cabecalho]");
+			fsMemoParams.Add("[Cabecalho]");
 			fsMemoParams.Add("LIN000=<center><b>ACBrFramework.Net</b></center>");
-            fsMemoParams.Add("LIN001=<center>Nome da Rua , 1234  -  Bairro</center>");
-            fsMemoParams.Add("LIN002=<center>Cidade  -  UF  -  99999-999</center>");
-            fsMemoParams.Add("LIN003=<center>CNPJ: 01.234.567/0001-22    IE: 012.345.678.90</center>");
-            fsMemoParams.Add("LIN004=<table width=100%><tr><td align=left><code>Data</code> <code>Hora</code></td><td align=right>COO: <b><code>NumCupom</code></b></td></tr></table>");
-            fsMemoParams.Add("LIN005=<hr>");
-            fsMemoParams.Add(" ");
-            fsMemoParams.Add("[Cabecalho_Item]");
-            fsMemoParams.Add("LIN000=ITEM   CODIGO      DESCRICAO");
-            fsMemoParams.Add("LIN001=QTD         x UNITARIO       Aliq     VALOR (R$)");
-            fsMemoParams.Add("LIN002=<hr>");
-            fsMemoParams.Add("MascaraItem=III CCCCCCCCCCCCCC DDDDDDDDDDDDDDDDDDDDDDDDDDDDD QQQQQQQQ UU x VVVVVVVVVVVVV AAAAAA TTTTTTTTTTTTT");
-            fsMemoParams.Add(" ");
-            fsMemoParams.Add("[Rodape]");
-            fsMemoParams.Add("LIN000=<hr>");
-            fsMemoParams.Add("LIN001=<table width=100%><tr><td align=left><code>Data</code> <code>Hora</code></td><td align=right>Projeto ACBr: <b><code>ACBrFramework.Net</code></b></td></tr></table>");
-            fsMemoParams.Add("LIN002=<center>Obrigado Volte Sempre</center>");
-            fsMemoParams.Add("LIN003=<hr>");
-            fsMemoParams.Add(" ");
-            fsMemoParams.Add("[Formato]");
-            fsMemoParams.Add("Colunas=49");
-            fsMemoParams.Add("HTML=1");
-            fsMemoParams.Add("HTML_Title_Size=2");
-            fsMemoParams.Add("HTML_Font=<font size=\"2\" face=\"Lucida Console\">");
+			fsMemoParams.Add("LIN001=<center>Nome da Rua , 1234  -  Bairro</center>");
+			fsMemoParams.Add("LIN002=<center>Cidade  -  UF  -  99999-999</center>");
+			fsMemoParams.Add("LIN003=<center>CNPJ: 01.234.567/0001-22    IE: 012.345.678.90</center>");
+			fsMemoParams.Add("LIN004=<table width=100%><tr><td align=left><code>Data</code> <code>Hora</code></td><td align=right>COO: <b><code>NumCupom</code></b></td></tr></table>");
+			fsMemoParams.Add("LIN005=<hr>");
+			fsMemoParams.Add(" ");
+			fsMemoParams.Add("[Cabecalho_Item]");
+			fsMemoParams.Add("LIN000=ITEM   CODIGO      DESCRICAO");
+			fsMemoParams.Add("LIN001=QTD         x UNITARIO       Aliq     VALOR (R$)");
+			fsMemoParams.Add("LIN002=<hr>");
+			fsMemoParams.Add("MascaraItem=III CCCCCCCCCCCCCC DDDDDDDDDDDDDDDDDDDDDDDDDDDDD QQQQQQQQ UU x VVVVVVVVVVVVV AAAAAA TTTTTTTTTTTTT");
+			fsMemoParams.Add(" ");
+			fsMemoParams.Add("[Rodape]");
+			fsMemoParams.Add("LIN000=<hr>");
+			fsMemoParams.Add("LIN001=<table width=100%><tr><td align=left><code>Data</code> <code>Hora</code></td><td align=right>Projeto ACBr: <b><code>ACBrFramework.Net</code></b></td></tr></table>");
+			fsMemoParams.Add("LIN002=<center>Obrigado Volte Sempre</center>");
+			fsMemoParams.Add("LIN003=<hr>");
+			fsMemoParams.Add(" ");
+			fsMemoParams.Add("[Formato]");
+			fsMemoParams.Add("Colunas=49");
+			fsMemoParams.Add("HTML=1");
+			fsMemoParams.Add("HTML_Title_Size=2");
+			fsMemoParams.Add("HTML_Font=<font size=\"2\" face=\"Lucida Console\">");
 
 			acbrECF.MemoParams = fsMemoParams.ToArray();
-        }
+		}
 
 		private void Popular()
 		{
@@ -321,7 +321,6 @@ namespace ACBrFramework.ECFTeste
 
 				tabControl.SelectedTab = cmdTabPage;
 				WriteResp("Ativado: OK!");
-				
 			}
 			catch (Exception exception)
 			{
@@ -1187,7 +1186,7 @@ namespace ACBrFramework.ECFTeste
 
 		private void acbrEAD_OnGetChavePublica(object sender, ChaveEventArgs e)
 		{
-            e.Chave = aacChaveTextBox.Text;
+			e.Chave = aacChaveTextBox.Text;
 		}
 
 		private void acbrAAC_OnGetChave(object sender, ChaveEventArgs e)
@@ -1195,14 +1194,14 @@ namespace ACBrFramework.ECFTeste
 			e.Chave = aacChaveTextBox.Text;
 		}
 
-        private void acbrECF_OnBobinaAdicionaLinhas(object sender, BobinaEventArgs e)
-        {
+		private void acbrECF_OnBobinaAdicionaLinhas(object sender, BobinaEventArgs e)
+		{
 			bobina.Append(e.Linhas);
 			wbBobina.Navigate("about:blank");
 			HtmlDocument doc = wbBobina.Document;
-            doc.Write(string.Format("<HTML><head><meta charset=\"iso-8859-1\"></head><body>{0}</body></HTML>", bobina));
+			doc.Write(string.Format("<HTML><head><meta charset=\"iso-8859-1\"></head><body>{0}</body></HTML>", bobina));
 			wbBobina.Refresh();
-        }
+		}
 
 		#endregion Event Handlers
 	}

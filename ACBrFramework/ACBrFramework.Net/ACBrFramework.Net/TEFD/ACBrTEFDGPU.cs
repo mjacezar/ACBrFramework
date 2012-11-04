@@ -4,7 +4,10 @@
 	{
 		#region Constructor
 
-		internal ACBrTEFDGPU(ACBrTEFD parent) : base(parent) { }
+		internal ACBrTEFDGPU(ACBrTEFD parent)
+			: base(parent)
+		{
+		}
 
 		#endregion Constructor
 

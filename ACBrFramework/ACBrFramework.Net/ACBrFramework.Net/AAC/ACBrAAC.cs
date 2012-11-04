@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework
 {
@@ -10,40 +10,23 @@ namespace ACBrFramework
 	{
 		#region EventHandlers
 
-        public event EventHandler<ChaveEventArgs> OnGetChave
-        {
-            add
-            {
-                bool isAssigned = OnGetChaveHandler != null;
-                OnGetChaveHandler = (EventHandler<ChaveEventArgs>)Delegate.Combine(OnGetChaveHandler, value);
-
-                if (!isAssigned)
-                {
-                    onGetChaveCallback = new StrFunctionPtrDelegate(aac_OnGetChave);
-                    int ret = ACBrAACInterop.AAC_SetOnGetChave(this.Handle, onGetChaveCallback);
-                    CheckResult(ret);
-                }
-            }
-            remove
-            {
-                OnGetChaveHandler = (EventHandler<ChaveEventArgs>)Delegate.Remove(OnGetChaveHandler, value);
-
-                if (OnGetChaveHandler == null)
-                {
-                    int ret = ACBrAACInterop.AAC_SetOnGetChave(this.Handle, null);
-                    CheckResult(ret);
-
-                    onGetChaveCallback = null;
-                }
-            }
-        }
+		public event EventHandler<ChaveEventArgs> OnGetChave
+		{
+			add
+			{
+				onGetChave.Add(value);
+			}
+			remove
+			{
+				onGetChave.Remove(value);
+			}
+		}
 
 		#endregion EventHandlers
 
 		#region Fields
 
-        private StrFunctionPtrDelegate onGetChaveCallback;
-        private event EventHandler<ChaveEventArgs> OnGetChaveHandler;
+		private readonly ACBrEventHandler<ChaveEventArgs, ACBrAACInterop.OnGetChaveCallback> onGetChave;
 
 		#endregion Fields
 
@@ -51,6 +34,7 @@ namespace ACBrFramework
 
 		public ACBrAAC()
 		{
+			onGetChave = new ACBrEventHandler<ChaveEventArgs, ACBrAACInterop.OnGetChaveCallback>(this, OnGetChaveCallBack, ACBrAACInterop.AAC_SetOnGetChave);
 		}
 
 		#endregion Constructor
@@ -162,21 +146,19 @@ namespace ACBrFramework
 		{
 			CallCreate(ACBrAACInterop.AAC_Create);
 			IdentPaf = new ACBrECFIdenticacaoPaf(this);
-        }
-        
+		}
+
 		#endregion Overrides Methods
 
 		#region EventHandlers
 
-        [AllowReversePInvokeCalls]
-		private string aac_OnGetChave()
+		[AllowReversePInvokeCalls]
+		private string OnGetChaveCallBack()
 		{
 			ChaveEventArgs e = new ChaveEventArgs();
 
-            if (OnGetChaveHandler != null)
-			{
-                OnGetChaveHandler(this, e);
-			}
+			if (onGetChave.IsAssigned)
+				onGetChave.Raise(e);
 
 			return e.Chave;
 		}

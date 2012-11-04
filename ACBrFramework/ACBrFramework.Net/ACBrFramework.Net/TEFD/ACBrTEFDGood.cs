@@ -4,7 +4,10 @@
 	{
 		#region Constructor
 
-		internal ACBrTEFDGood(ACBrTEFD parent) : base(parent) { }
+		internal ACBrTEFDGood(ACBrTEFD parent)
+			: base(parent)
+		{
+		}
 
 		#endregion Constructor
 

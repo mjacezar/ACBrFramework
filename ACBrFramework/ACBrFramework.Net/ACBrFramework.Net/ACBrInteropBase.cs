@@ -8,15 +8,12 @@ namespace ACBrFramework
 	{
 		#region Inner Types
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		protected delegate string StrFunctionPtrDelegate();
-
 		protected delegate int GetStringEntryPointDelegate(IntPtr handle, StringBuilder buffer, int bufferLen);
 
 		protected delegate int GetdoubleEntryPointDelegate(IntPtr handle, ref double value);
 
 		protected delegate int GetInt32EntryPointDelegate(IntPtr handle);
-	
+
 		protected delegate int GetInt32CountEntryPointDelegate(IntPtr handle, int count);
 
 		protected delegate int SetStringEntryPointDelegate(IntPtr handle, string value);
@@ -39,7 +36,9 @@ namespace ACBrFramework
 
 		#region Constructor
 
-		protected ACBrInteropBase() { }
+		protected ACBrInteropBase()
+		{
+		}
 
 		#endregion Constructor
 
@@ -174,7 +173,6 @@ namespace ACBrFramework
 
 			return array;
 		}
-
 
 		protected internal abstract void CheckResult(int result);
 

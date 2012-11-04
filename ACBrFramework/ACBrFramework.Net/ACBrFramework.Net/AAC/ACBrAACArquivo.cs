@@ -1,5 +1,3 @@
-using System;
-
 namespace ACBrFramework
 {
 	public sealed class ACBrAACArquivo

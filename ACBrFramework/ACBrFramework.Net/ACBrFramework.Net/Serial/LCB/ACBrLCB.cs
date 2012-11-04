@@ -97,7 +97,7 @@ namespace ACBrFramework
 			}
 		}
 
-		#endregion EventHandlers
+		#endregion Callback EventHandlers
 
 		#region Override Methods
 

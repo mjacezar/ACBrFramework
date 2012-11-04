@@ -39,14 +39,13 @@ namespace ACBrFramework.Net.PAFTeste
 		{
 			try
 			{
-				ACBrPAFRegistroC1 RegistroC1 = new ACBrPAFRegistroC1();
 				List<ACBrPAFRegistroC2> RegistroC2 = new List<ACBrPAFRegistroC2>();
 
-				RegistroC1.RazaoSocial = txtRazaoSocial.Text;
-				RegistroC1.UF = txtUF.Text;
-				RegistroC1.CNPJ = txtCNPJ.Text;
-				RegistroC1.IE = txtIE.Text;
-				RegistroC1.IM = txtIM.Text;
+				acbrPAF.PAF_C.RegistroC1.RazaoSocial = txtRazaoSocial.Text;
+				acbrPAF.PAF_C.RegistroC1.UF = txtUF.Text;
+				acbrPAF.PAF_C.RegistroC1.CNPJ = txtCNPJ.Text;
+				acbrPAF.PAF_C.RegistroC1.IE = txtIE.Text;
+				acbrPAF.PAF_C.RegistroC1.IM = txtIM.Text;
 
 				for (int i = 0; i < 10; i++)
 				{
@@ -68,11 +67,11 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemC2.NRO_NOTA_FISCAL = (int)GerarDados('I', 4);
 					ItemC2.VOLUME = (int)GerarDados('I', 2);
 					ItemC2.RegistroValido = true;
-					RegistroC2.Add(ItemC2);
+					acbrPAF.PAF_C.RegistroC2.Add(ItemC2);
 					ItemC2 = null;
 				}
 
-				if (acbrPAF.SaveFileTXT_C(RegistroC1, RegistroC2.ToArray(), @"\PAF_C.txt"))
+				if (acbrPAF.PAF_C.SaveFileTXT_C(@"\PAF_C.txt"))
 					WriteResp("Arquivo PAF_C gerado com sucesso");
 				else
 					WriteResp("Arquivo PAF_C não foi gerado");
@@ -88,14 +87,13 @@ namespace ACBrFramework.Net.PAFTeste
 		{
 			try
 			{
-				ACBrPAFRegistroD1 RegistroD1 = new ACBrPAFRegistroD1();
 				List<ACBrPAFRegistroD2> RegistroD2 = new List<ACBrPAFRegistroD2>();
 
-				RegistroD1.RazaoSocial = txtRazaoSocial.Text;
-				RegistroD1.UF = txtUF.Text;
-				RegistroD1.CNPJ = txtCNPJ.Text;
-				RegistroD1.IE = txtIE.Text;
-				RegistroD1.IM = txtIM.Text;
+				acbrPAF.PAF_D.RegistroD1.RazaoSocial = txtRazaoSocial.Text;
+				acbrPAF.PAF_D.RegistroD1.UF = txtUF.Text;
+				acbrPAF.PAF_D.RegistroD1.CNPJ = txtCNPJ.Text;
+				acbrPAF.PAF_D.RegistroD1.IE = txtIE.Text;
+				acbrPAF.PAF_D.RegistroD1.IM = txtIM.Text;
 
 				for (int i = 0; i < 10; i++)
 				{
@@ -114,7 +112,7 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemD2.NUMERO_ECF = "1";
 					ItemD2.NOME_CLIENTE = "Rafael Dias";
 					ItemD2.CPF_CNPJ = GerarDados('I', 14).ToString();
-					
+
 					for (int d = 0; d < 5; d++)
 					{
 						ACBrPAFRegistroD3 ItemD3 = new ACBrPAFRegistroD3();
@@ -139,11 +137,11 @@ namespace ACBrFramework.Net.PAFTeste
 					}
 
 					ItemD2.RegistroValido = true;
-					RegistroD2.Add(ItemD2);
+					acbrPAF.PAF_D.RegistroD2.Add(ItemD2);
 					ItemD2 = null;
 				}
 
-				if (acbrPAF.SaveFileTXT_D(RegistroD1, RegistroD2.ToArray(), @"\PAF_D.txt"))
+				if (acbrPAF.PAF_D.SaveFileTXT_D(@"\PAF_D.txt"))
 					WriteResp("Arquivo PAF_D gerado com sucesso");
 				else
 					WriteResp("Arquivo PAF_D não foi gerado");
@@ -159,14 +157,13 @@ namespace ACBrFramework.Net.PAFTeste
 		{
 			try
 			{
-				ACBrPAFRegistroP1 RegistroP1 = new ACBrPAFRegistroP1();
 				List<ACBrPAFRegistroP2> RegistroP2 = new List<ACBrPAFRegistroP2>();
 
-				RegistroP1.RazaoSocial = txtRazaoSocial.Text;
-				RegistroP1.UF = txtUF.Text;
-				RegistroP1.CNPJ = txtCNPJ.Text;
-				RegistroP1.IE = txtIE.Text;
-				RegistroP1.IM = txtIM.Text;
+				acbrPAF.PAF_P.RegistroP1.RazaoSocial = txtRazaoSocial.Text;
+				acbrPAF.PAF_P.RegistroP1.UF = txtUF.Text;
+				acbrPAF.PAF_P.RegistroP1.CNPJ = txtCNPJ.Text;
+				acbrPAF.PAF_P.RegistroP1.IE = txtIE.Text;
+				acbrPAF.PAF_P.RegistroP1.IM = txtIM.Text;
 
 				for (int i = 0; i < 10; i++)
 				{
@@ -180,11 +177,11 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemP2.ALIQ = (decimal)GerarDados('D', 6);
 					ItemP2.VL_UNIT = (decimal)GerarDados('D', 6);
 					ItemP2.RegistroValido = true;
-					RegistroP2.Add(ItemP2);
+					acbrPAF.PAF_P.RegistroP2.Add(ItemP2);
 					ItemP2 = null;
 				}
 
-				if (acbrPAF.SaveFileTXT_P(RegistroP1, RegistroP2.ToArray(), @"\PAF_P.txt"))
+				if (acbrPAF.PAF_P.SaveFileTXT_P(@"\PAF_P.txt"))
 					WriteResp("Arquivo PAF_P gerado com sucesso");
 				else
 					WriteResp("Arquivo PAF_P não foi gerado");
@@ -262,25 +259,25 @@ namespace ACBrFramework.Net.PAFTeste
 			GerarArquivoP();
 		}
 
-        private void acbrPAF_OnPAFGetKeyRSA(object sender, ChaveEventArgs e)
-        {
-            e.Chave = "-----BEGIN RSA PRIVATE KEY-----" + Environment.NewLine +
-                       "MIICXwIBAAKBgQC+TZjfcw/a/SovoqQPOW5bbKn4CQw4DeZJA3Y9vJrYHKN4aCQv" + Environment.NewLine +
-                       "z0i3AG9kGdsTSZdZ/clh4xv6tUwPsBdZJHrm21gH7wN/zKLTvXbs+i3x7U00ElCB" + Environment.NewLine +
-                       "YyZ8BOXJWVMuye0UvSz7p4JwSopugzbjaImIGy+5LvgcjUCn3OZzWpwYWQIDAQAB" + Environment.NewLine +
-                       "AoGBAKAycEtB8An37ghVkGfkf7rkmZxb+XZCdSXnjSThXTQpv46/lB7PDrZG3n5U" + Environment.NewLine +
-                       "qa/t1kQCOQF3DnmZHqNiJ/V5mR7ApbciQj4WYVLkMCgltru3MmzIUQ9IiLtAgaCv" + Environment.NewLine +
-                       "uHc0MAzt/OWgQ93uFnLf4ubp4+2PTHiiIChv2m78s605wX2lAkEA+3pPsPdXcaOe" + Environment.NewLine +
-                       "7T7C4hn1qg93ksN96UutB1APF3YAjWVWuPwzZv4hExiMPc0uKvVK2H3tP4P5CkM5" + Environment.NewLine +
-                       "YMIEGEkF2wJBAMG5qmoYksz+MFZ2cd7gt68mf3Oq9F59qkHHcoV+1ttXx5pfzwat" + Environment.NewLine +
-                       "kelhKkN+LV1XsgS0bGAKu2NitOMBUAcnItsCQQCEJxqJ3PFO/rUd58VyHEJFRCuK" + Environment.NewLine +
-                       "LMGWP/aFyUSlB5XyuDaCr8YzcYjgCB5qu9BvMshKTKLIpgnRotIcTtjoCjfRAkEA" + Environment.NewLine +
-                       "tsqHn+Bb9A0McykDvPdwmlXLAMsYFWihk7urtYa/GOw0rNcmMvjnqrxB8rlF+MNc" + Environment.NewLine +
-                       "d8/+SokV02s5ntCIQJeO7QJBAKp2BCOIck+uhMPDiw/1788yQLD6mVb/pBzClzBn" + Environment.NewLine +
-                       "pTMAFPGJG2fO4YJn/pUHdtDtSenX8TibWve+gY6oFCFw/Ts=" + Environment.NewLine +
-                       "-----END RSA PRIVATE KEY-----";
-        }
+		private void acbrPAF_OnPAFGetKeyRSA(object sender, ChaveEventArgs e)
+		{
+			e.Chave = "-----BEGIN RSA PRIVATE KEY-----" + Environment.NewLine +
+					   "MIICXwIBAAKBgQC+TZjfcw/a/SovoqQPOW5bbKn4CQw4DeZJA3Y9vJrYHKN4aCQv" + Environment.NewLine +
+					   "z0i3AG9kGdsTSZdZ/clh4xv6tUwPsBdZJHrm21gH7wN/zKLTvXbs+i3x7U00ElCB" + Environment.NewLine +
+					   "YyZ8BOXJWVMuye0UvSz7p4JwSopugzbjaImIGy+5LvgcjUCn3OZzWpwYWQIDAQAB" + Environment.NewLine +
+					   "AoGBAKAycEtB8An37ghVkGfkf7rkmZxb+XZCdSXnjSThXTQpv46/lB7PDrZG3n5U" + Environment.NewLine +
+					   "qa/t1kQCOQF3DnmZHqNiJ/V5mR7ApbciQj4WYVLkMCgltru3MmzIUQ9IiLtAgaCv" + Environment.NewLine +
+					   "uHc0MAzt/OWgQ93uFnLf4ubp4+2PTHiiIChv2m78s605wX2lAkEA+3pPsPdXcaOe" + Environment.NewLine +
+					   "7T7C4hn1qg93ksN96UutB1APF3YAjWVWuPwzZv4hExiMPc0uKvVK2H3tP4P5CkM5" + Environment.NewLine +
+					   "YMIEGEkF2wJBAMG5qmoYksz+MFZ2cd7gt68mf3Oq9F59qkHHcoV+1ttXx5pfzwat" + Environment.NewLine +
+					   "kelhKkN+LV1XsgS0bGAKu2NitOMBUAcnItsCQQCEJxqJ3PFO/rUd58VyHEJFRCuK" + Environment.NewLine +
+					   "LMGWP/aFyUSlB5XyuDaCr8YzcYjgCB5qu9BvMshKTKLIpgnRotIcTtjoCjfRAkEA" + Environment.NewLine +
+					   "tsqHn+Bb9A0McykDvPdwmlXLAMsYFWihk7urtYa/GOw0rNcmMvjnqrxB8rlF+MNc" + Environment.NewLine +
+					   "d8/+SokV02s5ntCIQJeO7QJBAKp2BCOIck+uhMPDiw/1788yQLD6mVb/pBzClzBn" + Environment.NewLine +
+					   "pTMAFPGJG2fO4YJn/pUHdtDtSenX8TibWve+gY6oFCFw/Ts=" + Environment.NewLine +
+					   "-----END RSA PRIVATE KEY-----";
+		}
 
-		#endregion Event Handlers          
+		#endregion Event Handlers
 	}
 }

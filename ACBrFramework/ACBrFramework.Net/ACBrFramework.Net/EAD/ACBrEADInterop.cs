@@ -18,6 +18,16 @@ namespace ACBrFramework
 
 		#region ACBrEAD
 
+		#region Interop Types
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate string OnGetChavePublicaCallback();
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate string OnGetChavePrivadaCallback();
+
+		#endregion Interop Types
+
 		#region Propriedades do Componente
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]

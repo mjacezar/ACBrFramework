@@ -1,7 +1,6 @@
 using System;
-using System.Linq;
 using System.Drawing;
-using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ACBrFramework
 {
@@ -38,7 +37,7 @@ namespace ACBrFramework
 		{
 			get
 			{
-                return (ACBrSintegraVersaoValidador)GetInt32(ACBrSintegraInterop.SIN_GetVersaoValidador);
+				return (ACBrSintegraVersaoValidador)GetInt32(ACBrSintegraInterop.SIN_GetVersaoValidador);
 			}
 			set
 			{
@@ -54,749 +53,658 @@ namespace ACBrFramework
 			}
 		}
 
+		[Browsable(true)]
+		public SintegraRegistro10 Registro10 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistro11 Registro11 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros50 Registro50 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros51 Registro51 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros53 Registro53 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros54 Registro54 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros55 Registro55 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros56 Registro56 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros60A Registro60A { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros60D Registro60D { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros60I Registro60I { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros60M Registro60M { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros60R Registro60R { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros61 Registro61 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros61R Registro61R { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros70 Registro70 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros71 Registro71 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros74 Registro74 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros75 Registro75 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros76 Registro76 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros77 Registro77 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros85 Registro85 { get; private set; }
+
+		[Browsable(true)]
+		public SintegraRegistros86 Registro86 { get; private set; }
+
 		#endregion Properties
 
 		#region Methods
 
 		#region Metodos Sintegra
-	
+
 		public void LimparRegistros()
 		{
 			int ret = ACBrSintegraInterop.SIN_LimparRegistros(this.Handle);
 			CheckResult(ret);
+
+			Registro10 = null;
+			Registro10 = new SintegraRegistro10();
+			Registro11 = null;
+			Registro11 = new SintegraRegistro11();
+			Registro50.Clear();
+			Registro51.Clear();
+			Registro53.Clear();
+			Registro54.Clear();
+			Registro55.Clear();
+			Registro56.Clear();
+			Registro60A.Clear();
+			Registro60D.Clear();
+			Registro60I.Clear();
+			Registro60M.Clear();
+			Registro60R.Clear();
+			Registro61.Clear();
+			Registro61R.Clear();
+			Registro70.Clear();
+			Registro71.Clear();
+			Registro74.Clear();
+			Registro75.Clear();
+			Registro76.Clear();
+			Registro77.Clear();
+			Registro85.Clear();
+			Registro86.Clear();
 		}
 
 		public void GeraArquivo()
 		{
+			GerarRegistro10();
+			GerarRegistro11();
+			GerarRegistro50();
+			GerarRegistro51();
+			GerarRegistro53();
+			GerarRegistro54();
+			GerarRegistro55();
+			GerarRegistro56();
+			GerarRegistro60A();
+			GerarRegistro60D();
+			GerarRegistro60I();
+			GerarRegistro60M();
+			GerarRegistro60R();
+			GerarRegistro61();
+			GerarRegistro61R();
+			GerarRegistro70();
+			GerarRegistro71();
+			GerarRegistro74();
+			GerarRegistro75();
+			GerarRegistro76();
+			GerarRegistro77();
+			GerarRegistro85();
+			GerarRegistro86();
+
 			int ret = ACBrSintegraInterop.SIN_GeraArquivo(this.Handle);
 			CheckResult(ret);
 		}
-		
+
 		#endregion Metodos Sintegra
-		
+
 		#region Registros
-	
-		public void Registro10(SintegraRegistro10 registro10)
+
+		private void GerarRegistro10()
 		{
 			var record = new ACBrSintegraInterop.Registro10Rec();
-			record.RazaoSocial = ToUTF8(registro10.RazaoSocial);
-			record.CNPJ = ToUTF8(registro10.CNPJ.ToString());
-			record.Inscricao = ToUTF8(registro10.Inscricao.ToString());
-			record.Cidade = ToUTF8(registro10.Cidade);
-			record.Estado = ToUTF8(registro10.Estado);
-			record.Telefone = ToUTF8(registro10.Telefone.ToString());
-			record.DataInicial = registro10.DataInicial.ToOADate();
-			record.DataFinal = registro10.DataFinal.ToOADate();
-			record.NaturezaInformacoes = registro10.NaturezaInformacoes;
-			record.FinalidadeArquivo = registro10.FinalidadeArquivo;
-			record.CodigoConvenio = registro10.CodigoConvenio;
+			record.RazaoSocial = ToUTF8(Registro10.RazaoSocial);
+			record.CNPJ = ToUTF8(Registro10.CNPJ.ToString());
+			record.Inscricao = ToUTF8(Registro10.Inscricao.ToString());
+			record.Cidade = ToUTF8(Registro10.Cidade);
+			record.Estado = ToUTF8(Registro10.Estado);
+			record.Telefone = ToUTF8(Registro10.Telefone.ToString());
+			record.DataInicial = Registro10.DataInicial.ToOADate();
+			record.DataFinal = Registro10.DataFinal.ToOADate();
+			record.NaturezaInformacoes = Registro10.NaturezaInformacoes;
+			record.FinalidadeArquivo = Registro10.FinalidadeArquivo;
+			record.CodigoConvenio = Registro10.CodigoConvenio;
 
 			int ret = ACBrSintegraInterop.SIN_Registro10(this.Handle, record);
 			CheckResult(ret);
 		}
 
-		public void Registro11(SintegraRegistro11 registro11)
+		private void GerarRegistro11()
 		{
 			var record = new ACBrSintegraInterop.Registro11Rec();
-			record.Responsavel = ToUTF8(registro11.Responsavel);
-			record.Bairro = ToUTF8(registro11.Bairro);
-			record.Cep = ToUTF8(registro11.Cep.ToString());
-			record.Numero = ToUTF8(registro11.Numero.ToString());
-			record.Complemento = ToUTF8(registro11.Complemento);
-			record.Endereco = ToUTF8(registro11.Endereco);
-			record.Telefone = ToUTF8(registro11.Telefone.ToString());
+			record.Responsavel = ToUTF8(Registro11.Responsavel);
+			record.Bairro = ToUTF8(Registro11.Bairro);
+			record.Cep = ToUTF8(Registro11.Cep.ToString());
+			record.Numero = ToUTF8(Registro11.Numero.ToString());
+			record.Complemento = ToUTF8(Registro11.Complemento);
+			record.Endereco = ToUTF8(Registro11.Endereco);
+			record.Telefone = ToUTF8(Registro11.Telefone.ToString());
 
 			int ret = ACBrSintegraInterop.SIN_Registro11(this.Handle, record);
 			CheckResult(ret);
 		}
 
-        public void Registro50(List<SintegraRegistro50> registro50)
-        {
-            Registro50(registro50.ToArray());
-        }
-
-        public void Registro50(IEnumerable<SintegraRegistro50> registro50)
-        {
-            Registro50(registro50.ToArray());
-        }
-
- 		public void Registro50(SintegraRegistro50[] registro50)
+		private void GerarRegistro50()
 		{
-			ACBrSintegraInterop.Registro50Rec[] record = new ACBrSintegraInterop.Registro50Rec[registro50.Length];
-			for (int i = 0; i < registro50.Length; i++)
+			ACBrSintegraInterop.Registro50Rec[] record = new ACBrSintegraInterop.Registro50Rec[Registro50.Count];
+			for (int i = 0; i < Registro50.Count; i++)
 			{
-				record[i].CPFCNPJ = ToUTF8(registro50[i].CPFCNPJ.ToString());
-				record[i].Inscricao = ToUTF8(registro50[i].Inscricao.ToString());
-				record[i].UF = ToUTF8(registro50[i].UF);
-				record[i].Situacao = ToUTF8(registro50[i].Situacao);
-				record[i].Aliquota = registro50[i].Aliquota;
-				record[i].Isentas = registro50[i].Isentas;
-				record[i].Icms = registro50[i].Icms;
-				record[i].ValorContabil = registro50[i].ValorContabil;
-				record[i].BasedeCalculo = registro50[i].BasedeCalculo;
-				record[i].Outras = registro50[i].Outras;
-				record[i].EmissorDocumento = ToUTF8(registro50[i].EmissorDocumento);
-				record[i].Cfop = ToUTF8(registro50[i].Cfop);
-				record[i].Serie = ToUTF8(registro50[i].Serie);
-				record[i].Modelo = ToUTF8(registro50[i].Modelo);
-				record[i].Numero = ToUTF8(registro50[i].Numero.ToString());
-				record[i].DataDocumento = registro50[i].DataDocumento.ToOADate();
+				record[i].CPFCNPJ = ToUTF8(Registro50[i].CPFCNPJ.ToString());
+				record[i].Inscricao = ToUTF8(Registro50[i].Inscricao.ToString());
+				record[i].UF = ToUTF8(Registro50[i].UF);
+				record[i].Situacao = ToUTF8(Registro50[i].Situacao);
+				record[i].Aliquota = Registro50[i].Aliquota;
+				record[i].Isentas = Registro50[i].Isentas;
+				record[i].Icms = Registro50[i].Icms;
+				record[i].ValorContabil = Registro50[i].ValorContabil;
+				record[i].BasedeCalculo = Registro50[i].BasedeCalculo;
+				record[i].Outras = Registro50[i].Outras;
+				record[i].EmissorDocumento = ToUTF8(Registro50[i].EmissorDocumento);
+				record[i].Cfop = ToUTF8(Registro50[i].Cfop);
+				record[i].Serie = ToUTF8(Registro50[i].Serie);
+				record[i].Modelo = ToUTF8(Registro50[i].Modelo);
+				record[i].Numero = ToUTF8(Registro50[i].Numero.ToString());
+				record[i].DataDocumento = Registro50[i].DataDocumento.ToOADate();
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro50(this.Handle, record, registro50.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro50(this.Handle, record, Registro50.Count);
 			CheckResult(ret);
 		}
 
-        public void Registro51(List<SintegraRegistro51> registro51)
-        {
-            Registro51(registro51.ToArray());
-        }
-
-        public void Registro51(IEnumerable<SintegraRegistro51> registro51)
-        {
-            Registro51(registro51.ToArray());
-        }
-
-		public void Registro51(SintegraRegistro51[] registro51)
+		private void GerarRegistro51()
 		{
-			ACBrSintegraInterop.Registro51Rec[] record = new ACBrSintegraInterop.Registro51Rec[registro51.Length];
-			for (int i = 0; i < registro51.Length; i++)
+			ACBrSintegraInterop.Registro51Rec[] record = new ACBrSintegraInterop.Registro51Rec[Registro51.Count];
+			for (int i = 0; i < Registro51.Count; i++)
 			{
-				record[i].CPFCNPJ = ToUTF8(registro51[i].CPFCNPJ.ToString());
-				record[i].Inscricao = ToUTF8(registro51[i].Inscricao.ToString());
-				record[i].Estado = ToUTF8(registro51[i].Estado);
-				record[i].ValorContabil = registro51[i].ValorContabil;
-				record[i].Cfop = ToUTF8(registro51[i].Cfop);
-				record[i].Serie = ToUTF8(registro51[i].Serie);
-				record[i].Numero = ToUTF8(registro51[i].Numero.ToString());
-				record[i].DataDocumento = registro51[i].DataDocumento.ToOADate();
-				record[i].ValorIpi = registro51[i].ValorIpi;
-				record[i].Situacao = ToUTF8(registro51[i].Situacao);
-				record[i].ValorIsentas = registro51[i].ValorIsentas;
-				record[i].ValorOutras = registro51[i].ValorOutras;
+				record[i].CPFCNPJ = ToUTF8(Registro51[i].CPFCNPJ.ToString());
+				record[i].Inscricao = ToUTF8(Registro51[i].Inscricao.ToString());
+				record[i].Estado = ToUTF8(Registro51[i].Estado);
+				record[i].ValorContabil = Registro51[i].ValorContabil;
+				record[i].Cfop = ToUTF8(Registro51[i].Cfop);
+				record[i].Serie = ToUTF8(Registro51[i].Serie);
+				record[i].Numero = ToUTF8(Registro51[i].Numero.ToString());
+				record[i].DataDocumento = Registro51[i].DataDocumento.ToOADate();
+				record[i].ValorIpi = Registro51[i].ValorIpi;
+				record[i].Situacao = ToUTF8(Registro51[i].Situacao);
+				record[i].ValorIsentas = Registro51[i].ValorIsentas;
+				record[i].ValorOutras = Registro51[i].ValorOutras;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro51(this.Handle, record, registro51.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro51(this.Handle, record, Registro51.Count);
 			CheckResult(ret);
 		}
 
-        public void Registro53(List<SintegraRegistro53> registro53)
-        {
-            Registro53(registro53.ToArray());
-        }
-
-        public void Registro53(IEnumerable<SintegraRegistro53> registro53)
-        {
-            Registro53(registro53.ToArray());
-        }
-
-        public void Registro53(SintegraRegistro53[] registro53)
-        {
-            ACBrSintegraInterop.Registro53Rec[] record = new ACBrSintegraInterop.Registro53Rec[registro53.Length];
-            for (int i = 0; i < registro53.Length; i++)
-            {
-                record[i].CPFCNPJ = registro53[i].CPFCNPJ;
-                record[i].Inscricao = registro53[i].Inscricao;
-                record[i].Estado = registro53[i].Estado;
-                record[i].Serie = registro53[i].Serie;
-                record[i].DataDocumento = registro53[i].DataDocumento.ToOADate();
-                record[i].Cfop = registro53[i].Cfop;
-                record[i].Numero = registro53[i].Numero;
-                record[i].Situacao = registro53[i].Situacao;
-                record[i].CodigoAntecipacao = registro53[i].CodigoAntecipacao;
-                record[i].BaseST = registro53[i].BaseST;
-                record[i].Modelo = registro53[i].Modelo;
-                record[i].Emitente = registro53[i].Emitente;
-                record[i].Despesas = registro53[i].Despesas;
-                record[i].IcmsRetido = registro53[i].IcmsRetido; 
-            }
-
-            int ret = ACBrSintegraInterop.SIN_Registro53(this.Handle, record, registro53.Length);
-            CheckResult(ret);
-        }
-
-        public void Registro54(List<SintegraRegistro54> registro54)
-        {
-            Registro54(registro54.ToArray());
-        }
-
-        public void Registro54(IEnumerable<SintegraRegistro54> registro54)
-        {
-            Registro54(registro54.ToArray());
-        }
-
-        public void Registro54(SintegraRegistro54[] registro54)
-        {
-            ACBrSintegraInterop.Registro54Rec[] record = new ACBrSintegraInterop.Registro54Rec[registro54.Length];
-            for (int i = 0; i < registro54.Length; i++)
-            {
-                record[i].CPFCNPJ = registro54[i].CPFCNPJ;
-                record[i].Aliquota = registro54[i].Aliquota;
-                record[i].BaseST = registro54[i].BaseST;
-                record[i].BasedeCalculo = registro54[i].BasedeCalculo;
-                record[i].Quantidade = registro54[i].Quantidade;
-                record[i].ValorDescontoDespesa = registro54[i].ValorDescontoDespesa;
-                record[i].ValorIpi = registro54[i].ValorIpi;
-                record[i].Valor = registro54[i].Valor;
-                record[i].NumeroItem = registro54[i].NumeroItem;
-                record[i].CST = registro54[i].CST;
-                record[i].Codigo = registro54[i].Codigo;
-                record[i].CFOP = registro54[i].CFOP;
-                record[i].Descricao = registro54[i].Descricao;
-                record[i].Numero = registro54[i].Numero;
-                record[i].Modelo = registro54[i].Modelo;
-                record[i].Serie = registro54[i].Serie;
-            }
-
-            int ret = ACBrSintegraInterop.SIN_Registro54(this.Handle, record, registro54.Length);
-            CheckResult(ret);
-        }
-
-		public void Registro55(List<SintegraRegistro55> registro55)
+		private void GerarRegistro53()
 		{
-			Registro55(registro55.ToArray());
-		}
-
-		public void Registro55(IEnumerable<SintegraRegistro55> registro55)
-		{
-			Registro55(registro55.ToArray());
-		}
-
-		public void Registro55(SintegraRegistro55[] registro55)
-		{
-			ACBrSintegraInterop.Registro55Rec[] record = new ACBrSintegraInterop.Registro55Rec[registro55.Length];
-			for (int i = 0; i < registro55.Length; i++)
+			ACBrSintegraInterop.Registro53Rec[] record = new ACBrSintegraInterop.Registro53Rec[Registro53.Count];
+			for (int i = 0; i < Registro53.Count; i++)
 			{
-				record[i].Valor = registro55[i].Valor;
-				record[i].Agencia = registro55[i].Agencia;
-				record[i].Banco = registro55[i].Banco;
-				record[i].NumeroConvenio = registro55[i].NumeroConvenio;
-				record[i].Inscricao = registro55[i].Inscricao;
-				record[i].MesAno = registro55[i].MesAno;
-				record[i].CNPJ = registro55[i].CNPJ;
-				record[i].UF = registro55[i].UF;
-				record[i].Numero = registro55[i].Numero;
-				record[i].DataPagamento = registro55[i].DataPagamento.ToOADate();
-				record[i].Vencimento = registro55[i].Vencimento.ToOADate();
+				record[i].CPFCNPJ = Registro53[i].CPFCNPJ;
+				record[i].Inscricao = Registro53[i].Inscricao;
+				record[i].Estado = Registro53[i].Estado;
+				record[i].Serie = Registro53[i].Serie;
+				record[i].DataDocumento = Registro53[i].DataDocumento.ToOADate();
+				record[i].Cfop = Registro53[i].Cfop;
+				record[i].Numero = Registro53[i].Numero;
+				record[i].Situacao = Registro53[i].Situacao;
+				record[i].CodigoAntecipacao = Registro53[i].CodigoAntecipacao;
+				record[i].BaseST = Registro53[i].BaseST;
+				record[i].Modelo = Registro53[i].Modelo;
+				record[i].Emitente = Registro53[i].Emitente;
+				record[i].Despesas = Registro53[i].Despesas;
+				record[i].IcmsRetido = Registro53[i].IcmsRetido;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro55(this.Handle, record, registro55.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro53(this.Handle, record, Registro53.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro56(List<SintegraRegistro56> registro56)
+		private void GerarRegistro54()
 		{
-			Registro56(registro56.ToArray());
-		}
-
-		public void Registro56(IEnumerable<SintegraRegistro56> registro56)
-		{
-			Registro56(registro56.ToArray());
-		}
-
-		public void Registro56(SintegraRegistro56[] registro56)
-		{
-			ACBrSintegraInterop.Registro56Rec[] record = new ACBrSintegraInterop.Registro56Rec[registro56.Length];
-			for (int i = 0; i < registro56.Length; i++)
+			ACBrSintegraInterop.Registro54Rec[] record = new ACBrSintegraInterop.Registro54Rec[Registro54.Count];
+			for (int i = 0; i < Registro54.Count; i++)
 			{
-				record[i].Cnpj = registro56[i].Cnpj;
-				record[i].Modelo = registro56[i].Modelo;
-				record[i].Serie = registro56[i].Serie;
-				record[i].Numero = registro56[i].Numero;
-				record[i].Cfop = registro56[i].Cfop;
-				record[i].Cst = registro56[i].Cst;
-				record[i].NumeroItem = registro56[i].NumeroItem;
-				record[i].Codigo = registro56[i].Codigo;
-				record[i].TipoOperacao = registro56[i].TipoOperacao;
-				record[i].CnpjConcessionaria = registro56[i].CnpjConcessionaria;
-				record[i].Ipi = registro56[i].Ipi;
-				record[i].Chassi = registro56[i].Chassi;
+				record[i].CPFCNPJ = Registro54[i].CPFCNPJ;
+				record[i].Aliquota = Registro54[i].Aliquota;
+				record[i].BaseST = Registro54[i].BaseST;
+				record[i].BasedeCalculo = Registro54[i].BasedeCalculo;
+				record[i].Quantidade = Registro54[i].Quantidade;
+				record[i].ValorDescontoDespesa = Registro54[i].ValorDescontoDespesa;
+				record[i].ValorIpi = Registro54[i].ValorIpi;
+				record[i].Valor = Registro54[i].Valor;
+				record[i].NumeroItem = Registro54[i].NumeroItem;
+				record[i].CST = Registro54[i].CST;
+				record[i].Codigo = Registro54[i].Codigo;
+				record[i].CFOP = Registro54[i].CFOP;
+				record[i].Descricao = Registro54[i].Descricao;
+				record[i].Numero = Registro54[i].Numero;
+				record[i].Modelo = Registro54[i].Modelo;
+				record[i].Serie = Registro54[i].Serie;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro56(this.Handle, record, registro56.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro54(this.Handle, record, Registro54.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro60A(List<SintegraRegistro60A> registro60A)
+		private void GerarRegistro55()
 		{
-			Registro60A(registro60A.ToArray());
-		}
-
-		public void Registro60A(IEnumerable<SintegraRegistro60A> registro60A)
-		{
-			Registro60A(registro60A.ToArray());
-		}
-
-		public void Registro60A(SintegraRegistro60A[] registro60A)
-		{
-			ACBrSintegraInterop.Registro60ARec[] record = new ACBrSintegraInterop.Registro60ARec[registro60A.Length];
-			for (int i = 0; i < registro60A.Length; i++)
+			ACBrSintegraInterop.Registro55Rec[] record = new ACBrSintegraInterop.Registro55Rec[Registro55.Count];
+			for (int i = 0; i < Registro55.Count; i++)
 			{
-				record[i].NumSerie = registro60A[i].NumSerie;
-				record[i].Aliquota = registro60A[i].Aliquota;
-				record[i].Emissao = registro60A[i].Emissao.ToOADate();
-				record[i].Valor = registro60A[i].Valor;
+				record[i].Valor = Registro55[i].Valor;
+				record[i].Agencia = Registro55[i].Agencia;
+				record[i].Banco = Registro55[i].Banco;
+				record[i].NumeroConvenio = Registro55[i].NumeroConvenio;
+				record[i].Inscricao = Registro55[i].Inscricao;
+				record[i].MesAno = Registro55[i].MesAno;
+				record[i].CNPJ = Registro55[i].CNPJ;
+				record[i].UF = Registro55[i].UF;
+				record[i].Numero = Registro55[i].Numero;
+				record[i].DataPagamento = Registro55[i].DataPagamento.ToOADate();
+				record[i].Vencimento = Registro55[i].Vencimento.ToOADate();
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro60A(this.Handle, record, registro60A.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro55(this.Handle, record, Registro55.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro60D(List<SintegraRegistro60D> registro60D)
+		private void GerarRegistro56()
 		{
-			Registro60D(registro60D.ToArray());
-		}
-
-		public void Registro60D(IEnumerable<SintegraRegistro60D> registro60D)
-		{
-			Registro60D(registro60D.ToArray());
-		}
-
-		public void Registro60D(SintegraRegistro60D[] registro60D)
-		{
-			ACBrSintegraInterop.Registro60DRec[] record = new ACBrSintegraInterop.Registro60DRec[registro60D.Length];
-			for (int i = 0; i < registro60D.Length; i++)
+			ACBrSintegraInterop.Registro56Rec[] record = new ACBrSintegraInterop.Registro56Rec[Registro56.Count];
+			for (int i = 0; i < Registro56.Count; i++)
 			{
-				record[i].NumSerie = registro60D[i].NumSerie;
-				record[i].StAliquota = registro60D[i].StAliquota;
-				record[i].Emissao = registro60D[i].Emissao.ToOADate();
-				record[i].Valor = registro60D[i].Valor;
-				record[i].Codigo = registro60D[i].Codigo;
-				record[i].ValorIcms = registro60D[i].ValorIcms;
-				record[i].Quantidade = registro60D[i].Quantidade;
-				record[i].BaseDeCalculo = registro60D[i].BaseDeCalculo;
+				record[i].Cnpj = Registro56[i].Cnpj;
+				record[i].Modelo = Registro56[i].Modelo;
+				record[i].Serie = Registro56[i].Serie;
+				record[i].Numero = Registro56[i].Numero;
+				record[i].Cfop = Registro56[i].Cfop;
+				record[i].Cst = Registro56[i].Cst;
+				record[i].NumeroItem = Registro56[i].NumeroItem;
+				record[i].Codigo = Registro56[i].Codigo;
+				record[i].TipoOperacao = Registro56[i].TipoOperacao;
+				record[i].CnpjConcessionaria = Registro56[i].CnpjConcessionaria;
+				record[i].Ipi = Registro56[i].Ipi;
+				record[i].Chassi = Registro56[i].Chassi;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro60D(this.Handle, record, registro60D.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro56(this.Handle, record, Registro56.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro60I(List<SintegraRegistro60I> registro60I)
+		private void GerarRegistro60A()
 		{
-			Registro60I(registro60I.ToArray());
-		}
-
-		public void Registro60I(IEnumerable<SintegraRegistro60I> registro60I)
-		{
-			Registro60I(registro60I.ToArray());
-		}
-
-		public void Registro60I(SintegraRegistro60I[] registro60I)
-		{
-			ACBrSintegraInterop.Registro60IRec[] record = new ACBrSintegraInterop.Registro60IRec[registro60I.Length];
-			for (int i = 0; i < registro60I.Length; i++)
+			ACBrSintegraInterop.Registro60ARec[] record = new ACBrSintegraInterop.Registro60ARec[Registro60A.Count];
+			for (int i = 0; i < Registro60A.Count; i++)
 			{
-				record[i].NumSerie = registro60I[i].NumSerie;
-				record[i].StAliquota = registro60I[i].StAliquota;
-				record[i].Emissao = registro60I[i].Emissao.ToOADate();
-				record[i].Valor = registro60I[i].Valor;
-				record[i].Codigo = registro60I[i].Codigo;
-				record[i].ValorIcms = registro60I[i].ValorIcms;
-				record[i].Quantidade = registro60I[i].Quantidade;
-				record[i].BaseDeCalculo = registro60I[i].BaseDeCalculo;
-				record[i].Item = registro60I[i].Item;
-				record[i].Cupom = registro60I[i].Cupom;
-				record[i].ModeloDoc = registro60I[i].ModeloDoc;
+				record[i].NumSerie = Registro60A[i].NumSerie;
+				record[i].Aliquota = Registro60A[i].Aliquota;
+				record[i].Emissao = Registro60A[i].Emissao.ToOADate();
+				record[i].Valor = Registro60A[i].Valor;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro60I(this.Handle, record, registro60I.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro60A(this.Handle, record, Registro60A.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro60M(List<SintegraRegistro60M> registro60M)
+		private void GerarRegistro60D()
 		{
-			Registro60M(registro60M.ToArray());
-		}
-
-		public void Registro60M(IEnumerable<SintegraRegistro60M> registro60M)
-		{
-			Registro60M(registro60M.ToArray());
-		}
-
-		public void Registro60M(SintegraRegistro60M[] registro60M)
-		{
-			ACBrSintegraInterop.Registro60MRec[] record = new ACBrSintegraInterop.Registro60MRec[registro60M.Length];
-			for (int i = 0; i < registro60M.Length; i++)
+			ACBrSintegraInterop.Registro60DRec[] record = new ACBrSintegraInterop.Registro60DRec[Registro60D.Count];
+			for (int i = 0; i < Registro60D.Count; i++)
 			{
-				record[i].CRO = registro60M[i].CRO;
-				record[i].NumOrdem = registro60M[i].NumOrdem;
-				record[i].VendaBruta = registro60M[i].VendaBruta;
-				record[i].ModeloDoc = registro60M[i].ModeloDoc;
-				record[i].ValorGT = registro60M[i].ValorGT;
-				record[i].CRZ = registro60M[i].CRZ;
-				record[i].CooFinal = registro60M[i].CooFinal;
-				record[i].CooInicial = registro60M[i].CooInicial;
-				record[i].NumSerie = registro60M[i].NumSerie;
-				record[i].Emissao = registro60M[i].Emissao.ToOADate();
+				record[i].NumSerie = Registro60D[i].NumSerie;
+				record[i].StAliquota = Registro60D[i].StAliquota;
+				record[i].Emissao = Registro60D[i].Emissao.ToOADate();
+				record[i].Valor = Registro60D[i].Valor;
+				record[i].Codigo = Registro60D[i].Codigo;
+				record[i].ValorIcms = Registro60D[i].ValorIcms;
+				record[i].Quantidade = Registro60D[i].Quantidade;
+				record[i].BaseDeCalculo = Registro60D[i].BaseDeCalculo;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro60M(this.Handle, record, registro60M.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro60D(this.Handle, record, Registro60D.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro60R(List<SintegraRegistro60R> registro60R)
+		private void GerarRegistro60I()
 		{
-			Registro60R(registro60R.ToArray());
-		}
-
-		public void Registro60R(IEnumerable<SintegraRegistro60R> registro60R)
-		{
-			Registro60R(registro60R.ToArray());
-		}
-
-		public void Registro60R(SintegraRegistro60R[] registro60R)
-		{
-			ACBrSintegraInterop.Registro60RRec[] record = new ACBrSintegraInterop.Registro60RRec[registro60R.Length];
-			for (int i = 0; i < registro60R.Length; i++)
+			ACBrSintegraInterop.Registro60IRec[] record = new ACBrSintegraInterop.Registro60IRec[Registro60I.Count];
+			for (int i = 0; i < Registro60I.Count; i++)
 			{
-				record[i].BaseDeCalculo = registro60R[i].BaseDeCalculo;
-				record[i].Valor = registro60R[i].Valor;
-				record[i].Qtd = registro60R[i].Qtd;
-				record[i].MesAno = registro60R[i].MesAno;
-				record[i].Codigo = registro60R[i].Codigo;
-				record[i].Aliquota = registro60R[i].Aliquota;
+				record[i].NumSerie = Registro60I[i].NumSerie;
+				record[i].StAliquota = Registro60I[i].StAliquota;
+				record[i].Emissao = Registro60I[i].Emissao.ToOADate();
+				record[i].Valor = Registro60I[i].Valor;
+				record[i].Codigo = Registro60I[i].Codigo;
+				record[i].ValorIcms = Registro60I[i].ValorIcms;
+				record[i].Quantidade = Registro60I[i].Quantidade;
+				record[i].BaseDeCalculo = Registro60I[i].BaseDeCalculo;
+				record[i].Item = Registro60I[i].Item;
+				record[i].Cupom = Registro60I[i].Cupom;
+				record[i].ModeloDoc = Registro60I[i].ModeloDoc;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro60R(this.Handle, record, registro60R.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro60I(this.Handle, record, Registro60I.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro61(List<SintegraRegistro61> registro61)
+		private void GerarRegistro60M()
 		{
-			Registro61(registro61.ToArray());
-		}
-
-		public void Registro61(IEnumerable<SintegraRegistro61> registro61)
-		{
-			Registro61(registro61.ToArray());
-		}
-
-		public void Registro61(SintegraRegistro61[] registro61)
-		{
-			ACBrSintegraInterop.Registro61Rec[] record = new ACBrSintegraInterop.Registro61Rec[registro61.Length];
-			for (int i = 0; i < registro61.Length; i++)
+			ACBrSintegraInterop.Registro60MRec[] record = new ACBrSintegraInterop.Registro60MRec[Registro60M.Count];
+			for (int i = 0; i < Registro60M.Count; i++)
 			{
-				record[i].Emissao = registro61[i].Emissao.ToOADate();
-				record[i].Valor = registro61[i].Valor;
-				record[i].ValorIcms = registro61[i].ValorIcms;
-				record[i].Outras = registro61[i].Outras;
-				record[i].BaseDeCalculo = registro61[i].BaseDeCalculo;
-				record[i].Isentas = registro61[i].Isentas;
-				record[i].NumOrdemInicial = registro61[i].NumOrdemInicial;
-				record[i].NumOrdemFinal = registro61[i].NumOrdemFinal;
-				record[i].Modelo = registro61[i].Modelo;
-				record[i].SubSerie = registro61[i].SubSerie;
-				record[i].Serie = registro61[i].Serie;
-				record[i].Aliquota = registro61[i].Aliquota;
+				record[i].CRO = Registro60M[i].CRO;
+				record[i].NumOrdem = Registro60M[i].NumOrdem;
+				record[i].VendaBruta = Registro60M[i].VendaBruta;
+				record[i].ModeloDoc = Registro60M[i].ModeloDoc;
+				record[i].ValorGT = Registro60M[i].ValorGT;
+				record[i].CRZ = Registro60M[i].CRZ;
+				record[i].CooFinal = Registro60M[i].CooFinal;
+				record[i].CooInicial = Registro60M[i].CooInicial;
+				record[i].NumSerie = Registro60M[i].NumSerie;
+				record[i].Emissao = Registro60M[i].Emissao.ToOADate();
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro61(this.Handle, record, registro61.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro60M(this.Handle, record, Registro60M.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro61R(List<SintegraRegistro61R> registro61R)
+		private void GerarRegistro60R()
 		{
-			Registro61R(registro61R.ToArray());
-		}
-
-		public void Registro61R(IEnumerable<SintegraRegistro61R> registro61R)
-		{
-			Registro61R(registro61R.ToArray());
-		}
-
-		public void Registro61R(SintegraRegistro61R[] registro61R)
-		{
-			ACBrSintegraInterop.Registro61RRec[] record = new ACBrSintegraInterop.Registro61RRec[registro61R.Length];
-			for (int i = 0; i < registro61R.Length; i++)
+			ACBrSintegraInterop.Registro60RRec[] record = new ACBrSintegraInterop.Registro60RRec[Registro60R.Count];
+			for (int i = 0; i < Registro60R.Count; i++)
 			{
-				record[i].Aliquota = registro61R[i].Aliquota;
-				record[i].Valor = registro61R[i].Valor;
-				record[i].Qtd = registro61R[i].Qtd;
-				record[i].MesAno = registro61R[i].MesAno;
-				record[i].Codigo = registro61R[i].Codigo;
-				record[i].BaseDeCalculo = registro61R[i].BaseDeCalculo;
+				record[i].BaseDeCalculo = Registro60R[i].BaseDeCalculo;
+				record[i].Valor = Registro60R[i].Valor;
+				record[i].Qtd = Registro60R[i].Qtd;
+				record[i].MesAno = Registro60R[i].MesAno;
+				record[i].Codigo = Registro60R[i].Codigo;
+				record[i].Aliquota = Registro60R[i].Aliquota;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro61R(this.Handle, record, registro61R.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro60R(this.Handle, record, Registro60R.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro70(List<SintegraRegistro70> registro70)
+		private void GerarRegistro61()
 		{
-			Registro70(registro70.ToArray());
-		}
-
-		public void Registro70(IEnumerable<SintegraRegistro70> registro70)
-		{
-			Registro70(registro70.ToArray());
-		}
-
-		public void Registro70(SintegraRegistro70[] registro70)
-		{
-			ACBrSintegraInterop.Registro70Rec[] record = new ACBrSintegraInterop.Registro70Rec[registro70.Length];
-			for (int i = 0; i < registro70.Length; i++)
+			ACBrSintegraInterop.Registro61Rec[] record = new ACBrSintegraInterop.Registro61Rec[Registro61.Count];
+			for (int i = 0; i < Registro61.Count; i++)
 			{
-				record[i].Icms = registro70[i].Icms;
-				record[i].ValorContabil = registro70[i].ValorContabil;
-				record[i].UF = registro70[i].UF;
-				record[i].Isentas = registro70[i].Isentas;
-				record[i].SubSerie = registro70[i].SubSerie;
-				record[i].Serie = registro70[i].Serie;
-				record[i].DataDocumento = registro70[i].DataDocumento.ToOADate();
-				record[i].Modelo = registro70[i].Modelo;
-				record[i].CPFCNPJ = registro70[i].CPFCNPJ;
-				record[i].Cfop = registro70[i].Cfop;
-				record[i].Numero = registro70[i].Numero;
-				record[i].Inscricao = registro70[i].Inscricao;
-				record[i].Situacao = registro70[i].Situacao;
-				record[i].Outras = registro70[i].Outras;
-				record[i].BasedeCalculo = registro70[i].BasedeCalculo;
-				record[i].CifFobOutros = registro70[i].CifFobOutros;
+				record[i].Emissao = Registro61[i].Emissao.ToOADate();
+				record[i].Valor = Registro61[i].Valor;
+				record[i].ValorIcms = Registro61[i].ValorIcms;
+				record[i].Outras = Registro61[i].Outras;
+				record[i].BaseDeCalculo = Registro61[i].BaseDeCalculo;
+				record[i].Isentas = Registro61[i].Isentas;
+				record[i].NumOrdemInicial = Registro61[i].NumOrdemInicial;
+				record[i].NumOrdemFinal = Registro61[i].NumOrdemFinal;
+				record[i].Modelo = Registro61[i].Modelo;
+				record[i].SubSerie = Registro61[i].SubSerie;
+				record[i].Serie = Registro61[i].Serie;
+				record[i].Aliquota = Registro61[i].Aliquota;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro70(this.Handle, record, registro70.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro61(this.Handle, record, Registro61.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro71(List<SintegraRegistro71> registro71)
+		private void GerarRegistro61R()
 		{
-			Registro71(registro71.ToArray());
-		}
-
-		public void Registro71(IEnumerable<SintegraRegistro71> registro71)
-		{
-			Registro71(registro71.ToArray());
-		}
-
-		public void Registro71(SintegraRegistro71[] registro71)
-		{
-			ACBrSintegraInterop.Registro71Rec[] record = new ACBrSintegraInterop.Registro71Rec[registro71.Length];
-			for (int i = 0; i < registro71.Length; i++)
+			ACBrSintegraInterop.Registro61RRec[] record = new ACBrSintegraInterop.Registro61RRec[Registro61R.Count];
+			for (int i = 0; i < Registro61R.Count; i++)
 			{
-				record[i].CPFCNPJ = registro71[i].CPFCNPJ;
-				record[i].Inscricao = registro71[i].Inscricao;
-				record[i].DataDocumento = registro71[i].DataDocumento.ToOADate();
-				record[i].Modelo = registro71[i].Modelo;
-				record[i].Serie = registro71[i].Serie;
-				record[i].SubSerie = registro71[i].SubSerie;
-				record[i].Numero = registro71[i].Numero;
-				record[i].UF = registro71[i].UF;
-				record[i].UFNF = registro71[i].UFNF;
-				record[i].CPFCNPJNF = registro71[i].CPFCNPJNF;
-				record[i].InscricaoNF = registro71[i].InscricaoNF;
-				record[i].DataNF = registro71[i].DataNF.ToOADate();
-				record[i].ModeloNF = registro71[i].ModeloNF;
-				record[i].SerieNF = registro71[i].SerieNF;
-				record[i].NumeroNF = registro71[i].NumeroNF;
-				record[i].ValorNF = registro71[i].ValorNF;
+				record[i].Aliquota = Registro61R[i].Aliquota;
+				record[i].Valor = Registro61R[i].Valor;
+				record[i].Qtd = Registro61R[i].Qtd;
+				record[i].MesAno = Registro61R[i].MesAno;
+				record[i].Codigo = Registro61R[i].Codigo;
+				record[i].BaseDeCalculo = Registro61R[i].BaseDeCalculo;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro71(this.Handle, record, registro71.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro61R(this.Handle, record, Registro61R.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro74(List<SintegraRegistro74> registro74)
+		private void GerarRegistro70()
 		{
-			Registro74(registro74.ToArray());
-		}
-
-		public void Registro74(IEnumerable<SintegraRegistro74> registro74)
-		{
-			Registro74(registro74.ToArray());
-		}
-
-		public void Registro74(SintegraRegistro74[] registro74)
-		{
-			ACBrSintegraInterop.Registro74Rec[] record = new ACBrSintegraInterop.Registro74Rec[registro74.Length];
-			for (int i = 0; i < registro74.Length; i++)
+			ACBrSintegraInterop.Registro70Rec[] record = new ACBrSintegraInterop.Registro70Rec[Registro70.Count];
+			for (int i = 0; i < Registro70.Count; i++)
 			{
-				record[i].ValorProduto = registro74[i].ValorProduto;
-				record[i].CodigoPosse = registro74[i].CodigoPosse;
-				record[i].InscricaoPossuidor = registro74[i].InscricaoPossuidor;
-				record[i].Codigo = registro74[i].Codigo;
-				record[i].CNPJPossuidor = registro74[i].CNPJPossuidor;
-				record[i].UFPossuidor = registro74[i].UFPossuidor;
-				record[i].Data = registro74[i].Data.ToOADate();
-				record[i].Quantidade = registro74[i].Quantidade;
+				record[i].Icms = Registro70[i].Icms;
+				record[i].ValorContabil = Registro70[i].ValorContabil;
+				record[i].UF = Registro70[i].UF;
+				record[i].Isentas = Registro70[i].Isentas;
+				record[i].SubSerie = Registro70[i].SubSerie;
+				record[i].Serie = Registro70[i].Serie;
+				record[i].DataDocumento = Registro70[i].DataDocumento.ToOADate();
+				record[i].Modelo = Registro70[i].Modelo;
+				record[i].CPFCNPJ = Registro70[i].CPFCNPJ;
+				record[i].Cfop = Registro70[i].Cfop;
+				record[i].Numero = Registro70[i].Numero;
+				record[i].Inscricao = Registro70[i].Inscricao;
+				record[i].Situacao = Registro70[i].Situacao;
+				record[i].Outras = Registro70[i].Outras;
+				record[i].BasedeCalculo = Registro70[i].BasedeCalculo;
+				record[i].CifFobOutros = Registro70[i].CifFobOutros;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro74(this.Handle, record, registro74.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro70(this.Handle, record, Registro70.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro75(List<SintegraRegistro75> registro75)
+		private void GerarRegistro71()
 		{
-			Registro75(registro75.ToArray());
-		}
-
-		public void Registro75(IEnumerable<SintegraRegistro75> registro75)
-		{
-			Registro75(registro75.ToArray());
-		}
-
-		public void Registro75(SintegraRegistro75[] registro75)
-		{
-			ACBrSintegraInterop.Registro75Rec[] record = new ACBrSintegraInterop.Registro75Rec[registro75.Length];
-			for (int i = 0; i < registro75.Length; i++)
+			ACBrSintegraInterop.Registro71Rec[] record = new ACBrSintegraInterop.Registro71Rec[Registro71.Count];
+			for (int i = 0; i < Registro71.Count; i++)
 			{
-				record[i].Codigo = registro75[i].Codigo;
-				record[i].Descricao = registro75[i].Descricao;
-				record[i].Reducao = registro75[i].Reducao;
-				record[i].BaseST = registro75[i].BaseST;
-				record[i].AliquotaIpi = registro75[i].AliquotaIpi;
-				record[i].NCM = registro75[i].NCM;
-				record[i].Unidade = registro75[i].Unidade;
-				record[i].AliquotaICMS = registro75[i].AliquotaICMS;
-				record[i].DataFinal = registro75[i].DataFinal.ToOADate();
-				record[i].DataInicial = registro75[i].DataInicial.ToOADate();
+				record[i].CPFCNPJ = Registro71[i].CPFCNPJ;
+				record[i].Inscricao = Registro71[i].Inscricao;
+				record[i].DataDocumento = Registro71[i].DataDocumento.ToOADate();
+				record[i].Modelo = Registro71[i].Modelo;
+				record[i].Serie = Registro71[i].Serie;
+				record[i].SubSerie = Registro71[i].SubSerie;
+				record[i].Numero = Registro71[i].Numero;
+				record[i].UF = Registro71[i].UF;
+				record[i].UFNF = Registro71[i].UFNF;
+				record[i].CPFCNPJNF = Registro71[i].CPFCNPJNF;
+				record[i].InscricaoNF = Registro71[i].InscricaoNF;
+				record[i].DataNF = Registro71[i].DataNF.ToOADate();
+				record[i].ModeloNF = Registro71[i].ModeloNF;
+				record[i].SerieNF = Registro71[i].SerieNF;
+				record[i].NumeroNF = Registro71[i].NumeroNF;
+				record[i].ValorNF = Registro71[i].ValorNF;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro75(this.Handle, record, registro75.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro71(this.Handle, record, Registro71.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro76(List<SintegraRegistro76> registro76)
+		private void GerarRegistro74()
 		{
-			Registro76(registro76.ToArray());
-		}
-
-		public void Registro76(IEnumerable<SintegraRegistro76> registro76)
-		{
-			Registro76(registro76.ToArray());
-		}
-
-		public void Registro76(SintegraRegistro76[] registro76)
-		{
-			ACBrSintegraInterop.Registro76Rec[] record = new ACBrSintegraInterop.Registro76Rec[registro76.Length];
-			for (int i = 0; i < registro76.Length; i++)
+			ACBrSintegraInterop.Registro74Rec[] record = new ACBrSintegraInterop.Registro74Rec[Registro74.Count];
+			for (int i = 0; i < Registro74.Count; i++)
 			{
-				record[i].Isentas = registro76[i].Isentas;
-				record[i].ValorTotal = registro76[i].ValorTotal;
-				record[i].Icms = registro76[i].Icms;
-				record[i].BasedeCalculo = registro76[i].BasedeCalculo;
-				record[i].Outras = registro76[i].Outras;
-				record[i].Modelo = registro76[i].Modelo;
-				record[i].Numero = registro76[i].Numero;
-				record[i].Situacao = registro76[i].Situacao;
-				record[i].Inscricao = registro76[i].Inscricao;
-				record[i].SubSerie = registro76[i].SubSerie;
-				record[i].Uf = registro76[i].Uf;
-				record[i].Serie = registro76[i].Serie;
-				record[i].Cfop = registro76[i].Cfop;
-				record[i].CPFCNPJ = registro76[i].CPFCNPJ;
-				record[i].DataDocumento = registro76[i].DataDocumento.ToOADate();
-				record[i].TipoReceita = (int)registro76[i].TipoReceita;
-				record[i].Aliquota = registro76[i].Aliquota;
+				record[i].ValorProduto = Registro74[i].ValorProduto;
+				record[i].CodigoPosse = Registro74[i].CodigoPosse;
+				record[i].InscricaoPossuidor = Registro74[i].InscricaoPossuidor;
+				record[i].Codigo = Registro74[i].Codigo;
+				record[i].CNPJPossuidor = Registro74[i].CNPJPossuidor;
+				record[i].UFPossuidor = Registro74[i].UFPossuidor;
+				record[i].Data = Registro74[i].Data.ToOADate();
+				record[i].Quantidade = Registro74[i].Quantidade;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro76(this.Handle, record, registro76.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro74(this.Handle, record, Registro74.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro77(List<SintegraRegistro77> registro77)
+		private void GerarRegistro75()
 		{
-			Registro77(registro77.ToArray());
-		}
-
-		public void Registro77(IEnumerable<SintegraRegistro77> registro77)
-		{
-			Registro77(registro77.ToArray());
-		}
-
-		public void Registro77(SintegraRegistro77[] registro77)
-		{
-			ACBrSintegraInterop.Registro77Rec[] record = new ACBrSintegraInterop.Registro77Rec[registro77.Length];
-			for (int i = 0; i < registro77.Length; i++)
+			ACBrSintegraInterop.Registro75Rec[] record = new ACBrSintegraInterop.Registro75Rec[Registro75.Count];
+			for (int i = 0; i < Registro75.Count; i++)
 			{
-				record[i].Quantidade = registro77[i].Quantidade;
-				record[i].ValorServico = registro77[i].ValorServico;
-				record[i].ValorDesconto = registro77[i].ValorDesconto;
-				record[i].BaseDeCalculo = registro77[i].BaseDeCalculo;
-				record[i].Modelo = registro77[i].Modelo;
-				record[i].Numero = registro77[i].Numero;
-				record[i].NumeroTerminal = registro77[i].NumeroTerminal;
-				record[i].NumeroItem = registro77[i].NumeroItem;
-				record[i].Aliquota = registro77[i].Aliquota;
-				record[i].CNPJMF = registro77[i].CNPJMF;
-				record[i].Cfop = registro77[i].Cfop;
-				record[i].Codigo = registro77[i].Codigo;
-				record[i].SubSerie = registro77[i].SubSerie;
-				record[i].CPFCNPJ = registro77[i].CPFCNPJ;
-				record[i].Serie = registro77[i].Serie;
-				record[i].TipoReceita = (int)registro77[i].TipoReceita;
+				record[i].Codigo = Registro75[i].Codigo;
+				record[i].Descricao = Registro75[i].Descricao;
+				record[i].Reducao = Registro75[i].Reducao;
+				record[i].BaseST = Registro75[i].BaseST;
+				record[i].AliquotaIpi = Registro75[i].AliquotaIpi;
+				record[i].NCM = Registro75[i].NCM;
+				record[i].Unidade = Registro75[i].Unidade;
+				record[i].AliquotaICMS = Registro75[i].AliquotaICMS;
+				record[i].DataFinal = Registro75[i].DataFinal.ToOADate();
+				record[i].DataInicial = Registro75[i].DataInicial.ToOADate();
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro77(this.Handle, record, registro77.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro75(this.Handle, record, Registro75.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro85(List<SintegraRegistro85> registro85)
+		private void GerarRegistro76()
 		{
-			Registro85(registro85.ToArray());
-		}
-
-		public void Registro85(IEnumerable<SintegraRegistro85> registro85)
-		{
-			Registro85(registro85.ToArray());
-		}
-
-		public void Registro85(SintegraRegistro85[] registro85)
-		{
-			ACBrSintegraInterop.Registro85Rec[] record = new ACBrSintegraInterop.Registro85Rec[registro85.Length];
-			for (int i = 0; i < registro85.Length; i++)
+			ACBrSintegraInterop.Registro76Rec[] record = new ACBrSintegraInterop.Registro76Rec[Registro76.Count];
+			for (int i = 0; i < Registro76.Count; i++)
 			{
-				record[i].Declaracao = registro85[i].Declaracao;
-				record[i].DataDeclaracao = registro85[i].DataDeclaracao.ToOADate();
-				record[i].NaturezaExportacao = registro85[i].NaturezaExportacao;
-				record[i].RegistroExportacao = registro85[i].RegistroExportacao;
-				record[i].DataRegistro = registro85[i].DataRegistro.ToOADate();
-				record[i].Conhecimento = registro85[i].Conhecimento;
-				record[i].DataConhecimento = registro85[i].DataConhecimento.ToOADate();
-				record[i].TipoConhecimento = registro85[i].TipoConhecimento;
-				record[i].Pais = registro85[i].Pais;
-				record[i].DataAverbacao = registro85[i].DataAverbacao.ToOADate();
-				record[i].NumeroNotaFiscal = registro85[i].NumeroNotaFiscal;
-				record[i].DataNotaFiscal = registro85[i].DataNotaFiscal.ToOADate();
-				record[i].Modelo = registro85[i].Modelo;
-				record[i].Serie = registro85[i].Serie;
+				record[i].Isentas = Registro76[i].Isentas;
+				record[i].ValorTotal = Registro76[i].ValorTotal;
+				record[i].Icms = Registro76[i].Icms;
+				record[i].BasedeCalculo = Registro76[i].BasedeCalculo;
+				record[i].Outras = Registro76[i].Outras;
+				record[i].Modelo = Registro76[i].Modelo;
+				record[i].Numero = Registro76[i].Numero;
+				record[i].Situacao = Registro76[i].Situacao;
+				record[i].Inscricao = Registro76[i].Inscricao;
+				record[i].SubSerie = Registro76[i].SubSerie;
+				record[i].Uf = Registro76[i].Uf;
+				record[i].Serie = Registro76[i].Serie;
+				record[i].Cfop = Registro76[i].Cfop;
+				record[i].CPFCNPJ = Registro76[i].CPFCNPJ;
+				record[i].DataDocumento = Registro76[i].DataDocumento.ToOADate();
+				record[i].TipoReceita = (int)Registro76[i].TipoReceita;
+				record[i].Aliquota = Registro76[i].Aliquota;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro85(this.Handle, record, registro85.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro76(this.Handle, record, Registro76.Count);
 			CheckResult(ret);
 		}
 
-		public void Registro86(List<SintegraRegistro86> registro86)
+		private void GerarRegistro77()
 		{
-			Registro86(registro86.ToArray());
-		}
-
-		public void Registro86(IEnumerable<SintegraRegistro86> registro86)
-		{
-			Registro86(registro86.ToArray());
-		}
-
-		public void Registro86(SintegraRegistro86[] registro86)
-		{
-			ACBrSintegraInterop.Registro86Rec[] record = new ACBrSintegraInterop.Registro86Rec[registro86.Length];
-			for (int i = 0; i < registro86.Length; i++)
+			ACBrSintegraInterop.Registro77Rec[] record = new ACBrSintegraInterop.Registro77Rec[Registro77.Count];
+			for (int i = 0; i < Registro77.Count; i++)
 			{
-				record[i].RegistroExportacao = registro86[i].RegistroExportacao;
-				record[i].DataRegistro = registro86[i].DataRegistro.ToOADate();
-				record[i].CPFCNPJ = registro86[i].CPFCNPJ;
-				record[i].Inscricao = registro86[i].Inscricao;
-				record[i].UF = registro86[i].UF;
-				record[i].NumeroNotaFiscal = registro86[i].NumeroNotaFiscal;
-				record[i].DataDocumento = registro86[i].DataDocumento.ToOADate();
-				record[i].Modelo = registro86[i].Modelo;
-				record[i].Serie = registro86[i].Serie;
-				record[i].Codigo = registro86[i].Codigo;
-				record[i].Quantidade = registro86[i].Quantidade;
-				record[i].ValorUnitario = registro86[i].ValorUnitario;
-				record[i].ValorTotalProduto = registro86[i].ValorTotalProduto;
-				record[i].Relacionamento = registro86[i].Relacionamento;
+				record[i].Quantidade = Registro77[i].Quantidade;
+				record[i].ValorServico = Registro77[i].ValorServico;
+				record[i].ValorDesconto = Registro77[i].ValorDesconto;
+				record[i].BaseDeCalculo = Registro77[i].BaseDeCalculo;
+				record[i].Modelo = Registro77[i].Modelo;
+				record[i].Numero = Registro77[i].Numero;
+				record[i].NumeroTerminal = Registro77[i].NumeroTerminal;
+				record[i].NumeroItem = Registro77[i].NumeroItem;
+				record[i].Aliquota = Registro77[i].Aliquota;
+				record[i].CNPJMF = Registro77[i].CNPJMF;
+				record[i].Cfop = Registro77[i].Cfop;
+				record[i].Codigo = Registro77[i].Codigo;
+				record[i].SubSerie = Registro77[i].SubSerie;
+				record[i].CPFCNPJ = Registro77[i].CPFCNPJ;
+				record[i].Serie = Registro77[i].Serie;
+				record[i].TipoReceita = (int)Registro77[i].TipoReceita;
 			}
 
-			int ret = ACBrSintegraInterop.SIN_Registro86(this.Handle, record, registro86.Length);
+			int ret = ACBrSintegraInterop.SIN_Registro77(this.Handle, record, Registro77.Count);
+			CheckResult(ret);
+		}
+
+		private void GerarRegistro85()
+		{
+			ACBrSintegraInterop.Registro85Rec[] record = new ACBrSintegraInterop.Registro85Rec[Registro85.Count];
+			for (int i = 0; i < Registro85.Count; i++)
+			{
+				record[i].Declaracao = Registro85[i].Declaracao;
+				record[i].DataDeclaracao = Registro85[i].DataDeclaracao.ToOADate();
+				record[i].NaturezaExportacao = Registro85[i].NaturezaExportacao;
+				record[i].RegistroExportacao = Registro85[i].RegistroExportacao;
+				record[i].DataRegistro = Registro85[i].DataRegistro.ToOADate();
+				record[i].Conhecimento = Registro85[i].Conhecimento;
+				record[i].DataConhecimento = Registro85[i].DataConhecimento.ToOADate();
+				record[i].TipoConhecimento = Registro85[i].TipoConhecimento;
+				record[i].Pais = Registro85[i].Pais;
+				record[i].DataAverbacao = Registro85[i].DataAverbacao.ToOADate();
+				record[i].NumeroNotaFiscal = Registro85[i].NumeroNotaFiscal;
+				record[i].DataNotaFiscal = Registro85[i].DataNotaFiscal.ToOADate();
+				record[i].Modelo = Registro85[i].Modelo;
+				record[i].Serie = Registro85[i].Serie;
+			}
+
+			int ret = ACBrSintegraInterop.SIN_Registro85(this.Handle, record, Registro85.Count);
+			CheckResult(ret);
+		}
+
+		private void GerarRegistro86()
+		{
+			ACBrSintegraInterop.Registro86Rec[] record = new ACBrSintegraInterop.Registro86Rec[Registro86.Count];
+			for (int i = 0; i < Registro86.Count; i++)
+			{
+				record[i].RegistroExportacao = Registro86[i].RegistroExportacao;
+				record[i].DataRegistro = Registro86[i].DataRegistro.ToOADate();
+				record[i].CPFCNPJ = Registro86[i].CPFCNPJ;
+				record[i].Inscricao = Registro86[i].Inscricao;
+				record[i].UF = Registro86[i].UF;
+				record[i].NumeroNotaFiscal = Registro86[i].NumeroNotaFiscal;
+				record[i].DataDocumento = Registro86[i].DataDocumento.ToOADate();
+				record[i].Modelo = Registro86[i].Modelo;
+				record[i].Serie = Registro86[i].Serie;
+				record[i].Codigo = Registro86[i].Codigo;
+				record[i].Quantidade = Registro86[i].Quantidade;
+				record[i].ValorUnitario = Registro86[i].ValorUnitario;
+				record[i].ValorTotalProduto = Registro86[i].ValorTotalProduto;
+				record[i].Relacionamento = Registro86[i].Relacionamento;
+			}
+
+			int ret = ACBrSintegraInterop.SIN_Registro86(this.Handle, record, Registro86.Count);
 			CheckResult(ret);
 		}
 
@@ -807,6 +715,29 @@ namespace ACBrFramework
 		protected internal override void OnInitializeComponent()
 		{
 			CallCreate(ACBrSintegraInterop.SIN_Create);
+			Registro10 = new SintegraRegistro10();
+			Registro11 = new SintegraRegistro11();
+			Registro50 = new SintegraRegistros50();
+			Registro51 = new SintegraRegistros51();
+			Registro53 = new SintegraRegistros53();
+			Registro54 = new SintegraRegistros54();
+			Registro55 = new SintegraRegistros55();
+			Registro56 = new SintegraRegistros56();
+			Registro60A = new SintegraRegistros60A();
+			Registro60D = new SintegraRegistros60D();
+			Registro60I = new SintegraRegistros60I();
+			Registro60M = new SintegraRegistros60M();
+			Registro60R = new SintegraRegistros60R();
+			Registro61 = new SintegraRegistros61();
+			Registro61R = new SintegraRegistros61R();
+			Registro70 = new SintegraRegistros70();
+			Registro71 = new SintegraRegistros71();
+			Registro74 = new SintegraRegistros74();
+			Registro75 = new SintegraRegistros75();
+			Registro76 = new SintegraRegistros76();
+			Registro77 = new SintegraRegistros77();
+			Registro85 = new SintegraRegistros85();
+			Registro86 = new SintegraRegistros86();
 		}
 
 		protected internal override void CheckResult(int ret)

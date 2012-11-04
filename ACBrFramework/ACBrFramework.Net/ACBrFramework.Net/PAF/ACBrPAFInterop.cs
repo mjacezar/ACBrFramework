@@ -20,6 +20,9 @@ namespace ACBrFramework
 
 		#region Interop Types
 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate string OnPAFGetKeyRSACallback();
+
 		[StructLayout(LayoutKind.Sequential)]
 		public struct RegistroHD1Rec
 		{
@@ -690,31 +693,111 @@ namespace ACBrFramework
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
-		public struct RegistroTITPRec
+		public struct RegistroT2Rec
+		{
+			[MarshalAs(UnmanagedType.R8)]
+			public double DT_MOV;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 11)]
+			public string TP_DOCTO;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string SERIE;
+
+			[MarshalAs(UnmanagedType.I4)]
+			public int NUM_BILH_I;
+
+			[MarshalAs(UnmanagedType.I4)]
+			public int NUM_BILH_F;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
+			public string NUM_ECF;
+
+			[MarshalAs(UnmanagedType.I4)]
+			public int CRZ;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string CFOP;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double VL_CONT;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double VL_BASECALC;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double ALIQ;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double VL_IMPOSTO;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double VL_ISENTAS;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double VL_OUTRAS;
+
+			[MarshalAs(UnmanagedType.U1)]
+			public bool RegistroValido;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct RegistroMercadoriasRec
 		{
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 101)]
 			public string Descricao;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
 			public string Codigo;
-			
+
 			[MarshalAs(UnmanagedType.R8)]
 			public double Aliquota;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
 			public string Unidade;
-			
+
 			[MarshalAs(UnmanagedType.R8)]
 			public double Quantidade;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
 			public string Ean;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
 			public string CST;
-			
+
 			[MarshalAs(UnmanagedType.R8)]
-			public double VlrUnitario;			
+			public double VlrUnitario;
+
+			[MarshalAs(UnmanagedType.I4)]
+			public int QTD_Insumos;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct RegistroInsumosRec
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 101)]
+			public string Descricao;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string Codigo;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double Aliquota;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string Unidade;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double Quantidade;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
+			public string Ean;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string CST;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double VlrUnitario;
 		}
 
 		#endregion Interop Types
@@ -770,55 +853,12 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int PAF_SetEAD(IntPtr pafHandle, IntPtr eadHandle);
 
-		#region Registros
-
-		#region TITP
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_TITP_LimpaRegistros(IntPtr pafHandle);
-
-		#region Mercadoria
-	
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_TITP_Mercadorias_Clear(IntPtr aacHandle);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_TITP_Mercadorias_New(IntPtr aacHandle, RegistroTITPRec mercadoria);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_TITP_Mercadorias_Get(IntPtr aacHandle, ref RegistroTITPRec mercadoria, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_TITP_Mercadorias_Count(IntPtr aacHandle);
-
-		#endregion Mercadoria
-
-		#region Insumos
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_TITP_Insumos_Clear(IntPtr aacHandle, int indexMercadoria);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_TITP_Insumos_New(IntPtr aacHandle, RegistroTITPRec Insumos, int indexMercadoria);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_TITP_Insumos_Get(IntPtr aacHandle, ref RegistroTITPRec Insumos, int indexMercadoria, int indexInsumo);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_TITP_Insumos_Count(IntPtr aacHandle, int index);
-
-		#endregion Insumos
-
-		#endregion TITP
-
-		#endregion Registros
-
 		#endregion Propriedades do Componente
 
 		#region Methods
-		
+
 		#region SaveFile
-	
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int PAF_SaveFileTXT_B(IntPtr pafHandle, RegistroHD1Rec RegistroB1, RegistroB2Rec[] RegistroB2, int CountB2, string Arquivo);
 
@@ -826,23 +866,29 @@ namespace ACBrFramework
 		public static extern int PAF_SaveFileTXT_C(IntPtr pafHandle, RegistroHD1Rec RegistroC1, RegistroC2Rec[] RegistroC2, int CountC2, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_D(IntPtr pafHandle, RegistroHD1Rec RegsitroD1Rec, RegistroD2Rec[] RegsitroD2Rec, int CountD2, RegistroD3Rec[] RegsitroD3Rec, string Arquivo);
+		public static extern int PAF_SaveFileTXT_D(IntPtr pafHandle, RegistroHD1Rec RegistroD1, RegistroD2Rec[] RegistroD2, int CountD2, RegistroD3Rec[] RegistroD3, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_E(IntPtr pafHandle, RegistroHD2Rec RegsitroE1Rec, RegistroE2Rec[] RegsitroE2Rec, int CountE2, string Arquivo);
+		public static extern int PAF_SaveFileTXT_E(IntPtr pafHandle, RegistroHD2Rec RegistroE1, RegistroE2Rec[] RegistroE2, int CountE2, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_H(IntPtr pafHandle, RegistroHD2Rec RegsitroH1Rec, RegistroH2Rec[] RegsitroH2Rec, int CountH2, string Arquivo);
+		public static extern int PAF_SaveFileTXT_H(IntPtr pafHandle, RegistroHD2Rec RegistroH1, RegistroH2Rec[] RegistroH2, int CountH2, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_N(IntPtr pafHandle, RegistroHD1Rec RegsitroN1Rec, RegistroN2Rec RegsitroN2Rec, RegistroN3Rec[] RegsitroN3Rec, string Arquivo);
+		public static extern int PAF_SaveFileTXT_N(IntPtr pafHandle, RegistroHD1Rec RegistroN1, RegistroN2Rec RegistroN2, RegistroN3Rec[] RegistroN3, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_P(IntPtr pafHandle, RegistroHD1Rec RegsitroP1Rec, RegistroP2Rec[] RegsitroP2Rec, int CountP2, string Arquivo);
+		public static extern int PAF_SaveFileTXT_P(IntPtr pafHandle, RegistroHD1Rec RegistroP1, RegistroP2Rec[] RegistroP2, int CountP2, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_R(IntPtr pafHandle, RegistroR1Rec RegsitroR1Rec, RegistroR2Rec[] RegsitroR2Rec, int CountR2, RegistroR3Rec[] RegsitroR3Rec, RegistroR4Rec[] RegsitroR4Rec, int CountR4, RegistroR5Rec[] RegsitroP5Rec, RegistroR6Rec[] RegsitroR6Rec, int CountR6, RegistroR7Rec[] RegsitroR7Rec, string Arquivo);
-		
+		public static extern int PAF_SaveFileTXT_R(IntPtr pafHandle, RegistroR1Rec RegistroR1, RegistroR2Rec[] RegistroR2, int CountR2, RegistroR3Rec[] RegistroR3, RegistroR4Rec[] RegistroR4, int CountR4, RegistroR5Rec[] RegistroP5, RegistroR6Rec[] RegistroR6, int CountR6, RegistroR7Rec[] RegistroR7, string Arquivo);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int PAF_SaveFileTXT_T(IntPtr pafHandle, RegistroHD1Rec RegistroT1, RegistroT2Rec[] RegistroT2, int CountT2, string Arquivo);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int PAF_SaveFileTXT_TITP(IntPtr pafHandle, RegistroMercadoriasRec[] RegistroMercadorias, int Count, RegistroInsumosRec[] RegistroInsumos, string Arquivo);
+
 		#endregion SaveFile
 
 		#region Metodos ACBrPAF
@@ -854,10 +900,10 @@ namespace ACBrFramework
 
 		#region Eventos
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int PAF_SetOnPAFGetKeyRSA(IntPtr eadHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
-        
-		#endregion Eventos	
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int PAF_SetOnPAFGetKeyRSA(IntPtr eadHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+
+		#endregion Eventos
 
 		#endregion Methods
 

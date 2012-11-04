@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace ACBrFramework
 {
 	public sealed class ACBrPAFRegistroMercadoria
@@ -29,7 +27,7 @@ namespace ACBrFramework
 
 		public string CST { get; set; }
 
-		public double VlrUnitario { get; set; }		
+		public double VlrUnitario { get; set; }
 
 		public ACBrPAFRegistroInsumos Insumos { get; private set; }
 

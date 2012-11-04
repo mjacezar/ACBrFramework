@@ -272,17 +272,17 @@ namespace ACBrFramework.TEFD
 		public ACBrTEFDDial TEFDial { get; private set; }
 
 		public ACBrTEFDDisc TEFDisc { get; private set; }
-		
+
 		public ACBrTEFDHiper TEFHiper { get; private set; }
-		
+
 		public ACBrTEFDGPU TEFGPU { get; private set; }
-		
+
 		public ACBrTEFDAuttar TEFAuttar { get; private set; }
-		
+
 		public ACBrTEFDGood TEFGood { get; private set; }
-		
+
 		public ACBrTEFDFoxWin TEFFoxWin { get; private set; }
-		
+
 		public ACBrTEFDPetrocard TEFPetrocard { get; private set; }
 
 		public ACBrTEFDCrediShop TEFCrediShop { get; private set; }
