@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ACBrFramework
 {
-	[ToolboxBitmap(typeof(ACBrSintegra), @"ACBrSintegra.ico.bmp")]
+	[ToolboxBitmap(typeof(ACBrSintegra), @"Sintegra.ico.bmp")]
 	public class ACBrSintegra : ACBrComponent, IDisposable
 	{
 		#region Fields

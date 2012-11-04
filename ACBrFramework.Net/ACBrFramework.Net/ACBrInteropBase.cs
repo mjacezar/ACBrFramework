@@ -158,6 +158,24 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
+		protected string[] GetStringArray(IntPtr ptr, int len)
+		{
+			string[] array = new string[len];
+
+			for (int i = 0; i < len; i++)
+			{
+				int offSet = Marshal.SizeOf(typeof(IntPtr)) * i;
+				IntPtr elementPtr = new IntPtr(ptr.ToInt32() + offSet);
+
+				IntPtr strPtr = Marshal.ReadIntPtr(elementPtr);
+
+				array[i] = FromUTF8(Marshal.PtrToStringAnsi(strPtr));
+			}
+
+			return array;
+		}
+
+
 		protected internal abstract void CheckResult(int result);
 
 		#endregion P/Invoke Helpers

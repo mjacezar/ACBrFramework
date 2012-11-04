@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace ACBrFramework
 {
-	[ToolboxBitmap(typeof(ACBrPAF), @"ACBrPAF.ico.bmp")]
+	[ToolboxBitmap(typeof(ACBrPAF), @"PAF.ico.bmp")]
 	public class ACBrPAF : ACBrComponent, IDisposable
 	{
         #region EventHandlers

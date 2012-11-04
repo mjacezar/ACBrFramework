@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ACBrFramework
 {
-	[ToolboxBitmap(typeof(ACBrECF), @"ACBrSerial.ACBrECF.ico.bmp")]
+	[ToolboxBitmap(typeof(ACBrECF), @"Serial.ECF.ico.bmp")]
 	public class ACBrECF : ACBrComponent, IDisposable
 	{
 		#region Events
