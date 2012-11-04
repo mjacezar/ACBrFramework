@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Text;
 using System.Runtime.InteropServices;
+using System.Text;
+
 namespace ACBrFramework.TEFD
 {
 	public class ACBrTEFDCliSiTef : ACBrComposedComponent
@@ -42,12 +43,13 @@ namespace ACBrFramework.TEFD
 
 		#region Constructor
 
-		internal ACBrTEFDCliSiTef(ACBrComponent parent) : base(parent) 
+		internal ACBrTEFDCliSiTef(ACBrComponent parent)
+			: base(parent)
 		{
 			onExibeMenu = new ACBrEventHandler<TEFCliSiTefExibeMenuEventArgs, ACBrTEFInterop.TEFCliSiTefExibeMenuCallback>(this, OnTEFCliSiTefExibeMenuCallback, ACBrTEFInterop.TEF_TEFCliSiTef_SetOnExibeMenu);
 			onObtemCampo = new ACBrEventHandler<TEFCliSiTefObtemCampoEventArgs, ACBrTEFInterop.TEFCliSiTefObtemCampoCalback>(this, OnTEFCliSiTefObtemCampoCalback, ACBrTEFInterop.TEF_TEFCliSiTef_SetOnObtemCampo);
 		}
-		
+
 		#endregion Constructor
 
 		#region Properties
@@ -197,7 +199,6 @@ namespace ACBrFramework.TEFD
 		{
 			if (onExibeMenu.IsAssigned)
 			{
-				
 				string[] opcoes = GetStringArray(Opcoes, OpcoesCount);
 
 				TEFCliSiTefExibeMenuEventArgs e = new TEFCliSiTefExibeMenuEventArgs(Titulo, opcoes);

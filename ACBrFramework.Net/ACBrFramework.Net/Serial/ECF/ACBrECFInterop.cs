@@ -21,10 +21,13 @@ namespace ACBrFramework
 		#region Interop Types
 
 		#region Documentation
+
 		/// <summary>
 		/// Delegate com a assinatura do ponteiro de função utilizado no Interop
 		/// </summary>
+
 		#endregion Documentation
+
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void BobinaAdicionaLinhasCallback(string linhas, string operacao);
 
@@ -564,8 +567,8 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOperador(IntPtr ecfHandle, string operador);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_SetMemoParams(IntPtr ecfHandle, string[] linhas, int count);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetMemoParams(IntPtr ecfHandle, string[] linhas, int count);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetLinhasEntreCupons(IntPtr ecfHandle);
@@ -910,14 +913,14 @@ namespace ACBrFramework
 
 		#endregion LeituraMemoriaFiscal
 
-        #region Eventos
+		#region Eventos
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnPoucoPapel(IntPtr ecfHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_SetOnBobinaAdicionaLinhas(IntPtr ecfHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
-        
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnBobinaAdicionaLinhas(IntPtr ecfHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+
 		#endregion Eventos
 
 		#endregion ACBrECF

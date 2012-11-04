@@ -4,7 +4,10 @@
 	{
 		#region Constructor
 
-		internal ACBrTEFDCrediShop(ACBrTEFD parent) : base(parent) { }
+		internal ACBrTEFDCrediShop(ACBrTEFD parent)
+			: base(parent)
+		{
+		}
 
 		#endregion Constructor
 

@@ -20,6 +20,9 @@ namespace ACBrFramework
 
 		#region Interop Types
 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate string OnGetChaveCallback();
+
 		[StructLayout(LayoutKind.Sequential)]
 		public struct TECFAutorizado
 		{
@@ -46,7 +49,7 @@ namespace ACBrFramework
 			public string NOME_ARQUIVO;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 33)]
-			public string MD5; 
+			public string MD5;
 		}
 
 		#endregion Interop Types
@@ -123,7 +126,7 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int AAC_IdentPaf_OutrosArquivos_Count(IntPtr aacHandle);
 
-		#endregion ECFs Autorizadas
+		#endregion Outros Arquivos
 
 		#endregion Métodos do Componente
 

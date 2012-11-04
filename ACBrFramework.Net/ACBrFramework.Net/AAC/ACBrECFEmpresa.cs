@@ -4,7 +4,10 @@
 	{
 		#region Constructor
 
-		internal ACBrECFEmpresa(ACBrECFIdenticacaoPaf identPaf) : base(identPaf.Parent) { }
+		internal ACBrECFEmpresa(ACBrECFIdenticacaoPaf identPaf)
+			: base(identPaf.Parent)
+		{
+		}
 
 		#endregion Constructor
 

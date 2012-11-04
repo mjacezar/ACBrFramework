@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -9,7 +8,10 @@ namespace ACBrFramework
 	{
 		#region Constructor
 
-		internal ACBrAACArquivos(ACBrECFIdenticacaoPaf identPaf) : base(identPaf.Parent) { }
+		internal ACBrAACArquivos(ACBrECFIdenticacaoPaf identPaf)
+			: base(identPaf.Parent)
+		{
+		}
 
 		#endregion Constructor
 

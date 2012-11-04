@@ -8,7 +8,10 @@ namespace ACBrFramework
 	{
 		#region Constructor
 
-		public ACBrEventHandler(ACBrInteropBase component, TCallback callback, SetCallbackEntryPointDelegate setCallback) : base(component, callback, setCallback) { }
+		public ACBrEventHandler(ACBrInteropBase component, TCallback callback, SetCallbackEntryPointDelegate setCallback)
+			: base(component, callback, setCallback)
+		{
+		}
 
 		#endregion Constructor
 
@@ -36,7 +39,10 @@ namespace ACBrFramework
 	{
 		#region Constructor
 
-		public ACBrEventHandler(ACBrInteropBase component, TCallback callback, SetCallbackEntryPointDelegate setCallback) : base(component, callback, setCallback) { }
+		public ACBrEventHandler(ACBrInteropBase component, TCallback callback, SetCallbackEntryPointDelegate setCallback)
+			: base(component, callback, setCallback)
+		{
+		}
 
 		#endregion Constructor
 
@@ -75,7 +81,10 @@ namespace ACBrFramework
 
 		#region Constructor
 
-		public ACBrEventHandler(ACBrInteropBase component, Callback callback, SetCallbackEntryPointDelegate setCallback) : base(component, callback, setCallback) { }
+		public ACBrEventHandler(ACBrInteropBase component, Callback callback, SetCallbackEntryPointDelegate setCallback)
+			: base(component, callback, setCallback)
+		{
+		}
 
 		#endregion Constructor
 	}

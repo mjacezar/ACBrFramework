@@ -304,7 +304,19 @@ type TRegistroT2Rec = record
    RegistroValido : boolean;
 end;
 
-type TRegistroTITPRec = record
+type TRegistroMercadoriaRec = record
+   Descricao   : array[0..100] of char;
+   Codigo      : array[0..14] of char;
+   Aliquota    : Double;
+   Unidade     : array[0..3] of char;
+   Quantidade  : Double;
+   Ean         : array[0..13] of char;
+   CST         : array[0..3] of char;
+   VlrUnitario : Double;
+   QTD_Insumos : Integer;
+end;
+
+type TRegistroInsumoRec = record
    Descricao   : array[0..100] of char;
    Codigo      : array[0..14] of char;
    Aliquota    : Double;
@@ -734,273 +746,6 @@ begin
          Result := -1;
          end
     end;
-  end;
-end;
-
-{ PAF_TITP}
-Function PAF_TITP_LimpaRegistros(const pafHandle: PPAFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-
-  if (pafHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     pafHandle^.PAF.PAF_TITP.LimpaRegistros;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        pafHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function PAF_TITP_Mercadorias_Clear(const pafHandle: PPAFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-
-  if (pafHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     pafHandle^.PAF.PAF_TITP.Mercadorias.Clear;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        pafHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function PAF_TITP_Insumos_Clear(const pafHandle: PPAFHandle;  const index : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-
-  if (pafHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     if (index >= 0) and (index < pafHandle^.PAF.PAF_TITP.Mercadorias.Count) then
-      begin
-         pafHandle^.PAF.PAF_TITP.Mercadorias[index].Insumos.Clear;
-         Result := 0;
-      end
-      else
-      begin
-              Result := -3;
-      end;
-  except
-     on exception : Exception do
-     begin
-        pafHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function PAF_TITP_Mercadorias_Get(const pafHandle: PPAFHandle; var retMercadoria : TRegistroTITPRec; const index : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-var
-  titpMercadoria : TTITP_Mercadoria;
-begin
-  if (pafHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-   try
-      if (index >= 0) and (index < pafHandle^.PAF.PAF_TITP.Mercadorias.Count) then
-      begin
-         titpMercadoria := pafHandle^.PAF.PAF_TITP.Mercadorias[index];
-         retMercadoria.Descricao   := pChar(titpMercadoria.Descricao);
-         retMercadoria.Codigo      := pChar(titpMercadoria.Codigo);
-         retMercadoria.Aliquota    := titpMercadoria.Aliquota;
-         retMercadoria.Unidade     := pChar(titpMercadoria.Unidade);
-         retMercadoria.Quantidade  := titpMercadoria.Quantidade;
-         retMercadoria.Ean         := pChar(titpMercadoria.Ean);
-         retMercadoria.CST         := pChar(titpMercadoria.CST);
-         retMercadoria.VlrUnitario := titpMercadoria.VlrUnitario;
-         Result := 0;
-      end
-      else
-      begin
-              Result := -3;
-      end;
-
-   except
-     on exception : Exception do
-     begin
-        pafHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-   end;
-end;
-
-Function PAF_TITP_Insumos_Get(const pafHandle: PPAFHandle; var retInsumo : TRegistroTITPRec; const indexMerca : Integer; const indexInsumo : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-var
-  titpInsumo     : TTITP_Insumo;
-begin
-  if (pafHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-   try
-      if (indexMerca >= 0) and (indexMerca < pafHandle^.PAF.PAF_TITP.Mercadorias.Count) then
-      begin
-         if (indexInsumo >= 0) and (indexInsumo < pafHandle^.PAF.PAF_TITP.Mercadorias[indexMerca].Insumos.Count) then
-         begin
-            titpInsumo := pafHandle^.PAF.PAF_TITP.Mercadorias[indexMerca].Insumos[indexInsumo];
-            retInsumo.Descricao   := pChar(titpInsumo.Descricao);
-            retInsumo.Codigo      := pChar(titpInsumo.Codigo);
-            retInsumo.Aliquota    := titpInsumo.Aliquota;
-            retInsumo.Unidade     := pChar(titpInsumo.Unidade);
-            retInsumo.Quantidade  := titpInsumo.Quantidade;
-            retInsumo.Ean         := pChar(titpInsumo.Ean);
-            retInsumo.CST         := pChar(titpInsumo.CST);
-            retInsumo.VlrUnitario := titpInsumo.VlrUnitario;
-            retInsumo.QTD_Insumos := titpInsumo.Insumos.Count;
-            Result := 0;
-         end;
-      end
-      else
-      begin
-              Result := -3;
-      end;
-
-   except
-     on exception : Exception do
-     begin
-        pafHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-   end;
-end;
-
-Function PAF_TITP_Mercadorias_New(const pafHandle: PPAFHandle;  const Mercadoria : TRegistroTITPRec) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-
-  if (pafHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-   with pafHandle^.PAF.PAF_TITP.Mercadorias.New do
-   begin
-   Descricao   := Mercadoria.Descricao;
-   Codigo      := Mercadoria.Codigo;
-   Aliquota    := Mercadoria.Aliquota;
-   Unidade     := Mercadoria.Unidade;
-   Quantidade  := Mercadoria.Quantidade;
-   Ean         := Mercadoria.Ean;
-   CST         := Mercadoria.CST;
-   VlrUnitario := Mercadoria.VlrUnitario;
-   end;
-   Result := 0;
-  except
-     on exception : Exception do
-     begin
-        pafHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function PAF_TITP_Insumos_New(const pafHandle: PPAFHandle;  const Insumo : TRegistroTITPRec; const index : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-
-  if (aacHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     if (index >= 0) and (index< pafHandle^.PAF.PAF_TITP.Mercadorias.Count) then
-      begin
-         with pafHandle^.PAF.PAF_TITP.Mercadorias[index].Insumos.New do
-         begin
-         Descricao   := Insumo.Descricao;
-         Codigo      := Insumo.Codigo;
-         Aliquota    := Insumo.Aliquota;
-         Unidade     := Insumo.Unidade;
-         Quantidade  := Insumo.Quantidade;
-         Ean         := Insumo.Ean;
-         CST         := Insumo.CST;
-         VlrUnitario := Insumo.VlrUnitario;
-         end;
-         Result := 0;
-      end
-      else
-      begin
-              Result := -3;
-      end;
-  except
-     on exception : Exception do
-     begin
-        aacHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function PAF_TITP_Mercadorias_Count(const pafHandle: PPAFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-
-  if (pafHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     Result := pafHandle^.PAF.PAF_TITP.Mercadorias.Count;
-  except
-     on exception : Exception do
-     begin
-        pafHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function PAF_TITP_Insumos_Count(const pafHandle: PPAFHandle;  const index : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-
-  if (pafHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     if (index >= 0) and (index < pafHandle^.PAF.PAF_TITP.Mercadorias.Count) then
-      begin
-         Result := pafHandle^.PAF.PAF_TITP.Mercadorias[index].Insumos.Count;
-      end
-      else
-      begin
-              Result := -3;
-      end;
-  except
-     on exception : Exception do
-     begin
-        pafHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
   end;
 end;
 
@@ -1772,7 +1517,10 @@ begin
   end;
 end;
 
-Function PAF_SaveFileTXT_TITP(const pafHandle: PPAFHandle; const Arquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function PAF_SaveFileTXT_TITP(const pafHandle: PPAFHandle; const RegistroMercadoriasRec : array of TRegistroMercadoriaRec;
+      const Count : Integer; const RegistroInsumosRec: array of TRegistroInsumoRec; const Arquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  i, d, IndexItem : Integer;
 begin
   if (pafHandle = nil) then
   begin
@@ -1781,6 +1529,47 @@ begin
   end;
 
   try
+   IndexItem := 0;
+   pafHandle^.PAF.PAF_TITP.LimpaRegistros;
+   for i := 0 to Count - 1 do
+   begin
+       with pafHandle^.PAF.PAF_TITP.Mercadorias.New do
+       begin
+       Descricao   := RegistroMercadoriasRec[i].Descricao;
+       Codigo      := RegistroMercadoriasRec[i].Codigo;
+       Aliquota    := RegistroMercadoriasRec[i].Aliquota;
+       Unidade     := RegistroMercadoriasRec[i].Unidade;
+       Quantidade  := RegistroMercadoriasRec[i].Quantidade;
+       Ean         := RegistroMercadoriasRec[i].Ean;
+       CST         := RegistroMercadoriasRec[i].CST;
+       VlrUnitario := RegistroMercadoriasRec[i].VlrUnitario;
+
+         if RegistroMercadoriasRec[i].QTD_Insumos < 1 then
+         begin
+            pafHandle^.PAF.PAF_TITP.LimpaRegistros;
+            pafHandle^.UltimoErro := 'O numero de insumos não pode ser Zero';
+            Result := -1;
+            Exit;
+         end;
+
+         for d := 0 to RegistroMercadoriasRec[i].QTD_Insumos - 1 do
+         begin
+         // adiciona os insumos para cada mercadoria
+         with Insumos.New do
+         begin
+           Descricao   := RegistroInsumosRec[IndexItem].Descricao;
+           Codigo      := RegistroInsumosRec[IndexItem].Codigo;
+           Aliquota    := RegistroInsumosRec[IndexItem].Aliquota;
+           Unidade     := RegistroInsumosRec[IndexItem].Unidade;
+           Quantidade  := RegistroInsumosRec[IndexItem].Quantidade;
+           Ean         := RegistroInsumosRec[IndexItem].Ean;
+           CST         := RegistroInsumosRec[IndexItem].CST;
+           VlrUnitario := RegistroInsumosRec[IndexItem].VlrUnitario;
+         end;
+         inc(IndexItem);
+         end;
+       end;
+   end;
 
    if (pafHandle^.PAF.SaveFileTXT_TITP(Arquivo))then
      Result := 1
@@ -1791,6 +1580,7 @@ begin
      on exception : Exception do
      begin
         pafHandle^.UltimoErro := exception.Message;
+        pafHandle^.PAF.PAF_TITP.LimpaRegistros;
         Result := -1;
      end
   end;
@@ -1872,11 +1662,6 @@ PAF_GetPath, PAF_SetPath,
 PAF_GetDelimitador, PAF_SetDelimitador, PAF_GetCurMascara, PAF_SetCurMascara,
 PAF_GetTrimString, PAF_SetTrimString, PAF_GetAssinarArquivo, PAF_SetAssinarArquivo,
 PAF_GetChaveRSA, PAF_SetChaveRSA, PAF_SetAAC, PAF_SetEAD,
-
-{ PAF_TITP}
-PAF_TITP_LimpaRegistros, PAF_TITP_Mercadorias_Clear, PAF_TITP_Insumos_Clear,
-PAF_TITP_Mercadorias_Get, PAF_TITP_Insumos_Get,  PAF_TITP_Mercadorias_New, PAF_TITP_Insumos_New,
-PAF_TITP_Mercadorias_Count, PAF_TITP_Insumos_Count,
 
 {Salvar Arquivos PAF}
 PAF_SaveFileTXT_B, PAF_SaveFileTXT_C, PAF_SaveFileTXT_D, PAF_SaveFileTXT_E,

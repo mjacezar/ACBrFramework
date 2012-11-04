@@ -41,11 +41,17 @@ Símbolo : Significado
 
 Changelog
 
-03/11/2012
-[*] Reorganização de pastas para permitir namespaces nos componentes .Net  - Rafael Batiati
-[+] Versão inicial do componente TEF - Rafael Batiati
+04/11/2012 (ACBrFramework 0.9.1.6)
+[*] Reestrututação do ACBrPAF para ficar similar a versão Delphi - ACBrFramework.Net   - Rafael Dias.
+[*] Reestrututação do ACBrSintegra para ficar similar a versão Delphi - ACBrFramework.Net   - Rafael Dias.
+[+] Implementado o metodo PAF_SaveFileTXT_T e PAF_SaveFileTXT_TITP - ACBrFramework e ACBrFramework.Net  - Rafael Dias.
+[*] Melhora na chamada dos eventos em todos os componentes - ACBrFramework.Net  - Rafael Dias\Rafael Batiati.
 
-01/11/2012 (ACBrFramework 0.9.1.4)
+03/11/2012 (ACBrFramework 0.9.1.5)
+[*] Reorganização de pastas para permitir namespaces nos componentes .Net - ACBrFramework.Net - Rafael Batiati.
+[+] Versão inicial do componente TEF - ACBrFramework e ACBrFramework.Net Rafael - Batiati.
+
+01/11/2012 (ACBrFramework 0.9.1.5)
 [-] Corrigido erro no evento OnGetChave do AAC - ACBrFramework.Net - Rafael Dias.
 
 31/10/2012 (ACBrFramework 0.9.1.4)

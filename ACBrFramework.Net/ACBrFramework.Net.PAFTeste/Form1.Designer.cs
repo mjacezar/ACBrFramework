@@ -53,7 +53,6 @@
             // 
             this.acbrPAF.AAC = null;
             this.acbrPAF.AssinarArquivo = true;
-            this.acbrPAF.ChaveRSA = "";
             this.acbrPAF.CurMascara = "";
             this.acbrPAF.Delimitador = "";
             this.acbrPAF.Path = "C:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\IDE\\";

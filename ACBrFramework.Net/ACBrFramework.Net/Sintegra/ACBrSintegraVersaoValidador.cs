@@ -1,6 +1,6 @@
 namespace ACBrFramework
 {
-    public enum ACBrSintegraVersaoValidador
+	public enum ACBrSintegraVersaoValidador
 	{
 		vv523,
 		vv524

@@ -10,71 +10,36 @@ namespace ACBrFramework
 	{
 		#region Events
 
-        public event EventHandler<ChaveEventArgs> OnGetChavePublica
-        {
-            add
-            {
-                bool isAssigned = onGetChavePublicaHandler != null;
-                onGetChavePublicaHandler = (EventHandler<ChaveEventArgs>)Delegate.Combine(onGetChavePublicaHandler, value);
-
-                if (!isAssigned)
-                {
-                    onGetChavePublicaCallback = new StrFunctionPtrDelegate(ead_OnGetChavePublica);
-                    int ret = ACBrEADInterop.EAD_SetOnGetChavePublica(this.Handle, onGetChavePublicaCallback);
-                    CheckResult(ret);
-                }
-            }
-            remove
-            {
-                onGetChavePublicaHandler = (EventHandler<ChaveEventArgs>)Delegate.Remove(onGetChavePublicaHandler, value);
-
-                if (onGetChavePublicaHandler == null)
-                {
-                    int ret = ACBrEADInterop.EAD_SetOnGetChavePublica(this.Handle, null);
-                    CheckResult(ret);
-
-                    onGetChavePublicaCallback = null;
-                }
-            }
-        }
+		public event EventHandler<ChaveEventArgs> OnGetChavePublica
+		{
+			add
+			{
+				onGetChavePublica.Add(value);
+			}
+			remove
+			{
+				onGetChavePublica.Remove(value);
+			}
+		}
 
 		public event EventHandler<ChaveEventArgs> OnGetChavePrivada
-        {
-            add
-            {
-                bool isAssigned = onGetChavePrivadaHandler != null;
-                onGetChavePrivadaHandler = (EventHandler<ChaveEventArgs>)Delegate.Combine(onGetChavePrivadaHandler, value);
-
-                if (!isAssigned)
-                {
-                    onGetChavePrivadaCallback = new StrFunctionPtrDelegate(ead_OnGetChavePrivada);
-                    int ret = ACBrEADInterop.EAD_SetOnGetChavePrivada(this.Handle, onGetChavePrivadaCallback);
-                    CheckResult(ret);
-                }
-            }
-            remove
-            {
-                onGetChavePrivadaHandler = (EventHandler<ChaveEventArgs>)Delegate.Remove(onGetChavePrivadaHandler, value);
-
-                if (onGetChavePrivadaHandler == null)
-                {
-                    int ret = ACBrEADInterop.EAD_SetOnGetChavePrivada(this.Handle, null);
-                    CheckResult(ret);
-
-                    onGetChavePrivadaCallback = null;
-                }
-            }
-        }
+		{
+			add
+			{
+				onGetChavePrivada.Add(value);
+			}
+			remove
+			{
+				onGetChavePrivada.Remove(value);
+			}
+		}
 
 		#endregion Events
 
 		#region Fields
 
-        private StrFunctionPtrDelegate onGetChavePublicaCallback;
-        private StrFunctionPtrDelegate onGetChavePrivadaCallback;
-
-        private EventHandler<ChaveEventArgs> onGetChavePublicaHandler;
-        private EventHandler<ChaveEventArgs> onGetChavePrivadaHandler;
+		private readonly ACBrEventHandler<ChaveEventArgs, ACBrEADInterop.OnGetChavePublicaCallback> onGetChavePublica;
+		private readonly ACBrEventHandler<ChaveEventArgs, ACBrEADInterop.OnGetChavePrivadaCallback> onGetChavePrivada;
 
 		#endregion Fields
 
@@ -82,6 +47,8 @@ namespace ACBrFramework
 
 		public ACBrEAD()
 		{
+			onGetChavePrivada = new ACBrEventHandler<ChaveEventArgs, ACBrEADInterop.OnGetChavePrivadaCallback>(this, OnGetChavePrivadaCallBack, ACBrEADInterop.EAD_SetOnGetChavePrivada);
+			onGetChavePublica = new ACBrEventHandler<ChaveEventArgs, ACBrEADInterop.OnGetChavePublicaCallback>(this, OnGetChavePublicaCallBack, ACBrEADInterop.EAD_SetOnGetChavePublica);
 		}
 
 		#endregion Constructor
@@ -185,28 +152,24 @@ namespace ACBrFramework
 
 		#region EventHandlers
 
-        [AllowReversePInvokeCalls]
-		private string ead_OnGetChavePublica()
+		[AllowReversePInvokeCalls]
+		private string OnGetChavePublicaCallBack()
 		{
 			ChaveEventArgs e = new ChaveEventArgs();
 
-			if (onGetChavePublicaHandler != null)
-			{
-                onGetChavePublicaHandler(this, e);
-			}
+			if (onGetChavePublica.IsAssigned)
+				onGetChavePublica.Raise(e);
 
 			return e.Chave;
 		}
 
-        [AllowReversePInvokeCalls]
-		private string ead_OnGetChavePrivada()
+		[AllowReversePInvokeCalls]
+		private string OnGetChavePrivadaCallBack()
 		{
 			ChaveEventArgs e = new ChaveEventArgs();
 
-            if (onGetChavePrivadaHandler != null)
-			{
-                onGetChavePrivadaHandler(this, e);
-			}
+			if (onGetChavePrivada.IsAssigned)
+				onGetChavePrivada.Raise(e);
 
 			return e.Chave;
 		}
@@ -217,7 +180,7 @@ namespace ACBrFramework
 
 		protected internal override void OnInitializeComponent()
 		{
-			CallCreate(ACBrEADInterop.EAD_Create);	
+			CallCreate(ACBrEADInterop.EAD_Create);
 		}
 
 		protected internal override void CheckResult(int ret)

@@ -491,8 +491,6 @@ namespace ACBrFramework.Net.EADTeste
 					   "d8/+SokV02s5ntCIQJeO7QJBAKp2BCOIck+uhMPDiw/1788yQLD6mVb/pBzClzBn" + Environment.NewLine +
 					   "pTMAFPGJG2fO4YJn/pUHdtDtSenX8TibWve+gY6oFCFw/Ts=" + Environment.NewLine +
 					   "-----END RSA PRIVATE KEY-----";
-
-			
 		}
 
 		private void acbrEAD_OnGetChavePublica(object sender, ChaveEventArgs e)

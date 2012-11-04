@@ -1615,7 +1615,6 @@
 			// 
 			this.acbrPAF.AAC = this.acbrAAC;
 			this.acbrPAF.AssinarArquivo = true;
-			this.acbrPAF.ChaveRSA = "";
 			this.acbrPAF.CurMascara = "";
 			this.acbrPAF.Delimitador = "";
 			this.acbrPAF.EAD = this.acbrEAD;

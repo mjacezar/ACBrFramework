@@ -4,7 +4,10 @@
 	{
 		#region Constructor
 
-		internal ACBrTEFDPetrocard(ACBrTEFD parent) : base(parent) { }
+		internal ACBrTEFDPetrocard(ACBrTEFD parent)
+			: base(parent)
+		{
+		}
 
 		#endregion Constructor
 

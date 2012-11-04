@@ -23,7 +23,7 @@ namespace ACBrFramework
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void LePesoCallback(double value);
 
-		#endregion
+		#endregion InteropTypes
 
 		#region Constructors/Erro Handler
 
