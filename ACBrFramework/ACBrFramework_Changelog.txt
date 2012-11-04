@@ -41,6 +41,10 @@ Símbolo : Significado
 
 Changelog
 
+03/11/2012
+[*] Reorganização de pastas para permitir namespaces nos componentes .Net  - Rafael Batiati
+[+] Versão inicial do componente TEF - Rafael Batiati
+
 01/11/2012 (ACBrFramework 0.9.1.4)
 [-] Corrigido erro no evento OnGetChave do AAC - ACBrFramework.Net - Rafael Dias.
 
