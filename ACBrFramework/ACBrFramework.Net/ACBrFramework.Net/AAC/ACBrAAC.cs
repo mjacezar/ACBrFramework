@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace ACBrFramework
 {
-	[ToolboxBitmap(typeof(ACBrAAC), @"ACBrAAC.ico.bmp")]
+	[ToolboxBitmap(typeof(ACBrAAC), @"AAC.ico.bmp")]
 	public class ACBrAAC : ACBrComponent, IDisposable
 	{
 		#region EventHandlers

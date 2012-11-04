@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace ACBrFramework
 {
-	[ToolboxBitmap(typeof(ACBrLCB), @"ACBrSerial.ACBrLCB.ico.bmp")]
+	[ToolboxBitmap(typeof(ACBrLCB), @"Serial.LCB.ico.bmp")]
 	public sealed class ACBrLCB : ACBrComponent, IDisposable
 	{
 		#region Events
