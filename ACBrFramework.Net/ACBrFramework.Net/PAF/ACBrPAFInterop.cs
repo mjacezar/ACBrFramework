@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace ACBrFramework
+namespace ACBrFramework.PAF
 {
 	public static class ACBrPAFInterop
 	{

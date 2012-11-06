@@ -1,4 +1,4 @@
-namespace ACBrFramework
+namespace ACBrFramework.Sintegra
 {
 	public sealed class SintegraRegistro54
 	{

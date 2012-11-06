@@ -1,6 +1,6 @@
 using System;
 
-namespace ACBrFramework
+namespace ACBrFramework.Sintegra
 {
 	public sealed class SintegraRegistro60M
 	{

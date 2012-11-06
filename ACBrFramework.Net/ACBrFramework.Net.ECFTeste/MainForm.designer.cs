@@ -172,10 +172,10 @@
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.wbBobina = new System.Windows.Forms.WebBrowser();
 			this.ativarCheckButton = new System.Windows.Forms.CheckBox();
-			this.acbrAAC = new ACBrFramework.ACBrAAC();
-			this.acbrEAD = new ACBrFramework.ACBrEAD();
-			this.acbrECF = new ACBrFramework.ACBrECF();
-			this.acbrPAF = new ACBrFramework.ACBrPAF();
+			this.acbrAAC = new ACBrFramework.AAC.ACBrAAC();
+			this.acbrEAD = new ACBrFramework.EAD.ACBrEAD();
+			this.acbrECF = new ACBrFramework.ECF.ACBrECF();
+			this.acbrPAF = new ACBrFramework.PAF.ACBrPAF();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl.SuspendLayout();
@@ -1605,11 +1605,11 @@
 			this.acbrECF.GavetaSinalInvertido = false;
 			this.acbrECF.IntervaloAposComando = 100;
 			this.acbrECF.LinhasEntreCupons = 7;
-			this.acbrECF.Modelo = ACBrFramework.ModeloECF.Nenhum;
+			this.acbrECF.Modelo = ACBrFramework.ECF.ModeloECF.Nenhum;
 			this.acbrECF.Operador = "";
 			this.acbrECF.Porta = "COM1";
 			this.acbrECF.TimeOut = 3;
-			this.acbrECF.OnBobinaAdicionaLinhas += new System.EventHandler<ACBrFramework.BobinaEventArgs>(this.acbrECF_OnBobinaAdicionaLinhas);
+			this.acbrECF.OnBobinaAdicionaLinhas += new System.EventHandler<ACBrFramework.ECF.BobinaEventArgs>(this.acbrECF_OnBobinaAdicionaLinhas);
 			// 
 			// acbrPAF
 			// 
@@ -1816,10 +1816,10 @@
 		private System.Windows.Forms.TextBox aacNomeArquivoTextbox;
 		private System.Windows.Forms.Label aacNomeArquivoLabel;
 		private System.Windows.Forms.CheckBox chkAtivo;
-		private ACBrAAC acbrAAC;
-		private ACBrEAD acbrEAD;
-		private ACBrECF acbrECF;
-        private ACBrPAF acbrPAF;
+		private ACBrFramework.AAC.ACBrAAC acbrAAC;
+		private ACBrFramework.EAD.ACBrEAD acbrEAD;
+		private ACBrFramework.ECF.ACBrECF acbrECF;
+		private ACBrFramework.PAF.ACBrPAF acbrPAF;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.WebBrowser wbBobina;
     }

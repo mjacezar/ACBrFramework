@@ -24,6 +24,8 @@ namespace ACBrFramework
 
 		protected delegate int SetInt32EntryPointDelegate(IntPtr handle, int value);
 
+		protected delegate int SetCharEntryPointDelegate(IntPtr handle, char value);
+
 		protected delegate int SetBoolEntryPointDelegate(IntPtr handle, bool value);
 
 		#endregion Inner Types
@@ -138,6 +140,20 @@ namespace ACBrFramework
 		}
 
 		protected void SetInt32(SetInt32EntryPointDelegate entryPoint, int value)
+		{
+			int ret = entryPoint(Handle, value);
+			CheckResult(ret);
+		}
+
+		protected char GetChar(GetInt32EntryPointDelegate entryPoint)
+		{
+			int ret = entryPoint(Handle);
+			CheckResult(ret);
+
+			return (char)ret;
+		}
+
+		protected void SetChar(SetCharEntryPointDelegate entryPoint, char value)
 		{
 			int ret = entryPoint(Handle, value);
 			CheckResult(ret);

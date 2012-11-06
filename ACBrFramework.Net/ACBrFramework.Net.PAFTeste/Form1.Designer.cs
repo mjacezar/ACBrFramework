@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.acbrPAF = new ACBrFramework.ACBrPAF();
+            this.acbrPAF = new ACBrFramework.PAF.ACBrPAF();
             this.btnTipoP = new System.Windows.Forms.Button();
             this.btnTipoD = new System.Windows.Forms.Button();
             this.btnTipoC = new System.Windows.Forms.Button();
@@ -267,7 +267,7 @@
 
 		#endregion
 
-        private ACBrPAF acbrPAF;
+        private ACBrFramework.PAF.ACBrPAF acbrPAF;
 		private System.Windows.Forms.Button btnTipoP;
 		private System.Windows.Forms.Button btnTipoD;
 		private System.Windows.Forms.Button btnTipoC;

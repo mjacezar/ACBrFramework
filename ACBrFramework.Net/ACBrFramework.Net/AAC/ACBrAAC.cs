@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace ACBrFramework
+namespace ACBrFramework.AAC
 {
 	[ToolboxBitmap(typeof(ACBrAAC), @"AAC.ico.bmp")]
 	public class ACBrAAC : ACBrComponent, IDisposable
@@ -134,11 +134,11 @@ namespace ACBrFramework
 				case -1:
 
 					string error = GetString(ACBrAACInterop.AAC_GetUltimoErro);
-					throw new ACBrECFException(error);
+					throw new ACBrException(error);
 
 				case -2:
 
-					throw new ACBrECFException("ACBr AAC não inicializado.");
+					throw new ACBrException("ACBr AAC não inicializado.");
 			}
 		}
 

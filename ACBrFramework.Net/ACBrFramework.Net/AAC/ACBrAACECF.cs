@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ACBrFramework
+namespace ACBrFramework.AAC
 {
 	public sealed class ACBrAACECF
 	{

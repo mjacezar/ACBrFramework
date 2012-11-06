@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace ACBrFramework
+namespace ACBrFramework.LCB
 {
 	[ToolboxBitmap(typeof(ACBrLCB), @"Serial.LCB.ico.bmp")]
 	public sealed class ACBrLCB : ACBrComponent, IDisposable
@@ -115,11 +115,11 @@ namespace ACBrFramework
 
 					const int BUFFER_LEN = 1024;
 					string error = GetString(ACBrLCBInterop.LCB_GetUltimoErro, BUFFER_LEN);
-					throw new ACBrECFException(error);
+					throw new ACBrException(error);
 
 				case -2:
 
-					throw new ACBrECFException("ACBr LCB não inicializado.");
+					throw new ACBrException("ACBr LCB não inicializado.");
 			}
 		}
 

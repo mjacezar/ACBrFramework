@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 
-namespace ACBrFramework
+namespace ACBrFramework.PAF
 {
 	public sealed class ACBrPAF_C : ACBrComposedComponent
 	{

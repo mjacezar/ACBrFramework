@@ -1,4 +1,5 @@
-﻿namespace ACBrFramework.Net.BALTeste
+﻿using ACBrFramework.BAL;
+namespace ACBrFramework.Net.BALTeste
 {
 	partial class MainForm
 	{
@@ -35,7 +36,7 @@
 			this.modeloComboBox = new System.Windows.Forms.ComboBox();
 			this.portaLabel = new System.Windows.Forms.Label();
 			this.modeloLabel = new System.Windows.Forms.Label();
-			this.acbrBAL = new ACBrFramework.ACBrBAL();
+			this.acbrBAL = new ACBrFramework.BAL.ACBrBAL();
 			this.pesoLabel = new System.Windows.Forms.Label();
 			this.pesoValueLabel = new System.Windows.Forms.Label();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -113,10 +114,10 @@
 			// 
 			// acbrBAL
 			// 
-			this.acbrBAL.Modelo = ACBrFramework.ModeloBal.Nenhum;
+			this.acbrBAL.Modelo = ACBrFramework.BAL.ModeloBal.Nenhum;
 			this.acbrBAL.MonitoraBalanca = false;
 			this.acbrBAL.Porta = "COM1";
-			this.acbrBAL.OnLePeso += new System.EventHandler<ACBrFramework.LePesoEventArgs>(this.acbrBAL_OnLePeso);
+			this.acbrBAL.OnLePeso += new System.EventHandler<ACBrFramework.BAL.LePesoEventArgs>(this.acbrBAL_OnLePeso);
 			// 
 			// pesoLabel
 			// 

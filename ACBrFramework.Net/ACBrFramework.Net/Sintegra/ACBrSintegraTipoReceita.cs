@@ -1,4 +1,4 @@
-namespace ACBrFramework
+namespace ACBrFramework.Sintegra
 {
 	public enum ACBrSintegraTipoReceita
 	{

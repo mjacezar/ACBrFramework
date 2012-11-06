@@ -1,4 +1,4 @@
-namespace ACBrFramework
+namespace ACBrFramework.PAF
 {
 	public sealed class ACBrPAFRegistroN1
 	{

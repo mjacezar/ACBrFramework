@@ -3,7 +3,10 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace ACBrFramework
+using ACBrFramework.AAC;
+using ACBrFramework.EAD;
+
+namespace ACBrFramework.PAF
 {
 	[ToolboxBitmap(typeof(ACBrPAF), @"PAF.ico.bmp")]
 	public class ACBrPAF : ACBrComponent, IDisposable
@@ -37,7 +40,7 @@ namespace ACBrFramework
 
 		public ACBrPAF()
 		{
-			onPAFGetKeyRSA = new ACBrEventHandler<ChaveEventArgs, ACBrPAFInterop.OnPAFGetKeyRSACallback>(this, OnPAFGetKeyRSACallBack, ACBrPAFInterop.PAF_SetOnPAFGetKeyRSA); 
+			onPAFGetKeyRSA = new ACBrEventHandler<ChaveEventArgs, ACBrPAFInterop.OnPAFGetKeyRSACallback>(this, OnPAFGetKeyRSACallBack, ACBrPAFInterop.PAF_SetOnPAFGetKeyRSA);
 		}
 
 		#endregion Constructor
@@ -220,11 +223,11 @@ namespace ACBrFramework
 				case -1:
 
 					string error = GetString(ACBrPAFInterop.PAF_GetUltimoErro);
-					throw new ACBrECFException(error);
+					throw new ACBrException(error);
 
 				case -2:
 
-					throw new ACBrECFException("ACBr PAF não inicializado.");
+					throw new ACBrException("ACBr PAF não inicializado.");
 			}
 		}
 

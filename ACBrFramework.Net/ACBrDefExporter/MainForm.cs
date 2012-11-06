@@ -1,7 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using ACBrFramework;
+using ACBrFramework.AAC;
+using ACBrFramework.BAL;
+using ACBrFramework.EAD;
+using ACBrFramework.ECF;
+using ACBrFramework.LCB;
+using ACBrFramework.PAF;
+using ACBrFramework.Sintegra;
 
 namespace ACBrDefExporter
 {

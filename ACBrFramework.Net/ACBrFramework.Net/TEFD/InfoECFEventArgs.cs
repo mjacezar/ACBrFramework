@@ -17,6 +17,8 @@ namespace ACBrFramework.TEFD
 
 		public ACBrTEFDInfoECF Operacao { get; private set; }
 
+		public string Retorno { get; set; }
+
 		public RetornoECF? RetornoECF { get; set; }
 
 		public decimal? Value { get; set; }

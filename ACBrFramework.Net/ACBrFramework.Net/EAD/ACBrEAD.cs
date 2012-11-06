@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace ACBrFramework
+namespace ACBrFramework.EAD
 {
 	[ToolboxBitmap(typeof(ACBrEAD), @"EAD.ico.bmp")]
 	public class ACBrEAD : ACBrComponent, IDisposable
@@ -190,11 +190,11 @@ namespace ACBrFramework
 				case -1:
 
 					string error = GetString(ACBrEADInterop.EAD_GetUltimoErro);
-					throw new ACBrECFException(error);
+					throw new ACBrException(error);
 
 				case -2:
 
-					throw new ACBrECFException("ACBr EAD não inicializado.");
+					throw new ACBrException("ACBr EAD não inicializado.");
 			}
 		}
 
