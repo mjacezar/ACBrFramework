@@ -1,6 +1,6 @@
 using System;
 
-namespace ACBrFramework
+namespace ACBrFramework.PAF
 {
 	public sealed class ACBrPAFRegistroB2
 	{

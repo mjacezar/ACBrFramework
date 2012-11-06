@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
 using System.ComponentModel;
+using System.Drawing;
 
-namespace ACBrFramework
+namespace ACBrFramework.Sintegra
 {
 	[ToolboxBitmap(typeof(ACBrSintegra), @"Sintegra.ico.bmp")]
 	public class ACBrSintegra : ACBrComponent, IDisposable
@@ -747,11 +747,11 @@ namespace ACBrFramework
 				case -1:
 
 					string error = GetString(ACBrSintegraInterop.SIN_GetUltimoErro);
-					throw new ACBrECFException(error);
+					throw new ACBrException(error);
 
 				case -2:
 
-					throw new ACBrECFException("ACBr Sintegra não inicializado.");
+					throw new ACBrException("ACBr Sintegra não inicializado.");
 			}
 		}
 

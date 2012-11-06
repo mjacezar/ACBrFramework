@@ -1,4 +1,6 @@
-﻿namespace ACBrFramework
+﻿using ACBrFramework.PAF;
+
+namespace ACBrFramework.AAC
 {
 	public sealed class ACBrECFInfoPaf : ACBrComposedComponent
 	{

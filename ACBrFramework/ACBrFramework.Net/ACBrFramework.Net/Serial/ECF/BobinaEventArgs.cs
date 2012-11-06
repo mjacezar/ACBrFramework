@@ -1,6 +1,6 @@
 using System;
 
-namespace ACBrFramework
+namespace ACBrFramework.ECF
 {
 	public class BobinaEventArgs : EventArgs
 	{

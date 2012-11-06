@@ -1,4 +1,4 @@
-﻿namespace ACBrFramework
+﻿namespace ACBrFramework.BAL
 {
 	public enum ModeloBal : int
 	{

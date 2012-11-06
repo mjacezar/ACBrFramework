@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using ACBrFramework.AAC;
+using ACBrFramework.ECF;
+using ACBrFramework.PAF;
 
 namespace ACBrFramework.ECFTeste
 {

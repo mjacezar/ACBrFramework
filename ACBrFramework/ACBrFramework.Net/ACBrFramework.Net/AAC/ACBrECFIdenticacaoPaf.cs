@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ACBrFramework
+namespace ACBrFramework.AAC
 {
 	public sealed class ACBrECFIdenticacaoPaf : ACBrComposedComponent
 	{

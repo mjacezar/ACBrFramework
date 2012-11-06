@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace ACBrFramework
+namespace ACBrFramework.BAL
 {
 	[ToolboxBitmap(typeof(ACBrBAL), @"Serial.BAL.ico.bmp")]
 	public sealed class ACBrBAL : ACBrComponent, IDisposable
@@ -150,11 +150,11 @@ namespace ACBrFramework
 				case -1:
 
 					string error = GetString(ACBrBALInterop.BAL_GetUltimoErro);
-					throw new ACBrECFException(error);
+					throw new ACBrException(error);
 
 				case -2:
 
-					throw new ACBrECFException("ACBr BAL não inicializado.");
+					throw new ACBrException("ACBr BAL não inicializado.");
 			}
 		}
 

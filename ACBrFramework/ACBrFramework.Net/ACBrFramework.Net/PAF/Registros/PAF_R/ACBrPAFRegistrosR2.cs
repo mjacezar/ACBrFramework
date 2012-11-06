@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace ACBrFramework
+namespace ACBrFramework.PAF
 {
 	public sealed class ACBrPAFRegistrosR2 : ICollection<ACBrPAFRegistroR2>
 	{

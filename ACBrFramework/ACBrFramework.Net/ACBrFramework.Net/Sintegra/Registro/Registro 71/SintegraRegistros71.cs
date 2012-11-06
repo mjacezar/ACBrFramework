@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace ACBrFramework
+namespace ACBrFramework.Sintegra
 {
 	public sealed class SintegraRegistros71 : ICollection<SintegraRegistro71>
 	{

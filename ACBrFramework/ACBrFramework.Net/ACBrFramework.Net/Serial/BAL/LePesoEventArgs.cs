@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ACBrFramework
+namespace ACBrFramework.BAL
 {
 	public class LePesoEventArgs : EventArgs
 	{

@@ -5,7 +5,10 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace ACBrFramework
+using ACBrFramework.AAC;
+using ACBrFramework.EAD;
+
+namespace ACBrFramework.ECF
 {
 	[ToolboxBitmap(typeof(ACBrECF), @"Serial.ECF.ico.bmp")]
 	public class ACBrECF : ACBrComponent, IDisposable

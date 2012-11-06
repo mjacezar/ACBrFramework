@@ -1,4 +1,4 @@
-namespace ACBrFramework
+namespace ACBrFramework.EAD
 {
 	public enum EADDigest
 	{

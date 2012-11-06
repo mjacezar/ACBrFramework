@@ -1,4 +1,4 @@
-﻿namespace ACBrFramework
+﻿namespace ACBrFramework.PAF
 {
 	public enum ACBrPAFTipoIntegracao
 	{

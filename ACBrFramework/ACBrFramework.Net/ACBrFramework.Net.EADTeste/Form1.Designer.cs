@@ -58,7 +58,7 @@
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.messageToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.descriptionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-			this.acbrEAD = new ACBrFramework.ACBrEAD();
+			this.acbrEAD = new ACBrFramework.EAD.ACBrEAD();
 			this.grpArquivoDe.SuspendLayout();
 			this.grpChavePrivada.SuspendLayout();
 			this.grpChavePublica.SuspendLayout();
@@ -454,7 +454,7 @@
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripStatusLabel messageToolStripStatusLabel;
 		private System.Windows.Forms.ToolStripStatusLabel descriptionToolStripStatusLabel;
-		private ACBrEAD acbrEAD;
+		private ACBrFramework.EAD.ACBrEAD acbrEAD;
 		private System.Windows.Forms.Label lblArquivo;
 	}
 }

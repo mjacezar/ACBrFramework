@@ -6,7 +6,7 @@ namespace ACBrFramework.TEFD
 	{
 		#region Constructor
 
-		internal AntesFinalizarRequisicaoEventArgs(object req)
+		internal AntesFinalizarRequisicaoEventArgs(ACBrTEFDReq req)
 		{
 			this.Req = req;
 		}
@@ -15,7 +15,7 @@ namespace ACBrFramework.TEFD
 
 		#region Properties
 
-		public object Req { get; private set; }
+		public ACBrTEFDReq Req { get; private set; }
 
 		#endregion Properties
 	}

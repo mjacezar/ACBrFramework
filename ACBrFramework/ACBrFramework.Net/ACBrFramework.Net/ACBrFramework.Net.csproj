@@ -308,6 +308,7 @@
     <Compile Include="TEFD\ACBrTEFDOperacaoECF.cs" />
     <Compile Include="TEFD\ACBrTEFDOperacaoMensagem.cs" />
     <Compile Include="TEFD\ACBrTEFDPetrocard.cs" />
+    <Compile Include="TEFD\ACBrTEFDReq.cs" />
     <Compile Include="TEFD\ACBrTEFDReqEstado.cs" />
     <Compile Include="TEFD\ACBrTEFDRespEstado.cs" />
     <Compile Include="TEFD\ACBrTEFDTipo.cs" />

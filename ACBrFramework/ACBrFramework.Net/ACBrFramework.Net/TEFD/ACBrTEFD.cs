@@ -267,6 +267,8 @@ namespace ACBrFramework.TEFD
 
 		public ACBrTEFDIdentificacao Identificacao { get; private set; }
 
+		public ACBrTEFDReq Req { get; private set; }
+
 		public ACBrTEFDCliSiTef TEFCliSiTef { get; private set; }
 
 		public ACBrTEFDDial TEFDial { get; private set; }
@@ -326,11 +328,11 @@ namespace ACBrFramework.TEFD
 				case -1:
 
 					string error = GetString(ACBrTEFInterop.TEF_GetUltimoErro);
-					throw new ACBrECFException(error);
+					throw new ACBrException(error);
 
 				case -2:
 
-					throw new ACBrECFException("ACBr TEF não inicializado.");
+					throw new ACBrException("ACBr TEF não inicializado.");
 			}
 		}
 
@@ -339,6 +341,7 @@ namespace ACBrFramework.TEFD
 			CallCreate(ACBrTEFInterop.TEF_Create);
 
 			this.Identificacao = new ACBrTEFDIdentificacao(this);
+			this.Req = new ACBrTEFDReq(this);
 			this.TEFCliSiTef = new ACBrTEFDCliSiTef(this);
 			this.TEFDial = new ACBrTEFDDial(this);
 			this.TEFDisc = new ACBrTEFDDisc(this);
@@ -505,7 +508,7 @@ namespace ACBrFramework.TEFD
 		{
 			if (onAntesFinalizarRequisicao.IsAssigned)
 			{
-				AntesFinalizarRequisicaoEventArgs e = new AntesFinalizarRequisicaoEventArgs(Req);
+				AntesFinalizarRequisicaoEventArgs e = new AntesFinalizarRequisicaoEventArgs(this.Req);
 				onAntesFinalizarRequisicao.Raise(e);
 			}
 		}

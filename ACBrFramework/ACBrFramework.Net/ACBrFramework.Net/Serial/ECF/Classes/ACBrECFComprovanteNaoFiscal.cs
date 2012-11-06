@@ -1,4 +1,4 @@
-﻿namespace ACBrFramework
+﻿namespace ACBrFramework.ECF
 {
 	public sealed class ACBrECFComprovanteNaoFiscal
 	{
