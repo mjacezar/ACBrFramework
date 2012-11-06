@@ -41,6 +41,9 @@ Símbolo : Significado
 
 Changelog
 
+06/11/2012
+[*] Inclusão de Namespaces nos componentes
+
 04/11/2012 (ACBrFramework 0.9.1.6)
 [*] Reestrututação do ACBrPAF para ficar similar a versão Delphi - ACBrFramework.Net   - Rafael Dias.
 [*] Reestrututação do ACBrSintegra para ficar similar a versão Delphi - ACBrFramework.Net   - Rafael Dias.
