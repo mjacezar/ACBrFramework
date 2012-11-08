@@ -13,7 +13,8 @@ uses
   ACBrSintegraDll,
   ACBrBALDll,
   ACBrLCBDll,
-  ACBrAACDLL;
+  ACBrAACDLL,
+  ACBrSpedFiscalDll;
 
 
 {$R *.res}

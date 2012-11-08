@@ -529,7 +529,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir);..\..\ACBr\Fontes\ACBrComum"/>
-      <OtherUnitFiles Value="..\..\ACBr\Fontes\ACBrSerial;..\..\ACBr\Fontes\ACBrTCP;..\..\ACBr\Fontes\ACBrComum;..\..\ACBr\Fontes\ACBrDiversos;..\..\ACBr\Fontes\ACBrPAF;..\..\ACBr\Fontes\ACBrSintegra;..\..\ACBr\Fontes\ACBrSPED;..\..\ACBr\Fontes\synalist"/>
+      <OtherUnitFiles Value="..\..\ACBr\Fontes\ACBrSerial;..\..\ACBr\Fontes\ACBrTCP;..\..\ACBr\Fontes\ACBrComum;..\..\ACBr\Fontes\ACBrDiversos;..\..\ACBr\Fontes\ACBrPAF;..\..\ACBr\Fontes\ACBrSintegra;..\..\ACBr\Fontes\ACBrSPED;..\..\ACBr\Fontes\ACBrSPED\ACBrSPEDFiscal;..\..\ACBr\Fontes\synalist"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

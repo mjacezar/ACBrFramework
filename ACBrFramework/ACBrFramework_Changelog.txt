@@ -43,6 +43,7 @@ Changelog
 
 07/11/2012(ACBrFramework 0.9.1.6)
 [-] Remoção das solution folders para compatibilidade com as versões express do Visual Studio - ACBrFramework.Net   - Rafael Dias.
+[+] Inicio do ACBrSpedFiscal  - ACBrFramework - Rafael Dias. 
 
 06/11/2012(ACBrFramework 0.9.1.6)
 [*] Inclusão de Namespaces nos componentes .Net - ACBrFramework.Net - Rafael Batiati.
