@@ -269,6 +269,10 @@ namespace ACBrFramework.TEFD
 
 		public ACBrTEFDReq Req { get; private set; }
 
+		public ACBrTEFDResp Resp { get; private set; }
+
+		public ACBrTEFDRespostasPendentes RespostasPendentes { get; private set; }
+
 		public ACBrTEFDCliSiTef TEFCliSiTef { get; private set; }
 
 		public ACBrTEFDDial TEFDial { get; private set; }
@@ -342,6 +346,8 @@ namespace ACBrFramework.TEFD
 
 			this.Identificacao = new ACBrTEFDIdentificacao(this);
 			this.Req = new ACBrTEFDReq(this);
+			this.Resp = new ACBrTEFDResp(this);
+			this.RespostasPendentes = new ACBrTEFDRespostasPendentes(this);
 			this.TEFCliSiTef = new ACBrTEFDCliSiTef(this);
 			this.TEFDial = new ACBrTEFDDial(this);
 			this.TEFDisc = new ACBrTEFDDisc(this);
@@ -518,7 +524,7 @@ namespace ACBrFramework.TEFD
 		{
 			if (onDepoisConfirmarTransacoes.IsAssigned)
 			{
-				DepoisConfirmarTransacoesEventArgs e = new DepoisConfirmarTransacoesEventArgs(RespostasPendentes);
+				DepoisConfirmarTransacoesEventArgs e = new DepoisConfirmarTransacoesEventArgs(this.RespostasPendentes);
 				onDepoisConfirmarTransacoes.Raise(e);
 			}
 		}
@@ -538,7 +544,7 @@ namespace ACBrFramework.TEFD
 		{
 			if (onDepoisCancelarTransacoes.IsAssigned)
 			{
-				DepoisCancelarTransacoesEventArgs e = new DepoisCancelarTransacoesEventArgs(RespostasPendentes);
+				DepoisCancelarTransacoesEventArgs e = new DepoisCancelarTransacoesEventArgs(this.RespostasPendentes);
 				onDepoisCancelarTransacoes.Raise(e);
 			}
 		}

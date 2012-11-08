@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 
 using ACBrFramework.TEFD;
+using System.Threading;
 
 namespace ACBrFramework.TEFDTeste
 {
@@ -50,6 +51,49 @@ namespace ACBrFramework.TEFDTeste
 			tef.OnMudaEstadoReq += new EventHandler<MudaEstadoReqEventArgs>(tef_OnMudaEstadoReq);
 			tef.OnMudaEstadoResp += new EventHandler<MudaEstadoRespEventArgs>(tef_OnMudaEstadoResp);
 			tef.OnRestauraFocoAplicacao += new EventHandler<ExecutaAcaoEventArgs>(tef_OnRestauraFocoAplicacao);
+
+			tef.TEFCliSiTef.OnExibeMenu += new EventHandler<TEFCliSiTefExibeMenuEventArgs>(TEFCliSiTef_OnExibeMenu);
+			tef.TEFCliSiTef.OnObtemCampo += new EventHandler<TEFCliSiTefObtemCampoEventArgs>(TEFCliSiTef_OnObtemCampo);
+		}
+
+		void TEFCliSiTef_OnObtemCampo(object sender, TEFCliSiTefObtemCampoEventArgs e)
+		{
+			using (InputForm form = new InputForm())
+			{
+				form.Initialize(e);
+				DialogResult ret = form.ShowDialog(this);
+
+				if (ret == DialogResult.OK)
+				{
+					e.Resposta = form.InputText;
+					e.Digitado = true;
+				}
+				else
+				{
+					e.VoltarMenu = true;
+				}
+
+			}
+
+		}
+
+		void TEFCliSiTef_OnExibeMenu(object sender, TEFCliSiTefExibeMenuEventArgs e)
+		{
+			using (MenuForm form = new MenuForm())
+			{
+				form.Initialize(e);
+				DialogResult ret = form.ShowDialog(this);
+
+				if (ret == DialogResult.OK)
+				{
+					e.ItemSelecionado = form.SelectedItem;
+				}
+				else
+				{
+					e.VoltarMenu = true;
+				}
+
+			}
 		}
 
 		#endregion Constructor
@@ -58,14 +102,23 @@ namespace ACBrFramework.TEFDTeste
 
 		#region EventHandlers
 
-		private void button1_Click(object sender, EventArgs e)
+		private void okButton_Click(object sender, EventArgs e)
 		{
 			retECF = RetornoECF.PagamentoOuSubTotal;
-			Console.WriteLine(tef.Req.NSU);
-			tef.Req.NSU = "1";
 
+			//tef.TEFCliSiTef.EnderecoIP = "127.0.0.1";
+			//tef.TEFCliSiTef.CodigoLoja = "00000000";
+			//tef.TEFCliSiTef.NumeroTerminal = "SE000001";
+			//tef.TEFCliSiTef.Operador = "operador";
 			tef.Initializar(ACBrTEFDTipo.TefDial);
-			System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback((x) => tef.CRT(15.9M, "01", "", 0)));
+
+			ThreadPool.QueueUserWorkItem(new WaitCallback(Process));
+		}
+
+		private void Process(object param)
+		{
+			tef.CRT(15.9M, "01", "", 0);
+			MessageBox.Show("Finalizado");
 		}
 
 		private void tef_OnRestauraFocoAplicacao(object sender, ExecutaAcaoEventArgs e)

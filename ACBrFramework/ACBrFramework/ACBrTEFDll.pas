@@ -1,4 +1,4 @@
-unit ACBrTEFDll;
+﻿unit ACBrTEFDll;
 
 
 interface
@@ -478,29 +478,6 @@ end;
 
 {Req}
 
-Function TEF_GetReq(const tefHandle : PTEFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (tefHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
- try
-    if (tefHandle^.TEF.Req = nil) then
-     Result := 0
-    else
-     Result := 1;
-
-  except
-     on exception : Exception do
-     begin
-        tefHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
 Function TEF_Req_GetHeader(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
@@ -1253,7 +1230,7 @@ begin
 
 end;
 
-Function TEF_Req_SetTipoPessoa(const tefHandle : PTEFHandle; const TipoPessoa : char) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetTipoPessoa(const tefHandle : PTEFHandle; const TipoPessoa : AnsiChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1407,7 +1384,2788 @@ begin
 
 end;
 
+{Resp}
 
+Function TEF_Resp_GetHeader(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.Header;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetDocumentoVinculado(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.DocumentoVinculado;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetCMC7(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.CMC7;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetTipoPessoa(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.TipoPessoa;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetDocumentoPessoa(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.DocumentoPessoa;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetRede(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.Rede;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetNSU(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.NSU;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetFinalizacao(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.Finalizacao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetStatusTransacao(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.StatusTransacao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetNSUTransacaoCancelada(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.NSUTransacaoCancelada;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetTextoEspecialOperador(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.TextoEspecialOperador;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetTextoEspecialCliente(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.TextoEspecialOperador;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetAutenticacao(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.Autenticacao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetBanco(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.Banco;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetAgencia(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.Agencia;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetAgenciaDC(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.AgenciaDC;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetConta(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.Conta;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetContaDC(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.ContaDC;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetCheque(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.Cheque;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetChequeDC(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.ChequeDC;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetNomeAdministradora(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.NomeAdministradora;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetTrailer(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.Trailer;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetArqBackup(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.ArqBackup;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetArqRespPendente(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.ArqRespPendente;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetIndiceFPG_ECF(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.IndiceFPG_ECF;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetInstituicao(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.Instituicao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetModalidadePagto(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.ModalidadePagto;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetModalidadePagtoDescrita(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.ModalidadePagtoDescrita;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetModalidadeExtenso(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.ModalidadeExtenso;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetCodigoRedeAutorizada(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.CodigoRedeAutorizada;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+//Int
+Function TEF_Resp_GetID(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.Resp.ID;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetMoeda(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.Resp.Moeda;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetTipoTransacao(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.Resp.TipoTransacao;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetCodigoAutorizacaoTransacao(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.Resp.CodigoAutorizacaoTransacao;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetNumeroLoteTransacao(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.Resp.NumeroLoteTransacao;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetTipoParcelamento(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.Resp.TipoParcelamento;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetQtdParcelas(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.Resp.QtdParcelas;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetQtdLinhasComprovante(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.Resp.QtdLinhasComprovante;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetOrdemPagamento(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.Resp.OrdemPagamento;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetTipoGP(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := Integer(tefHandle^.TEF.Resp.TipoGP);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetParceladoPor(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := Integer(tefHandle^.TEF.Resp.ParceladoPor);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetTipoOperacao(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := Integer(tefHandle^.TEF.Resp.TipoOperacao);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+//Bool
+Function TEF_Resp_GetCNFEnviado(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+	 if (tefHandle^.TEF.Resp.CNFEnviado) then
+		Result := 1
+	 else
+		Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetTransacaoAprovada(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+	 if (tefHandle^.TEF.Resp.TransacaoAprovada) then
+		Result := 1
+	 else
+		Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetDebito(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+	 if (tefHandle^.TEF.Resp.Debito) then
+		Result := 1
+	 else
+		Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetCredito(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+	 if (tefHandle^.TEF.Resp.Credito) then
+		Result := 1
+	 else
+		Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetValorTotal(const tefHandle : PTEFHandle; var ValorTotal : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    ValorTotal := tefHandle^.TEF.Resp.ValorTotal;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetValorOriginal(const tefHandle : PTEFHandle; var ValorOriginal : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    ValorOriginal := tefHandle^.TEF.Resp.ValorOriginal;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetSaque(const tefHandle : PTEFHandle; var Saque : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    Saque := tefHandle^.TEF.Resp.Saque;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetDesconto(const tefHandle : PTEFHandle; var Desconto : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    Desconto := tefHandle^.TEF.Resp.Desconto;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetValorEntradaCDC(const tefHandle : PTEFHandle; var ValorEntradaCDC : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    ValorEntradaCDC := tefHandle^.TEF.Resp.ValorEntradaCDC;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetDataCheque(const tefHandle : PTEFHandle; var DataCheque : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataCheque := tefHandle^.TEF.Resp.DataCheque;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetDataHoraTransacaoHost(const tefHandle : PTEFHandle; var DataHoraTransacaoHost : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataHoraTransacaoHost := tefHandle^.TEF.Resp.DataHoraTransacaoHost;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetDataHoraTransacaoLocal(const tefHandle : PTEFHandle; var DataHoraTransacaoLocal : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataHoraTransacaoLocal := tefHandle^.TEF.Resp.DataHoraTransacaoLocal;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetDataPreDatado(const tefHandle : PTEFHandle; var DataPreDatado : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataPreDatado := tefHandle^.TEF.Resp.DataPreDatado;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetDataHoraTransacaoCancelada(const tefHandle : PTEFHandle; var DataHoraTransacaoCancelada : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataHoraTransacaoCancelada := tefHandle^.TEF.Resp.DataHoraTransacaoCancelada;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetDataHoraTransacaoComprovante(const tefHandle : PTEFHandle; var DataHoraTransacaoComprovante : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataHoraTransacaoComprovante := tefHandle^.TEF.Resp.DataHoraTransacaoComprovante;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetDataVencimento(const tefHandle : PTEFHandle; var DataVencimento : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataVencimento := tefHandle^.TEF.Resp.DataVencimento;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetDataEntradaCDC(const tefHandle : PTEFHandle; var DataEntradaCDC : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataEntradaCDC := tefHandle^.TEF.Resp.DataEntradaCDC;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+//Parcelas : TACBrTEFDRespParcelas read fpParcelas ;
+//ImagemComprovante1aVia : TStringList read fpImagemCompro
+//ImagemComprovante2aVia : TStringList read fpImagemCompro
+
+{Respostas Pendentes}
+
+Function TEF_RespostasPendentes_GetSaldoAPagar(const tefHandle : PTEFHandle; var SaldoAPagar : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     SaldoAPagar := tefHandle^.TEF.RespostasPendentes.SaldoAPagar;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetTotalPago(const tefHandle : PTEFHandle; var TotalPago : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     TotalPago := tefHandle^.TEF.RespostasPendentes.TotalPago;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetTotalDesconto(const tefHandle : PTEFHandle; var TotalDesconto : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     TotalDesconto := tefHandle^.TEF.RespostasPendentes.TotalDesconto;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetSaldoRestante(const tefHandle : PTEFHandle; var SaldoRestante : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     SaldoRestante := tefHandle^.TEF.RespostasPendentes.SaldoRestante;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+
+Function TEF_RespostasPendentes_GetCount(const tefHandle : PTEFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.RespostasPendentes.Count;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+
+
+Function TEF_RespostasPendentes_GetHeader(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].Header;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetDocumentoVinculado(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].DocumentoVinculado;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetCMC7(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].CMC7;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetTipoPessoa(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].TipoPessoa;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetDocumentoPessoa(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].DocumentoPessoa;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetRede(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].Rede;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetNSU(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].NSU;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetFinalizacao(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].Finalizacao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetStatusTransacao(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].StatusTransacao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetNSUTransacaoCancelada(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].NSUTransacaoCancelada;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetTextoEspecialOperador(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].TextoEspecialOperador;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetTextoEspecialCliente(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].TextoEspecialOperador;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetAutenticacao(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].Autenticacao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetBanco(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].Banco;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetAgencia(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].Agencia;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetAgenciaDC(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].AgenciaDC;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetConta(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].Conta;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetContaDC(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].ContaDC;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetCheque(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].Cheque;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetChequeDC(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].ChequeDC;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetNomeAdministradora(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].NomeAdministradora;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetTrailer(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].Trailer;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetArqBackup(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].ArqBackup;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetArqRespPendente(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].ArqRespPendente;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetIndiceFPG_ECF(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].IndiceFPG_ECF;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetInstituicao(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].Instituicao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetModalidadePagto(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].ModalidadePagto;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetModalidadePagtoDescrita(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].ModalidadePagtoDescrita;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetModalidadeExtenso(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].ModalidadeExtenso;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetCodigoRedeAutorizada(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].CodigoRedeAutorizada;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+//Int
+Function TEF_RespostasPendentes_GetID(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.RespostasPendentes[index].ID;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetMoeda(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.RespostasPendentes[index].Moeda;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetTipoTransacao(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.RespostasPendentes[index].TipoTransacao;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetCodigoAutorizacaoTransacao(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.RespostasPendentes[index].CodigoAutorizacaoTransacao;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetNumeroLoteTransacao(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.RespostasPendentes[index].NumeroLoteTransacao;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetTipoParcelamento(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.RespostasPendentes[index].TipoParcelamento;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetQtdParcelas(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.RespostasPendentes[index].QtdParcelas;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetQtdLinhasComprovante(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.RespostasPendentes[index].QtdLinhasComprovante;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetOrdemPagamento(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := tefHandle^.TEF.RespostasPendentes[index].OrdemPagamento;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetTipoGP(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := Integer(tefHandle^.TEF.RespostasPendentes[index].TipoGP);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetParceladoPor(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := Integer(tefHandle^.TEF.RespostasPendentes[index].ParceladoPor);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetTipoOperacao(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := Integer(tefHandle^.TEF.RespostasPendentes[index].TipoOperacao);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+//Bool
+Function TEF_RespostasPendentes_GetCNFEnviado(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+	 if (tefHandle^.TEF.RespostasPendentes[index].CNFEnviado) then
+		Result := 1
+	 else
+		Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetTransacaoAprovada(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+	 if (tefHandle^.TEF.RespostasPendentes[index].TransacaoAprovada) then
+		Result := 1
+	 else
+		Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetDebito(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+	 if (tefHandle^.TEF.RespostasPendentes[index].Debito) then
+		Result := 1
+	 else
+		Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetCredito(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+	 if (tefHandle^.TEF.RespostasPendentes[index].Credito) then
+		Result := 1
+	 else
+		Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetValorTotal(const tefHandle : PTEFHandle; const index : Integer; var ValorTotal : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    ValorTotal := tefHandle^.TEF.RespostasPendentes[index].ValorTotal;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetValorOriginal(const tefHandle : PTEFHandle; const index : Integer; var ValorOriginal : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    ValorOriginal := tefHandle^.TEF.RespostasPendentes[index].ValorOriginal;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetSaque(const tefHandle : PTEFHandle; const index : Integer; var Saque : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    Saque := tefHandle^.TEF.RespostasPendentes[index].Saque;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetDesconto(const tefHandle : PTEFHandle; const index : Integer; var Desconto : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    Desconto := tefHandle^.TEF.RespostasPendentes[index].Desconto;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetValorEntradaCDC(const tefHandle : PTEFHandle; const index : Integer; var ValorEntradaCDC : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    ValorEntradaCDC := tefHandle^.TEF.RespostasPendentes[index].ValorEntradaCDC;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetDataCheque(const tefHandle : PTEFHandle; const index : Integer; var DataCheque : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataCheque := tefHandle^.TEF.RespostasPendentes[index].DataCheque;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetDataHoraTransacaoHost(const tefHandle : PTEFHandle; const index : Integer; var DataHoraTransacaoHost : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataHoraTransacaoHost := tefHandle^.TEF.RespostasPendentes[index].DataHoraTransacaoHost;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetDataHoraTransacaoLocal(const tefHandle : PTEFHandle; const index : Integer; var DataHoraTransacaoLocal : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataHoraTransacaoLocal := tefHandle^.TEF.RespostasPendentes[index].DataHoraTransacaoLocal;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetDataPreDatado(const tefHandle : PTEFHandle; const index : Integer; var DataPreDatado : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataPreDatado := tefHandle^.TEF.RespostasPendentes[index].DataPreDatado;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetDataHoraTransacaoCancelada(const tefHandle : PTEFHandle; const index : Integer; var DataHoraTransacaoCancelada : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataHoraTransacaoCancelada := tefHandle^.TEF.RespostasPendentes[index].DataHoraTransacaoCancelada;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetDataHoraTransacaoComprovante(const tefHandle : PTEFHandle; const index : Integer; var DataHoraTransacaoComprovante : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataHoraTransacaoComprovante := tefHandle^.TEF.RespostasPendentes[index].DataHoraTransacaoComprovante;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetDataVencimento(const tefHandle : PTEFHandle; const index : Integer; var DataVencimento : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataVencimento := tefHandle^.TEF.RespostasPendentes[index].DataVencimento;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetDataEntradaCDC(const tefHandle : PTEFHandle; const index : Integer; var DataEntradaCDC : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    DataEntradaCDC := tefHandle^.TEF.RespostasPendentes[index].DataEntradaCDC;
+	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+//Parcelas : TACBrTEFDRespParcelas read fpParcelas ;
+//ImagemComprovante1aVia : TStringList read fpImagemCompro
+//ImagemComprovante2aVia : TStringList read fpImagemCompro
 
 {TEFCliSiTef}
 Function TEF_TEFCliSiTef_GetEnderecoIP(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -5927,7 +8685,6 @@ TEF_Identificacao_GetSoftwareHouse,TEF_Identificacao_SetSoftwareHouse,
 TEF_Identificacao_GetRazaoSocial,TEF_Identificacao_SetRazaoSocial,
 
 {Req}
-TEF_GetReq,
 TEF_Req_GetHeader, TEF_Req_SetHeader,
 TEF_Req_GetDocumentoVinculado,TEF_Req_SetDocumentoVinculado,
 TEF_Req_GetCMC7, TEF_Req_SetCMC7,
@@ -5941,6 +8698,132 @@ TEF_Req_GetTipoPessoa, TEF_Req_SetTipoPessoa,
 TEF_Req_GetValorTotal, TEF_Req_SetValorTotal,
 TEF_Req_GetDataCheque, TEF_Req_SetDataCheque,
 TEF_Req_GetDataHoraTransacaoComprovante, TEF_Req_SetDataHoraTransacaoComprovante,
+
+{Resp}
+TEF_Resp_GetHeader,
+TEF_Resp_GetDocumentoVinculado,
+TEF_Resp_GetCMC7,
+TEF_Resp_GetTipoPessoa,
+TEF_Resp_GetDocumentoPessoa,
+TEF_Resp_GetRede,
+TEF_Resp_GetNSU,
+TEF_Resp_GetFinalizacao,
+TEF_Resp_GetStatusTransacao,
+TEF_Resp_GetNSUTransacaoCancelada,
+TEF_Resp_GetTextoEspecialOperador,
+TEF_Resp_GetTextoEspecialCliente,
+TEF_Resp_GetAutenticacao,
+TEF_Resp_GetBanco,
+TEF_Resp_GetAgencia,
+TEF_Resp_GetAgenciaDC,
+TEF_Resp_GetConta,
+TEF_Resp_GetContaDC,
+TEF_Resp_GetCheque,
+TEF_Resp_GetChequeDC,
+TEF_Resp_GetNomeAdministradora,
+TEF_Resp_GetTrailer,
+TEF_Resp_GetArqBackup,
+TEF_Resp_GetArqRespPendente,
+TEF_Resp_GetIndiceFPG_ECF,
+TEF_Resp_GetInstituicao,
+TEF_Resp_GetModalidadePagto,
+TEF_Resp_GetModalidadePagtoDescrita,
+TEF_Resp_GetModalidadeExtenso,
+TEF_Resp_GetCodigoRedeAutorizada,
+TEF_Resp_GetID,
+TEF_Resp_GetMoeda,
+TEF_Resp_GetTipoTransacao,
+TEF_Resp_GetCodigoAutorizacaoTransacao,
+TEF_Resp_GetNumeroLoteTransacao,
+TEF_Resp_GetTipoParcelamento,
+TEF_Resp_GetQtdParcelas,
+TEF_Resp_GetQtdLinhasComprovante,
+TEF_Resp_GetOrdemPagamento,
+TEF_Resp_GetTipoGP,
+TEF_Resp_GetParceladoPor,
+TEF_Resp_GetTipoOperacao,
+TEF_Resp_GetCNFEnviado,
+TEF_Resp_GetTransacaoAprovada,
+TEF_Resp_GetDebito,
+TEF_Resp_GetCredito,
+TEF_Resp_GetValorTotal,
+TEF_Resp_GetValorOriginal,
+TEF_Resp_GetSaque,
+TEF_Resp_GetDesconto,
+TEF_Resp_GetValorEntradaCDC,
+TEF_Resp_GetDataHoraTransacaoHost,
+TEF_Resp_GetDataHoraTransacaoLocal,
+TEF_Resp_GetDataPreDatado,
+TEF_Resp_GetDataHoraTransacaoCancelada,
+TEF_Resp_GetDataHoraTransacaoComprovante,
+TEF_Resp_GetDataVencimento,
+TEF_Resp_GetDataEntradaCDC,
+
+{RespostasPendentes}
+TEF_RespostasPendentes_GetCount,
+TEF_RespostasPendentes_GetSaldoRestante,
+TEF_RespostasPendentes_GetTotalDesconto,
+TEF_RespostasPendentes_GetTotalPago,
+TEF_RespostasPendentes_GetSaldoAPagar,
+TEF_RespostasPendentes_GetHeader,
+TEF_RespostasPendentes_GetDocumentoVinculado,
+TEF_RespostasPendentes_GetCMC7,
+TEF_RespostasPendentes_GetTipoPessoa,
+TEF_RespostasPendentes_GetDocumentoPessoa,
+TEF_RespostasPendentes_GetRede,
+TEF_RespostasPendentes_GetNSU,
+TEF_RespostasPendentes_GetFinalizacao,
+TEF_RespostasPendentes_GetStatusTransacao,
+TEF_RespostasPendentes_GetNSUTransacaoCancelada,
+TEF_RespostasPendentes_GetTextoEspecialOperador,
+TEF_RespostasPendentes_GetTextoEspecialCliente,
+TEF_RespostasPendentes_GetAutenticacao,
+TEF_RespostasPendentes_GetBanco,
+TEF_RespostasPendentes_GetAgencia,
+TEF_RespostasPendentes_GetAgenciaDC,
+TEF_RespostasPendentes_GetConta,
+TEF_RespostasPendentes_GetContaDC,
+TEF_RespostasPendentes_GetCheque,
+TEF_RespostasPendentes_GetChequeDC,
+TEF_RespostasPendentes_GetNomeAdministradora,
+TEF_RespostasPendentes_GetTrailer,
+TEF_RespostasPendentes_GetArqBackup,
+TEF_RespostasPendentes_GetArqRespPendente,
+TEF_RespostasPendentes_GetIndiceFPG_ECF,
+TEF_RespostasPendentes_GetInstituicao,
+TEF_RespostasPendentes_GetModalidadePagto,
+TEF_RespostasPendentes_GetModalidadePagtoDescrita,
+TEF_RespostasPendentes_GetModalidadeExtenso,
+TEF_RespostasPendentes_GetCodigoRedeAutorizada,
+TEF_RespostasPendentes_GetID,
+TEF_RespostasPendentes_GetMoeda,
+TEF_RespostasPendentes_GetTipoTransacao,
+TEF_RespostasPendentes_GetCodigoAutorizacaoTransacao,
+TEF_RespostasPendentes_GetNumeroLoteTransacao,
+TEF_RespostasPendentes_GetTipoParcelamento,
+TEF_RespostasPendentes_GetQtdParcelas,
+TEF_RespostasPendentes_GetQtdLinhasComprovante,
+TEF_RespostasPendentes_GetOrdemPagamento,
+TEF_RespostasPendentes_GetTipoGP,
+TEF_RespostasPendentes_GetParceladoPor,
+TEF_RespostasPendentes_GetTipoOperacao,
+TEF_RespostasPendentes_GetCNFEnviado,
+TEF_RespostasPendentes_GetTransacaoAprovada,
+TEF_RespostasPendentes_GetDebito,
+TEF_RespostasPendentes_GetCredito,
+TEF_RespostasPendentes_GetValorTotal,
+TEF_RespostasPendentes_GetValorOriginal,
+TEF_RespostasPendentes_GetSaque,
+TEF_RespostasPendentes_GetDesconto,
+TEF_RespostasPendentes_GetValorEntradaCDC,
+TEF_RespostasPendentes_GetDataCheque,
+TEF_RespostasPendentes_GetDataHoraTransacaoHost,
+TEF_RespostasPendentes_GetDataHoraTransacaoLocal,
+TEF_RespostasPendentes_GetDataPreDatado,
+TEF_RespostasPendentes_GetDataHoraTransacaoCancelada,
+TEF_RespostasPendentes_GetDataHoraTransacaoComprovante,
+TEF_RespostasPendentes_GetDataVencimento,
+TEF_RespostasPendentes_GetDataEntradaCDC,
 
 {TEFCliSiTef}
 TEF_TEFCliSiTef_GetEnderecoIP, TEF_TEFCliSiTef_SetEnderecoIP,

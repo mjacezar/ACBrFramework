@@ -10,11 +10,9 @@ namespace ACBrFramework
 
 		protected delegate int GetStringEntryPointDelegate(IntPtr handle, StringBuilder buffer, int bufferLen);
 
-		protected delegate int GetdoubleEntryPointDelegate(IntPtr handle, ref double value);
+		protected delegate int GetDoubleEntryPointDelegate(IntPtr handle, ref double value);
 
 		protected delegate int GetInt32EntryPointDelegate(IntPtr handle);
-
-		protected delegate int GetInt32CountEntryPointDelegate(IntPtr handle, int count);
 
 		protected delegate int SetStringEntryPointDelegate(IntPtr handle, string value);
 
@@ -92,7 +90,7 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
-		protected DateTime GetDateTime(GetdoubleEntryPointDelegate entryPoint)
+		protected DateTime GetDateTime(GetDoubleEntryPointDelegate entryPoint)
 		{
 			double ticks = 0d;
 			int ret = entryPoint(Handle, ref ticks);
@@ -108,7 +106,7 @@ namespace ACBrFramework
 			CheckResult(ret);
 		}
 
-		protected decimal GetDecimal(GetdoubleEntryPointDelegate entryPoint)
+		protected decimal GetDecimal(GetDoubleEntryPointDelegate entryPoint)
 		{
 			double value = 0d;
 			int ret = entryPoint(Handle, ref value);
@@ -121,14 +119,6 @@ namespace ACBrFramework
 		{
 			int ret = entryPoint(Handle, Convert.ToDouble(value));
 			CheckResult(ret);
-		}
-
-		protected int GetInt32Count(GetInt32CountEntryPointDelegate entryPoint, int value)
-		{
-			int ret = entryPoint(Handle, value);
-			CheckResult(ret);
-
-			return ret;
 		}
 
 		protected int GetInt32(GetInt32EntryPointDelegate entryPoint)

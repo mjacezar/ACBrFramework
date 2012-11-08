@@ -14,7 +14,9 @@ uses
   ACBrBALDll,
   ACBrLCBDll,
   ACBrAACDLL,
-  ACBrSpedFiscalDll;
+  ACBrTEFDll
+  //,ACBrSpedFiscalDll
+  ;
 
 
 {$R *.res}

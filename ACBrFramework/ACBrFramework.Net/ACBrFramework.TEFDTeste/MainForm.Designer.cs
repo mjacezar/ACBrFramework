@@ -28,21 +28,22 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.button1 = new System.Windows.Forms.Button();
+			this.okButton = new System.Windows.Forms.Button();
 			this.messageLabel = new System.Windows.Forms.Label();
 			this.statusRespLabel = new System.Windows.Forms.Label();
 			this.statusReqLabel = new System.Windows.Forms.Label();
+			this.alertLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
-			// button1
+			// okButton
 			// 
-			this.button1.Location = new System.Drawing.Point(21, 12);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "button1";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.okButton.Location = new System.Drawing.Point(21, 12);
+			this.okButton.Name = "okButton";
+			this.okButton.Size = new System.Drawing.Size(75, 23);
+			this.okButton.TabIndex = 0;
+			this.okButton.Text = "Inicia";
+			this.okButton.UseVisualStyleBackColor = true;
+			this.okButton.Click += new System.EventHandler(this.okButton_Click);
 			// 
 			// messageLabel
 			// 
@@ -71,15 +72,26 @@
 			this.statusReqLabel.TabIndex = 3;
 			this.statusReqLabel.Text = "[Status]";
 			// 
+			// alertLabel
+			// 
+			this.alertLabel.Location = new System.Drawing.Point(113, 12);
+			this.alertLabel.Name = "alertLabel";
+			this.alertLabel.Size = new System.Drawing.Size(316, 150);
+			this.alertLabel.TabIndex = 4;
+			this.alertLabel.Text = "ATENÇÃO: O componente ACBrTEFD está em fase de desenvolvimento e não deverá ser u" +
+    "tilizado em produção!!! ESTE DEMO É PARA FINS DE DESENVOLVIMENTO ... AGUARDE O L" +
+    "ANÇAMENTO DO ACBrTEFD";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(243, 193);
+			this.ClientSize = new System.Drawing.Size(462, 193);
+			this.Controls.Add(this.alertLabel);
 			this.Controls.Add(this.statusReqLabel);
 			this.Controls.Add(this.statusRespLabel);
 			this.Controls.Add(this.messageLabel);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.okButton);
 			this.Name = "MainForm";
 			this.Text = "Form1";
 			this.ResumeLayout(false);
@@ -89,10 +101,11 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Label messageLabel;
 		private System.Windows.Forms.Label statusRespLabel;
 		private System.Windows.Forms.Label statusReqLabel;
+		private System.Windows.Forms.Label alertLabel;
 	}
 }
 
