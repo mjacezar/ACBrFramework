@@ -486,5 +486,51 @@ namespace ACBrFramework.TEFD
 		}
 
 		#endregion Properties
+
+		#region Methods
+
+		public string[] GetImagemComprovante1aVia()
+		{
+			int count = GetInt32(ACBrTEFInterop.TEF_RespostasPendentes_GetImagemComprovante1aViaCount);
+			string[] array = new string[count];
+
+			if (count > 0)
+			{
+				const int BUFFER_LEN = 255;
+				StringBuilder buffer = new StringBuilder();
+
+				for (int i = 0; i < count; i++)
+				{
+					int ret = ACBrTEFInterop.TEF_RespostasPendentes_GetImagemComprovante1aViaLinha(this.Handle, this.Index, i, buffer, BUFFER_LEN);
+					CheckResult(ret);
+					array[i] = FromUTF8(buffer.ToString());
+				}
+			}
+
+			return array;
+		}
+
+		public string[] GetImagemComprovante2aVia()
+		{
+			int count = GetInt32(ACBrTEFInterop.TEF_RespostasPendentes_GetImagemComprovante2aViaCount);
+			string[] array = new string[count];
+
+			if (count > 0)
+			{
+				const int BUFFER_LEN = 255;
+				StringBuilder buffer = new StringBuilder();
+
+				for (int i = 0; i < count; i++)
+				{
+					int ret = ACBrTEFInterop.TEF_RespostasPendentes_GetImagemComprovante2aViaLinha(this.Handle, this.Index, i, buffer, BUFFER_LEN);
+					CheckResult(ret);
+					array[i] = FromUTF8(buffer.ToString());
+				}
+			}
+
+			return array;
+		}
+
+		#endregion Methods
 	}
 }
