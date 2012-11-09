@@ -92,6 +92,21 @@ namespace ACBrFramework.TEFD
 		public static extern int TEF_CRT(IntPtr tefHandle, double Valor, string IndiceFPG_ECF, string DocumentoVinculado, int Moeda);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_ATV(IntPtr tefHandle, int GP);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_ADM(IntPtr tefHandle, int GP);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_CNC(IntPtr tefHandle, string Rede, string NSU, double DataHoraTransacao, double Valor);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_CNF(IntPtr tefHandle, string Rede, string NSU, string Finalizacao, string DocumentoVinculado);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_NCN(IntPtr tefHandle, string Rede, string NSU, string Finalizacao, double Valor, string DocumentoVinculado);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_GetGPAtual(IntPtr tefHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
@@ -366,9 +381,6 @@ namespace ACBrFramework.TEFD
 		public static extern int TEF_Resp_GetValorEntradaCDC(IntPtr tefHandle, ref double ValorEntradaCDC);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDate(IntPtr tefHandle, ref double Date);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_Resp_GetDataCheque(IntPtr tefHandle, ref double DataCheque);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
@@ -391,6 +403,18 @@ namespace ACBrFramework.TEFD
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_Resp_GetDataEntradaCDC(IntPtr tefHandle, ref double DataEntradaCDC);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_Resp_GetImagemComprovante1aViaCount(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_Resp_GetImagemComprovante1aViaLinha(IntPtr tefHandle, int linha, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_Resp_GetImagemComprovante2aViaCount(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_Resp_GetImagemComprovante2aViaLinha(IntPtr tefHandle, int linha, StringBuilder buffer, int bufferLen);
 
 		#endregion Resp
 
@@ -479,7 +503,6 @@ namespace ACBrFramework.TEFD
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_RespostasPendentes_GetArqBackup(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_RespostasPendentes_GetArqRespPendente(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
@@ -591,6 +614,18 @@ namespace ACBrFramework.TEFD
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_RespostasPendentes_GetDataEntradaCDC(IntPtr tefHandle, int index, ref double DataEntradaCDC);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_RespostasPendentes_GetImagemComprovante1aViaCount(IntPtr tefHandle, int index);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_RespostasPendentes_GetImagemComprovante1aViaLinha(IntPtr tefHandle, int index, int linha, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_RespostasPendentes_GetImagemComprovante2aViaCount(IntPtr tefHandle, int index);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_RespostasPendentes_GetImagemComprovante2aViaLinha(IntPtr tefHandle, int index, int linha, StringBuilder buffer, int bufferLen);
 
 		#endregion RespostasPendentes
 

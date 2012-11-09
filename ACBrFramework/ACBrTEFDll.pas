@@ -220,6 +220,126 @@ begin
 
 end;
 
+Function TEF_ATV(const tefHandle : PTEFHandle; const GP : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.ATV( TACBrTEFDTipo(GP) );
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_ADM(const tefHandle : PTEFHandle; const GP : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  ret : Boolean;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ret := tefHandle^.TEF.ADM( TACBrTEFDTipo(GP) );
+     if (ret) then
+      Result := 1
+     else
+      Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_CNC(const tefHandle : PTEFHandle; const Rede : PChar; const NSU : PChar; const DataHoraTransacao : Double; const Valor : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  ret : Boolean;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ret := tefHandle^.TEF.CNC(Rede, NSU, TDateTime(DataHoraTransacao), Valor);
+     if (ret) then
+      Result := 1
+     else
+      Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_CNF(const tefHandle : PTEFHandle; const Rede : PChar; const NSU : PChar; const Finalizacao : PChar; const DocumentoVinculado : PChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.CNF(Rede, NSU, Finalizacao, DocumentoVinculado);
+      Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_NCN(const tefHandle : PTEFHandle; const Rede : PChar; const NSU : PChar; const Finalizacao : PChar; const Valor : Double; const DocumentoVinculado : PChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+      tefHandle^.TEF.NCN(Rede, NSU, Finalizacao, Valor, DocumentoVinculado);
+      Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 Function TEF_CRT(const tefHandle : PTEFHandle; const Valor : Double; const IndiceFPG_ECF : PChar; const DocumentoVinculado : PChar; const Moeda : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   ret : Boolean;
@@ -2106,7 +2226,6 @@ begin
   end;
 end;
 
-//Int
 Function TEF_Resp_GetID(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -2347,7 +2466,6 @@ begin
   end;
 end;
 
-//Bool
 Function TEF_Resp_GetCNFEnviado(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -2704,6 +2822,94 @@ begin
  try
     DataEntradaCDC := tefHandle^.TEF.Resp.DataEntradaCDC;
 	Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetImagemComprovante1aViaCount(const tefHandle : PTEFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    Result := tefHandle^.TEF.Resp.ImagemComprovante1aVia.Count;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetImagemComprovante1aViaLinha(const tefHandle : PTEFHandle; const linha : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.ImagemComprovante1aVia[linha];
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetImagemComprovante2aViaCount(const tefHandle : PTEFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    Result := tefHandle^.TEF.Resp.ImagemComprovante2aVia.Count;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_Resp_GetImagemComprovante2aViaLinha(const tefHandle : PTEFHandle; const linha : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.Resp.ImagemComprovante2aVia[linha];
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
   except
      on exception : Exception do
      begin
@@ -4163,9 +4369,93 @@ begin
   end;
 end;
 
-//Parcelas : TACBrTEFDRespParcelas read fpParcelas ;
-//ImagemComprovante1aVia : TStringList read fpImagemCompro
-//ImagemComprovante2aVia : TStringList read fpImagemCompro
+Function TEF_RespostasPendentes_GetImagemComprovante1aViaCount(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    Result := tefHandle^.TEF.RespostasPendentes[index].ImagemComprovante1aVia.Count;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetImagemComprovante1aViaLinha(const tefHandle : PTEFHandle; const index : Integer; const linha : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].ImagemComprovante1aVia[linha];
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetImagemComprovante2aViaCount(const tefHandle : PTEFHandle; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    Result := tefHandle^.TEF.RespostasPendentes[index].ImagemComprovante2aVia.Count;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_RespostasPendentes_GetImagemComprovante2aViaLinha(const tefHandle : PTEFHandle; const index : Integer; const linha : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.RespostasPendentes[index].ImagemComprovante2aVia[linha];
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
 
 {TEFCliSiTef}
 Function TEF_TEFCliSiTef_GetEnderecoIP(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -8677,6 +8967,11 @@ TEF_GetUltimoErro,
 TEF_Inicializar,
 TEF_GetGPAtual, TEF_SetGPAtual,
 TEF_CRT,
+TEF_ATV,
+TEF_ADM,
+TEF_CNC,
+TEF_CNF,
+TEF_NCN,
 
 {Identificacao}
 TEF_Identificacao_GetNomeAplicacao,TEF_Identificacao_SetNomeAplicacao,
@@ -8754,10 +9049,15 @@ TEF_Resp_GetValorEntradaCDC,
 TEF_Resp_GetDataHoraTransacaoHost,
 TEF_Resp_GetDataHoraTransacaoLocal,
 TEF_Resp_GetDataPreDatado,
+TEF_Resp_GetDataCheque,
 TEF_Resp_GetDataHoraTransacaoCancelada,
 TEF_Resp_GetDataHoraTransacaoComprovante,
 TEF_Resp_GetDataVencimento,
 TEF_Resp_GetDataEntradaCDC,
+TEF_Resp_GetImagemComprovante1aViaCount,
+TEF_Resp_GetImagemComprovante1aViaLinha,
+TEF_Resp_GetImagemComprovante2aViaCount,
+TEF_Resp_GetImagemComprovante2aViaLinha,
 
 {RespostasPendentes}
 TEF_RespostasPendentes_GetCount,
@@ -8824,6 +9124,11 @@ TEF_RespostasPendentes_GetDataHoraTransacaoCancelada,
 TEF_RespostasPendentes_GetDataHoraTransacaoComprovante,
 TEF_RespostasPendentes_GetDataVencimento,
 TEF_RespostasPendentes_GetDataEntradaCDC,
+TEF_RespostasPendentes_GetImagemComprovante1aViaCount,
+TEF_RespostasPendentes_GetImagemComprovante1aViaLinha,
+TEF_RespostasPendentes_GetImagemComprovante2aViaCount,
+TEF_RespostasPendentes_GetImagemComprovante2aViaLinha,
+
 
 {TEFCliSiTef}
 TEF_TEFCliSiTef_GetEnderecoIP, TEF_TEFCliSiTef_SetEnderecoIP,

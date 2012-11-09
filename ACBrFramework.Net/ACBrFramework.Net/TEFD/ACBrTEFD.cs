@@ -315,12 +315,71 @@ namespace ACBrFramework.TEFD
 			CheckResult(ret);
 		}
 
+		public bool CRT(decimal valor, string indiceFPG_ECF)
+		{
+			return CRT(valor, indiceFPG_ECF, string.Empty, 0);
+		}
+
 		public bool CRT(decimal valor, string indiceFPG_ECF, string documentoVinculado, int moeda)
 		{
 			int ret = ACBrTEFInterop.TEF_CRT(this.Handle, Convert.ToDouble(valor), indiceFPG_ECF, documentoVinculado, moeda);
 			CheckResult(ret);
 
 			return ret == 1;
+		}
+
+		public void ATV()
+		{
+			ATV(ACBrTEFDTipo.Nenhum);
+		}
+
+		public void ATV(ACBrTEFDTipo gp)
+		{
+			int ret = ACBrTEFInterop.TEF_ATV(this.Handle, (int)gp);
+			CheckResult(ret);
+		}
+
+		public bool ADM()
+		{
+			return ADM(ACBrTEFDTipo.Nenhum);
+		}
+
+		public bool ADM(ACBrTEFDTipo gp)
+		{
+			int ret = ACBrTEFInterop.TEF_ADM(this.Handle, (int)gp);
+			CheckResult(ret);
+
+			return ret == 1;
+		}
+
+		public bool CNC(string rede, string nsu, DateTime dataHoraTransacao, decimal valor)
+		{
+			int ret = ACBrTEFInterop.TEF_CNC(this.Handle, rede, nsu, dataHoraTransacao.ToOADate(), Convert.ToDouble(valor));
+			CheckResult(ret);
+
+			return ret == 1;
+		}
+
+		public void CNF(string rede, string nsu, string finalizacao)
+		{
+			CNF(rede, nsu, finalizacao, string.Empty);
+		}
+
+		public void CNF(string rede, string nsu, string finalizacao, string documentoVinculado)
+		{
+			int ret = ACBrTEFInterop.TEF_CNF(this.Handle, rede, nsu, finalizacao, documentoVinculado);
+			CheckResult(ret);
+		}
+
+		public void NCN(string rede, string nsu, string finalizacao)
+		{
+			NCN(rede, nsu, finalizacao, 0M, string.Empty);
+		}
+
+		public void NCN(string rede, string nsu, string finalizacao, decimal valor, string documentoVinculado)
+		{
+			int ret = ACBrTEFInterop.TEF_NCN(this.Handle, rede, nsu, finalizacao, Convert.ToDouble(valor), documentoVinculado);
+			CheckResult(ret);
 		}
 
 		#region Override Methods
