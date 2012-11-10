@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace ACBrFramework.AAC
 {
-	[ToolboxBitmap(typeof(ACBrAAC), @"AAC.ico.bmp")]
+	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.AAC.ico.bmp")]
 	public class ACBrAAC : ACBrComponent, IDisposable
 	{
 		#region EventHandlers

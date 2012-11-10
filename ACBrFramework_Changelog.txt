@@ -45,6 +45,7 @@ Changelog
 [*] Modificado o DefExporter para suportar os eventos - Rafael Batiati
 [-] Atualizado e corrigido o projeto jACBrFramework para funcionar com os ultimos Defs - Rafael Batiati
 [*] Padronização dos Callbacks de eventos no código Delphi - Rafael Batiati
+[-] Correção dos ícones do toolbox do ACBrFramework.net
 
 08/11/2012
 [+] Versão BETA do componente ACBrTEFD - Rafael Batiati

@@ -8,7 +8,7 @@ using ACBrFramework.EAD;
 
 namespace ACBrFramework.PAF
 {
-	[ToolboxBitmap(typeof(ACBrPAF), @"PAF.ico.bmp")]
+	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.PAF.ico.bmp")]
 	public class ACBrPAF : ACBrComponent, IDisposable
 	{
 		#region EventHandlers
