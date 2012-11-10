@@ -549,22 +549,11 @@ namespace ACBrFramework.TEFD
 		{
 			if (onInfoECF.IsAssigned)
 			{
-				RetornoECF.Length = 0;
-
 				InfoECFEventArgs e = new InfoECFEventArgs(Operacao);
 				onInfoECF.Raise(e);
 
-				switch (Operacao)
-				{
-					case ACBrTEFDInfoECF.EstadoECF:
-						RetornoECF.Append((char)e.RetornoECF.Value);
-						break;
-
-					default:
-						string value = string.Format("{0:n2}", e.Value);
-						RetornoECF.Append(value);
-						break;
-				}
+				RetornoECF.Length = 0;
+				RetornoECF.Append(e.Retorno);
 			}
 		}
 
