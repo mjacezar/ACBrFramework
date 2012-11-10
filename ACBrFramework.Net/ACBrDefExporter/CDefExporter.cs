@@ -261,6 +261,10 @@ namespace ACBrDefExporter
 					{
 						fieldType = GetUnmanagedType(marshalAs.Value);
 					}
+					else if (param.ParameterType.IsByRef)
+					{
+						fieldType = param.ParameterType.GetElementType();
+					}
 					else
 					{
 						fieldType = param.ParameterType;
@@ -280,7 +284,7 @@ namespace ACBrDefExporter
 						arrayDeclaration = null;
 					}
 
-					if (param.IsOut || param.IsRetval)
+					if (param.IsOut || param.IsRetval || param.ParameterType.IsByRef)
 					{
 						pointer = "*";
 					}

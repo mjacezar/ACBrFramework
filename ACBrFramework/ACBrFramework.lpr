@@ -5,7 +5,6 @@ library ACBrFramework;
 {$ENDIF}
 
 uses
-  ACBrCommonDll,
   ACBrDeviceDll,
   ACBrECFDll,
   ACBrPAFDll,

@@ -17,10 +17,11 @@ uses
 
 { Ponteiros de função }
 type TBobinaProcedureCallback = procedure(const Linhas : PChar; const Operacao : PChar); cdecl;
+type TPoucoPapelCallback = procedure(); cdecl;
 
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
-    OnPoucoPapelCallback : TCallback;
+    OnPoucoPapelCallback : TPoucoPapelCallback;
     OnBobinaAdicionaLinhasCallback : TBobinaProcedureCallback;
     procedure OnMsgPoucoPapel(Sender: TObject);
     procedure OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
@@ -5064,7 +5065,7 @@ begin
      OnBobinaAdicionaLinhasCallback(pLinhas, pOperacao);
 end;
 
-Function ECF_SetOnPoucoPapel(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnPoucoPapel(const ecfHandle: PECFHandle; const method : TPoucoPapelCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then

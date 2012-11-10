@@ -16,10 +16,13 @@ uses
   ACBrEADDLL,
   ACBrUtil;
 
+{ Ponteiros de função }
+type TGetChaveCallback = function () : PChar; cdecl;
+
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
    ChaveRSA : AnsiString;
-   OnGetChaveRSAPtr : TStrFunctionPtr;
+   OnGetChaveRSACallback : TGetChaveCallback;
    procedure GetChaveRSA(var Chave : AnsiString);
 end;
 
@@ -1615,10 +1618,10 @@ begin
   if (Length(ChaveRSA) > 0) then
     Chave := ChaveRSA
   else
-     Chave := OnGetChaveRSAPtr();
+     Chave := OnGetChaveRSACallback();
 end;
 
-Function PAF_SetOnPAFGetKeyRSA(const pafHandle:PPAFHandle; const method : TStrFunctionPtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function PAF_SetOnPAFGetKeyRSA(const pafHandle:PPAFHandle; const method : TGetChaveCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (pafHandle = nil) then
@@ -1631,13 +1634,13 @@ begin
      if Assigned(method) then
      begin
         pafHandle^.PAF.OnPAFGetKeyRSA := pafHandle^.EventHandlers.GetChaveRSA;
-        pafHandle^.EventHandlers.OnGetChaveRSAPtr := method;
+        pafHandle^.EventHandlers.OnGetChaveRSACallback := method;
         Result := 0;
      end
      else
      begin
         pafHandle^.PAF.OnPAFGetKeyRSA := nil;
-        pafHandle^.EventHandlers.OnGetChaveRSAPtr := nil;
+        pafHandle^.EventHandlers.OnGetChaveRSACallback := nil;
         Result := 0;
      end;
   except

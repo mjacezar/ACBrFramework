@@ -8,9 +8,12 @@ uses
   ACBrCommonDll,
   ACBrLCB;
 
+{ Ponteiros de função }
+type TLeCodigoCallback = procedure (); cdecl;
+
 { Classe que armazena os ponteiros de função para os Handlers }
 type TEventHandlers = class
-  OnLeCodigoCallback : TCallback;
+  OnLeCodigoCallback : TLeCodigoCallback;
   procedure OnLeCodigo(Sender: TObject);
 end;
 
@@ -258,7 +261,7 @@ begin
 
 end;
 
-Function LCB_SetOnLeCodigo(const lcbHandle: PLCBHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function LCB_SetOnLeCodigo(const lcbHandle: PLCBHandle; const method : TLeCodigoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (lcbHandle = nil) then
