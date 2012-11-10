@@ -10,10 +10,13 @@ uses
   ACBrUtil,
   ACBrCommonDll;
 
+{ Ponteiros de função }
+type TGetChaveCallback = function () : PChar; cdecl;
+
 {Classe para armazenar EventHandlers do componente }
 type TEventHandlers = class
      ChaveCriptografia : String;
-     OnGetChavePtr : TStrFunctionPtr;
+     OnGetChaveCallback : TGetChaveCallback;
      procedure OnGetChave(var Chave: AnsiString);
 end;
 
@@ -2541,10 +2544,10 @@ begin
   if (Length(ChaveCriptografia) > 0) then
    Chave :=  ChaveCriptografia
   else
-    Chave:= OnGetChavePtr();
+    Chave:= OnGetChaveCallback();
 end;
 
-Function AAC_SetOnGetChave(const aacHandle: PAACHandle; const method : TStrFunctionPtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function AAC_SetOnGetChave(const aacHandle: PAACHandle; const method : TGetChaveCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (aacHandle = nil) then
@@ -2557,13 +2560,13 @@ begin
      if Assigned(method) then
      begin
      aacHandle^.AAC.OnGetChave := aacHandle^.EventHandlers.OnGetChave;
-     aacHandle^.EventHandlers.OnGetChavePtr := method;
+     aacHandle^.EventHandlers.OnGetChaveCallback := method;
      Result := 0;
      end
      else
      begin
         aacHandle^.AAC.OnGetChave := nil;
-        aacHandle^.EventHandlers.OnGetChavePtr := nil;
+        aacHandle^.EventHandlers.OnGetChaveCallback := nil;
         Result := 0;
      end;
   except

@@ -9,12 +9,15 @@ uses
   ACBrUtil,
   ACBrCommonDll;
 
+{ Ponteiros de função }
+type TGetChaveCallback = function () : PChar; cdecl;
+
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
    ChavePrivada : AnsiString;
    ChavePublica : AnsiString;
-   OnGetChavePrivadaPtr : TStrFunctionPtr;
-   OnGetChavePublicaPtr : TStrFunctionPtr;
+   OnGetChavePrivadaCallback : TGetChaveCallback;
+   OnGetChavePublicaCallback : TGetChaveCallback;
    procedure GetChavePrivada(var Chave : AnsiString);
    procedure GetChavePublica(var Chave : AnsiString);
 end;
@@ -455,7 +458,7 @@ begin
   if (Length(ChavePrivada) > 0) then
     Chave := ChavePrivada
   else
-     Chave := OnGetChavePrivadaPtr();
+     Chave := OnGetChavePrivadaCallback();
 end;
 
 procedure TEventHandlers.GetChavePublica(var Chave : AnsiString);
@@ -463,10 +466,10 @@ begin
   if (Length(ChavePublica) > 0) then
     Chave := ChavePublica
   else
-     Chave := OnGetChavePublicaPtr();
+     Chave := OnGetChavePublicaCallback();
 end;
 
-Function EAD_SetOnGetChavePublica(const eadHandle: PEADHandle; const method : TStrFunctionPtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function EAD_SetOnGetChavePublica(const eadHandle: PEADHandle; const method : TGetChaveCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (eadHandle = nil) then
@@ -479,13 +482,13 @@ begin
      if Assigned(method) then
      begin
         eadHandle^.EAD.OnGetChavePublica := eadHandle^.EventHandlers.GetChavePublica;
-        eadHandle^.EventHandlers.OnGetChavePublicaPtr := method;
+        eadHandle^.EventHandlers.OnGetChavePublicaCallback := method;
         Result := 0;
      end
      else
      begin
         eadHandle^.EAD.OnGetChavePublica := nil;
-        eadHandle^.EventHandlers.OnGetChavePublicaPtr := nil;
+        eadHandle^.EventHandlers.OnGetChavePublicaCallback := nil;
         Result := 0;
      end;
   except
@@ -498,7 +501,7 @@ begin
 
 end;
 
-Function EAD_SetOnGetChavePrivada(const eadHandle: PEADHandle; const method : TStrFunctionPtr) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function EAD_SetOnGetChavePrivada(const eadHandle: PEADHandle; const method : TGetChaveCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (eadHandle = nil) then
@@ -511,13 +514,13 @@ begin
      if Assigned(method) then
      begin
         eadHandle^.EAD.OnGetChavePrivada := eadHandle^.EventHandlers.GetChavePrivada;
-        eadHandle^.EventHandlers.OnGetChavePrivadaPtr := method;
+        eadHandle^.EventHandlers.OnGetChavePrivadaCallback := method;
         Result := 0;
      end
      else
      begin
         eadHandle^.EAD.OnGetChavePrivada := nil;
-        eadHandle^.EventHandlers.OnGetChavePrivadaPtr := nil;
+        eadHandle^.EventHandlers.OnGetChavePrivadaCallback := nil;
         Result := 0;
      end;
   except
