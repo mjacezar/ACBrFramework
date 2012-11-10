@@ -15,7 +15,6 @@ public final class ACBrECF
 	 * Handle para o componente nativo criado pelo ACBr32
 	 * Este campo é utilizado apenas pela interface JNI.
 	 */
-	@SuppressWarnings("unused")
 	private int handle;
 	
 	private Aliquota[] aliquotas;

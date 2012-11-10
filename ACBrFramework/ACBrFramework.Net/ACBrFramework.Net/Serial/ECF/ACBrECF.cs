@@ -10,7 +10,7 @@ using ACBrFramework.EAD;
 
 namespace ACBrFramework.ECF
 {
-	[ToolboxBitmap(typeof(ACBrECF), @"Serial.ECF.ico.bmp")]
+	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.Serial.ECF.ico.bmp")]
 	public class ACBrECF : ACBrComponent, IDisposable
 	{
 		#region Events

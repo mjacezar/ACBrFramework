@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace ACBrFramework.Sintegra
 {
-	[ToolboxBitmap(typeof(ACBrSintegra), @"Sintegra.ico.bmp")]
+	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.Sintegra.ico.bmp")]
 	public class ACBrSintegra : ACBrComponent, IDisposable
 	{
 		#region Fields

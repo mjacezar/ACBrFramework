@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ACBrFramework.TEFD
 {
-	[ToolboxBitmap(typeof(ACBrTEFD), @"TEFD.ico.bmp")]
+	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.TEFD.ico.bmp")]
 	public sealed class ACBrTEFD : ACBrComponent, IDisposable
 	{
 		#region Events

@@ -373,14 +373,14 @@
     <None Include="ACBrFramework.snk" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AAC\ico.bmp" />
-    <Content Include="EAD\ico.bmp" />
-    <Content Include="PAF\ico.bmp" />
-    <Content Include="Serial\BAL\ico.bmp" />
-    <Content Include="Serial\ECF\ico.bmp" />
-    <Content Include="Serial\LCB\ico.bmp" />
-    <Content Include="Sintegra\ico.bmp" />
-    <Content Include="TEFD\ico.bmp" />
+    <EmbeddedResource Include="AAC\ico.bmp" />
+    <EmbeddedResource Include="EAD\ico.bmp" />
+    <EmbeddedResource Include="PAF\ico.bmp" />
+    <EmbeddedResource Include="Serial\BAL\ico.bmp" />
+    <EmbeddedResource Include="Serial\ECF\ico.bmp" />
+    <EmbeddedResource Include="Serial\LCB\ico.bmp" />
+    <EmbeddedResource Include="Sintegra\ico.bmp" />
+    <EmbeddedResource Include="TEFD\ico.bmp" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
