@@ -50,7 +50,7 @@ namespace ACBrFramework.ECF
 		private ACBrAAC aac;
 		private ACBrEAD ead;
 
-		private readonly ACBrEventHandler onPoucoPapel;
+		private readonly ACBrEventHandler<ACBrECFInterop.PoucoPapelCallback> onPoucoPapel;
 		private readonly ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback> onBobinaAdicionaLinhas;
 
 		#endregion Fields
@@ -59,7 +59,7 @@ namespace ACBrFramework.ECF
 
 		public ACBrECF()
 		{
-			onPoucoPapel = new ACBrEventHandler(this, OnPoucoPapelCallback, ACBrECFInterop.ECF_SetOnPoucoPapel);
+			onPoucoPapel = new ACBrEventHandler<ACBrECFInterop.PoucoPapelCallback>(this, OnPoucoPapelCallback, ACBrECFInterop.ECF_SetOnPoucoPapel);
 			onBobinaAdicionaLinhas = new ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback>(this, OnBobinaAdicionaLinhasCallback, ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas);
 		}
 

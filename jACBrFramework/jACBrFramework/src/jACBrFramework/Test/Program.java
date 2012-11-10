@@ -72,7 +72,7 @@ public class Program {
 			System.out.println(": " + ecf.getAtivo());
 
 			
-			/*
+			
 			System.out.println("\nLeituraX\n");
 			ecf.leituraX();
 
@@ -86,16 +86,16 @@ public class Program {
 				FormaPagamento formaPagto = ecf.getFormasPagamento()[i];
 				System.out.println(" - " + formaPagto.getIndice() + " " + formaPagto.getDescricao());
 			}
-			*/
+			
 
 			System.out.println("\nTesta cupom fiscal\n");
-			//ecf.abreCupom();
+			ecf.abreCupom();
 			
 
 			for (int i=0; i<10; i++)
 			{
 				System.out.println("Vende item " + i + "\n");
-				ecf.vendeItem("0001", "PRODUTO", "I", 3, 8, 10, "UN", "%", "D");
+				ecf.vendeItem("0001", "PRODUTO", "I", 3, 0.8, 10, "UN", "%", "D");
 			}
 
 			System.out.println("Subtotaliza\n");
@@ -103,7 +103,7 @@ public class Program {
 			
 			System.out.println("Efetua Pagamento\n");
 			FormaPagamento formaPagto = ecf.getFormasPagamento()[0];
-			ecf.efetuaPagamento(formaPagto.getIndice(), 1, "MENSAGEM FORMA DE PAGTO", false);
+			ecf.efetuaPagamento(formaPagto.getIndice(), 50, "MENSAGEM FORMA DE PAGTO", false);
 			
 			System.out.println("Fecha cupom\n");
 			ecf.fechaCupom("MENSAGEM FECHAMENTO");

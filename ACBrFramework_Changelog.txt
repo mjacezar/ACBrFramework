@@ -41,6 +41,10 @@ Símbolo : Significado
 
 Changelog
 
+11/11/2012
+[*] Modificado o DefExporter para suportar os eventos - Rafael Batiati
+[-] Atualizado e corrigido o projeto jACBrFramework para funcionar com os ultimos Defs - Rafael Batiati
+
 08/11/2012
 [+] Versão BETA do componente ACBrTEFD - Rafael Batiati
 [+] Métodos TEFD ATV, ADM, CNC, CNF e NCN, e GetImagemComprovante 1a e 2a via em Resp e RespostasPendentes - Rafael Batiati

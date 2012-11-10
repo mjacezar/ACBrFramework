@@ -25,7 +25,7 @@ namespace ACBrFramework.LCB
 
 		#region Fields
 
-		private readonly ACBrEventHandler onLeCodigo;
+		private readonly ACBrEventHandler<ACBrLCBInterop.LeCodigoCallback> onLeCodigo;
 
 		#endregion Fields
 
@@ -33,7 +33,7 @@ namespace ACBrFramework.LCB
 
 		public ACBrLCB()
 		{
-			onLeCodigo = new ACBrEventHandler(this, OnLeCodigoCallback, ACBrLCBInterop.LCB_SetOnLeCodigo);
+			onLeCodigo = new ACBrEventHandler<ACBrLCBInterop.LeCodigoCallback>(this, OnLeCodigoCallback, ACBrLCBInterop.LCB_SetOnLeCodigo);
 		}
 
 		#endregion Constructor
