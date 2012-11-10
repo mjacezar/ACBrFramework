@@ -33,6 +33,7 @@ namespace ACBrDefExporter
 
 		protected override void InitializeTypeNames()
 		{
+			TypeNames[typeof(void)] = "void";
 			TypeNames[typeof(IntPtr)] = "INTPTR";
 			TypeNames[typeof(Int16)] = "short";
 			TypeNames[typeof(Int32)] = "int";
@@ -88,7 +89,15 @@ namespace ACBrDefExporter
 
 			foreach (var type in GetTypes(interopType))
 			{
-				ExportStruct(writer, type);
+				if (type.IsSubclassOf(typeof(Delegate)))
+				{
+					ExportDelegate(writer, type);
+				}
+				else
+				{
+					ExportStruct(writer, type);
+				}
+
 				writer.WriteLine();
 			}
 
@@ -214,6 +223,78 @@ namespace ACBrDefExporter
 			}
 
 			writer.WriteLine("}} {0};", type.Name);
+		}
+
+		private void ExportDelegate(StreamWriter writer, Type type)
+		{
+			MethodInfo method = type.GetMethod("Invoke");
+
+			string returnValue;
+
+			if (!TypeNames.TryGetValue(method.ReturnType, out returnValue))
+			{
+				returnValue = method.ReturnType.Name;
+			}
+
+			string functionName = type.Name;
+
+			writer.Write("typedef {0} (*{1}) (", returnValue, functionName);
+
+			ParameterInfo[] parameters = method.GetParameters();
+			if (parameters.Length == 0)
+			{
+				writer.Write("void");
+			}
+			else
+			{
+				for (int i = 0; i < parameters.Length; i++)
+				{
+					ParameterInfo param = parameters[i];
+
+					Type fieldType;
+					string typeName;
+					string arrayDeclaration;
+					string pointer;
+
+					MarshalAsAttribute marshalAs = (MarshalAsAttribute)Attribute.GetCustomAttribute(param, typeof(MarshalAsAttribute), false);
+					if (marshalAs != null)
+					{
+						fieldType = GetUnmanagedType(marshalAs.Value);
+					}
+					else
+					{
+						fieldType = param.ParameterType;
+					}
+
+					if (!TypeNames.TryGetValue(fieldType, out typeName))
+					{
+						typeName = fieldType.Name;
+					}
+
+					if (marshalAs != null && marshalAs.SizeConst > 0)
+					{
+						arrayDeclaration = string.Format("[{0}]", marshalAs.SizeConst);
+					}
+					else
+					{
+						arrayDeclaration = null;
+					}
+
+					if (param.IsOut || param.IsRetval)
+					{
+						pointer = "*";
+					}
+					else
+					{
+						pointer = null;
+					}
+
+					if (i > 0) writer.Write(",");
+					writer.Write("{0} {1}{2}{3}", typeName, pointer, param.Name, arrayDeclaration);
+				}
+			}
+
+			writer.WriteLine(");");
 		}
 
 		#endregion Methods

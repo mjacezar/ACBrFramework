@@ -8,6 +8,7 @@ using ACBrFramework.ECF;
 using ACBrFramework.LCB;
 using ACBrFramework.PAF;
 using ACBrFramework.Sintegra;
+using ACBrFramework.TEFD;
 
 namespace ACBrDefExporter
 {
@@ -100,12 +101,13 @@ namespace ACBrDefExporter
 			try
 			{
 				defExporter.Export(typeof(ACBrAACInterop));
-				defExporter.Export(typeof(ACBrBALInterop));
 				defExporter.Export(typeof(ACBrEADInterop));
+				defExporter.Export(typeof(ACBrPAFInterop));
+				defExporter.Export(typeof(ACBrBALInterop));
 				defExporter.Export(typeof(ACBrECFInterop));
 				defExporter.Export(typeof(ACBrLCBInterop));
-				defExporter.Export(typeof(ACBrPAFInterop));
 				defExporter.Export(typeof(ACBrSintegraInterop));
+				defExporter.Export(typeof(ACBrTEFInterop));
 
 				MessageBox.Show(this, "Definições exportadas com sucesso!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return;

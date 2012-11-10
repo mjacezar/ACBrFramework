@@ -159,7 +159,7 @@ jobject GetDate(GetDoubleEntryPoint function, JNIEnv *env, jobject obj)
 	}
 	else
 	{
-		jclass clazz = env->FindClass("jACBr/Util");
+		jclass clazz = env->FindClass("jACBrFramework/Util");
 		jmethodID method = env->GetStaticMethodID(clazz, "doubleToDate", "(D)Ljava/util/Date;");
 		
 		return env->CallObjectMethod(clazz, method, value);
@@ -176,7 +176,7 @@ void CheckResult(JNIEnv *env, const INTPTR handle, const int ret)
 		}
 		else if (ret == -2)
 		{
-			jclass clazz = env->FindClass("jACBr/ACBrException");
+			jclass clazz = env->FindClass("jACBrFramework/ACBrException");
 			env->ThrowNew(clazz, "Componente ACBr não inicializado.");
 		}
 	}
@@ -187,7 +187,7 @@ void ThrowJavaException(JNIEnv *env, const INTPTR handle)
 	PCHAR buff = (PCHAR)malloc(BUFF_SIZE);
 	ECF_GetUltimoErro(handle, buff, BUFF_SIZE);
 
-	jclass clazz = env->FindClass("jACBr/ACBrException");
+	jclass clazz = env->FindClass("jACBrFramework/ACBrException");
 	env->ThrowNew(clazz, buff);
 
 	free(buff);

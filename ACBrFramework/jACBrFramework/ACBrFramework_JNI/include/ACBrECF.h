@@ -36,6 +36,8 @@ typedef struct
 	BOOL Sequencia;
 } AliquotaRec;
 
+typedef void (*BobinaAdicionaLinhasCallback) (PCHAR linhas,PCHAR operacao);
+
 typedef struct
 {
 	char Indice[4];
@@ -121,17 +123,7 @@ typedef struct
 	char TipoDoc[30];
 } FormaPagamentoRec;
 
-typedef struct
-{
-	char Texto[49];
-} RelatorioGerencialLinha;
-
-typedef struct
-{
-	int Count;
-	RelatorioGerencialLinha Linhas[];
-} RelatorioGerencial;
-
+typedef void (*PoucoPapelCallback) (void);
 
 typedef struct
 {
@@ -151,6 +143,8 @@ DllImport int ECF_AbreNaoFiscal(const INTPTR ecfHandle, const PCHAR cpfCnpj);
 DllImport int ECF_AbreRelatorioGerencial(const INTPTR ecfHandle, const int indice);
 DllImport int ECF_AcharECF(const INTPTR ecfHandle, const BOOL Modelo, const BOOL Porta, const int TimeOut);
 DllImport int ECF_AcharPorta(const INTPTR ecfHandle, const int TimeOut);
+DllImport int ECF_ArquivoMFD_DLL(const INTPTR ecfHandle, const double DaTaInicial, const double DaTaFinal, const PCHAR Arquivo, const int Documentos[], const int QTD_DOC, const int Finalidade);
+DllImport int ECF_ArquivoMFD_DLL_COO(const INTPTR ecfHandle, const int COOInicial, const int COOFinal, const PCHAR Arquivo, const int Documentos[], const int QTD_DOC, const int Finalidade, const int TipoContador);
 DllImport int ECF_Ativar(const INTPTR ecfHandle);
 DllImport int ECF_CancelaCupom(const INTPTR ecfHandle);
 DllImport int ECF_CancelaDescontoAcrescimoItem(const INTPTR ecfHandle, const int numItem);
@@ -172,8 +166,12 @@ DllImport int ECF_Desativar(const INTPTR ecfHandle);
 DllImport int ECF_DescontoAcrescimoItemAnterior(const INTPTR ecfHandle, const double valorDescontoAcrescimo, const PCHAR descontoAcrescimo);
 DllImport int ECF_Destroy(INTPTR* ecfHandle);
 DllImport int ECF_DestroyDadosReducaoZClass(const INTPTR ecfHandle, INTPTR* dadosRZ);
+DllImport int ECF_DoAtualizarValorGT(const INTPTR ecfHandle);
+DllImport int ECF_DoVerificaValorGT(const INTPTR ecfHandle);
 DllImport int ECF_EfetuaPagamento(const INTPTR ecfHandle, const PCHAR codFormaPagto, const double valor, const PCHAR observacao, const BOOL imprimeVinculado);
 DllImport int ECF_EfetuaPagamentoNaoFiscal(const INTPTR ecfHandle, const PCHAR codFormaPagto, const double valor, const PCHAR observacao, const BOOL imprimeVinculado);
+DllImport int ECF_EspelhoMFD_DLL(const INTPTR ecfHandle, const double DaTaInicial, const double DaTaFinal, const PCHAR Arquivo, const int Documentos[], const int QTD_DOC);
+DllImport int ECF_EspelhoMFD_DLL_COO(const INTPTR ecfHandle, const int COOInicial, const int COOFinal, const PCHAR Arquivo, const int Documentos[], const int QTD_DOC);
 DllImport int ECF_EstornaPagamento(const INTPTR ecfHandle, const PCHAR codFormaPagtoEstornar, const PCHAR codFormaPagtoEfetivar, const double valor, const PCHAR observacao);
 DllImport int ECF_FechaCupom(const INTPTR ecfHandle, const PCHAR observacao);
 DllImport int ECF_FechaNaoFiscal(const INTPTR ecfHandle, const PCHAR observacao);
@@ -183,7 +181,6 @@ DllImport int ECF_GetAguardandoResposta(const INTPTR ecfHandle);
 DllImport int ECF_GetAliquota(const INTPTR ecfHandle, AliquotaRec* aliquota, const int index);
 DllImport int ECF_GetArredonda(const INTPTR ecfHandle);
 DllImport int ECF_GetAtivo(const INTPTR ecfHandle);
-DllImport int ECF_GetBaud(const INTPTR ecfHandle);
 DllImport int ECF_GetChequePronto(const INTPTR ecfHandle);
 DllImport int ECF_GetCliche(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
 DllImport int ECF_GetCNPJ(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
@@ -194,7 +191,6 @@ DllImport int ECF_GetComprovanteNaoFiscal(const INTPTR ecfHandle, ComprovanteNao
 DllImport int ECF_GetDadosReducaoZ(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
 DllImport int ECF_GetDadosReducaoZClass(const INTPTR ecfHandle, INTPTR* dadosRZ);
 DllImport int ECF_GetDadosUltimaReducaoZ(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
-DllImport int ECF_GetDataBits(const INTPTR ecfHandle);
 DllImport int ECF_GetDataHora(const INTPTR ecfHandle, double* value);
 DllImport int ECF_GetDataHoraSB(const INTPTR ecfHandle, double* value);
 DllImport int ECF_GetDataMovimento(const INTPTR ecfHandle, double* value);
@@ -207,14 +203,13 @@ DllImport int ECF_GetFormaPagamento(const INTPTR ecfHandle, FormaPagamentoRec* f
 DllImport int ECF_GetGavetaAberta(const INTPTR ecfHandle);
 DllImport int ECF_GetGavetaSinalInvertido(const INTPTR ecfHandle);
 DllImport int ECF_GetGrandeTotal(const INTPTR ecfHandle, double* value);
-DllImport int ECF_GetHandShake(const INTPTR ecfHandle);
-DllImport int ECF_GetHardFlow(const INTPTR ecfHandle);
 DllImport int ECF_GetHorarioVerao(const INTPTR ecfHandle);
 DllImport int ECF_GetIdentificaConsumidorRodape(const INTPTR ecfHandle);
 DllImport int ECF_GetIE(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
 DllImport int ECF_GetIM(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
 DllImport int ECF_GetIntervaloAposComando(const INTPTR ecfHandle);
 DllImport int ECF_GetLinhasEntreCupons(const INTPTR ecfHandle);
+DllImport int ECF_GetMFAdicional(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
 DllImport int ECF_GetMFD(const INTPTR ecfHandle);
 DllImport int ECF_GetModelo(const INTPTR ecfHandle);
 DllImport int ECF_GetModeloStr(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
@@ -234,14 +229,11 @@ DllImport int ECF_GetNumUltItem(const INTPTR ecfHandle);
 DllImport int ECF_GetNumVersao(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
 DllImport int ECF_GetOperador(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
 DllImport int ECF_GetPAF(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
-DllImport int ECF_GetParity(const INTPTR ecfHandle);
 DllImport int ECF_GetPorta(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
 DllImport int ECF_GetPoucoPapel(const INTPTR ecfHandle);
 DllImport int ECF_GetRelatoriosGerenciais(const INTPTR ecfHandle, RelatorioGerencialRec* relatorio, const int index);
 DllImport int ECF_GetRespostaComando(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
 DllImport int ECF_GetRFDID(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
-DllImport int ECF_GetSoftFlow(const INTPTR ecfHandle);
-DllImport int ECF_GetStopBits(const INTPTR ecfHandle);
 DllImport int ECF_GetSubModeloECF(const INTPTR ecfHandle, PCHAR buffer, const int bufferLen);
 DllImport int ECF_GetSubTotal(const INTPTR ecfHandle, double* value);
 DllImport int ECF_GetTermica(const INTPTR ecfHandle);
@@ -280,6 +272,7 @@ DllImport int ECF_LerTotaisFormaPagamento(const INTPTR ecfHandle);
 DllImport int ECF_LerTotaisRelatoriosGerenciais(const INTPTR ecfHandle);
 DllImport int ECF_LinhaCupomVinculado(const INTPTR ecfHandle, const PCHAR linha);
 DllImport int ECF_LinhaRelatorioGerencial(const INTPTR ecfHandle, const PCHAR linha, const int indiceBMP);
+DllImport int ECF_MudaHorarioVerao(const INTPTR ecfHandle);
 DllImport int ECF_PafMF_GerarCAT52(const INTPTR ecfHandle, const double DataInicial, const double DataFinal, const PCHAR CaminhoArquivo);
 DllImport int ECF_PafMF_LMFC_Cotepe1704(const INTPTR ecfHandle, const double DataInicial, const double DataFinal, const PCHAR CaminhoArquivo);
 DllImport int ECF_PafMF_LMFC_Cotepe1704_CRZ(const INTPTR ecfHandle, const int CRZInicial, const int CRZFinal, const PCHAR CaminhoArquivo);
@@ -299,6 +292,7 @@ DllImport int ECF_PafMF_MFD_Espelho_COO(const INTPTR ecfHandle, const int COOIni
 DllImport int ECF_PafMF_RelDAVEmitidos(const INTPTR ecfHandle, const DAVsRec DAVs[], const int index, const PCHAR TituloRelatorio, const PCHAR IndiceRelatorio);
 DllImport int ECF_PafMF_RelIdentificacaoPafECF(const INTPTR ecfHandle, const INTPTR aacHandle, const int IndiceRelatorio);
 DllImport int ECF_PafMF_RelMeiosPagamento(const INTPTR ecfHandle, const FormaPagamentoRec formasPagamento[], const int count, const PCHAR TituloRelatorio, const int IndiceRelatorio);
+DllImport int ECF_PafMF_RelParametrosConfiguracao(const INTPTR ecfHandle, const INTPTR aacHandle, const int IndiceRelatorio);
 DllImport int ECF_ProgramaAliquota(const INTPTR ecfHandle, const double aliquota, const char tipo, const PCHAR posicao);
 DllImport int ECF_ProgramaComprovanteNaoFiscal(const INTPTR ecfHandle, const PCHAR descricao, const PCHAR tipo, const PCHAR posicao);
 DllImport int ECF_ProgramaFormaPagamento(const INTPTR ecfHandle, const PCHAR descricao, const BOOL permiteVinculado, const PCHAR posicao);
@@ -306,28 +300,24 @@ DllImport int ECF_ProgramaRelatoriosGerenciais(const INTPTR ecfHandle, const PCH
 DllImport int ECF_PulaLinhas(const INTPTR ecfHandle, const int numLinhas);
 DllImport int ECF_ReducaoZ(const INTPTR ecfHandle);
 DllImport int ECF_RegistraItemNaoFiscal(const INTPTR ecfHandle, const PCHAR codCNF, const double value, const PCHAR obs);
-DllImport int ECF_RelatorioGerencial(const INTPTR ecfHandle, const RelatorioGerencial Relatorio, const int Via, const int Indice);
+DllImport int ECF_RelatorioGerencial(const INTPTR ecfHandle, const PCHAR linhas[], const int linhasCount, const int Via, const int Indice);
 DllImport int ECF_Sangria(const INTPTR ecfHandle, const double valor, const PCHAR obs);
 DllImport int ECF_SetAAC(const INTPTR ecfHandle, const INTPTR aacHandle);
 DllImport int ECF_SetAguardaImpressao(const INTPTR ecfHandle, const BOOL aguardaImpressao);
-DllImport int ECF_SetBaud(const INTPTR ecfHandle, const int baud);
 DllImport int ECF_SetComandoLOG(const INTPTR ecfHandle, const PCHAR comandoLog);
-DllImport int ECF_SetDataBits(const INTPTR ecfHandle, const int dataBits);
 DllImport int ECF_SetDecimaisPreco(const INTPTR ecfHandle, const int decimaisPreco);
 DllImport int ECF_SetDecimaisQtd(const INTPTR ecfHandle, const int decimaisQtd);
 DllImport int ECF_SetDescricaoGrande(const INTPTR ecfHandle, const BOOL descricaoGrande);
 DllImport int ECF_SetEAD(const INTPTR ecfHandle, const INTPTR eadHandle);
 DllImport int ECF_SetGavetaSinalInvertido(const INTPTR ecfHandle, const BOOL gavetaSinalInvertido);
-DllImport int ECF_SetHandShake(const INTPTR ecfHandle, const int handShake);
-DllImport int ECF_SetHardFlow(const INTPTR ecfHandle, const BOOL hardFlow);
 DllImport int ECF_SetIntervaloAposComando(const INTPTR ecfHandle, const int intervalo);
 DllImport int ECF_SetLinhasEntreCupons(const INTPTR ecfHandle, const int linhasEntreCupons);
+DllImport int ECF_SetMemoParams(const INTPTR ecfHandle, const PCHAR linhas[], const int count);
 DllImport int ECF_SetModelo(const INTPTR ecfHandle, const int modelo);
+DllImport int ECF_SetOnBobinaAdicionaLinhas(const INTPTR ecfHandle, const BobinaAdicionaLinhasCallback method);
+DllImport int ECF_SetOnPoucoPapel(const INTPTR ecfHandle, const PoucoPapelCallback method);
 DllImport int ECF_SetOperador(const INTPTR ecfHandle, const PCHAR operador);
-DllImport int ECF_SetParity(const INTPTR ecfHandle, const int parity);
 DllImport int ECF_SetPorta(const INTPTR ecfHandle, const PCHAR porta);
-DllImport int ECF_SetSoftFlow(const INTPTR ecfHandle, const BOOL softFlow);
-DllImport int ECF_SetStopBits(const INTPTR ecfHandle, const int stopBits);
 DllImport int ECF_SetTimeOut(const INTPTR ecfHandle, const int timeOut);
 DllImport int ECF_SubtotalizaCupom(const INTPTR ecfHandle, const double descontoAcrescimo, const PCHAR mensagemRodape);
 DllImport int ECF_SubtotalizaNaoFiscal(const INTPTR ecfHandle, const double descontoAcrescimo, const PCHAR mensagemRodape);

@@ -27,6 +27,14 @@ typedef char BOOL;
 
 // Tipos de dados
 
+typedef PCHAR (*OnGetChaveCallback) (void);
+
+typedef struct
+{
+	char NOME_ARQUIVO[51];
+	char MD5[33];
+} TECFArquivo;
+
 typedef struct
 {
 	double ValorGT;
@@ -40,7 +48,7 @@ typedef struct
 // Funções
 
 DllImport int AAC_AbrirArquivo(const INTPTR aacHandle);
-DllImport int AAC_AtualizarValorGT(const INTPTR aacHandle, const PCHAR numSerie, double* grandTotal);
+DllImport int AAC_AtualizarValorGT(const INTPTR aacHandle, const PCHAR numSerie, double* grandeTotal);
 DllImport int AAC_Create(INTPTR* aacHandle);
 DllImport int AAC_Destroy(INTPTR* aacHandle);
 DllImport int AAC_GetArqLOG(const INTPTR aacHandle, PCHAR buffer, const int bufferLen);
@@ -76,6 +84,10 @@ DllImport int AAC_IdentPaf_Empresa_SetTelefone(const INTPTR aacHandle, const PCH
 DllImport int AAC_IdentPaf_Empresa_SetUf(const INTPTR aacHandle, const PCHAR uf);
 DllImport int AAC_IdentPaf_GetNumeroLaudo(const INTPTR aacHandle, PCHAR buffer, const int bufferLen);
 DllImport int AAC_IdentPaf_GetVersaoER(const INTPTR aacHandle, PCHAR buffer, const int bufferLen);
+DllImport int AAC_IdentPaf_OutrosArquivos_Clear(const INTPTR aacHandle);
+DllImport int AAC_IdentPaf_OutrosArquivos_Count(const INTPTR aacHandle);
+DllImport int AAC_IdentPaf_OutrosArquivos_Get(const INTPTR aacHandle, TECFArquivo* ecfArquivo, const int index);
+DllImport int AAC_IdentPaf_OutrosArquivos_New(const INTPTR aacHandle, const TECFArquivo ecfArquivo);
 DllImport int AAC_IdentPaf_Paf_GetBancoDados(const INTPTR aacHandle, PCHAR buffer, const int bufferLen);
 DllImport int AAC_IdentPaf_Paf_GetBarSimilarBalanca(const INTPTR aacHandle);
 DllImport int AAC_IdentPaf_Paf_GetBarSimilarECFComum(const INTPTR aacHandle);
@@ -138,10 +150,10 @@ DllImport int AAC_IdentPaf_SetNumeroLaudo(const INTPTR aacHandle, const PCHAR ra
 DllImport int AAC_IdentPaf_SetVersaoER(const INTPTR aacHandle, const PCHAR razaoSocial);
 DllImport int AAC_SalvarArquivo(const INTPTR aacHandle);
 DllImport int AAC_SetArqLOG(const INTPTR aacHandle, const PCHAR caminho);
-DllImport int AAC_SetChave(const INTPTR aacHandle, const PCHAR chave);
 DllImport int AAC_SetNomeArquivoAux(const INTPTR aacHandle, const PCHAR caminho);
+DllImport int AAC_SetOnGetChave(const INTPTR aacHandle, const Delegate method);
 DllImport int AAC_SetParams(const INTPTR aacHandle, const PCHAR parametros);
-DllImport int AAC_VerificarGTECF(const INTPTR aacHandle, const PCHAR numSerie, double* grandTotal);
+DllImport int AAC_VerificarGTECF(const INTPTR aacHandle, const PCHAR numSerie, double* grandeTotal);
 
 
 #endif

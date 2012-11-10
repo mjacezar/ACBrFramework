@@ -27,15 +27,19 @@ typedef char BOOL;
 
 // Tipos de dados
 
+typedef PCHAR (*OnGetChavePrivadaCallback) (void);
+
+typedef PCHAR (*OnGetChavePublicaCallback) (void);
+
 
 // Funções
 
-DllImport int EAD_AssinarArquivoComEAD(const INTPTR eadHandle, const PCHAR Arquivo, const BOOL Remove);
+DllImport int EAD_AssinarArquivoComEAD(const INTPTR eadHandle, const PCHAR Arquivo, const BOOL Remove, PCHAR EAD, const int bufferLen);
 DllImport int EAD_CalcularChavePublica(const INTPTR eadHandle, PCHAR ChavePUB, const int bufferLen);
-DllImport int EAD_CalcularEADArquivo(const INTPTR eadHandle, const PCHAR Arquivo, PCHAR Hash, const int bufferLen);
+DllImport int EAD_CalcularEADArquivo(const INTPTR eadHandle, const PCHAR Arquivo, PCHAR EAD, const int bufferLen);
 DllImport int EAD_CalcularHashArquivo(const INTPTR eadHandle, const PCHAR Arquivo, const int HashType, PCHAR Hash, const int bufferLen);
 DllImport int EAD_CalcularModuloeExpoente(const INTPTR eadHandle, PCHAR Modulo, PCHAR Expoente, const int bufferLen);
-DllImport int EAD_ConverteXMLeECFcParaOpenSSL(const INTPTR eadHandle, const PCHAR Arquivo);
+DllImport int EAD_ConverteXMLeECFcParaOpenSSL(const INTPTR eadHandle, const PCHAR Arquivo, PCHAR Hash, const int bufferLen);
 DllImport int EAD_Create(INTPTR* eadHandle);
 DllImport int EAD_Destroy(INTPTR* eadHandle);
 DllImport int EAD_GerarChaves(const INTPTR eadHandle, PCHAR ChavePUB, PCHAR ChavePRI, const int bufferLen);
@@ -46,6 +50,8 @@ DllImport int EAD_GetChavePublica(const INTPTR eadHandle, PCHAR buffer, const in
 DllImport int EAD_GetUltimoErro(const INTPTR eadHandle, PCHAR buffer, const int bufferLen);
 DllImport int EAD_SetChavePrivada(const INTPTR eadHandle, const PCHAR chave);
 DllImport int EAD_SetChavePublica(const INTPTR eadHandle, const PCHAR chave);
+DllImport int EAD_SetOnGetChavePrivada(const INTPTR eadHandle, const Delegate method);
+DllImport int EAD_SetOnGetChavePublica(const INTPTR eadHandle, const Delegate method);
 DllImport int EAD_VerificarEADArquivo(const INTPTR eadHandle, const PCHAR Arquivo);
 
 

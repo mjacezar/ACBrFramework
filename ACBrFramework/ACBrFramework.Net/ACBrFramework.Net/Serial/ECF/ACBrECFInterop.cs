@@ -31,6 +31,9 @@ namespace ACBrFramework.ECF
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void BobinaAdicionaLinhasCallback(string linhas, string operacao);
 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void PoucoPapelCallback();
+
 		[StructLayout(LayoutKind.Sequential)]
 		public struct AliquotaRec
 		{
@@ -916,10 +919,10 @@ namespace ACBrFramework.ECF
 		#region Eventos
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetOnPoucoPapel(IntPtr ecfHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+		public static extern int ECF_SetOnPoucoPapel(IntPtr ecfHandle, PoucoPapelCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetOnBobinaAdicionaLinhas(IntPtr ecfHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+		public static extern int ECF_SetOnBobinaAdicionaLinhas(IntPtr ecfHandle, BobinaAdicionaLinhasCallback method);
 
 		#endregion Eventos
 

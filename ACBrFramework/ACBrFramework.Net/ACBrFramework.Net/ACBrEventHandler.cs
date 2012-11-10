@@ -70,22 +70,4 @@ namespace ACBrFramework
 
 		#endregion Methods
 	}
-
-	internal sealed class ACBrEventHandler : ACBrEventHandler<ACBrEventHandler.Callback>
-	{
-		#region InnerTypes
-
-		public delegate void Callback();
-
-		#endregion InnerTypes
-
-		#region Constructor
-
-		public ACBrEventHandler(ACBrInteropBase component, Callback callback, SetCallbackEntryPointDelegate setCallback)
-			: base(component, callback, setCallback)
-		{
-		}
-
-		#endregion Constructor
-	}
 }

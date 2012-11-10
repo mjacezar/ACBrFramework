@@ -18,6 +18,13 @@ namespace ACBrFramework.LCB
 
 		#region ACBrLCB
 
+		#region InnerTypes
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void LeCodigoCallback();
+
+		#endregion InnerTypes
+
 		#region Constructors/Erro Handler
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
@@ -58,7 +65,7 @@ namespace ACBrFramework.LCB
 		#endregion Propriedades do Componente
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int LCB_SetOnLeCodigo(IntPtr lcbHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+		public static extern int LCB_SetOnLeCodigo(IntPtr lcbHandle, LeCodigoCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int LCB_Test(IntPtr lcbHandle);

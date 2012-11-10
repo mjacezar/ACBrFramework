@@ -27,6 +27,8 @@ typedef char BOOL;
 
 // Tipos de dados
 
+typedef void (*LeCodigoCallback) (void);
+
 
 // Funções
 
@@ -36,8 +38,11 @@ DllImport int LCB_Desativar(const INTPTR lcbHandle);
 DllImport int LCB_Destroy(INTPTR* lcbHandle);
 DllImport int LCB_GetAtivo(const INTPTR lcbHandle);
 DllImport int LCB_GetPorta(const INTPTR lcbHandle, PCHAR buffer, const int bufferLen);
+DllImport int LCB_GetUltimoCodigo(const INTPTR lcbHandle, PCHAR buffer, const int bufferLen);
 DllImport int LCB_GetUltimoErro(const INTPTR lcbHandle, PCHAR buffer, const int bufferLen);
+DllImport int LCB_SetOnLeCodigo(const INTPTR lcbHandle, const LeCodigoCallback method);
 DllImport int LCB_SetPorta(const INTPTR lcbHandle, const PCHAR porta);
+DllImport int LCB_Test(const INTPTR lcbHandle);
 
 
 #endif
