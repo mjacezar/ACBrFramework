@@ -527,6 +527,45 @@ begin
   end;
 end;
 
+Function TEF_SetEsperaSleep(const tefHandle : PTEFHandle; const Espera : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.EsperaSleep := Espera;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetEsperaSleep(const tefHandle : PTEFHandle): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := tefHandle^.TEF.EsperaSleep;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 ///////////////////////////////////////////////////////////
 
 Function TEF_ATV(const tefHandle : PTEFHandle; const GP : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -9236,6 +9275,7 @@ TEF_SetMultiplosCartoes, TEF_GetMultiplosCartoes,
 TEF_SetAutoEfetuarPagamento, TEF_GetAutoEfetuarPagamento,
 TEF_SetAutoFinalizarCupom, TEF_GetAutoFinalizarCupom,
 TEF_SetCHQEmGerencial, TEF_GetCHQEmGerencial,
+TEF_SetEsperaSleep, TEF_GetEsperaSleep,
 
 
 { Funções TEF }

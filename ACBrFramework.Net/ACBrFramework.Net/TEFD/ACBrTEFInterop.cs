@@ -156,7 +156,13 @@ namespace ACBrFramework.TEFD
 		public static extern int TEF_GetCHQEmGerencial(IntPtr tefHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_SetCHQEmGerencial(IntPtr tefHandle, bool Ativar);	
+		public static extern int TEF_SetCHQEmGerencial(IntPtr tefHandle, bool Ativar);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_GetEsperaSleep(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_SetEsperaSleep(IntPtr tefHandle, int Espera);	
 
 		#endregion Propriedades Componente
 

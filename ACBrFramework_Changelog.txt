@@ -44,6 +44,7 @@ Changelog
 11/11/2012 (ACBrFramework 0.9.1.9)
 [+] Implementado o metodo TEF_DesInicializar - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [+] Implementado o metodo TEF_AtivarGP - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo TEF_GetEsperaSleep, TEF_SetEsperaSleep - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [*] Organização das pasta do ACBrTED - ACBrFramework.Net - Rafael Dias.
 
 11/11/2012 (ACBrFramework 0.9.1.8)

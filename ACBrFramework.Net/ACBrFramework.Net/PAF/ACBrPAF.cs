@@ -107,34 +107,34 @@ namespace ACBrFramework.PAF
 			}
 		}
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public ACBrPAF_B PAF_B { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public ACBrPAF_C PAF_C { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public ACBrPAF_D PAF_D { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public ACBrPAF_E PAF_E { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public ACBrPAF_H PAF_H { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public ACBrPAF_N PAF_N { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public ACBrPAF_P PAF_P { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public ACBrPAF_R PAF_R { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public ACBrPAF_T PAF_T { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public ACBrPAF_TITP PAF_TITP { get; private set; }
 
 		public ACBrAAC AAC
