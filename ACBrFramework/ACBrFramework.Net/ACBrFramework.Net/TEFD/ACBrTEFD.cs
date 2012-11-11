@@ -379,6 +379,18 @@ namespace ACBrFramework.TEFD
 			CheckResult(ret);
 		}
 
+		public void DesInicializar(ACBrTEFDTipo gp)
+		{
+			int ret = ACBrTEFInterop.TEF_DesInicializar(this.Handle, (int)gp);
+			CheckResult(ret);
+		}
+
+		public void AtivarGP(ACBrTEFDTipo gp)
+		{
+			int ret = ACBrTEFInterop.TEF_AtivarGP(this.Handle, (int)gp);
+			CheckResult(ret);
+		}
+
 		public bool CRT(decimal valor, string indiceFPG_ECF)
 		{
 			return CRT(valor, indiceFPG_ECF, string.Empty, 0);
