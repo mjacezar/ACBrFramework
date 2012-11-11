@@ -95,6 +95,12 @@ namespace ACBrFramework.TEFD
 		public static extern int TEF_Inicializar(IntPtr tefHandle, int gp);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_DesInicializar(IntPtr tefHandle, int gp);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_AtivarGP(IntPtr tefHandle, int gp);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_CRT(IntPtr tefHandle, double Valor, string IndiceFPG_ECF, string DocumentoVinculado, int Moeda);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]

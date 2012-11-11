@@ -23,7 +23,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="9"/>
+      <BuildNr Value="10"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -540,14 +540,15 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="9182"/>
-        <CursorPos X="1" Y="9192"/>
+        <TopLine Value="233"/>
+        <CursorPos X="12" Y="243"/>
+        <FoldState Value=" T3lS0J p0l^O0Cv"/>
         <UsageCount Value="14"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit53>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="ACBrTEFDll.pas"/>
         <Caret Line="355" Column="29" TopLine="224"/>
@@ -662,12 +663,8 @@
       </Position28>
       <Position29>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="18" Column="1" TopLine="1204"/>
-      </Position29>
-      <Position30>
-        <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="133" Column="22" TopLine="115"/>
-      </Position30>
+      </Position29>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

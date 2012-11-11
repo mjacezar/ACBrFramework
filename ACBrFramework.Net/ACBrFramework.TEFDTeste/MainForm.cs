@@ -39,10 +39,12 @@ namespace ACBrFramework.TEFDTeste
 
 		private void inicializarECFTEF()
 		{
+			cmbModelo.Items.Clear();
 			cmbModelo.Items.Add("AUTO");
 			foreach (var modelo in Enum.GetValues(typeof(ModeloECF))) cmbModelo.Items.Add(modelo);
 			cmbModelo.SelectedIndex = 0;
 
+			cmbGP.Items.Clear();
 			foreach (var gp in Enum.GetValues(typeof(ACBrTEFDTipo))) cmbGP.Items.Add(gp);
 			cmbGP.SelectedIndex = 0;
 
@@ -108,7 +110,6 @@ namespace ACBrFramework.TEFDTeste
 
 					acBrECF1.Ativar();
 					btnAtivar.Text = "Desativar";
-					lblModelo.Text = acBrECF1.ModeloStr;
 					pctModelo.Image = Properties.Resources._092;
 					pctModelo.Refresh();
 					WriteResp("ECF Ativada");
@@ -117,7 +118,6 @@ namespace ACBrFramework.TEFDTeste
 				{
 					acBrECF1.Desativar();
 					btnAtivar.Text = "Ativar";
-					lblModelo.Text = "ECF Desativada";
 					pctModelo.Image = Properties.Resources._093;
 					pctModelo.Refresh();
 					WriteResp("ECF Desativada");
@@ -140,6 +140,81 @@ namespace ACBrFramework.TEFDTeste
 				{
 					WriteResp(string.Format("Forma: {0} - {1}", forma.Indice, forma.Descricao));
 				}
+			}
+			catch (Exception ex)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = ex.Message;
+			}
+		}
+
+		private void iniciarGP()
+		{
+			try
+			{
+				acBrTEFD1.Initializar((ACBrTEFDTipo)cmbGP.SelectedItem);
+				WriteResp(string.Format("Tef: {0} - Iniciado", cmbGP.Text));
+
+				switch ((ACBrTEFDTipo)cmbGP.SelectedItem)
+				{
+					case ACBrTEFDTipo.TefDial:
+						pctDial.Image = Properties.Resources._092;
+						pctDial.Refresh();
+						break;
+
+					case ACBrTEFDTipo.TefDisc:
+						pctDisc.Image = Properties.Resources._092;
+						pctDisc.Refresh();
+						break;
+
+					case ACBrTEFDTipo.HiperTef:
+						pctHiper.Image = Properties.Resources._092;
+						pctHiper.Refresh();
+						break;
+
+					case ACBrTEFDTipo.CrediShop:
+						pctCrediShop.Image = Properties.Resources._092;
+						pctCrediShop.Refresh();
+						break;
+
+					case ACBrTEFDTipo.TefAuttar:
+						pctAuttar.Image = Properties.Resources._092;
+						pctAuttar.Refresh();
+						break;
+
+					case ACBrTEFDTipo.TefGpu:
+						pctGPU.Image = Properties.Resources._092;
+						pctGPU.Refresh();
+						break;
+
+					case ACBrTEFDTipo.GoodCard:
+						pctGood.Image = Properties.Resources._092;
+						pctGood.Refresh();
+						break;
+
+					case ACBrTEFDTipo.FoxWin:
+						pctFoxWin.Image = Properties.Resources._092;
+						pctFoxWin.Refresh();
+						break;
+
+					case ACBrTEFDTipo.Petrocard:
+						pctPetrocard.Image = Properties.Resources._092;
+						pctPetrocard.Refresh();
+						break;
+				}
+			}
+			catch (Exception ex)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = ex.Message;
+			}
+		}
+
+		private void AtivarGP()
+		{
+			try
+			{
+				
 			}
 			catch (Exception ex)
 			{
@@ -181,6 +256,16 @@ namespace ACBrFramework.TEFDTeste
 		private void btnFPG_Click(object sender, EventArgs e)
 		{
 			mostrarFPG();
+		}
+
+		private void btnIniciarGP_Click(object sender, EventArgs e)
+		{
+			iniciarGP();
+		}
+
+		private void btnAtivarGP_Click(object sender, EventArgs e)
+		{
+			AtivarGP();
 		}
 
 		#region Eventos TEF
@@ -303,7 +388,7 @@ namespace ACBrFramework.TEFDTeste
 		{
 		}
 
-		#endregion Eventos TEF
+		#endregion Eventos TEF	
 
 		#endregion EventHandlers
 	}

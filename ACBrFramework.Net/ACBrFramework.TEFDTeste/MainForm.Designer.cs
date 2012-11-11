@@ -41,8 +41,8 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.textBox5 = new System.Windows.Forms.TextBox();
-			this.button9 = new System.Windows.Forms.Button();
-			this.button8 = new System.Windows.Forms.Button();
+			this.btnAtivarGP = new System.Windows.Forms.Button();
+			this.btnIniciarGP = new System.Windows.Forms.Button();
 			this.cmbGP = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -76,6 +76,24 @@
 			this.lblModelo = new System.Windows.Forms.Label();
 			this.pctDial = new System.Windows.Forms.PictureBox();
 			this.label8 = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
+			this.pctDisc = new System.Windows.Forms.PictureBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.pctHiper = new System.Windows.Forms.PictureBox();
+			this.label11 = new System.Windows.Forms.Label();
+			this.pctSitef = new System.Windows.Forms.PictureBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.pctAuttar = new System.Windows.Forms.PictureBox();
+			this.label13 = new System.Windows.Forms.Label();
+			this.pctCrediShop = new System.Windows.Forms.PictureBox();
+			this.label14 = new System.Windows.Forms.Label();
+			this.pctFoxWin = new System.Windows.Forms.PictureBox();
+			this.label15 = new System.Windows.Forms.Label();
+			this.pctGood = new System.Windows.Forms.PictureBox();
+			this.label16 = new System.Windows.Forms.Label();
+			this.pctGPU = new System.Windows.Forms.PictureBox();
+			this.label17 = new System.Windows.Forms.Label();
+			this.pctPetrocard = new System.Windows.Forms.PictureBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -83,6 +101,15 @@
 			this.statusStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pctModelo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctDial)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctDisc)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctHiper)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctSitef)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctAuttar)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctCrediShop)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctFoxWin)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctGood)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctGPU)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctPetrocard)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -93,7 +120,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(736, 219);
+			this.tabControl1.Size = new System.Drawing.Size(777, 219);
 			this.tabControl1.TabIndex = 0;
 			// 
 			// tabPage1
@@ -103,7 +130,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(728, 193);
+			this.tabPage1.Size = new System.Drawing.Size(769, 193);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Configurações";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -119,13 +146,13 @@
 			this.groupBox2.Controls.Add(this.label7);
 			this.groupBox2.Controls.Add(this.textBox4);
 			this.groupBox2.Controls.Add(this.textBox5);
-			this.groupBox2.Controls.Add(this.button9);
-			this.groupBox2.Controls.Add(this.button8);
+			this.groupBox2.Controls.Add(this.btnAtivarGP);
+			this.groupBox2.Controls.Add(this.btnIniciarGP);
 			this.groupBox2.Controls.Add(this.cmbGP);
 			this.groupBox2.Controls.Add(this.label5);
 			this.groupBox2.Location = new System.Drawing.Point(336, 6);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(384, 181);
+			this.groupBox2.Size = new System.Drawing.Size(425, 181);
 			this.groupBox2.TabIndex = 11;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "TEF";
@@ -135,7 +162,7 @@
 			this.checkBox5.AutoSize = true;
 			this.checkBox5.Checked = true;
 			this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox5.Location = new System.Drawing.Point(141, 90);
+			this.checkBox5.Location = new System.Drawing.Point(176, 90);
 			this.checkBox5.Name = "checkBox5";
 			this.checkBox5.Size = new System.Drawing.Size(119, 17);
 			this.checkBox5.TabIndex = 28;
@@ -145,7 +172,7 @@
 			// checkBox4
 			// 
 			this.checkBox4.AutoSize = true;
-			this.checkBox4.Location = new System.Drawing.Point(141, 113);
+			this.checkBox4.Location = new System.Drawing.Point(176, 113);
 			this.checkBox4.Name = "checkBox4";
 			this.checkBox4.Size = new System.Drawing.Size(114, 17);
 			this.checkBox4.TabIndex = 27;
@@ -157,7 +184,7 @@
 			this.checkBox3.AutoSize = true;
 			this.checkBox3.Checked = true;
 			this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox3.Location = new System.Drawing.Point(141, 67);
+			this.checkBox3.Location = new System.Drawing.Point(176, 67);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(136, 17);
 			this.checkBox3.TabIndex = 26;
@@ -167,7 +194,7 @@
 			// checkBox2
 			// 
 			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(141, 44);
+			this.checkBox2.Location = new System.Drawing.Point(176, 44);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(106, 17);
 			this.checkBox2.TabIndex = 25;
@@ -179,7 +206,7 @@
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(141, 21);
+			this.checkBox1.Location = new System.Drawing.Point(176, 21);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(102, 17);
 			this.checkBox1.TabIndex = 24;
@@ -190,7 +217,7 @@
 			// 
 			this.label6.AutoSize = true;
 			this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(286, 67);
+			this.label6.Location = new System.Drawing.Point(331, 67);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(70, 13);
 			this.label6.TabIndex = 22;
@@ -200,7 +227,7 @@
 			// 
 			this.label7.AutoSize = true;
 			this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label7.Location = new System.Drawing.Point(286, 16);
+			this.label7.Location = new System.Drawing.Point(331, 16);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(78, 13);
 			this.label7.TabIndex = 23;
@@ -208,7 +235,7 @@
 			// 
 			// textBox4
 			// 
-			this.textBox4.Location = new System.Drawing.Point(283, 83);
+			this.textBox4.Location = new System.Drawing.Point(328, 83);
 			this.textBox4.Name = "textBox4";
 			this.textBox4.Size = new System.Drawing.Size(81, 20);
 			this.textBox4.TabIndex = 21;
@@ -217,30 +244,32 @@
 			// 
 			// textBox5
 			// 
-			this.textBox5.Location = new System.Drawing.Point(283, 32);
+			this.textBox5.Location = new System.Drawing.Point(328, 32);
 			this.textBox5.Name = "textBox5";
 			this.textBox5.Size = new System.Drawing.Size(81, 20);
 			this.textBox5.TabIndex = 20;
 			this.textBox5.Text = "250";
 			this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
-			// button9
+			// btnAtivarGP
 			// 
-			this.button9.Location = new System.Drawing.Point(26, 88);
-			this.button9.Name = "button9";
-			this.button9.Size = new System.Drawing.Size(75, 23);
-			this.button9.TabIndex = 18;
-			this.button9.Text = "Ativar GP";
-			this.button9.UseVisualStyleBackColor = true;
+			this.btnAtivarGP.Location = new System.Drawing.Point(26, 88);
+			this.btnAtivarGP.Name = "btnAtivarGP";
+			this.btnAtivarGP.Size = new System.Drawing.Size(75, 23);
+			this.btnAtivarGP.TabIndex = 18;
+			this.btnAtivarGP.Text = "Ativar GP";
+			this.btnAtivarGP.UseVisualStyleBackColor = true;
+			this.btnAtivarGP.Click += new System.EventHandler(this.btnAtivarGP_Click);
 			// 
-			// button8
+			// btnIniciarGP
 			// 
-			this.button8.Location = new System.Drawing.Point(26, 59);
-			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(75, 23);
-			this.button8.TabIndex = 17;
-			this.button8.Text = "Inicializar";
-			this.button8.UseVisualStyleBackColor = true;
+			this.btnIniciarGP.Location = new System.Drawing.Point(26, 59);
+			this.btnIniciarGP.Name = "btnIniciarGP";
+			this.btnIniciarGP.Size = new System.Drawing.Size(75, 23);
+			this.btnIniciarGP.TabIndex = 17;
+			this.btnIniciarGP.Text = "Inicializar";
+			this.btnIniciarGP.UseVisualStyleBackColor = true;
+			this.btnIniciarGP.Click += new System.EventHandler(this.btnIniciarGP_Click);
 			// 
 			// cmbGP
 			// 
@@ -389,7 +418,7 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(728, 193);
+			this.tabPage2.Size = new System.Drawing.Size(769, 193);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Operação";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -441,7 +470,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(586, 222);
+			this.label1.Location = new System.Drawing.Point(627, 222);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(122, 13);
 			this.label1.TabIndex = 1;
@@ -452,14 +481,14 @@
 			this.respListBox.FormattingEnabled = true;
 			this.respListBox.Location = new System.Drawing.Point(4, 228);
 			this.respListBox.Name = "respListBox";
-			this.respListBox.Size = new System.Drawing.Size(552, 173);
+			this.respListBox.Size = new System.Drawing.Size(591, 173);
 			this.respListBox.TabIndex = 2;
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(562, 383);
+			this.label2.Location = new System.Drawing.Point(603, 383);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(75, 13);
 			this.label2.TabIndex = 8;
@@ -468,14 +497,14 @@
 			// pgtoList
 			// 
 			this.pgtoList.FormattingEnabled = true;
-			this.pgtoList.Location = new System.Drawing.Point(565, 244);
+			this.pgtoList.Location = new System.Drawing.Point(606, 244);
 			this.pgtoList.Name = "pgtoList";
 			this.pgtoList.Size = new System.Drawing.Size(159, 95);
 			this.pgtoList.TabIndex = 9;
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(643, 380);
+			this.textBox1.Location = new System.Drawing.Point(684, 380);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(81, 20);
 			this.textBox1.TabIndex = 10;
@@ -487,7 +516,7 @@
             this.descriptionToolStripStatusLabel});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 428);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(736, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(777, 22);
 			this.statusStrip1.SizingGrip = false;
 			this.statusStrip1.TabIndex = 11;
 			this.statusStrip1.Text = "statusStrip1";
@@ -510,7 +539,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
 			this.descriptionToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
 			this.descriptionToolStripStatusLabel.Name = "descriptionToolStripStatusLabel";
-			this.descriptionToolStripStatusLabel.Size = new System.Drawing.Size(571, 17);
+			this.descriptionToolStripStatusLabel.Size = new System.Drawing.Size(612, 17);
 			this.descriptionToolStripStatusLabel.Spring = true;
 			this.descriptionToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -526,7 +555,7 @@
 			// button4
 			// 
 			this.button4.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._105;
-			this.button4.Location = new System.Drawing.Point(666, 348);
+			this.button4.Location = new System.Drawing.Point(707, 348);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(26, 26);
 			this.button4.TabIndex = 6;
@@ -535,7 +564,7 @@
 			// button3
 			// 
 			this.button3.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._024;
-			this.button3.Location = new System.Drawing.Point(698, 348);
+			this.button3.Location = new System.Drawing.Point(739, 348);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(26, 26);
 			this.button3.TabIndex = 5;
@@ -544,7 +573,7 @@
 			// button2
 			// 
 			this.button2.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._007;
-			this.button2.Location = new System.Drawing.Point(597, 348);
+			this.button2.Location = new System.Drawing.Point(638, 348);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(26, 26);
 			this.button2.TabIndex = 4;
@@ -553,7 +582,7 @@
 			// button1
 			// 
 			this.button1.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._001;
-			this.button1.Location = new System.Drawing.Point(565, 348);
+			this.button1.Location = new System.Drawing.Point(606, 348);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(26, 26);
 			this.button1.TabIndex = 3;
@@ -565,14 +594,14 @@
 			this.lblModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblModelo.Location = new System.Drawing.Point(25, 409);
 			this.lblModelo.Name = "lblModelo";
-			this.lblModelo.Size = new System.Drawing.Size(98, 13);
+			this.lblModelo.Size = new System.Drawing.Size(30, 13);
 			this.lblModelo.TabIndex = 13;
-			this.lblModelo.Text = "ECF Desativada";
+			this.lblModelo.Text = "ECF";
 			// 
 			// pctDial
 			// 
 			this.pctDial.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._093;
-			this.pctDial.Location = new System.Drawing.Point(129, 407);
+			this.pctDial.Location = new System.Drawing.Point(62, 407);
 			this.pctDial.Name = "pctDial";
 			this.pctDial.Size = new System.Drawing.Size(17, 17);
 			this.pctDial.TabIndex = 14;
@@ -582,17 +611,206 @@
 			// 
 			this.label8.AutoSize = true;
 			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label8.Location = new System.Drawing.Point(152, 409);
+			this.label8.Location = new System.Drawing.Point(85, 409);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(52, 13);
+			this.label8.Size = new System.Drawing.Size(29, 13);
 			this.label8.TabIndex = 15;
-			this.label8.Text = "Tef Dial";
+			this.label8.Text = "Dial";
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label9.Location = new System.Drawing.Point(144, 409);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(32, 13);
+			this.label9.TabIndex = 17;
+			this.label9.Text = "Disc";
+			// 
+			// pctDisc
+			// 
+			this.pctDisc.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._093;
+			this.pctDisc.Location = new System.Drawing.Point(120, 407);
+			this.pctDisc.Name = "pctDisc";
+			this.pctDisc.Size = new System.Drawing.Size(17, 17);
+			this.pctDisc.TabIndex = 16;
+			this.pctDisc.TabStop = false;
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label10.Location = new System.Drawing.Point(205, 409);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(37, 13);
+			this.label10.TabIndex = 19;
+			this.label10.Text = "Hiper";
+			// 
+			// pctHiper
+			// 
+			this.pctHiper.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._093;
+			this.pctHiper.Location = new System.Drawing.Point(182, 408);
+			this.pctHiper.Name = "pctHiper";
+			this.pctHiper.Size = new System.Drawing.Size(17, 17);
+			this.pctHiper.TabIndex = 18;
+			this.pctHiper.TabStop = false;
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label11.Location = new System.Drawing.Point(274, 409);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(45, 13);
+			this.label11.TabIndex = 21;
+			this.label11.Text = "Clisitef";
+			// 
+			// pctSitef
+			// 
+			this.pctSitef.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._093;
+			this.pctSitef.Location = new System.Drawing.Point(251, 407);
+			this.pctSitef.Name = "pctSitef";
+			this.pctSitef.Size = new System.Drawing.Size(17, 17);
+			this.pctSitef.TabIndex = 20;
+			this.pctSitef.TabStop = false;
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label12.Location = new System.Drawing.Point(349, 409);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(41, 13);
+			this.label12.TabIndex = 23;
+			this.label12.Text = "Auttar";
+			// 
+			// pctAuttar
+			// 
+			this.pctAuttar.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._093;
+			this.pctAuttar.Location = new System.Drawing.Point(325, 407);
+			this.pctAuttar.Name = "pctAuttar";
+			this.pctAuttar.Size = new System.Drawing.Size(17, 17);
+			this.pctAuttar.TabIndex = 22;
+			this.pctAuttar.TabStop = false;
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label13.Location = new System.Drawing.Point(419, 409);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(65, 13);
+			this.label13.TabIndex = 25;
+			this.label13.Text = "CrediShop";
+			// 
+			// pctCrediShop
+			// 
+			this.pctCrediShop.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._093;
+			this.pctCrediShop.Location = new System.Drawing.Point(396, 407);
+			this.pctCrediShop.Name = "pctCrediShop";
+			this.pctCrediShop.Size = new System.Drawing.Size(17, 17);
+			this.pctCrediShop.TabIndex = 24;
+			this.pctCrediShop.TabStop = false;
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label14.Location = new System.Drawing.Point(513, 409);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(49, 13);
+			this.label14.TabIndex = 27;
+			this.label14.Text = "FoxWin";
+			// 
+			// pctFoxWin
+			// 
+			this.pctFoxWin.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._093;
+			this.pctFoxWin.Location = new System.Drawing.Point(490, 407);
+			this.pctFoxWin.Name = "pctFoxWin";
+			this.pctFoxWin.Size = new System.Drawing.Size(17, 17);
+			this.pctFoxWin.TabIndex = 26;
+			this.pctFoxWin.TabStop = false;
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label15.Location = new System.Drawing.Point(591, 409);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(37, 13);
+			this.label15.TabIndex = 29;
+			this.label15.Text = "Good";
+			// 
+			// pctGood
+			// 
+			this.pctGood.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._093;
+			this.pctGood.Location = new System.Drawing.Point(568, 407);
+			this.pctGood.Name = "pctGood";
+			this.pctGood.Size = new System.Drawing.Size(17, 17);
+			this.pctGood.TabIndex = 28;
+			this.pctGood.TabStop = false;
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label16.Location = new System.Drawing.Point(652, 409);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(33, 13);
+			this.label16.TabIndex = 31;
+			this.label16.Text = "GPU";
+			// 
+			// pctGPU
+			// 
+			this.pctGPU.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._093;
+			this.pctGPU.Location = new System.Drawing.Point(629, 407);
+			this.pctGPU.Name = "pctGPU";
+			this.pctGPU.Size = new System.Drawing.Size(17, 17);
+			this.pctGPU.TabIndex = 30;
+			this.pctGPU.TabStop = false;
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label17.Location = new System.Drawing.Point(714, 409);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(62, 13);
+			this.label17.TabIndex = 33;
+			this.label17.Text = "Petrocard";
+			// 
+			// pctPetrocard
+			// 
+			this.pctPetrocard.Image = global::ACBrFramework.TEFDTeste.Properties.Resources._093;
+			this.pctPetrocard.Location = new System.Drawing.Point(691, 407);
+			this.pctPetrocard.Name = "pctPetrocard";
+			this.pctPetrocard.Size = new System.Drawing.Size(17, 17);
+			this.pctPetrocard.TabIndex = 32;
+			this.pctPetrocard.TabStop = false;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(736, 450);
+			this.ClientSize = new System.Drawing.Size(777, 450);
+			this.Controls.Add(this.label17);
+			this.Controls.Add(this.pctPetrocard);
+			this.Controls.Add(this.label16);
+			this.Controls.Add(this.pctGPU);
+			this.Controls.Add(this.label15);
+			this.Controls.Add(this.pctGood);
+			this.Controls.Add(this.label14);
+			this.Controls.Add(this.pctFoxWin);
+			this.Controls.Add(this.label13);
+			this.Controls.Add(this.pctCrediShop);
+			this.Controls.Add(this.label12);
+			this.Controls.Add(this.pctAuttar);
+			this.Controls.Add(this.label11);
+			this.Controls.Add(this.pctSitef);
+			this.Controls.Add(this.label10);
+			this.Controls.Add(this.pctHiper);
+			this.Controls.Add(this.label9);
+			this.Controls.Add(this.pctDisc);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.pctDial);
 			this.Controls.Add(this.lblModelo);
@@ -622,6 +840,15 @@
 			this.statusStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pctModelo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctDial)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctDisc)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctHiper)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctSitef)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctAuttar)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctCrediShop)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctFoxWin)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctGood)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctGPU)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctPetrocard)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -656,8 +883,8 @@
         private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnAtivarGP;
+        private System.Windows.Forms.Button btnIniciarGP;
         private System.Windows.Forms.ComboBox cmbGP;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
@@ -676,6 +903,24 @@
 		private System.Windows.Forms.Label lblModelo;
 		private System.Windows.Forms.PictureBox pctDial;
 		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.PictureBox pctDisc;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.PictureBox pctHiper;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.PictureBox pctSitef;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.PictureBox pctAuttar;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.PictureBox pctCrediShop;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.PictureBox pctFoxWin;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.PictureBox pctGood;
+		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.PictureBox pctGPU;
+		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.PictureBox pctPetrocard;
 
     }
 }

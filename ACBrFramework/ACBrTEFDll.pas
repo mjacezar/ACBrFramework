@@ -219,6 +219,48 @@ begin
 
 end;
 
+Function TEF_DesInicializar(const tefHandle : PTEFHandle; GP : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.DesInicializar(TACBrTEFDTipo(GP));
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_AtivarGP(const tefHandle : PTEFHandle; GP : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.AtivarGP(TACBrTEFDTipo(GP));
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 // Propriedades
 
 Function TEF_SetAutoAtivar(const tefHandle : PTEFHandle; const Ativar : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -9197,7 +9239,8 @@ TEF_SetCHQEmGerencial, TEF_GetCHQEmGerencial,
 
 
 { Funções TEF }
-TEF_Inicializar,
+TEF_Inicializar, TEF_DesInicializar,
+TEF_AtivarGP,
 TEF_CRT,
 TEF_ATV,
 TEF_ADM,
