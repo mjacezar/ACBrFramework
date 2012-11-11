@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.ComponentModel;
 
 namespace ACBrFramework.TEFD
 {
@@ -327,10 +328,13 @@ namespace ACBrFramework.TEFD
 
 		public ACBrTEFDIdentificacao Identificacao { get; private set; }
 
+		[Browsable(false)]
 		public ACBrTEFDReq Req { get; private set; }
 
+		[Browsable(false)]
 		public ACBrTEFDResp Resp { get; private set; }
 
+		[Browsable(false)]
 		public ACBrTEFDRespostasPendentes RespostasPendentes { get; private set; }
 
 		public ACBrTEFDCliSiTef TEFCliSiTef { get; private set; }

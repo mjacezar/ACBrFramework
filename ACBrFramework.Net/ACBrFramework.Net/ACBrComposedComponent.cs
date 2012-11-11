@@ -1,13 +1,17 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace ACBrFramework
 {
+	[TypeConverter(typeof(ExpandableObjectConverter))] 
 	public abstract class ACBrComposedComponent : ACBrInteropBase
 	{
 		#region Properties
 
+		[Browsable(false)]
 		public ACBrComponent Parent { get; private set; }
 
+		[Browsable(false)]
 		public override IntPtr Handle
 		{
 			get
