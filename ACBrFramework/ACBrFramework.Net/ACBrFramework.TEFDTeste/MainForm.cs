@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Drawing;
 using ACBrFramework.ECF;
 using ACBrFramework.TEFD;
 
@@ -152,53 +153,106 @@ namespace ACBrFramework.TEFDTeste
 		{
 			try
 			{
-				acBrTEFD1.Initializar((ACBrTEFDTipo)cmbGP.SelectedItem);
-				WriteResp(string.Format("Tef: {0} - Iniciado", cmbGP.Text));
+				Image img;
+
+				if (btnIniciarGP.Text.Equals("Inicializar"))
+				{
+					acBrTEFD1.EsperaSleep = Convert.ToInt32(txtEsperaSleep.Text);
+					acBrTEFD1.Initializar((ACBrTEFDTipo)cmbGP.SelectedItem);
+					btnIniciarGP.Text = "Desinicializar";
+					cmbGP.Enabled = false;
+					WriteResp(string.Format("Tef: {0} - Iniciado", cmbGP.Text));					
+					img = Properties.Resources._092;
+				}
+				else
+				{
+					acBrTEFD1.DesInicializar((ACBrTEFDTipo)cmbGP.SelectedItem);
+					btnIniciarGP.Text = "Inicializar";
+					cmbGP.Enabled = true;
+					WriteResp(string.Format("Tef: {0} - Desinicializado", cmbGP.Text));
+					img = Properties.Resources._093;
+				}
 
 				switch ((ACBrTEFDTipo)cmbGP.SelectedItem)
 				{
 					case ACBrTEFDTipo.TefDial:
-						pctDial.Image = Properties.Resources._092;
+						if (btnIniciarGP.Text.Equals("Inicializar"))
+							acBrTEFD1.TEFDial.EsperaSTS = Convert.ToInt32(txtEsperaSTS);
+						else
+							acBrTEFD1.TEFDial.EsperaSTS = 7;
+						pctDial.Image = img;
 						pctDial.Refresh();
 						break;
 
 					case ACBrTEFDTipo.TefDisc:
-						pctDisc.Image = Properties.Resources._092;
+						if (btnIniciarGP.Text.Equals("Inicializar"))
+							acBrTEFD1.TEFDisc.EsperaSTS = Convert.ToInt32(txtEsperaSTS);
+						else
+							acBrTEFD1.TEFDisc.EsperaSTS = 7;
+						pctDisc.Image = img;
 						pctDisc.Refresh();
 						break;
 
 					case ACBrTEFDTipo.HiperTef:
-						pctHiper.Image = Properties.Resources._092;
+						if (btnIniciarGP.Text.Equals("Inicializar"))
+							acBrTEFD1.TEFHiper.EsperaSTS = Convert.ToInt32(txtEsperaSTS);
+						else
+							acBrTEFD1.TEFHiper.EsperaSTS = 7;
+						pctHiper.Image = img;
 						pctHiper.Refresh();
 						break;
 
 					case ACBrTEFDTipo.CrediShop:
-						pctCrediShop.Image = Properties.Resources._092;
+						if (btnIniciarGP.Text.Equals("Inicializar"))
+							acBrTEFD1.TEFCrediShop.EsperaSTS = Convert.ToInt32(txtEsperaSTS);
+						else
+							acBrTEFD1.TEFCrediShop.EsperaSTS = 7;
+						pctCrediShop.Image = img;
 						pctCrediShop.Refresh();
 						break;
 
 					case ACBrTEFDTipo.TefAuttar:
-						pctAuttar.Image = Properties.Resources._092;
+						if (btnIniciarGP.Text.Equals("Inicializar"))
+							acBrTEFD1.TEFAuttar.EsperaSTS = Convert.ToInt32(txtEsperaSTS);
+						else
+							acBrTEFD1.TEFAuttar.EsperaSTS = 7;
+						pctAuttar.Image = img;
 						pctAuttar.Refresh();
 						break;
 
 					case ACBrTEFDTipo.TefGpu:
-						pctGPU.Image = Properties.Resources._092;
+						if (btnIniciarGP.Text.Equals("Inicializar"))
+							acBrTEFD1.TEFGPU.EsperaSTS = Convert.ToInt32(txtEsperaSTS);
+						else
+							acBrTEFD1.TEFGPU.EsperaSTS = 7;
+						pctGPU.Image = img;
 						pctGPU.Refresh();
 						break;
 
 					case ACBrTEFDTipo.GoodCard:
-						pctGood.Image = Properties.Resources._092;
+						if (btnIniciarGP.Text.Equals("Inicializar"))
+							acBrTEFD1.TEFGood.EsperaSTS = Convert.ToInt32(txtEsperaSTS);
+						else
+							acBrTEFD1.TEFGood.EsperaSTS = 7;
+						pctGood.Image = img;
 						pctGood.Refresh();
 						break;
 
 					case ACBrTEFDTipo.FoxWin:
-						pctFoxWin.Image = Properties.Resources._092;
+						if (btnIniciarGP.Text.Equals("Inicializar"))
+							acBrTEFD1.TEFFoxWin.EsperaSTS = Convert.ToInt32(txtEsperaSTS);
+						else
+							acBrTEFD1.TEFFoxWin.EsperaSTS = 7;
+						pctFoxWin.Image = img;
 						pctFoxWin.Refresh();
 						break;
 
 					case ACBrTEFDTipo.Petrocard:
-						pctPetrocard.Image = Properties.Resources._092;
+						if (btnIniciarGP.Text.Equals("Inicializar"))
+							acBrTEFD1.TEFPetrocard.EsperaSTS = Convert.ToInt32(txtEsperaSTS);
+						else
+							acBrTEFD1.TEFPetrocard.EsperaSTS = 7;
+						pctPetrocard.Image = img;
 						pctPetrocard.Refresh();
 						break;
 				}
@@ -214,7 +268,7 @@ namespace ACBrFramework.TEFDTeste
 		{
 			try
 			{
-				
+				acBrTEFD1.AtivarGP((ACBrTEFDTipo)cmbGP.SelectedItem);
 			}
 			catch (Exception ex)
 			{
@@ -266,6 +320,31 @@ namespace ACBrFramework.TEFDTeste
 		private void btnAtivarGP_Click(object sender, EventArgs e)
 		{
 			AtivarGP();
+		}
+
+		private void chkAutoAtivarGP_CheckedChanged(object sender, EventArgs e)
+		{
+			acBrTEFD1.AutoAtivar = chkAutoAtivarGP.Checked;
+		}
+
+		private void chkMultiplosCartoes_CheckedChanged(object sender, EventArgs e)
+		{
+			acBrTEFD1.MultiplosCartoes = chkMultiplosCartoes.Checked;
+		}
+
+		private void chkAutoEfetuarPagamento_CheckedChanged(object sender, EventArgs e)
+		{
+			acBrTEFD1.AutoEfetuarPagamento = chkAutoEfetuarPagamento.Checked;
+		}
+
+		private void chkAutoFinalizarCupom_CheckedChanged(object sender, EventArgs e)
+		{
+			acBrTEFD1.AutoFinalizarCupom = chkAutoFinalizarCupom.Checked;
+		}
+
+		private void chkCHQGerencial_CheckedChanged(object sender, EventArgs e)
+		{
+			acBrTEFD1.CHQEmGerencial = chkCHQGerencial.Checked;
 		}
 
 		#region Eventos TEF
@@ -388,8 +467,8 @@ namespace ACBrFramework.TEFDTeste
 		{
 		}
 
-		#endregion Eventos TEF	
+		#endregion Eventos TEF			
 
-		#endregion EventHandlers
+		#endregion EventHandlers		
 	}
 }

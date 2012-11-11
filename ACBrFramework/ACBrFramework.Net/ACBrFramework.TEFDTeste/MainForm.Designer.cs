@@ -32,15 +32,15 @@
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.checkBox5 = new System.Windows.Forms.CheckBox();
-			this.checkBox4 = new System.Windows.Forms.CheckBox();
-			this.checkBox3 = new System.Windows.Forms.CheckBox();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.chkAutoFinalizarCupom = new System.Windows.Forms.CheckBox();
+			this.chkCHQGerencial = new System.Windows.Forms.CheckBox();
+			this.chkAutoEfetuarPagamento = new System.Windows.Forms.CheckBox();
+			this.chkMultiplosCartoes = new System.Windows.Forms.CheckBox();
+			this.chkAutoAtivarGP = new System.Windows.Forms.CheckBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.txtEsperaSTS = new System.Windows.Forms.TextBox();
+			this.txtEsperaSleep = new System.Windows.Forms.TextBox();
 			this.btnAtivarGP = new System.Windows.Forms.Button();
 			this.btnIniciarGP = new System.Windows.Forms.Button();
 			this.cmbGP = new System.Windows.Forms.ComboBox();
@@ -50,8 +50,8 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.btnFPG = new System.Windows.Forms.Button();
 			this.btnAtivar = new System.Windows.Forms.Button();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.txtIndCheque = new System.Windows.Forms.TextBox();
+			this.txtIndCartao = new System.Windows.Forms.TextBox();
 			this.btnSerial = new System.Windows.Forms.Button();
 			this.cmbModelo = new System.Windows.Forms.ComboBox();
 			this.modeloLabel = new System.Windows.Forms.Label();
@@ -137,15 +137,15 @@
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.checkBox5);
-			this.groupBox2.Controls.Add(this.checkBox4);
-			this.groupBox2.Controls.Add(this.checkBox3);
-			this.groupBox2.Controls.Add(this.checkBox2);
-			this.groupBox2.Controls.Add(this.checkBox1);
+			this.groupBox2.Controls.Add(this.chkAutoFinalizarCupom);
+			this.groupBox2.Controls.Add(this.chkCHQGerencial);
+			this.groupBox2.Controls.Add(this.chkAutoEfetuarPagamento);
+			this.groupBox2.Controls.Add(this.chkMultiplosCartoes);
+			this.groupBox2.Controls.Add(this.chkAutoAtivarGP);
 			this.groupBox2.Controls.Add(this.label6);
 			this.groupBox2.Controls.Add(this.label7);
-			this.groupBox2.Controls.Add(this.textBox4);
-			this.groupBox2.Controls.Add(this.textBox5);
+			this.groupBox2.Controls.Add(this.txtEsperaSTS);
+			this.groupBox2.Controls.Add(this.txtEsperaSleep);
 			this.groupBox2.Controls.Add(this.btnAtivarGP);
 			this.groupBox2.Controls.Add(this.btnIniciarGP);
 			this.groupBox2.Controls.Add(this.cmbGP);
@@ -157,61 +157,66 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "TEF";
 			// 
-			// checkBox5
+			// chkAutoFinalizarCupom
 			// 
-			this.checkBox5.AutoSize = true;
-			this.checkBox5.Checked = true;
-			this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox5.Location = new System.Drawing.Point(176, 90);
-			this.checkBox5.Name = "checkBox5";
-			this.checkBox5.Size = new System.Drawing.Size(119, 17);
-			this.checkBox5.TabIndex = 28;
-			this.checkBox5.Text = "AutoFinalizarCupom";
-			this.checkBox5.UseVisualStyleBackColor = true;
+			this.chkAutoFinalizarCupom.AutoSize = true;
+			this.chkAutoFinalizarCupom.Checked = true;
+			this.chkAutoFinalizarCupom.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkAutoFinalizarCupom.Location = new System.Drawing.Point(176, 90);
+			this.chkAutoFinalizarCupom.Name = "chkAutoFinalizarCupom";
+			this.chkAutoFinalizarCupom.Size = new System.Drawing.Size(119, 17);
+			this.chkAutoFinalizarCupom.TabIndex = 28;
+			this.chkAutoFinalizarCupom.Text = "AutoFinalizarCupom";
+			this.chkAutoFinalizarCupom.UseVisualStyleBackColor = true;
+			this.chkAutoFinalizarCupom.CheckedChanged += new System.EventHandler(this.chkAutoFinalizarCupom_CheckedChanged);
 			// 
-			// checkBox4
+			// chkCHQGerencial
 			// 
-			this.checkBox4.AutoSize = true;
-			this.checkBox4.Location = new System.Drawing.Point(176, 113);
-			this.checkBox4.Name = "checkBox4";
-			this.checkBox4.Size = new System.Drawing.Size(114, 17);
-			this.checkBox4.TabIndex = 27;
-			this.checkBox4.Text = "CHQ em Gerencial";
-			this.checkBox4.UseVisualStyleBackColor = true;
+			this.chkCHQGerencial.AutoSize = true;
+			this.chkCHQGerencial.Location = new System.Drawing.Point(176, 113);
+			this.chkCHQGerencial.Name = "chkCHQGerencial";
+			this.chkCHQGerencial.Size = new System.Drawing.Size(114, 17);
+			this.chkCHQGerencial.TabIndex = 27;
+			this.chkCHQGerencial.Text = "CHQ em Gerencial";
+			this.chkCHQGerencial.UseVisualStyleBackColor = true;
+			this.chkCHQGerencial.CheckedChanged += new System.EventHandler(this.chkCHQGerencial_CheckedChanged);
 			// 
-			// checkBox3
+			// chkAutoEfetuarPagamento
 			// 
-			this.checkBox3.AutoSize = true;
-			this.checkBox3.Checked = true;
-			this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox3.Location = new System.Drawing.Point(176, 67);
-			this.checkBox3.Name = "checkBox3";
-			this.checkBox3.Size = new System.Drawing.Size(136, 17);
-			this.checkBox3.TabIndex = 26;
-			this.checkBox3.Text = "AutoEfetuarPagamento";
-			this.checkBox3.UseVisualStyleBackColor = true;
+			this.chkAutoEfetuarPagamento.AutoSize = true;
+			this.chkAutoEfetuarPagamento.Checked = true;
+			this.chkAutoEfetuarPagamento.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkAutoEfetuarPagamento.Location = new System.Drawing.Point(176, 67);
+			this.chkAutoEfetuarPagamento.Name = "chkAutoEfetuarPagamento";
+			this.chkAutoEfetuarPagamento.Size = new System.Drawing.Size(136, 17);
+			this.chkAutoEfetuarPagamento.TabIndex = 26;
+			this.chkAutoEfetuarPagamento.Text = "AutoEfetuarPagamento";
+			this.chkAutoEfetuarPagamento.UseVisualStyleBackColor = true;
+			this.chkAutoEfetuarPagamento.CheckedChanged += new System.EventHandler(this.chkAutoEfetuarPagamento_CheckedChanged);
 			// 
-			// checkBox2
+			// chkMultiplosCartoes
 			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(176, 44);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(106, 17);
-			this.checkBox2.TabIndex = 25;
-			this.checkBox2.Text = "Multiplos Cartões";
-			this.checkBox2.UseVisualStyleBackColor = true;
+			this.chkMultiplosCartoes.AutoSize = true;
+			this.chkMultiplosCartoes.Location = new System.Drawing.Point(176, 44);
+			this.chkMultiplosCartoes.Name = "chkMultiplosCartoes";
+			this.chkMultiplosCartoes.Size = new System.Drawing.Size(106, 17);
+			this.chkMultiplosCartoes.TabIndex = 25;
+			this.chkMultiplosCartoes.Text = "Multiplos Cartões";
+			this.chkMultiplosCartoes.UseVisualStyleBackColor = true;
+			this.chkMultiplosCartoes.CheckedChanged += new System.EventHandler(this.chkMultiplosCartoes_CheckedChanged);
 			// 
-			// checkBox1
+			// chkAutoAtivarGP
 			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Checked = true;
-			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(176, 21);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(102, 17);
-			this.checkBox1.TabIndex = 24;
-			this.checkBox1.Text = "Auto Ativar G.P.";
-			this.checkBox1.UseVisualStyleBackColor = true;
+			this.chkAutoAtivarGP.AutoSize = true;
+			this.chkAutoAtivarGP.Checked = true;
+			this.chkAutoAtivarGP.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkAutoAtivarGP.Location = new System.Drawing.Point(176, 21);
+			this.chkAutoAtivarGP.Name = "chkAutoAtivarGP";
+			this.chkAutoAtivarGP.Size = new System.Drawing.Size(102, 17);
+			this.chkAutoAtivarGP.TabIndex = 24;
+			this.chkAutoAtivarGP.Text = "Auto Ativar G.P.";
+			this.chkAutoAtivarGP.UseVisualStyleBackColor = true;
+			this.chkAutoAtivarGP.CheckedChanged += new System.EventHandler(this.chkAutoAtivarGP_CheckedChanged);
 			// 
 			// label6
 			// 
@@ -233,23 +238,23 @@
 			this.label7.TabIndex = 23;
 			this.label7.Text = "EsperaSleep";
 			// 
-			// textBox4
+			// txtEsperaSTS
 			// 
-			this.textBox4.Location = new System.Drawing.Point(328, 83);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(81, 20);
-			this.textBox4.TabIndex = 21;
-			this.textBox4.Text = "7";
-			this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.txtEsperaSTS.Location = new System.Drawing.Point(328, 83);
+			this.txtEsperaSTS.Name = "txtEsperaSTS";
+			this.txtEsperaSTS.Size = new System.Drawing.Size(81, 20);
+			this.txtEsperaSTS.TabIndex = 21;
+			this.txtEsperaSTS.Text = "7";
+			this.txtEsperaSTS.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
-			// textBox5
+			// txtEsperaSleep
 			// 
-			this.textBox5.Location = new System.Drawing.Point(328, 32);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(81, 20);
-			this.textBox5.TabIndex = 20;
-			this.textBox5.Text = "250";
-			this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.txtEsperaSleep.Location = new System.Drawing.Point(328, 32);
+			this.txtEsperaSleep.Name = "txtEsperaSleep";
+			this.txtEsperaSleep.Size = new System.Drawing.Size(81, 20);
+			this.txtEsperaSleep.TabIndex = 20;
+			this.txtEsperaSleep.Text = "250";
+			this.txtEsperaSleep.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// btnAtivarGP
 			// 
@@ -295,8 +300,8 @@
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Controls.Add(this.btnFPG);
 			this.groupBox1.Controls.Add(this.btnAtivar);
-			this.groupBox1.Controls.Add(this.textBox3);
-			this.groupBox1.Controls.Add(this.textBox2);
+			this.groupBox1.Controls.Add(this.txtIndCheque);
+			this.groupBox1.Controls.Add(this.txtIndCartao);
 			this.groupBox1.Controls.Add(this.btnSerial);
 			this.groupBox1.Controls.Add(this.cmbModelo);
 			this.groupBox1.Controls.Add(this.modeloLabel);
@@ -349,23 +354,23 @@
 			this.btnAtivar.UseVisualStyleBackColor = true;
 			this.btnAtivar.Click += new System.EventHandler(this.btnAtivar_Click);
 			// 
-			// textBox3
+			// txtIndCheque
 			// 
-			this.textBox3.Location = new System.Drawing.Point(204, 83);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(81, 20);
-			this.textBox3.TabIndex = 18;
-			this.textBox3.Text = "3";
-			this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.txtIndCheque.Location = new System.Drawing.Point(204, 83);
+			this.txtIndCheque.Name = "txtIndCheque";
+			this.txtIndCheque.Size = new System.Drawing.Size(81, 20);
+			this.txtIndCheque.TabIndex = 18;
+			this.txtIndCheque.Text = "3";
+			this.txtIndCheque.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
-			// textBox2
+			// txtIndCartao
 			// 
-			this.textBox2.Location = new System.Drawing.Point(204, 32);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(81, 20);
-			this.textBox2.TabIndex = 17;
-			this.textBox2.Text = "2";
-			this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.txtIndCartao.Location = new System.Drawing.Point(204, 32);
+			this.txtIndCartao.Name = "txtIndCartao";
+			this.txtIndCartao.Size = new System.Drawing.Size(81, 20);
+			this.txtIndCartao.TabIndex = 17;
+			this.txtIndCartao.Text = "2";
+			this.txtIndCartao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// btnSerial
 			// 
@@ -446,6 +451,7 @@
 			this.acBrTEFD1.AutoEfetuarPagamento = true;
 			this.acBrTEFD1.AutoFinalizarCupom = true;
 			this.acBrTEFD1.CHQEmGerencial = false;
+			this.acBrTEFD1.EsperaSleep = 250;
 			this.acBrTEFD1.GPAtual = ACBrFramework.TEFD.ACBrTEFDTipo.TefDial;
 			this.acBrTEFD1.MultiplosCartoes = false;
 			this.acBrTEFD1.OnAguardaResp += new System.EventHandler<ACBrFramework.TEFD.AguardaRespEventArgs>(this.tef_OnAguardaResp);
@@ -879,8 +885,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnFPG;
         private System.Windows.Forms.Button btnAtivar;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtIndCheque;
+        private System.Windows.Forms.TextBox txtIndCartao;
 		private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnAtivarGP;
@@ -889,13 +895,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox txtEsperaSTS;
+        private System.Windows.Forms.TextBox txtEsperaSleep;
+        private System.Windows.Forms.CheckBox chkAutoFinalizarCupom;
+        private System.Windows.Forms.CheckBox chkCHQGerencial;
+        private System.Windows.Forms.CheckBox chkAutoEfetuarPagamento;
+        private System.Windows.Forms.CheckBox chkMultiplosCartoes;
+        private System.Windows.Forms.CheckBox chkAutoAtivarGP;
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripStatusLabel messageToolStripStatusLabel;
 		private System.Windows.Forms.ToolStripStatusLabel descriptionToolStripStatusLabel;

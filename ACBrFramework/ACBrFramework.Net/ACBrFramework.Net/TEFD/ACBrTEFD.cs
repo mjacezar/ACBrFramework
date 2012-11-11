@@ -7,6 +7,7 @@ using System.ComponentModel;
 namespace ACBrFramework.TEFD
 {
 	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.TEFD.ico.bmp")]
+	[TypeConverter(typeof(ExpandableObjectConverter))] 
 	public sealed class ACBrTEFD : ACBrComponent, IDisposable
 	{
 		#region Events
@@ -323,6 +324,18 @@ namespace ACBrFramework.TEFD
 			set
 			{
 				SetBool(ACBrTEFInterop.TEF_SetCHQEmGerencial, value);
+			}
+		}
+
+		public int EsperaSleep
+		{
+			get
+			{
+				return GetInt32(ACBrTEFInterop.TEF_GetEsperaSleep);
+			}
+			set
+			{
+				SetInt32(ACBrTEFInterop.TEF_SetEsperaSleep, value);
 			}
 		}
 
