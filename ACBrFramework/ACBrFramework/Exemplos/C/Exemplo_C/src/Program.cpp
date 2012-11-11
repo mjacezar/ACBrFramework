@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ACBr.h"
+#include "ACBrECF.h"
 
 void CheckResult(int ret);
 
-ACBR_HANDLE ecfHANDLE;
+INTPTR ecfHANDLE;
 
 int main()
 {
@@ -14,7 +14,7 @@ int main()
 	PCHAR porta = (PCHAR)malloc(20);
 	PCHAR modelo = (PCHAR)malloc(20);
 
-	printf("ACBR32.dll - Teste em C/C++\n\n");
+	printf("ACBrFramework32.dll - Teste em C/C++\n\n");
 
 	printf("SELECIONE O MODELO DE ECF:\n");
 	printf("  1. NaoFiscal\n");
@@ -32,10 +32,10 @@ int main()
 	printf(" 13. Epson\n");
 	printf(" 14. NCR\n");
 	printf(" 15. SwedaSTX\n");
-	
+
 	printf("\nENTRE COM O ECF: ");
 	gets(modelo);
-	
+
 	printf("\nENTRE COM A PORTA: ");
 	gets(porta);
 
@@ -93,17 +93,14 @@ int main()
 		printf(" - %s %s\n", formaPagto.Indice, formaPagto.Descricao);
 	}
 
-	
-
 	printf("\nTesta cupom fiscal\n");
 	ret = ECF_AbreCupom(ecfHANDLE, "", "", "");
 	CheckResult(ret);
 
-	
 	for (i=0; i<10; i++)
 	{
 		printf("Vende item %i\n", i + 1);
-		ret = ECF_VendeItem(ecfHANDLE, "0001", "PRODUTO", "I", 1, 0.01, 0, "UN", "D", "$");
+		ret = ECF_VendeItem(ecfHANDLE, "0001", "PRODUTO", "I", 1, 0.01, 0, "UN", "%", "D");
 		CheckResult(ret);
 	}
 
@@ -132,7 +129,7 @@ void CheckResult(int ret)
 {
 	if (ret < 0)
 	{
-		PCHAR buff = malloc(100);
+		PCHAR buff = (PCHAR)malloc(100);
 		ECF_GetUltimoErro(ecfHANDLE, buff, 100);
 		printf("ERRO: ");
 		printf(buff);
