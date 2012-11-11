@@ -23,7 +23,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="7"/>
+      <BuildNr Value="9"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -40,7 +40,7 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <Units Count="38">
+    <Units Count="39">
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -64,10 +64,9 @@
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="4460"/>
+        <TopLine Value="4459"/>
         <CursorPos X="50" Y="4455"/>
         <UsageCount Value="97"/>
         <Loaded Value="True"/>
@@ -389,8 +388,20 @@
         <UsageCount Value="11"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit37>
+      <Unit38>
+        <Filename Value="ACBrTEFDll.pas"/>
+        <UnitName Value="ACBrTEFDll"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="16" Y="13"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit38>
     </Units>
-    <JumpHistory Count="4" HistoryIndex="3">
+    <JumpHistory Count="5" HistoryIndex="4">
       <Position1>
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="5148" Column="72" TopLine="1943"/>
@@ -407,6 +418,10 @@
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="4287" Column="22" TopLine="4258"/>
       </Position4>
+      <Position5>
+        <Filename Value="ACBrTEFDll.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position5>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
@@ -421,7 +436,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir);..\..\ACBr\Fontes\ACBrComum"/>
-      <OtherUnitFiles Value="..\..\ACBr\Fontes\ACBrSerial;..\..\ACBr\Fontes\ACBrTCP;..\..\ACBr\Fontes\ACBrComum;..\..\ACBr\Fontes\ACBrDiversos;..\..\ACBr\Fontes\ACBrPAF;..\..\ACBr\Fontes\ACBrSintegra;..\..\ACBr\Fontes\ACBrSPED;..\..\ACBr\Fontes\ACBrSPED\ACBrSPEDFiscal;..\..\ACBr\Fontes\synalist"/>
+      <OtherUnitFiles Value="..\..\ACBr\Fontes\ACBrSerial;..\..\ACBr\Fontes\ACBrTCP;..\..\ACBr\Fontes\ACBrComum;..\..\ACBr\Fontes\ACBrDiversos;..\..\ACBr\Fontes\ACBrPAF;..\..\ACBr\Fontes\ACBrTEFD;..\..\ACBr\Fontes\ACBrSintegra;..\..\ACBr\Fontes\ACBrSPED;..\..\ACBr\Fontes\ACBrSPED\ACBrSPEDFiscal;..\..\ACBr\Fontes\synalist"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

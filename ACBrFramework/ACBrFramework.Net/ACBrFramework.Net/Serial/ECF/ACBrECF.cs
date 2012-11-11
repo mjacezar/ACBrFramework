@@ -747,12 +747,32 @@ namespace ACBrFramework.ECF
 
 		#region Métodos ECF
 
+		public bool AcharECF()
+		{
+			return AcharECF(true, true, 3);
+		}
+
+		public bool AcharECF(bool Modelo)
+		{
+			return AcharECF(Modelo, true, 3);
+		}
+
+		public bool AcharECF(bool Modelo, bool Porta)
+		{
+			return AcharECF(Modelo, Porta, 3);
+		}
+
 		public bool AcharECF(bool Modelo, bool Porta, int TimeOut)
 		{
 			int ret = ACBrECFInterop.ECF_AcharECF(this.Handle, Modelo, Porta, TimeOut);
 			CheckResult(ret);
 
 			return Convert.ToBoolean(ret);
+		}
+
+		public bool AcharPorta()
+		{
+			return AcharPorta(3);
 		}
 
 		public bool AcharPorta(int TimeOut)

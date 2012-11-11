@@ -41,22 +41,29 @@ Símbolo : Significado
 
 Changelog
 
-11/11/2012
-[*] Modificado o DefExporter para suportar os eventos - Rafael Batiati
-[-] Atualizado e corrigido o projeto jACBrFramework para funcionar com os ultimos Defs - Rafael Batiati
-[*] Padronização dos Callbacks de eventos no código Delphi - Rafael Batiati
-[-] Correção dos ícones do toolbox do ACBrFramework.net
+11/11/2012 (ACBrFramework 0.9.1.8)
+[*] Modificado o DefExporter para suportar os eventos - DefExporter - Rafael Batiati.
+[-] Atualizado e corrigido o projeto jACBrFramework para funcionar com os ultimos Defs - jACBrFramework - Rafael Batiati.
+[*] Padronização dos Callbacks de eventos no código Delphi - ACBrFramework - Rafael Batiati.
+[-] Correção dos ícones do toolbox do ACBrFramework.net - ACBrFramework.Net - Rafael Batiati.
+[*] Melhoras na versão Demo do componente ACBrTEFD - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo TEF_SetAutoAtivar, TEF_GetAutoAtivar - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo TEF_GetGPAtual, TEF_SetGPAtual - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo TEF_SetMultiplosCartoes, TEF_GetMultiplosCartoes - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo TEF_SetAutoEfetuarPagamento, TEF_GetAutoEfetuarPagamento - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo TEF_SetAutoFinalizarCupom, TEF_GetAutoFinalizarCupom - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo TEF_SetCHQEmGerencial, TEF_GetCHQEmGerencial - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 
-08/11/2012
+08/11/2012 (ACBrFramework 0.9.1.6)
 [+] Versão BETA do componente ACBrTEFD - Rafael Batiati
 [+] Métodos TEFD ATV, ADM, CNC, CNF e NCN, e GetImagemComprovante 1a e 2a via em Resp e RespostasPendentes - Rafael Batiati
 
 
-07/11/2012(ACBrFramework 0.9.1.6)
+07/11/2012 (ACBrFramework 0.9.1.6)
 [-] Remoção das solution folders para compatibilidade com as versões express do Visual Studio - ACBrFramework.Net   - Rafael Dias.
 [+] Inicio do ACBrSpedFiscal  - ACBrFramework - Rafael Dias. 
 
-06/11/2012(ACBrFramework 0.9.1.6)
+06/11/2012 (ACBrFramework 0.9.1.6)
 [*] Inclusão de Namespaces nos componentes .Net - ACBrFramework.Net - Rafael Batiati.
 
 04/11/2012 (ACBrFramework 0.9.1.6)
@@ -82,7 +89,7 @@ Changelog
 [*] Listas de registros do ACBrPAF trocadas para readonly e instanciadas no construtor - Rafael Batiati
 
 29/10/2012 (ACBrFramework 0.9.1.2)
-[-] Corrigido método RelatorioGerencial - ACBrFramework e ACBrFrameowrk.Net - Rafael Batiati
+[-] Corrigido método RelatorioGerencial - ACBrFramework e ACBrFramework.Net - Rafael Batiati
 [+] Implementado o metodo SIN_GeraArquivo - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [+] Implementado o metodo SIN_Registro60I - ACBrFramework.Net - Rafael Dias.
 [+] Implementado o metodo SIN_Registro60R - ACBrFramework.Net - Rafael Dias.
