@@ -265,6 +265,66 @@ namespace ACBrFramework.TEFD
 
 		#region Properties
 
+		public bool AutoAtivar
+		{
+			get
+			{
+				return GetBool(ACBrTEFInterop.TEF_GetAutoAtivar);
+			}
+			set
+			{
+				SetBool(ACBrTEFInterop.TEF_SetAutoAtivar, value);
+			}
+		}
+
+		public bool MultiplosCartoes
+		{
+			get
+			{
+				return GetBool(ACBrTEFInterop.TEF_GetMultiplosCartoes);
+			}
+			set
+			{
+				SetBool(ACBrTEFInterop.TEF_SetMultiplosCartoes, value);
+			}
+		}
+
+		public bool AutoEfetuarPagamento
+		{
+			get
+			{
+				return GetBool(ACBrTEFInterop.TEF_GetAutoEfetuarPagamento);
+			}
+			set
+			{
+				SetBool(ACBrTEFInterop.TEF_SetAutoEfetuarPagamento, value);
+			}
+		}
+
+		public bool AutoFinalizarCupom
+		{
+			get
+			{
+				return GetBool(ACBrTEFInterop.TEF_GetAutoFinalizarCupom);
+			}
+			set
+			{
+				SetBool(ACBrTEFInterop.TEF_SetAutoFinalizarCupom, value);
+			}
+		}
+
+		public bool CHQEmGerencial
+		{
+			get
+			{
+				return GetBool(ACBrTEFInterop.TEF_GetCHQEmGerencial);
+			}
+			set
+			{
+				SetBool(ACBrTEFInterop.TEF_SetCHQEmGerencial, value);
+			}
+		}
+
 		public ACBrTEFDIdentificacao Identificacao { get; private set; }
 
 		public ACBrTEFDReq Req { get; private set; }

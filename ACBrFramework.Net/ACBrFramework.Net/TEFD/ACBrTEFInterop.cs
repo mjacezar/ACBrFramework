@@ -76,6 +76,8 @@ namespace ACBrFramework.TEFD
 
 		#region Methods
 
+		#region Constructor\Destructor\Error
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_Create(ref IntPtr tefHandle);
 
@@ -84,6 +86,10 @@ namespace ACBrFramework.TEFD
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_GetUltimoErro(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		#endregion Constructor\Destructor\Error
+
+		#region Funções TEF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_Inicializar(IntPtr tefHandle, int gp);
@@ -106,11 +112,47 @@ namespace ACBrFramework.TEFD
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_NCN(IntPtr tefHandle, string Rede, string NSU, string Finalizacao, double Valor, string DocumentoVinculado);
 
+		#endregion Funções TEF
+
+		#region Propriedades Componente
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_GetAutoAtivar(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_SetAutoAtivar(IntPtr tefHandle, bool Ativar);
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_GetGPAtual(IntPtr tefHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_SetGPAtual(IntPtr tefHandle, int gp);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_GetMultiplosCartoes(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_SetMultiplosCartoes(IntPtr tefHandle, bool Ativar);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_GetAutoEfetuarPagamento(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_SetAutoEfetuarPagamento(IntPtr tefHandle, bool Ativar);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_GetAutoFinalizarCupom(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_SetAutoFinalizarCupom(IntPtr tefHandle, bool Ativar);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_GetCHQEmGerencial(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_SetCHQEmGerencial(IntPtr tefHandle, bool Ativar);	
+
+		#endregion Propriedades Componente
 
 		#region Identificacao
 

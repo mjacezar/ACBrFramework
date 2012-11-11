@@ -46,10 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InputForm.cs">
+    <Compile Include="Forms\InputForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InputForm.designer.cs">
+    <Compile Include="Forms\InputForm.designer.cs">
       <DependentUpon>InputForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -58,21 +58,27 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MenuForm.cs">
+    <Compile Include="Forms\MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MenuForm.designer.cs">
+    <Compile Include="Forms\MenuForm.designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="InputForm.resx">
+    <Compile Include="Forms\SerialCFGForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SerialCFGForm.Designer.cs">
+      <DependentUpon>SerialCFGForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\InputForm.resx">
       <DependentUpon>InputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MenuForm.resx">
+    <EmbeddedResource Include="Forms\MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -83,7 +89,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Forms\SerialCFGForm.resx">
+      <DependentUpon>SerialCFGForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,6 +109,36 @@
       <Project>{C66AC69F-8537-46AD-A6DB-576A61670FA4}</Project>
       <Name>ACBrFramework.Net</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\001.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\007.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\024.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\105.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\004.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\006.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\047.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\092.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\093.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

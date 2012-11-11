@@ -10,8 +10,7 @@ uses
   ACBrTEFDClass,
   ACBrTEFDCliSiTef,
   ACBrUtil,
-  ACBrCommonDll
-  ;
+  ACBrCommonDll;
 
 {Ponteiros para classes expostas}
 type PTEFResp = ^TACBrTEFDResp;
@@ -220,6 +219,274 @@ begin
 
 end;
 
+// Propriedades
+
+Function TEF_SetAutoAtivar(const tefHandle : PTEFHandle; const Ativar : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.AutoAtivarGP := Ativar;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetAutoAtivar(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     If tefHandle^.TEF.AutoAtivarGP then
+        Result:= 1
+     Else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetGPAtual(const tefHandle : PTEFHandle): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(tefHandle^.TEF.GPAtual);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+
+end;
+
+Function TEF_SetGPAtual(const tefHandle : PTEFHandle; GP : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.GPAtual := TACBrTEFDTipo(GP);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_SetMultiplosCartoes(const tefHandle : PTEFHandle; const Ativar : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.MultiplosCartoes := Ativar;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetMultiplosCartoes(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     If tefHandle^.TEF.MultiplosCartoes then
+        Result:= 1
+     Else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_SetAutoEfetuarPagamento(const tefHandle : PTEFHandle; const Ativar : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.AutoEfetuarPagamento := Ativar;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetAutoEfetuarPagamento(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     If tefHandle^.TEF.AutoEfetuarPagamento then
+        Result:= 1
+     Else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_SetAutoFinalizarCupom(const tefHandle : PTEFHandle; const Ativar : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.AutoFinalizarCupom := Ativar;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetAutoFinalizarCupom(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     If tefHandle^.TEF.AutoFinalizarCupom then
+        Result:= 1
+     Else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_SetCHQEmGerencial(const tefHandle : PTEFHandle; const Ativar : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.CHQEmGerencial := Ativar;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetCHQEmGerencial(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     If tefHandle^.TEF.CHQEmGerencial then
+        Result:= 1
+     Else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+///////////////////////////////////////////////////////////
+
 Function TEF_ATV(const tefHandle : PTEFHandle; const GP : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -357,50 +624,6 @@ begin
         Result := 1
      else
         Result := 0;
-  except
-     on exception : Exception do
-     begin
-        tefHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-
-end;
-
-Function TEF_GetGPAtual(const tefHandle : PTEFHandle): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (tefHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     Result := Integer(tefHandle^.TEF.GPAtual);
-  except
-     on exception : Exception do
-     begin
-        tefHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-
-
-end;
-
-Function TEF_SetGPAtual(const tefHandle : PTEFHandle; GP : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (tefHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     tefHandle^.TEF.GPAtual := TACBrTEFDTipo(GP);
-     Result := 0;
   except
      on exception : Exception do
      begin
@@ -8964,8 +9187,17 @@ exports
 TEF_Create, TEF_Destroy,
 TEF_GetUltimoErro,
 
-TEF_Inicializar,
+{ Propriedade Componente }
+TEF_SetAutoAtivar, TEF_GetAutoAtivar,
 TEF_GetGPAtual, TEF_SetGPAtual,
+TEF_SetMultiplosCartoes, TEF_GetMultiplosCartoes,
+TEF_SetAutoEfetuarPagamento, TEF_GetAutoEfetuarPagamento,
+TEF_SetAutoFinalizarCupom, TEF_GetAutoFinalizarCupom,
+TEF_SetCHQEmGerencial, TEF_GetCHQEmGerencial,
+
+
+{ Funções TEF }
+TEF_Inicializar,
 TEF_CRT,
 TEF_ATV,
 TEF_ADM,
