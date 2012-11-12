@@ -109,6 +109,30 @@
 			}
 		}
 
+        public string Name
+        {
+            get
+            {
+                return GetString(ACBrTEFInterop.TEF_TEFDisc_GetName);
+            }
+            set
+            {
+                SetString(ACBrTEFInterop.TEF_TEFDisc_SetName, value);
+            }
+        }
+
+        public bool Habilitado
+        {
+            get
+            {
+                return GetBool(ACBrTEFInterop.TEF_TEFDisc_GetHabilitado);
+            }
+            set
+            {
+                SetBool(ACBrTEFInterop.TEF_TEFDisc_SetHabilitado, value);
+            }
+        }
+
 		#endregion Properties
 	}
 }
