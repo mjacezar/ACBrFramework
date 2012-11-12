@@ -822,6 +822,11 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+        public void AbreCupom()
+        {
+            AbreCupom(string.Empty, string.Empty, string.Empty);
+        }
+
 		public void AbreCupom(string cpfCnpj, string nome, string endereco)
 		{
 			int ret = ACBrECFInterop.ECF_AbreCupom(this.Handle, ToUTF8(cpfCnpj), ToUTF8(nome), ToUTF8(endereco));
@@ -833,6 +838,11 @@ namespace ACBrFramework.ECF
 			int ret = ACBrECFInterop.ECF_LegendaInmetroProximoItem(this.Handle);
 			CheckResult(ret);
 		}
+
+        public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario)
+        {
+            VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, 0, "UN", "%", "D");
+        }
 
 		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario, decimal descontoPorc, string unidade, string tipoDescontoAcrescimo, string descontoAcrescimo)
 		{
@@ -846,11 +856,21 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+        public void SubtotalizaCupom()
+        {
+            SubtotalizaCupom(0, "");
+        }
+
 		public void SubtotalizaCupom(decimal descontoAcrescimo, string mensagemRodape)
 		{
 			int ret = ACBrECFInterop.ECF_SubtotalizaCupom(this.Handle, (double)descontoAcrescimo, ToUTF8(mensagemRodape));
 			CheckResult(ret);
 		}
+
+        public void EfetuaPagamento(string codFormaPagto, decimal valor)
+        {
+            EfetuaPagamento(codFormaPagto, valor, "", false);
+        }
 
 		public void EfetuaPagamento(string codFormaPagto, decimal valor, string observacao, bool imprimeVinculado)
 		{
@@ -1567,6 +1587,28 @@ namespace ACBrFramework.ECF
 		#endregion Alíquotas
 
 		#region Formas de Pagto
+
+        public ACBrECFFormaPagamento AchaFPGIndice(string indice)
+        {
+            ACBrECFInterop.FormaPagamentoRec FormaRec = new ACBrECFInterop.FormaPagamentoRec();
+            int ret = ACBrECFInterop.ECF_AchaFPGIndice(this.Handle, indice, ref FormaRec);
+            CheckResult(ret);
+
+            if (ret == 0)
+                return null;
+            else
+            {
+                ACBrECFFormaPagamento Forma = new ACBrECFFormaPagamento();
+                Forma.Data = DateTime.FromOADate(FormaRec.Data);
+                Forma.Descricao = FromUTF8(FormaRec.Descricao);
+                Forma.Indice = FromUTF8(FormaRec.Indice);
+                Forma.PermiteVinculado = FormaRec.PermiteVinculado;
+                Forma.TipoDoc = FromUTF8(FormaRec.TipoDoc);
+                Forma.Total = Convert.ToDecimal(FormaRec.Total);
+
+                return Forma;
+            }
+        }
 
 		public void CarregaFormasPagamento()
 		{

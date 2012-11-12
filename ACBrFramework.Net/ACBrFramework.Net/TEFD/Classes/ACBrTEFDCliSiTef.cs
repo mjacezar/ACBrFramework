@@ -116,6 +116,30 @@ namespace ACBrFramework.TEFD
 
 		//public string ParametrosAdicionais
 
+        public string Name
+        {
+            get
+            {
+                return GetString(ACBrTEFInterop.TEF_TEFCliSiTef_GetName);
+            }
+            set
+            {
+                SetString(ACBrTEFInterop.TEF_TEFCliSiTef_SetName, value);
+            }
+        }
+
+        public bool Habilitado
+        {
+            get
+            {
+                return GetBool(ACBrTEFInterop.TEF_TEFCliSiTef_GetHabilitado);
+            }
+            set
+            {
+                SetBool(ACBrTEFInterop.TEF_TEFCliSiTef_SetHabilitado, value);
+            }
+        }
+
 		public int OperacaoATV
 		{
 			get

@@ -109,6 +109,30 @@
 			}
 		}
 
+        public string Name
+        {
+            get
+            {
+                return GetString(ACBrTEFInterop.TEF_TEFGPU_GetName);
+            }
+            set
+            {
+                SetString(ACBrTEFInterop.TEF_TEFGPU_SetName, value);
+            }
+        }
+
+        public bool Habilitado
+        {
+            get
+            {
+                return GetBool(ACBrTEFInterop.TEF_TEFGPU_GetHabilitado);
+            }
+            set
+            {
+                SetBool(ACBrTEFInterop.TEF_TEFGPU_SetHabilitado, value);
+            }
+        }
+
 		#endregion Properties
 	}
 }

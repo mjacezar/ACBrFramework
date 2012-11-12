@@ -409,6 +409,11 @@ namespace ACBrFramework.TEFD
 			return CRT(valor, indiceFPG_ECF, string.Empty, 0);
 		}
 
+        public bool CRT(decimal valor, string indiceFPG_ECF, string documentoVinculado)
+        {
+            return CRT(valor, indiceFPG_ECF, documentoVinculado, 0);
+        }
+
 		public bool CRT(decimal valor, string indiceFPG_ECF, string documentoVinculado, int moeda)
 		{
 			int ret = ACBrTEFInterop.TEF_CRT(this.Handle, Convert.ToDouble(valor), indiceFPG_ECF, documentoVinculado, moeda);
@@ -465,11 +470,45 @@ namespace ACBrFramework.TEFD
 			NCN(rede, nsu, finalizacao, 0M, string.Empty);
 		}
 
+        public void NCN(string rede, string nsu, string finalizacao, decimal valor)
+        {
+            NCN(rede, nsu, finalizacao, valor, string.Empty);
+        }
+
 		public void NCN(string rede, string nsu, string finalizacao, decimal valor, string documentoVinculado)
 		{
 			int ret = ACBrTEFInterop.TEF_NCN(this.Handle, rede, nsu, finalizacao, Convert.ToDouble(valor), documentoVinculado);
 			CheckResult(ret);
 		}
+
+        public void CancelarTransacoesPendentes()
+        {
+            int ret = ACBrTEFInterop.TEF_CancelarTransacoesPendentes(this.Handle);
+            CheckResult(ret);
+        }
+
+        public void ConfirmarTransacoesPendentes()
+        {
+            int ret = ACBrTEFInterop.TEF_ConfirmarTransacoesPendentes(this.Handle);
+            CheckResult(ret);
+        }
+
+        public void ImprimirTransacoesPendentes()
+        {
+            int ret = ACBrTEFInterop.TEF_ImprimirTransacoesPendentes(this.Handle);
+            CheckResult(ret);
+        }
+
+        public void FinalizarCupom()
+        {
+            FinalizarCupom(true);
+        }
+
+        public void FinalizarCupom(bool bloqueia)
+        {
+            int ret = ACBrTEFInterop.TEF_FinalizarCupom(this.Handle, bloqueia);
+            CheckResult(ret);
+        }
 
 		#region Override Methods
 

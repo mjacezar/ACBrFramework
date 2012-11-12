@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\InputForm.cs">
+    <Compile Include="Forms\CNF_CNCForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\InputForm.designer.cs">
-      <DependentUpon>InputForm.cs</DependentUpon>
+    <Compile Include="Forms\CNF_CNCForm.Designer.cs">
+      <DependentUpon>CNF_CNCForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -72,8 +72,9 @@
     <Compile Include="Forms\SerialCFGForm.Designer.cs">
       <DependentUpon>SerialCFGForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\InputForm.resx">
-      <DependentUpon>InputForm.cs</DependentUpon>
+    <Compile Include="Utils\InputBox.cs" />
+    <EmbeddedResource Include="Forms\CNF_CNCForm.resx">
+      <DependentUpon>CNF_CNCForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

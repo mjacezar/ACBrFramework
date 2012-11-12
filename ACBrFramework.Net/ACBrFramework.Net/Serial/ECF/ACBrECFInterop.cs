@@ -330,7 +330,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_AbreGaveta(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_CorrigeEstadoErro(IntPtr ecfHandle, bool reducaoZ);
+		public static extern int ECF_CorrigeEstadoErro(IntPtr ecfHandle, bool reducaoZ);        
 
 		#endregion Métodos ECF
 
@@ -838,6 +838,9 @@ namespace ACBrFramework.ECF
 		#endregion Alíquotas
 
 		#region Formas de Pagto
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_AchaFPGIndice(IntPtr ecfHandle, string indice, ref FormaPagamentoRec formaPagamento);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetFormaPagamento(IntPtr ecfHandle, ref FormaPagamentoRec formaPagamento, int index);

@@ -118,6 +118,19 @@ namespace ACBrFramework.TEFD
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_NCN(IntPtr tefHandle, string Rede, string NSU, string Finalizacao, double Valor, string DocumentoVinculado);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_CancelarTransacoesPendentes(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_ConfirmarTransacoesPendentes(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_ImprimirTransacoesPendentes(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_FinalizarCupom(IntPtr tefHandle, bool mouse);
+
+
 		#endregion Funções TEF
 
 		#region Propriedades Componente
@@ -718,6 +731,18 @@ namespace ACBrFramework.TEFD
 		//Function TEF_TEFCliSiTef_GetParametrosAdicionais
 		//Function TEF_TEFCliSiTef_SetParametrosAdicionais
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFCliSiTef_GetName(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFCliSiTef_SetName(IntPtr tefHandle, String Name);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFCliSiTef_GetHabilitado(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFCliSiTef_SetHabilitado(IntPtr tefHandle, bool Habilitado);
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFCliSiTef_GetOperacaoATV(IntPtr tefHandle);
 
@@ -812,6 +837,18 @@ namespace ACBrFramework.TEFD
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFDial_SetGPExeName(IntPtr tefHandle, String ExeName);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFDial_GetName(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFDial_SetName(IntPtr tefHandle, String Name);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFDial_GetHabilitado(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFDial_SetHabilitado(IntPtr tefHandle, bool Habilitado);
+
 		#endregion TEFDial
 
 		#region TEFDisc
@@ -863,6 +900,18 @@ namespace ACBrFramework.TEFD
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFDisc_SetGPExeName(IntPtr tefHandle, String ExeName);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFDisc_GetName(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFDisc_SetName(IntPtr tefHandle, String Name);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFDisc_GetHabilitado(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFDisc_SetHabilitado(IntPtr tefHandle, bool Habilitado);
 
 		#endregion TEFDisc
 
@@ -916,6 +965,18 @@ namespace ACBrFramework.TEFD
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFHiper_SetGPExeName(IntPtr tefHandle, String ExeName);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFHiper_GetName(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFHiper_SetName(IntPtr tefHandle, String Name);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFHiper_GetHabilitado(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFHiper_SetHabilitado(IntPtr tefHandle, bool Habilitado);
+
 		#endregion TEFHiper
 
 		#region TEFGPU
@@ -967,6 +1028,18 @@ namespace ACBrFramework.TEFD
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFGPU_SetGPExeName(IntPtr tefHandle, String ExeName);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFGPU_GetName(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFGPU_SetName(IntPtr tefHandle, String Name);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFGPU_GetHabilitado(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFGPU_SetHabilitado(IntPtr tefHandle, bool Habilitado);
 
 		#endregion TEFGPU
 
@@ -1020,6 +1093,18 @@ namespace ACBrFramework.TEFD
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFAuttar_SetGPExeName(IntPtr tefHandle, String ExeName);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFAuttar_GetName(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFAuttar_SetName(IntPtr tefHandle, String Name);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFAuttar_GetHabilitado(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFAuttar_SetHabilitado(IntPtr tefHandle, bool Habilitado);
+
 		#endregion TEFAuttar
 
 		#region TEFGood
@@ -1071,6 +1156,18 @@ namespace ACBrFramework.TEFD
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFGood_SetGPExeName(IntPtr tefHandle, String ExeName);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFGood_GetName(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFGood_SetName(IntPtr tefHandle, String Name);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFGood_GetHabilitado(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFGood_SetHabilitado(IntPtr tefHandle, bool Habilitado);
 
 		#endregion TEFGood
 
@@ -1124,6 +1221,18 @@ namespace ACBrFramework.TEFD
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFFoxWin_SetGPExeName(IntPtr tefHandle, String ExeName);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFFoxWin_GetName(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFFoxWin_SetName(IntPtr tefHandle, String Name);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFFoxWin_GetHabilitado(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFFoxWin_SetHabilitado(IntPtr tefHandle, bool Habilitado);
+
 		#endregion TEFFoxWin
 
 		#region TEFPetrocard
@@ -1176,6 +1285,18 @@ namespace ACBrFramework.TEFD
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFPetrocard_SetGPExeName(IntPtr tefHandle, String ExeName);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFPetrocard_GetName(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFPetrocard_SetName(IntPtr tefHandle, String Name);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFPetrocard_GetHabilitado(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFPetrocard_SetHabilitado(IntPtr tefHandle, bool Habilitado);
+
 		#endregion TEFPetrocard
 
 		#region TEFCrediShop
@@ -1227,6 +1348,18 @@ namespace ACBrFramework.TEFD
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFCrediShop_SetGPExeName(IntPtr tefHandle, String ExeName);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFCrediShop_GetName(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFCrediShop_SetName(IntPtr tefHandle, String Name);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFCrediShop_GetHabilitado(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_TEFCrediShop_SetHabilitado(IntPtr tefHandle, bool Habilitado);
 
 		#endregion TEFCrediShop
 

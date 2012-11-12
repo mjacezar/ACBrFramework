@@ -41,6 +41,12 @@ Símbolo : Significado
 
 Changelog
 
+12/11/2012 (ACBrFramework 0.9.1.10)
+[+] Implementado a propriedade TEF_TEFxxx_SetHabilitado, TEF_TEFxxx_GetHabilitado - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Implementado a propriedade TEF_TEFxxx_SetName, TEF_TEFxxx_GetName - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[*] Melhorado os metodos ECF_VendeItem, ECF_AbreCupom, ECF_EfetuaPagamento - ACBrFramework.Net - Rafael Dias.
+[+] Implementado o metodo ECF_AchaFPGIndice - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+
 11/11/2012 (ACBrFramework 0.9.1.9)
 [+] Implementado o metodo TEF_DesInicializar - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [+] Implementado o metodo TEF_AtivarGP - ACBrFramework e ACBrFramework.Net - Rafael Dias.

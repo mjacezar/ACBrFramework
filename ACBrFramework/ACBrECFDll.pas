@@ -2288,6 +2288,45 @@ begin
 end;
 
 {Métodos do componente}
+
+Function ECF_AchaFPGIndice(const ecfHandle: PECFHandle; const indice : pChar; var retFormaPagamento : TFormaPagamentoRec) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+   FormPGT : TACBrECFFormaPagamento;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     FormPGT := ecfHandle^.ECF.AchaFPGIndice(indice);
+     if FormPGT <> nil then
+     begin
+           retFormaPagamento.Data := FormPGT.Data;
+           retFormaPagamento.Descricao := FormPGT.Descricao;
+           retFormaPagamento.Indice := FormPGT.Indice;
+           retFormaPagamento.PermiteVinculado := FormPGT.PermiteVinculado;
+           retFormaPagamento.TipoDoc := FormPGT.TipoDoc;
+           retFormaPagamento.Total := FormPGT.Total;
+           Result := 1 ;
+     end
+     else
+     Begin
+           Result := 0;
+     end
+
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 {Métodos do cupom fiscal}
 
 Function ECF_IdentificaConsumidor(const ecfHandle: PECFHandle; const CPF_CNPJ, Nome, Endereco : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
@@ -5333,7 +5372,7 @@ ECF_IdentificaConsumidor, ECF_AbreCupom, ECF_LegendaInmetroProximoItem, ECF_Vend
 ECF_DescontoAcrescimoItemAnterior,  ECF_SubtotalizaCupom,
 ECF_EfetuaPagamento, ECF_EstornaPagamento, ECF_FechaCupom, ECF_CancelaCupom,
 ECF_CancelaItemVendido, ECF_CancelaItemVendidoParcial,
-ECF_CancelaDescontoAcrescimoItem, ECF_CancelaDescontoAcrescimoSubTotal,
+ECF_CancelaDescontoAcrescimoItem, ECF_CancelaDescontoAcrescimoSubTotal, ECF_AchaFPGIndice,
 
 ECF_LeituraX, ECF_LinhaCupomVinculado,
 ECF_FechaRelatorio, ECF_PulaLinhas, ECF_CortaPapel,
