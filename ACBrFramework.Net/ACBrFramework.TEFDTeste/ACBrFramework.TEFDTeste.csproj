@@ -72,6 +72,7 @@
     <Compile Include="Forms\SerialCFGForm.Designer.cs">
       <DependentUpon>SerialCFGForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\BlockInput.cs" />
     <Compile Include="Utils\InputBox.cs" />
     <EmbeddedResource Include="Forms\CNF_CNCForm.resx">
       <DependentUpon>CNF_CNCForm.cs</DependentUpon>

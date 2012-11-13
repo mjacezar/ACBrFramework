@@ -807,6 +807,37 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
+        private void programaFormaPagamento()
+        {
+            try
+            {
+                string descricao = "C. Debito";
+                bool vinculado = false;
+
+                if (InputBox.Show("Programaçao de Formas de Pagamento (FPG)", "Entre com a Descriçao:", ref descricao).Equals(DialogResult.Cancel))
+                    return;
+
+                if (acbrECF.Modelo != ModeloECF.NaoFiscal && acbrECF.Modelo != ModeloECF.Mecaf)
+                {
+                    if (MessageBox.Show("Permite Vinculado nessa Forma de Pagamento ?", "Demo ECF - ACBrFramework.NET", MessageBoxButtons.YesNo).Equals(DialogResult.Yes))
+                        vinculado = true;
+                }
+
+                string menssagem = string.Format("A Forma de Pagamento: {0} será programada. \nCuidado !! A programação de Formas de Pagamento é irreversivel\nConfirma a operação ?", descricao);
+                if (MessageBox.Show(menssagem, "Demo ECF - ACBrFramework.NET", MessageBoxButtons.YesNo).Equals(DialogResult.No))
+                    return;
+
+                acbrECF.ProgramaFormaPagamento(descricao, vinculado);
+                menssagem = string.Format("A Forma de Pagamento: {0} foi programada. Vinculado = {1}", descricao, vinculado);
+                WriteResp(menssagem);
+            }
+            catch (Exception exception)
+            {
+                messageToolStripStatusLabel.Text = "Exception";
+                descriptionToolStripStatusLabel.Text = exception.Message;
+            }
+        }
+
 		#endregion ECF
 
 		#endregion Methods
@@ -1168,6 +1199,11 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
+        private void formaDePagamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            programaFormaPagamento();
+        }
+
 		private void acbrEAD_OnGetChavePrivada(object sender, ChaveEventArgs e)
 		{
 			e.Chave = "-----BEGIN RSA PRIVATE KEY-----" + Environment.NewLine +
@@ -1206,6 +1242,6 @@ namespace ACBrFramework.ECFTeste
 			wbBobina.Refresh();
 		}
 
-		#endregion Event Handlers
+		#endregion Event Handlers        
 	}
 }

@@ -11,7 +11,7 @@ namespace ACBrFramework.TEFDTeste
 	{
 		#region Fields
 
-		private RetornoECF retECF;
+		private bool Bloqueado;
 
 		#endregion Fields
 
@@ -78,6 +78,16 @@ namespace ACBrFramework.TEFDTeste
             cmbTEFDirecao.Items.Add("Controle de Frota");
             cmbTEFDirecao.SelectedIndex = 0;
 		}
+
+        private void ConfigSerial()
+        {
+            using (SerialCFGForm serial = new SerialCFGForm())
+            {
+                serial.Device = acBrECF1.Device;
+                serial.ShowDialog();
+                cmbPorta.SelectedItem = acBrECF1.Device.Porta;
+            }
+        }
 
 		private void ativarECF()
 		{
@@ -784,6 +794,7 @@ namespace ACBrFramework.TEFDTeste
             try
             {
                 decimal valor = 0;
+                int indice = 0;
 
                 if (!decimal.TryParse(txtValorTEF.Text, out valor))
                 {
@@ -791,7 +802,13 @@ namespace ACBrFramework.TEFDTeste
                     return;
                 }
 
-                acBrTEFD1.CRT(valor, txtIndCartao.Text, acBrECF1.NumCOO);
+                if (!int.TryParse(txtIndCartao.Text, out indice))
+                {
+                    WriteResp("TEF - Indice incorreto");
+                    return;
+                }
+
+                acBrTEFD1.CRT(valor, string.Format("{0:D2}", indice), acBrECF1.NumCOO);
                 MostrarSaldoRestante();
             }
             catch (Exception ex)
@@ -810,11 +827,7 @@ namespace ACBrFramework.TEFDTeste
 		private void WriteResp(string resp)
 		{
 			if (string.IsNullOrEmpty(resp)) return;
-
-			foreach (string line in resp.Split('\n'))
-			{
-				respListBox.Items.Add(line);
-			}
+            respListBox.Items.Add(resp);
 			respListBox.SelectedIndex = respListBox.Items.Count - 1;
 		}
 
@@ -822,14 +835,11 @@ namespace ACBrFramework.TEFDTeste
 
         #region EventHandlers
 
-		private void btnSerial_Click(object sender, EventArgs e)
+        #region Eventos Demo
+
+        private void btnSerial_Click(object sender, EventArgs e)
 		{
-			using (SerialCFGForm serial = new SerialCFGForm())
-			{
-				serial.Device = acBrECF1.Device;
-				serial.ShowDialog();
-				cmbPorta.SelectedItem = acBrECF1.Device.Porta;
-			}
+            ConfigSerial();
 		}
 
 		private void btnAtivar_Click(object sender, EventArgs e)
@@ -1023,9 +1033,11 @@ namespace ACBrFramework.TEFDTeste
             analisaTEF();
         }
 
-		#region Eventos TEF
+        #endregion Eventos Demo
 
-		private void tef_OnRestauraFocoAplicacao(object sender, ExecutaAcaoEventArgs e)
+        #region Eventos TEF
+
+        private void tef_OnRestauraFocoAplicacao(object sender, ExecutaAcaoEventArgs e)
 		{
 			this.Focus();
 			e.Tratado = true;
@@ -1303,6 +1315,10 @@ namespace ACBrFramework.TEFDTeste
 		private void tef_OnBloqueiaMouseTeclado(object sender, BloqueiaMouseTecladoEventArgs e)
 		{
             WriteResp(string.Format("Bloqueia Mouse Teclado: {0}", e.Bloqueia));
+#if !DEBUG
+            BlockInput.Bloquear(e.Bloqueia);
+#endif
+            Bloqueado = e.Bloqueia;
 		}
 
 		private void tef_OnAntesFinalizarRequisicao(object sender, AntesFinalizarRequisicaoEventArgs e)
@@ -1354,7 +1370,32 @@ namespace ACBrFramework.TEFDTeste
             }
 		}
 
-		#endregion Eventos TEF
+        #endregion Eventos TEF
+
+        #region Eventos ECF
+
+        private void acBrECF1_OnPoucoPapel(object sender, EventArgs e)
+        {
+            try
+            {
+#if !DEBUG
+                if (Bloqueado)
+                    BlockInput.Bloquear(!Bloqueado);
+#endif
+
+                MessageBox.Show("ATENÇÃO. Detectada proximadade do fim da Bobina", "ACBrFrameowrk TEF Demo");
+#if !DEBUG
+                BlockInput.Bloquear(Bloqueado);
+#endif
+            }
+            catch (Exception ex)
+            {
+                messageToolStripStatusLabel.Text = "Exception";
+                descriptionToolStripStatusLabel.Text = ex.Message;
+            }
+        }
+
+		#endregion Eventos ECF        
 
 		#endregion EventHandlers
         
