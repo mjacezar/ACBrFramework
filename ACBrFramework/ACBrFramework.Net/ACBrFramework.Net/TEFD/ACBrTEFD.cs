@@ -615,51 +615,51 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnComandaECFCallback(ACBrTEFDOperacaoECF Operacao, IntPtr Resp, ref RetornoECF RetornoECF)
+		private void OnComandaECFCallback(ACBrTEFDOperacaoECF Operacao, IntPtr Resp, ref int RetornoECF)
 		{
 			if (onComandaECF.IsAssigned)
 			{
 				ComandaECFEventArgs e = new ComandaECFEventArgs(Operacao, Resp);
 				onComandaECF.Raise(e);
-				RetornoECF = e.RetornoECF;
+				RetornoECF = Convert.ToInt32(e.RetornoECF);
 			}
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnComandaECFSubtotalizaCallback(double DescAcre, ref RetornoECF RetornoECF)
+		private void OnComandaECFSubtotalizaCallback(double DescAcre, ref int RetornoECF)
 		{
 			if (onComandaECFSubtotaliza.IsAssigned)
 			{
 				ComandaECFSubtotalizaEventArgs e = new ComandaECFSubtotalizaEventArgs(Convert.ToDecimal(DescAcre));
 				onComandaECFSubtotaliza.Raise(e);
-				RetornoECF = e.RetornoECF;
+				RetornoECF = Convert.ToInt32(e.RetornoECF);
 			}
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnComandaECFPagamentoCallback(string IndiceECF, double Valor, ref RetornoECF RetornoECF)
+		private void OnComandaECFPagamentoCallback(string IndiceECF, double Valor, ref int RetornoECF)
 		{
 			if (onComandaECFPagamento.IsAssigned)
 			{
 				ComandaECFPagamentoEventArgs e = new ComandaECFPagamentoEventArgs(IndiceECF, Convert.ToDecimal(Valor));
 				onComandaECFPagamento.Raise(e);
-				RetornoECF = e.RetornoECF;
+				RetornoECF = Convert.ToInt32(e.RetornoECF);
 			}
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnComandaECFAbreVinculadoCallback(string COO, string IndiceECF, double Valor, ref RetornoECF RetornoECF)
+		private void OnComandaECFAbreVinculadoCallback(string COO, string IndiceECF, double Valor, ref int RetornoECF)
 		{
 			if (onComandaECFAbreVinculado.IsAssigned)
 			{
 				ComandaECFAbreVinculadoEventArgs e = new ComandaECFAbreVinculadoEventArgs(COO, IndiceECF, Convert.ToDecimal(Valor));
 				onComandaECFAbreVinculado.Raise(e);
-				RetornoECF = e.RetornoECF;
+				RetornoECF = Convert.ToInt32(e.RetornoECF);
 			}
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnComandaECFImprimeViaCallback(ACBrTEFDTipoRelatorio TipoRelatorio, int Via, IntPtr ImagemComprovante, int ImagemComprovanteCount, ref RetornoECF RetornoECF)
+		private void OnComandaECFImprimeViaCallback(ACBrTEFDTipoRelatorio TipoRelatorio, int Via, IntPtr ImagemComprovante, int ImagemComprovanteCount, ref int RetornoECF)
 		{
 			if (onComandaECFImprimeVia.IsAssigned)
 			{
@@ -668,7 +668,7 @@ namespace ACBrFramework.TEFD
 				ComandaECFImprimeViaEventArgs e = new ComandaECFImprimeViaEventArgs(TipoRelatorio, Via, imagemComprovante);
 				onComandaECFImprimeVia.Raise(e);
 
-				RetornoECF = e.RetornoECF;
+				RetornoECF = Convert.ToInt32(e.RetornoECF);
 			}
 		}
 

@@ -31,19 +31,19 @@ namespace ACBrFramework.TEFD
 		public delegate void ExecutaAcaoCallback(ref bool Tratado);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void ComandaECFCallback(ACBrTEFDOperacaoECF Operacao, IntPtr Resp, ref RetornoECF RetornoECF);
+		public delegate void ComandaECFCallback(ACBrTEFDOperacaoECF Operacao, IntPtr Resp, ref int RetornoECF);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void ComandaECFSubtotalizaCallback(double DescAcre, ref RetornoECF RetornoECF);
+		public delegate void ComandaECFSubtotalizaCallback(double DescAcre, ref int RetornoECF);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void ComandaECFPagamentoCallback(string IndiceECF, double Valor, ref RetornoECF RetornoECF);
+		public delegate void ComandaECFPagamentoCallback(string IndiceECF, double Valor, ref int RetornoECF);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void ComandaECFAbreVinculadoCallback(string COO, string IndiceECF, double Valor, ref RetornoECF RetornoECF);
+		public delegate void ComandaECFAbreVinculadoCallback(string COO, string IndiceECF, double Valor, ref int RetornoECF);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void ComandaECFImprimeViaCallback(ACBrTEFDTipoRelatorio TipoRelatorio, int Via, IntPtr ImagemComprovante, int ImagemComprovanteCount, ref RetornoECF RetornoECF);
+		public delegate void ComandaECFImprimeViaCallback(ACBrTEFDTipoRelatorio TipoRelatorio, int Via, IntPtr ImagemComprovante, int ImagemComprovanteCount, ref int RetornoECF);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void InfoECFCallback(ACBrTEFDInfoECF Operacao, StringBuilder RetornoECF, int RetornoECFLen);

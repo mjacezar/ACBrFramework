@@ -467,6 +467,47 @@ begin
   end;
 end;
 
+Function ECF_GetMaxLinhasBuffer(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := ecfHandle^.ECF.MaxLinhasBuffer;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetMaxLinhasBuffer(const ecfHandle: PECFHandle; const MaxLinha : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.MaxLinhasBuffer := MaxLinha;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 Function ECF_GetAguardandoResposta(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -5330,7 +5371,7 @@ ECF_GetTimeOut, ECF_SetTimeOut,
 ECF_GetAtivo,
 
 { Propriedades do Componente }
-ECF_GetModelo, ECF_SetModelo,
+ECF_GetModelo, ECF_SetModelo, ECF_GetMaxLinhasBuffer, ECF_SetMaxLinhasBuffer,
 
 ECF_GetColunas, ECF_GetAguardandoResposta, ECF_GetComandoEnviado, ECF_GetRespostaComando, ECF_GetComandoLOG, ECF_SetComandoLOG,
 ECF_GetAguardaImpressao, ECF_SetAguardaImpressao,

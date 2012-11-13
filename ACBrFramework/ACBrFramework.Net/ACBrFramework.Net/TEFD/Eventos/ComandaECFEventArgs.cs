@@ -20,7 +20,7 @@ namespace ACBrFramework.TEFD
 
 		public Object Resp { get; private set; }
 
-		public RetornoECF RetornoECF { get; set; }
+		public bool RetornoECF { get; set; }
 
 		#endregion Properties
 	}

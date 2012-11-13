@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
 using ACBrFramework.ECF;
@@ -800,6 +801,12 @@ namespace ACBrFramework.TEFDTeste
             }
         }
 
+        private void WriteResp(string[] resp)
+        {
+            foreach (string linha in resp)
+                WriteResp(linha);
+        }
+
 		private void WriteResp(string resp)
 		{
 			if (string.IsNullOrEmpty(resp)) return;
@@ -1040,46 +1047,54 @@ namespace ACBrFramework.TEFDTeste
 
 		private void tef_OnInfoECF(object sender, InfoECFEventArgs e)
 		{
-			if (e.Operacao == ACBrTEFDInfoECF.EstadoECF)
-			{
-                switch (acBrECF1.Estado)
+            try
+            {
+                if (e.Operacao == ACBrTEFDInfoECF.EstadoECF)
                 {
-                    case EstadoECF.Livre:
-                        e.RetornoECF = RetornoECF.Livre;
-                        break;
+                    switch (acBrECF1.Estado)
+                    {
+                        case EstadoECF.Livre:
+                            e.RetornoECF = RetornoECF.Livre;
+                            break;
 
-                    case EstadoECF.Venda:
-                        e.RetornoECF = RetornoECF.VendaDeItens;
-                        break;
+                        case EstadoECF.Venda:
+                            e.RetornoECF = RetornoECF.VendaDeItens;
+                            break;
 
-                    case EstadoECF.Pagamento:
-                        e.RetornoECF = RetornoECF.PagamentoOuSubTotal;
-                        break;
+                        case EstadoECF.Pagamento:
+                            e.RetornoECF = RetornoECF.PagamentoOuSubTotal;
+                            break;
 
-                    case EstadoECF.Relatorio:
-                        e.RetornoECF = RetornoECF.RelatorioGerencial;
-                        break;
+                        case EstadoECF.Relatorio:
+                            e.RetornoECF = RetornoECF.RelatorioGerencial;
+                            break;
 
-                    case EstadoECF.NaoFiscal:
-                        e.RetornoECF = RetornoECF.RecebimentoNaoFiscal;
-                        break;
+                        case EstadoECF.NaoFiscal:
+                            e.RetornoECF = RetornoECF.RecebimentoNaoFiscal;
+                            break;
 
-                    default:
-                        e.RetornoECF = RetornoECF.Outro;
-                        break;
+                        default:
+                            e.RetornoECF = RetornoECF.Outro;
+                            break;
+                    }
                 }
-			}
-			else if (e.Operacao == ACBrTEFDInfoECF.SubTotal)
-			{
-                decimal valor = 0;
-                valor += acBrECF1.SubTotal;
-                valor -= acBrECF1.TotalPago + decimal.Parse(txtDescAcresc.Text);
-				e.Value = valor;
-			}
-            else if (e.Operacao == ACBrTEFDInfoECF.TotalAPagar)
-			{
-                e.Value = CalculaTotalPago();
-			}
+                else if (e.Operacao == ACBrTEFDInfoECF.SubTotal)
+                {
+                    decimal valor = 0;
+                    valor += acBrECF1.SubTotal;
+                    valor -= acBrECF1.TotalPago + decimal.Parse(txtDescAcresc.Text);
+                    e.Value = valor;
+                }
+                else if (e.Operacao == ACBrTEFDInfoECF.TotalAPagar)
+                {
+                    e.Value = CalculaTotalPago();
+                }
+            }
+            catch (Exception ex)
+            {
+                messageToolStripStatusLabel.Text = "Exception";
+                descriptionToolStripStatusLabel.Text = ex.Message;
+            }
 		}
 
 		private void tef_OnExibeMensagem(object sender, ExibeMensagemEventArgs e)
@@ -1098,6 +1113,24 @@ namespace ACBrFramework.TEFDTeste
 
 		private void tef_OnDepoisConfirmarTransacoes(object sender, DepoisConfirmarTransacoesEventArgs e)
 		{
+            try
+            {
+                foreach (ACBrTEFDRespostaPendente Resposta in e.RespostasPendentes)
+                {
+                    string[] Linhas = new string[5];
+                    Linhas[0] = string.Format("Confirmado: {0} ID: {1}", Resposta.Header, Resposta.ID);
+                    Linhas[1] = string.Format("Rede: {0}", Resposta.Rede);
+                    Linhas[2] = string.Format("NSU: {0}", Resposta.NSU);
+                    Linhas[3] = string.Format("Valor: {0}", Resposta.Rede);
+                    Linhas[4] = " ";
+                    WriteResp(Linhas);
+                }
+            }
+            catch (Exception ex)
+            {
+                messageToolStripStatusLabel.Text = "Exception";
+                descriptionToolStripStatusLabel.Text = ex.Message;
+            }
 		}
 
 		private void tef_OnDepoisCancelarTransacoes(object sender, DepoisCancelarTransacoesEventArgs e)
@@ -1106,50 +1139,170 @@ namespace ACBrFramework.TEFDTeste
 
 		private void tef_OnComandaECFSubtotaliza(object sender, ComandaECFSubtotalizaEventArgs e)
 		{
-			retECF = e.RetornoECF = RetornoECF.PagamentoOuSubTotal;
+            try
+            {
+                WriteResp(string.Format("ECF - SubTotaliza, DescAcre: {0}", e.DescAcre));
+
+                decimal DescAcresc = 0;
+
+                if (!decimal.TryParse(txtDescAcresc.Text, out DescAcresc))
+                    DescAcresc = 0;
+
+                if (acBrECF1.Estado == EstadoECF.NaoFiscal)
+                    acBrECF1.SubtotalizaNaoFiscal(e.DescAcre + DescAcresc, @"Projeto ACBrFramework|http://acbrframework.sf.net");
+                else
+                    acBrECF1.SubtotalizaCupom(e.DescAcre + DescAcresc, @"Projeto ACBrFramework|http://acbrframework.sf.net");
+
+                e.RetornoECF = true;
+            }
+            catch (Exception ex)
+            {
+                e.RetornoECF = false;
+            }
 		}
 
 		private void tef_OnComandaECFPagamento(object sender, ComandaECFPagamentoEventArgs e)
 		{
-			retECF = e.RetornoECF = RetornoECF.Livre;
+            try
+            {
+                WriteResp(string.Format("ECF - Pagamento, IndiceECF: {0} Valor: {1}", e.IndiceECF, e.Valor));
+
+                if(acBrECF1.Estado == EstadoECF.NaoFiscal)
+                    acBrECF1.EfetuaPagamentoNaoFiscal(e.IndiceECF, e.Valor);
+                else
+                    acBrECF1.EfetuaPagamento(e.IndiceECF, e.Valor);
+
+                e.RetornoECF = true;
+            }
+            catch (Exception ex)
+            {
+                e.RetornoECF = false;
+            }
 		}
 
 		private void tef_OnComandaECFImprimeVia(object sender, ComandaECFImprimeViaEventArgs e)
 		{
-			MessageBox.Show(string.Join("\n", e.ImagemComprovante));
-			retECF = e.RetornoECF = RetornoECF.Livre;
+            try
+            {
+                WriteResp(string.Format("ComandaECFImprimeVia, Tipo: {0} Via: {1}", e.TipoRelatorio, e.Via));
+                WriteResp(e.ImagemComprovante);
+                /*** Se estiver usando ACBrECF... Lembre-se de configurar ***
+                 * ACBrECF1.MaxLinhasBuffer   := 3; // Os homologadores permitem no máximo Impressao de 3 em 3 linhas
+                 * ACBrECF1.LinhasEntreCupons := 7; // (ajuste conforme o seu ECF)
+                 *  
+                 * NOTA: ACBrECF nao possui comando para imprimir a 2a via do CCD */
+
+                switch (e.TipoRelatorio)
+                {
+                    case ACBrTEFDTipoRelatorio.Gerencial:
+                        acBrECF1.LinhaRelatorioGerencial(e.ImagemComprovante);
+                        break;
+
+                    case ACBrTEFDTipoRelatorio.Vinculado:
+                        acBrECF1.LinhaCupomVinculado(e.ImagemComprovante);
+                        break;
+                }
+
+                e.RetornoECF = true;
+             }
+            catch (Exception ex)
+            {
+                e.RetornoECF = false;
+            }
 		}
 
 		private void tef_OnComandaECFAbreVinculado(object sender, ComandaECFAbreVinculadoEventArgs e)
 		{
-			retECF = e.RetornoECF = RetornoECF.CDC;
+            try
+            {
+                WriteResp(string.Format("ECF - AbreVinculado, COO: {0} IndiceECF: {1} Valor: {2}", e.COO, e.IndiceECF, e.Valor));
+                acBrECF1.AbreCupomVinculado(e.COO, e.IndiceECF, e.Valor);
+                e.RetornoECF = true;
+            }
+            catch (Exception ex)
+            {
+                e.RetornoECF = false;
+            }
 		}
 
 		private void tef_OnComandaECF(object sender, ComandaECFEventArgs e)
 		{
-			switch (e.Operacao)
-			{
-				case ACBrTEFDOperacaoECF.SubTotalizaCupom:
-					retECF = e.RetornoECF = RetornoECF.PagamentoOuSubTotal;
-					break;
+            try
+            {
+                WriteResp(string.Format("ComandaECF: {0}", e.Operacao));
+                switch (e.Operacao)
+                {
+                    case ACBrTEFDOperacaoECF.SubTotalizaCupom:
+                        acBrECF1.SubtotalizaCupom(0, @"Projeto ACBrFramework|http://acbrframework.sf.net");
+                        break;
 
-				case ACBrTEFDOperacaoECF.AbreGerencial:
-				case ACBrTEFDOperacaoECF.PulaLinhas:
-				case ACBrTEFDOperacaoECF.ImprimePagamentos:
-					retECF = e.RetornoECF = RetornoECF.CDCouRelatorioGerencial;
-					break;
+                    case ACBrTEFDOperacaoECF.AbreGerencial:
+                        acBrECF1.AbreRelatorioGerencial(0);
+                        break;
 
-				case ACBrTEFDOperacaoECF.FechaVinculado:
-				case ACBrTEFDOperacaoECF.FechaGerencial:
-				case ACBrTEFDOperacaoECF.CancelaCupom:
-				case ACBrTEFDOperacaoECF.FechaCupom:
-					retECF = e.RetornoECF = RetornoECF.Livre;
-					break;
-			}
+                    case ACBrTEFDOperacaoECF.PulaLinhas:
+                        acBrECF1.PulaLinhas(acBrECF1.LinhasEntreCupons);
+                        acBrECF1.CortaPapel(true);
+                        Thread.Sleep(200);
+                        break;
+
+                    case ACBrTEFDOperacaoECF.ImprimePagamentos:
+                        while(pgtoList.Items.Count > 0)
+                        {
+                            decimal valor = 0;
+                            string[] pgto = pgtoList.Items[0].ToString().Split('|');
+                            if (string.IsNullOrEmpty(pgto[0]) || string.IsNullOrEmpty(pgto[1]))
+                            {
+                                pgtoList.Items.RemoveAt(0);
+                                continue;
+                            }
+
+                            if(!decimal.TryParse(pgto[1], out valor))
+                            {
+                                pgtoList.Items.RemoveAt(0);
+                                continue;
+                            }
+
+                            if (acBrECF1.Estado == EstadoECF.NaoFiscal)
+                                acBrECF1.EfetuaPagamentoNaoFiscal(pgto[0], valor);
+                            else
+                                acBrECF1.EfetuaPagamento(pgto[0], valor);
+
+                            pgtoList.Items.RemoveAt(0);
+                        }
+                        break;
+
+                    case ACBrTEFDOperacaoECF.FechaVinculado:
+                    case ACBrTEFDOperacaoECF.FechaGerencial:
+                        acBrECF1.FechaRelatorio();
+                        break;
+
+                    case ACBrTEFDOperacaoECF.CancelaCupom:
+                        if (acBrECF1.Estado == EstadoECF.NaoFiscal)
+                            acBrECF1.CancelaNaoFiscal();
+                        else
+                            acBrECF1.CancelaCupom();
+                        break;
+
+                    case ACBrTEFDOperacaoECF.FechaCupom:
+                        if (acBrECF1.Estado == EstadoECF.NaoFiscal)
+                            acBrECF1.FechaNaoFiscal(@"Projeto ACBrFramework|http://acbrframework.sf.net");
+                        else
+                            acBrECF1.FechaCupom(@"Projeto ACBrFramework|http://acbrframework.sf.net");
+                        break;
+                }
+
+                e.RetornoECF = true;
+            }
+            catch (Exception ex)
+            {
+                e.RetornoECF = false;
+            }
 		}
 
 		private void tef_OnBloqueiaMouseTeclado(object sender, BloqueiaMouseTecladoEventArgs e)
 		{
+            WriteResp(string.Format("Bloqueia Mouse Teclado: {0}", e.Bloqueia));
 		}
 
 		private void tef_OnAntesFinalizarRequisicao(object sender, AntesFinalizarRequisicaoEventArgs e)
@@ -1158,10 +1311,47 @@ namespace ACBrFramework.TEFDTeste
 
 		private void tef_OnAntesCancelarTransacao(object sender, AntesCancelarTransacaoEventArgs e)
 		{
+            try
+            {
+                switch (acBrECF1.Estado)
+                {
+                    case EstadoECF.Pagamento:
+                    case EstadoECF.Venda:
+                        acBrECF1.CancelaCupom();
+                        break;
+
+                    case EstadoECF.Relatorio:
+                        acBrECF1.FechaRelatorio();
+                        break;
+
+                    case EstadoECF.Livre:
+                    case EstadoECF.Desconhecido:
+                    case EstadoECF.NaoInicializada:
+                        break;
+
+                    default:
+                        acBrECF1.CorrigeEstadoErro(false);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                messageToolStripStatusLabel.Text = "Exception";
+                descriptionToolStripStatusLabel.Text = ex.Message;
+            }
 		}
 
 		private void tef_OnAguardaResp(object sender, AguardaRespEventArgs e)
 		{
+            try
+            {
+                descriptionToolStripStatusLabel.Text = string.Format("Aguardando: {0} - {1}", e.Arquivo, e.SegundosTimeout);
+            }
+            catch (Exception ex)
+            {
+                messageToolStripStatusLabel.Text = "Exception";
+                descriptionToolStripStatusLabel.Text = ex.Message;
+            }
 		}
 
 		#endregion Eventos TEF

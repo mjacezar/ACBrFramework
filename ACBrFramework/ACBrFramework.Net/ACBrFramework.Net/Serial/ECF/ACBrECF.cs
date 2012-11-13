@@ -105,6 +105,18 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+        public int MaxLinhasBuffer
+        {
+            get
+            {
+                return GetInt32(ACBrECFInterop.ECF_GetMaxLinhasBuffer);
+            }
+            set
+            {
+                SetInt32(ACBrECFInterop.ECF_SetMaxLinhasBuffer, value);
+            }
+        }
+
 		public bool Ativo
 		{
 			get
@@ -869,7 +881,12 @@ namespace ACBrFramework.ECF
 
         public void EfetuaPagamento(string codFormaPagto, decimal valor)
         {
-            EfetuaPagamento(codFormaPagto, valor, "", false);
+            EfetuaPagamento(codFormaPagto, valor, string.Empty, false);
+        }
+
+        public void EfetuaPagamento(string codFormaPagto, decimal valor, string observacao)
+        {
+            EfetuaPagamento(codFormaPagto, valor, observacao, false);
         }
 
 		public void EfetuaPagamento(string codFormaPagto, decimal valor, string observacao, bool imprimeVinculado)
@@ -1263,6 +1280,12 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+        public void LinhaCupomVinculado(string[] linhas)
+        {
+            foreach (string linha in linhas)
+                LinhaCupomVinculado(linha);
+        }
+
 		public void LinhaCupomVinculado(string linha)
 		{
 			int ret = ACBrECFInterop.ECF_LinhaCupomVinculado(this.Handle, ToUTF8(linha));
@@ -1453,6 +1476,19 @@ namespace ACBrFramework.ECF
 			int ret = ACBrECFInterop.ECF_AbreRelatorioGerencial(this.Handle, indice);
 			CheckResult(ret);
 		}
+
+        public void LinhaRelatorioGerencial(string[] linhas)
+        {
+            foreach (string linha in linhas)
+            {
+                LinhaRelatorioGerencial(linha, 0);
+            }
+        }
+
+        public void LinhaRelatorioGerencial(string linha)
+        {
+            LinhaRelatorioGerencial(linha, 0);
+        }
 
 		public void LinhaRelatorioGerencial(string linha, int indiceBMP)
 		{
@@ -1729,6 +1765,16 @@ namespace ACBrFramework.ECF
 			int ret = ACBrECFInterop.ECF_SubtotalizaNaoFiscal(this.Handle, Convert.ToDouble(descontoAcrescimo), ToUTF8(mensagemRodape));
 			CheckResult(ret);
 		}
+
+        public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor)
+        {
+            EfetuaPagamentoNaoFiscal(codFormaPagto, valor, string.Empty, false);
+        }
+
+        public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor, string observacao)
+        {
+            EfetuaPagamentoNaoFiscal(codFormaPagto, valor, observacao, false);
+        }
 
 		public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor, string observacao, bool imprimeVinculado)
 		{
