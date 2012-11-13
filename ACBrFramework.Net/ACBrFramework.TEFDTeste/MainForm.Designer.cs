@@ -1141,7 +1141,7 @@
             // 
             this.acBrECF1.AAC = null;
             this.acBrECF1.AguardaImpressao = false;
-            this.acBrECF1.ComandoLog = "ComprovantesNaoFiscais";
+            this.acBrECF1.ComandoLog = "MF Adicional";
             this.acBrECF1.DecimaisPreco = 3;
             this.acBrECF1.DecimaisQtd = 3;
             this.acBrECF1.DescricaoGrande = false;
@@ -1149,6 +1149,7 @@
             this.acBrECF1.GavetaSinalInvertido = false;
             this.acBrECF1.IntervaloAposComando = 100;
             this.acBrECF1.LinhasEntreCupons = 7;
+            this.acBrECF1.MaxLinhasBuffer = 3;
             this.acBrECF1.Modelo = ACBrFramework.ECF.ModeloECF.Nenhum;
             this.acBrECF1.Operador = "";
             this.acBrECF1.Porta = "COM1";

@@ -23,7 +23,7 @@ namespace ACBrFramework.TEFD
 
 		public string[] ImagemComprovante { get; private set; }
 
-		public RetornoECF RetornoECF { get; set; }
+		public bool RetornoECF { get; set; }
 
 		#endregion Properties
 	}

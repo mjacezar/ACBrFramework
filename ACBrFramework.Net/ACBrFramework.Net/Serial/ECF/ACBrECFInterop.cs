@@ -354,6 +354,12 @@ namespace ACBrFramework.ECF
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetTimeOut(IntPtr ecfHandle, int timeOut);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_GetMaxLinhasBuffer(IntPtr ecfHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_SetMaxLinhasBuffer(IntPtr ecfHandle, int maxLinhas);
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetAtivo(IntPtr ecfHandle);
 

@@ -23,7 +23,7 @@ namespace ACBrFramework.TEFD
 
 		public decimal Valor { get; private set; }
 
-		public RetornoECF RetornoECF { get; set; }
+		public bool RetornoECF { get; set; }
 
 		#endregion Properties
 	}
