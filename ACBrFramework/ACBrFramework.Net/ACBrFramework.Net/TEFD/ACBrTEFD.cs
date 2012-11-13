@@ -12,6 +12,7 @@ namespace ACBrFramework.TEFD
 	{
 		#region Events
 
+        [Category("Geral")]
 		public event EventHandler<AguardaRespEventArgs> OnAguardaResp
 		{
 			add
@@ -24,6 +25,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<ExibeMensagemEventArgs> OnExibeMensagem
 		{
 			add
@@ -36,6 +38,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<BloqueiaMouseTecladoEventArgs> OnBloqueiaMouseTeclado
 		{
 			add
@@ -48,6 +51,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<ExecutaAcaoEventArgs> OnRestauraFocoAplicacao
 		{
 			add
@@ -60,6 +64,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<ExecutaAcaoEventArgs> OnLimpaTeclado
 		{
 			add
@@ -72,6 +77,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<ComandaECFEventArgs> OnComandaECF
 		{
 			add
@@ -84,6 +90,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<ComandaECFSubtotalizaEventArgs> OnComandaECFSubtotaliza
 		{
 			add
@@ -96,6 +103,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<ComandaECFPagamentoEventArgs> OnComandaECFPagamento
 		{
 			add
@@ -108,6 +116,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<ComandaECFAbreVinculadoEventArgs> OnComandaECFAbreVinculado
 		{
 			add
@@ -120,6 +129,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<ComandaECFImprimeViaEventArgs> OnComandaECFImprimeVia
 		{
 			add
@@ -132,6 +142,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<InfoECFEventArgs> OnInfoECF
 		{
 			add
@@ -144,6 +155,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<AntesFinalizarRequisicaoEventArgs> OnAntesFinalizarRequisicao
 		{
 			add
@@ -156,6 +168,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<DepoisConfirmarTransacoesEventArgs> OnDepoisConfirmarTransacoes
 		{
 			add
@@ -168,6 +181,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<AntesCancelarTransacaoEventArgs> OnAntesCancelarTransacao
 		{
 			add
@@ -180,6 +194,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<DepoisCancelarTransacoesEventArgs> OnDepoisCancelarTransacoes
 		{
 			add
@@ -192,6 +207,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<MudaEstadoReqEventArgs> OnMudaEstadoReq
 		{
 			add
@@ -204,6 +220,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
 		public event EventHandler<MudaEstadoRespEventArgs> OnMudaEstadoResp
 		{
 			add
@@ -593,7 +610,7 @@ namespace ACBrFramework.TEFD
 		{
 			if (onExibeMensagem.IsAssigned)
 			{
-				ExibeMensagemEventArgs e = new ExibeMensagemEventArgs(Operacao, Mensagem);
+				ExibeMensagemEventArgs e = new ExibeMensagemEventArgs(Operacao, FromUTF8(Mensagem));
 				onExibeMensagem.Raise(e);
 				AModalResult = e.ModalResult;
 			}
