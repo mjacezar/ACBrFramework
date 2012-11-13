@@ -267,6 +267,7 @@ namespace ACBrFramework.TEFD
 
 		#region Properties
 
+		[Category("Geral")]
 		public bool AutoAtivar
 		{
 			get
@@ -279,6 +280,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+		[Category("Geral")]
 		public bool MultiplosCartoes
 		{
 			get
@@ -291,6 +293,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+		[Category("Geral")]
 		public bool AutoEfetuarPagamento
 		{
 			get
@@ -303,6 +306,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+		[Category("Geral")]
 		public bool AutoFinalizarCupom
 		{
 			get
@@ -315,6 +319,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+		[Category("Geral")]
 		public bool CHQEmGerencial
 		{
 			get
@@ -327,6 +332,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+		[Category("Geral")]
 		public int EsperaSleep
 		{
 			get
@@ -339,6 +345,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+		[Category("Identificação")]
 		public ACBrTEFDIdentificacao Identificacao { get; private set; }
 
 		[Browsable(false)]
@@ -350,26 +357,37 @@ namespace ACBrFramework.TEFD
 		[Browsable(false)]
 		public ACBrTEFDRespostasPendentes RespostasPendentes { get; private set; }
 
+		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public ACBrTEFDCliSiTef TEFCliSiTef { get; private set; }
 
+		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public ACBrTEFDDial TEFDial { get; private set; }
 
+		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public ACBrTEFDDisc TEFDisc { get; private set; }
 
+		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public ACBrTEFDHiper TEFHiper { get; private set; }
 
+		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public ACBrTEFDGPU TEFGPU { get; private set; }
 
+		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public ACBrTEFDAuttar TEFAuttar { get; private set; }
 
+		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public ACBrTEFDGood TEFGood { get; private set; }
 
+		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public ACBrTEFDFoxWin TEFFoxWin { get; private set; }
 
+		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public ACBrTEFDPetrocard TEFPetrocard { get; private set; }
 
+		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public ACBrTEFDCrediShop TEFCrediShop { get; private set; }
 
+		[Browsable(false)]
 		public ACBrTEFDTipo GPAtual
 		{
 			get
