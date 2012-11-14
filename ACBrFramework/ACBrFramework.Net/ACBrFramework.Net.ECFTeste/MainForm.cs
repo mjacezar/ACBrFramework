@@ -299,7 +299,6 @@ namespace ACBrFramework.ECFTeste
 
 			ativarCheckButton.Checked = false;
 			acbrECF.EAD = acbrEAD;
-			acbrECF.AAC = acbrAAC;
 		}
 
 		public void Ativar()
@@ -320,7 +319,6 @@ namespace ACBrFramework.ECFTeste
 
 				messageToolStripStatusLabel.Text = acbrECF.Estado.ToString();
 				descriptionToolStripStatusLabel.Text = string.Empty;
-				chkAtivo.Checked = acbrECF.Ativo;
 
 				tabControl.SelectedTab = cmdTabPage;
 				WriteResp("Ativado: OK!");
@@ -358,7 +356,6 @@ namespace ACBrFramework.ECFTeste
 				WriteResp("Desativado: OK!");
 				messageToolStripStatusLabel.Text = "OK";
 				descriptionToolStripStatusLabel.Text = string.Empty;
-				chkAtivo.Checked = acbrECF.Ativo;
 			}
 			catch (NullReferenceException)
 			{

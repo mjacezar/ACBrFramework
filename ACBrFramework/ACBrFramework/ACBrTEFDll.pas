@@ -715,6 +715,41 @@ begin
 
 end;
 
+Function TEF_CHQ(const tefHandle : PTEFHandle; const Valor : Double; const IndiceFPG_ECF : PChar;
+        const DocumentoVinculado : PChar; const CMC7 : PChar;
+        const TipoPessoa : Char; const DocumentoPessoa : PChar;
+        const DataCheque : Double; const Banco   : PChar;
+        const Agencia    : PChar; const AgenciaDC : PChar;
+        const Conta      : PChar; const ContaDC   : PChar;
+        const Cheque     : PChar; const ChequeDC  : PChar;
+        const Compensacao: PChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  ret : Boolean;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+
+     ret := tefHandle^.TEF.CHQ(Valor, IndiceFPG_ECF, DocumentoVinculado, CMC7, TipoPessoa, DocumentoPessoa, DataCheque, Banco, Agencia, AgenciaDC, Conta, ContaDC, Cheque, ChequeDC, Compensacao);
+     if (ret) then
+        Result := 1
+     else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 Function TEF_CancelarTransacoesPendentes(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -10259,8 +10294,8 @@ TEF_SetEsperaSleep, TEF_GetEsperaSleep,
 
 { Funções TEF }
 TEF_Inicializar, TEF_DesInicializar,
-TEF_AtivarGP, TEF_CRT, TEF_ATV, TEF_ADM,
-TEF_CNC, TEF_CNF, TEF_NCN,
+TEF_AtivarGP, TEF_CRT, TEF_CHQ, TEF_ATV,
+TEF_ADM, TEF_CNC, TEF_CNF, TEF_NCN,
 TEF_CancelarTransacoesPendentes, TEF_ConfirmarTransacoesPendentes,
 TEF_ImprimirTransacoesPendentes, TEF_FinalizarCupom,
 

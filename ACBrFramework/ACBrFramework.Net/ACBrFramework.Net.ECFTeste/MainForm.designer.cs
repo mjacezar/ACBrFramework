@@ -69,7 +69,6 @@
             this.formaDePagamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.ecfTabPage = new System.Windows.Forms.TabPage();
-            this.chkAtivo = new System.Windows.Forms.CheckBox();
             this.usarAACCheckBox = new System.Windows.Forms.CheckBox();
             this.velocidadeComboBox = new System.Windows.Forms.ComboBox();
             this.velocidadeLabel = new System.Windows.Forms.Label();
@@ -535,7 +534,6 @@
             // 
             // ecfTabPage
             // 
-            this.ecfTabPage.Controls.Add(this.chkAtivo);
             this.ecfTabPage.Controls.Add(this.usarAACCheckBox);
             this.ecfTabPage.Controls.Add(this.velocidadeComboBox);
             this.ecfTabPage.Controls.Add(this.velocidadeLabel);
@@ -557,23 +555,9 @@
             this.ecfTabPage.Text = "ECF";
             this.ecfTabPage.UseVisualStyleBackColor = true;
             // 
-            // chkAtivo
-            // 
-            this.chkAtivo.AutoSize = true;
-            this.chkAtivo.Enabled = false;
-            this.chkAtivo.Location = new System.Drawing.Point(9, 194);
-            this.chkAtivo.Name = "chkAtivo";
-            this.chkAtivo.Size = new System.Drawing.Size(50, 17);
-            this.chkAtivo.TabIndex = 14;
-            this.chkAtivo.TabStop = false;
-            this.chkAtivo.Text = "Ativo";
-            this.chkAtivo.UseVisualStyleBackColor = true;
-            // 
             // usarAACCheckBox
             // 
             this.usarAACCheckBox.AutoSize = true;
-            this.usarAACCheckBox.Checked = true;
-            this.usarAACCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.usarAACCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usarAACCheckBox.Location = new System.Drawing.Point(9, 171);
             this.usarAACCheckBox.Name = "usarAACCheckBox";
@@ -1604,9 +1588,9 @@
             // 
             // acbrECF
             // 
-            this.acbrECF.AAC = this.acbrAAC;
+            this.acbrECF.AAC = null;
             this.acbrECF.AguardaImpressao = false;
-            this.acbrECF.ComandoLog = "CNPJ";
+            this.acbrECF.ComandoLog = "Cliche";
             this.acbrECF.DecimaisPreco = 3;
             this.acbrECF.DecimaisQtd = 3;
             this.acbrECF.DescricaoGrande = false;
@@ -1824,8 +1808,7 @@
 		private System.Windows.Forms.Button aacAbrirArquivoButton;
 		private System.Windows.Forms.Button accVisualizarArquivoButton;
 		private System.Windows.Forms.TextBox aacNomeArquivoTextbox;
-		private System.Windows.Forms.Label aacNomeArquivoLabel;
-		private System.Windows.Forms.CheckBox chkAtivo;
+        private System.Windows.Forms.Label aacNomeArquivoLabel;
 		private ACBrFramework.AAC.ACBrAAC acbrAAC;
 		private ACBrFramework.EAD.ACBrEAD acbrEAD;
 		private ACBrFramework.ECF.ACBrECF acbrECF;
