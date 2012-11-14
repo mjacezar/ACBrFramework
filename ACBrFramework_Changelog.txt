@@ -41,7 +41,10 @@ Símbolo : Significado
 
 Changelog
 
-12/11/2012 (ACBrFramework 0.9.1.10)
+14/11/2012 (ACBrFramework 0.9.1.12)
+[+] Implementado TEF_CHQ - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+
+13/11/2012 (ACBrFramework 0.9.1.11)
 [+] Implementado a propriedade ECF_MaxLinhasBuffer, ECF_MaxLinhasBuffer - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [*] Melhorado os metodos ECF_AbreCupomVinculado, ECF_EfetuaPagamento, ECF_EfetuaPagamentoNaoFiscal - ACBrFramework.Net - Rafael Dias.
 [+] Adicionado ECF_ProgramaFormaPagamento no DEMO ECF - ACBrFramework.Net - Rafael Dias.

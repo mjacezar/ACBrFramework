@@ -1361,6 +1361,7 @@ namespace ACBrFramework.TEFDTeste
 		{
             try
             {
+                messageToolStripStatusLabel.Text = "Menssagem";
                 descriptionToolStripStatusLabel.Text = string.Format("Aguardando: {0} - {1}", e.Arquivo, e.SegundosTimeout);
             }
             catch (Exception ex)

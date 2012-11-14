@@ -103,7 +103,12 @@ namespace ACBrFramework.TEFD
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_CRT(IntPtr tefHandle, double Valor, string IndiceFPG_ECF, string DocumentoVinculado, int Moeda);
 
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_CHQ(IntPtr tefHandle, double Valor, string IndiceFPG_ECF, string DocumentoVinculado, 
+            string CMC7, char TipoPessoa, string DocumentoPessoa, double DataCheque, string Banco, string Agencia, 
+            string AgenciaDC, string Conta, string ContaDC, string Cheque, string ChequeDC, string Compensacao);
+		
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_ATV(IntPtr tefHandle, int GP);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
