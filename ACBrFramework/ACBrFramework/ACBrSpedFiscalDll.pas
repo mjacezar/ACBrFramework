@@ -13,7 +13,7 @@ uses
 type TEventHandlers = class
 end;
 
-{Handle para o componente TACBrECF }
+{Handle para o componente TACBrSPEDFiscal}
 type TSPDFHandle = record
   UltimoErro : String;
   SPEDFiscal : TACBrSPEDFiscal;
@@ -127,6 +127,6 @@ exports
 { Funções }
 SPDF_Create,
 SPDF_Destroy,
-SPDF_GetUltimoErro,
+SPDF_GetUltimoErro;
 end.
 

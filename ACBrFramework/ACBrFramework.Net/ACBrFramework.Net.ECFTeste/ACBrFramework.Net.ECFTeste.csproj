@@ -90,7 +90,7 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ACBrMonitor.ico</ApplicationIcon>
+    <ApplicationIcon>ECFTeste.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -195,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ACBrMonitor.ico" />
+    <Content Include="ECFTeste.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

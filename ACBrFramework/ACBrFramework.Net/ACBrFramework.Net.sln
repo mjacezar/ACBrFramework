@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACBrFramework.Net.BALTeste"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACBrFramework.TEFDTeste", "ACBrFramework.TEFDTeste\ACBrFramework.TEFDTeste.csproj", "{C1944ECA-BCB2-47E0-93F1-696729E112C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACBrFramework.Net.CNIEETeste", "ACBrFramework.Net.CNIEETeste\ACBrFramework.Net.CNIEETeste.csproj", "{4A2E81C1-B85D-479D-8D34-199714000C79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,18 @@ Global
 		{C1944ECA-BCB2-47E0-93F1-696729E112C0}.Release|x64.ActiveCfg = Release|x86
 		{C1944ECA-BCB2-47E0-93F1-696729E112C0}.Release|x86.ActiveCfg = Release|x86
 		{C1944ECA-BCB2-47E0-93F1-696729E112C0}.Release|x86.Build.0 = Release|x86
+		{4A2E81C1-B85D-479D-8D34-199714000C79}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{4A2E81C1-B85D-479D-8D34-199714000C79}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{4A2E81C1-B85D-479D-8D34-199714000C79}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{4A2E81C1-B85D-479D-8D34-199714000C79}.Debug|x64.ActiveCfg = Debug|x86
+		{4A2E81C1-B85D-479D-8D34-199714000C79}.Debug|x86.ActiveCfg = Debug|x86
+		{4A2E81C1-B85D-479D-8D34-199714000C79}.Debug|x86.Build.0 = Debug|x86
+		{4A2E81C1-B85D-479D-8D34-199714000C79}.Release|Any CPU.ActiveCfg = Release|x86
+		{4A2E81C1-B85D-479D-8D34-199714000C79}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{4A2E81C1-B85D-479D-8D34-199714000C79}.Release|Mixed Platforms.Build.0 = Release|x86
+		{4A2E81C1-B85D-479D-8D34-199714000C79}.Release|x64.ActiveCfg = Release|x86
+		{4A2E81C1-B85D-479D-8D34-199714000C79}.Release|x86.ActiveCfg = Release|x86
+		{4A2E81C1-B85D-479D-8D34-199714000C79}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

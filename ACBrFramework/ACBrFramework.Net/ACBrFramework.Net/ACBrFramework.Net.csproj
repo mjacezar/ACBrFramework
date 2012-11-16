@@ -144,6 +144,10 @@
     <Compile Include="ACBrComposedComponent.cs" />
     <Compile Include="ACBrException.cs" />
     <Compile Include="ACBrInteropBase.cs" />
+    <Compile Include="CNIEE\ACBrCNIEE.cs" />
+    <Compile Include="CNIEE\ACBrCNIEEInterop.cs" />
+    <Compile Include="CNIEE\ACBrCNIEERegistro.cs" />
+    <Compile Include="CNIEE\ACBrCNIEEExporta.cs" />
     <Compile Include="EAD\ACBrEAD.cs" />
     <Compile Include="EAD\ACBrEADInterop.cs" />
     <Compile Include="EAD\EADDigest.cs" />
@@ -382,7 +386,9 @@
     <EmbeddedResource Include="Sintegra\ico.bmp" />
     <EmbeddedResource Include="TEFD\ico.bmp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="CNIEE\ico.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

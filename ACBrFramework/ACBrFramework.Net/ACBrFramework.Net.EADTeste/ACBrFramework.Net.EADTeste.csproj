@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ACBrMonitor.ico</ApplicationIcon>
+    <ApplicationIcon>ACBrEAD.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -114,7 +114,7 @@
     <None Include="Resources\hash.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ACBrMonitor.ico" />
+    <Content Include="ACBrEAD.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ACBrFramework.Net\ACBrFramework.Net.csproj">

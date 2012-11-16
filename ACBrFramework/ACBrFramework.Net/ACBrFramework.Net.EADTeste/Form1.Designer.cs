@@ -408,6 +408,7 @@
 			this.Controls.Add(this.grpArquivoDe);
 			this.Controls.Add(this.grpChavePrivada);
 			this.Controls.Add(this.grpChavePublica);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Form1";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "ACBrFramework.Net EAD Demo";

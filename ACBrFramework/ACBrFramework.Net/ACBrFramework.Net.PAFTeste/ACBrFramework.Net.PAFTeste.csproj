@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ACBrMonitor.ico</ApplicationIcon>
+    <ApplicationIcon>ACBrPAF.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -80,7 +80,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ACBrMonitor.ico" />
+    <Content Include="ACBrPAF.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ACBrFramework.Net\ACBrFramework.Net.csproj">
