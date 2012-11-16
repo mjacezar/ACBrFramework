@@ -72,7 +72,7 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemC2 = null;
 				}
 
-				if (acbrPAF.PAF_C.SaveFileTXT_C(@"\PAF_C.txt"))
+				if (acbrPAF.SaveFileTXT_C(@"\PAF_C.txt"))
 					WriteResp("Arquivo PAF_C gerado com sucesso");
 				else
 					WriteResp("Arquivo PAF_C não foi gerado");
@@ -142,7 +142,7 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemD2 = null;
 				}
 
-				if (acbrPAF.PAF_D.SaveFileTXT_D(@"\PAF_D.txt"))
+				if (acbrPAF.SaveFileTXT_D(@"\PAF_D.txt"))
 					WriteResp("Arquivo PAF_D gerado com sucesso");
 				else
 					WriteResp("Arquivo PAF_D não foi gerado");
@@ -182,7 +182,7 @@ namespace ACBrFramework.Net.PAFTeste
 					ItemP2 = null;
 				}
 
-				if (acbrPAF.PAF_P.SaveFileTXT_P(@"\PAF_P.txt"))
+				if (acbrPAF.SaveFileTXT_P(@"\PAF_P.txt"))
 					WriteResp("Arquivo PAF_P gerado com sucesso");
 				else
 					WriteResp("Arquivo PAF_P não foi gerado");

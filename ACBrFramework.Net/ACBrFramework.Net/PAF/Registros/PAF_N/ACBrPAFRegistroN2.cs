@@ -4,8 +4,6 @@ namespace ACBrFramework.PAF
 	{
 		#region Properties
 
-		public int QTD_N3 { get; set; }
-
 		public string LAUDO { get; set; }
 
 		public string NOME { get; set; }
