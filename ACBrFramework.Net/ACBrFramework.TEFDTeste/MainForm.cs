@@ -77,6 +77,9 @@ namespace ACBrFramework.TEFDTeste
             cmbTEFDirecao.Items.Add("Cheque");
             cmbTEFDirecao.Items.Add("Controle de Frota");
             cmbTEFDirecao.SelectedIndex = 0;
+
+			acBrTEFD1.TEFCliSiTef.OnExibeMenu += new EventHandler<TEFCliSiTefExibeMenuEventArgs>(TEFCliSiTef_OnExibeMenu);
+			acBrTEFD1.TEFCliSiTef.OnObtemCampo += new EventHandler<TEFCliSiTefObtemCampoEventArgs>(TEFCliSiTef_OnObtemCampo);
 		}
 
         private void ConfigSerial()
@@ -1369,6 +1372,36 @@ namespace ACBrFramework.TEFDTeste
                 messageToolStripStatusLabel.Text = "Exception";
                 descriptionToolStripStatusLabel.Text = ex.Message;
             }
+		}
+
+		private void TEFCliSiTef_OnExibeMenu(object sender, TEFCliSiTefExibeMenuEventArgs e)
+		{
+			using (MenuForm Menu = new MenuForm())
+			{
+				Menu.Initialize(e);
+				DialogResult ret = Menu.ShowDialog();
+
+				switch (ret)
+				{
+					case DialogResult.OK:
+						e.ItemSelecionado = Menu.SelectedItem;
+						break;
+
+					case DialogResult.Cancel:
+						e.VoltarMenu = true;
+						break;
+				}			
+			}
+		}
+
+		private void TEFCliSiTef_OnObtemCampo(object sender, TEFCliSiTefObtemCampoEventArgs e)
+		{
+			using (InputForm Input = new InputForm())
+			{
+				Input.Initialize(e);
+				if (Input.ShowDialog().Equals(DialogResult.OK))
+					e.Resposta = Input.InputText;
+			}
 		}
 
         #endregion Eventos TEF

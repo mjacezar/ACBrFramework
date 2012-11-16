@@ -41,6 +41,10 @@ Símbolo : Significado
 
 Changelog
 
+15/11/2012 (ACBrFramework 0.9.1.13)
+[+] Implementado o componente ACBrCNIEE - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado o Demo do ACBrCNIEE - ACBrFramework.Net - Rafael Dias.
+
 14/11/2012 (ACBrFramework 0.9.1.12)
 [+] Implementado TEF_CHQ - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 

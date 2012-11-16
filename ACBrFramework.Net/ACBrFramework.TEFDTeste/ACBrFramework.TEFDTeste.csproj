@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>TACBrTEFD.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,6 +54,12 @@
     </Compile>
     <Compile Include="Forms\CNF_CNCForm.Designer.cs">
       <DependentUpon>CNF_CNCForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputForm.designer.cs">
+      <DependentUpon>InputForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -76,6 +85,9 @@
     <Compile Include="Utils\InputBox.cs" />
     <EmbeddedResource Include="Forms\CNF_CNCForm.resx">
       <DependentUpon>CNF_CNCForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputForm.resx">
+      <DependentUpon>InputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -141,6 +153,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\093.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TACBrTEFD.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,7 +13,8 @@ uses
   ACBrBALDll,
   ACBrLCBDll,
   ACBrAACDLL,
-  ACBrTEFDll
+  ACBrTEFDll,
+  ACBrCNIEEDll
   //,ACBrSpedFiscalDll
   ;
 

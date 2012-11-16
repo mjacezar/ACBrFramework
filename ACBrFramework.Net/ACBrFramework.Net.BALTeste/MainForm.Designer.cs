@@ -29,6 +29,7 @@ namespace ACBrFramework.Net.BALTeste
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.velocidadeComboBox = new System.Windows.Forms.ComboBox();
 			this.velocidadeLabel = new System.Windows.Forms.Label();
 			this.monitorarCheckBox = new System.Windows.Forms.CheckBox();
@@ -212,6 +213,7 @@ namespace ACBrFramework.Net.BALTeste
 			this.Controls.Add(this.modeloComboBox);
 			this.Controls.Add(this.portaLabel);
 			this.Controls.Add(this.modeloLabel);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
 			this.Text = "ACBrFramework - Balança";
 			this.statusStrip1.ResumeLayout(false);
