@@ -194,7 +194,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ACBrMonitor.ico" />
     <Content Include="ECFTeste.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
