@@ -41,6 +41,10 @@ Símbolo : Significado
 
 Changelog
 
+16/11/2012 (ACBrFramework 0.9.1.13)
+[*] Modificações para compatibilidade com os componentes Delphi - ACBrFramework.Net - Rafael Dias.
+[-] Correções PAF_N e PAF_H - ACBrFramework.Net - Rafael Dias.
+
 15/11/2012 (ACBrFramework 0.9.1.13)
 [+] Implementado o componente ACBrCNIEE - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [+] Adicionado o Demo do ACBrCNIEE - ACBrFramework.Net - Rafael Dias.
