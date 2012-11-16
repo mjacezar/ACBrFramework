@@ -1112,7 +1112,7 @@ begin
   end;
 end;
 
-Function PAF_SaveFileTXT_N(const pafHandle: PPAFHandle; const RegistroN1Rec : TRegistroHD2Rec;
+Function PAF_SaveFileTXT_N(const pafHandle: PPAFHandle; const RegistroN1Rec : TRegistroHD1Rec;
       const RegistroN2Rec : TRegistroN2Rec; const RegistroN3Rec : array of TRegistroN3Rec; const Arquivo: pChar) : Integer;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   i : Integer;
@@ -1131,6 +1131,8 @@ begin
   end;
 
   try
+   pafHandle^.PAF.PAF_N.LimpaRegistros;
+
    pafHandle^.PAF.PAF_N.RegistroN1.RAZAOSOCIAL := RegistroN1Rec.RAZAOSOCIAL;
    pafHandle^.PAF.PAF_N.RegistroN1.UF          := RegistroN1Rec.UF;
    pafHandle^.PAF.PAF_N.RegistroN1.CNPJ        := RegistroN1Rec.CNPJ;
@@ -1140,8 +1142,6 @@ begin
    pafHandle^.PAF.PAF_N.RegistroN2.NOME  := RegistroN2Rec.NOME;
    pafHandle^.PAF.PAF_N.RegistroN2.LAUDO := RegistroN2Rec.LAUDO;
    pafHandle^.PAF.PAF_N.RegistroN2.VERSAO  := RegistroN2Rec.VERSAO;
-
-   pafHandle^.PAF.PAF_N.RegistroN3.Clear;
 
    for i := 0 to RegistroN2Rec.QTD_N3 - 1 do
    begin

@@ -440,7 +440,7 @@ namespace ACBrFramework.PAF
                 RegistroN3Rec[i].MD5 = ToUTF8(PAF_N.RegistroN3[i].MD5);
             }
 
-            int ret = ACBrPAFInterop.PAF_SaveFileTXT_N(this.Handle, RegistroN1Rec, RegistroN2Rec, RegistroN3Rec, ToUTF8(arquivo));
+            int ret = ACBrPAFInterop.PAF_SaveFileTXT_N(Handle, RegistroN1Rec, RegistroN2Rec, RegistroN3Rec, ToUTF8(arquivo));
             CheckResult(ret);
 
             return Convert.ToBoolean(ret);
@@ -688,7 +688,7 @@ namespace ACBrFramework.PAF
             return Convert.ToBoolean(ret);
         }
 
-        public Boolean SaveFileTXT_TITP(string arquivo)
+        public bool SaveFileTXT_TITP(string arquivo)
         {
             int ItemIndex = 0;
             int InsumosCount = 0;

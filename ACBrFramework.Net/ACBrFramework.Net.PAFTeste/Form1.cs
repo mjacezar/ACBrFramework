@@ -154,6 +154,52 @@ namespace ACBrFramework.Net.PAFTeste
 			}
 		}
 
+        private void GerarArquivoN()
+        {
+            try
+            {
+                acbrPAF.PAF_N.RegistroN1.RazaoSocial = txtRazaoSocial.Text;
+                acbrPAF.PAF_N.RegistroN1.UF = txtUF.Text;
+                acbrPAF.PAF_N.RegistroN1.CNPJ = txtCNPJ.Text;
+                acbrPAF.PAF_N.RegistroN1.IE = txtIE.Text;
+                acbrPAF.PAF_N.RegistroN1.IM = txtIM.Text;
+
+                acbrPAF.PAF_N.RegistroN2.LAUDO = (string)GerarDados('S', 6); ;
+                acbrPAF.PAF_N.RegistroN2.NOME = (string)GerarDados('S', 6); ;
+                acbrPAF.PAF_N.RegistroN2.VERSAO = (string)GerarDados('S', 6); 
+
+                List<ACBrPAFRegistroN3> N3 = new List<ACBrPAFRegistroN3>();
+                ACBrPAFRegistroN3 item1 = new ACBrPAFRegistroN3()
+                {
+                    NOME_ARQUIVO = (string)GerarDados('S', 6),
+                    MD5 = (string)GerarDados('S', 36)
+                };
+
+                ACBrPAFRegistroN3 item2 = new ACBrPAFRegistroN3()
+                {
+                    NOME_ARQUIVO = "balcao.exe",
+                    MD5 = (string)GerarDados('S', 36)
+                };
+
+
+                N3.Add(item1);
+                N3.Add(item2);
+
+                acbrPAF.PAF_N.RegistroN3.Clear();
+                acbrPAF.PAF_N.RegistroN3.AddRange(N3.ToArray());
+
+                if (acbrPAF.SaveFileTXT_N(@"\PAF_N.txt"))
+                    WriteResp("Arquivo PAF_N gerado com sucesso");
+                else
+                    WriteResp("Arquivo PAF_N não foi gerado");
+            }
+            catch (Exception exception)
+            {
+                messageToolStripStatusLabel.Text = "Exception";
+                descriptionToolStripStatusLabel.Text = exception.Message;
+            }
+        }
+
 		private void GerarArquivoP()
 		{
 			try
@@ -255,6 +301,11 @@ namespace ACBrFramework.Net.PAFTeste
 			GerarArquivoD();
 		}
 
+        private void btnTipoN_Click(object sender, EventArgs e)
+        {
+            GerarArquivoN();
+        }
+
 		private void btnTipoP_Click(object sender, EventArgs e)
 		{
 			GerarArquivoP();
@@ -280,5 +331,6 @@ namespace ACBrFramework.Net.PAFTeste
 		}
 
 		#endregion Event Handlers
+        
 	}
 }
