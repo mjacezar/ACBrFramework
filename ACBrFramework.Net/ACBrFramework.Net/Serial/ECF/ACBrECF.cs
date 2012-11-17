@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 using System.Text;
 
 using ACBrFramework.AAC;
@@ -67,6 +68,7 @@ namespace ACBrFramework.ECF
 
 		#region Properties
 
+		[Category("Configutações ECF")]
 		public ModeloECF Modelo
 		{
 			get
@@ -79,32 +81,10 @@ namespace ACBrFramework.ECF
 			}
 		}
 
-		public string Porta
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetPorta);
-			}
-			set
-			{
-				SetString(ACBrECFInterop.ECF_SetPorta, value);
-			}
-		}
-
+		[Category("Configutações ECF")]
 		public ACBrDevice Device { get; private set; }
-
-		public int TimeOut
-		{
-			get
-			{
-				return GetInt32(ACBrECFInterop.ECF_GetTimeOut);
-			}
-			set
-			{
-				SetInt32(ACBrECFInterop.ECF_SetTimeOut, value);
-			}
-		}
-
+			
+		[Category("Propriedades")]
         public int MaxLinhasBuffer
         {
             get
@@ -117,510 +97,7 @@ namespace ACBrFramework.ECF
             }
         }
 
-		public bool Ativo
-		{
-			get
-			{
-				return GetBool(ACBrECFInterop.ECF_GetAtivo);
-			}
-		}
-
-		public int Colunas
-		{
-			get
-			{
-				return GetInt32(ACBrECFInterop.ECF_GetColunas);
-			}
-		}
-
-		public bool AguardandoResposta
-		{
-			get
-			{
-				return GetBool(ACBrECFInterop.ECF_GetAguardandoResposta);
-			}
-		}
-
-		public string ComandoLog
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetComandoLOG);
-			}
-			set
-			{
-				SetString(ACBrECFInterop.ECF_SetComandoLOG, value);
-			}
-		}
-
-		public bool AguardaImpressao
-		{
-			get
-			{
-				return GetBool(ACBrECFInterop.ECF_GetAguardaImpressao);
-			}
-			set
-			{
-				SetBool(ACBrECFInterop.ECF_SetAguardaImpressao, value);
-			}
-		}
-
-		public string ModeloStr
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetModeloStr);
-			}
-		}
-
-		public string RFDID
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetRFDID);
-			}
-		}
-
-		public DateTime DataHora
-		{
-			get
-			{
-				return GetDateTime(ACBrECFInterop.ECF_GetDataHora);
-			}
-		}
-
-		public string NumCupom
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumCupom);
-			}
-		}
-
-		public string NumCOO
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumCOO);
-			}
-		}
-
-		public string NumLoja
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumLoja);
-			}
-		}
-
-		public string NumECF
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumECF);
-			}
-		}
-
-		public string NumSerie
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumSerie);
-			}
-		}
-
-		public string NumVersao
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumVersao);
-			}
-		}
-
-		public DateTime DataMovimento
-		{
-			get
-			{
-				return GetDateTime(ACBrECFInterop.ECF_GetDataMovimento);
-			}
-		}
-
-		public DateTime DataHoraSB
-		{
-			get
-			{
-				return GetDateTime(ACBrECFInterop.ECF_GetDataHoraSB);
-			}
-		}
-
-		public string CNPJ
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetCNPJ);
-			}
-		}
-
-		public string IE
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetIE);
-			}
-		}
-
-		public string IM
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetIM);
-			}
-		}
-
-		public string Cliche
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetCliche);
-			}
-		}
-
-		public string UsuarioAtual
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetUsuarioAtual);
-			}
-		}
-
-		public string SubModeloECF
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetSubModeloECF);
-			}
-		}
-
-		public string PAF
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetPAF);
-			}
-		}
-
-		public string NumCRZ
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumCRZ);
-			}
-		}
-
-		public string NumCRO
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumCRO);
-			}
-		}
-
-		public string NumCCF
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumCCF);
-			}
-		}
-
-		public string NumGNF
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumGNF);
-			}
-		}
-
-		public string NumGRG
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumGRG);
-			}
-		}
-
-		public string NumCDC
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumCDC);
-			}
-		}
-
-		public string NumCOOInicial
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetNumCOOInicial);
-			}
-		}
-
-		public decimal VendaBruta
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetVendaBruta);
-			}
-		}
-
-		public decimal GrandeTotal
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetGrandeTotal);
-			}
-		}
-
-		public decimal TotalCancelamentos
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalCancelamentos);
-			}
-		}
-
-		public decimal TotalDescontos
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalDescontos);
-			}
-		}
-
-		public decimal TotalAcrescimos
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalAcrescimos);
-			}
-		}
-
-		public decimal TotalTroco
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalTroco);
-			}
-		}
-
-		public decimal TotalSubstituicaoTributaria
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalSubstituicaoTributaria);
-			}
-		}
-
-		public decimal TotalNaoTributado
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalNaoTributado);
-			}
-		}
-
-		public decimal TotalIsencao
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalIsencao);
-			}
-		}
-
-		public decimal TotalCancelamentosISSQN
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalCancelamentosISSQN);
-			}
-		}
-
-		public decimal TotalDescontosISSQN
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalDescontosISSQN);
-			}
-		}
-
-		public decimal TotalAcrescimosISSQN
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalAcrescimosISSQN);
-			}
-		}
-
-		public decimal TotalSubstituicaoTributariaISSQN
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalSubstituicaoTributariaISSQN);
-			}
-		}
-
-		public decimal TotalNaoTributadoISSQN
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalNaoTributadoISSQN);
-			}
-		}
-
-		public decimal TotalIsencaoISSQN
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalIsencaoISSQN);
-			}
-		}
-
-		public decimal TotalNaoFiscal
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalNaoFiscal);
-			}
-		}
-
-		public int NumUltItem
-		{
-			get
-			{
-				return GetInt32(ACBrECFInterop.ECF_GetNumUltItem);
-			}
-		}
-
-		public bool EmLinha
-		{
-			get
-			{
-				const int DEFAULT_TIMEOUT = 1;
-				int ret = ACBrECFInterop.ECF_GetEmLinha(this.Handle, DEFAULT_TIMEOUT);
-				CheckResult(ret);
-
-				return Convert.ToBoolean(ret);
-			}
-		}
-
-		public bool PoucoPapel
-		{
-			get
-			{
-				return GetBool(ACBrECFInterop.ECF_GetPoucoPapel);
-			}
-		}
-
-		public EstadoECF Estado
-		{
-			get
-			{
-				return (EstadoECF)GetInt32(ACBrECFInterop.ECF_GetEstado);
-			}
-		}
-
-		public bool HorarioVerao
-		{
-			get
-			{
-				return GetBool(ACBrECFInterop.ECF_GetHorarioVerao);
-			}
-		}
-
-		public bool Arredonda
-		{
-			get
-			{
-				return GetBool(ACBrECFInterop.ECF_GetArredonda);
-			}
-		}
-
-		public bool Termica
-		{
-			get
-			{
-				return GetBool(ACBrECFInterop.ECF_GetTermica);
-			}
-		}
-
-		public bool MFD
-		{
-			get
-			{
-				return GetBool(ACBrECFInterop.ECF_GetMFD);
-			}
-		}
-
-		public string MFAdicional
-		{
-			get
-			{
-				return GetString(ACBrECFInterop.ECF_GetMFAdicional);
-			}
-		}
-
-		public bool IdentificaConsumidorRodape
-		{
-			get
-			{
-				return GetBool(ACBrECFInterop.ECF_GetIdentificaConsumidorRodape);
-			}
-		}
-
-		public decimal SubTotal
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetSubTotal);
-			}
-		}
-
-		public decimal TotalPago
-		{
-			get
-			{
-				return GetDecimal(ACBrECFInterop.ECF_GetTotalPago);
-			}
-		}
-
-		public bool GavetaAberta
-		{
-			get
-			{
-				return GetBool(ACBrECFInterop.ECF_GetGavetaAberta);
-			}
-		}
-
-		public bool ChequePronto
-		{
-			get
-			{
-				return GetBool(ACBrECFInterop.ECF_GetChequePronto);
-			}
-		}
-
-		public int IntervaloAposComando
-		{
-			get
-			{
-				return GetInt32(ACBrECFInterop.ECF_GetIntervaloAposComando);
-			}
-			set
-			{
-				SetInt32(ACBrECFInterop.ECF_SetIntervaloAposComando, value);
-			}
-		}
-
+		[Category("Propriedades")]
 		public bool DescricaoGrande
 		{
 			get
@@ -633,6 +110,7 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		[Category("Propriedades")]
 		public bool GavetaSinalInvertido
 		{
 			get
@@ -645,6 +123,20 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		[Category("Propriedades")]
+		public string ArqLOG
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetArqLOG);
+			}
+			set
+			{
+				SetString(ACBrECFInterop.ECF_SetArqLOG, value);
+			}
+		}
+
+		[Category("Propriedades")]
 		public string Operador
 		{
 			get
@@ -657,18 +149,20 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		[Category("Propriedades")]
 		public string[] MemoParams
 		{
 			get
 			{
-				return GetString(ACBrECFInterop.ECF_GetMemoParams, ACBrECFInterop.ECF_GetMemoParamsLineCount);
+				return GetStringArray(ACBrECFInterop.ECF_GetMemoParams, ACBrECFInterop.ECF_GetMemoParamsLineCount);
 			}
 			set
 			{
-				SetString(ACBrECFInterop.ECF_SetMemoParams, value);
+				SetStringArray(ACBrECFInterop.ECF_SetMemoParams, value);
 			}
 		}
 
+		[Category("Propriedades")]
 		public int LinhasEntreCupons
 		{
 			get
@@ -681,6 +175,7 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		[Category("Propriedades")]
 		public int DecimaisPreco
 		{
 			get
@@ -693,6 +188,7 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		[Category("Propriedades")]
 		public int DecimaisQtd
 		{
 			get
@@ -705,6 +201,630 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		#region Componentes ACBr
+
+		[Category("Componentes ACBr")]
+		public ACBrAAC AAC
+		{
+			get
+			{
+				return this.aac;
+			}
+			set
+			{
+				if (value == null)
+				{
+					int ret = ACBrECFInterop.ECF_SetAAC(this.Handle, IntPtr.Zero);
+					CheckResult(ret);
+
+					this.aac = null;
+				}
+				else
+				{
+					int ret = ACBrECFInterop.ECF_SetAAC(this.Handle, value.Handle);
+					CheckResult(ret);
+
+					this.aac = value;
+				}
+			}
+		}
+
+		[Category("Componentes ACBr")]
+		public ACBrEAD EAD
+		{
+			get
+			{
+				return this.ead;
+			}
+			set
+			{
+				if (value == null)
+				{
+					int ret = ACBrECFInterop.ECF_SetEAD(this.Handle, IntPtr.Zero);
+					CheckResult(ret);
+
+					this.aac = null;
+				}
+				else
+				{
+					int ret = ACBrECFInterop.ECF_SetEAD(this.Handle, value.Handle);
+					CheckResult(ret);
+
+					this.ead = value;
+				}
+			}
+		}
+
+		#endregion Componentes ACBr
+
+		#region Propriedades Não-visiveis
+
+		[Browsable(false)]
+		public bool Ativo
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetAtivo);
+			}
+		}
+
+		[Browsable(false)]
+		public int Colunas
+		{
+			get
+			{
+				return GetInt32(ACBrECFInterop.ECF_GetColunas);
+			}
+		}
+
+		[Browsable(false)]
+		public bool AguardandoResposta
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetAguardandoResposta);
+			}
+		}
+
+		[Browsable(false)]
+		public string ComandoLog
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetComandoLOG);
+			}
+			set
+			{
+				SetString(ACBrECFInterop.ECF_SetComandoLOG, value);
+			}
+		}
+
+		[Browsable(false)]
+		public bool AguardaImpressao
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetAguardaImpressao);
+			}
+			set
+			{
+				SetBool(ACBrECFInterop.ECF_SetAguardaImpressao, value);
+			}
+		}
+
+		[Browsable(false)]
+		public string ModeloStr
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetModeloStr);
+			}
+		}
+
+		[Browsable(false)]
+		public string RFDID
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetRFDID);
+			}
+		}
+
+		[Browsable(false)]
+		public DateTime DataHora
+		{
+			get
+			{
+				return GetDateTime(ACBrECFInterop.ECF_GetDataHora);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumCupom
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumCupom);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumCOO
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumCOO);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumLoja
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumLoja);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumECF
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumECF);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumSerie
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumSerie);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumVersao
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumVersao);
+			}
+		}
+
+		[Browsable(false)]
+		public DateTime DataMovimento
+		{
+			get
+			{
+				return GetDateTime(ACBrECFInterop.ECF_GetDataMovimento);
+			}
+		}
+
+		[Browsable(false)]
+		public DateTime DataHoraSB
+		{
+			get
+			{
+				return GetDateTime(ACBrECFInterop.ECF_GetDataHoraSB);
+			}
+		}
+
+		[Browsable(false)]
+		public string CNPJ
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetCNPJ);
+			}
+		}
+
+		[Browsable(false)]
+		public string IE
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetIE);
+			}
+		}
+
+		[Browsable(false)]
+		public string IM
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetIM);
+			}
+		}
+
+		[Browsable(false)]
+		public string Cliche
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetCliche);
+			}
+		}
+
+		[Browsable(false)]
+		public string UsuarioAtual
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetUsuarioAtual);
+			}
+		}
+
+		[Browsable(false)]
+		public string SubModeloECF
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetSubModeloECF);
+			}
+		}
+
+		[Browsable(false)]
+		public string PAF
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetPAF);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumCRZ
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumCRZ);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumCRO
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumCRO);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumCCF
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumCCF);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumGNF
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumGNF);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumGRG
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumGRG);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumCDC
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumCDC);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumCOOInicial
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumCOOInicial);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal VendaBruta
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetVendaBruta);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal GrandeTotal
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetGrandeTotal);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalCancelamentos
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalCancelamentos);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalDescontos
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalDescontos);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalAcrescimos
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalAcrescimos);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalTroco
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalTroco);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalSubstituicaoTributaria
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalSubstituicaoTributaria);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalNaoTributado
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalNaoTributado);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalIsencao
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalIsencao);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalCancelamentosISSQN
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalCancelamentosISSQN);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalDescontosISSQN
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalDescontosISSQN);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalAcrescimosISSQN
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalAcrescimosISSQN);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalSubstituicaoTributariaISSQN
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalSubstituicaoTributariaISSQN);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalNaoTributadoISSQN
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalNaoTributadoISSQN);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalIsencaoISSQN
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalIsencaoISSQN);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalNaoFiscal
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalNaoFiscal);
+			}
+		}
+
+		[Browsable(false)]
+		public int NumUltItem
+		{
+			get
+			{
+				return GetInt32(ACBrECFInterop.ECF_GetNumUltItem);
+			}
+		}
+
+		[Browsable(false)]
+		public bool EmLinha
+		{
+			get
+			{
+				const int DEFAULT_TIMEOUT = 1;
+				int ret = ACBrECFInterop.ECF_GetEmLinha(this.Handle, DEFAULT_TIMEOUT);
+				CheckResult(ret);
+
+				return Convert.ToBoolean(ret);
+			}
+		}
+
+		[Browsable(false)]
+		public bool PoucoPapel
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetPoucoPapel);
+			}
+		}
+
+		[Browsable(false)]
+		public EstadoECF Estado
+		{
+			get
+			{
+				return (EstadoECF)GetInt32(ACBrECFInterop.ECF_GetEstado);
+			}
+		}
+
+		[Browsable(false)]
+		public bool HorarioVerao
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetHorarioVerao);
+			}
+		}
+
+		[Browsable(false)]
+		public bool Arredonda
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetArredonda);
+			}
+		}
+
+		[Browsable(false)]
+		public bool Termica
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetTermica);
+			}
+		}
+
+		[Browsable(false)]
+		public bool MFD
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetMFD);
+			}
+		}
+
+		[Browsable(false)]
+		public string MFAdicional
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetMFAdicional);
+			}
+		}
+
+		[Browsable(false)]
+		public bool IdentificaConsumidorRodape
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetIdentificaConsumidorRodape);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal SubTotal
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetSubTotal);
+			}
+		}
+
+		[Browsable(false)]
+		public decimal TotalPago
+		{
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_GetTotalPago);
+			}
+		}
+
+		[Browsable(false)]
+		public bool GavetaAberta
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetGavetaAberta);
+			}
+		}
+
+		[Browsable(false)]
+		public bool ChequePronto
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetChequePronto);
+			}
+		}
+
+		[Browsable(false)]
+		public int IntervaloAposComando
+		{
+			get
+			{
+				return GetInt32(ACBrECFInterop.ECF_GetIntervaloAposComando);
+			}
+			set
+			{
+				SetInt32(ACBrECFInterop.ECF_SetIntervaloAposComando, value);
+			}
+		}		
+
+		[Browsable(false)]
 		public ACBrECFAliquota[] Aliquotas
 		{
 			get
@@ -714,6 +834,7 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		[Browsable(false)]
 		public ACBrECFFormaPagamento[] FormasPagamento
 		{
 			get
@@ -723,6 +844,7 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		[Browsable(false)]
 		public ACBrECFRelatorioGerencial[] RelatoriosGerenciais
 		{
 			get
@@ -732,6 +854,7 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		[Browsable(false)]
 		public ACBrECFComprovanteNaoFiscal[] ComprovantesNaoFiscais
 		{
 			get
@@ -740,6 +863,8 @@ namespace ACBrFramework.ECF
 				return (ACBrECFComprovanteNaoFiscal[])comprovantesNaoFiscais;
 			}
 		}
+
+		#endregion Propriedades Não-visiveis
 
 		#endregion Properties
 
@@ -1840,64 +1965,6 @@ namespace ACBrFramework.ECF
 		}
 
 		#endregion Programação
-
-		#region AAC
-
-		public ACBrAAC AAC
-		{
-			get
-			{
-				return this.aac;
-			}
-			set
-			{
-				if (value == null)
-				{
-					int ret = ACBrECFInterop.ECF_SetAAC(this.Handle, IntPtr.Zero);
-					CheckResult(ret);
-
-					this.aac = null;
-				}
-				else
-				{
-					int ret = ACBrECFInterop.ECF_SetAAC(this.Handle, value.Handle);
-					CheckResult(ret);
-
-					this.aac = value;
-				}
-			}
-		}
-
-		#endregion AAC
-
-		#region EAD
-
-		public ACBrEAD EAD
-		{
-			get
-			{
-				return this.ead;
-			}
-			set
-			{
-				if (value == null)
-				{
-					int ret = ACBrECFInterop.ECF_SetEAD(this.Handle, IntPtr.Zero);
-					CheckResult(ret);
-
-					this.aac = null;
-				}
-				else
-				{
-					int ret = ACBrECFInterop.ECF_SetEAD(this.Handle, value.Handle);
-					CheckResult(ret);
-
-					this.ead = value;
-				}
-			}
-		}
-
-		#endregion EAD
 
 		#region Override Methods
 

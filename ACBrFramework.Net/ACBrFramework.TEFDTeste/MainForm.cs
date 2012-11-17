@@ -111,7 +111,7 @@ namespace ACBrFramework.TEFDTeste
 					}
 					else if (cmbModelo.SelectedIndex == 0 && cmbPorta.SelectedIndex != 0)
 					{
-						acBrECF1.Porta = (string)cmbPorta.SelectedItem;
+						acBrECF1.Device.Porta = (string)cmbPorta.SelectedItem;
 						if (acBrECF1.AcharECF(true, false))
 						{
                             WriteResp("Não foi possivel localizar a ECF");
@@ -134,7 +134,7 @@ namespace ACBrFramework.TEFDTeste
 					else
 					{
 						acBrECF1.Modelo = (ModeloECF)cmbModelo.SelectedItem;
-						acBrECF1.Porta = (string)cmbPorta.SelectedItem;
+						acBrECF1.Device.Porta = (string)cmbPorta.SelectedItem;
 					}
 
 					acBrECF1.Ativar();

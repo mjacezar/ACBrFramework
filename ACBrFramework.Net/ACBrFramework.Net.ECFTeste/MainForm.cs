@@ -235,9 +235,6 @@ namespace ACBrFramework.ECFTeste
 
 		private void InicializarECF()
 		{
-			acbrECF.EAD = acbrEAD;
-			acbrECF.AAC = acbrAAC;
-
 			List<string> fsMemoParams = new List<string>();
 			fsMemoParams.Add("[Cabecalho]");
 			fsMemoParams.Add("LIN000=<center><b>ACBrFramework.Net</b></center>");
@@ -298,7 +295,6 @@ namespace ACBrFramework.ECFTeste
 			velocidadeComboBox.SelectedItem = 9600;
 
 			ativarCheckButton.Checked = false;
-			acbrECF.EAD = acbrEAD;
 		}
 
 		public void Ativar()
@@ -306,9 +302,9 @@ namespace ACBrFramework.ECFTeste
 			try
 			{
 				acbrECF.Modelo = (ModeloECF)modeloComboBox.SelectedItem;
-				acbrECF.Porta = (string)portaComboBox.SelectedItem;
+				acbrECF.Device.Porta = (string)portaComboBox.SelectedItem;
 				acbrECF.Device.Baud = (int)velocidadeComboBox.SelectedItem;
-				acbrECF.TimeOut = (int)timeOutNumericUpDown.Value;
+				acbrECF.Device.TimeOut = (int)timeOutNumericUpDown.Value;
 
 				acbrECF.GavetaSinalInvertido = gavetaCheckBox.Checked;
 				acbrECF.DescricaoGrande = descricaoCheckBox.Checked;
@@ -1201,7 +1197,9 @@ namespace ACBrFramework.ECFTeste
             programaFormaPagamento();
         }
 
-		private void acbrEAD_OnGetChavePrivada(object sender, ChaveEventArgs e)
+		#region Eventos
+
+		private void acbrAAC_OnGetChave(object sender, ChaveEventArgs e)
 		{
 			e.Chave = "-----BEGIN RSA PRIVATE KEY-----" + Environment.NewLine +
 					   "MIICXwIBAAKBgQC+TZjfcw/a/SovoqQPOW5bbKn4CQw4DeZJA3Y9vJrYHKN4aCQv" + Environment.NewLine +
@@ -1220,16 +1218,6 @@ namespace ACBrFramework.ECFTeste
 					   "-----END RSA PRIVATE KEY-----";
 		}
 
-		private void acbrEAD_OnGetChavePublica(object sender, ChaveEventArgs e)
-		{
-			e.Chave = aacChaveTextBox.Text;
-		}
-
-		private void acbrAAC_OnGetChave(object sender, ChaveEventArgs e)
-		{
-			e.Chave = aacChaveTextBox.Text;
-		}
-
 		private void acbrECF_OnBobinaAdicionaLinhas(object sender, BobinaEventArgs e)
 		{
 			bobina.Append(e.Linhas);
@@ -1239,6 +1227,8 @@ namespace ACBrFramework.ECFTeste
 			wbBobina.Refresh();
 		}
 
-		#endregion Event Handlers        
+		#endregion Eventos
+
+		#endregion Event Handlers
 	}
 }

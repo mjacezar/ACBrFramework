@@ -77,13 +77,19 @@ namespace ACBrFramework
 			return FromUTF8(buffer);
 		}
 
-		protected string[] GetString(GetArrayStringEntryPointDelegate entryPoint, GetInt32EntryPointDelegate GetCount)
+		protected void SetString(SetStringEntryPointDelegate entryPoint, string value)
+		{
+			int ret = entryPoint(Handle, ToUTF8(value));
+			CheckResult(ret);
+		}	
+
+		protected string[] GetStringArray(GetArrayStringEntryPointDelegate entryPoint, GetInt32EntryPointDelegate GetCount)
 		{
 			const int BUFFER_LEN = 256;
-			return GetString(entryPoint, GetCount, BUFFER_LEN);
+			return GetStringArray(entryPoint, GetCount, BUFFER_LEN);
 		}
 
-		protected string[] GetString(GetArrayStringEntryPointDelegate entryPoint, GetInt32EntryPointDelegate GetCount, int bufferLen)
+		protected string[] GetStringArray(GetArrayStringEntryPointDelegate entryPoint, GetInt32EntryPointDelegate GetCount, int bufferLen)
 		{
 			int count = GetCount(Handle);
 			CheckResult(count);
@@ -101,13 +107,7 @@ namespace ACBrFramework
 			return Retorno;
 		}
 
-		protected void SetString(SetStringEntryPointDelegate entryPoint, string value)
-		{
-			int ret = entryPoint(Handle, ToUTF8(value));
-			CheckResult(ret);
-		}
-
-		protected void SetString(SetArrayStringEntryPointDelegate entryPoint, string[] value)
+		protected void SetStringArray(SetArrayStringEntryPointDelegate entryPoint, string[] value)
 		{
 			for (int i = 0; i < value.Length; i++)
 				value[i] = ToUTF8(value[i]);

@@ -41,6 +41,10 @@ Símbolo : Significado
 
 Changelog
 
+17/11/2012 (ACBrFramework 0.9.1.16)
+[+] Adicionado ECF_GetArqLog, ECF_SetArqLog - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[*] Reorganização do codigo - ACBrFramework - Rafael Dias.
+
 17/11/2012 (ACBrFramework 0.9.1.15)
 [+] Adicionado ECF_GetMemoParams, ECF_GetMemoParamsLineCount - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [*] Modificado o ECF_VendeItem adicionado o paramentro (int) CodDepartamento - ACBrFramework e ACBrFramework.Net - Rafael Dias.
