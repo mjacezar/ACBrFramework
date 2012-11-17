@@ -346,16 +346,10 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_SetModelo(IntPtr ecfHandle, int modelo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_GetPorta(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+		public static extern int ECF_GetArqLOG(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetPorta(IntPtr ecfHandle, string porta);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_GetTimeOut(IntPtr ecfHandle);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetTimeOut(IntPtr ecfHandle, int timeOut);
+		public static extern int ECF_SetArqLOG(IntPtr ecfHandle, string arqLog);
 
         [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
         public static extern int ECF_GetMaxLinhasBuffer(IntPtr ecfHandle);

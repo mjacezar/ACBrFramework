@@ -1153,8 +1153,8 @@
 			this.acBrECF1.MaxLinhasBuffer = 3;
 			this.acBrECF1.Modelo = ACBrFramework.ECF.ModeloECF.Nenhum;
 			this.acBrECF1.Operador = "";
-			this.acBrECF1.Porta = "COM1";
-			this.acBrECF1.TimeOut = 3;
+			this.acBrECF1.Device.Porta = "COM1";
+			this.acBrECF1.Device.TimeOut = 3;
 			this.acBrECF1.OnPoucoPapel += new System.EventHandler(this.acBrECF1_OnPoucoPapel);
 			// 
 			// acBrTEFD1

@@ -9,13 +9,12 @@ uses
   ACBrECFClass,
   ACBrDevice,
   ACBrUtil,
-  ACBrCommonDll,
   ACBrAACDLL,
   ACBrEADDll,
   ACBrPAFClass
   ;
 
-{ Ponteiros de função }
+{ Ponteiros de função para uso nos eventos}
 type TBobinaProcedureCallback = procedure(const Linhas : PChar; const Operacao : PChar); cdecl;
 type TPoucoPapelCallback = procedure(); cdecl;
 
@@ -140,6 +139,7 @@ type PDadosRZRec = ^TDadosRZRec;
 
 implementation
 
+{%region Constructor/Destructor}
 {
 PADRONIZAÇÃO DAS FUNÇÕES:
 
@@ -244,51 +244,9 @@ begin
   end;
 end;
 
-Function ECF_Ativar(const ecfHandle: PECFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
+{%endregion}
 
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.Ativar;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-
-end;
-
-Function ECF_Desativar(const ecfHandle: PECFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.Desativar;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-
-end;
-
-{ Funções mapeando as propriedades do componente }
+{%region Funções mapeando as propriedades do componente }
 
 Function ECF_GetModelo(const ecfHandle: PECFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
@@ -423,7 +381,7 @@ begin
 
 end;
 
-Function ECF_GetAtivo(const ecfHandle: PECFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function ECF_GetIntervaloAposComando(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -433,10 +391,7 @@ begin
   end;
 
   try
-     if (ecfHandle^.ECF.Ativo) then
-        Result := 1
-     else
-        Result := 0;
+     Result := ecfHandle^.ECF.IntervaloAposComando;
   except
      on exception : Exception do
      begin
@@ -444,10 +399,9 @@ begin
         Result := -1;
      end
   end;
-
 end;
 
-Function ECF_GetColunas(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetIntervaloAposComando(const ecfHandle: PECFHandle; const Intervalo : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -457,7 +411,308 @@ begin
   end;
 
   try
-     Result := ecfHandle^.ECF.Colunas;
+     ecfHandle^.ECF.IntervaloAposComando := Intervalo;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetDescricaoGrande(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if ecfHandle^.ECF.DescricaoGrande then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetDescricaoGrande(const ecfHandle: PECFHandle; const DescricaoGrande : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.DescricaoGrande := DescricaoGrande;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetGavetaSinalInvertido(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if ecfHandle^.ECF.GavetaSinalInvertido then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetGavetaSinalInvertido(const ecfHandle: PECFHandle; const GavetaSinalInvertido : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.GavetaSinalInvertido := GavetaSinalInvertido;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetOperador(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+   strTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     strTmp := ecfHandle^.ECF.Operador;
+     StrPLCopy(Buffer, strTmp, BufferLen);
+     Result := length(strTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOperador(const ecfHandle: PECFHandle; const Operador : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+  try
+     ecfHandle^.ECF.Operador := Operador;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetLinhasEntreCupons(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+       Result := ecfHandle^.ECF.LinhasEntreCupons;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetLinhasEntreCupons(const ecfHandle: PECFHandle; const LinhasEntreCupons : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.LinhasEntreCupons := LinhasEntreCupons;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetDecimaisPreco(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+       Result := ecfHandle^.ECF.DecimaisPreco;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetDecimaisPreco(const ecfHandle: PECFHandle; const DecimaisPreco : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.DecimaisPreco := DecimaisPreco;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetDecimaisQtd(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+       Result := ecfHandle^.ECF.DecimaisQtd;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetDecimaisQtd(const ecfHandle: PECFHandle; const DecimaisQtd : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.DecimaisQtd := DecimaisQtd;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetArqLOG(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  StrTmp := ecfHandle^.ECF.ArqLOG;
+  StrPLCopy(Buffer, StrTmp, BufferLen);
+  Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetArqLOG(const ecfHandle: PECFHandle; const ArqLog : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.ArqLOG := ArqLog;
+     Result := 0;
   except
      on exception : Exception do
      begin
@@ -499,6 +754,54 @@ begin
   try
      ecfHandle^.ECF.MaxLinhasBuffer := MaxLinha;
      Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%region Propriedades - Não Visiveis }
+
+Function ECF_GetAtivo(const ecfHandle: PECFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if (ecfHandle^.ECF.Ativo) then
+        Result := 1
+     else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_GetColunas(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := ecfHandle^.ECF.Colunas;
   except
      on exception : Exception do
      begin
@@ -1695,7 +1998,69 @@ begin
    end;
 end;
 
-{ ECF - Flags }
+{%endregion}
+
+{%region Propriedades - Componentes ACBr }
+
+Function ECF_SetAAC(const ecfHandle: PECFHandle; const aacHandle : PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  if (aacHandle = nil) then
+  begin
+     ecfHandle^.ECF.AAC := nil;
+  end
+  else
+  begin
+
+    try
+       ecfHandle^.ECF.AAC := aacHandle^.AAC;
+       Result := 0;
+    except on exception : Exception do
+        begin
+         ecfHandle^.UltimoErro := exception.Message;
+         Result := -1;
+         end
+    end;
+  end;
+end;
+
+Function ECF_SetEAD(const ecfHandle: PECFHandle; const eadHandle : PEADHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  if (eadHandle = nil) then
+  begin
+     ecfHandle^.ECF.EAD := nil;
+  end
+  else
+  begin
+
+    try
+       ecfHandle^.ECF.EAD := eadHandle^.EAD;
+       Result := 0;
+    except on exception : Exception do
+        begin
+         ecfHandle^.UltimoErro := exception.Message;
+         Result := -1;
+         end
+    end;
+  end;
+end;
+
+{%endregion}
+
+{%region ECF - Flags }
 
 Function ECF_GetEmLinha(const ecfHandle: PECFHandle; const TimeOut : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -2002,7 +2367,11 @@ begin
   end;
 end;
 
-Function ECF_GetIntervaloAposComando(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+{%endregion}
+
+{%region Métodos do componente}
+
+Function ECF_Ativar(const ecfHandle: PECFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (ecfHandle = nil) then
@@ -2012,17 +2381,19 @@ begin
   end;
 
   try
-     Result := ecfHandle^.ECF.IntervaloAposComando;
+     ecfHandle^.ECF.Ativar;
+     Result := 0;
   except
      on exception : Exception do
      begin
         ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
+        Result  := -1;
      end
   end;
+
 end;
 
-Function ECF_SetIntervaloAposComando(const ecfHandle: PECFHandle; const Intervalo : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_Desativar(const ecfHandle: PECFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (ecfHandle = nil) then
@@ -2032,7 +2403,7 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.IntervaloAposComando := Intervalo;
+     ecfHandle^.ECF.Desativar;
      Result := 0;
   except
      on exception : Exception do
@@ -2041,264 +2412,8 @@ begin
         Result := -1;
      end
   end;
+
 end;
-
-Function ECF_GetDescricaoGrande(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     if ecfHandle^.ECF.DescricaoGrande then
-       Result := 1
-     else
-       Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_SetDescricaoGrande(const ecfHandle: PECFHandle; const DescricaoGrande : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.DescricaoGrande := DescricaoGrande;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_GetGavetaSinalInvertido(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     if ecfHandle^.ECF.GavetaSinalInvertido then
-       Result := 1
-     else
-       Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_SetGavetaSinalInvertido(const ecfHandle: PECFHandle; const GavetaSinalInvertido : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.GavetaSinalInvertido := GavetaSinalInvertido;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_GetOperador(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-   strTmp : String;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     strTmp := ecfHandle^.ECF.Operador;
-     StrPLCopy(Buffer, strTmp, BufferLen);
-     Result := length(strTmp);
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_SetOperador(const ecfHandle: PECFHandle; const Operador : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-  try
-     ecfHandle^.ECF.Operador := Operador;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_GetLinhasEntreCupons(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-       Result := ecfHandle^.ECF.LinhasEntreCupons;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_SetLinhasEntreCupons(const ecfHandle: PECFHandle; const LinhasEntreCupons : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.LinhasEntreCupons := LinhasEntreCupons;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_GetDecimaisPreco(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-       Result := ecfHandle^.ECF.DecimaisPreco;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_SetDecimaisPreco(const ecfHandle: PECFHandle; const DecimaisPreco : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.DecimaisPreco := DecimaisPreco;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_GetDecimaisQtd(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-       Result := ecfHandle^.ECF.DecimaisQtd;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_SetDecimaisQtd(const ecfHandle: PECFHandle; const DecimaisQtd : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.DecimaisQtd := DecimaisQtd;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-{Métodos do componente}
 
 Function ECF_PreparaTEF(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
@@ -2322,7 +2437,245 @@ begin
 
 end;
 
-{ Metodos Bobina }
+Function ECF_TestaPodeAbrirCupom(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+      ecfHandle^.ECF.TestaPodeAbrirCupom;
+      Result := 0 ;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_Sangria(const ecfHandle: PECFHandle; const Valor: Double; const Obs: pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.Sangria(Valor, Obs);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_Suprimento(const ecfHandle: PECFHandle; const Valor: Double; const Obs: pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.Suprimento(Valor, Obs);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_AbreGaveta(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.AbreGaveta;
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_MudaHorarioVerao(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.MudaHorarioVerao;
+     Result := 0 ;
+  except
+      on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result  := -1;
+     end
+  end;
+end;
+
+Function ECF_MudaArredondamento(const ecfHandle: PECFHandle;  const Arredondar: Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.MudaArredondamento(Arredondar);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_CorrigeEstadoErro(const ecfHandle: PECFHandle; const ReducaoZ: Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.CorrigeEstadoErro(ReducaoZ);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result  := -1;
+     end
+  end;
+end;
+
+Function ECF_AcharECF(const ecfHandle: PECFHandle; const ProcuraModelo : Boolean; const ProcuraPorta  : Boolean; const TimeOut : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if (ecfHandle^.ECF.AcharECF(ProcuraModelo, ProcuraPorta, TimeOut)) then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_AcharPorta(const ecfHandle: PECFHandle; const TimeOut : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if (ecfHandle^.ECF.AcharPorta(TimeOut))then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_PulaLinhas(const ecfHandle: PECFHandle; const NumLinhas : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.PulaLinhas(NumLinhas);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_CortaPapel(const ecfHandle: PECFHandle; const CorteParcial : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.CortaPapel(CorteParcial);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%region Metodos Bobina }
 
 Function ECF_SetMemoParams(const ecfHandle: PECFHandle; const linhas : array of PChar; const LinhasCount: Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -2400,7 +2753,9 @@ begin
   end;
 end;
 
-{Métodos do cupom fiscal}
+{%endregion}
+
+{%region Métodos do cupom fiscal}
 
 Function ECF_IdentificaConsumidor(const ecfHandle: PECFHandle; const CPF_CNPJ, Nome, Endereco : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
@@ -2707,49 +3062,9 @@ begin
   end;
 end;
 
-{Relatórios}
+{%endregion}
 
-Function ECF_LeituraX(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.LeituraX;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_ReducaoZ(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.ReducaoZ;
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
+{%region Cupom Vinculado }
 
 Function ECF_AbreCupomVinculado(const ecfHandle: PECFHandle; const COO, CodFormaPagto : pChar; const Valor : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -2814,70 +3129,9 @@ begin
   end;
 end;
 
-Function ECF_FechaRelatorio(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
+{%endregion}
 
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.FechaRelatorio;
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_PulaLinhas(const ecfHandle: PECFHandle; const NumLinhas : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.PulaLinhas(NumLinhas);
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_CortaPapel(const ecfHandle: PECFHandle; const CorteParcial : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.CortaPapel(CorteParcial);
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-{Alíquotas}
+{%region Alíquotas}
 
 Function ECF_GetAliquota(const ecfHandle: PECFHandle; var retAliquota : TAliquotaRec; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -3080,7 +3334,9 @@ begin
    end;
 end;
 
-{Forma de pagamento}
+{%endregion}
+
+{%region Forma de pagamento}
 
 Function ECF_GetFormaPagamento(const ecfHandle: PECFHandle; var retFormaPagamento : TFormaPagamentoRec; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -3302,7 +3558,131 @@ begin
 
 end;
 
-{Comprovantes Não Fiscais}
+{%endregion}
+
+{%region Comprovantes Não Fiscais}
+
+Function ECF_AbreNaoFiscal(const ecfHandle: PECFHandle; const CPF_CNPJ : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.AbreNaoFiscal(CPF_CNPJ);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_RegistraItemNaoFiscal(const ecfHandle: PECFHandle; const CodCNF: pChar; const Valor: Double; const Obs: pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.RegistraItemNaoFiscal(CodCNF,Valor,Obs);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result  := -1;
+     end
+  end;
+end;
+
+Function ECF_SubtotalizaNaoFiscal(const ecfHandle: PECFHandle; const DescontoAcrescimo: Double; const MensagemRodape: pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.SubtotalizaNaoFiscal(DescontoAcrescimo,MensagemRodape);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result  := -1;
+     end
+  end;
+end;
+
+Function ECF_EfetuaPagamentoNaoFiscal(const ecfHandle: PECFHandle; const CodFormaPagto: pChar; const Valor: Double; const Observacao: pChar; const ImprimeVinculado: Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.EfetuaPagamentoNaoFiscal(CodFormaPagto,Valor,Observacao,ImprimeVinculado);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result  := -1;
+     end
+  end;
+end;
+
+Function ECF_FechaNaoFiscal(const ecfHandle: PECFHandle; const Observacao: pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.FechaNaoFiscal(Observacao);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result  := -1;
+     end
+  end;
+end;
+
+Function ECF_CancelaNaoFiscal(const ecfHandle: PECFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.CancelaNaoFiscal;
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result  := -1;
+     end
+  end;
+end;
 
 Function ECF_GetComprovanteNaoFiscal(const ecfHandle: PECFHandle; var retComprovanteNaoFiscal : TComprovanteNaoFiscalRec; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -3530,325 +3910,9 @@ end;
 
 }
 
-{ Metodos ECF }
+{%endregion}
 
-Function ECF_TestaPodeAbrirCupom(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-   try
-      ecfHandle^.ECF.TestaPodeAbrirCupom;
-      Result := 0 ;
-   except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-   end;
-end;
-
-Function ECF_Sangria(const ecfHandle: PECFHandle; const Valor: Double; const Obs: pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.Sangria(Valor, Obs);
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_Suprimento(const ecfHandle: PECFHandle; const Valor: Double; const Obs: pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.Suprimento(Valor, Obs);
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_AbreGaveta(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.AbreGaveta;
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_MudaHorarioVerao(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.MudaHorarioVerao;
-     Result := 0 ;
-  except
-      on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-end;
-
-Function ECF_MudaArredondamento(const ecfHandle: PECFHandle;  const Arredondar: Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.MudaArredondamento(Arredondar);
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_AbreNaoFiscal(const ecfHandle: PECFHandle; const CPF_CNPJ : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.AbreNaoFiscal(CPF_CNPJ);
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_RegistraItemNaoFiscal(const ecfHandle: PECFHandle; const CodCNF: pChar; const Valor: Double; const Obs: pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.RegistraItemNaoFiscal(CodCNF,Valor,Obs);
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-end;
-
-Function ECF_SubtotalizaNaoFiscal(const ecfHandle: PECFHandle; const DescontoAcrescimo: Double; const MensagemRodape: pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.SubtotalizaNaoFiscal(DescontoAcrescimo,MensagemRodape);
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-end;
-
-Function ECF_EfetuaPagamentoNaoFiscal(const ecfHandle: PECFHandle; const CodFormaPagto: pChar; const Valor: Double; const Observacao: pChar; const ImprimeVinculado: Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.EfetuaPagamentoNaoFiscal(CodFormaPagto,Valor,Observacao,ImprimeVinculado);
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-end;
-
-Function ECF_FechaNaoFiscal(const ecfHandle: PECFHandle; const Observacao: pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.FechaNaoFiscal(Observacao);
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-end;
-
-Function ECF_CancelaNaoFiscal(const ecfHandle: PECFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.CancelaNaoFiscal;
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-end;
-
-Function ECF_CorrigeEstadoErro(const ecfHandle: PECFHandle; const ReducaoZ: Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     ecfHandle^.ECF.CorrigeEstadoErro(ReducaoZ);
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-end;
-
-Function ECF_AcharECF(const ecfHandle: PECFHandle; const ProcuraModelo : Boolean; const ProcuraPorta  : Boolean; const TimeOut : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     if (ecfHandle^.ECF.AcharECF(ProcuraModelo, ProcuraPorta, TimeOut)) then
-       Result := 1
-     else
-       Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function ECF_AcharPorta(const ecfHandle: PECFHandle; const TimeOut : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     if (ecfHandle^.ECF.AcharPorta(TimeOut))then
-       Result := 1
-     else
-       Result := 0;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-{ Leitura Memoria Fiscal }
+{%region Leitura Memoria Fiscal }
 
 Function ECF_LeituraMemoriaFiscalReducao(const ecfHandle: PECFHandle; const ReducaoInicial : Integer; const ReducaoFinal: Integer; const Simplificada : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
@@ -3998,9 +4062,11 @@ begin
   end;
 end;
 
-{ Programação }
+{%endregion}
 
-Function ECF_IdentificaPAF(const ecfHandle: PECFHandle; const NomeVersao : pChar; const MD5 : pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+{%region Leitura X}
+
+Function ECF_LeituraX(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -4010,20 +4076,62 @@ begin
   end;
 
   try
-
-     ecfHandle^.ECF.IdentificaPAF(NomeVersao, MD5);
+     ecfHandle^.ECF.LeituraX;
      Result := 0;
-
   except
      on exception : Exception do
      begin
         ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
+        Result := -1;
      end
   end;
 end;
 
-{ Dados Redução Z }
+Function ECF_PafMF_LX_Impressao(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.PafMF_LX_Impressao;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%region Redução Z }
+
+Function ECF_ReducaoZ(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.ReducaoZ;
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
 
 Function ECF_GetDadosReducaoZ(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -4241,87 +4349,11 @@ begin
    end;
 end;
 
-{ Componentes ACBr }
+{%endregion}
 
-Function ECF_SetAAC(const ecfHandle: PECFHandle; const aacHandle : PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
+{%region PAF }
 
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  if (aacHandle = nil) then
-  begin
-     ecfHandle^.ECF.AAC := nil;
-  end
-  else
-  begin
-
-    try
-       ecfHandle^.ECF.AAC := aacHandle^.AAC;
-       Result := 0;
-    except on exception : Exception do
-        begin
-         ecfHandle^.UltimoErro := exception.Message;
-         Result := -1;
-         end
-    end;
-  end;
-end;
-
-Function ECF_SetEAD(const ecfHandle: PECFHandle; const eadHandle : PEADHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  if (eadHandle = nil) then
-  begin
-     ecfHandle^.ECF.EAD := nil;
-  end
-  else
-  begin
-
-    try
-       ecfHandle^.ECF.EAD := eadHandle^.EAD;
-       Result := 0;
-    except on exception : Exception do
-        begin
-         ecfHandle^.UltimoErro := exception.Message;
-         Result := -1;
-         end
-    end;
-  end;
-end;
-
-{PAF}
-
-Function ECF_PafMF_GerarCAT52(const ecfHandle: PECFHandle; const DataInicial , DataFinal: double; const CaminhoArquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-if (ecfHandle = nil) then
-begin
-Result := -2;
-Exit;
-end;
-
-try
-ecfHandle^.ECF.PafMF_GerarCAT52(DataInicial, DataFinal, CaminhoArquivo);
-Result := 0;
-except
-on exception : Exception do
-begin
-ecfHandle^.UltimoErro := exception.Message;
-Result := -1;
-end
-end;
-end;
-
-Function ECF_PafMF_LX_Impressao(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_IdentificaPAF(const ecfHandle: PECFHandle; const NomeVersao : pChar; const MD5 : pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (ecfHandle = nil) then
@@ -4331,15 +4363,38 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.PafMF_LX_Impressao;
+
+     ecfHandle^.ECF.IdentificaPAF(NomeVersao, MD5);
      Result := 0;
+
   except
      on exception : Exception do
      begin
         ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
+        Result  := -1;
      end
   end;
+end;
+
+Function ECF_PafMF_GerarCAT52(const ecfHandle: PECFHandle; const DataInicial , DataFinal: double; const CaminhoArquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+        Result := -2;
+        Exit;
+  end;
+
+  try
+  ecfHandle^.ECF.PafMF_GerarCAT52(DataInicial, DataFinal, CaminhoArquivo);
+  Result := 0;
+  except
+     on exception : Exception do
+     begin
+     ecfHandle^.UltimoErro := exception.Message;
+     Result := -1;
+     end
+  end
 end;
 
 Function ECF_DoAtualizarValorGT(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -4384,7 +4439,9 @@ begin
   end;
 end;
 
-{PAF LMFC}
+{%endregion}
+
+{%region PAF LMFC }
 
 Function ECF_PafMF_LMFC_Cotepe1704(const ecfHandle: PECFHandle; const DataInicial , DataFinal: double; const CaminhoArquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -4508,7 +4565,9 @@ end
 end;
 end;
 
-{PAF LMFS}
+{%endregion}
+
+{%region PAF LMFS }
 
 Function ECF_PafMF_LMFS_Espelho(const ecfHandle: PECFHandle; const DataInicial , DataFinal: double; const CaminhoArquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -4591,7 +4650,9 @@ end
 end;
 end;
 
-{PAF Espelho MFD}
+{%endregion}
+
+{%region PAF Espelho MFD }
 
 Function ECF_PafMF_MFD_Cotepe1704( const ecfHandle: PECFHandle; const DataInicial, DataFinal: double; const CaminhoArquivo: pChar ) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -4634,7 +4695,9 @@ end
 end;
 end;
 
-{PAF Arquivos}
+{%endregion}
+
+{%region PAF Arquivos }
 
 Function ECF_ArquivoMFD_DLL( const ecfHandle: PECFHandle; const DataInicial, DataFinal: double; const Arquivo : pChar ;const Documentos: array of Integer; const QTD_DOC, Finalidade : Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -4780,7 +4843,9 @@ end
 end;
 end;
 
-{PAF Arq. MFD}
+{%endregion}
+
+{%region PAF Arq. MFD }
 
 Function ECF_PafMF_MFD_Espelho( const ecfHandle: PECFHandle; const DataInicial, DataFinal: double; const CaminhoArquivo: pChar ) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -4823,7 +4888,9 @@ end
 end;
 end;
 
-{Metodos DAV }
+{%endregion}
+
+{%region Metodos DAV }
 
 Function ECF_DAV_Abrir(const ecfHandle: PECFHandle; const AEmissao : double;
       const ADescrDocumento, ANumero, ASituacao, AVendedor, AObservacao,
@@ -4938,7 +5005,9 @@ end
 end;
 end;
 
-{Paf Rels}
+{%endregion}
+
+{%region Paf Rels }
 
 Function ECF_PafMF_RelMeiosPagamento(const ecfHandle: PECFHandle; const formasPagamento: array of TFormaPagamentoRec; const Index : Integer; const TituloRelatorio: pChar; const IndiceRelatorio: Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -5037,7 +5106,9 @@ except
 end;
 end;
 
-{ Relatorio Gerencial }
+{%endregion}
+
+{%region Relatorio Gerencial }
 
 Function ECF_AbreRelatorioGerencial(const ecfHandle: PECFHandle; const Indice : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -5050,6 +5121,27 @@ begin
 
   try
      ecfHandle^.ECF.AbreRelatorioGerencial(Indice);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_FechaRelatorio(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.FechaRelatorio;
      Result := 0 ;
   except
      on exception : Exception do
@@ -5213,7 +5305,9 @@ begin
   end;
 end;
 
-{ Eventos }
+{%endregion}
+
+{%region Eventos }
 
 procedure TEventHandlers.OnMsgPoucoPapel(Sender: TObject);
 begin
@@ -5291,6 +5385,8 @@ begin
      end
   end;
 end;
+
+{%endregion}
 
 {
 NÀO IMPLEMENTADO
@@ -5381,26 +5477,6 @@ begin
    end;
 end;
 
-Function PreparaTEF : Integer ;  cdecl; export;
-begin
-  if ECF = nil then
-   begin
-     Result := -2;
-     Exit ;
-   end;
-
-  try
-     ecfHandle^.ECF.PreparaTEF;
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-end;
-
 Function EnviaComando(cmd: AnsiString; var resp : pchar ) : Integer ; cdecl;export; overload;
 begin
   if ECF = nil then
@@ -5457,6 +5533,7 @@ ECF_GetTimeOut, ECF_SetTimeOut,
 ECF_GetAtivo,
 
 { Propriedades do Componente }
+ECF_GetArqLOG, ECF_SetArqLOG,
 
 ECF_GetModelo, ECF_SetModelo, ECF_GetMaxLinhasBuffer, ECF_SetMaxLinhasBuffer,
 
