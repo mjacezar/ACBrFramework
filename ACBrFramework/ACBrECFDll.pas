@@ -1695,36 +1695,6 @@ begin
    end;
 end;
 
-{ Metodos Bobina }
-Function ECF_SetMemoParams(const ecfHandle: PECFHandle; const linhas : array of PChar; const LinhasCount: Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-Lista: TStringList;
-i: Integer;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-  Lista := TStringList.Create();
-  for i := 0 to LinhasCount - 1 do
-  begin
-  Lista.Add(String(linhas[i]));
-  end;
-  ecfHandle^.ECF.MemoParams := Lista;
-  Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
 { ECF - Flags }
 
 Function ECF_GetEmLinha(const ecfHandle: PECFHandle; const TimeOut : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -2330,9 +2300,7 @@ end;
 
 {Métodos do componente}
 
-Function ECF_AchaFPGIndice(const ecfHandle: PECFHandle; const indice : pChar; var retFormaPagamento : TFormaPagamentoRec) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-var
-   FormPGT : TACBrECFFormaPagamento;
+Function ECF_PreparaTEF(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (ecfHandle = nil) then
@@ -2342,22 +2310,8 @@ begin
   end;
 
   try
-     FormPGT := ecfHandle^.ECF.AchaFPGIndice(indice);
-     if FormPGT <> nil then
-     begin
-           retFormaPagamento.Data := FormPGT.Data;
-           retFormaPagamento.Descricao := FormPGT.Descricao;
-           retFormaPagamento.Indice := FormPGT.Indice;
-           retFormaPagamento.PermiteVinculado := FormPGT.PermiteVinculado;
-           retFormaPagamento.TipoDoc := FormPGT.TipoDoc;
-           retFormaPagamento.Total := FormPGT.Total;
-           Result := 1 ;
-     end
-     else
-     Begin
-           Result := 0;
-     end
-
+  ecfHandle^.ECF.PreparaTEF;
+  Result := 0;
   except
      on exception : Exception do
      begin
@@ -2366,6 +2320,84 @@ begin
      end
   end;
 
+end;
+
+{ Metodos Bobina }
+
+Function ECF_SetMemoParams(const ecfHandle: PECFHandle; const linhas : array of PChar; const LinhasCount: Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+Lista: TStringList;
+i: Integer;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  Lista := TStringList.Create();
+  for i := 0 to LinhasCount - 1 do
+  begin
+  Lista.Add(String(linhas[i]));
+  end;
+  ecfHandle^.ECF.MemoParams := Lista;
+  Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetMemoParams(const ecfHandle: PECFHandle; linha : PChar; const BufferLen, index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+strTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if (index >= 0) and (index < ecfHandle^.ECF.MemoParams.Count ) then
+  begin
+     strTmp := ecfHandle^.ECF.MemoParams[index];
+     StrPLCopy(linha, strTmp, BufferLen);
+  end;
+  Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetMemoParamsLineCount(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  Result := ecfHandle^.ECF.MemoParams.Count;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
 end;
 
 {Métodos do cupom fiscal}
@@ -2439,7 +2471,8 @@ end;
 Function ECF_VendeItem(const ecfHandle: PECFHandle;
                        const Codigo, Descricao, AliquotaICMS : pChar;
                        const Qtd, ValorUnitario, DescontoPorc : Double;
-                       const Unidade, TipoDescontoAcrescimo, DescontoAcrescimo : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+                       const Unidade, TipoDescontoAcrescimo,
+                       DescontoAcrescimo : pChar; const CodDepartamento: Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (ecfHandle = nil) then
@@ -2449,7 +2482,8 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.VendeItem(Codigo, Descricao, AliquotaICMS, Qtd, ValorUnitario, DescontoPorc, Unidade, TipoDescontoAcrescimo, DescontoAcrescimo );
+     ecfHandle^.ECF.VendeItem(Codigo, Descricao, AliquotaICMS, Qtd, ValorUnitario,
+                              DescontoPorc, Unidade, TipoDescontoAcrescimo, DescontoAcrescimo, CodDepartamento );
      Result := 0 ;
   except
      on exception : Exception do
@@ -3230,6 +3264,44 @@ begin
    end;
 end;
 
+Function ECF_AchaFPGIndice(const ecfHandle: PECFHandle; const indice : pChar; var retFormaPagamento : TFormaPagamentoRec) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+   FormPGT : TACBrECFFormaPagamento;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     FormPGT := ecfHandle^.ECF.AchaFPGIndice(indice);
+     if FormPGT <> nil then
+     begin
+           retFormaPagamento.Data := FormPGT.Data;
+           retFormaPagamento.Descricao := FormPGT.Descricao;
+           retFormaPagamento.Indice := FormPGT.Indice;
+           retFormaPagamento.PermiteVinculado := FormPGT.PermiteVinculado;
+           retFormaPagamento.TipoDoc := FormPGT.TipoDoc;
+           retFormaPagamento.Total := FormPGT.Total;
+           Result := 1 ;
+     end
+     else
+     Begin
+           Result := 0;
+     end
+
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 {Comprovantes Não Fiscais}
 
 Function ECF_GetComprovanteNaoFiscal(const ecfHandle: PECFHandle; var retComprovanteNaoFiscal : TComprovanteNaoFiscalRec; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -3927,6 +3999,7 @@ begin
 end;
 
 { Programação }
+
 Function ECF_IdentificaPAF(const ecfHandle: PECFHandle; const NomeVersao : pChar; const MD5 : pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -3951,6 +4024,7 @@ begin
 end;
 
 { Dados Redução Z }
+
 Function ECF_GetDadosReducaoZ(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
@@ -4168,6 +4242,7 @@ begin
 end;
 
 { Componentes ACBr }
+
 Function ECF_SetAAC(const ecfHandle: PECFHandle; const aacHandle : PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -4225,6 +4300,7 @@ begin
 end;
 
 {PAF}
+
 Function ECF_PafMF_GerarCAT52(const ecfHandle: PECFHandle; const DataInicial , DataFinal: double; const CaminhoArquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 if (ecfHandle = nil) then
@@ -4309,6 +4385,7 @@ begin
 end;
 
 {PAF LMFC}
+
 Function ECF_PafMF_LMFC_Cotepe1704(const ecfHandle: PECFHandle; const DataInicial , DataFinal: double; const CaminhoArquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 if (ecfHandle = nil) then
@@ -4432,6 +4509,7 @@ end;
 end;
 
 {PAF LMFS}
+
 Function ECF_PafMF_LMFS_Espelho(const ecfHandle: PECFHandle; const DataInicial , DataFinal: double; const CaminhoArquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 if (ecfHandle = nil) then
@@ -4514,6 +4592,7 @@ end;
 end;
 
 {PAF Espelho MFD}
+
 Function ECF_PafMF_MFD_Cotepe1704( const ecfHandle: PECFHandle; const DataInicial, DataFinal: double; const CaminhoArquivo: pChar ) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 if (ecfHandle = nil) then
@@ -4556,6 +4635,7 @@ end;
 end;
 
 {PAF Arquivos}
+
 Function ECF_ArquivoMFD_DLL( const ecfHandle: PECFHandle; const DataInicial, DataFinal: double; const Arquivo : pChar ;const Documentos: array of Integer; const QTD_DOC, Finalidade : Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   DocumentSet   : TACBrECFTipoDocumentoSet;
@@ -4701,6 +4781,7 @@ end;
 end;
 
 {PAF Arq. MFD}
+
 Function ECF_PafMF_MFD_Espelho( const ecfHandle: PECFHandle; const DataInicial, DataFinal: double; const CaminhoArquivo: pChar ) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 if (ecfHandle = nil) then
@@ -4743,6 +4824,7 @@ end;
 end;
 
 {Metodos DAV }
+
 Function ECF_DAV_Abrir(const ecfHandle: PECFHandle; const AEmissao : double;
       const ADescrDocumento, ANumero, ASituacao, AVendedor, AObservacao,
       ACNPJCPF, ANomeCliente, AEndereco: pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
@@ -4857,6 +4939,7 @@ end;
 end;
 
 {Paf Rels}
+
 Function ECF_PafMF_RelMeiosPagamento(const ecfHandle: PECFHandle; const formasPagamento: array of TFormaPagamentoRec; const Index : Integer; const TituloRelatorio: pChar; const IndiceRelatorio: Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   AFormasPagamento : TACBrECFFormasPagamento;
@@ -4955,6 +5038,7 @@ end;
 end;
 
 { Relatorio Gerencial }
+
 Function ECF_AbreRelatorioGerencial(const ecfHandle: PECFHandle; const Indice : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -5130,6 +5214,7 @@ begin
 end;
 
 { Eventos }
+
 procedure TEventHandlers.OnMsgPoucoPapel(Sender: TObject);
 begin
      OnPoucoPapelCallback();
@@ -5361,6 +5446,7 @@ end;
 exports
 
 { Funções }
+
 ECF_Create, ECF_Destroy,
 ECF_GetUltimoErro, ECF_Ativar, ECF_Desativar,
 
@@ -5371,6 +5457,7 @@ ECF_GetTimeOut, ECF_SetTimeOut,
 ECF_GetAtivo,
 
 { Propriedades do Componente }
+
 ECF_GetModelo, ECF_SetModelo, ECF_GetMaxLinhasBuffer, ECF_SetMaxLinhasBuffer,
 
 ECF_GetColunas, ECF_GetAguardandoResposta, ECF_GetComandoEnviado, ECF_GetRespostaComando, ECF_GetComandoLOG, ECF_SetComandoLOG,
@@ -5413,14 +5500,15 @@ ECF_IdentificaConsumidor, ECF_AbreCupom, ECF_LegendaInmetroProximoItem, ECF_Vend
 ECF_DescontoAcrescimoItemAnterior,  ECF_SubtotalizaCupom,
 ECF_EfetuaPagamento, ECF_EstornaPagamento, ECF_FechaCupom, ECF_CancelaCupom,
 ECF_CancelaItemVendido, ECF_CancelaItemVendidoParcial,
-ECF_CancelaDescontoAcrescimoItem, ECF_CancelaDescontoAcrescimoSubTotal, ECF_AchaFPGIndice,
+ECF_CancelaDescontoAcrescimoItem, ECF_CancelaDescontoAcrescimoSubTotal,
 
-ECF_LeituraX, ECF_LinhaCupomVinculado,
+ECF_LeituraX, ECF_LinhaCupomVinculado, ECF_PreparaTEF,
 ECF_FechaRelatorio, ECF_PulaLinhas, ECF_CortaPapel,
 
 ECF_AbreCupomVinculado, ECF_AbreCupomVinculadoCNF,
 
 { Aliquotas }
+
 ECF_GetAliquota, ECF_CarregaAliquotas, ECF_LerTotaisAliquota,
 ECF_GetAliquotasStr, ECF_LerTotaisAliquotaStr,
 ECF_ProgramaAliquota, ECF_AchaIcmsAliquota,
@@ -5428,7 +5516,7 @@ ECF_ProgramaAliquota, ECF_AchaIcmsAliquota,
 { Formas de Pagamento }
 
 ECF_GetFormaPagamento, ECF_CarregaFormasPagamento, ECF_LerTotaisFormaPagamento,
-ECF_GetFormasPagamentoStr, ECF_LerTotaisFormaPagamentoStr,
+ECF_GetFormasPagamentoStr, ECF_LerTotaisFormaPagamentoStr,  ECF_AchaFPGIndice,
 ECF_ProgramaFormaPagamento,
 
 {ECF_AchaFPGDescricao,}
@@ -5453,66 +5541,80 @@ ECF_MudaHorarioVerao, ECF_MudaArredondamento,
 ECF_CorrigeEstadoErro,
 
 { Leitura Memoria Fiscal }
+
 ECF_LeituraMemoriaFiscalReducao, ECF_LeituraMemoriaFiscalData,
 ECF_LeituraMemoriaFiscalSerialReducao, ECF_LeituraMemoriaFiscalSerialData,
 ECF_LeituraMemoriaFiscalArquivoReducao, ECF_LeituraMemoriaFiscalArquivoData,
 
 { Reduzão Z }
+
 ECF_GetDadosReducaoZ, ECF_GetDadosUltimaReducaoZ,
 ECF_GetDadosReducaoZClass, ECF_DestroyDadosReducaoZClass,
 ECF_ReducaoZ,
 
 { Componentes ACBr }
+
 ECF_SetAAC, ECF_SetEAD,
 
 { Relatorio Gerenciais }
+
 ECF_AbreRelatorioGerencial, ECF_LinhaRelatorioGerencial,
 ECF_GetRelatoriosGerenciais, ECF_LerTotaisRelatoriosGerenciais,
 ECF_ProgramaRelatoriosGerenciais, ECF_CarregaRelatoriosGerenciais,
 ECF_RelatorioGerencial,
 
 {PAF}
+
 ECF_PafMF_GerarCAT52, ECF_PafMF_LX_Impressao,
 ECF_IdentificaPAF, ECF_DoAtualizarValorGT,
 ECF_DoVerificaValorGT,
 
 {PAF Arquivos}
+
 ECF_ArquivoMFD_DLL, ECF_ArquivoMFD_DLL_COO,
 ECF_EspelhoMFD_DLL, ECF_EspelhoMFD_DLL_COO,
 
 {PAF LMFC}
+
 ECF_PafMF_LMFC_Cotepe1704, ECF_PafMF_LMFC_Cotepe1704_CRZ,
 ECF_PafMF_LMFC_Espelho, ECF_PafMF_LMFC_Espelho_CRZ,
 ECF_PafMF_LMFC_Impressao, ECF_PafMF_LMFC_Impressao_CRZ,
 
 {PAF LMFS}
+
 ECF_PafMF_LMFS_Espelho, ECF_PafMF_LMFS_Espelho_CRZ,
 ECF_PafMF_LMFS_Impressao, ECF_PafMF_LMFS_Impressao_CRZ,
 
 {PAF Espelho MFD}
+
 ECF_PafMF_MFD_Cotepe1704, ECF_PafMF_MFD_Cotepe1704_COO,
 
 {PAF Arq. MFD}
+
 ECF_PafMF_MFD_Espelho, ECF_PafMF_MFD_Espelho_COO,
 
 {DAV}
+
 ECF_DAV_Abrir, ECF_DAV_RegistrarItem,
 ECF_DAV_Fechar, ECF_PafMF_RelDAVEmitidos,
 
 {Paf Rels}
+
 ECF_PafMF_RelMeiosPagamento, ECF_PafMF_RelIdentificacaoPafECF,
 ECF_PafMF_RelParametrosConfiguracao,
 
 { Bobina }
-ECF_SetMemoParams,
+
+ECF_SetMemoParams, ECF_GetMemoParams,
+ECF_GetMemoParamsLineCount,
 
 {Eventos}
+
 ECF_SetOnPoucoPapel, ECF_SetOnBobinaAdicionaLinhas;
 
 {Não implementado}
 
 {
-PreparaTEF,
 
 exports EnviaComando(cmd: AnsiString; var resp : pchar ) overload;
 exports EnviaComando(cmd: AnsiString; lTimeOut: Integer; var resp : pchar ) overload;

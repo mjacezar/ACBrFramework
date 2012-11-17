@@ -330,7 +330,10 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_AbreGaveta(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_CorrigeEstadoErro(IntPtr ecfHandle, bool reducaoZ);        
+		public static extern int ECF_CorrigeEstadoErro(IntPtr ecfHandle, bool reducaoZ);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_PreparaTEF(IntPtr ecfHandle);  
 
 		#endregion Métodos ECF
 
@@ -580,6 +583,12 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_SetMemoParams(IntPtr ecfHandle, string[] linhas, int count);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetMemoParams(IntPtr ecfHandle, StringBuilder linha, int bufferLen, int index);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetMemoParamsLineCount(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetLinhasEntreCupons(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
@@ -629,7 +638,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_LegendaInmetroProximoItem(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_VendeItem(IntPtr ecfHandle, string codigo, string descricao, string aliquotaICMS, double qtd, double valorUnitario, double descontoPorc, string unidade, string tipoDescontoAcrescimo, string descontoAcrescimo);
+		public static extern int ECF_VendeItem(IntPtr ecfHandle, string codigo, string descricao, string aliquotaICMS, double qtd, double valorUnitario, double descontoPorc, string unidade, string tipoDescontoAcrescimo, string descontoAcrescimo, int CodDepartamento);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DescontoAcrescimoItemAnterior(IntPtr ecfHandle, double valorDescontoAcrescimo, string descontoAcrescimo);
