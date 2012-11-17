@@ -18,6 +18,8 @@ namespace ACBrFramework
 
 		protected delegate int SetArrayStringEntryPointDelegate(IntPtr handle, string[] value, int count);
 
+		protected delegate int GetArrayStringEntryPointDelegate(IntPtr handle, StringBuilder value, int bufferLen, int index);
+
 		protected delegate int SetdoubleEntryPointDelegate(IntPtr handle, double value);
 
 		protected delegate int SetInt32EntryPointDelegate(IntPtr handle, int value);
@@ -73,6 +75,30 @@ namespace ACBrFramework
 			CheckResult(ret);
 
 			return FromUTF8(buffer);
+		}
+
+		protected string[] GetString(GetArrayStringEntryPointDelegate entryPoint, GetInt32EntryPointDelegate GetCount)
+		{
+			const int BUFFER_LEN = 256;
+			return GetString(entryPoint, GetCount, BUFFER_LEN);
+		}
+
+		protected string[] GetString(GetArrayStringEntryPointDelegate entryPoint, GetInt32EntryPointDelegate GetCount, int bufferLen)
+		{
+			int count = GetCount(Handle);
+			CheckResult(count);
+			
+			string[] Retorno = new string[count];
+
+			for (int i = 0; i < count; i++)
+			{
+				StringBuilder buffer = new StringBuilder(bufferLen);
+				int ret = entryPoint(Handle, buffer, bufferLen, i);
+				CheckResult(ret);
+				Retorno[i] = FromUTF8(buffer);
+			}
+
+			return Retorno;
 		}
 
 		protected void SetString(SetStringEntryPointDelegate entryPoint, string value)
