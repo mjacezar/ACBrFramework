@@ -382,6 +382,29 @@ begin
   end
 end;
 
+function EAD_CalcularHash(const eadHandle: PEADHandle; const str: pChar; const HashType: Integer; Hash : pChar; const BufferLen : Integer): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  TempSTR : AnsiString ;
+begin
+  try
+     if (eadHandle = nil) then
+     begin
+     Result := -2;
+     Exit;
+     end;
+
+     TempSTR := eadHandle^.EAD.CalcularHash(str, TACBrEADDgst(HashType));
+     StrPLCopy(Hash, TempSTR, BufferLen);
+     Result := Length(Hash);
+  except
+     on exception : Exception do
+     begin
+        eadHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end
+end;
+
 function EAD_CalcularEADArquivo(const eadHandle: PEADHandle;const Arquivo: pChar; EAD : pChar; const BufferLen : Integer): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 var
   TempSTR : AnsiString ;
@@ -451,7 +474,7 @@ begin
   end
 end;
 
-/////Eventos
+{%region Eventos}
 
 procedure TEventHandlers.GetChavePrivada(var Chave : AnsiString);
 begin
@@ -532,7 +555,8 @@ begin
   end;
 end;
 
-///Fim Eventos
+{%endregion}
+
 exports
 
 { Funções }
@@ -550,6 +574,7 @@ EAD_GerarXMLeECFc, EAD_GerarXMLeECFc_NP,
 EAD_ConverteXMLeECFcParaOpenSSL,EAD_CalcularHashArquivo,
 EAD_CalcularEADArquivo, EAD_AssinarArquivoComEAD,
 EAD_VerificarEADArquivo, EAD_CalcularChavePublica,
+EAD_CalcularHash,
 
 {Eventos}
 EAD_SetOnGetChavePrivada,

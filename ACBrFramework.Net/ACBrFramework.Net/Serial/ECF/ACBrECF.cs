@@ -538,6 +538,24 @@ namespace ACBrFramework.ECF
 		}
 
 		[Browsable(false)]
+		public string ComandoEnviado
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetComandoEnviado);
+			}
+		}
+
+		[Browsable(false)]
+		public string RespostaComando
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetRespostaComando);
+			}
+		}
+
+		[Browsable(false)]
 		public decimal VendaBruta
 		{
 			get
@@ -1104,7 +1122,7 @@ namespace ACBrFramework.ECF
 				record[i].COO_Dav = DAVs[i].COO_Dav;
 				record[i].Titulo = DAVs[i].Titulo;
 				record[i].DtEmissao = DAVs[i].DtEmissao.ToOADate();
-				record[i].Valor = DAVs[i].Valor;
+				record[i].Valor = Convert.ToDouble(DAVs[i].Valor);
 			}
 
 			int ret = ACBrECFInterop.ECF_PafMF_RelDAVEmitidos(this.Handle, record, DAVs.Length, ToUTF8(TituloRelatorio), ToUTF8(IndiceRelatorio));
