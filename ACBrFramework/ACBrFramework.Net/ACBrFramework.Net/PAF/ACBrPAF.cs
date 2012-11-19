@@ -544,7 +544,7 @@ namespace ACBrFramework.PAF
                 RegistroR2Rec[i].CRO = PAF_R.RegistroR2[i].CRO;
                 RegistroR2Rec[i].DT_MOV = PAF_R.RegistroR2[i].DT_MOV.ToOADate();
                 RegistroR2Rec[i].DT_EMI = PAF_R.RegistroR2[i].DT_EMI.ToOADate();
-                RegistroR2Rec[i].HR_EMI = Convert.ToDouble(PAF_R.RegistroR2[i].HR_EMI);
+                RegistroR2Rec[i].HR_EMI = PAF_R.RegistroR2[i].HR_EMI.ToOADate();
                 RegistroR2Rec[i].VL_VBD = Convert.ToDouble(PAF_R.RegistroR2[i].VL_VBD);
                 RegistroR2Rec[i].PAR_ECF = ToUTF8(PAF_R.RegistroR2[i].PAR_ECF);
                 RegistroR2Rec[i].RegistroValido = PAF_R.RegistroR2[i].RegistroValido;
