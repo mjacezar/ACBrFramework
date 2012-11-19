@@ -45,6 +45,7 @@ Changelog
 [+] Adicionado EAD_CalcularHash - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [*] Melhorado a função ECF_ComandoEnviado, ECF_RespostaRecebida - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [*] Melhoras no DEMO ECF(ainda em desenvolvimento) - ACBrFramework.Net - Rafael Dias.
+[-] Correção do Registro10 Sintegra - ACBrFramework.Net - Rafael Dias.
 
 17/11/2012 (ACBrFramework 0.9.1.16)
 [+] Adicionado ECF_GetArqLog, ECF_SetArqLog - ACBrFramework e ACBrFramework.Net - Rafael Dias.

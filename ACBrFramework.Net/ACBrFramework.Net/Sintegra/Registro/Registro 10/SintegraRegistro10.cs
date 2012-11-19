@@ -4,9 +4,9 @@ namespace ACBrFramework.Sintegra
 {
 	public sealed class SintegraRegistro10
 	{
-		public int CNPJ { get; set; }
+		public string CNPJ { get; set; }
 
-		public int Inscricao { get; set; }
+		public string Inscricao { get; set; }
 
 		public string RazaoSocial { get; set; }
 

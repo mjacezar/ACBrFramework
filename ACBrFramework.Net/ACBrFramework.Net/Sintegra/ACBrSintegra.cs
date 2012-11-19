@@ -198,8 +198,8 @@ namespace ACBrFramework.Sintegra
 		{
 			var record = new ACBrSintegraInterop.Registro10Rec();
 			record.RazaoSocial = ToUTF8(Registro10.RazaoSocial);
-			record.CNPJ = ToUTF8(Registro10.CNPJ.ToString());
-			record.Inscricao = ToUTF8(Registro10.Inscricao.ToString());
+			record.CNPJ = ToUTF8(Registro10.CNPJ);
+			record.Inscricao = ToUTF8(Registro10.Inscricao);
 			record.Cidade = ToUTF8(Registro10.Cidade);
 			record.Estado = ToUTF8(Registro10.Estado);
 			record.Telefone = ToUTF8(Registro10.Telefone.ToString());
