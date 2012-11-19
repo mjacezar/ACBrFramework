@@ -108,16 +108,37 @@ namespace ACBrFramework.EAD
 		{
 			const int BUFFER_LEN = 128;
 			StringBuilder Hash = new StringBuilder(BUFFER_LEN);
-			int ret = ACBrEADInterop.EAD_CalcularHashArquivo(this.Handle, Arquivo, (int)HashType, Hash, BUFFER_LEN);
+			int ret = ACBrEADInterop.EAD_CalcularHashArquivo(Handle, Arquivo, (int)HashType, Hash, BUFFER_LEN);
 			CheckResult(ret);
 			return Hash.ToString();
 		}
+
+        public string[] CalcularHash(string[] AString, EADDigest HashType)
+        {
+            string[] Retorno = new string[AString.Length];
+
+            for(int i = 0; i < AString.Length; i++)
+            {
+                Retorno[i] = CalcularHash(AString[i], HashType);
+            }
+
+            return Retorno;
+        }
+
+        public string CalcularHash(string AString, EADDigest HashType)
+        {
+            const int BUFFER_LEN = 128;
+            StringBuilder Hash = new StringBuilder(BUFFER_LEN);
+            int ret = ACBrEADInterop.EAD_CalcularHash(Handle, AString, (int)HashType, Hash, BUFFER_LEN);
+            CheckResult(ret);
+            return Hash.ToString();
+        }
 
 		public string CalcularEADArquivo(string Arquivo)
 		{
 			const int BUFFER_LEN = 256;
 			StringBuilder EAD = new StringBuilder(BUFFER_LEN);
-			int ret = ACBrEADInterop.EAD_CalcularEADArquivo(this.Handle, Arquivo, EAD, BUFFER_LEN);
+			int ret = ACBrEADInterop.EAD_CalcularEADArquivo(Handle, Arquivo, EAD, BUFFER_LEN);
 			CheckResult(ret);
 			return EAD.ToString();
 		}

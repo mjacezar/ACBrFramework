@@ -12,7 +12,7 @@ namespace ACBrFramework.ECF
 
 		public string Titulo { get; set; }
 
-		public double Valor { get; set; }
+		public decimal Valor { get; set; }
 
 		public DateTime DtEmissao { get; set; }
 	}

@@ -272,6 +272,7 @@ namespace ACBrFramework.ECFTeste
 			modeloComboBox.SelectedIndex = 0;
 
 			portaComboBox.Items.Clear();
+			portaComboBox.Items.Add("Procurar");
 			portaComboBox.Items.Add("COM1");
 			portaComboBox.Items.Add("COM2");
 			portaComboBox.Items.Add("COM3");
@@ -284,16 +285,6 @@ namespace ACBrFramework.ECFTeste
 			portaComboBox.Items.Add("ecf.txt");
 			portaComboBox.SelectedIndex = 0;
 
-			velocidadeComboBox.Items.Add(1200);
-			velocidadeComboBox.Items.Add(2400);
-			velocidadeComboBox.Items.Add(4800);
-			velocidadeComboBox.Items.Add(9600);
-			velocidadeComboBox.Items.Add(19200);
-			velocidadeComboBox.Items.Add(38400);
-			velocidadeComboBox.Items.Add(57600);
-			velocidadeComboBox.Items.Add(115200);
-			velocidadeComboBox.SelectedItem = 9600;
-
 			ativarCheckButton.Checked = false;
 		}
 
@@ -303,8 +294,7 @@ namespace ACBrFramework.ECFTeste
 			{
 				acbrECF.Modelo = (ModeloECF)modeloComboBox.SelectedItem;
 				acbrECF.Device.Porta = (string)portaComboBox.SelectedItem;
-				acbrECF.Device.Baud = (int)velocidadeComboBox.SelectedItem;
-				acbrECF.Device.TimeOut = (int)timeOutNumericUpDown.Value;
+				acbrECF.Device.TimeOut = (int)nudTimeOut.Value;
 
 				acbrECF.GavetaSinalInvertido = gavetaCheckBox.Checked;
 				acbrECF.DescricaoGrande = descricaoCheckBox.Checked;
@@ -317,7 +307,8 @@ namespace ACBrFramework.ECFTeste
 				descriptionToolStripStatusLabel.Text = string.Empty;
 
 				tabControl.SelectedTab = cmdTabPage;
-				WriteResp("Ativado: OK!");
+				WriteResp(acbrECF.RespostaComando);
+				WriteCmd(acbrECF.ComandoEnviado);
 			}
 			catch (Exception exception)
 			{
@@ -326,20 +317,7 @@ namespace ACBrFramework.ECFTeste
 				messageToolStripStatusLabel.Text = "Exception";
 				descriptionToolStripStatusLabel.Text = exception.Message;
 			}
-		}
-
-		private void WriteResp(string resp)
-		{
-			if (string.IsNullOrEmpty(resp)) return;
-
-			foreach (string line in resp.Split('\n'))
-			{
-				respListBox.Items.Add(line);
-			}
-			respListBox.Items.Add("+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
-			respListBox.Items.Add("");
-			respListBox.SelectedIndex = respListBox.Items.Count - 1;
-		}
+		}		
 
 		public void Desativar()
 		{
@@ -349,7 +327,8 @@ namespace ACBrFramework.ECFTeste
 				ativarCheckButton.Checked = false;
 				ativarCheckButton.Text = "Ativar";
 
-				WriteResp("Desativado: OK!");
+				WriteResp(acbrECF.RespostaComando);
+				WriteCmd(acbrECF.ComandoEnviado);
 				messageToolStripStatusLabel.Text = "OK";
 				descriptionToolStripStatusLabel.Text = string.Empty;
 			}
@@ -622,24 +601,24 @@ namespace ACBrFramework.ECFTeste
 					if (value is System.Collections.ICollection)
 					{
 						var collection = (System.Collections.ICollection)value;
-						respListBox.Items.Add(string.Format("{0}:", property.Name));
+						lstResp.Items.Add(string.Format("{0}:", property.Name));
 
 						foreach (var element in collection)
 						{
 							if (element == null) continue;
 
-							respListBox.Items.Add("");
+							lstResp.Items.Add("");
 
 							Type elementType = element.GetType();
 
 							foreach (var elementProperty in elementType.GetProperties())
 							{
 								object elementValue = elementProperty.GetValue(element, null);
-								respListBox.Items.Add(string.Format("{0}: {1}", elementProperty.Name, elementValue));
+								lstResp.Items.Add(string.Format("{0}: {1}", elementProperty.Name, elementValue));
 							}
 						}
 
-						respListBox.Items.Add("");
+						lstResp.Items.Add("");
 						WriteResp(string.Format("{0} elemento(s)", collection.Count));
 					}
 					else
@@ -670,7 +649,7 @@ namespace ACBrFramework.ECFTeste
 			{
 				if (acbrECF.Estado == EstadoECF.Livre)
 				{
-					respListBox.Items.Add("Abrindo cupom ...");
+					lstResp.Items.Add("Abrindo cupom ...");
 					bobina.Clear();
 					acbrECF.AbreCupom("", "", "");
 					Application.DoEvents();
@@ -680,13 +659,13 @@ namespace ACBrFramework.ECFTeste
 				{
 					for (int i = 0; i < 10; i++)
 					{
-						respListBox.Items.Add(String.Format("Vende Item #{0} ...", i));
+						lstResp.Items.Add(String.Format("Vende Item #{0} ...", i));
 						acbrECF.VendeItem(string.Format("{0:0000000000000}", i + 1), "PRODUTO àáèéìíòóùúü " + i, "I", 1, 1.99M, 0M, "UN", "%", "D");
 						Application.DoEvents();
 					}
 
 					acbrECF.SubtotalizaCupom(0M, "Mensagem SubtotalizaCupom ACBr.NET");
-					respListBox.Items.Add("Subtotaliza Cupom ...");
+					lstResp.Items.Add("Subtotaliza Cupom ...");
 					Application.DoEvents();
 				}
 
@@ -696,12 +675,12 @@ namespace ACBrFramework.ECFTeste
 					{
 						var forma01 = acbrECF.FormasPagamento[0];
 						acbrECF.EfetuaPagamento(forma01.Indice, 50M, "Mensagem EfetuaPagamento ACBr.NET", false);
-						respListBox.Items.Add("Efetua Pagamento ...");
+						lstResp.Items.Add("Efetua Pagamento ...");
 						Application.DoEvents();
 					}
 
 					acbrECF.FechaCupom("Mensagem àáèéìíòóùúü FechaCupom ACBr.NET");
-					respListBox.Items.Add("Fecha Cupom ...");
+					lstResp.Items.Add("Fecha Cupom ...");
 					Application.DoEvents();
 
 					WriteResp("Finalizado!");
@@ -726,7 +705,7 @@ namespace ACBrFramework.ECFTeste
 			{
 				if (acbrECF.Estado == EstadoECF.Livre)
 				{
-					respListBox.Items.Add("Abrindo DAV ...");
+					lstResp.Items.Add("Abrindo DAV ...");
 					bobina.Clear();
 					acbrECF.DAV_Abrir(DateTime.Now, "Pedido", "0001", "Teste", "Rafael", "Teste DAV", "99999999999", "Rafael", "Rua Teste");
 					Application.DoEvents();
@@ -736,12 +715,12 @@ namespace ACBrFramework.ECFTeste
 				{
 					for (int i = 0; i < 10; i++)
 					{
-						respListBox.Items.Add(String.Format("DAV Item #{0} ...", i));
+						lstResp.Items.Add(String.Format("DAV Item #{0} ...", i));
 						acbrECF.DAV_RegistrarItem(string.Format("{0:0000000000000}", i + 1), "PRODUTO àáèéìíòóùúü " + i, "UN", 1, 1.99, 0, 0, false);
 					}
 
 					acbrECF.DAV_Fechar("Mensagem àáèéìíòóùúü FechaDAV ACBr.NET");
-					respListBox.Items.Add("Fecha DAV ...");
+					lstResp.Items.Add("Fecha DAV ...");
 					WriteResp("Finalizado!");
 				}
 			}
@@ -830,6 +809,32 @@ namespace ACBrFramework.ECFTeste
                 descriptionToolStripStatusLabel.Text = exception.Message;
             }
         }
+
+		private void WriteResp(string resp)
+		{
+			if (string.IsNullOrEmpty(resp)) return;
+
+			foreach (string line in resp.Split('\n'))
+			{
+				lstResp.Items.Add(line);
+			}
+			lstResp.Items.Add("+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
+			lstResp.Items.Add("");
+			lstResp.SelectedIndex = lstResp.Items.Count - 1;
+		}
+
+		private void WriteCmd(string resp)
+		{
+			if (string.IsNullOrEmpty(resp)) return;
+
+			foreach (string line in resp.Split('\n'))
+			{
+				lstCMD.Items.Add(line);
+			}
+			lstCMD.Items.Add("+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
+			lstCMD.Items.Add("");
+			lstCMD.SelectedIndex = lstCMD.Items.Count - 1;
+		}
 
 		#endregion ECF
 

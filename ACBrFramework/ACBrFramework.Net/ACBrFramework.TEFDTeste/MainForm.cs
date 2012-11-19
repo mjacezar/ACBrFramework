@@ -42,7 +42,7 @@ namespace ACBrFramework.TEFDTeste
 		private void inicializarECFTEF()
 		{
 			cmbModelo.Items.Clear();
-			cmbModelo.Items.Add("AUTO");
+			cmbModelo.Items.Add("Procurar");
 			foreach (var modelo in Enum.GetValues(typeof(ModeloECF))) cmbModelo.Items.Add(modelo);
 			cmbModelo.SelectedIndex = 0;
 
@@ -55,7 +55,7 @@ namespace ACBrFramework.TEFDTeste
             cmbGPAtual.SelectedIndex = 0;
 
 			cmbPorta.Items.Clear();
-			cmbPorta.Items.Add("AUTO");
+			cmbPorta.Items.Add("Procurar");
 			cmbPorta.Items.Add("COM1");
 			cmbPorta.Items.Add("COM2");
 			cmbPorta.Items.Add("COM3");

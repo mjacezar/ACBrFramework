@@ -834,56 +834,6 @@ begin
   end;
 end;
 
-Function ECF_GetComandoEnviado(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  StrTmp : String;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
- try
-     StrTmp := ecfHandle^.ECF.ComandoEnviado;
-     StrPLCopy(Buffer, StrTmp, BufferLen);
-     Result := length(StrTmp);
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-
-end;
-
-Function ECF_GetRespostaComando(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  StrTmp : String;
-begin
-
-  if (ecfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
- try
-     StrTmp := ecfHandle^.ECF.RespostaComando;
-     StrPLCopy(Buffer, StrTmp, BufferLen);
-     Result := length(StrTmp);
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-
-end;
-
 Function ECF_GetComandoLOG(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
@@ -1607,6 +1557,102 @@ begin
 
   try
      strTmp := ecfHandle^.ECF.NumCDC;
+     StrPLCopy(Buffer, strTmp, BufferLen);
+     Result := length(strTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetComandoEnviado(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+   cmd : String;
+   strTmp : String;
+   Ch  : String;
+   ASC : Byte ;
+   I   : Integer ;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     strTmp := '';
+     cmd := ecfHandle^.ECF.ComandoEnviado;
+     For I := 1 to Length(cmd) do
+     begin
+     ASC := Ord(cmd[I]) ;
+
+     case ASC of
+        2   : Ch := '[STX]' ;
+        3   : Ch := '[ETX]' ;
+        6   : Ch := '[ACK]' ;
+        10  : Ch := #10 ; //'[LF]' ;
+        13  : Ch := #13 ; //'[CR]' ;
+        27  : Ch := '[ESC]' ;
+        255 : Ch := '[FF]' ;
+        32..127 : Ch := cmd[I] ;
+     else ;
+       Ch := '['+IntToStr(ASC)+']'
+     end;
+     strTmp := strTmp + Ch ;
+     end;
+
+     StrPLCopy(Buffer, strTmp, BufferLen);
+     Result := length(strTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetRespostaComando(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+   cmd : String;
+   strTmp : String;
+   Ch  : String;
+   ASC : Byte ;
+   I   : Integer ;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     strTmp := '';
+     cmd := ecfHandle^.ECF.RespostaComando;
+     For I := 1 to Length(cmd) do
+     begin
+     ASC := Ord(cmd[I]) ;
+
+     case ASC of
+        2   : Ch := '[STX]' ;
+        3   : Ch := '[ETX]' ;
+        6   : Ch := '[ACK]' ;
+        10  : Ch := #10 ; //'[LF]' ;
+        13  : Ch := #13 ; //'[CR]' ;
+        27  : Ch := '[ESC]' ;
+        255 : Ch := '[FF]' ;
+        32..127 : Ch := cmd[I] ;
+     else ;
+       Ch := '['+IntToStr(ASC)+']'
+     end;
+     strTmp := strTmp + Ch;
+     end;
+
      StrPLCopy(Buffer, strTmp, BufferLen);
      Result := length(strTmp);
   except
