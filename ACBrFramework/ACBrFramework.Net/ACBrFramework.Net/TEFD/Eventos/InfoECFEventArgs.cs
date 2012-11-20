@@ -97,7 +97,7 @@ namespace ACBrFramework.TEFD
 			}
 			else
 			{
-				Retorno = string.Format("{0:n2}", value);
+                Retorno = string.Format("{0:n2}", value).Replace(".", string.Empty);
 			}
 		}
 		

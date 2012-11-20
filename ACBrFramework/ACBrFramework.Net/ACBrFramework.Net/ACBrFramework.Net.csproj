@@ -297,6 +297,8 @@
     <Compile Include="Sintegra\Registro\Registro 85\SintegraRegistros85.cs" />
     <Compile Include="Sintegra\Registro\Registro 86\SintegraRegistro86.cs" />
     <Compile Include="Sintegra\Registro\Registro 86\SintegraRegistros86.cs" />
+    <Compile Include="SPED\Fiscal\ACBrSPEDFiscal.cs" />
+    <Compile Include="SPED\Fiscal\ACBrSPEDFiscalInterop.cs" />
     <Compile Include="TEFD\ACBrTEFD.cs" />
     <Compile Include="TEFD\Classes\ACBrTEFDAuttar.cs" />
     <Compile Include="TEFD\Classes\ACBrTEFDCliSiTef.cs" />
@@ -388,6 +390,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CNIEE\ico.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SPED\Fiscal\ico.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
