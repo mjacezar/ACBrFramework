@@ -58,7 +58,7 @@ namespace ACBrFramework
 			base.Remove(value);
 		}
 
-		public void Raise(EventArgs e)
+		public new void Raise(EventArgs e)
 		{
 			base.Raise(e);
 		}

@@ -22,7 +22,7 @@ namespace ACBrFramework.Sintegra
 
 		public string CnpjConcessionaria { get; set; }
 
-		public double Ipi { get; set; }
+		public decimal Ipi { get; set; }
 
 		public string Chassi { get; set; }
 	}

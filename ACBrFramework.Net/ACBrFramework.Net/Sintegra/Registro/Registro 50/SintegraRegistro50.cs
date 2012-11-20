@@ -12,17 +12,17 @@ namespace ACBrFramework.Sintegra
 
 		public string Situacao { get; set; }
 
-		public double Aliquota { get; set; }
+		public decimal Aliquota { get; set; }
 
-		public double Isentas { get; set; }
+		public decimal Isentas { get; set; }
 
-		public double Icms { get; set; }
+		public decimal Icms { get; set; }
 
-		public double ValorContabil { get; set; }
+		public decimal ValorContabil { get; set; }
 
-		public double BasedeCalculo { get; set; }
+		public decimal BasedeCalculo { get; set; }
 
-		public double Outras { get; set; }
+		public decimal Outras { get; set; }
 
 		public string EmissorDocumento { get; set; }
 

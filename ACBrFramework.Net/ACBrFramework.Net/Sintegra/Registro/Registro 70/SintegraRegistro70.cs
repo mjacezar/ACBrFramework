@@ -4,13 +4,13 @@ namespace ACBrFramework.Sintegra
 {
 	public sealed class SintegraRegistro70
 	{
-		public double Icms { get; set; }
+		public decimal Icms { get; set; }
 
-		public double ValorContabil { get; set; }
+		public decimal ValorContabil { get; set; }
 
 		public string UF { get; set; }
 
-		public double Isentas { get; set; }
+		public decimal Isentas { get; set; }
 
 		public string SubSerie { get; set; }
 
@@ -30,9 +30,9 @@ namespace ACBrFramework.Sintegra
 
 		public string Situacao { get; set; }
 
-		public double Outras { get; set; }
+		public decimal Outras { get; set; }
 
-		public double BasedeCalculo { get; set; }
+		public decimal BasedeCalculo { get; set; }
 
 		public string CifFobOutros { get; set; }
 	}

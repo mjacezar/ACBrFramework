@@ -24,11 +24,11 @@ namespace ACBrFramework.Sintegra
 
 		public string Codigo { get; set; }
 
-		public double Quantidade { get; set; }
+		public decimal Quantidade { get; set; }
 
-		public double ValorUnitario { get; set; }
+		public decimal ValorUnitario { get; set; }
 
-		public double ValorTotalProduto { get; set; }
+		public decimal ValorTotalProduto { get; set; }
 
 		public string Relacionamento { get; set; }
 	}

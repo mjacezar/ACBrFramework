@@ -10,6 +10,6 @@ namespace ACBrFramework.Sintegra
 
 		public DateTime Emissao { get; set; }
 
-		public double Valor { get; set; }
+		public decimal Valor { get; set; }
 	}
 }

@@ -4,7 +4,7 @@ namespace ACBrFramework.Sintegra
 {
 	public sealed class SintegraRegistro74
 	{
-		public double ValorProduto { get; set; }
+		public decimal ValorProduto { get; set; }
 
 		public string CodigoPosse { get; set; }
 
@@ -18,6 +18,6 @@ namespace ACBrFramework.Sintegra
 
 		public DateTime Data { get; set; }
 
-		public double Quantidade { get; set; }
+		public decimal Quantidade { get; set; }
 	}
 }

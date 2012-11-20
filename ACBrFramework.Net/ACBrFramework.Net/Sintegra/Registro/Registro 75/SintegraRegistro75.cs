@@ -8,17 +8,17 @@ namespace ACBrFramework.Sintegra
 
 		public string Descricao { get; set; }
 
-		public double Reducao { get; set; }
+		public decimal Reducao { get; set; }
 
-		public double BaseST { get; set; }
+		public decimal BaseST { get; set; }
 
-		public double AliquotaIpi { get; set; }
+		public decimal AliquotaIpi { get; set; }
 
 		public string NCM { get; set; }
 
 		public string Unidade { get; set; }
 
-		public double AliquotaICMS { get; set; }
+		public decimal AliquotaICMS { get; set; }
 
 		public DateTime DataFinal { get; set; }
 
