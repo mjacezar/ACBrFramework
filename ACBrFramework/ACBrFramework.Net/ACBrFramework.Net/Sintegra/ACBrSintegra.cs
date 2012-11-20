@@ -237,12 +237,12 @@ namespace ACBrFramework.Sintegra
 				record[i].Inscricao = ToUTF8(Registro50[i].Inscricao.ToString());
 				record[i].UF = ToUTF8(Registro50[i].UF);
 				record[i].Situacao = ToUTF8(Registro50[i].Situacao);
-				record[i].Aliquota = Registro50[i].Aliquota;
-				record[i].Isentas = Registro50[i].Isentas;
-				record[i].Icms = Registro50[i].Icms;
-				record[i].ValorContabil = Registro50[i].ValorContabil;
-				record[i].BasedeCalculo = Registro50[i].BasedeCalculo;
-				record[i].Outras = Registro50[i].Outras;
+				record[i].Aliquota = Convert.ToDouble(Registro50[i].Aliquota);
+				record[i].Isentas = Convert.ToDouble(Registro50[i].Isentas);
+				record[i].Icms = Convert.ToDouble(Registro50[i].Icms);
+				record[i].ValorContabil = Convert.ToDouble(Registro50[i].ValorContabil);
+				record[i].BasedeCalculo = Convert.ToDouble(Registro50[i].BasedeCalculo);
+				record[i].Outras = Convert.ToDouble(Registro50[i].Outras);
 				record[i].EmissorDocumento = ToUTF8(Registro50[i].EmissorDocumento);
 				record[i].Cfop = ToUTF8(Registro50[i].Cfop);
 				record[i].Serie = ToUTF8(Registro50[i].Serie);
@@ -263,15 +263,15 @@ namespace ACBrFramework.Sintegra
 				record[i].CPFCNPJ = ToUTF8(Registro51[i].CPFCNPJ.ToString());
 				record[i].Inscricao = ToUTF8(Registro51[i].Inscricao.ToString());
 				record[i].Estado = ToUTF8(Registro51[i].Estado);
-				record[i].ValorContabil = Registro51[i].ValorContabil;
+				record[i].ValorContabil = Convert.ToDouble(Registro51[i].ValorContabil);
 				record[i].Cfop = ToUTF8(Registro51[i].Cfop);
 				record[i].Serie = ToUTF8(Registro51[i].Serie);
 				record[i].Numero = ToUTF8(Registro51[i].Numero.ToString());
 				record[i].DataDocumento = Registro51[i].DataDocumento.ToOADate();
-				record[i].ValorIpi = Registro51[i].ValorIpi;
+				record[i].ValorIpi = Convert.ToDouble(Registro51[i].ValorIpi);
 				record[i].Situacao = ToUTF8(Registro51[i].Situacao);
-				record[i].ValorIsentas = Registro51[i].ValorIsentas;
-				record[i].ValorOutras = Registro51[i].ValorOutras;
+				record[i].ValorIsentas = Convert.ToDouble(Registro51[i].ValorIsentas);
+				record[i].ValorOutras = Convert.ToDouble(Registro51[i].ValorOutras);
 			}
 
 			int ret = ACBrSintegraInterop.SIN_Registro51(this.Handle, record, Registro51.Count);
@@ -292,11 +292,11 @@ namespace ACBrFramework.Sintegra
 				record[i].Numero = Registro53[i].Numero;
 				record[i].Situacao = Registro53[i].Situacao;
 				record[i].CodigoAntecipacao = Registro53[i].CodigoAntecipacao;
-				record[i].BaseST = Registro53[i].BaseST;
+				record[i].BaseST = Convert.ToDouble(Registro53[i].BaseST);
 				record[i].Modelo = Registro53[i].Modelo;
 				record[i].Emitente = Registro53[i].Emitente;
-				record[i].Despesas = Registro53[i].Despesas;
-				record[i].IcmsRetido = Registro53[i].IcmsRetido;
+				record[i].Despesas = Convert.ToDouble(Registro53[i].Despesas);
+				record[i].IcmsRetido = Convert.ToDouble(Registro53[i].IcmsRetido);
 			}
 
 			int ret = ACBrSintegraInterop.SIN_Registro53(this.Handle, record, Registro53.Count);
@@ -309,13 +309,13 @@ namespace ACBrFramework.Sintegra
 			for (int i = 0; i < Registro54.Count; i++)
 			{
 				record[i].CPFCNPJ = Registro54[i].CPFCNPJ;
-				record[i].Aliquota = Registro54[i].Aliquota;
-				record[i].BaseST = Registro54[i].BaseST;
-				record[i].BasedeCalculo = Registro54[i].BasedeCalculo;
-				record[i].Quantidade = Registro54[i].Quantidade;
-				record[i].ValorDescontoDespesa = Registro54[i].ValorDescontoDespesa;
-				record[i].ValorIpi = Registro54[i].ValorIpi;
-				record[i].Valor = Registro54[i].Valor;
+				record[i].Aliquota = Convert.ToDouble(Registro54[i].Aliquota);
+				record[i].BaseST = Convert.ToDouble(Registro54[i].BaseST);
+				record[i].BasedeCalculo = Convert.ToDouble(Registro54[i].BasedeCalculo);
+				record[i].Quantidade = Convert.ToDouble(Registro54[i].Quantidade);
+				record[i].ValorDescontoDespesa = Convert.ToDouble(Registro54[i].ValorDescontoDespesa);
+				record[i].ValorIpi = Convert.ToDouble(Registro54[i].ValorIpi);
+				record[i].Valor = Convert.ToDouble(Registro54[i].Valor);
 				record[i].NumeroItem = Registro54[i].NumeroItem;
 				record[i].CST = Registro54[i].CST;
 				record[i].Codigo = Registro54[i].Codigo;
@@ -335,7 +335,7 @@ namespace ACBrFramework.Sintegra
 			ACBrSintegraInterop.Registro55Rec[] record = new ACBrSintegraInterop.Registro55Rec[Registro55.Count];
 			for (int i = 0; i < Registro55.Count; i++)
 			{
-				record[i].Valor = Registro55[i].Valor;
+				record[i].Valor = Convert.ToDouble(Registro55[i].Valor);
 				record[i].Agencia = Registro55[i].Agencia;
 				record[i].Banco = Registro55[i].Banco;
 				record[i].NumeroConvenio = Registro55[i].NumeroConvenio;
@@ -367,7 +367,7 @@ namespace ACBrFramework.Sintegra
 				record[i].Codigo = Registro56[i].Codigo;
 				record[i].TipoOperacao = Registro56[i].TipoOperacao;
 				record[i].CnpjConcessionaria = Registro56[i].CnpjConcessionaria;
-				record[i].Ipi = Registro56[i].Ipi;
+				record[i].Ipi = Convert.ToDouble(Registro56[i].Ipi);
 				record[i].Chassi = Registro56[i].Chassi;
 			}
 
@@ -383,7 +383,7 @@ namespace ACBrFramework.Sintegra
 				record[i].NumSerie = Registro60A[i].NumSerie;
 				record[i].Aliquota = Registro60A[i].Aliquota;
 				record[i].Emissao = Registro60A[i].Emissao.ToOADate();
-				record[i].Valor = Registro60A[i].Valor;
+				record[i].Valor = Convert.ToDouble(Registro60A[i].Valor);
 			}
 
 			int ret = ACBrSintegraInterop.SIN_Registro60A(this.Handle, record, Registro60A.Count);
@@ -398,11 +398,11 @@ namespace ACBrFramework.Sintegra
 				record[i].NumSerie = Registro60D[i].NumSerie;
 				record[i].StAliquota = Registro60D[i].StAliquota;
 				record[i].Emissao = Registro60D[i].Emissao.ToOADate();
-				record[i].Valor = Registro60D[i].Valor;
+				record[i].Valor = Convert.ToDouble(Registro60D[i].Valor);
 				record[i].Codigo = Registro60D[i].Codigo;
-				record[i].ValorIcms = Registro60D[i].ValorIcms;
-				record[i].Quantidade = Registro60D[i].Quantidade;
-				record[i].BaseDeCalculo = Registro60D[i].BaseDeCalculo;
+				record[i].ValorIcms = Convert.ToDouble(Registro60D[i].ValorIcms);
+				record[i].Quantidade = Convert.ToDouble(Registro60D[i].Quantidade);
+				record[i].BaseDeCalculo = Convert.ToDouble(Registro60D[i].BaseDeCalculo);
 			}
 
 			int ret = ACBrSintegraInterop.SIN_Registro60D(this.Handle, record, Registro60D.Count);
@@ -417,11 +417,11 @@ namespace ACBrFramework.Sintegra
 				record[i].NumSerie = Registro60I[i].NumSerie;
 				record[i].StAliquota = Registro60I[i].StAliquota;
 				record[i].Emissao = Registro60I[i].Emissao.ToOADate();
-				record[i].Valor = Registro60I[i].Valor;
+				record[i].Valor = Convert.ToDouble(Registro60I[i].Valor);
 				record[i].Codigo = Registro60I[i].Codigo;
-				record[i].ValorIcms = Registro60I[i].ValorIcms;
-				record[i].Quantidade = Registro60I[i].Quantidade;
-				record[i].BaseDeCalculo = Registro60I[i].BaseDeCalculo;
+				record[i].ValorIcms = Convert.ToDouble(Registro60I[i].ValorIcms);
+				record[i].Quantidade = Convert.ToDouble(Registro60I[i].Quantidade);
+				record[i].BaseDeCalculo = Convert.ToDouble(Registro60I[i].BaseDeCalculo);
 				record[i].Item = Registro60I[i].Item;
 				record[i].Cupom = Registro60I[i].Cupom;
 				record[i].ModeloDoc = Registro60I[i].ModeloDoc;
@@ -438,9 +438,9 @@ namespace ACBrFramework.Sintegra
 			{
 				record[i].CRO = Registro60M[i].CRO;
 				record[i].NumOrdem = Registro60M[i].NumOrdem;
-				record[i].VendaBruta = Registro60M[i].VendaBruta;
+				record[i].VendaBruta = Convert.ToDouble(Registro60M[i].VendaBruta);
 				record[i].ModeloDoc = Registro60M[i].ModeloDoc;
-				record[i].ValorGT = Registro60M[i].ValorGT;
+				record[i].ValorGT = Convert.ToDouble(Registro60M[i].ValorGT);
 				record[i].CRZ = Registro60M[i].CRZ;
 				record[i].CooFinal = Registro60M[i].CooFinal;
 				record[i].CooInicial = Registro60M[i].CooInicial;
@@ -457,9 +457,9 @@ namespace ACBrFramework.Sintegra
 			ACBrSintegraInterop.Registro60RRec[] record = new ACBrSintegraInterop.Registro60RRec[Registro60R.Count];
 			for (int i = 0; i < Registro60R.Count; i++)
 			{
-				record[i].BaseDeCalculo = Registro60R[i].BaseDeCalculo;
-				record[i].Valor = Registro60R[i].Valor;
-				record[i].Qtd = Registro60R[i].Qtd;
+				record[i].BaseDeCalculo = Convert.ToDouble(Registro60R[i].BaseDeCalculo);
+				record[i].Valor = Convert.ToDouble(Registro60R[i].Valor);
+				record[i].Qtd = Convert.ToDouble(Registro60R[i].Qtd);
 				record[i].MesAno = Registro60R[i].MesAno;
 				record[i].Codigo = Registro60R[i].Codigo;
 				record[i].Aliquota = Registro60R[i].Aliquota;
@@ -475,17 +475,17 @@ namespace ACBrFramework.Sintegra
 			for (int i = 0; i < Registro61.Count; i++)
 			{
 				record[i].Emissao = Registro61[i].Emissao.ToOADate();
-				record[i].Valor = Registro61[i].Valor;
-				record[i].ValorIcms = Registro61[i].ValorIcms;
-				record[i].Outras = Registro61[i].Outras;
-				record[i].BaseDeCalculo = Registro61[i].BaseDeCalculo;
-				record[i].Isentas = Registro61[i].Isentas;
+				record[i].Valor = Convert.ToDouble(Registro61[i].Valor);
+				record[i].ValorIcms = Convert.ToDouble(Registro61[i].ValorIcms);
+				record[i].Outras = Convert.ToDouble(Registro61[i].Outras);
+				record[i].BaseDeCalculo = Convert.ToDouble(Registro61[i].BaseDeCalculo);
+				record[i].Isentas = Convert.ToDouble(Registro61[i].Isentas);
 				record[i].NumOrdemInicial = Registro61[i].NumOrdemInicial;
 				record[i].NumOrdemFinal = Registro61[i].NumOrdemFinal;
 				record[i].Modelo = Registro61[i].Modelo;
 				record[i].SubSerie = Registro61[i].SubSerie;
 				record[i].Serie = Registro61[i].Serie;
-				record[i].Aliquota = Registro61[i].Aliquota;
+				record[i].Aliquota = Convert.ToDouble(Registro61[i].Aliquota);
 			}
 
 			int ret = ACBrSintegraInterop.SIN_Registro61(this.Handle, record, Registro61.Count);
@@ -497,12 +497,12 @@ namespace ACBrFramework.Sintegra
 			ACBrSintegraInterop.Registro61RRec[] record = new ACBrSintegraInterop.Registro61RRec[Registro61R.Count];
 			for (int i = 0; i < Registro61R.Count; i++)
 			{
-				record[i].Aliquota = Registro61R[i].Aliquota;
-				record[i].Valor = Registro61R[i].Valor;
-				record[i].Qtd = Registro61R[i].Qtd;
+				record[i].Aliquota = Convert.ToDouble(Registro61R[i].Aliquota);
+				record[i].Valor = Convert.ToDouble(Registro61R[i].Valor);
+				record[i].Qtd = Convert.ToDouble(Registro61R[i].Qtd);
 				record[i].MesAno = Registro61R[i].MesAno;
 				record[i].Codigo = Registro61R[i].Codigo;
-				record[i].BaseDeCalculo = Registro61R[i].BaseDeCalculo;
+				record[i].BaseDeCalculo = Convert.ToDouble(Registro61R[i].BaseDeCalculo);
 			}
 
 			int ret = ACBrSintegraInterop.SIN_Registro61R(this.Handle, record, Registro61R.Count);
@@ -514,10 +514,10 @@ namespace ACBrFramework.Sintegra
 			ACBrSintegraInterop.Registro70Rec[] record = new ACBrSintegraInterop.Registro70Rec[Registro70.Count];
 			for (int i = 0; i < Registro70.Count; i++)
 			{
-				record[i].Icms = Registro70[i].Icms;
-				record[i].ValorContabil = Registro70[i].ValorContabil;
+				record[i].Icms = Convert.ToDouble(Registro70[i].Icms);
+				record[i].ValorContabil = Convert.ToDouble(Registro70[i].ValorContabil);
 				record[i].UF = Registro70[i].UF;
-				record[i].Isentas = Registro70[i].Isentas;
+				record[i].Isentas = Convert.ToDouble(Registro70[i].Isentas);
 				record[i].SubSerie = Registro70[i].SubSerie;
 				record[i].Serie = Registro70[i].Serie;
 				record[i].DataDocumento = Registro70[i].DataDocumento.ToOADate();
@@ -527,8 +527,8 @@ namespace ACBrFramework.Sintegra
 				record[i].Numero = Registro70[i].Numero;
 				record[i].Inscricao = Registro70[i].Inscricao;
 				record[i].Situacao = Registro70[i].Situacao;
-				record[i].Outras = Registro70[i].Outras;
-				record[i].BasedeCalculo = Registro70[i].BasedeCalculo;
+				record[i].Outras = Convert.ToDouble(Registro70[i].Outras);
+				record[i].BasedeCalculo = Convert.ToDouble(Registro70[i].BasedeCalculo);
 				record[i].CifFobOutros = Registro70[i].CifFobOutros;
 			}
 
@@ -556,7 +556,7 @@ namespace ACBrFramework.Sintegra
 				record[i].ModeloNF = Registro71[i].ModeloNF;
 				record[i].SerieNF = Registro71[i].SerieNF;
 				record[i].NumeroNF = Registro71[i].NumeroNF;
-				record[i].ValorNF = Registro71[i].ValorNF;
+				record[i].ValorNF = Convert.ToDouble(Registro71[i].ValorNF);
 			}
 
 			int ret = ACBrSintegraInterop.SIN_Registro71(this.Handle, record, Registro71.Count);
@@ -568,14 +568,14 @@ namespace ACBrFramework.Sintegra
 			ACBrSintegraInterop.Registro74Rec[] record = new ACBrSintegraInterop.Registro74Rec[Registro74.Count];
 			for (int i = 0; i < Registro74.Count; i++)
 			{
-				record[i].ValorProduto = Registro74[i].ValorProduto;
+				record[i].ValorProduto = Convert.ToDouble(Registro74[i].ValorProduto);
 				record[i].CodigoPosse = Registro74[i].CodigoPosse;
 				record[i].InscricaoPossuidor = Registro74[i].InscricaoPossuidor;
 				record[i].Codigo = Registro74[i].Codigo;
 				record[i].CNPJPossuidor = Registro74[i].CNPJPossuidor;
 				record[i].UFPossuidor = Registro74[i].UFPossuidor;
 				record[i].Data = Registro74[i].Data.ToOADate();
-				record[i].Quantidade = Registro74[i].Quantidade;
+				record[i].Quantidade = Convert.ToDouble(Registro74[i].Quantidade);
 			}
 
 			int ret = ACBrSintegraInterop.SIN_Registro74(this.Handle, record, Registro74.Count);
@@ -589,12 +589,12 @@ namespace ACBrFramework.Sintegra
 			{
 				record[i].Codigo = Registro75[i].Codigo;
 				record[i].Descricao = Registro75[i].Descricao;
-				record[i].Reducao = Registro75[i].Reducao;
-				record[i].BaseST = Registro75[i].BaseST;
-				record[i].AliquotaIpi = Registro75[i].AliquotaIpi;
+				record[i].Reducao = Convert.ToDouble(Registro75[i].Reducao);
+				record[i].BaseST = Convert.ToDouble(Registro75[i].BaseST);
+				record[i].AliquotaIpi = Convert.ToDouble(Registro75[i].AliquotaIpi);
 				record[i].NCM = Registro75[i].NCM;
 				record[i].Unidade = Registro75[i].Unidade;
-				record[i].AliquotaICMS = Registro75[i].AliquotaICMS;
+				record[i].AliquotaICMS = Convert.ToDouble(Registro75[i].AliquotaICMS);
 				record[i].DataFinal = Registro75[i].DataFinal.ToOADate();
 				record[i].DataInicial = Registro75[i].DataInicial.ToOADate();
 			}
@@ -608,11 +608,11 @@ namespace ACBrFramework.Sintegra
 			ACBrSintegraInterop.Registro76Rec[] record = new ACBrSintegraInterop.Registro76Rec[Registro76.Count];
 			for (int i = 0; i < Registro76.Count; i++)
 			{
-				record[i].Isentas = Registro76[i].Isentas;
-				record[i].ValorTotal = Registro76[i].ValorTotal;
-				record[i].Icms = Registro76[i].Icms;
-				record[i].BasedeCalculo = Registro76[i].BasedeCalculo;
-				record[i].Outras = Registro76[i].Outras;
+				record[i].Isentas = Convert.ToDouble(Registro76[i].Isentas);
+				record[i].ValorTotal = Convert.ToDouble(Registro76[i].ValorTotal);
+				record[i].Icms = Convert.ToDouble(Registro76[i].Icms);
+				record[i].BasedeCalculo = Convert.ToDouble(Registro76[i].BasedeCalculo);
+				record[i].Outras = Convert.ToDouble(Registro76[i].Outras);
 				record[i].Modelo = Registro76[i].Modelo;
 				record[i].Numero = Registro76[i].Numero;
 				record[i].Situacao = Registro76[i].Situacao;
@@ -636,10 +636,10 @@ namespace ACBrFramework.Sintegra
 			ACBrSintegraInterop.Registro77Rec[] record = new ACBrSintegraInterop.Registro77Rec[Registro77.Count];
 			for (int i = 0; i < Registro77.Count; i++)
 			{
-				record[i].Quantidade = Registro77[i].Quantidade;
-				record[i].ValorServico = Registro77[i].ValorServico;
-				record[i].ValorDesconto = Registro77[i].ValorDesconto;
-				record[i].BaseDeCalculo = Registro77[i].BaseDeCalculo;
+				record[i].Quantidade = Convert.ToDouble(Registro77[i].Quantidade);
+				record[i].ValorServico = Convert.ToDouble(Registro77[i].ValorServico);
+				record[i].ValorDesconto = Convert.ToDouble(Registro77[i].ValorDesconto);
+				record[i].BaseDeCalculo = Convert.ToDouble(Registro77[i].BaseDeCalculo);
 				record[i].Modelo = Registro77[i].Modelo;
 				record[i].Numero = Registro77[i].Numero;
 				record[i].NumeroTerminal = Registro77[i].NumeroTerminal;
@@ -698,9 +698,9 @@ namespace ACBrFramework.Sintegra
 				record[i].Modelo = Registro86[i].Modelo;
 				record[i].Serie = Registro86[i].Serie;
 				record[i].Codigo = Registro86[i].Codigo;
-				record[i].Quantidade = Registro86[i].Quantidade;
-				record[i].ValorUnitario = Registro86[i].ValorUnitario;
-				record[i].ValorTotalProduto = Registro86[i].ValorTotalProduto;
+				record[i].Quantidade = Convert.ToDouble(Registro86[i].Quantidade);
+				record[i].ValorUnitario = Convert.ToDouble(Registro86[i].ValorUnitario);
+				record[i].ValorTotalProduto = Convert.ToDouble(Registro86[i].ValorTotalProduto);
 				record[i].Relacionamento = Registro86[i].Relacionamento;
 			}
 

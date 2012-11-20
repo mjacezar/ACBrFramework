@@ -6,15 +6,15 @@ namespace ACBrFramework.Sintegra
 	{
 		public DateTime Emissao { get; set; }
 
-		public double Valor { get; set; }
+		public decimal Valor { get; set; }
 
-		public double ValorIcms { get; set; }
+		public decimal ValorIcms { get; set; }
 
-		public double Outras { get; set; }
+		public decimal Outras { get; set; }
 
-		public double BaseDeCalculo { get; set; }
+		public decimal BaseDeCalculo { get; set; }
 
-		public double Isentas { get; set; }
+		public decimal Isentas { get; set; }
 
 		public int NumOrdemInicial { get; set; }
 
@@ -26,6 +26,6 @@ namespace ACBrFramework.Sintegra
 
 		public string Serie { get; set; }
 
-		public double Aliquota { get; set; }
+		public decimal Aliquota { get; set; }
 	}
 }

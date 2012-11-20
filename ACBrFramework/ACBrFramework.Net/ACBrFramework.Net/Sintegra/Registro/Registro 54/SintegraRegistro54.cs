@@ -2,19 +2,19 @@ namespace ACBrFramework.Sintegra
 {
 	public sealed class SintegraRegistro54
 	{
-		public double Aliquota { get; set; }
+		public decimal Aliquota { get; set; }
 
-		public double BaseST { get; set; }
+		public decimal BaseST { get; set; }
 
-		public double BasedeCalculo { get; set; }
+		public decimal BasedeCalculo { get; set; }
 
-		public double Quantidade { get; set; }
+		public decimal Quantidade { get; set; }
 
-		public double ValorDescontoDespesa { get; set; }
+		public decimal ValorDescontoDespesa { get; set; }
 
-		public double ValorIpi { get; set; }
+		public decimal ValorIpi { get; set; }
 
-		public double Valor { get; set; }
+		public decimal Valor { get; set; }
 
 		public int NumeroItem { get; set; }
 

@@ -34,6 +34,6 @@ namespace ACBrFramework.Sintegra
 
 		public string NumeroNF { get; set; }
 
-		public double ValorNF { get; set; }
+		public decimal ValorNF { get; set; }
 	}
 }

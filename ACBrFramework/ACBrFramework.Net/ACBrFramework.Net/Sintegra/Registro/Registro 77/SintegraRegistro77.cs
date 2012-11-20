@@ -2,13 +2,13 @@ namespace ACBrFramework.Sintegra
 {
 	public sealed class SintegraRegistro77
 	{
-		public double Quantidade { get; set; }
+		public decimal Quantidade { get; set; }
 
-		public double ValorServico { get; set; }
+		public decimal ValorServico { get; set; }
 
-		public double ValorDesconto { get; set; }
+		public decimal ValorDesconto { get; set; }
 
-		public double BaseDeCalculo { get; set; }
+		public decimal BaseDeCalculo { get; set; }
 
 		public int Modelo { get; set; }
 

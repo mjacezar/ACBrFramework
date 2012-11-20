@@ -10,15 +10,15 @@ namespace ACBrFramework.Sintegra
 
 		public DateTime Emissao { get; set; }
 
-		public double Valor { get; set; }
+		public decimal Valor { get; set; }
 
 		public string Codigo { get; set; }
 
-		public double ValorIcms { get; set; }
+		public decimal ValorIcms { get; set; }
 
-		public double Quantidade { get; set; }
+		public decimal Quantidade { get; set; }
 
-		public double BaseDeCalculo { get; set; }
+		public decimal BaseDeCalculo { get; set; }
 
 		public int Item { get; set; }
 

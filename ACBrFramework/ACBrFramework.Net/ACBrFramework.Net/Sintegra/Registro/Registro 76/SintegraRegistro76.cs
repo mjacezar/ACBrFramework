@@ -4,15 +4,15 @@ namespace ACBrFramework.Sintegra
 {
 	public sealed class SintegraRegistro76
 	{
-		public double Isentas { get; set; }
+		public decimal Isentas { get; set; }
 
-		public double ValorTotal { get; set; }
+		public decimal ValorTotal { get; set; }
 
-		public double Icms { get; set; }
+		public decimal Icms { get; set; }
 
-		public double BasedeCalculo { get; set; }
+		public decimal BasedeCalculo { get; set; }
 
-		public double Outras { get; set; }
+		public decimal Outras { get; set; }
 
 		public int Modelo { get; set; }
 

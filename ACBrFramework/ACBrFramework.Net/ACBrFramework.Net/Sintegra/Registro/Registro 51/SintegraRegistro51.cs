@@ -18,14 +18,14 @@ namespace ACBrFramework.Sintegra
 
 		public DateTime DataDocumento { get; set; }
 
-		public double ValorIpi { get; set; }
+		public decimal ValorIpi { get; set; }
 
-		public double ValorContabil { get; set; }
+		public decimal ValorContabil { get; set; }
 
 		public string Situacao { get; set; }
 
-		public double ValorIsentas { get; set; }
+		public decimal ValorIsentas { get; set; }
 
-		public double ValorOutras { get; set; }
+		public decimal ValorOutras { get; set; }
 	}
 }

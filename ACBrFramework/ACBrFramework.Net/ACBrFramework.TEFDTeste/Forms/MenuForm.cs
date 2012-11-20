@@ -41,7 +41,7 @@ namespace ACBrFramework.TEFDTeste
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (SelectedItem == null)
+            if (SelectedItem == -1)
             {
                 MessageBox.Show(this, "Selecione uma opção", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 this.DialogResult = DialogResult.None;

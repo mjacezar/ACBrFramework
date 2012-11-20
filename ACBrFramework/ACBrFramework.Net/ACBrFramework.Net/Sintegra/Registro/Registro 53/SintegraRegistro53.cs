@@ -22,14 +22,14 @@ namespace ACBrFramework.Sintegra
 
 		public string CodigoAntecipacao { get; set; }
 
-		public double BaseST { get; set; }
+		public decimal BaseST { get; set; }
 
 		public string Modelo { get; set; }
 
 		public string Emitente { get; set; }
 
-		public double Despesas { get; set; }
+		public decimal Despesas { get; set; }
 
-		public double IcmsRetido { get; set; }
+		public decimal IcmsRetido { get; set; }
 	}
 }

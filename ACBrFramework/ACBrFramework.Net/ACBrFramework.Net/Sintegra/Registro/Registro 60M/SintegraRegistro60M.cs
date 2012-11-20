@@ -8,11 +8,11 @@ namespace ACBrFramework.Sintegra
 
 		public int NumOrdem { get; set; }
 
-		public double VendaBruta { get; set; }
+		public decimal VendaBruta { get; set; }
 
 		public string ModeloDoc { get; set; }
 
-		public double ValorGT { get; set; }
+		public decimal ValorGT { get; set; }
 
 		public int CRZ { get; set; }
 
