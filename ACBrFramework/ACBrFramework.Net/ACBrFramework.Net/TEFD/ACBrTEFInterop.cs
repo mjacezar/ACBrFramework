@@ -140,6 +140,15 @@ namespace ACBrFramework.TEFD
 
 		#region Propriedades Componente
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_GetAbout(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_GetArqLOG(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_SetArqLOG(IntPtr tefHandle, string arqLog);
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_GetAutoAtivar(IntPtr tefHandle);
 
@@ -180,7 +189,43 @@ namespace ACBrFramework.TEFD
 		public static extern int TEF_GetEsperaSleep(IntPtr tefHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_SetEsperaSleep(IntPtr tefHandle, int Espera);	
+		public static extern int TEF_SetEsperaSleep(IntPtr tefHandle, int Espera);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_GetEsperaSTS(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_SetEsperaSTS(IntPtr tefHandle, int Espera);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_GetNumVias(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_SetNumVias(IntPtr tefHandle, int Vias);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_GetNumeroMaximoCartoes(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_SetNumeroMaximoCartoes(IntPtr tefHandle, int Cartoes);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_GetExibirMsgAutenticacao(IntPtr tefHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_SetExibirMsgAutenticacao(IntPtr tefHandle, bool Ativar);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_GetPathBackup(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_SetPathBackup(IntPtr tefHandle, string path);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_GetTrocoMaximo(IntPtr tefHandle, ref double Troco);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TEF_SetTrocoMaximo(IntPtr tefHandle, double Troco);
 
 		#endregion Propriedades Componente
 

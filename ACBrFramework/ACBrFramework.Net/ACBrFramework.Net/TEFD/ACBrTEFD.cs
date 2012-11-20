@@ -284,6 +284,41 @@ namespace ACBrFramework.TEFD
 
 		#region Properties
 
+        [Category("Geral")]
+        public string About
+        {
+            get
+            {
+                return string.Format("ACBr: {0} ACBrFramework: {1}", GetString(ACBrTEFInterop.TEF_GetAbout), this.GetType().Assembly.GetName().Version);
+            }
+        }
+
+        [Category("Geral")]
+        public string PathBackup
+        {
+            get
+            {
+                return GetString(ACBrTEFInterop.TEF_GetPathBackup);
+            }
+            set
+            {
+                SetString(ACBrTEFInterop.TEF_SetPathBackup, value);
+            }
+        }
+
+        [Category("Geral")]
+        public string ArqLOG
+        {
+            get
+            {
+                return GetString(ACBrTEFInterop.TEF_GetArqLOG);
+            }
+            set
+            {
+                SetString(ACBrTEFInterop.TEF_SetArqLOG, value);
+            }
+        }
+
 		[Category("Geral")]
 		public bool AutoAtivar
 		{
@@ -349,6 +384,32 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
+        [Category("Geral")]
+        public bool ExibirMsgAutenticacao
+        {
+            get
+            {
+                return GetBool(ACBrTEFInterop.TEF_GetExibirMsgAutenticacao);
+            }
+            set
+            {
+                SetBool(ACBrTEFInterop.TEF_SetExibirMsgAutenticacao, value);
+            }
+        }
+
+        [Category("Geral")]
+        public decimal TrocoMaximo
+        {
+            get
+            {
+                return GetDecimal(ACBrTEFInterop.TEF_GetTrocoMaximo);
+            }
+            set
+            {
+                SetDecimal(ACBrTEFInterop.TEF_SetTrocoMaximo, value);
+            }
+        }
+
 		[Category("Geral")]
 		public int EsperaSleep
 		{
@@ -361,6 +422,45 @@ namespace ACBrFramework.TEFD
 				SetInt32(ACBrTEFInterop.TEF_SetEsperaSleep, value);
 			}
 		}
+
+        [Category("Geral")]
+        public int EsperaSTS
+        {
+            get
+            {
+                return GetInt32(ACBrTEFInterop.TEF_GetEsperaSTS);
+            }
+            set
+            {
+                SetInt32(ACBrTEFInterop.TEF_SetEsperaSTS, value);
+            }
+        }
+
+        [Category("Geral")]
+        public int NumVias
+        {
+            get
+            {
+                return GetInt32(ACBrTEFInterop.TEF_GetNumVias);
+            }
+            set
+            {
+                SetInt32(ACBrTEFInterop.TEF_SetNumVias, value);
+            }
+        }
+
+        [Category("Geral")]
+        public int NumeroMaximoCartoes
+        {
+            get
+            {
+                return GetInt32(ACBrTEFInterop.TEF_GetNumeroMaximoCartoes);
+            }
+            set
+            {
+                SetInt32(ACBrTEFInterop.TEF_SetNumeroMaximoCartoes, value);
+            }
+        }
 
 		[Category("Identificação")]
 		public ACBrTEFDIdentificacao Identificacao { get; private set; }

@@ -198,7 +198,7 @@ begin
   end;
 end;
 
-// Propriedades
+{%region Propriedades Componente}
 
 Function TEF_SetAutoAtivar(const tefHandle : PTEFHandle; const Ativar : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -464,7 +464,7 @@ begin
   end;
 end;
 
-Function TEF_SetEsperaSleep(const tefHandle : PTEFHandle; const Espera : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_SetEsperaSleep(const tefHandle : PTEFHandle; const Sleep : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
   if (tefHandle = nil) then
   begin
@@ -473,7 +473,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.EsperaSleep := Espera;
+     tefHandle^.TEF.EsperaSleep := Sleep;
      Result := 0;
   except
      on exception : Exception do
@@ -503,8 +503,326 @@ begin
   end;
 end;
 
-///////////////////////////////////////////////////////////
+Function TEF_SetEsperaSTS(const tefHandle : PTEFHandle; const STS : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
 
+  try
+     tefHandle^.TEF.EsperaSTS := STS;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetEsperaSTS(const tefHandle : PTEFHandle): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := tefHandle^.TEF.EsperaSTS;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_SetNumVias(const tefHandle : PTEFHandle; const Vias : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.NumVias := Vias;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetNumVias(const tefHandle : PTEFHandle): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := tefHandle^.TEF.NumVias;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_SetNumeroMaximoCartoes(const tefHandle : PTEFHandle; const Cartoes : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.NumeroMaximoCartoes := Cartoes;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetNumeroMaximoCartoes(const tefHandle : PTEFHandle): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := tefHandle^.TEF.NumeroMaximoCartoes;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_SetArqLOG(const tefHandle : PTEFHandle; const Log : pChar): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  tefHandle^.TEF.ArqLOG := Log;
+  Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetArqLOG(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  StrTmp := tefHandle^.TEF.ArqLOG;
+  StrPLCopy(Buffer, StrTmp, BufferLen);
+  Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_SetExibirMsgAutenticacao(const tefHandle : PTEFHandle; const Ativar : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.ExibirMsgAutenticacao := Ativar;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetExibirMsgAutenticacao(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     If tefHandle^.TEF.ExibirMsgAutenticacao then
+        Result:= 1
+     Else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_SetPathBackup(const tefHandle : PTEFHandle; const Path: pChar): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  tefHandle^.TEF.PathBackup := Path;
+  Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetPathBackup(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  StrTmp := tefHandle^.TEF.PathBackup;
+  StrPLCopy(Buffer, StrTmp, BufferLen);
+  Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_SetTrocoMaximo(const tefHandle : PTEFHandle; const troco : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TrocoMaximo := troco;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetTrocoMaximo(const tefHandle : PTEFHandle; var troco : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+   if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     troco := tefHandle^.TEF.TrocoMaximo;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetAbout(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  StrTmp := tefHandle^.TEF.About;
+  StrPLCopy(Buffer, StrTmp, BufferLen);
+  Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%region Funções TEF}
 Function TEF_Inicializar(const tefHandle : PTEFHandle; GP : Integer): Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
   if (tefHandle = nil) then
@@ -838,7 +1156,9 @@ begin
 
 end;
 
-{Identificacao}
+{%endregion}
+
+{%region Identificacao}
 Function TEF_Identificacao_GetNomeAplicacao(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
@@ -1023,7 +1343,9 @@ begin
 
 end;
 
-{Req}
+{%endregion}
+
+{%region Req}
 
 Function TEF_Req_GetHeader(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -1931,7 +2253,9 @@ begin
 
 end;
 
-{Resp}
+{%endregion}
+
+{%region Resp}
 
 Function TEF_Resp_GetHeader(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -3346,11 +3670,12 @@ begin
   end;
 end;
 
+{%endregion}
 //Parcelas : TACBrTEFDRespParcelas read fpParcelas ;
 //ImagemComprovante1aVia : TStringList read fpImagemCompro
 //ImagemComprovante2aVia : TStringList read fpImagemCompro
 
-{Respostas Pendentes}
+{%region Respostas Pendentes}
 
 Function TEF_RespostasPendentes_GetSaldoAPagar(const tefHandle : PTEFHandle; var SaldoAPagar : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -3444,7 +3769,6 @@ begin
   end;
 end;
 
-
 Function TEF_RespostasPendentes_GetCount(const tefHandle : PTEFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
@@ -3466,8 +3790,6 @@ begin
      end
   end;
 end;
-
-
 
 Function TEF_RespostasPendentes_GetHeader(const tefHandle : PTEFHandle; const index : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -4884,7 +5206,9 @@ begin
   end;
 end;
 
-{TEFCliSiTef}
+{%endregion}
+
+{%region TEFCliSiTef}
 Function TEF_TEFCliSiTef_GetEnderecoIP(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
@@ -5528,7 +5852,9 @@ begin
   end;
 end;
 
- {TEFDial}
+{%endregion}
+
+{%region TEFDial}
 Function TEF_TEFDial_GetAutoAtivarGP(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -5982,7 +6308,9 @@ begin
 
 end;
 
-{TEFDisc}
+{%endregion}
+
+{%region TEFDisc}
 Function TEF_TEFDisc_GetAutoAtivarGP(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -6436,7 +6764,9 @@ begin
 
 end;
 
-{TEFHiper}
+{%endregion}
+
+{%region TEFHiper}
 Function TEF_TEFHiper_GetAutoAtivarGP(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -6890,8 +7220,9 @@ begin
 
 end;
 
+{%endregion}
 
-{TEFGPU}
+{%region TEFGPU}
 Function TEF_TEFGPU_GetAutoAtivarGP(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -7345,7 +7676,9 @@ begin
 
 end;
 
-{TEFAuttar}
+{%endregion}
+
+{%region TEFAuttar}
 Function TEF_TEFAuttar_GetAutoAtivarGP(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -7799,7 +8132,9 @@ begin
 
 end;
 
-{TEFGood}
+{%endregion}
+
+{%region TEFGood}
 Function TEF_TEFGood_GetAutoAtivarGP(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -8253,7 +8588,9 @@ begin
 
 end;
 
-{TEFFoxWin}
+{%endregion}
+
+{%region TEFFoxWin}
 Function TEF_TEFFoxWin_GetAutoAtivarGP(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -8707,7 +9044,9 @@ begin
 
 end;
 
- {TEFPetrocard}
+{%endregion}
+
+ {%region TEFPetrocard}
 Function TEF_TEFPetrocard_GetAutoAtivarGP(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -9161,8 +9500,9 @@ begin
 
 end;
 
+{%endregion}
 
- {TEFCrediShop}
+ {%region TEFCrediShop}
 Function TEF_TEFCrediShop_GetAutoAtivarGP(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -9616,8 +9956,9 @@ begin
 
 end;
 
+{%endregion}
 
-{Eventos}
+{%region Eventos}
 Function TEF_SetOnAguardaResp(const tefHandle: PTEFHandle; const method : TAguardaRespCallback) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -10131,8 +10472,9 @@ begin
     end;
 end;
 
+{%endregion}
 
-{EventHandlers}
+{%region EventHandlers}
 
 procedure TEventHandlers.OnAguardaResp(Arquivo: String; SegundosTimeOut : Integer; var Interromper : Boolean);
 begin
@@ -10276,6 +10618,8 @@ begin
 
 end;
 
+{%endregion}
+
 exports
 
 { Funções }
@@ -10290,6 +10634,13 @@ TEF_SetAutoEfetuarPagamento, TEF_GetAutoEfetuarPagamento,
 TEF_SetAutoFinalizarCupom, TEF_GetAutoFinalizarCupom,
 TEF_SetCHQEmGerencial, TEF_GetCHQEmGerencial,
 TEF_SetEsperaSleep, TEF_GetEsperaSleep,
+TEF_SetEsperaSTS, TEF_GetEsperaSTS,
+TEF_SetNumVias, TEF_GetNumVias,
+TEF_SetNumeroMaximoCartoes, TEF_GetNumeroMaximoCartoes,
+TEF_SetArqLOG, TEF_GetArqLOG,
+TEF_SetExibirMsgAutenticacao, TEF_GetExibirMsgAutenticacao,
+TEF_SetPathBackup, TEF_GetPathBackup,
+TEF_SetTrocoMaximo, TEF_GetTrocoMaximo, TEF_GetAbout,
 
 
 { Funções TEF }
