@@ -116,29 +116,29 @@ namespace ACBrFramework.TEFD
 
 		//public string ParametrosAdicionais
 
-        public string Name
-        {
-            get
-            {
-                return GetString(ACBrTEFInterop.TEF_TEFCliSiTef_GetName);
-            }
-            set
-            {
-                SetString(ACBrTEFInterop.TEF_TEFCliSiTef_SetName, value);
-            }
-        }
+		public string Name
+		{
+			get
+			{
+				return GetString(ACBrTEFInterop.TEF_TEFCliSiTef_GetName);
+			}
+			set
+			{
+				SetString(ACBrTEFInterop.TEF_TEFCliSiTef_SetName, value);
+			}
+		}
 
-        public bool Habilitado
-        {
-            get
-            {
-                return GetBool(ACBrTEFInterop.TEF_TEFCliSiTef_GetHabilitado);
-            }
-            set
-            {
-                SetBool(ACBrTEFInterop.TEF_TEFCliSiTef_SetHabilitado, value);
-            }
-        }
+		public bool Habilitado
+		{
+			get
+			{
+				return GetBool(ACBrTEFInterop.TEF_TEFCliSiTef_GetHabilitado);
+			}
+			set
+			{
+				SetBool(ACBrTEFInterop.TEF_TEFCliSiTef_SetHabilitado, value);
+			}
+		}
 
 		public int OperacaoATV
 		{
@@ -238,11 +238,11 @@ namespace ACBrFramework.TEFD
 		{
 			if (onObtemCampo.IsAssigned)
 			{
-				Resposta.Length = 0;
-
 				TEFCliSiTefObtemCampoEventArgs e = new TEFCliSiTefObtemCampoEventArgs(Titulo, TamanhoMinimo, TamanhoMaximo, TipoCampo, Operacao);
 				onObtemCampo.Raise(e);
 
+				PrepareOutStringBuilder(Resposta, RespLen);
+				Resposta.Length = 0;
 				Resposta.Append(e.Resposta);
 				Digitado = e.Digitado;
 				VoltarMenu = e.VoltarMenu;

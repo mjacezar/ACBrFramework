@@ -834,6 +834,7 @@ namespace ACBrFramework.TEFD
 				InfoECFEventArgs e = new InfoECFEventArgs(Operacao);
 				onInfoECF.Raise(e);
 
+				PrepareOutStringBuilder(RetornoECF, RetornoECFLen);				
 				RetornoECF.Length = 0;
 				RetornoECF.Append(e.Retorno);
 			}
