@@ -44,6 +44,7 @@ Changelog
 20/11/2012 (ACBrFramework 0.9.1.19)
 [-] Corrigido bug ao enviar valores muito altos ACBrTEFD - ACBrFramework.Net - Rafael Dias.
 [+] Inicio da implementação do ACBrSPEDFiscal - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[-] Corrigido bug TEFD ao executar a partir de VB.Net - Rafael Batiati.
 
 20/11/2012 (ACBrFramework 0.9.1.18)
 [+] Adicionado TEF_SetNumVias, TEF_GetNumVias - ACBrFramework e ACBrFramework.Net - Rafael Dias.

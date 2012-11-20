@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -207,6 +208,21 @@ namespace ACBrFramework
 		}
 
 		protected internal abstract void CheckResult(int result);
+
+		#region Documentation
+		/// <summary>
+		/// Prepara o StringBuilder recebido de uma função Callback, isto é, recebida pelo disparo de um evento.
+		/// </summary>
+		#endregion Documentation
+		protected void PrepareOutStringBuilder(StringBuilder builder, int capacity)
+		{
+			Type type = typeof(StringBuilder);
+			const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+			FieldInfo field = type.GetField("m_MaxCapacity", flags);
+			field.SetValue(builder, capacity - 1);
+
+			builder.Capacity = capacity - 1;
+		}
 
 		#endregion P/Invoke Helpers
 	}
