@@ -25,6 +25,7 @@ type PSPDFHandle = ^TSPDFHandle;
 
 implementation
 
+{%region Create/Destroy/Erro}
 {
 PADRONIZAÇÃO DAS FUNÇÕES:
 
@@ -121,6 +122,8 @@ begin
      end
   end;
 end;
+
+{%endregion}
 
 exports
 
