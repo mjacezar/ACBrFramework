@@ -41,6 +41,9 @@ Símbolo : Significado
 
 Changelog
 
+21/11/2012
+[*] Mudança de double para decimal nos campos do PAF.TITP, mantendo o padrão com os demais componentes - ACBrFramework.Net - Rafael Batiati
+
 20/11/2012 (ACBrFramework 0.9.1.19)
 [-] Corrigido bug ao enviar valores muito altos ACBrTEFD - ACBrFramework.Net - Rafael Dias.
 [+] Inicio da implementação do ACBrSPEDFiscal - ACBrFramework e ACBrFramework.Net - Rafael Dias.
