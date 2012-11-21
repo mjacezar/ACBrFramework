@@ -705,24 +705,24 @@ namespace ACBrFramework.PAF
             {
                 MercadoriasRec[i].Descricao = ToUTF8(PAF_TITP.Mercadorias[i].Descricao);
                 MercadoriasRec[i].Codigo = ToUTF8(PAF_TITP.Mercadorias[i].Codigo);
-                MercadoriasRec[i].Aliquota = PAF_TITP.Mercadorias[i].Aliquota;
+                MercadoriasRec[i].Aliquota = Convert.ToDouble(PAF_TITP.Mercadorias[i].Aliquota);
                 MercadoriasRec[i].Unidade = ToUTF8(PAF_TITP.Mercadorias[i].Unidade);
-                MercadoriasRec[i].Quantidade = PAF_TITP.Mercadorias[i].Quantidade;
+                MercadoriasRec[i].Quantidade = Convert.ToDouble(PAF_TITP.Mercadorias[i].Quantidade);
                 MercadoriasRec[i].Ean = ToUTF8(PAF_TITP.Mercadorias[i].Ean);
                 MercadoriasRec[i].CST = ToUTF8(PAF_TITP.Mercadorias[i].CST);
-                MercadoriasRec[i].VlrUnitario = PAF_TITP.Mercadorias[i].VlrUnitario;
+                MercadoriasRec[i].VlrUnitario = Convert.ToDouble(PAF_TITP.Mercadorias[i].VlrUnitario);
                 MercadoriasRec[i].QTD_Insumos = PAF_TITP.Mercadorias[i].Insumos.Count;
 
                 foreach (ACBrPAFRegistroInsumo Insumo in PAF_TITP.Mercadorias[i].Insumos)
                 {
                     InsumosRec[ItemIndex].Descricao = ToUTF8(Insumo.Descricao);
                     InsumosRec[ItemIndex].Codigo = ToUTF8(Insumo.Codigo);
-                    InsumosRec[ItemIndex].Aliquota = Insumo.Aliquota;
+                    InsumosRec[ItemIndex].Aliquota = Convert.ToDouble(Insumo.Aliquota);
                     InsumosRec[ItemIndex].Unidade = ToUTF8(Insumo.Unidade);
-                    InsumosRec[ItemIndex].Quantidade = Insumo.Quantidade;
+                    InsumosRec[ItemIndex].Quantidade = Convert.ToDouble(Insumo.Quantidade);
                     InsumosRec[ItemIndex].Ean = ToUTF8(Insumo.Ean);
                     InsumosRec[ItemIndex].CST = ToUTF8(Insumo.CST);
-                    InsumosRec[ItemIndex].VlrUnitario = Insumo.VlrUnitario;
+                    InsumosRec[ItemIndex].VlrUnitario = Convert.ToDouble(Insumo.VlrUnitario);
                     ItemIndex++;
                 }
             }

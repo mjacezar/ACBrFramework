@@ -17,17 +17,17 @@ namespace ACBrFramework.PAF
 
 		public string Codigo { get; set; }
 
-		public double Aliquota { get; set; }
+		public decimal Aliquota { get; set; }
 
 		public string Unidade { get; set; }
 
-		public double Quantidade { get; set; }
+		public decimal Quantidade { get; set; }
 
 		public string Ean { get; set; }
 
 		public string CST { get; set; }
 
-		public double VlrUnitario { get; set; }
+		public decimal VlrUnitario { get; set; }
 
 		public ACBrPAFRegistroInsumos Insumos { get; private set; }
 
