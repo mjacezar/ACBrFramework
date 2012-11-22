@@ -5,9 +5,7 @@ interface
 uses
   Classes,
   SysUtils,
-  ACBrSPED,
-  ACBrSpedFiscal,
-  ACBrCommonDLL;
+  ACBrSpedFiscal;
 
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class

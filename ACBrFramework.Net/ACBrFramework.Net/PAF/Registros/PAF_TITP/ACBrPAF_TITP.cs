@@ -17,6 +17,9 @@ namespace ACBrFramework.PAF
 
 		#region Properties
 
+        public DateTime Data { get; set; }
+        public string Titulo { get; set; }
+
 		[Browsable(true)]
 		public ACBrPAFRegistroMercadorias Mercadorias { get; private set; }
 

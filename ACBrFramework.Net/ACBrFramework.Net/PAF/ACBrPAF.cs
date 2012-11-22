@@ -727,7 +727,7 @@ namespace ACBrFramework.PAF
                 }
             }
 
-            int ret = ACBrPAFInterop.PAF_SaveFileTXT_TITP(this.Handle, MercadoriasRec, PAF_TITP.Mercadorias.Count, InsumosRec, ToUTF8(arquivo));
+            int ret = ACBrPAFInterop.PAF_SaveFileTXT_TITP(this.Handle, MercadoriasRec, PAF_TITP.Mercadorias.Count, InsumosRec, ToUTF8(arquivo), ToUTF8(PAF_TITP.Titulo), PAF_TITP.Data.ToOADate());
             CheckResult(ret);
 
             return Convert.ToBoolean(ret);
