@@ -5,6 +5,7 @@ interface
 
 uses
   SysUtils,
+  Windows,
   Classes,
   ACBrTEFD,
   ACBrTEFDClass,
@@ -1134,7 +1135,7 @@ begin
 
 end;
 
-Function TEF_FinalizarCupom(const tefHandle : PTEFHandle; const mouse : Boolean ) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_FinalizarCupom(const tefHandle : PTEFHandle; const mouse : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then

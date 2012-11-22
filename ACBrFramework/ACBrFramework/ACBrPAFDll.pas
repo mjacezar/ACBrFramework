@@ -1521,7 +1521,7 @@ begin
 end;
 
 Function PAF_SaveFileTXT_TITP(const pafHandle: PPAFHandle; const RegistroMercadoriasRec : array of TRegistroMercadoriaRec;
-      const Count : Integer; const RegistroInsumosRec: array of TRegistroInsumoRec; const Arquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+      const Count : Integer; const RegistroInsumosRec: array of TRegistroInsumoRec; const Arquivo, Titulo: pChar; const data : Double) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   i, d, IndexItem : Integer;
 begin
@@ -1534,6 +1534,8 @@ begin
   try
    IndexItem := 0;
    pafHandle^.PAF.PAF_TITP.LimpaRegistros;
+   pafHandle^.PAF.PAF_TITP.DataHora := data;
+   pafHandle^.PAF.PAF_TITP.Titulo   := Titulo;
    for i := 0 to Count - 1 do
    begin
        with pafHandle^.PAF.PAF_TITP.Mercadorias.New do

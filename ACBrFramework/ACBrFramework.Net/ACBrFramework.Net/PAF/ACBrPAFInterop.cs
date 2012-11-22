@@ -887,7 +887,7 @@ namespace ACBrFramework.PAF
 		public static extern int PAF_SaveFileTXT_T(IntPtr pafHandle, RegistroHD1Rec RegistroT1, RegistroT2Rec[] RegistroT2, int CountT2, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_TITP(IntPtr pafHandle, RegistroMercadoriasRec[] RegistroMercadorias, int Count, RegistroInsumosRec[] RegistroInsumos, string Arquivo);
+		public static extern int PAF_SaveFileTXT_TITP(IntPtr pafHandle, RegistroMercadoriasRec[] RegistroMercadorias, int Count, RegistroInsumosRec[] RegistroInsumos, string Arquivo, string titulo, double data);
 
 		#endregion SaveFile
 

@@ -23,7 +23,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="20"/>
+      <BuildNr Value="21"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -40,11 +40,11 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <Units Count="58">
+    <Units Count="59">
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="3" Y="18"/>
@@ -207,10 +207,12 @@
         <Filename Value="ACBrPAFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrPAFDll"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1109"/>
-        <CursorPos X="44" Y="1126"/>
+        <TopLine Value="1517"/>
+        <CursorPos X="123" Y="1524"/>
         <UsageCount Value="186"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit17>
       <Unit18>
@@ -507,9 +509,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="11"/>
-        <CursorPos X="36" Y="24"/>
-        <FoldState Value=" TJR2{H TLS0O2 T3iG0H2V"/>
+        <TopLine Value="1"/>
+        <CursorPos X="12" Y="7"/>
+        <FoldState Value=" TJP2{H TLQ0O2 T3iE0H2{"/>
         <UsageCount Value="52"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -576,128 +578,133 @@
         <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit57>
+      <Unit58>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrRFD.pas"/>
+        <UnitName Value="ACBrRFD"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="658"/>
+        <CursorPos X="36" Y="670"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit58>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="44" Column="25" TopLine="31"/>
+        <Caret Line="55" Column="25" TopLine="33"/>
       </Position1>
       <Position2>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="46" Column="25" TopLine="31"/>
+        <Caret Line="56" Column="25" TopLine="34"/>
       </Position2>
       <Position3>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="55" Column="25" TopLine="33"/>
+        <Caret Line="63" Column="32" TopLine="41"/>
       </Position3>
       <Position4>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="56" Column="25" TopLine="34"/>
+        <Caret Line="73" Column="31" TopLine="51"/>
       </Position4>
       <Position5>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="63" Column="32" TopLine="41"/>
+        <Caret Line="86" Column="31" TopLine="64"/>
       </Position5>
       <Position6>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="73" Column="31" TopLine="51"/>
+        <Caret Line="89" Column="29" TopLine="67"/>
       </Position6>
       <Position7>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="86" Column="31" TopLine="64"/>
+        <Caret Line="94" Column="27" TopLine="72"/>
       </Position7>
       <Position8>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="89" Column="29" TopLine="67"/>
+        <Caret Line="95" Column="26" TopLine="73"/>
       </Position8>
       <Position9>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="94" Column="27" TopLine="72"/>
+        <Caret Line="96" Column="30" TopLine="74"/>
       </Position9>
       <Position10>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="95" Column="26" TopLine="73"/>
+        <Caret Line="103" Column="30" TopLine="81"/>
       </Position10>
       <Position11>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="96" Column="30" TopLine="74"/>
+        <Caret Line="104" Column="28" TopLine="82"/>
       </Position11>
       <Position12>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="103" Column="30" TopLine="81"/>
+        <Caret Line="105" Column="31" TopLine="83"/>
       </Position12>
       <Position13>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="104" Column="28" TopLine="82"/>
+        <Caret Line="106" Column="24" TopLine="84"/>
       </Position13>
       <Position14>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="105" Column="31" TopLine="83"/>
+        <Caret Line="107" Column="40" TopLine="85"/>
       </Position14>
       <Position15>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="106" Column="24" TopLine="84"/>
+        <Caret Line="108" Column="30" TopLine="86"/>
       </Position15>
       <Position16>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="107" Column="40" TopLine="85"/>
+        <Caret Line="109" Column="36" TopLine="87"/>
       </Position16>
       <Position17>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="108" Column="30" TopLine="86"/>
+        <Caret Line="110" Column="27" TopLine="88"/>
       </Position17>
       <Position18>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="109" Column="36" TopLine="87"/>
+        <Caret Line="111" Column="30" TopLine="89"/>
       </Position18>
       <Position19>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="110" Column="27" TopLine="88"/>
+        <Caret Line="112" Column="27" TopLine="90"/>
       </Position19>
       <Position20>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="111" Column="30" TopLine="89"/>
+        <Caret Line="113" Column="26" TopLine="91"/>
       </Position20>
       <Position21>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="112" Column="27" TopLine="90"/>
+        <Caret Line="114" Column="30" TopLine="92"/>
       </Position21>
       <Position22>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="113" Column="26" TopLine="91"/>
+        <Caret Line="116" Column="25" TopLine="94"/>
       </Position22>
       <Position23>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="114" Column="30" TopLine="92"/>
+        <Caret Line="117" Column="41" TopLine="95"/>
       </Position23>
       <Position24>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="116" Column="25" TopLine="94"/>
+        <Caret Line="118" Column="26" TopLine="96"/>
       </Position24>
       <Position25>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="117" Column="41" TopLine="95"/>
+        <Caret Line="121" Column="24" TopLine="99"/>
       </Position25>
       <Position26>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="118" Column="26" TopLine="96"/>
+        <Caret Line="122" Column="23" TopLine="100"/>
       </Position26>
       <Position27>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="121" Column="24" TopLine="99"/>
+        <Caret Line="126" Column="29" TopLine="104"/>
       </Position27>
       <Position28>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="122" Column="23" TopLine="100"/>
+        <Caret Line="134" Column="24" TopLine="112"/>
       </Position28>
       <Position29>
-        <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="126" Column="29" TopLine="104"/>
+        <Filename Value="ACBrSpedFiscalDll.pas"/>
+        <Caret Line="24" Column="36" TopLine="11"/>
       </Position29>
-      <Position30>
-        <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="134" Column="24" TopLine="112"/>
-      </Position30>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
