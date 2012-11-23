@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -53,11 +55,33 @@ namespace ACBrFramework.EAD
 
 		#endregion Constructor
 
-		#region Methods
+        #region Properties
 
-		#region Funções
+        [Category("Geral")]
+        public string OpenSSL_Version
+        {
+            get
+            {
+                return GetString(ACBrEADInterop.EAD_GetOpenSSL_Version);
+            }
+        }
 
-		public void GerarChaves(out string ChavePublica, out string ChavePrivada)
+        [Category("Geral")]
+        public string About
+        {
+            get
+            {
+                return string.Format("ACBr: {0} ACBrFramework: {1}", GetString(ACBrEADInterop.EAD_GetAbout), this.GetType().Assembly.GetName().Version); ;
+            }
+        }
+
+        #endregion Properties
+
+        #region Methods
+
+        #region Funções
+
+        public void GerarChaves(out string ChavePublica, out string ChavePrivada)
 		{
 			const int BUFFER_LEN = 1024;
 			StringBuilder ChavePUB = new StringBuilder(BUFFER_LEN);
@@ -83,17 +107,16 @@ namespace ACBrFramework.EAD
 			Expoente = FromUTF8(Expo);
 		}
 
+        public void GerarXMLeECFc(string NomeSH)
+        {
+            GerarXMLeECFc(NomeSH, null);
+        }
+
 		public void GerarXMLeECFc(string NomeSH, string CaminhoArquivo)
 		{
 			int ret = ACBrEADInterop.EAD_GerarXMLeECFc(this.Handle, NomeSH, CaminhoArquivo);
 			CheckResult(ret);
-		}
-
-		public void GerarXMLeECFc(string NomeSH)
-		{
-			int ret = ACBrEADInterop.EAD_GerarXMLeECFc_NP(this.Handle, NomeSH);
-			CheckResult(ret);
-		}
+		}		
 
 		public string ConverteXMLeECFcParaOpenSSL(string Arquivo)
 		{
@@ -112,6 +135,13 @@ namespace ACBrFramework.EAD
 			CheckResult(ret);
 			return Hash.ToString();
 		}
+
+        public List<string> CalcularHash(List<string> Astring, EADDigest HashType)
+        {
+            List<string> retorno = new List<string>();
+            retorno.AddRange(CalcularHash(Astring.ToArray(), HashType));
+            return retorno;
+        }
 
         public string[] CalcularHash(string[] AString, EADDigest HashType)
         {
@@ -143,6 +173,20 @@ namespace ACBrFramework.EAD
 			return EAD.ToString();
 		}
 
+        public string CalcularEAD(List<string> AString)
+        {
+            return CalcularEAD(AString.ToArray());
+        }
+
+        public string CalcularEAD(string[] AString)
+        {
+            const int BUFFER_LEN = 256;
+            StringBuilder EAD = new StringBuilder(BUFFER_LEN);
+            int ret = ACBrEADInterop.EAD_CalcularEAD(Handle, AString, EAD, BUFFER_LEN);
+            CheckResult(ret);
+            return EAD.ToString();
+        }
+
 		public string CalcularChavePublica()
 		{
 			const int BUFFER_LEN = 512;
@@ -168,6 +212,38 @@ namespace ACBrFramework.EAD
 
 			return Convert.ToBoolean(ret);
 		}
+
+        public bool VerificarEAD(string AString)
+        {
+            int ret = ACBrEADInterop.EAD_VerificarEAD(this.Handle, AString);
+            CheckResult(ret);
+
+            return Convert.ToBoolean(ret);
+        }
+
+        public void RemoveEADArquivo(string Arquivo)
+        {
+            int ret = ACBrEADInterop.EAD_RemoveEADArquivo(Handle, Arquivo);
+            CheckResult(ret);
+        }
+
+        public string MD5FromFile(string Arquivo)
+        {
+            const int BUFFER_LEN = 256;
+            StringBuilder MD5 = new StringBuilder(BUFFER_LEN);
+            int ret = ACBrEADInterop.EAD_MD5FromFile(Handle, Arquivo, MD5, BUFFER_LEN);
+            CheckResult(ret);
+            return MD5.ToString();
+        }
+
+        public string MD5FromString(string AString)
+        {
+            const int BUFFER_LEN = 256;
+            StringBuilder MD5 = new StringBuilder(BUFFER_LEN);
+            int ret = ACBrEADInterop.EAD_MD5FromString(Handle, AString, MD5, BUFFER_LEN);
+            CheckResult(ret);
+            return MD5.ToString();
+        }
 
 		#endregion Funções
 

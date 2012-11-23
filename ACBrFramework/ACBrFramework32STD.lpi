@@ -23,7 +23,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="21"/>
+      <BuildNr Value="22"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -48,7 +48,7 @@
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="51" Y="8"/>
+        <CursorPos X="25" Y="11"/>
         <UsageCount Value="170"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>

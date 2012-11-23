@@ -12,6 +12,12 @@ namespace ACBrFramework.TEFD
 		{
 		}
 
+        protected ACBrTEFDRespostaPendente(ACBrComponent parent, int index)
+            : base(parent, index)
+        {
+            
+        }
+
 		#endregion Constructor
 
 		#region Properties
