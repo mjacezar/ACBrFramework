@@ -6,7 +6,10 @@ namespace ACBrFramework.TEFD
 	{
 		#region Constructor
 
-		internal ACBrTEFDReq(ACBrTEFD parent) : base(parent) { }
+		internal ACBrTEFDReq(ACBrTEFD parent)
+			: base(parent)
+		{
+		}
 
 		#endregion Constructor
 

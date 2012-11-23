@@ -82,7 +82,7 @@ namespace ACBrFramework
 		{
 			int ret = entryPoint(Handle, ToUTF8(value));
 			CheckResult(ret);
-		}	
+		}
 
 		protected string[] GetStringArray(GetArrayStringEntryPointDelegate entryPoint, GetInt32EntryPointDelegate GetCount)
 		{
@@ -94,7 +94,7 @@ namespace ACBrFramework
 		{
 			int count = GetCount(Handle);
 			CheckResult(count);
-			
+
 			string[] Retorno = new string[count];
 
 			for (int i = 0; i < count; i++)
@@ -210,10 +210,13 @@ namespace ACBrFramework
 		protected internal abstract void CheckResult(int result);
 
 		#region Documentation
+
 		/// <summary>
 		/// Prepara o StringBuilder recebido de uma função Callback, isto é, recebida pelo disparo de um evento.
 		/// </summary>
+
 		#endregion Documentation
+
 		protected void PrepareOutStringBuilder(StringBuilder builder, int capacity)
 		{
 			Type type = typeof(StringBuilder);

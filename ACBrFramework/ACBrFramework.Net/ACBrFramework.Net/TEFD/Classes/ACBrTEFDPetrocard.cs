@@ -109,29 +109,29 @@
 			}
 		}
 
-        public string Name
-        {
-            get
-            {
-                return GetString(ACBrTEFInterop.TEF_TEFPetrocard_GetName);
-            }
-            set
-            {
-                SetString(ACBrTEFInterop.TEF_TEFPetrocard_SetName, value);
-            }
-        }
+		public string Name
+		{
+			get
+			{
+				return GetString(ACBrTEFInterop.TEF_TEFPetrocard_GetName);
+			}
+			set
+			{
+				SetString(ACBrTEFInterop.TEF_TEFPetrocard_SetName, value);
+			}
+		}
 
-        public bool Habilitado
-        {
-            get
-            {
-                return GetBool(ACBrTEFInterop.TEF_TEFPetrocard_GetHabilitado);
-            }
-            set
-            {
-                SetBool(ACBrTEFInterop.TEF_TEFPetrocard_SetHabilitado, value);
-            }
-        }
+		public bool Habilitado
+		{
+			get
+			{
+				return GetBool(ACBrTEFInterop.TEF_TEFPetrocard_GetHabilitado);
+			}
+			set
+			{
+				SetBool(ACBrTEFInterop.TEF_TEFPetrocard_SetHabilitado, value);
+			}
+		}
 
 		#endregion Properties
 	}

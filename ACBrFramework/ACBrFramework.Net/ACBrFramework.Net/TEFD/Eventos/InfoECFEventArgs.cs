@@ -19,7 +19,7 @@ namespace ACBrFramework.TEFD
 
 		public string Retorno { get; set; }
 
-		public RetornoECF? RetornoECF 
+		public RetornoECF? RetornoECF
 		{
 			get
 			{
@@ -31,7 +31,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-		public decimal? Value 
+		public decimal? Value
 		{
 			get
 			{
@@ -42,7 +42,6 @@ namespace ACBrFramework.TEFD
 				SetAsDecimal(value);
 			}
 		}
-
 
 		#endregion Properties
 
@@ -63,7 +62,7 @@ namespace ACBrFramework.TEFD
 
 			return null;
 		}
-		
+
 		private void SetAsRetornoECF(RetornoECF? value)
 		{
 			if (value == null)
@@ -97,10 +96,10 @@ namespace ACBrFramework.TEFD
 			}
 			else
 			{
-                Retorno = string.Format("{0:n2}", value).Replace(".", string.Empty);
+				Retorno = string.Format("{0:n2}", value).Replace(".", string.Empty);
 			}
 		}
-		
+
 		#endregion Methods
 	}
 }

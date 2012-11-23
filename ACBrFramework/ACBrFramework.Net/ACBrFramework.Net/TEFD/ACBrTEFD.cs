@@ -1,18 +1,18 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.ComponentModel;
 
 namespace ACBrFramework.TEFD
 {
 	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.TEFD.ico.bmp")]
-	[TypeConverter(typeof(ExpandableObjectConverter))] 
+	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public sealed class ACBrTEFD : ACBrComponent, IDisposable
 	{
 		#region Events
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<AguardaRespEventArgs> OnAguardaResp
 		{
 			add
@@ -25,7 +25,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<ExibeMensagemEventArgs> OnExibeMensagem
 		{
 			add
@@ -38,7 +38,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<BloqueiaMouseTecladoEventArgs> OnBloqueiaMouseTeclado
 		{
 			add
@@ -51,7 +51,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<ExecutaAcaoEventArgs> OnRestauraFocoAplicacao
 		{
 			add
@@ -64,7 +64,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<ExecutaAcaoEventArgs> OnLimpaTeclado
 		{
 			add
@@ -77,7 +77,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<ComandaECFEventArgs> OnComandaECF
 		{
 			add
@@ -90,7 +90,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<ComandaECFSubtotalizaEventArgs> OnComandaECFSubtotaliza
 		{
 			add
@@ -103,7 +103,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<ComandaECFPagamentoEventArgs> OnComandaECFPagamento
 		{
 			add
@@ -116,7 +116,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<ComandaECFAbreVinculadoEventArgs> OnComandaECFAbreVinculado
 		{
 			add
@@ -129,7 +129,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<ComandaECFImprimeViaEventArgs> OnComandaECFImprimeVia
 		{
 			add
@@ -142,7 +142,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<InfoECFEventArgs> OnInfoECF
 		{
 			add
@@ -155,7 +155,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<AntesFinalizarRequisicaoEventArgs> OnAntesFinalizarRequisicao
 		{
 			add
@@ -168,7 +168,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<DepoisConfirmarTransacoesEventArgs> OnDepoisConfirmarTransacoes
 		{
 			add
@@ -181,7 +181,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<AntesCancelarTransacaoEventArgs> OnAntesCancelarTransacao
 		{
 			add
@@ -194,7 +194,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<DepoisCancelarTransacoesEventArgs> OnDepoisCancelarTransacoes
 		{
 			add
@@ -207,7 +207,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<MudaEstadoReqEventArgs> OnMudaEstadoReq
 		{
 			add
@@ -220,7 +220,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
+		[Category("Geral")]
 		public event EventHandler<MudaEstadoRespEventArgs> OnMudaEstadoResp
 		{
 			add
@@ -284,40 +284,40 @@ namespace ACBrFramework.TEFD
 
 		#region Properties
 
-        [Category("Geral")]
-        public string About
-        {
-            get
-            {
-                return string.Format("ACBr: {0} ACBrFramework: {1}", GetString(ACBrTEFInterop.TEF_GetAbout), this.GetType().Assembly.GetName().Version);
-            }
-        }
+		[Category("Geral")]
+		public string About
+		{
+			get
+			{
+				return string.Format("ACBr: {0} ACBrFramework: {1}", GetString(ACBrTEFInterop.TEF_GetAbout), this.GetType().Assembly.GetName().Version);
+			}
+		}
 
-        [Category("Geral")]
-        public string PathBackup
-        {
-            get
-            {
-                return GetString(ACBrTEFInterop.TEF_GetPathBackup);
-            }
-            set
-            {
-                SetString(ACBrTEFInterop.TEF_SetPathBackup, value);
-            }
-        }
+		[Category("Geral")]
+		public string PathBackup
+		{
+			get
+			{
+				return GetString(ACBrTEFInterop.TEF_GetPathBackup);
+			}
+			set
+			{
+				SetString(ACBrTEFInterop.TEF_SetPathBackup, value);
+			}
+		}
 
-        [Category("Geral")]
-        public string ArqLOG
-        {
-            get
-            {
-                return GetString(ACBrTEFInterop.TEF_GetArqLOG);
-            }
-            set
-            {
-                SetString(ACBrTEFInterop.TEF_SetArqLOG, value);
-            }
-        }
+		[Category("Geral")]
+		public string ArqLOG
+		{
+			get
+			{
+				return GetString(ACBrTEFInterop.TEF_GetArqLOG);
+			}
+			set
+			{
+				SetString(ACBrTEFInterop.TEF_SetArqLOG, value);
+			}
+		}
 
 		[Category("Geral")]
 		public bool AutoAtivar
@@ -384,31 +384,31 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
-        public bool ExibirMsgAutenticacao
-        {
-            get
-            {
-                return GetBool(ACBrTEFInterop.TEF_GetExibirMsgAutenticacao);
-            }
-            set
-            {
-                SetBool(ACBrTEFInterop.TEF_SetExibirMsgAutenticacao, value);
-            }
-        }
+		[Category("Geral")]
+		public bool ExibirMsgAutenticacao
+		{
+			get
+			{
+				return GetBool(ACBrTEFInterop.TEF_GetExibirMsgAutenticacao);
+			}
+			set
+			{
+				SetBool(ACBrTEFInterop.TEF_SetExibirMsgAutenticacao, value);
+			}
+		}
 
-        [Category("Geral")]
-        public decimal TrocoMaximo
-        {
-            get
-            {
-                return GetDecimal(ACBrTEFInterop.TEF_GetTrocoMaximo);
-            }
-            set
-            {
-                SetDecimal(ACBrTEFInterop.TEF_SetTrocoMaximo, value);
-            }
-        }
+		[Category("Geral")]
+		public decimal TrocoMaximo
+		{
+			get
+			{
+				return GetDecimal(ACBrTEFInterop.TEF_GetTrocoMaximo);
+			}
+			set
+			{
+				SetDecimal(ACBrTEFInterop.TEF_SetTrocoMaximo, value);
+			}
+		}
 
 		[Category("Geral")]
 		public int EsperaSleep
@@ -423,44 +423,44 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-        [Category("Geral")]
-        public int EsperaSTS
-        {
-            get
-            {
-                return GetInt32(ACBrTEFInterop.TEF_GetEsperaSTS);
-            }
-            set
-            {
-                SetInt32(ACBrTEFInterop.TEF_SetEsperaSTS, value);
-            }
-        }
+		[Category("Geral")]
+		public int EsperaSTS
+		{
+			get
+			{
+				return GetInt32(ACBrTEFInterop.TEF_GetEsperaSTS);
+			}
+			set
+			{
+				SetInt32(ACBrTEFInterop.TEF_SetEsperaSTS, value);
+			}
+		}
 
-        [Category("Geral")]
-        public int NumVias
-        {
-            get
-            {
-                return GetInt32(ACBrTEFInterop.TEF_GetNumVias);
-            }
-            set
-            {
-                SetInt32(ACBrTEFInterop.TEF_SetNumVias, value);
-            }
-        }
+		[Category("Geral")]
+		public int NumVias
+		{
+			get
+			{
+				return GetInt32(ACBrTEFInterop.TEF_GetNumVias);
+			}
+			set
+			{
+				SetInt32(ACBrTEFInterop.TEF_SetNumVias, value);
+			}
+		}
 
-        [Category("Geral")]
-        public int NumeroMaximoCartoes
-        {
-            get
-            {
-                return GetInt32(ACBrTEFInterop.TEF_GetNumeroMaximoCartoes);
-            }
-            set
-            {
-                SetInt32(ACBrTEFInterop.TEF_SetNumeroMaximoCartoes, value);
-            }
-        }
+		[Category("Geral")]
+		public int NumeroMaximoCartoes
+		{
+			get
+			{
+				return GetInt32(ACBrTEFInterop.TEF_GetNumeroMaximoCartoes);
+			}
+			set
+			{
+				SetInt32(ACBrTEFInterop.TEF_SetNumeroMaximoCartoes, value);
+			}
+		}
 
 		[Category("Identificação")]
 		public ACBrTEFDIdentificacao Identificacao { get; private set; }
@@ -544,37 +544,37 @@ namespace ACBrFramework.TEFD
 			return CRT(valor, indiceFPG_ECF, string.Empty, 0);
 		}
 
-        public bool CRT(decimal valor, string indiceFPG_ECF, string documentoVinculado)
-        {
-            return CRT(valor, indiceFPG_ECF, documentoVinculado, 0);
-        }
+		public bool CRT(decimal valor, string indiceFPG_ECF, string documentoVinculado)
+		{
+			return CRT(valor, indiceFPG_ECF, documentoVinculado, 0);
+		}
 
 		public bool CRT(decimal valor, string indiceFPG_ECF, string documentoVinculado, int moeda)
 		{
-			int ret = ACBrTEFInterop.TEF_CRT(this.Handle, Convert.ToDouble(valor),  ToUTF8(indiceFPG_ECF), ToUTF8(documentoVinculado), moeda);
+			int ret = ACBrTEFInterop.TEF_CRT(this.Handle, Convert.ToDouble(valor), ToUTF8(indiceFPG_ECF), ToUTF8(documentoVinculado), moeda);
 			CheckResult(ret);
 
 			return ret == 1;
 		}
 
-        public bool CHQ(decimal valor, string indiceFPG_ECF)
-        {
-            return CHQ(valor, indiceFPG_ECF, string.Empty, string.Empty, string.Empty, string.Empty, 
-                DateTime.Now, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty,
-                string.Empty, string.Empty);
-        }
+		public bool CHQ(decimal valor, string indiceFPG_ECF)
+		{
+			return CHQ(valor, indiceFPG_ECF, string.Empty, string.Empty, string.Empty, string.Empty,
+				DateTime.Now, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty,
+				string.Empty, string.Empty);
+		}
 
-        public bool CHQ(decimal valor, string indiceFPG_ECF, string documentoVinculado, string CMC7, string tipoPessoa, 
-            string documentoPessoa, DateTime DataCheque, string banco, string agencia, 
-            string agenciaDC, string conta, string contaDC, string cheque, string chequeDC, string compensacao)
-        {
-            int ret = ACBrTEFInterop.TEF_CHQ(this.Handle, Convert.ToDouble(valor), ToUTF8(indiceFPG_ECF), ToUTF8(documentoVinculado), ToUTF8(CMC7),
-                Convert.ToChar(ToUTF8(tipoPessoa)), ToUTF8(documentoPessoa), DataCheque.ToOADate(), ToUTF8(banco), ToUTF8(agencia),
-                ToUTF8(agenciaDC), ToUTF8(conta), ToUTF8(contaDC), ToUTF8(cheque), ToUTF8(chequeDC), ToUTF8(compensacao));
-            CheckResult(ret);
+		public bool CHQ(decimal valor, string indiceFPG_ECF, string documentoVinculado, string CMC7, string tipoPessoa,
+			string documentoPessoa, DateTime DataCheque, string banco, string agencia,
+			string agenciaDC, string conta, string contaDC, string cheque, string chequeDC, string compensacao)
+		{
+			int ret = ACBrTEFInterop.TEF_CHQ(this.Handle, Convert.ToDouble(valor), ToUTF8(indiceFPG_ECF), ToUTF8(documentoVinculado), ToUTF8(CMC7),
+				Convert.ToChar(ToUTF8(tipoPessoa)), ToUTF8(documentoPessoa), DataCheque.ToOADate(), ToUTF8(banco), ToUTF8(agencia),
+				ToUTF8(agenciaDC), ToUTF8(conta), ToUTF8(contaDC), ToUTF8(cheque), ToUTF8(chequeDC), ToUTF8(compensacao));
+			CheckResult(ret);
 
-            return ret == 1;
-        }
+			return ret == 1;
+		}
 
 		public void ATV()
 		{
@@ -624,10 +624,10 @@ namespace ACBrFramework.TEFD
 			NCN(rede, nsu, finalizacao, 0M, string.Empty);
 		}
 
-        public void NCN(string rede, string nsu, string finalizacao, decimal valor)
-        {
-            NCN(rede, nsu, finalizacao, valor, string.Empty);
-        }
+		public void NCN(string rede, string nsu, string finalizacao, decimal valor)
+		{
+			NCN(rede, nsu, finalizacao, valor, string.Empty);
+		}
 
 		public void NCN(string rede, string nsu, string finalizacao, decimal valor, string documentoVinculado)
 		{
@@ -635,34 +635,34 @@ namespace ACBrFramework.TEFD
 			CheckResult(ret);
 		}
 
-        public void CancelarTransacoesPendentes()
-        {
-            int ret = ACBrTEFInterop.TEF_CancelarTransacoesPendentes(this.Handle);
-            CheckResult(ret);
-        }
+		public void CancelarTransacoesPendentes()
+		{
+			int ret = ACBrTEFInterop.TEF_CancelarTransacoesPendentes(this.Handle);
+			CheckResult(ret);
+		}
 
-        public void ConfirmarTransacoesPendentes()
-        {
-            int ret = ACBrTEFInterop.TEF_ConfirmarTransacoesPendentes(this.Handle);
-            CheckResult(ret);
-        }
+		public void ConfirmarTransacoesPendentes()
+		{
+			int ret = ACBrTEFInterop.TEF_ConfirmarTransacoesPendentes(this.Handle);
+			CheckResult(ret);
+		}
 
-        public void ImprimirTransacoesPendentes()
-        {
-            int ret = ACBrTEFInterop.TEF_ImprimirTransacoesPendentes(this.Handle);
-            CheckResult(ret);
-        }
+		public void ImprimirTransacoesPendentes()
+		{
+			int ret = ACBrTEFInterop.TEF_ImprimirTransacoesPendentes(this.Handle);
+			CheckResult(ret);
+		}
 
-        public void FinalizarCupom()
-        {
-            FinalizarCupom(true);
-        }
+		public void FinalizarCupom()
+		{
+			FinalizarCupom(true);
+		}
 
-        public void FinalizarCupom(bool bloqueia)
-        {
-            int ret = ACBrTEFInterop.TEF_FinalizarCupom(this.Handle, bloqueia);
-            CheckResult(ret);
-        }
+		public void FinalizarCupom(bool bloqueia)
+		{
+			int ret = ACBrTEFInterop.TEF_FinalizarCupom(this.Handle, bloqueia);
+			CheckResult(ret);
+		}
 
 		#region Override Methods
 
@@ -834,7 +834,7 @@ namespace ACBrFramework.TEFD
 				InfoECFEventArgs e = new InfoECFEventArgs(Operacao);
 				onInfoECF.Raise(e);
 
-				PrepareOutStringBuilder(RetornoECF, RetornoECFLen);				
+				PrepareOutStringBuilder(RetornoECF, RetornoECFLen);
 				RetornoECF.Length = 0;
 				RetornoECF.Append(e.Retorno);
 			}

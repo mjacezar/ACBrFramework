@@ -1,6 +1,6 @@
 using System;
-using System.Drawing;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace ACBrFramework.CNIEE
 {
@@ -24,7 +24,7 @@ namespace ACBrFramework.CNIEE
 		}
 
 		#endregion Constructor
-		
+
 		#region Properties
 
 		[Category("Geral")]
@@ -229,7 +229,7 @@ namespace ACBrFramework.CNIEE
 				registro.ModeloDescr = FromUTF8(record.ModeloDescr);
 				registro.VersaoSB = FromUTF8(record.VersaoSB);
 				registro.QtLacreSL = record.QtLacreSL;
-				registro.QTLacreFab= record.QTLacreFab;
+				registro.QTLacreFab = record.QTLacreFab;
 				registro.MFD = FromUTF8(record.MFD);
 				registro.LacreMFD = FromUTF8(record.LacreMFD);
 				registro.AtoAprovacao = FromUTF8(record.AtoAprovacao);

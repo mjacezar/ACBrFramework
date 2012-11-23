@@ -22,49 +22,48 @@ namespace ACBrFramework.CNIEE
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct CNIEERegistroRec
-		{	
+		{
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string Marca;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
-	        public string Modelo;
-			
+			public string Modelo;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string Versao;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 11)]
-	        public string Tipo;
-			
+			public string Tipo;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 31)]
-	        public string MarcaDescr;
-	
+			public string MarcaDescr;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 31)]
-	        public string ModeloDescr;
-			
+			public string ModeloDescr;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
-	        public string VersaoSB;
+			public string VersaoSB;
 
 			[MarshalAs(UnmanagedType.I4)]
 			public int QtLacreSL;
 
 			[MarshalAs(UnmanagedType.I4)]
 			public int QTLacreFab;
-			
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
-	        public string MFD;
-			
+			public string MFD;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
-	        public string LacreMFD;
-			
+			public string LacreMFD;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 26)]
-	        public string AtoAprovacao;
-			
+			public string AtoAprovacao;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 26)]
-	        public string AtoRegistro;
-			
+			public string AtoRegistro;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
-	        public string FormatoNumero; 
-	
+			public string FormatoNumero;
 		}
 
 		#endregion Interop Types
@@ -115,7 +114,6 @@ namespace ACBrFramework.CNIEE
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int CNIEE_SetParseText(IntPtr cnieeHandle, bool parseText);
-		
 
 		#endregion Propriedades do Componente
 
