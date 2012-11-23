@@ -7,7 +7,10 @@ namespace ACBrFramework.TEFD
 	{
 		#region Constructor
 
-		internal ACBrTEFDRespostasPendentes(ACBrTEFD parent) : base(parent) { }
+		internal ACBrTEFDRespostasPendentes(ACBrTEFD parent)
+			: base(parent)
+		{
+		}
 
 		#endregion Constructor
 

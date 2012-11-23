@@ -333,7 +333,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_CorrigeEstadoErro(IntPtr ecfHandle, bool reducaoZ);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_PreparaTEF(IntPtr ecfHandle);  
+		public static extern int ECF_PreparaTEF(IntPtr ecfHandle);
 
 		#endregion Métodos ECF
 
@@ -351,11 +351,11 @@ namespace ACBrFramework.ECF
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetArqLOG(IntPtr ecfHandle, string arqLog);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_GetMaxLinhasBuffer(IntPtr ecfHandle);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetMaxLinhasBuffer(IntPtr ecfHandle);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_SetMaxLinhasBuffer(IntPtr ecfHandle, int maxLinhas);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetMaxLinhasBuffer(IntPtr ecfHandle, int maxLinhas);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetAtivo(IntPtr ecfHandle);
@@ -848,8 +848,8 @@ namespace ACBrFramework.ECF
 
 		#region Formas de Pagto
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_AchaFPGIndice(IntPtr ecfHandle, string indice, ref FormaPagamentoRec formaPagamento);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_AchaFPGIndice(IntPtr ecfHandle, string indice, ref FormaPagamentoRec formaPagamento);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetFormaPagamento(IntPtr ecfHandle, ref FormaPagamentoRec formaPagamento, int index);

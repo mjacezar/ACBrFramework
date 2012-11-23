@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace ACBrFramework.CNIEE
+﻿namespace ACBrFramework.CNIEE
 {
 	public sealed class ACBrCNIEERegistro
 	{

@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel;
 
 namespace ACBrFramework.PAF
@@ -33,7 +32,7 @@ namespace ACBrFramework.PAF
 			RegistroD1 = null;
 			RegistroD1 = new ACBrPAFRegistroD1();
 			RegistroD2.Clear();
-		}	
+		}
 
 		#endregion Methods
 	}

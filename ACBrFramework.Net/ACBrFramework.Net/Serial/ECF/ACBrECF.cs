@@ -1,13 +1,12 @@
-﻿using System;
+﻿using ACBrFramework.AAC;
+using ACBrFramework.EAD;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.ComponentModel;
 using System.Text;
-
-using ACBrFramework.AAC;
-using ACBrFramework.EAD;
 
 namespace ACBrFramework.ECF
 {
@@ -83,19 +82,19 @@ namespace ACBrFramework.ECF
 
 		[Category("Configutações ECF")]
 		public ACBrDevice Device { get; private set; }
-			
+
 		[Category("Propriedades")]
-        public int MaxLinhasBuffer
-        {
-            get
-            {
-                return GetInt32(ACBrECFInterop.ECF_GetMaxLinhasBuffer);
-            }
-            set
-            {
-                SetInt32(ACBrECFInterop.ECF_SetMaxLinhasBuffer, value);
-            }
-        }
+		public int MaxLinhasBuffer
+		{
+			get
+			{
+				return GetInt32(ACBrECFInterop.ECF_GetMaxLinhasBuffer);
+			}
+			set
+			{
+				SetInt32(ACBrECFInterop.ECF_SetMaxLinhasBuffer, value);
+			}
+		}
 
 		[Category("Propriedades")]
 		public bool DescricaoGrande
@@ -840,7 +839,7 @@ namespace ACBrFramework.ECF
 			{
 				SetInt32(ACBrECFInterop.ECF_SetIntervaloAposComando, value);
 			}
-		}		
+		}
 
 		[Browsable(false)]
 		public ACBrECFAliquota[] Aliquotas
@@ -981,10 +980,10 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-        public void AbreCupom()
-        {
-            AbreCupom(string.Empty, string.Empty, string.Empty);
-        }
+		public void AbreCupom()
+		{
+			AbreCupom(string.Empty, string.Empty, string.Empty);
+		}
 
 		public void AbreCupom(string cpfCnpj, string nome, string endereco)
 		{
@@ -998,10 +997,10 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-        public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario)
-        {
-            VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, 0, "UN", "%", "D", -1);
-        }
+		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario)
+		{
+			VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, 0, "UN", "%", "D", -1);
+		}
 
 		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario, decimal descontoPorc, string unidade, string tipoDescontoAcrescimo, string descontoAcrescimo)
 		{
@@ -1020,10 +1019,10 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-        public void SubtotalizaCupom()
-        {
-            SubtotalizaCupom(0, "");
-        }
+		public void SubtotalizaCupom()
+		{
+			SubtotalizaCupom(0, "");
+		}
 
 		public void SubtotalizaCupom(decimal descontoAcrescimo, string mensagemRodape)
 		{
@@ -1031,15 +1030,15 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-        public void EfetuaPagamento(string codFormaPagto, decimal valor)
-        {
-            EfetuaPagamento(codFormaPagto, valor, string.Empty, false);
-        }
+		public void EfetuaPagamento(string codFormaPagto, decimal valor)
+		{
+			EfetuaPagamento(codFormaPagto, valor, string.Empty, false);
+		}
 
-        public void EfetuaPagamento(string codFormaPagto, decimal valor, string observacao)
-        {
-            EfetuaPagamento(codFormaPagto, valor, observacao, false);
-        }
+		public void EfetuaPagamento(string codFormaPagto, decimal valor, string observacao)
+		{
+			EfetuaPagamento(codFormaPagto, valor, observacao, false);
+		}
 
 		public void EfetuaPagamento(string codFormaPagto, decimal valor, string observacao, bool imprimeVinculado)
 		{
@@ -1432,11 +1431,11 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-        public void LinhaCupomVinculado(string[] linhas)
-        {
-            foreach (string linha in linhas)
-                LinhaCupomVinculado(linha);
-        }
+		public void LinhaCupomVinculado(string[] linhas)
+		{
+			foreach (string linha in linhas)
+				LinhaCupomVinculado(linha);
+		}
 
 		public void LinhaCupomVinculado(string linha)
 		{
@@ -1629,18 +1628,18 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-        public void LinhaRelatorioGerencial(string[] linhas)
-        {
-            foreach (string linha in linhas)
-            {
-                LinhaRelatorioGerencial(linha, 0);
-            }
-        }
+		public void LinhaRelatorioGerencial(string[] linhas)
+		{
+			foreach (string linha in linhas)
+			{
+				LinhaRelatorioGerencial(linha, 0);
+			}
+		}
 
-        public void LinhaRelatorioGerencial(string linha)
-        {
-            LinhaRelatorioGerencial(linha, 0);
-        }
+		public void LinhaRelatorioGerencial(string linha)
+		{
+			LinhaRelatorioGerencial(linha, 0);
+		}
 
 		public void LinhaRelatorioGerencial(string linha, int indiceBMP)
 		{
@@ -1776,27 +1775,27 @@ namespace ACBrFramework.ECF
 
 		#region Formas de Pagto
 
-        public ACBrECFFormaPagamento AchaFPGIndice(string indice)
-        {
-            ACBrECFInterop.FormaPagamentoRec FormaRec = new ACBrECFInterop.FormaPagamentoRec();
-            int ret = ACBrECFInterop.ECF_AchaFPGIndice(this.Handle, indice, ref FormaRec);
-            CheckResult(ret);
+		public ACBrECFFormaPagamento AchaFPGIndice(string indice)
+		{
+			ACBrECFInterop.FormaPagamentoRec FormaRec = new ACBrECFInterop.FormaPagamentoRec();
+			int ret = ACBrECFInterop.ECF_AchaFPGIndice(this.Handle, indice, ref FormaRec);
+			CheckResult(ret);
 
-            if (ret == 0)
-                return null;
-            else
-            {
-                ACBrECFFormaPagamento Forma = new ACBrECFFormaPagamento();
-                Forma.Data = DateTime.FromOADate(FormaRec.Data);
-                Forma.Descricao = FromUTF8(FormaRec.Descricao);
-                Forma.Indice = FromUTF8(FormaRec.Indice);
-                Forma.PermiteVinculado = FormaRec.PermiteVinculado;
-                Forma.TipoDoc = FromUTF8(FormaRec.TipoDoc);
-                Forma.Total = Convert.ToDecimal(FormaRec.Total);
+			if (ret == 0)
+				return null;
+			else
+			{
+				ACBrECFFormaPagamento Forma = new ACBrECFFormaPagamento();
+				Forma.Data = DateTime.FromOADate(FormaRec.Data);
+				Forma.Descricao = FromUTF8(FormaRec.Descricao);
+				Forma.Indice = FromUTF8(FormaRec.Indice);
+				Forma.PermiteVinculado = FormaRec.PermiteVinculado;
+				Forma.TipoDoc = FromUTF8(FormaRec.TipoDoc);
+				Forma.Total = Convert.ToDecimal(FormaRec.Total);
 
-                return Forma;
-            }
-        }
+				return Forma;
+			}
+		}
 
 		public void CarregaFormasPagamento()
 		{
@@ -1918,15 +1917,15 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-        public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor)
-        {
-            EfetuaPagamentoNaoFiscal(codFormaPagto, valor, string.Empty, false);
-        }
+		public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor)
+		{
+			EfetuaPagamentoNaoFiscal(codFormaPagto, valor, string.Empty, false);
+		}
 
-        public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor, string observacao)
-        {
-            EfetuaPagamentoNaoFiscal(codFormaPagto, valor, observacao, false);
-        }
+		public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor, string observacao)
+		{
+			EfetuaPagamentoNaoFiscal(codFormaPagto, valor, observacao, false);
+		}
 
 		public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor, string observacao, bool imprimeVinculado)
 		{

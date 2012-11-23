@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace ACBrFramework
 {
-	[TypeConverter(typeof(ExpandableObjectConverter))] 
+	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public abstract class ACBrComposedComponent : ACBrInteropBase
 	{
 		#region Properties
