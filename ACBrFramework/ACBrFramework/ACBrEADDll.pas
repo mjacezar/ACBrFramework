@@ -35,6 +35,8 @@ type PEADHandle = ^TEADHandle;
 
 implementation
 
+{%region Constructor\Destructor\Erro}
+
 {
 PADRONIZAÇÃO DAS FUNÇÕES:
 
@@ -134,8 +136,10 @@ begin
   end;
 end;
 
+{%endregion}
 
-{ Funções mapeando as propriedades do componente }
+{%region Propriedades do componente}
+
 Function EAD_GetChavePrivada(const eadHandle: PEADHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
@@ -213,8 +217,48 @@ begin
 
 end;
 
+Function EAD_GetOpenSSL_Version(const eadHandle: PEADHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
 
-{Funções}
+ try
+     StrTmp := eadHandle^.EAD.OpenSSL_Version;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        eadHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function EAD_GetAbout(const eadHandle: PEADHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+ try
+     StrTmp := eadHandle^.EAD.About;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        eadHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+{%endregion}
+
+{%region Metodos}
+
 function EAD_GerarChaves(const eadHandle: PEADHandle; ChavePUB, ChavePRI : pChar; const BufferLen : Integer): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 var
   ChavePublica, ChavePrivada : AnsiString ;
@@ -304,27 +348,10 @@ begin
      Exit;
      end;
 
-     eadHandle^.EAD.GerarXMLeECFc(NomeSH, PathArquivo);
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        eadHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end
-end;
-
-function EAD_GerarXMLeECFc_NP(const eadHandle: PEADHandle;const NomeSH: pChar): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-begin
-  try
-     if (eadHandle = nil) then
-     begin
-     Result := -2;
-     Exit;
-     end;
-
-     eadHandle^.EAD.GerarXMLeECFc(NomeSH);
+     if Assigned(PathArquivo) then
+        eadHandle^.EAD.GerarXMLeECFc(NomeSH, PathArquivo)
+     else
+        eadHandle^.EAD.GerarXMLeECFc(NomeSH);
      Result := 0;
   except
      on exception : Exception do
@@ -405,7 +432,7 @@ begin
   end
 end;
 
-function EAD_CalcularEADArquivo(const eadHandle: PEADHandle;const Arquivo: pChar; EAD : pChar; const BufferLen : Integer): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+function EAD_CalcularEADArquivo(const eadHandle: PEADHandle; const Arquivo: pChar; EAD : pChar; const BufferLen : Integer): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 var
   TempSTR : AnsiString ;
 begin
@@ -417,6 +444,39 @@ begin
      end;
 
      TempSTR := eadHandle^.EAD.CalcularEADArquivo(Arquivo);
+     StrPLCopy(EAD, TempSTR, BufferLen);
+     Result := Length(EAD);
+  except
+     on exception : Exception do
+     begin
+        eadHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end
+end;
+
+function EAD_CalcularEAD(const eadHandle: PEADHandle; const EString: array of pChar; const count : Integer;
+           EAD : pChar; const BufferLen : Integer): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  TempSTR : AnsiString;
+  StringList : TStringList;
+  i : Integer;
+begin
+  try
+     if (eadHandle = nil) then
+     begin
+     Result := -2;
+     Exit;
+     end;
+
+     StringList := TStringList.Create;
+
+     for i := 0 to count do
+     begin
+        StringList.Add(Estring[i]);
+     end;
+
+     TempSTR := eadHandle^.EAD.CalcularEAD(StringList);
      StrPLCopy(EAD, TempSTR, BufferLen);
      Result := Length(EAD);
   except
@@ -473,6 +533,97 @@ begin
      end
   end
 end;
+
+function EAD_VerificarEAD(const eadHandle: PEADHandle; const ead: pChar): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+  try
+     if (eadHandle = nil) then
+     begin
+     Result := -2;
+     Exit;
+     end;
+
+     if (eadHandle^.EAD.VerificarEAD(ead))then
+       Result := 1
+     else
+       Result := 0;
+
+  except
+     on exception : Exception do
+     begin
+        eadHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end
+end;
+
+function EAD_RemoveEADArquivo(const eadHandle: PEADHandle;const Arquivo: pChar): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+  try
+     if (eadHandle = nil) then
+     begin
+     Result := -2;
+     Exit;
+     end;
+
+     eadHandle^.EAD.RemoveEADArquivo(Arquivo);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        eadHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end
+end;
+
+function EAD_MD5FromFile(const eadHandle: PEADHandle; const APathArquivo: pChar; Hash : pChar; const BufferLen : Integer): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  TempSTR : AnsiString ;
+begin
+  try
+     if (eadHandle = nil) then
+     begin
+     Result := -2;
+     Exit;
+     end;
+
+     TempSTR := eadHandle^.EAD.MD5FromFile(APathArquivo);
+     StrPLCopy(Hash, TempSTR, BufferLen);
+     Result := Length(Hash);
+  except
+     on exception : Exception do
+     begin
+        eadHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end
+end;
+
+function EAD_MD5FromString(const eadHandle: PEADHandle; const AString: pChar; Hash : pChar; const BufferLen : Integer): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  TempSTR : AnsiString ;
+begin
+  try
+     if (eadHandle = nil) then
+     begin
+     Result := -2;
+     Exit;
+     end;
+
+     TempSTR := eadHandle^.EAD.MD5FromString(AString);
+     StrPLCopy(Hash, TempSTR, BufferLen);
+     Result := Length(Hash);
+  except
+     on exception : Exception do
+     begin
+        eadHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end
+end;
+
+{%endregion}
 
 {%region Eventos}
 
@@ -567,14 +718,15 @@ EAD_GetUltimoErro,
 { Funções mapeando as propriedades do componente }
 EAD_GetChavePrivada, EAD_SetChavePrivada,
 EAD_GetChavePublica, EAD_SetChavePublica,
+EAD_GetOpenSSL_Version, EAD_GetAbout,
 
 { Metodos do componente }
 EAD_GerarChaves, EAD_CalcularModuloeExpoente,
-EAD_GerarXMLeECFc, EAD_GerarXMLeECFc_NP,
-EAD_ConverteXMLeECFcParaOpenSSL,EAD_CalcularHashArquivo,
+EAD_GerarXMLeECFc, EAD_ConverteXMLeECFcParaOpenSSL,
 EAD_CalcularEADArquivo, EAD_AssinarArquivoComEAD,
 EAD_VerificarEADArquivo, EAD_CalcularChavePublica,
-EAD_CalcularHash,
+EAD_CalcularHash, EAD_RemoveEADArquivo, EAD_VerificarEAD,
+EAD_CalcularEAD, EAD_CalcularHashArquivo, EAD_MD5FromString, EAD_MD5FromFile,
 
 {Eventos}
 EAD_SetOnGetChavePrivada,
