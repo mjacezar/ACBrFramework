@@ -28,7 +28,7 @@ type TRegistro10Rec = record
   RazaoSocial         : array[0..35] of char;
   Cidade              : array[0..30] of char;
   Estado              : array[0..2] of char;
-  Telefone            : array[0..10] of char;
+  Telefone            : array[0..12] of char;
   DataInicial         : Double;
   DataFinal           : Double;
   CodigoConvenio      : Integer;

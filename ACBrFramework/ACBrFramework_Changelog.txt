@@ -41,6 +41,9 @@ Símbolo : Significado
 
 Changelog
 
+23/11/2012
+[*] Alterados de int para string os campos CPF,CNPJ,Telefone,CEP do Sintegra no ACBrFramework.Net - Rafael Batiati
+
 22/11/2012 (ACBrFramework 0.9.1.20)
 [*] Adicionado as propriedades data e titulo ao PAF.TITP - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 

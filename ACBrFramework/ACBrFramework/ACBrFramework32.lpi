@@ -23,7 +23,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="21"/>
+      <BuildNr Value="22"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -369,10 +369,13 @@
         <Filename Value="ACBrSintegraDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrSintegraDll"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="10"/>
-        <CursorPos X="61" Y="881"/>
+        <TopLine Value="34"/>
+        <CursorPos X="24" Y="50"/>
         <UsageCount Value="144"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit35>
       <Unit36>
@@ -506,11 +509,10 @@
         <Filename Value="ACBrSpedFiscalDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrSpedFiscaldll"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="12" Y="7"/>
+        <CursorPos X="34" Y="19"/>
         <FoldState Value=" TJP2{H TLQ0O2 T3iE0H2{"/>
         <UsageCount Value="52"/>
         <Loaded Value="True"/>
@@ -588,7 +590,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit58>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="55" Column="25" TopLine="33"/>
@@ -705,6 +707,10 @@
         <Filename Value="ACBrSpedFiscalDll.pas"/>
         <Caret Line="24" Column="36" TopLine="11"/>
       </Position29>
+      <Position30>
+        <Filename Value="ACBrFramework.lpr"/>
+        <Caret Line="18" Column="3" TopLine="1"/>
+      </Position30>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

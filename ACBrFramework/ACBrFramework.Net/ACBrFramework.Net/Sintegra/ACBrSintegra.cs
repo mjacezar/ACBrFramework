@@ -202,7 +202,7 @@ namespace ACBrFramework.Sintegra
 			record.Inscricao = ToUTF8(Registro10.Inscricao);
 			record.Cidade = ToUTF8(Registro10.Cidade);
 			record.Estado = ToUTF8(Registro10.Estado);
-			record.Telefone = ToUTF8(Registro10.Telefone.ToString());
+			record.Telefone = ToUTF8(Registro10.Telefone);
 			record.DataInicial = Registro10.DataInicial.ToOADate();
 			record.DataFinal = Registro10.DataFinal.ToOADate();
 			record.NaturezaInformacoes = Registro10.NaturezaInformacoes;
@@ -218,11 +218,11 @@ namespace ACBrFramework.Sintegra
 			var record = new ACBrSintegraInterop.Registro11Rec();
 			record.Responsavel = ToUTF8(Registro11.Responsavel);
 			record.Bairro = ToUTF8(Registro11.Bairro);
-			record.Cep = ToUTF8(Registro11.Cep.ToString());
-			record.Numero = ToUTF8(Registro11.Numero.ToString());
+			record.Cep = ToUTF8(Registro11.Cep);
+			record.Numero = ToUTF8(Registro11.Numero);
 			record.Complemento = ToUTF8(Registro11.Complemento);
 			record.Endereco = ToUTF8(Registro11.Endereco);
-			record.Telefone = ToUTF8(Registro11.Telefone.ToString());
+			record.Telefone = ToUTF8(Registro11.Telefone);
 
 			int ret = ACBrSintegraInterop.SIN_Registro11(this.Handle, record);
 			CheckResult(ret);
@@ -233,8 +233,8 @@ namespace ACBrFramework.Sintegra
 			ACBrSintegraInterop.Registro50Rec[] record = new ACBrSintegraInterop.Registro50Rec[Registro50.Count];
 			for (int i = 0; i < Registro50.Count; i++)
 			{
-				record[i].CPFCNPJ = ToUTF8(Registro50[i].CPFCNPJ.ToString());
-				record[i].Inscricao = ToUTF8(Registro50[i].Inscricao.ToString());
+				record[i].CPFCNPJ = ToUTF8(Registro50[i].CPFCNPJ);
+				record[i].Inscricao = ToUTF8(Registro50[i].Inscricao);
 				record[i].UF = ToUTF8(Registro50[i].UF);
 				record[i].Situacao = ToUTF8(Registro50[i].Situacao);
 				record[i].Aliquota = Convert.ToDouble(Registro50[i].Aliquota);
@@ -247,7 +247,7 @@ namespace ACBrFramework.Sintegra
 				record[i].Cfop = ToUTF8(Registro50[i].Cfop);
 				record[i].Serie = ToUTF8(Registro50[i].Serie);
 				record[i].Modelo = ToUTF8(Registro50[i].Modelo);
-				record[i].Numero = ToUTF8(Registro50[i].Numero.ToString());
+				record[i].Numero = ToUTF8(Registro50[i].Numero);
 				record[i].DataDocumento = Registro50[i].DataDocumento.ToOADate();
 			}
 
@@ -260,13 +260,13 @@ namespace ACBrFramework.Sintegra
 			ACBrSintegraInterop.Registro51Rec[] record = new ACBrSintegraInterop.Registro51Rec[Registro51.Count];
 			for (int i = 0; i < Registro51.Count; i++)
 			{
-				record[i].CPFCNPJ = ToUTF8(Registro51[i].CPFCNPJ.ToString());
-				record[i].Inscricao = ToUTF8(Registro51[i].Inscricao.ToString());
+				record[i].CPFCNPJ = ToUTF8(Registro51[i].CPFCNPJ);
+				record[i].Inscricao = ToUTF8(Registro51[i].Inscricao);
 				record[i].Estado = ToUTF8(Registro51[i].Estado);
 				record[i].ValorContabil = Convert.ToDouble(Registro51[i].ValorContabil);
 				record[i].Cfop = ToUTF8(Registro51[i].Cfop);
 				record[i].Serie = ToUTF8(Registro51[i].Serie);
-				record[i].Numero = ToUTF8(Registro51[i].Numero.ToString());
+				record[i].Numero = ToUTF8(Registro51[i].Numero);
 				record[i].DataDocumento = Registro51[i].DataDocumento.ToOADate();
 				record[i].ValorIpi = Convert.ToDouble(Registro51[i].ValorIpi);
 				record[i].Situacao = ToUTF8(Registro51[i].Situacao);
