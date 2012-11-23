@@ -14,7 +14,7 @@ namespace ACBrFramework.Sintegra
 
 		public string Estado { get; set; }
 
-		public int Telefone { get; set; }
+		public string Telefone { get; set; }
 
 		public DateTime DataInicial { get; set; }
 

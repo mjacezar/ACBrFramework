@@ -4,9 +4,9 @@ namespace ACBrFramework.Sintegra
 {
 	public sealed class SintegraRegistro50
 	{
-		public int CPFCNPJ { get; set; }
+		public string CPFCNPJ { get; set; }
 
-		public int Inscricao { get; set; }
+		public string Inscricao { get; set; }
 
 		public string UF { get; set; }
 
@@ -32,7 +32,7 @@ namespace ACBrFramework.Sintegra
 
 		public string Modelo { get; set; }
 
-		public int Numero { get; set; }
+		public string Numero { get; set; }
 
 		public DateTime DataDocumento { get; set; }
 	}
