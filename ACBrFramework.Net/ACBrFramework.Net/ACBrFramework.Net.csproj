@@ -138,7 +138,6 @@
     <Compile Include="AAC\ACBrECFInfoPaf.cs" />
     <Compile Include="ACBrEventHandler.cs" />
     <Compile Include="ACBrInteropEventHandlerBase.cs" />
-    <Compile Include="ACBrInteropListItemBase.cs" />
     <Compile Include="ChaveEventArgs.cs" />
     <Compile Include="ACBrComponent.cs" />
     <Compile Include="ACBrComposedComponent.cs" />
@@ -318,7 +317,6 @@
     <Compile Include="TEFD\Classes\ACBrTEFDReq.cs" />
     <Compile Include="TEFD\Classes\ACBrTEFDReqEstado.cs" />
     <Compile Include="TEFD\Classes\ACBrTEFDRespEstado.cs" />
-    <Compile Include="TEFD\Classes\ACBrTEFDRespostaPendente.cs" />
     <Compile Include="TEFD\Classes\ACBrTEFDTipo.cs" />
     <Compile Include="TEFD\Classes\ACBrTEFDTipoRelatorio.cs" />
     <Compile Include="TEFD\ACBrTEFInterop.cs" />

@@ -469,10 +469,30 @@ namespace ACBrFramework.TEFD
 		public ACBrTEFDReq Req { get; private set; }
 
 		[Browsable(false)]
-		public ACBrTEFDResp Resp { get; private set; }
+		public ACBrTEFDResp Resp
+		{
+			get
+			{
+				IntPtr composedComponent;
+				int ret = ACBrTEFInterop.TEF_GetResp(this.Handle, out composedComponent);
+				CheckResult(ret);
+
+				return new ACBrTEFDResp(this, composedComponent);
+			}
+		}
 
 		[Browsable(false)]
-		public ACBrTEFDRespostasPendentes RespostasPendentes { get; private set; }
+		public ACBrTEFDRespostasPendentes RespostasPendentes
+		{
+			get
+			{
+				IntPtr composedComponent;
+				int ret = ACBrTEFInterop.TEF_GetRespostasPendentes(this.Handle, out composedComponent);
+				CheckResult(ret);
+
+				return new ACBrTEFDRespostasPendentes(this, composedComponent);
+			}
+		}
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public ACBrTEFDCliSiTef TEFCliSiTef { get; private set; }
@@ -687,8 +707,6 @@ namespace ACBrFramework.TEFD
 
 			this.Identificacao = new ACBrTEFDIdentificacao(this);
 			this.Req = new ACBrTEFDReq(this);
-			this.Resp = new ACBrTEFDResp(this);
-			this.RespostasPendentes = new ACBrTEFDRespostasPendentes(this);
 			this.TEFCliSiTef = new ACBrTEFDCliSiTef(this);
 			this.TEFDial = new ACBrTEFDDial(this);
 			this.TEFDisc = new ACBrTEFDDisc(this);
@@ -855,7 +873,8 @@ namespace ACBrFramework.TEFD
 		{
 			if (onDepoisConfirmarTransacoes.IsAssigned)
 			{
-				DepoisConfirmarTransacoesEventArgs e = new DepoisConfirmarTransacoesEventArgs(this.RespostasPendentes);
+				ACBrTEFDRespostasPendentes respostasPendentes = new ACBrTEFDRespostasPendentes(this, RespostasPendentes);
+				DepoisConfirmarTransacoesEventArgs e = new DepoisConfirmarTransacoesEventArgs(respostasPendentes);
 				onDepoisConfirmarTransacoes.Raise(e);
 			}
 		}
@@ -865,7 +884,8 @@ namespace ACBrFramework.TEFD
 		{
 			if (onAntesCancelarTransacao.IsAssigned)
 			{
-				AntesCancelarTransacaoEventArgs e = new AntesCancelarTransacaoEventArgs(RespostaPendente);
+				ACBrTEFDResp resp = new ACBrTEFDResp(this, RespostaPendente);
+				AntesCancelarTransacaoEventArgs e = new AntesCancelarTransacaoEventArgs(resp);
 				onAntesCancelarTransacao.Raise(e);
 			}
 		}
@@ -875,7 +895,8 @@ namespace ACBrFramework.TEFD
 		{
 			if (onDepoisCancelarTransacoes.IsAssigned)
 			{
-				DepoisCancelarTransacoesEventArgs e = new DepoisCancelarTransacoesEventArgs(this.RespostasPendentes);
+				ACBrTEFDRespostasPendentes respostasPendentes = new ACBrTEFDRespostasPendentes(this, RespostasPendentes);
+				DepoisCancelarTransacoesEventArgs e = new DepoisCancelarTransacoesEventArgs(respostasPendentes);
 				onDepoisCancelarTransacoes.Raise(e);
 			}
 		}

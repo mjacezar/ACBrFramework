@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 
 namespace ACBrFramework.TEFD
 {
@@ -7,14 +6,22 @@ namespace ACBrFramework.TEFD
 	{
 		#region Constructor
 
-		internal ACBrTEFDResp(ACBrTEFD parent)
-			: base(parent)
+		internal ACBrTEFDResp(ACBrTEFD parent, IntPtr composedHandle)
+			: base(parent, composedHandle)
 		{
 		}
 
 		#endregion Constructor
 
 		#region Properties
+
+		public new ACBrTEFD Parent
+		{
+			get
+			{
+				return (ACBrTEFD)base.Parent;
+			}
+		}
 
 		public string Header
 		{
@@ -494,44 +501,12 @@ namespace ACBrFramework.TEFD
 
 		public string[] GetImagemComprovante1aVia()
 		{
-			int count = GetInt32(ACBrTEFInterop.TEF_Resp_GetImagemComprovante1aViaCount);
-			string[] array = new string[count];
-
-			if (count > 0)
-			{
-				const int BUFFER_LEN = 255;
-				StringBuilder buffer = new StringBuilder();
-
-				for (int i = 0; i < count; i++)
-				{
-					int ret = ACBrTEFInterop.TEF_Resp_GetImagemComprovante1aViaLinha(this.Handle, i, buffer, BUFFER_LEN);
-					CheckResult(ret);
-					array[i] = FromUTF8(buffer.ToString());
-				}
-			}
-
-			return array;
+			return GetStringArray(ACBrTEFInterop.TEF_Resp_GetImagemComprovante1aViaLinha, ACBrTEFInterop.TEF_Resp_GetImagemComprovante1aViaCount);
 		}
 
 		public string[] GetImagemComprovante2aVia()
 		{
-			int count = GetInt32(ACBrTEFInterop.TEF_Resp_GetImagemComprovante2aViaCount);
-			string[] array = new string[count];
-
-			if (count > 0)
-			{
-				const int BUFFER_LEN = 255;
-				StringBuilder buffer = new StringBuilder();
-
-				for (int i = 0; i < count; i++)
-				{
-					int ret = ACBrTEFInterop.TEF_Resp_GetImagemComprovante2aViaLinha(this.Handle, i, buffer, BUFFER_LEN);
-					CheckResult(ret);
-					array[i] = FromUTF8(buffer.ToString());
-				}
-			}
-
-			return array;
+			return GetStringArray(ACBrTEFInterop.TEF_Resp_GetImagemComprovante2aViaLinha, ACBrTEFInterop.TEF_Resp_GetImagemComprovante2aViaCount);
 		}
 
 		#endregion Methods

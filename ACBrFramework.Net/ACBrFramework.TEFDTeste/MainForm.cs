@@ -1130,7 +1130,7 @@ namespace ACBrFramework.TEFDTeste
 		{
             try
             {
-                foreach (ACBrTEFDRespostaPendente Resposta in e.RespostasPendentes)
+                foreach (ACBrTEFDResp Resposta in e.RespostasPendentes)
                 {
                     string[] Linhas = new string[5];
                     Linhas[0] = string.Format("Confirmado: {0} ID: {1}", Resposta.Header, Resposta.ID);
