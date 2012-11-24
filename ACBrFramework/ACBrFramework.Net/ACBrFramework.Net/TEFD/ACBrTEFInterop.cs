@@ -226,6 +226,12 @@ namespace ACBrFramework.TEFD
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_SetTrocoMaximo(IntPtr tefHandle, double Troco);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_GetResp(IntPtr tefHandle, out IntPtr respHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_GetRespostasPendentes(IntPtr tefHandle, out IntPtr respHandle);
+
 		#endregion Propriedades Componente
 
 		#region Identificacao
@@ -344,404 +350,215 @@ namespace ACBrFramework.TEFD
 		#region Resp
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetHeader(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetHeader(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDocumentoVinculado(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetDocumentoVinculado(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetCMC7(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetCMC7(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetTipoPessoa(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetTipoPessoa(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDocumentoPessoa(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetDocumentoPessoa(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetRede(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetRede(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetNSU(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetNSU(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetFinalizacao(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetFinalizacao(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetStatusTransacao(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetStatusTransacao(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetNSUTransacaoCancelada(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetNSUTransacaoCancelada(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetTextoEspecialOperador(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetTextoEspecialOperador(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetTextoEspecialCliente(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetTextoEspecialCliente(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetAutenticacao(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetAutenticacao(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetBanco(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetBanco(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetAgencia(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetAgencia(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetAgenciaDC(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetAgenciaDC(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetConta(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetConta(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetContaDC(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetContaDC(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetCheque(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetCheque(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetChequeDC(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetChequeDC(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetNomeAdministradora(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetNomeAdministradora(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetTrailer(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetTrailer(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetArqBackup(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetArqBackup(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetArqRespPendente(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetArqRespPendente(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetIndiceFPG_ECF(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetIndiceFPG_ECF(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetInstituicao(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetInstituicao(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetModalidadePagto(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetModalidadePagto(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetModalidadePagtoDescrita(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetModalidadePagtoDescrita(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetModalidadeExtenso(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetModalidadeExtenso(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetCodigoRedeAutorizada(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetCodigoRedeAutorizada(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetID(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetID(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetMoeda(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetMoeda(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetTipoTransacao(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetTipoTransacao(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetCodigoAutorizacaoTransacao(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetCodigoAutorizacaoTransacao(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetNumeroLoteTransacao(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetNumeroLoteTransacao(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetTipoParcelamento(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetTipoParcelamento(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetQtdParcelas(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetQtdParcelas(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetQtdLinhasComprovante(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetQtdLinhasComprovante(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetOrdemPagamento(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetOrdemPagamento(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetTipoGP(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetTipoGP(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetParceladoPor(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetParceladoPor(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetTipoOperacao(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetTipoOperacao(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetCNFEnviado(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetCNFEnviado(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetTransacaoAprovada(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetTransacaoAprovada(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDebito(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetDebito(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetCredito(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetCredito(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetValorTotal(IntPtr tefHandle, ref double ValorTotal);
+		public static extern int TEF_Resp_GetValorTotal(IntPtr tefHandle, IntPtr respHandle, ref double ValorTotal);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetValorOriginal(IntPtr tefHandle, ref double ValorOriginal);
+		public static extern int TEF_Resp_GetValorOriginal(IntPtr tefHandle, IntPtr respHandle, ref double ValorOriginal);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetSaque(IntPtr tefHandle, ref double Saque);
+		public static extern int TEF_Resp_GetSaque(IntPtr tefHandle, IntPtr respHandle, ref double Saque);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDesconto(IntPtr tefHandle, ref double Desconto);
+		public static extern int TEF_Resp_GetDesconto(IntPtr tefHandle, IntPtr respHandle, ref double Desconto);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetValorEntradaCDC(IntPtr tefHandle, ref double ValorEntradaCDC);
+		public static extern int TEF_Resp_GetValorEntradaCDC(IntPtr tefHandle, IntPtr respHandle, ref double ValorEntradaCDC);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDataCheque(IntPtr tefHandle, ref double DataCheque);
+		public static extern int TEF_Resp_GetDataCheque(IntPtr tefHandle, IntPtr respHandle, ref double DataCheque);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDataHoraTransacaoHost(IntPtr tefHandle, ref double DataHoraTransacaoHost);
+		public static extern int TEF_Resp_GetDataHoraTransacaoHost(IntPtr tefHandle, IntPtr respHandle, ref double DataHoraTransacaoHost);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDataHoraTransacaoLocal(IntPtr tefHandle, ref double DataHoraTransacaoLocal);
+		public static extern int TEF_Resp_GetDataHoraTransacaoLocal(IntPtr tefHandle, IntPtr respHandle, ref double DataHoraTransacaoLocal);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDataPreDatado(IntPtr tefHandle, ref double DataPreDatado);
+		public static extern int TEF_Resp_GetDataPreDatado(IntPtr tefHandle, IntPtr respHandle, ref double DataPreDatado);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDataHoraTransacaoCancelada(IntPtr tefHandle, ref double DataHoraTransacaoCancelada);
+		public static extern int TEF_Resp_GetDataHoraTransacaoCancelada(IntPtr tefHandle, IntPtr respHandle, ref double DataHoraTransacaoCancelada);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDataHoraTransacaoComprovante(IntPtr tefHandle, ref double DataHoraTransacaoComprovante);
+		public static extern int TEF_Resp_GetDataHoraTransacaoComprovante(IntPtr tefHandle, IntPtr respHandle, ref double DataHoraTransacaoComprovante);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDataVencimento(IntPtr tefHandle, ref double DataVencimento);
+		public static extern int TEF_Resp_GetDataVencimento(IntPtr tefHandle, IntPtr respHandle, ref double DataVencimento);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetDataEntradaCDC(IntPtr tefHandle, ref double DataEntradaCDC);
+		public static extern int TEF_Resp_GetDataEntradaCDC(IntPtr tefHandle, IntPtr respHandle, ref double DataEntradaCDC);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetImagemComprovante1aViaCount(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetImagemComprovante1aViaCount(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetImagemComprovante1aViaLinha(IntPtr tefHandle, int linha, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetImagemComprovante1aViaLinha(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen, int linha);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetImagemComprovante2aViaCount(IntPtr tefHandle);
+		public static extern int TEF_Resp_GetImagemComprovante2aViaCount(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Resp_GetImagemComprovante2aViaLinha(IntPtr tefHandle, int linha, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Resp_GetImagemComprovante2aViaLinha(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen, int linha);
 
 		#endregion Resp
 
 		#region RespostasPendentes
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetCount(IntPtr tefHandle);
+		public static extern int TEF_RespostasPendentes_GetCount(IntPtr tefHandle, IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetSaldoRestante(IntPtr tefHandle, ref double SaldoRestante);
+		public static extern int TEF_RespostasPendentes_GetItem(IntPtr tefHandle, IntPtr respostaPendenteHandle, int index, out IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetTotalDesconto(IntPtr tefHandle, ref double TotalDesconto);
+		public static extern int TEF_RespostasPendentes_GetSaldoRestante(IntPtr tefHandle, IntPtr respHandle, ref double SaldoRestante);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetTotalPago(IntPtr tefHandle, ref double TotalPago);
+		public static extern int TEF_RespostasPendentes_GetTotalDesconto(IntPtr tefHandle, IntPtr respHandle, ref double TotalDesconto);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetSaldoAPagar(IntPtr tefHandle, ref double SaldoRestante);
+		public static extern int TEF_RespostasPendentes_GetTotalPago(IntPtr tefHandle, IntPtr respHandle, ref double TotalPago);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetHeader(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDocumentoVinculado(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetCMC7(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetTipoPessoa(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDocumentoPessoa(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetRede(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetNSU(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetFinalizacao(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetStatusTransacao(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetNSUTransacaoCancelada(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetTextoEspecialOperador(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetTextoEspecialCliente(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetAutenticacao(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetBanco(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetAgencia(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetAgenciaDC(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetConta(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetContaDC(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetCheque(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetChequeDC(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetNomeAdministradora(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetTrailer(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetArqBackup(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetArqRespPendente(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetIndiceFPG_ECF(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetInstituicao(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetModalidadePagto(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetModalidadePagtoDescrita(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetModalidadeExtenso(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetCodigoRedeAutorizada(IntPtr tefHandle, int index, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetID(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetMoeda(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetTipoTransacao(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetCodigoAutorizacaoTransacao(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetNumeroLoteTransacao(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetTipoParcelamento(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetQtdParcelas(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetQtdLinhasComprovante(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetOrdemPagamento(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetTipoGP(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetParceladoPor(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetTipoOperacao(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetCNFEnviado(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetTransacaoAprovada(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDebito(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetCredito(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetValorTotal(IntPtr tefHandle, int index, ref double ValorTotal);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetValorOriginal(IntPtr tefHandle, int index, ref double ValorOriginal);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetSaque(IntPtr tefHandle, int index, ref double Saque);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDesconto(IntPtr tefHandle, int index, ref double Desconto);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetValorEntradaCDC(IntPtr tefHandle, int index, ref double ValorEntradaCDC);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDate(IntPtr tefHandle, int index, ref double Date);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDataCheque(IntPtr tefHandle, int index, ref double DataCheque);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDataHoraTransacaoHost(IntPtr tefHandle, int index, ref double DataHoraTransacaoHost);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDataHoraTransacaoLocal(IntPtr tefHandle, int index, ref double DataHoraTransacaoLocal);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDataPreDatado(IntPtr tefHandle, int index, ref double DataPreDatado);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDataHoraTransacaoCancelada(IntPtr tefHandle, int index, ref double DataHoraTransacaoCancelada);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDataHoraTransacaoComprovante(IntPtr tefHandle, int index, ref double DataHoraTransacaoComprovante);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDataVencimento(IntPtr tefHandle, int index, ref double DataVencimento);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetDataEntradaCDC(IntPtr tefHandle, int index, ref double DataEntradaCDC);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetImagemComprovante1aViaCount(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetImagemComprovante1aViaLinha(IntPtr tefHandle, int index, int linha, StringBuilder buffer, int bufferLen);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetImagemComprovante2aViaCount(IntPtr tefHandle, int index);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_RespostasPendentes_GetImagemComprovante2aViaLinha(IntPtr tefHandle, int index, int linha, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_RespostasPendentes_GetSaldoAPagar(IntPtr tefHandle, IntPtr respHandle, ref double SaldoRestante);
 
 		#endregion RespostasPendentes
 
