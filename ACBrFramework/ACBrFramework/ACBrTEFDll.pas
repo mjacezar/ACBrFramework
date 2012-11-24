@@ -3715,6 +3715,30 @@ begin
   end;
 end;
 
+Function TEF_Resp_LeInformacao(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen, Identificacao, Sequencia  : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := respHandle.LeInformacao(Identificacao, Sequencia).AsString;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 //Parcelas : TACBrTEFDRespParcelas read fpParcelas ;
 {%endregion}
 
@@ -9384,6 +9408,7 @@ TEF_Resp_GetImagemComprovante1aViaCount,
 TEF_Resp_GetImagemComprovante1aViaLinha,
 TEF_Resp_GetImagemComprovante2aViaCount,
 TEF_Resp_GetImagemComprovante2aViaLinha,
+TEF_Resp_LeInformacao,
 
 {RespostasPendentes}
 TEF_RespostasPendentes_GetCount,

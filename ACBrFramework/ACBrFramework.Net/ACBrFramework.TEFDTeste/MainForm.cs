@@ -1137,7 +1137,7 @@ namespace ACBrFramework.TEFDTeste
                     Linhas[1] = string.Format("Rede: {0}", Resposta.Rede);
                     Linhas[2] = string.Format("NSU: {0}", Resposta.NSU);
                     Linhas[3] = string.Format("Valor: {0}", Resposta.Rede);
-                    Linhas[4] = " ";
+					Linhas[4] = string.Format("Campo 11: {0}", Resposta.LeInformacao(11)); ;
                     WriteResp(Linhas);
                 }
             }
