@@ -538,6 +538,10 @@ namespace ACBrFramework.TEFD
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_Resp_GetImagemComprovante2aViaLinha(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen, int linha);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_Resp_LeInformacao(IntPtr tefHandle, IntPtr respHandle, StringBuilder buffer, int bufferLen, int identificacao, int sequencia);
+
+
 		#endregion Resp
 
 		#region RespostasPendentes

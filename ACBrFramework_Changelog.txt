@@ -41,8 +41,9 @@ Símbolo : Significado
 
 Changelog
 
-24/11/2012 (ACBrFramework 0.9.1.21)
-[*] Mudanças no ComposedComponent para permitir ao ACBrTEFD enviar diversas instâncias diferentes de Resp e RespostasPendentes por propriedade e por eventos. - Rafael Batiati
+24/11/2012 (ACBrFramework 0.9.1.22)
+[*] Mudanças no ComposedComponent para permitir ao ACBrTEFD enviar diversas instâncias diferentes de Resp e RespostasPendentes por propriedade e por eventos. - ACBrFramework e ACBrFramework.Net - Rafael Batiati.
+[+] Adicionado TEF_Resp_LeInformacao - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 
 23/11/2012 (ACBrFramework 0.9.1.21)
 [+] Implementado o metodo EAD_RemoveEADArquivo, EAD_VerificarEAD - ACBrFramework e ACBrFramework.Net - Rafael Dias.

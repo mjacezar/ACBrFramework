@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace ACBrFramework.TEFD
 {
@@ -507,6 +508,21 @@ namespace ACBrFramework.TEFD
 		public string[] GetImagemComprovante2aVia()
 		{
 			return GetStringArray(ACBrTEFInterop.TEF_Resp_GetImagemComprovante2aViaLinha, ACBrTEFInterop.TEF_Resp_GetImagemComprovante2aViaCount);
+		}
+
+		public string LeInformacao(int Identificacao)
+		{
+			return LeInformacao(Identificacao, 0);
+		}
+
+		public string LeInformacao(int Identificacao, int Sequencia)
+		{
+			const int bufferLen = 256;
+			StringBuilder buffer = new StringBuilder(bufferLen);
+			int ret = ACBrTEFInterop.TEF_Resp_LeInformacao(this.Handle, this.ComposedHandle, buffer, bufferLen, Identificacao, Sequencia);
+			CheckResult(ret);
+
+			return buffer.ToString();
 		}
 
 		#endregion Methods
