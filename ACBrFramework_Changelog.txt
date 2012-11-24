@@ -41,6 +41,14 @@ Símbolo : Significado
 
 Changelog
 
+24/11/2012 (ACBrFramework 0.9.1.23)
+[+] Adicionado SPDF_GetAbout, SPDF_GetArquivo, SPDF_SetArquivo - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado SPDF_GetCurMascara, SPDF_SetCurMascara, SPDF_GetPath - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado SPDF_SetPath, SPDF_GetDelimitador, SPDF_SetDelimitador - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado SPDF_GetLinhasBuffer, SPDF_SetLinhasBuffer, SPDF_GetTrimString- ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado SPDF_SetTrimString, SPDF_GetDT_INI, SPDF_SetDT_INI - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado SPDF_GetDT_FIN, SPDF_SetDT_FIN, SPDF_IniciaGeracao - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+
 24/11/2012 (ACBrFramework 0.9.1.22)
 [*] Mudanças no ComposedComponent para permitir ao ACBrTEFD enviar diversas instâncias diferentes de Resp e RespostasPendentes por propriedade e por eventos. - ACBrFramework e ACBrFramework.Net - Rafael Batiati.
 [+] Adicionado TEF_Resp_LeInformacao - ACBrFramework e ACBrFramework.Net - Rafael Dias.
