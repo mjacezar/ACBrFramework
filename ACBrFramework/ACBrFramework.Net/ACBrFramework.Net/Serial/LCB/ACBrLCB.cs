@@ -70,6 +70,14 @@ namespace ACBrFramework.LCB
 			}
 		}
 
+		public string UltimaLeitura
+		{
+			get
+			{
+				return GetString(ACBrLCBInterop.LCB_GetUltimaLeitura);
+			}
+		}
+
 		#endregion Properties
 
 		#region Methods
@@ -84,6 +92,11 @@ namespace ACBrFramework.LCB
 		{
 			int ret = ACBrLCBInterop.LCB_Desativar(this.Handle);
 			CheckResult(ret);
+		}
+
+		public string LerString()
+		{
+			return GetString(ACBrLCBInterop.LCB_LerString);
 		}
 
 		#region Callback EventHandlers
