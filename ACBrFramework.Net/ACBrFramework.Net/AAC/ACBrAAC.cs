@@ -41,6 +41,7 @@ namespace ACBrFramework.AAC
 
 		#region Properties
 
+        [Category("AAC")]
 		public string NomeArquivoAuxiliar
 		{
 			get
@@ -53,7 +54,8 @@ namespace ACBrFramework.AAC
 			}
 		}
 
-		public string NomeArquivoLog
+        [Category("AAC")]
+        public string ArqLOG
 		{
 			get
 			{
@@ -65,19 +67,100 @@ namespace ACBrFramework.AAC
 			}
 		}
 
-		public string Parametros
+        [Category("AAC")]
+		public string[] Parametros
 		{
 			get
 			{
-				return GetString(ACBrAACInterop.AAC_GetParams);
+                return GetStringArray(ACBrAACInterop.AAC_GetParams, ACBrAACInterop.AAC_GetParamsCount);
 			}
 			set
 			{
-				SetString(ACBrAACInterop.AAC_SetParams, value);
+				SetStringArray(ACBrAACInterop.AAC_SetParams, value);
 			}
 		}
 
+        [Category("AAC")]
+        public bool CriarBAK
+        {
+            get
+            {
+                return GetBool(ACBrAACInterop.AAC_GetCriarBAK);
+            }
+            set
+            {
+                SetBool(ACBrAACInterop.AAC_SetCriarBAK, value);
+            }
+        }
+
+        [Category("AAC")]
+        public bool EfetuarFlush
+        {
+            get
+            {
+                return GetBool(ACBrAACInterop.AAC_GetEfetuarFlush);
+            }
+            set
+            {
+                SetBool(ACBrAACInterop.AAC_SetEfetuarFlush, value);
+            }
+        }
+
+        [Category("AAC")]
+        public bool GravarConfigApp
+        {
+            get
+            {
+                return GetBool(ACBrAACInterop.AAC_GetGravarConfigApp);
+            }
+            set
+            {
+                SetBool(ACBrAACInterop.AAC_SetGravarConfigApp, value);
+            }
+        }
+
+        [Category("AAC")]
+        public bool GravarDadosPAF
+        {
+            get
+            {
+                return GetBool(ACBrAACInterop.AAC_GetGravarDadosPAF);
+            }
+            set
+            {
+                SetBool(ACBrAACInterop.AAC_SetGravarDadosPAF, value);
+            }
+        }
+
+        [Category("AAC")]
+        public bool GravarDadosSH
+        {
+            get
+            {
+                return GetBool(ACBrAACInterop.AAC_GetGravarDadosSH);
+            }
+            set
+            {
+                SetBool(ACBrAACInterop.AAC_SetGravarDadosSH, value);
+            }
+        }
+
+        [Category("AAC")]
+        public bool GravarTodosECFs
+        {
+            get
+            {
+                return GetBool(ACBrAACInterop.AAC_GetGravarTodosECFs);
+            }
+            set
+            {
+                SetBool(ACBrAACInterop.AAC_SetGravarTodosECFs, value);
+            }
+        }
+
+
 		[Browsable(true)]
+        [Category("Identificação")]
 		public ACBrECFIdenticacaoPaf IdentPaf { get; private set; }
 
 		#endregion Properties

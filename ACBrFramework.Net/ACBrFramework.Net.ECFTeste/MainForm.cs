@@ -199,7 +199,7 @@ namespace ACBrFramework.ECFTeste
 			acbrAAC.IdentPaf.Paf.MinasLegal = aacMinasLegalCheckBox.Checked;
 
 			//Dados parametros
-			acbrAAC.Parametros = aacParamsTextBox.Text;
+            lstParam.Items.CopyTo(acbrAAC.Parametros, 0);
 
 			//Dados ECFs autorizadas
 			//ACBrDll.TECFAutorizado ecfAutorizado;
@@ -810,6 +810,15 @@ namespace ACBrFramework.ECFTeste
             }
         }
 
+        private void ConfigurarSerial()
+        {
+            using (SerialCFGForm CFG = new SerialCFGForm())
+            {
+                CFG.Device = acbrECF.Device;
+                CFG.ShowDialog();
+            }
+        }
+
 		private void WriteResp(string resp)
 		{
 			if (string.IsNullOrEmpty(resp)) return;
@@ -842,7 +851,9 @@ namespace ACBrFramework.ECFTeste
 
 		#region Event Handlers
 
-		private void ativarToolStripMenuItem_Click(object sender, EventArgs e)
+        #region Botões
+
+        private void ativarToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Ativar();
 		}
@@ -850,19 +861,7 @@ namespace ACBrFramework.ECFTeste
 		private void desativarToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Desativar();
-		}
-
-		private void ativarCheckButton_CheckedChanged(object sender, EventArgs e)
-		{
-			if (ativarCheckButton.Checked)
-			{
-				Ativar();
-			}
-			else
-			{
-				Desativar();
-			}
-		}
+		}               
 
 		private void testarToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -919,29 +918,9 @@ namespace ACBrFramework.ECFTeste
 			Ler_PAF();
 		}
 
-		private void dadosReducaoZToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ler_DadosReducaoZ();
-		}
-
-		private void dadosUltimaReduçãoZToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ler_DadosUltimaReducaoZ();
-		}
-
 		private void lerTodasAsVariáveisToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Ler_TodasVariaveis();
-		}
-
-		private void testaCupomFiscalToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			TestaCupomFiscal();
-		}
-
-		private void testarDAVToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			TestaCupomDAV();
 		}
 
 		private void leituraXToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1185,24 +1164,43 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
-		private void usarAACCheckBox_CheckedChanged(object sender, EventArgs e)
-		{
-			if (usarAACCheckBox.Checked)
-			{
-				this.acbrECF.AAC = acbrAAC;
-			}
-			else
-			{
-				this.acbrECF.AAC = null;
-			}
-		}
-
         private void formaDePagamentoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             programaFormaPagamento();
         }
 
-		#region Eventos
+        private void btnSerial_Click(object sender, EventArgs e)
+        {
+            ConfigurarSerial();
+        }
+
+        #endregion Botões
+
+        #region Eventos
+
+        private void usarAACCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			if (usarAACCheckBox.Checked)
+			{
+				acbrECF.AAC = acbrAAC;
+			}
+			else
+			{
+				acbrECF.AAC = null;
+			}
+		}
+
+        private void ativarCheckButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ativarCheckButton.Checked)
+            {
+                Ativar();
+            }
+            else
+            {
+                Desativar();
+            }
+        }           		
 
 		private void acbrAAC_OnGetChave(object sender, ChaveEventArgs e)
 		{
