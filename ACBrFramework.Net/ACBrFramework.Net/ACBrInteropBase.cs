@@ -110,6 +110,9 @@ namespace ACBrFramework
 
 		protected string[] GetStringArray(IntPtr ptr, int len)
 		{
+			if (ptr == IntPtr.Zero) return null;
+			if (len == 0) return new string[0];
+
 			string[] array = new string[len];
 
 			for (int i = 0; i < len; i++)
@@ -128,7 +131,9 @@ namespace ACBrFramework
 		protected void SetStringArray(SetArrayStringEntryPointDelegate entryPoint, string[] value)
 		{
 			for (int i = 0; i < value.Length; i++)
+			{
 				value[i] = ToUTF8(value[i]);
+			}
 
 			int ret = entryPoint(Handle, value, value.Length);
 			CheckResult(ret);

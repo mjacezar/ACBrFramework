@@ -13,26 +13,21 @@ uses
   ACBrUtil,
   ACBrCommonDll;
 
-{Ponteiros para classes expostas}
-type PTEFResp = TACBrTEFDResp;
-type PTEFRespostasPendentes = TACBrTEFDRespostasPendentes;
-type PTEFReq = TACBrTEFDReq;
-
 { Ponteiros de função }
 type TAguardaRespCallback = procedure(const Arquivo: PChar; const SegundosTimeOut : Integer; var Interromper : Boolean); cdecl;
 type TExibeMsgCallback = procedure(const Operacao : TACBrTEFDOperacaoMensagem; const Mensagem : PChar; var AModalResult : TModalResult); cdecl;
 type TBloqueiaMouseTecladoCallback = procedure(const Bloqueia : Boolean; var Tratado : Boolean); cdecl;
 type TExecutaAcaoCallback = procedure(var Tratado : Boolean); cdecl;
-type TComandaECFCallback = procedure(const Operacao : TACBrTEFDOperacaoECF; const Resp : PTEFResp; var RetornoECF : Integer ); cdecl;
+type TComandaECFCallback = procedure(const Operacao : TACBrTEFDOperacaoECF; const Resp : TACBrTEFDResp; var RetornoECF : Integer ); cdecl;
 type TComandaECFSubtotalizaCallback = procedure(const DescAcre : Double; var RetornoECF : Integer ); cdecl;
 type TComandaECFPagamentoCallback = procedure(const IndiceECF : PChar; const Valor : Double; var RetornoECF : Integer);  cdecl;
 type TComandaECFAbreVinculadoCallback = procedure(const COO : PChar; const IndiceECF : PChar; const Valor : Double; var RetornoECF : Integer ); cdecl;
 type TComandaECFImprimeViaCallback = procedure(const TipoRelatorio : TACBrTEFDTipoRelatorio; const Via : Integer; const ImagemComprovante : array of PChar; const ImagemComprovanteCount : Integer; var RetornoECF : Integer ); cdecl;
 type TInfoECFCallback =  procedure(const Operacao : TACBrTEFDInfoECF; const RetornoECF : PChar; const RetornoECFLen : Integer); cdecl;
-type TAntesFinalizarRequisicaoCallback = procedure(const Req : PTEFReq ); cdecl;
-type TDepoisConfirmarTransacoes = procedure(const RespostasPendentes : PTEFRespostasPendentes ); cdecl;
-type TAntesCancelarTransacaoCallback = procedure(const RespostaPendente : PTEFResp); cdecl;
-type TDepoisCancelarTransacoesCallback = procedure(const RespostasPendentes : PTEFRespostasPendentes); cdecl;
+type TAntesFinalizarRequisicaoCallback = procedure(const Req : TACBrTEFDReq ); cdecl;
+type TDepoisConfirmarTransacoes = procedure(const RespostasPendentes : TACBrTEFDRespostasPendentes ); cdecl;
+type TAntesCancelarTransacaoCallback = procedure(const RespostaPendente : TACBrTEFDResp); cdecl;
+type TDepoisCancelarTransacoesCallback = procedure(const RespostasPendentes : TACBrTEFDRespostasPendentes); cdecl;
 type TMudaEstadoReqCallback =  procedure(const EstadoReq  : TACBrTEFDReqEstado); cdecl;
 type TMudaEstadoRespCallback = procedure(const EstadoResp : TACBrTEFDRespEstado); cdecl;
 type TTEFCliSiTefExibeMenuCallback = procedure(const Titulo : PChar; const Opcoes : array of PChar; const OpcoesCount : Integer; var ItemSelecionado : Integer; var VoltarMenu : Boolean); cdecl;
@@ -821,7 +816,28 @@ begin
   end;
 end;
 
-Function TEF_GetResp(const tefHandle : PTEFHandle; var respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_GetReq(const tefHandle : PTEFHandle; var reqHandle : TACBrTEFDReq) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     reqHandle := tefHandle^.TEF.Req;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetResp(const tefHandle : PTEFHandle; var respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -842,7 +858,7 @@ begin
   end;
 end;
 
-Function TEF_GetRespostasPendentes(const tefHandle : PTEFHandle; var respHandle : PTEFRespostasPendentes) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_GetRespostasPendentes(const tefHandle : PTEFHandle; var respHandle : TACBrTEFDRespostasPendentes) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -1392,7 +1408,7 @@ end;
 
 {%region Req}
 
-Function TEF_Req_GetHeader(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetHeader(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1404,7 +1420,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.Header;
+     StrTmp := reqHandle.Header;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1416,7 +1432,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetHeader(const tefHandle : PTEFHandle; const Header : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetHeader(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const Header : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1426,7 +1442,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.Header := Header;
+     reqHandle.Header := Header;
      Result := 0;
   except
      on exception : Exception do
@@ -1438,7 +1454,7 @@ begin
 
 end;
 
-Function TEF_Req_GetDocumentoVinculado(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetDocumentoVinculado(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1450,7 +1466,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.DocumentoVinculado;
+     StrTmp := reqHandle.DocumentoVinculado;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1462,7 +1478,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetDocumentoVinculado(const tefHandle : PTEFHandle; const DocumentoVinculado : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetDocumentoVinculado(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const DocumentoVinculado : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1472,7 +1488,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.DocumentoVinculado := DocumentoVinculado;
+     reqHandle.DocumentoVinculado := DocumentoVinculado;
      Result := 0;
   except
      on exception : Exception do
@@ -1484,7 +1500,7 @@ begin
 
 end;
 
-Function TEF_Req_GetCMC7(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetCMC7(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1496,7 +1512,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.CMC7;
+     StrTmp := reqHandle.CMC7;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1508,7 +1524,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetCMC7(const tefHandle : PTEFHandle; const CMC7 : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetCMC7(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const CMC7 : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1518,7 +1534,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.CMC7 := CMC7;
+     reqHandle.CMC7 := CMC7;
      Result := 0;
   except
      on exception : Exception do
@@ -1530,7 +1546,7 @@ begin
 
 end;
 
-Function TEF_Req_GetDocumentoPessoa(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetDocumentoPessoa(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1542,7 +1558,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.DocumentoPessoa;
+     StrTmp := reqHandle.DocumentoPessoa;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1554,7 +1570,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetDocumentoPessoa(const tefHandle : PTEFHandle; const DocumentoPessoa : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetDocumentoPessoa(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const DocumentoPessoa : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1564,7 +1580,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.DocumentoPessoa := DocumentoPessoa;
+     reqHandle.DocumentoPessoa := DocumentoPessoa;
      Result := 0;
   except
      on exception : Exception do
@@ -1576,7 +1592,7 @@ begin
 
 end;
 
-Function TEF_Req_GetRede(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetRede(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1588,7 +1604,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.Rede;
+     StrTmp := reqHandle.Rede;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1600,7 +1616,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetRede(const tefHandle : PTEFHandle; const Rede : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetRede(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const Rede : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1610,7 +1626,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.Rede := Rede;
+     reqHandle.Rede := Rede;
      Result := 0;
   except
      on exception : Exception do
@@ -1622,7 +1638,7 @@ begin
 
 end;
 
-Function TEF_Req_GetNSU(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetNSU(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1634,7 +1650,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.NSU;
+     StrTmp := reqHandle.NSU;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1646,7 +1662,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetNSU(const tefHandle : PTEFHandle; const NSU : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetNSU(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const NSU : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1656,7 +1672,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.NSU := NSU;
+     reqHandle.NSU := NSU;
      Result := 0;
   except
      on exception : Exception do
@@ -1668,7 +1684,7 @@ begin
 
 end;
 
-Function TEF_Req_GetFinalizacao(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetFinalizacao(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1680,7 +1696,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.Finalizacao;
+     StrTmp := reqHandle.Finalizacao;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1692,7 +1708,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetFinalizacao(const tefHandle : PTEFHandle; const Finalizacao : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetFinalizacao(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const Finalizacao : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1702,7 +1718,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.Finalizacao := Finalizacao;
+     reqHandle.Finalizacao := Finalizacao;
      Result := 0;
   except
      on exception : Exception do
@@ -1714,7 +1730,7 @@ begin
 
 end;
 
-Function TEF_Req_GetBanco(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetBanco(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1726,7 +1742,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.Banco;
+     StrTmp := reqHandle.Banco;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1738,7 +1754,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetBanco(const tefHandle : PTEFHandle; const Banco : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetBanco(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const Banco : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1748,7 +1764,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.Banco := Banco;
+     reqHandle.Banco := Banco;
      Result := 0;
   except
      on exception : Exception do
@@ -1760,7 +1776,7 @@ begin
 
 end;
 
-Function TEF_Req_GetAgencia(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetAgencia(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1772,7 +1788,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.Agencia;
+     StrTmp := reqHandle.Agencia;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1784,7 +1800,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetAgencia(const tefHandle : PTEFHandle; const Agencia : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetAgencia(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const Agencia : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1794,7 +1810,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.Agencia := Agencia;
+     reqHandle.Agencia := Agencia;
      Result := 0;
   except
      on exception : Exception do
@@ -1806,7 +1822,7 @@ begin
 
 end;
 
-Function TEF_Req_GetAgenciaDC(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetAgenciaDC(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1818,7 +1834,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.AgenciaDC;
+     StrTmp := reqHandle.AgenciaDC;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1830,7 +1846,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetAgenciaDC(const tefHandle : PTEFHandle; const AgenciaDC : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetAgenciaDC(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const AgenciaDC : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1840,7 +1856,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.AgenciaDC := AgenciaDC;
+     reqHandle.AgenciaDC := AgenciaDC;
      Result := 0;
   except
      on exception : Exception do
@@ -1852,7 +1868,7 @@ begin
 
 end;
 
-Function TEF_Req_GetConta(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetConta(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1864,7 +1880,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.Conta;
+     StrTmp := reqHandle.Conta;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1876,7 +1892,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetConta(const tefHandle : PTEFHandle; const Conta : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetConta(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const Conta : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1886,7 +1902,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.Conta := Conta;
+     reqHandle.Conta := Conta;
      Result := 0;
   except
      on exception : Exception do
@@ -1898,7 +1914,7 @@ begin
 
 end;
 
-Function TEF_Req_GetContaDC(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetContaDC(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1910,7 +1926,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.ContaDC;
+     StrTmp := reqHandle.ContaDC;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1922,7 +1938,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetContaDC(const tefHandle : PTEFHandle; const ContaDC : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetContaDC(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const ContaDC : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1932,7 +1948,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.ContaDC := ContaDC;
+     reqHandle.ContaDC := ContaDC;
      Result := 0;
   except
      on exception : Exception do
@@ -1944,7 +1960,7 @@ begin
 
 end;
 
-Function TEF_Req_GetCheque(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetCheque(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -1956,7 +1972,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.Cheque;
+     StrTmp := reqHandle.Cheque;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -1968,7 +1984,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetCheque(const tefHandle : PTEFHandle; const Cheque : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetCheque(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const Cheque : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -1978,7 +1994,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.Cheque := Cheque;
+     reqHandle.Cheque := Cheque;
      Result := 0;
   except
      on exception : Exception do
@@ -1990,7 +2006,7 @@ begin
 
 end;
 
-Function TEF_Req_GetChequeDC(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Req_GetChequeDC(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2002,7 +2018,7 @@ begin
   end;
 
  try
-     StrTmp := tefHandle^.TEF.Req.ChequeDC;
+     StrTmp := reqHandle.ChequeDC;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -2014,7 +2030,7 @@ begin
   end;
 end;
 
-Function TEF_Req_SetChequeDC(const tefHandle : PTEFHandle; const ChequeDC : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetChequeDC(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const ChequeDC : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2024,7 +2040,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.ChequeDC := ChequeDC;
+     reqHandle.ChequeDC := ChequeDC;
      Result := 0;
   except
      on exception : Exception do
@@ -2037,7 +2053,7 @@ begin
 end;
 
 
-Function TEF_Req_GetID(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_GetID(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2047,7 +2063,7 @@ begin
   end;
 
   try
-     Result := tefHandle^.TEF.Req.ID;
+     Result := reqHandle.ID;
   except
      on exception : Exception do
      begin
@@ -2058,7 +2074,7 @@ begin
 
 end;
 
-Function TEF_Req_SetID(const tefHandle : PTEFHandle; const ID : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetID(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const ID : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2068,7 +2084,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.ID := ID;
+     reqHandle.ID := ID;
      Result := 0;
   except
      on exception : Exception do
@@ -2080,7 +2096,7 @@ begin
 
 end;
 
-Function TEF_Req_GetMoeda(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_GetMoeda(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2090,7 +2106,7 @@ begin
   end;
 
   try
-     Result := tefHandle^.TEF.Req.Moeda;
+     Result := reqHandle.Moeda;
   except
      on exception : Exception do
      begin
@@ -2101,7 +2117,7 @@ begin
 
 end;
 
-Function TEF_Req_SetMoeda(const tefHandle : PTEFHandle; const Moeda : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetMoeda(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const Moeda : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2111,7 +2127,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.Moeda := Moeda;
+     reqHandle.Moeda := Moeda;
      Result := 0;
   except
      on exception : Exception do
@@ -2123,7 +2139,7 @@ begin
 
 end;
 
-Function TEF_Req_GetTipoPessoa(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_GetTipoPessoa(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2133,7 +2149,7 @@ begin
   end;
 
   try
-     Result := Integer(tefHandle^.TEF.Req.TipoPessoa);
+     Result := Integer(reqHandle.TipoPessoa);
   except
      on exception : Exception do
      begin
@@ -2144,7 +2160,7 @@ begin
 
 end;
 
-Function TEF_Req_SetTipoPessoa(const tefHandle : PTEFHandle; const TipoPessoa : AnsiChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetTipoPessoa(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const TipoPessoa : AnsiChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2154,7 +2170,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.TipoPessoa := TipoPessoa;
+     reqHandle.TipoPessoa := TipoPessoa;
      Result := 0;
   except
      on exception : Exception do
@@ -2166,7 +2182,7 @@ begin
 
 end;
 
-Function TEF_Req_GetValorTotal(const tefHandle : PTEFHandle; var ValorTotal : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_GetValorTotal(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; var ValorTotal : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2176,7 +2192,7 @@ begin
   end;
 
   try
-     ValorTotal := tefHandle^.TEF.Req.ValorTotal;
+     ValorTotal := reqHandle.ValorTotal;
      Result := 0;
   except
      on exception : Exception do
@@ -2188,7 +2204,7 @@ begin
 
 end;
 
-Function TEF_Req_SetValorTotal(const tefHandle : PTEFHandle; const ValorTotal : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetValorTotal(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const ValorTotal : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2198,7 +2214,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.ValorTotal := ValorTotal;
+     reqHandle.ValorTotal := ValorTotal;
      Result := 0;
   except
      on exception : Exception do
@@ -2210,7 +2226,7 @@ begin
 
 end;
 
-Function TEF_Req_GetDataCheque(const tefHandle : PTEFHandle; var DataCheque : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_GetDataCheque(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; var DataCheque : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2220,7 +2236,7 @@ begin
   end;
 
   try
-     DataCheque := double(tefHandle^.TEF.Req.DataCheque);
+     DataCheque := double(reqHandle.DataCheque);
      Result := 0;
   except
      on exception : Exception do
@@ -2232,7 +2248,7 @@ begin
 
 end;
 
-Function TEF_Req_SetDataCheque(const tefHandle : PTEFHandle; const DataCheque : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetDataCheque(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const DataCheque : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2242,7 +2258,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.DataCheque := TDateTime(DataCheque);
+     reqHandle.DataCheque := TDateTime(DataCheque);
      Result := 0;
   except
      on exception : Exception do
@@ -2254,7 +2270,7 @@ begin
 
 end;
 
-Function TEF_Req_GetDataHoraTransacaoComprovante(const tefHandle : PTEFHandle; var DataHoraTransacaoComprovante : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_GetDataHoraTransacaoComprovante(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; var DataHoraTransacaoComprovante : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2264,7 +2280,7 @@ begin
   end;
 
   try
-     DataHoraTransacaoComprovante := double(tefHandle^.TEF.Req.DataHoraTransacaoComprovante);
+     DataHoraTransacaoComprovante := double(reqHandle.DataHoraTransacaoComprovante);
      Result := 0;
   except
      on exception : Exception do
@@ -2276,7 +2292,7 @@ begin
 
 end;
 
-Function TEF_Req_SetDataHoraTransacaoComprovante(const tefHandle : PTEFHandle; const DataHoraTransacaoComprovante : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function TEF_Req_SetDataHoraTransacaoComprovante(const tefHandle : PTEFHandle; const reqHandle : TACBrTEFDReq; const DataHoraTransacaoComprovante : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (tefHandle = nil) then
@@ -2286,7 +2302,7 @@ begin
   end;
 
   try
-     tefHandle^.TEF.Req.DataHoraTransacaoComprovante := TDateTime(DataHoraTransacaoComprovante);
+     reqHandle.DataHoraTransacaoComprovante := TDateTime(DataHoraTransacaoComprovante);
      Result := 0;
   except
      on exception : Exception do
@@ -2302,7 +2318,7 @@ end;
 
 {%region Resp}
 
-Function TEF_Resp_GetHeader(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetHeader(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2326,7 +2342,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetDocumentoVinculado(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetDocumentoVinculado(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2350,7 +2366,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetCMC7(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetCMC7(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2374,7 +2390,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetTipoPessoa(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetTipoPessoa(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2398,7 +2414,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetDocumentoPessoa(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetDocumentoPessoa(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2422,7 +2438,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetRede(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetRede(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2446,7 +2462,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetNSU(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetNSU(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2470,7 +2486,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetFinalizacao(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetFinalizacao(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2494,7 +2510,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetStatusTransacao(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetStatusTransacao(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2518,7 +2534,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetNSUTransacaoCancelada(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetNSUTransacaoCancelada(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2542,7 +2558,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetTextoEspecialOperador(const tefHandle : PTEFHandle;  const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetTextoEspecialOperador(const tefHandle : PTEFHandle;  const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2566,7 +2582,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetTextoEspecialCliente(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetTextoEspecialCliente(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2590,7 +2606,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetAutenticacao(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetAutenticacao(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2614,7 +2630,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetBanco(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetBanco(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2638,7 +2654,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetAgencia(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetAgencia(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2662,7 +2678,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetAgenciaDC(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetAgenciaDC(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2686,7 +2702,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetConta(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetConta(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2710,7 +2726,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetContaDC(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetContaDC(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2734,7 +2750,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetCheque(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetCheque(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2758,7 +2774,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetChequeDC(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetChequeDC(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2782,7 +2798,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetNomeAdministradora(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetNomeAdministradora(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2806,7 +2822,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetTrailer(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetTrailer(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2830,7 +2846,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetArqBackup(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetArqBackup(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2854,7 +2870,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetArqRespPendente(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetArqRespPendente(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2878,7 +2894,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetIndiceFPG_ECF(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetIndiceFPG_ECF(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2902,7 +2918,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetInstituicao(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetInstituicao(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2926,7 +2942,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetModalidadePagto(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetModalidadePagto(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2950,7 +2966,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetModalidadePagtoDescrita(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetModalidadePagtoDescrita(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2974,7 +2990,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetModalidadeExtenso(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetModalidadeExtenso(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2998,7 +3014,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetCodigoRedeAutorizada(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetCodigoRedeAutorizada(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -3022,7 +3038,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetID(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetID(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3042,7 +3058,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetMoeda(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetMoeda(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3062,7 +3078,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetTipoTransacao(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetTipoTransacao(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3082,7 +3098,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetCodigoAutorizacaoTransacao(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetCodigoAutorizacaoTransacao(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3102,7 +3118,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetNumeroLoteTransacao(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetNumeroLoteTransacao(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3122,7 +3138,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetTipoParcelamento(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetTipoParcelamento(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3142,7 +3158,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetQtdParcelas(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetQtdParcelas(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3162,7 +3178,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetQtdLinhasComprovante(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetQtdLinhasComprovante(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3182,7 +3198,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetOrdemPagamento(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetOrdemPagamento(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3202,7 +3218,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetTipoGP(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetTipoGP(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3222,7 +3238,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetParceladoPor(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetParceladoPor(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3242,7 +3258,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetTipoOperacao(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetTipoOperacao(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3262,7 +3278,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetCNFEnviado(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetCNFEnviado(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3285,7 +3301,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetTransacaoAprovada(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetTransacaoAprovada(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3308,7 +3324,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetDebito(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetDebito(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3331,7 +3347,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetCredito(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetCredito(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3354,7 +3370,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetValorTotal(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var ValorTotal : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetValorTotal(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var ValorTotal : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3375,7 +3391,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetValorOriginal(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var ValorOriginal : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetValorOriginal(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var ValorOriginal : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3396,7 +3412,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetSaque(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var Saque : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetSaque(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var Saque : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3417,7 +3433,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetDesconto(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var Desconto : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetDesconto(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var Desconto : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3438,7 +3454,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetValorEntradaCDC(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var ValorEntradaCDC : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetValorEntradaCDC(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var ValorEntradaCDC : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3459,7 +3475,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetDataCheque(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var DataCheque : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetDataCheque(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var DataCheque : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3480,7 +3496,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetDataHoraTransacaoHost(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var DataHoraTransacaoHost : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetDataHoraTransacaoHost(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var DataHoraTransacaoHost : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3501,7 +3517,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetDataHoraTransacaoLocal(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var DataHoraTransacaoLocal : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetDataHoraTransacaoLocal(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var DataHoraTransacaoLocal : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3522,7 +3538,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetDataPreDatado(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var DataPreDatado : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetDataPreDatado(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var DataPreDatado : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3543,7 +3559,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetDataHoraTransacaoCancelada(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var DataHoraTransacaoCancelada : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetDataHoraTransacaoCancelada(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var DataHoraTransacaoCancelada : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3564,7 +3580,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetDataHoraTransacaoComprovante(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var DataHoraTransacaoComprovante : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetDataHoraTransacaoComprovante(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var DataHoraTransacaoComprovante : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3585,7 +3601,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetDataVencimento(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var DataVencimento : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetDataVencimento(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var DataVencimento : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3606,7 +3622,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetDataEntradaCDC(const tefHandle : PTEFHandle; const respHandle : PTEFResp; var DataEntradaCDC : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetDataEntradaCDC(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; var DataEntradaCDC : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3627,7 +3643,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetImagemComprovante1aViaCount(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetImagemComprovante1aViaCount(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3647,7 +3663,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetImagemComprovante1aViaLinha(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer; const linha : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetImagemComprovante1aViaLinha(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer; const linha : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -3671,7 +3687,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetImagemComprovante2aViaCount(const tefHandle : PTEFHandle; const respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetImagemComprovante2aViaCount(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3691,7 +3707,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_GetImagemComprovante2aViaLinha(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen : Integer; const linha : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_GetImagemComprovante2aViaLinha(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen : Integer; const linha : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -3715,7 +3731,7 @@ begin
   end;
 end;
 
-Function TEF_Resp_LeInformacao(const tefHandle : PTEFHandle; const respHandle : PTEFResp; Buffer : pChar; const BufferLen, Identificacao, Sequencia  : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_Resp_LeInformacao(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDResp; Buffer : pChar; const BufferLen, Identificacao, Sequencia  : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -3744,7 +3760,7 @@ end;
 
 {%region Respostas Pendentes}
 
-Function TEF_RespostasPendentes_GetSaldoAPagar(const tefHandle : PTEFHandle; const respHandle : PTEFRespostasPendentes; var SaldoAPagar : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_RespostasPendentes_GetSaldoAPagar(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDRespostasPendentes; var SaldoAPagar : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -3767,7 +3783,7 @@ begin
   end;
 end;
 
-Function TEF_RespostasPendentes_GetItem(const tefHandle : PTEFHandle; const respPendenteHandle : PTEFRespostasPendentes; const index : Integer; var respHandle : PTEFResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_RespostasPendentes_GetItem(const tefHandle : PTEFHandle; const respPendenteHandle : TACBrTEFDRespostasPendentes; const index : Integer; var respHandle : TACBrTEFDResp) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (tefHandle = nil) then
@@ -3788,7 +3804,7 @@ begin
   end;
 end;
 
-Function TEF_RespostasPendentes_GetTotalPago(const tefHandle : PTEFHandle; const respHandle : PTEFRespostasPendentes; var TotalPago : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_RespostasPendentes_GetTotalPago(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDRespostasPendentes; var TotalPago : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -3811,7 +3827,7 @@ begin
   end;
 end;
 
-Function TEF_RespostasPendentes_GetTotalDesconto(const tefHandle : PTEFHandle; const respHandle : PTEFRespostasPendentes; var TotalDesconto : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_RespostasPendentes_GetTotalDesconto(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDRespostasPendentes; var TotalDesconto : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -3834,7 +3850,7 @@ begin
   end;
 end;
 
-Function TEF_RespostasPendentes_GetSaldoRestante(const tefHandle : PTEFHandle; const respHandle : PTEFRespostasPendentes; var SaldoRestante : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_RespostasPendentes_GetSaldoRestante(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDRespostasPendentes; var SaldoRestante : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -3857,7 +3873,7 @@ begin
   end;
 end;
 
-Function TEF_RespostasPendentes_GetCount(const tefHandle : PTEFHandle; const respHandle : PTEFRespostasPendentes) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function TEF_RespostasPendentes_GetCount(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDRespostasPendentes) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -9314,7 +9330,7 @@ TEF_SetArqLOG, TEF_GetArqLOG,
 TEF_SetExibirMsgAutenticacao, TEF_GetExibirMsgAutenticacao,
 TEF_SetPathBackup, TEF_GetPathBackup,
 TEF_SetTrocoMaximo, TEF_GetTrocoMaximo, TEF_GetAbout,
-TEF_GetResp, TEF_GetRespostasPendentes,
+TEF_GetReq, TEF_GetResp, TEF_GetRespostasPendentes,
 
 { Funções TEF }
 TEF_Inicializar, TEF_DesInicializar,
