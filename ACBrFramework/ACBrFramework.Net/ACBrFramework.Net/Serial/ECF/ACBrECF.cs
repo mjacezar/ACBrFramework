@@ -970,6 +970,12 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+        public void PreparaTEF()
+        {
+            int ret = ACBrECFInterop.ECF_PreparaTEF(this.Handle);
+            CheckResult(ret);
+        }
+
 		#endregion Métodos ECF
 
 		#region Métodos do Cupom Fiscal
