@@ -227,6 +227,9 @@ namespace ACBrFramework.TEFD
 		public static extern int TEF_SetTrocoMaximo(IntPtr tefHandle, double Troco);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_GetReq(IntPtr tefHandle, out IntPtr reqHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_GetResp(IntPtr tefHandle, out IntPtr respHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
@@ -265,85 +268,82 @@ namespace ACBrFramework.TEFD
 		#region Req
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_GetReq(IntPtr tefHandle);
+		public static extern int TEF_Req_GetHeader(IntPtr tefHandle, IntPtr reqHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetHeader(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Req_SetHeader(IntPtr tefHandle, IntPtr reqHandle, String Header);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetHeader(IntPtr tefHandle, String Header);
+		public static extern int TEF_Req_GetDocumentoVinculado(IntPtr tefHandle, IntPtr reqHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetDocumentoVinculado(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Req_SetDocumentoVinculado(IntPtr tefHandle, IntPtr reqHandle, String DocumentoVinculado);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetDocumentoVinculado(IntPtr tefHandle, String DocumentoVinculado);
+		public static extern int TEF_Req_GetCMC7(IntPtr tefHandle, IntPtr reqHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetCMC7(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Req_SetCMC7(IntPtr tefHandle, IntPtr reqHandle, String CMC7);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetCMC7(IntPtr tefHandle, String CMC7);
+		public static extern int TEF_Req_GetDocumentoPessoa(IntPtr tefHandle, IntPtr reqHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetDocumentoPessoa(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Req_SetDocumentoPessoa(IntPtr tefHandle, IntPtr reqHandle, String DocumentoPesso);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetDocumentoPessoa(IntPtr tefHandle, String DocumentoPesso);
+		public static extern int TEF_Req_GetRede(IntPtr tefHandle, IntPtr reqHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetRede(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Req_SetRede(IntPtr tefHandle, IntPtr reqHandle, String Rede);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetRede(IntPtr tefHandle, String Rede);
+		public static extern int TEF_Req_GetNSU(IntPtr tefHandle, IntPtr reqHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetNSU(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Req_SetNSU(IntPtr tefHandle, IntPtr reqHandle, String NSU);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetNSU(IntPtr tefHandle, String NSU);
+		public static extern int TEF_Req_GetFinalizacao(IntPtr tefHandle, IntPtr reqHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetFinalizacao(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+		public static extern int TEF_Req_SetFinalizacao(IntPtr tefHandle, IntPtr reqHandle, String Finalizacao);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetFinalizacao(IntPtr tefHandle, String Finalizacao);
+		public static extern int TEF_Req_GetID(IntPtr tefHandle, IntPtr reqHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetID(IntPtr tefHandle);
+		public static extern int TEF_Req_SetID(IntPtr tefHandle, IntPtr reqHandle, int ID);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetID(IntPtr tefHandle, int ID);
+		public static extern int TEF_Req_GetMoeda(IntPtr tefHandle, IntPtr reqHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetMoeda(IntPtr tefHandle);
+		public static extern int TEF_Req_SetMoeda(IntPtr tefHandle, IntPtr reqHandle, int Moeda);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetMoeda(IntPtr tefHandle, int Moeda);
+		public static extern int TEF_Req_GetTipoPessoa(IntPtr tefHandle, IntPtr reqHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetTipoPessoa(IntPtr tefHandle);
+		public static extern int TEF_Req_SetTipoPessoa(IntPtr tefHandle, IntPtr reqHandle, char TipoPessoa);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetTipoPessoa(IntPtr tefHandle, char TipoPessoa);
+		public static extern int TEF_Req_GetValorTotal(IntPtr tefHandle, IntPtr reqHandle, ref double ValorTotal);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetValorTotal(IntPtr tefHandle, ref double ValorTotal);
+		public static extern int TEF_Req_SetValorTotal(IntPtr tefHandle, IntPtr reqHandle, double ValorTotal);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetValorTotal(IntPtr tefHandle, double ValorTotal);
+		public static extern int TEF_Req_GetDataCheque(IntPtr tefHandle, IntPtr reqHandle, ref double DataCheque);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetDataCheque(IntPtr tefHandle, ref double DataCheque);
+		public static extern int TEF_Req_SetDataCheque(IntPtr tefHandle, IntPtr reqHandle, double DataCheque);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetDataCheque(IntPtr tefHandle, double DataCheque);
+		public static extern int TEF_Req_GetDataHoraTransacaoComprovante(IntPtr tefHandle, IntPtr reqHandle, ref double DataHoraTransacaoComprovante);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_GetDataHoraTransacaoComprovante(IntPtr tefHandle, ref double DataHoraTransacaoComprovante);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Req_SetDataHoraTransacaoComprovante(IntPtr tefHandle, double DataHoraTransacaoComprovante);
+		public static extern int TEF_Req_SetDataHoraTransacaoComprovante(IntPtr tefHandle, IntPtr reqHandle, double DataHoraTransacaoComprovante);
 
 		#endregion Req
 

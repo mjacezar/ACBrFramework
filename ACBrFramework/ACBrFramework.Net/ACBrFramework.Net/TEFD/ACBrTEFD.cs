@@ -466,7 +466,25 @@ namespace ACBrFramework.TEFD
 		public ACBrTEFDIdentificacao Identificacao { get; private set; }
 
 		[Browsable(false)]
-		public ACBrTEFDReq Req { get; private set; }
+		public ACBrTEFDReq Req 
+		{
+			get
+			{
+				IntPtr composedComponent;
+				int ret = ACBrTEFInterop.TEF_GetReq(this.Handle, out composedComponent);
+				CheckResult(ret);
+
+				if (composedComponent == IntPtr.Zero)
+				{
+					return null;
+				}
+				else
+				{
+					return new ACBrTEFDReq(this, composedComponent);
+				}
+
+			}
+		}
 
 		[Browsable(false)]
 		public ACBrTEFDResp Resp
@@ -477,7 +495,14 @@ namespace ACBrFramework.TEFD
 				int ret = ACBrTEFInterop.TEF_GetResp(this.Handle, out composedComponent);
 				CheckResult(ret);
 
-				return new ACBrTEFDResp(this, composedComponent);
+				if (composedComponent == IntPtr.Zero)
+				{
+					return null;
+				}
+				else
+				{
+					return new ACBrTEFDResp(this, composedComponent);
+				}
 			}
 		}
 
@@ -490,7 +515,14 @@ namespace ACBrFramework.TEFD
 				int ret = ACBrTEFInterop.TEF_GetRespostasPendentes(this.Handle, out composedComponent);
 				CheckResult(ret);
 
-				return new ACBrTEFDRespostasPendentes(this, composedComponent);
+				if (composedComponent == IntPtr.Zero)
+				{
+					return null;
+				}
+				else
+				{
+					return new ACBrTEFDRespostasPendentes(this, composedComponent);
+				}
 			}
 		}
 
@@ -706,7 +738,6 @@ namespace ACBrFramework.TEFD
 			CallCreate(ACBrTEFInterop.TEF_Create);
 
 			this.Identificacao = new ACBrTEFDIdentificacao(this);
-			this.Req = new ACBrTEFDReq(this);
 			this.TEFCliSiTef = new ACBrTEFDCliSiTef(this);
 			this.TEFDial = new ACBrTEFDDial(this);
 			this.TEFDisc = new ACBrTEFDDisc(this);
@@ -787,13 +818,24 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnComandaECFCallback(ACBrTEFDOperacaoECF Operacao, IntPtr Resp, ref int RetornoECF)
+		private void OnComandaECFCallback(ACBrTEFDOperacaoECF Operacao, IntPtr respHandle, ref int RetornoECF)
 		{
 			if (onComandaECF.IsAssigned)
 			{
-				ComandaECFEventArgs e = new ComandaECFEventArgs(Operacao, Resp);
+				ACBrTEFDResp resp;
+
+				if (respHandle == IntPtr.Zero)
+				{
+					resp = null;
+				}
+				else
+				{
+					resp = new ACBrTEFDResp(this, respHandle);
+				}
+
+				ComandaECFEventArgs e = new ComandaECFEventArgs(Operacao, resp);
 				onComandaECF.Raise(e);
-				RetornoECF = Convert.ToInt32(e.RetornoECF);
+				RetornoECF = e.RetornoECF ? 1 : 0;
 			}
 		}
 
@@ -804,7 +846,7 @@ namespace ACBrFramework.TEFD
 			{
 				ComandaECFSubtotalizaEventArgs e = new ComandaECFSubtotalizaEventArgs(Convert.ToDecimal(DescAcre));
 				onComandaECFSubtotaliza.Raise(e);
-				RetornoECF = Convert.ToInt32(e.RetornoECF);
+				RetornoECF = e.RetornoECF ? 1 : 0;
 			}
 		}
 
@@ -815,7 +857,7 @@ namespace ACBrFramework.TEFD
 			{
 				ComandaECFPagamentoEventArgs e = new ComandaECFPagamentoEventArgs(IndiceECF, Convert.ToDecimal(Valor));
 				onComandaECFPagamento.Raise(e);
-				RetornoECF = Convert.ToInt32(e.RetornoECF);
+				RetornoECF = e.RetornoECF ? 1 : 0;
 			}
 		}
 
@@ -826,7 +868,7 @@ namespace ACBrFramework.TEFD
 			{
 				ComandaECFAbreVinculadoEventArgs e = new ComandaECFAbreVinculadoEventArgs(COO, IndiceECF, Convert.ToDecimal(Valor));
 				onComandaECFAbreVinculado.Raise(e);
-				RetornoECF = Convert.ToInt32(e.RetornoECF);
+				RetornoECF = e.RetornoECF ? 1 : 0;
 			}
 		}
 
@@ -840,7 +882,7 @@ namespace ACBrFramework.TEFD
 				ComandaECFImprimeViaEventArgs e = new ComandaECFImprimeViaEventArgs(TipoRelatorio, Via, imagemComprovante);
 				onComandaECFImprimeVia.Raise(e);
 
-				RetornoECF = Convert.ToInt32(e.RetornoECF);
+				RetornoECF = e.RetornoECF ? 1 : 0;
 			}
 		}
 
@@ -859,43 +901,83 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnAntesFinalizarRequisicaoCallback(IntPtr Req)
+		private void OnAntesFinalizarRequisicaoCallback(IntPtr reqHandle)
 		{
 			if (onAntesFinalizarRequisicao.IsAssigned)
 			{
-				AntesFinalizarRequisicaoEventArgs e = new AntesFinalizarRequisicaoEventArgs(this.Req);
+				ACBrTEFDReq req;
+
+				if (reqHandle == IntPtr.Zero)
+				{
+					req = null;
+				}
+				else
+				{
+					req = new ACBrTEFDReq(this, reqHandle);
+				}
+
+				AntesFinalizarRequisicaoEventArgs e = new AntesFinalizarRequisicaoEventArgs(req);
 				onAntesFinalizarRequisicao.Raise(e);
 			}
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnDepoisConfirmarTransacoesCallback(IntPtr RespostasPendentes)
+		private void OnDepoisConfirmarTransacoesCallback(IntPtr respPendentesHandle)
 		{
 			if (onDepoisConfirmarTransacoes.IsAssigned)
 			{
-				ACBrTEFDRespostasPendentes respostasPendentes = new ACBrTEFDRespostasPendentes(this, RespostasPendentes);
+				ACBrTEFDRespostasPendentes respostasPendentes;
+
+				if (respPendentesHandle == IntPtr.Zero)
+				{
+					respostasPendentes = null;
+				}
+				else
+				{
+					respostasPendentes = new ACBrTEFDRespostasPendentes(this, respPendentesHandle);
+				}
+
 				DepoisConfirmarTransacoesEventArgs e = new DepoisConfirmarTransacoesEventArgs(respostasPendentes);
 				onDepoisConfirmarTransacoes.Raise(e);
 			}
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnAntesCancelarTransacaoCallback(IntPtr RespostaPendente)
+		private void OnAntesCancelarTransacaoCallback(IntPtr respPendenteHandle)
 		{
 			if (onAntesCancelarTransacao.IsAssigned)
 			{
-				ACBrTEFDResp resp = new ACBrTEFDResp(this, RespostaPendente);
+				ACBrTEFDResp resp;
+				if (respPendenteHandle == IntPtr.Zero)
+				{
+					resp = null;
+				}
+				else
+				{
+					resp = new ACBrTEFDResp(this, respPendenteHandle);
+				}
+
 				AntesCancelarTransacaoEventArgs e = new AntesCancelarTransacaoEventArgs(resp);
 				onAntesCancelarTransacao.Raise(e);
 			}
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnDepoisCancelarTransacoesCallback(IntPtr RespostasPendentes)
+		private void OnDepoisCancelarTransacoesCallback(IntPtr respostasPendentesHandle)
 		{
 			if (onDepoisCancelarTransacoes.IsAssigned)
 			{
-				ACBrTEFDRespostasPendentes respostasPendentes = new ACBrTEFDRespostasPendentes(this, RespostasPendentes);
+				ACBrTEFDRespostasPendentes respostasPendentes;
+
+				if (respostasPendentesHandle == IntPtr.Zero)
+				{
+					respostasPendentes = null;
+				}
+				else
+				{
+					respostasPendentes = new ACBrTEFDRespostasPendentes(this, respostasPendentesHandle);
+				}
+
 				DepoisCancelarTransacoesEventArgs e = new DepoisCancelarTransacoesEventArgs(respostasPendentes);
 				onDepoisCancelarTransacoes.Raise(e);
 			}
