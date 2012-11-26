@@ -145,7 +145,6 @@ begin
   end;
 end;
 
-
 Function LCB_Ativar(const lcbHandle: PLCBHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -318,6 +317,57 @@ begin
 
 end;
 
+Function LCB_GetUltimaLeitura(const lcbHandle: PLCBHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (lcbHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := lcbHandle^.LCB.UltimaLeitura;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        lcbHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function LCB_LerString(const lcbHandle: PLCBHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (lcbHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := lcbHandle^.LCB.LerString;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        lcbHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+
 exports
 
 { Funções }
@@ -325,11 +375,12 @@ exports
 LCB_Create, LCB_Destroy,
 LCB_GetUltimoErro,
 LCB_Ativar, LCB_Desativar,
+LCB_LerString,
 
 { Propriedades do Componente }
 
 LCB_GetPorta, LCB_SetPorta,
 LCB_GetAtivo, LCB_SetOnLeCodigo,
-LCB_GetUltimoCodigo;
+LCB_GetUltimoCodigo, LCB_GetUltimaLeitura;
 
 end.

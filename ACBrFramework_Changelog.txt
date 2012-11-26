@@ -41,6 +41,11 @@ Símbolo : Significado
 
 Changelog
 
+26/11/2012 (ACBrFramework 0.9.1.24)
+[*] Mudança na classe ACBrInteropEventHandlerBase para disparar o evento na thread do controle/form que declara o handler,
+    previnindo erros de manipulação CrossThread de componentes da UI. - Rafael Batiati 
+[+] Adicionado propriedade UltimaLeitura e LerString no componente LCB - Rafael Batiati
+
 25/11/2012 (ACBrFramework 0.9.1.24)
 [*] Mudança na classe ACBrTEFDReq adequando ao padrão do ComposedComponente suportando múltiplas instâncias. - Rafael Batiati.
 [+] Adicionado ECF_PreparaTEF - ACBrFramework e ACBrFramework.Net - Rafael Dias. 

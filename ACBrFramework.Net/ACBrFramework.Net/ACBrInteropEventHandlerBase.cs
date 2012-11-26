@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace ACBrFramework
 {
@@ -74,7 +75,16 @@ namespace ACBrFramework
 		{
 			if (eventHandler != null)
 			{
-				eventHandler.DynamicInvoke(this, e);
+				ISynchronizeInvoke synchronizeInvoke = eventHandler.Target as ISynchronizeInvoke;
+
+				if (synchronizeInvoke == null)
+				{
+					eventHandler.DynamicInvoke(this, e);
+				}
+				else
+				{
+					synchronizeInvoke.BeginInvoke(eventHandler, new object[] { this, e });
+				}
 			}
 		}
 
