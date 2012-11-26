@@ -330,12 +330,26 @@
             this.btnRFDSalvar = new System.Windows.Forms.Button();
             this.btnRFDLer = new System.Windows.Forms.Button();
             this.tagsImpressaoPage = new System.Windows.Forms.TabPage();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.label38 = new System.Windows.Forms.Label();
+            this.nudnumericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.lbllabel38 = new System.Windows.Forms.Label();
+            this.chkcheckBox8 = new System.Windows.Forms.CheckBox();
+            this.btnBtnTags = new System.Windows.Forms.Button();
+            this.lblTagsDe = new System.Windows.Forms.Label();
+            this.lstTags = new System.Windows.Forms.ListBox();
             this.reducaoZPage = new System.Windows.Forms.TabPage();
+            this.btnLerDados = new System.Windows.Forms.Button();
+            this.lstReducaoZ = new System.Windows.Forms.ListBox();
             this.menuFiscalPage = new System.Windows.Forms.TabPage();
             this.aacTabPage = new System.Windows.Forms.TabPage();
+            this.btnAACLog = new System.Windows.Forms.Button();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
             this.aacGravarArquivoButton = new System.Windows.Forms.Button();
             this.aacAbrirArquivoButton = new System.Windows.Forms.Button();
-            this.accVisualizarArquivoButton = new System.Windows.Forms.Button();
+            this.btnACCArquivo = new System.Windows.Forms.Button();
             this.aacNomeArquivoTextbox = new System.Windows.Forms.TextBox();
             this.aacNomeArquivoLabel = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -414,13 +428,11 @@
             this.aacNumSerieECFAutorizadaTextBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.aacParametrosTabPage = new System.Windows.Forms.TabPage();
-            this.aacParamsTextBox = new System.Windows.Forms.TextBox();
+            this.lstParam = new System.Windows.Forms.ListBox();
             this.ativarCheckButton = new System.Windows.Forms.CheckBox();
             this.pnlpanel1 = new System.Windows.Forms.Panel();
             this.acbrECF = new ACBrFramework.ECF.ACBrECF();
             this.acbrAAC = new ACBrFramework.AAC.ACBrAAC();
-            this.lstReducaoZ = new System.Windows.Forms.ListBox();
-            this.btnLerDados = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -439,6 +451,9 @@
             this.tabControl3.SuspendLayout();
             this.swPage.SuspendLayout();
             this.rfdIniPage.SuspendLayout();
+            this.tagsImpressaoPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudnumericUpDown3)).BeginInit();
             this.reducaoZPage.SuspendLayout();
             this.aacTabPage.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -2340,6 +2355,7 @@
             this.btnSerial.TabIndex = 14;
             this.btnSerial.Text = "Serial";
             this.btnSerial.UseVisualStyleBackColor = true;
+            this.btnSerial.Click += new System.EventHandler(this.btnSerial_Click);
             // 
             // usarAACCheckBox
             // 
@@ -2815,6 +2831,15 @@
             // 
             // tagsImpressaoPage
             // 
+            this.tagsImpressaoPage.Controls.Add(this.checkBox8);
+            this.tagsImpressaoPage.Controls.Add(this.numericUpDown3);
+            this.tagsImpressaoPage.Controls.Add(this.label38);
+            this.tagsImpressaoPage.Controls.Add(this.nudnumericUpDown3);
+            this.tagsImpressaoPage.Controls.Add(this.lbllabel38);
+            this.tagsImpressaoPage.Controls.Add(this.chkcheckBox8);
+            this.tagsImpressaoPage.Controls.Add(this.btnBtnTags);
+            this.tagsImpressaoPage.Controls.Add(this.lblTagsDe);
+            this.tagsImpressaoPage.Controls.Add(this.lstTags);
             this.tagsImpressaoPage.Location = new System.Drawing.Point(4, 22);
             this.tagsImpressaoPage.Name = "tagsImpressaoPage";
             this.tagsImpressaoPage.Padding = new System.Windows.Forms.Padding(3);
@@ -2822,6 +2847,134 @@
             this.tagsImpressaoPage.TabIndex = 5;
             this.tagsImpressaoPage.Text = "Tags de Impressao";
             this.tagsImpressaoPage.UseVisualStyleBackColor = true;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox8.Location = new System.Drawing.Point(223, 66);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(189, 17);
+            this.checkBox8.TabIndex = 8;
+            this.checkBox8.Text = "Ignorar TAGs de Formatação";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Location = new System.Drawing.Point(102, 53);
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(57, 20);
+            this.numericUpDown3.TabIndex = 7;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(99, 37);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(40, 13);
+            this.label38.TabIndex = 6;
+            this.label38.Text = "Altura";
+            // 
+            // nudnumericUpDown3
+            // 
+            this.nudnumericUpDown3.Location = new System.Drawing.Point(11, 53);
+            this.nudnumericUpDown3.Name = "nudnumericUpDown3";
+            this.nudnumericUpDown3.Size = new System.Drawing.Size(57, 20);
+            this.nudnumericUpDown3.TabIndex = 5;
+            // 
+            // lbllabel38
+            // 
+            this.lbllabel38.AutoSize = true;
+            this.lbllabel38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbllabel38.Location = new System.Drawing.Point(8, 37);
+            this.lbllabel38.Name = "lbllabel38";
+            this.lbllabel38.Size = new System.Drawing.Size(50, 13);
+            this.lbllabel38.TabIndex = 4;
+            this.lbllabel38.Text = "Largura";
+            // 
+            // chkcheckBox8
+            // 
+            this.chkcheckBox8.AutoSize = true;
+            this.chkcheckBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcheckBox8.Location = new System.Drawing.Point(223, 43);
+            this.chkcheckBox8.Name = "chkcheckBox8";
+            this.chkcheckBox8.Size = new System.Drawing.Size(157, 17);
+            this.chkcheckBox8.TabIndex = 3;
+            this.chkcheckBox8.Text = "Imprime Texto na Barra";
+            this.chkcheckBox8.UseVisualStyleBackColor = true;
+            // 
+            // btnBtnTags
+            // 
+            this.btnBtnTags.Location = new System.Drawing.Point(473, 37);
+            this.btnBtnTags.Name = "btnBtnTags";
+            this.btnBtnTags.Size = new System.Drawing.Size(144, 23);
+            this.btnBtnTags.TabIndex = 2;
+            this.btnBtnTags.Text = "Enviar Linha Gerencial";
+            this.btnBtnTags.UseVisualStyleBackColor = true;
+            // 
+            // lblTagsDe
+            // 
+            this.lblTagsDe.AutoSize = true;
+            this.lblTagsDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTagsDe.Location = new System.Drawing.Point(126, 3);
+            this.lblTagsDe.Name = "lblTagsDe";
+            this.lblTagsDe.Size = new System.Drawing.Size(422, 18);
+            this.lblTagsDe.TabIndex = 1;
+            this.lblTagsDe.Text = "Tags de Formatação de Impressão e Código de Barras";
+            // 
+            // lstTags
+            // 
+            this.lstTags.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lstTags.FormattingEnabled = true;
+            this.lstTags.Items.AddRange(new object[] {
+            "TEXTO LIVRE",
+            "Até 600 caracteres",
+            "ÁÉÍÓÚáéíóúçÇãõÃÕÊêÀà",
+            "",
+            "</linha_dupla>",
+            "",
+            "<CE>*** TAGS DE FORMATAÇÃO ***</CE>",
+            "<e>EXPANDIDO</e>",
+            "<N>Negrito</n>",
+            "<S>Sublinhado</s>",
+            "<C>CONDENSADO</C>",
+            "<i>ITALICO</I>",
+            "</linha_simples>",
+            "",
+            "<CE>*** TAGS DE CÓDIGO DE BARRAS ***</CE>",
+            "EAN 8:",
+            "<ean8>1234567</ean8>",
+            "EAN13:",
+            "<ean13>123456789012</ean13>",
+            "INT25:",
+            "<inter>1234567890</inter>",
+            "CODE39: ",
+            "<code39>ABCDE12345</code39>",
+            "CODE93:",
+            "<code93>ABC123abc</code93>",
+            "CODE128:",
+            "<code128>$-=+ABC123abc</code128>",
+            "UPCA:",
+            "<upca>12345678901</upca>",
+            "CODABAR :",
+            "<codabar>$12345</codabar>",
+            "</linha_simples>",
+            "",
+            "<CE>*** TAGS DE FORMATAÇÃO ***</CE>",
+            "<ce>NO CENTRO</CE>",
+            "<AD>A Direira</ad>",
+            "</linha_simples>",
+            "",
+            "<CE>*** TESTE DE TAGS INVÁLIDAS ***</CE>",
+            "<ce> <>tags inválidas no texto\">\">><<</CE>",
+            "<AD><da><ec></</A Direira</ad>",
+            "",
+            "</linha_dupla>"});
+            this.lstTags.Location = new System.Drawing.Point(3, 126);
+            this.lstTags.Name = "lstTags";
+            this.lstTags.Size = new System.Drawing.Size(637, 238);
+            this.lstTags.TabIndex = 0;
             // 
             // reducaoZPage
             // 
@@ -2835,6 +2988,24 @@
             this.reducaoZPage.Text = "Dados Redução Z";
             this.reducaoZPage.UseVisualStyleBackColor = true;
             // 
+            // btnLerDados
+            // 
+            this.btnLerDados.Location = new System.Drawing.Point(6, 338);
+            this.btnLerDados.Name = "btnLerDados";
+            this.btnLerDados.Size = new System.Drawing.Size(114, 23);
+            this.btnLerDados.TabIndex = 1;
+            this.btnLerDados.Text = "Ler Dados RZ";
+            this.btnLerDados.UseVisualStyleBackColor = true;
+            // 
+            // lstReducaoZ
+            // 
+            this.lstReducaoZ.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lstReducaoZ.FormattingEnabled = true;
+            this.lstReducaoZ.Location = new System.Drawing.Point(3, 3);
+            this.lstReducaoZ.Name = "lstReducaoZ";
+            this.lstReducaoZ.Size = new System.Drawing.Size(637, 329);
+            this.lstReducaoZ.TabIndex = 0;
+            // 
             // menuFiscalPage
             // 
             this.menuFiscalPage.Location = new System.Drawing.Point(4, 22);
@@ -2847,9 +3018,12 @@
             // 
             // aacTabPage
             // 
+            this.aacTabPage.Controls.Add(this.btnAACLog);
+            this.aacTabPage.Controls.Add(this.textBox12);
+            this.aacTabPage.Controls.Add(this.label39);
             this.aacTabPage.Controls.Add(this.aacGravarArquivoButton);
             this.aacTabPage.Controls.Add(this.aacAbrirArquivoButton);
-            this.aacTabPage.Controls.Add(this.accVisualizarArquivoButton);
+            this.aacTabPage.Controls.Add(this.btnACCArquivo);
             this.aacTabPage.Controls.Add(this.aacNomeArquivoTextbox);
             this.aacTabPage.Controls.Add(this.aacNomeArquivoLabel);
             this.aacTabPage.Controls.Add(this.tabControl1);
@@ -2860,9 +3034,35 @@
             this.aacTabPage.Text = "Arq.Aux.Cript.";
             this.aacTabPage.UseVisualStyleBackColor = true;
             // 
+            // btnAACLog
+            // 
+            this.btnAACLog.Location = new System.Drawing.Point(411, 322);
+            this.btnAACLog.Name = "btnAACLog";
+            this.btnAACLog.Size = new System.Drawing.Size(31, 20);
+            this.btnAACLog.TabIndex = 9;
+            this.btnAACLog.Text = "...";
+            this.btnAACLog.UseVisualStyleBackColor = true;
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(102, 322);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(303, 20);
+            this.textBox12.TabIndex = 8;
+            this.textBox12.Text = "acbr_aac_log.txt";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(19, 325);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(67, 13);
+            this.label39.TabIndex = 7;
+            this.label39.Text = "Arquivo Log:";
+            // 
             // aacGravarArquivoButton
             // 
-            this.aacGravarArquivoButton.Location = new System.Drawing.Point(476, 316);
+            this.aacGravarArquivoButton.Location = new System.Drawing.Point(536, 316);
             this.aacGravarArquivoButton.Name = "aacGravarArquivoButton";
             this.aacGravarArquivoButton.Size = new System.Drawing.Size(97, 25);
             this.aacGravarArquivoButton.TabIndex = 6;
@@ -2872,7 +3072,7 @@
             // 
             // aacAbrirArquivoButton
             // 
-            this.aacAbrirArquivoButton.Location = new System.Drawing.Point(476, 287);
+            this.aacAbrirArquivoButton.Location = new System.Drawing.Point(536, 287);
             this.aacAbrirArquivoButton.Name = "aacAbrirArquivoButton";
             this.aacAbrirArquivoButton.Size = new System.Drawing.Size(97, 25);
             this.aacAbrirArquivoButton.TabIndex = 5;
@@ -2880,15 +3080,15 @@
             this.aacAbrirArquivoButton.UseVisualStyleBackColor = true;
             this.aacAbrirArquivoButton.Click += new System.EventHandler(this.aacAbrirArquivoButton_Click);
             // 
-            // accVisualizarArquivoButton
+            // btnACCArquivo
             // 
-            this.accVisualizarArquivoButton.Location = new System.Drawing.Point(410, 296);
-            this.accVisualizarArquivoButton.Name = "accVisualizarArquivoButton";
-            this.accVisualizarArquivoButton.Size = new System.Drawing.Size(31, 20);
-            this.accVisualizarArquivoButton.TabIndex = 4;
-            this.accVisualizarArquivoButton.Text = "...";
-            this.accVisualizarArquivoButton.UseVisualStyleBackColor = true;
-            this.accVisualizarArquivoButton.Click += new System.EventHandler(this.accVisualizarArquivoButton_Click);
+            this.btnACCArquivo.Location = new System.Drawing.Point(410, 296);
+            this.btnACCArquivo.Name = "btnACCArquivo";
+            this.btnACCArquivo.Size = new System.Drawing.Size(31, 20);
+            this.btnACCArquivo.TabIndex = 4;
+            this.btnACCArquivo.Text = "...";
+            this.btnACCArquivo.UseVisualStyleBackColor = true;
+            this.btnACCArquivo.Click += new System.EventHandler(this.accVisualizarArquivoButton_Click);
             // 
             // aacNomeArquivoTextbox
             // 
@@ -2896,6 +3096,7 @@
             this.aacNomeArquivoTextbox.Name = "aacNomeArquivoTextbox";
             this.aacNomeArquivoTextbox.Size = new System.Drawing.Size(303, 20);
             this.aacNomeArquivoTextbox.TabIndex = 3;
+            this.aacNomeArquivoTextbox.Text = "arquivo_auxiliar_criptografado.txt";
             // 
             // aacNomeArquivoLabel
             // 
@@ -2948,7 +3149,7 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Location = new System.Drawing.Point(14, 111);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(552, 126);
+            this.groupBox2.Size = new System.Drawing.Size(606, 126);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dados do PAF-ECF";
@@ -2987,7 +3188,7 @@
             // 
             // aacLinguagemTextBox
             // 
-            this.aacLinguagemTextBox.Location = new System.Drawing.Point(379, 50);
+            this.aacLinguagemTextBox.Location = new System.Drawing.Point(455, 50);
             this.aacLinguagemTextBox.Name = "aacLinguagemTextBox";
             this.aacLinguagemTextBox.Size = new System.Drawing.Size(145, 20);
             this.aacLinguagemTextBox.TabIndex = 13;
@@ -2995,7 +3196,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(320, 53);
+            this.label9.Location = new System.Drawing.Point(396, 53);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(59, 13);
             this.label9.TabIndex = 10;
@@ -3019,14 +3220,14 @@
             // 
             // aacMD5TextBox
             // 
-            this.aacMD5TextBox.Location = new System.Drawing.Point(385, 73);
+            this.aacMD5TextBox.Location = new System.Drawing.Point(461, 73);
             this.aacMD5TextBox.Name = "aacMD5TextBox";
             this.aacMD5TextBox.Size = new System.Drawing.Size(139, 20);
             this.aacMD5TextBox.TabIndex = 15;
             // 
             // aacVersaoTextBox
             // 
-            this.aacVersaoTextBox.Location = new System.Drawing.Point(379, 26);
+            this.aacVersaoTextBox.Location = new System.Drawing.Point(455, 26);
             this.aacVersaoTextBox.Name = "aacVersaoTextBox";
             this.aacVersaoTextBox.Size = new System.Drawing.Size(145, 20);
             this.aacVersaoTextBox.TabIndex = 11;
@@ -3041,7 +3242,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(339, 29);
+            this.label2.Location = new System.Drawing.Point(415, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 4;
@@ -3050,7 +3251,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(326, 76);
+            this.label6.Location = new System.Drawing.Point(402, 76);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 3;
@@ -3077,14 +3278,14 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(14, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(552, 85);
+            this.groupBox1.Size = new System.Drawing.Size(606, 85);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados da Software House";
             // 
             // aacIMTextBox
             // 
-            this.aacIMTextBox.Location = new System.Drawing.Point(391, 51);
+            this.aacIMTextBox.Location = new System.Drawing.Point(455, 51);
             this.aacIMTextBox.Name = "aacIMTextBox";
             this.aacIMTextBox.Size = new System.Drawing.Size(145, 20);
             this.aacIMTextBox.TabIndex = 8;
@@ -3098,7 +3299,7 @@
             // 
             // aacCNPJTextBox
             // 
-            this.aacCNPJTextBox.Location = new System.Drawing.Point(391, 25);
+            this.aacCNPJTextBox.Location = new System.Drawing.Point(455, 25);
             this.aacCNPJTextBox.Name = "aacCNPJTextBox";
             this.aacCNPJTextBox.Size = new System.Drawing.Size(145, 20);
             this.aacCNPJTextBox.TabIndex = 6;
@@ -3113,7 +3314,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(351, 28);
+            this.label5.Location = new System.Drawing.Point(415, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 13);
             this.label5.TabIndex = 4;
@@ -3131,7 +3332,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(304, 54);
+            this.label3.Location = new System.Drawing.Point(368, 54);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 13);
             this.label3.TabIndex = 2;
@@ -3646,7 +3847,7 @@
             // 
             // aacParametrosTabPage
             // 
-            this.aacParametrosTabPage.Controls.Add(this.aacParamsTextBox);
+            this.aacParametrosTabPage.Controls.Add(this.lstParam);
             this.aacParametrosTabPage.Location = new System.Drawing.Point(4, 22);
             this.aacParametrosTabPage.Name = "aacParametrosTabPage";
             this.aacParametrosTabPage.Size = new System.Drawing.Size(626, 243);
@@ -3654,13 +3855,14 @@
             this.aacParametrosTabPage.Text = "Parametros";
             this.aacParametrosTabPage.UseVisualStyleBackColor = true;
             // 
-            // aacParamsTextBox
+            // lstParam
             // 
-            this.aacParamsTextBox.Location = new System.Drawing.Point(14, 14);
-            this.aacParamsTextBox.Multiline = true;
-            this.aacParamsTextBox.Name = "aacParamsTextBox";
-            this.aacParamsTextBox.Size = new System.Drawing.Size(552, 145);
-            this.aacParamsTextBox.TabIndex = 0;
+            this.lstParam.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstParam.FormattingEnabled = true;
+            this.lstParam.Location = new System.Drawing.Point(0, 0);
+            this.lstParam.Name = "lstParam";
+            this.lstParam.Size = new System.Drawing.Size(626, 243);
+            this.lstParam.TabIndex = 0;
             // 
             // ativarCheckButton
             // 
@@ -3688,7 +3890,7 @@
             // 
             this.acbrECF.AAC = null;
             this.acbrECF.AguardaImpressao = false;
-            this.acbrECF.ArqLOG = "";
+            this.acbrECF.ArqLOG = "acbrlog.txt";
             this.acbrECF.ComandoLog = "ComprovantesNaoFiscais";
             this.acbrECF.DecimaisPreco = 3;
             this.acbrECF.DecimaisQtd = 3;
@@ -3732,28 +3934,16 @@
             // 
             // acbrAAC
             // 
+            this.acbrAAC.ArqLOG = "acbr_aac_log.txt";
+            this.acbrAAC.CriarBAK = true;
+            this.acbrAAC.EfetuarFlush = true;
+            this.acbrAAC.GravarConfigApp = true;
+            this.acbrAAC.GravarDadosPAF = true;
+            this.acbrAAC.GravarDadosSH = true;
+            this.acbrAAC.GravarTodosECFs = true;
             this.acbrAAC.NomeArquivoAuxiliar = "";
-            this.acbrAAC.NomeArquivoLog = "";
-            this.acbrAAC.Parametros = "";
+            this.acbrAAC.Parametros = new string[0];
             this.acbrAAC.OnGetChave += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrAAC_OnGetChave);
-            // 
-            // lstReducaoZ
-            // 
-            this.lstReducaoZ.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lstReducaoZ.FormattingEnabled = true;
-            this.lstReducaoZ.Location = new System.Drawing.Point(3, 3);
-            this.lstReducaoZ.Name = "lstReducaoZ";
-            this.lstReducaoZ.Size = new System.Drawing.Size(637, 329);
-            this.lstReducaoZ.TabIndex = 0;
-            // 
-            // btnLerDados
-            // 
-            this.btnLerDados.Location = new System.Drawing.Point(6, 338);
-            this.btnLerDados.Name = "btnLerDados";
-            this.btnLerDados.Size = new System.Drawing.Size(114, 23);
-            this.btnLerDados.TabIndex = 1;
-            this.btnLerDados.Text = "Ler Dados RZ";
-            this.btnLerDados.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -3767,6 +3957,7 @@
             this.Controls.Add(this.pnlpanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Demo ECF - ACBrFramework.NET";
@@ -3795,6 +3986,10 @@
             this.swPage.ResumeLayout(false);
             this.swPage.PerformLayout();
             this.rfdIniPage.ResumeLayout(false);
+            this.tagsImpressaoPage.ResumeLayout(false);
+            this.tagsImpressaoPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudnumericUpDown3)).EndInit();
             this.reducaoZPage.ResumeLayout(false);
             this.aacTabPage.ResumeLayout(false);
             this.aacTabPage.PerformLayout();
@@ -3818,7 +4013,6 @@
             this.aacECFsTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.aacECFsAutorizadaDataGridView)).EndInit();
             this.aacParametrosTabPage.ResumeLayout(false);
-            this.aacParametrosTabPage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3918,7 +4112,6 @@
         private System.Windows.Forms.TabPage aacAplicacoesEspeciaisTabPage;
         private System.Windows.Forms.TabPage aacCriteriosUFTabPage;
         private System.Windows.Forms.TabPage aacParametrosTabPage;
-        private System.Windows.Forms.TextBox aacParamsTextBox;
         private System.Windows.Forms.CheckBox aacImprimeDAVDiscFormCheckBox;
         private System.Windows.Forms.CheckBox aacImpressoraNaoFiscalProdCheckBox;
         private System.Windows.Forms.CheckBox aacBalancaCheckBox;
@@ -3953,7 +4146,7 @@
 		private System.Windows.Forms.ToolStripMenuItem dAVToolStripMenuItem;
 		private System.Windows.Forms.Button aacGravarArquivoButton;
 		private System.Windows.Forms.Button aacAbrirArquivoButton;
-		private System.Windows.Forms.Button accVisualizarArquivoButton;
+		private System.Windows.Forms.Button btnACCArquivo;
 		private System.Windows.Forms.TextBox aacNomeArquivoTextbox;
         private System.Windows.Forms.Label aacNomeArquivoLabel;
         private System.Windows.Forms.TabPage cupomPage;
@@ -4218,6 +4411,19 @@
         private System.Windows.Forms.TextBox txttextBox3;
         private System.Windows.Forms.Button btnLerDados;
         private System.Windows.Forms.ListBox lstReducaoZ;
+        private System.Windows.Forms.ListBox lstTags;
+        private System.Windows.Forms.Label lblTagsDe;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.NumericUpDown nudnumericUpDown3;
+        private System.Windows.Forms.Label lbllabel38;
+        private System.Windows.Forms.CheckBox chkcheckBox8;
+        private System.Windows.Forms.Button btnBtnTags;
+        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.Button btnAACLog;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.ListBox lstParam;
     }
 }
 

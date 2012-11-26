@@ -41,6 +41,15 @@ Símbolo : Significado
 
 Changelog
 
+26/11/2012 (ACBrFramework 0.9.1.26)
+[+] Adicionado propriedade AAC_GetCriarBAK, AAC_SetCriarBAK - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade AAC_GetEfetuarFlush, AAC_SetEfetuarFlush - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade AAC_GetGravarConfigApp, AAC_SetGravarConfigApp - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade AAC_GetGravarDadosPAF, AAC_SetGravarDadosPAF - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade AAC_GetGravarDadosSH, AAC_SetGravarDadosSH - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade AAC_GetGravarTodosECFs, AAC_SetGravarTodosECFs - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[*] Melhorado a propriedade AAC_GetParams - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+
 26/11/2012 (ACBrFramework 0.9.1.25)
 [*] Mudança na classe ACBrInteropEventHandlerBase para disparar o evento na thread do controle/form que declara o handler,
     previnindo erros de manipulação CrossThread de componentes da UI. - ACBrFramework.Net - Rafael Batiati. 

@@ -47,6 +47,7 @@ end;
 
 implementation
 
+{%region Constructor/Destructor/Erro}
 {
 PADRONIZAÇÃO DAS FUNÇÕES:
 
@@ -146,7 +147,9 @@ begin
   end;
 end;
 
-/////////////////////////////////FUNÇÕES E PROPRIEDADES DO AAC///////////////////////////////////////////////////////
+{%endregion}
+
+{%region Propriedades do AAC}
 
 Function AAC_GetArqLOG(const aacHandle: PAACHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -193,6 +196,274 @@ begin
      end
   end;
 
+end;
+
+Function AAC_GetCriarBAK(const aacHandle: PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if aacHandle^.AAC.CriarBAK then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_SetCriarBAK(const aacHandle: PAACHandle; const value : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.CriarBAK := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_GetEfetuarFlush(const aacHandle: PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if aacHandle^.AAC.EfetuarFlush then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_SetEfetuarFlush(const aacHandle: PAACHandle; const value : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.EfetuarFlush := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_GetGravarConfigApp(const aacHandle: PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if aacHandle^.AAC.GravarConfigApp then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function AAC_SetGravarConfigApp(const aacHandle: PAACHandle; const value : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.GravarConfigApp := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function AAC_GetGravarDadosPAF(const aacHandle: PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if aacHandle^.AAC.GravarDadosPAF then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function AAC_SetGravarDadosPAF(const aacHandle: PAACHandle; const value : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.GravarDadosPAF := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function AAC_GetGravarDadosSH(const aacHandle: PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if aacHandle^.AAC.GravarDadosSH then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function AAC_SetGravarDadosSH(const aacHandle: PAACHandle; const value : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.GravarDadosSH := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function AAC_GetGravarTodosECFs(const aacHandle: PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if aacHandle^.AAC.GravarTodosECFs then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function AAC_SetGravarTodosECFs(const aacHandle: PAACHandle; const value : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.GravarTodosECFs := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
 end;
 
 Function AAC_GetNomeArquivoAux(const aacHandle: PAACHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -242,7 +513,7 @@ begin
 
 end;
 
-Function AAC_GetParams(const aacHandle: PAACHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function AAC_GetParams(const aacHandle: PAACHandle; Buffer : pChar; const BufferLen, index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -254,7 +525,7 @@ begin
   end;
 
  try
-     StrTmp := aacHandle^.AAC.Params.Text;
+     StrTmp := aacHandle^.AAC.Params[Index];
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
   except
@@ -267,7 +538,32 @@ begin
 
 end;
 
-Function AAC_SetParams(const aacHandle: PAACHandle; const Params : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function AAC_GetParamsCount(const aacHandle: PAACHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := aacHandle^.AAC.Params.Count;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_SetParams(const aacHandle: PAACHandle; const Params : array of pChar; const count : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  i  : Integer;
 begin
 
   if (aacHandle = nil) then
@@ -277,7 +573,11 @@ begin
   end;
 
   try
-     aacHandle^.AAC.Params.Text := Params;
+     aacHandle^.AAC.Params.Clear;
+     for i := 0 to count do
+     begin
+        aacHandle^.AAC.Params.Add(Params[i]);
+     end;
      Result := 0;
   except
      on exception : Exception do
@@ -327,6 +627,10 @@ begin
   end;
 
 end;
+
+{%endregion}
+
+{%region Metodos do AAC}
 
 Function AAC_AbrirArquivo(const aacHandle: PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
@@ -420,7 +724,9 @@ begin
 
 end;
 
-// Dados de ECF autorizados
+{%endregion}
+
+{%region Dados de ECF autorizados}
 
 Function AAC_IdentPaf_ECFsAutorizados_Clear(const aacHandle: PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
@@ -536,7 +842,9 @@ begin
 
 end;
 
-// Dados de Outros Arquivos
+{%endregion}
+
+{%region Dados de Outros Arquivos}
 
 Function AAC_IdentPaf_OutrosArquivos_Clear(const aacHandle: PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
@@ -638,7 +946,9 @@ begin
 
 end;
 
-//Dados da identificação do PAF
+{%endregion}
+
+{%region Dados da identificação do PAF}
 
 Function AAC_IdentPaf_GetNumeroLaudo (const aacHandle: PaacHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -734,8 +1044,9 @@ begin
 
 end;
 
+{%endregion}
 
-///////DADOS DE NÃO CONCOMITÂNCIA
+{%region DADOS DE NÃO CONCOMITÂNCIA}
 
 Function AAC_IdentPaf_Paf_GetRealizaPreVenda(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
@@ -995,7 +1306,10 @@ begin
 
 end;
 
-///////DADOS DE FUNCIONALIDADE
+{%endregion}
+
+{%region DADOS DE FUNCIONALIDADE}
+
 Function AAC_IdentPaf_Paf_GetTipoFuncionamento(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -1126,7 +1440,10 @@ begin
 
 end;
 
-//////DADOS DO APLICATIVO
+{%endregion}
+
+{%region DADOS DO APLICATIVO}
+
 Function AAC_IdentPaf_Paf_GetNome(const aacHandle: PaacHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
@@ -1456,7 +1773,9 @@ begin
 
 end;
 
-//////DADOS DE APLICAÇÕES ESPECIAIS
+{%endregion}
+
+{%region DADOS DE APLICAÇÕES ESPECIAIS}
 
 Function AAC_IdentPaf_Paf_GetIndiceTecnicoProd(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
@@ -1716,7 +2035,9 @@ begin
 
 end;
 
-/////// CRITÉRIOS POR UF
+{%endregion}
+
+{%region CRITÉRIOS POR UF }
 
 Function AAC_IdentPaf_Paf_GetTotalizaValoresLista(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
@@ -2019,7 +2340,9 @@ begin
 
 end;
 
-////////DADOS DA SOFTWARE HOUSE
+{%endregion}
+
+{%region DADOS DA SOFTWARE HOUSE}
 
 Function AAC_IdentPaf_Empresa_GetCNPJ(const aacHandle: PaacHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -2538,7 +2861,10 @@ begin
 
 end;
 
-{ eventos }
+{%endregion}
+
+{%region Eventos}
+
 procedure TEventHandlers.OnGetChave(var Chave: AnsiString);
 begin
   if (Length(ChaveCriptografia) > 0) then
@@ -2579,11 +2905,7 @@ begin
 
 end;
 
-
-/////////////FIM IDENTIFICAÇÃO PAF
-
-/////////////////////////////////FIM PROPRIEDADES DO AAC///////////////////////////////////////////////////
-
+{%endregion}
 
 exports
 
@@ -2596,9 +2918,17 @@ AAC_GetUltimoErro,
 
 AAC_GetNomeArquivoAux, AAC_SetNomeArquivoAux,
 AAC_AtualizarValorGT, AAC_VerificarGTECF,
-AAC_GetParams, AAC_SetParams,
+AAC_GetParams, AAC_SetParams, AAC_GetParamsCount,
 AAC_GetChave,AAC_SetChave,
 AAC_GetArqLOG, AAC_SetArqLOG,
+
+AAC_GetCriarBAK, AAC_SetCriarBAK,
+AAC_GetEfetuarFlush, AAC_SetEfetuarFlush,
+AAC_GetGravarConfigApp, AAC_SetGravarConfigApp,
+AAC_GetGravarDadosPAF, AAC_SetGravarDadosPAF,
+AAC_GetGravarDadosSH, AAC_SetGravarDadosSH,
+AAC_GetGravarTodosECFs, AAC_SetGravarTodosECFs,
+
 AAC_IdentPaf_GetNumeroLaudo, AAC_IdentPaf_SetNumeroLaudo,
 AAC_IdentPaf_GetVersaoER, AAC_IdentPaf_SetVersaoER,
 

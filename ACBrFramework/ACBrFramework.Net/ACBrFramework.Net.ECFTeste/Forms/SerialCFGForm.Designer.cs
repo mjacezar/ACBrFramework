@@ -1,4 +1,4 @@
-﻿namespace ACBrFramework.TEFDTeste
+﻿namespace ACBrFramework.ECFTeste
 {
     partial class SerialCFGForm
     {
