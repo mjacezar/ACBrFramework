@@ -72,6 +72,18 @@ namespace ACBrFramework
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int DEV_SetTimeOut(IntPtr ecfHandle, int timeOut);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int DEV_GetMaxBandwidth(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int DEV_SetMaxBandwidth(IntPtr ecfHandle, int maxBandwidth);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int DEV_GetProcessMessages(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int DEV_SetProcessMessages(IntPtr ecfHandle, bool processMessages);
+
 		#endregion ACBrDeviceInterop
 	}
 }

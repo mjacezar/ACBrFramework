@@ -248,6 +248,31 @@ end;
 
 {%region Funções mapeando as propriedades do componente }
 
+Function ECF_GetAbout(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := ecfHandle^.ECF.About;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 Function ECF_GetModelo(const ecfHandle: PECFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -381,6 +406,49 @@ begin
 
 end;
 
+Function ECF_GetPaginaDeCodigo(const ecfHandle: PECFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := ecfHandle^.ECF.PaginaDeCodigo;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_SetPaginaDeCodigo(const ecfHandle: PECFHandle; const PaginaDeCodigo : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.PaginaDeCodigo := PaginaDeCodigo;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 Function ECF_GetIntervaloAposComando(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -500,6 +568,138 @@ begin
 
   try
      ecfHandle^.ECF.GavetaSinalInvertido := GavetaSinalInvertido;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetArredondaPorQtd(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if ecfHandle^.ECF.ArredondaPorQtd then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetArredondaPorQtd(const ecfHandle: PECFHandle; const ArredondaPorQtd : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.ArredondaPorQtd  := ArredondaPorQtd;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetArredondaItemMFD(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if ecfHandle^.ECF.ArredondaItemMFD then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetArredondaItemMFD(const ecfHandle: PECFHandle; const ArredondaItemMFD : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.ArredondaItemMFD  := ArredondaItemMFD;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetIgnorarTagsFormatacao(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if ecfHandle^.ECF.IgnorarTagsFormatacao then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetIgnorarTagsFormatacao(const ecfHandle: PECFHandle; const IgnorarTagsFormatacao : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.IgnorarTagsFormatacao  := IgnorarTagsFormatacao;
      Result := 0;
   except
      on exception : Exception do
@@ -5579,7 +5779,7 @@ ECF_GetTimeOut, ECF_SetTimeOut,
 ECF_GetAtivo,
 
 { Propriedades do Componente }
-ECF_GetArqLOG, ECF_SetArqLOG,
+ECF_GetAbout, ECF_GetArqLOG, ECF_SetArqLOG,
 
 ECF_GetModelo, ECF_SetModelo, ECF_GetMaxLinhasBuffer, ECF_SetMaxLinhasBuffer,
 
@@ -5601,10 +5801,12 @@ ECF_GetTotalCancelamentosISSQN, ECF_GetTotalDescontosISSQN,
 ECF_GetTotalAcrescimosISSQN, ECF_GetTotalSubstituicaoTributariaISSQN,
 ECF_GetTotalNaoTributadoISSQN, ECF_GetTotalIsencaoISSQN, ECF_GetTotalNaoFiscal,
 
-ECF_GetNumUltItem,
+ECF_GetNumUltItem, ECF_GetArredondaPorQtd, ECF_SetArredondaPorQtd,
+ECF_GetArredondaItemMFD, ECF_SetArredondaItemMFD, ECF_GetIgnorarTagsFormatacao, ECF_SetIgnorarTagsFormatacao,
 
 ECF_GetEmLinha, ECF_GetPoucoPapel, ECF_GetEstado, ECF_GetHorarioVerao, ECF_GetArredonda,
 ECF_GetTermica, ECF_GetMFD, ECF_GetMFAdicional, ECF_GetIdentificaConsumidorRodape,
+ECF_GetPaginaDeCodigo, ECF_SetPaginaDeCodigo,
 
 ECF_GetSubTotal, ECF_GetTotalPago, ECF_GetGavetaAberta,
 

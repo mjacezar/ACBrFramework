@@ -340,6 +340,9 @@ namespace ACBrFramework.ECF
 		#region Propriedades do Componente
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetAbout(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetModelo(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
@@ -383,6 +386,30 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetAguardaImpressao(IntPtr ecfHandle, bool aguardaImpressao);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetArredondaPorQtd(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetArredondaPorQtd(IntPtr ecfHandle, bool arredonda);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetArredondaItemMFD(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetArredondaItemMFD(IntPtr ecfHandle, bool arredonda);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetIgnorarTagsFormatacao(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetIgnorarTagsFormatacao(IntPtr ecfHandle, bool ignorar);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetPaginaDeCodigo(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetPaginaDeCodigo(IntPtr ecfHandle, int pagina);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetModeloStr(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
