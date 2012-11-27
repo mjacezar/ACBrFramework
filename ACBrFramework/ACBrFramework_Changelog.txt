@@ -41,6 +41,15 @@ Símbolo : Significado
 
 Changelog
 
+26/11/2012 (ACBrFramework 0.9.1.27)
+[+] Adicionado propriedade DEV_GetProcessMessages, DEV_SetProcessMessages - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade DEV_GetMaxBandwidth, DEV_SetMaxBandwidth - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_GetArredondaPorQtd, ECF_SetArredondaPorQtd - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_GetArredondaItemMFD, ECF_SetArredondaItemMFD - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_GetIgnorarTagsFormatacao, ECF_SetIgnorarTagsFormatacao - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_GetPaginaDeCodigo, ECF_SetPaginaDeCodigo - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_GetAbout - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+
 26/11/2012 (ACBrFramework 0.9.1.26)
 [+] Adicionado propriedade AAC_GetCriarBAK, AAC_SetCriarBAK - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [+] Adicionado propriedade AAC_GetEfetuarFlush, AAC_SetEfetuarFlush - ACBrFramework e ACBrFramework.Net - Rafael Dias.

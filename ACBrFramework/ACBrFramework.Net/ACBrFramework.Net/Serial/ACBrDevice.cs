@@ -121,6 +121,30 @@
 			}
 		}
 
+		public int MaxBandwidth
+		{
+			get
+			{
+				return GetInt32(ACBrDeviceInterop.DEV_GetMaxBandwidth);
+			}
+			set
+			{
+				SetInt32(ACBrDeviceInterop.DEV_SetMaxBandwidth, value);
+			}
+		}
+
+		public bool ProcessMessages
+		{
+			get
+			{
+				return GetBool(ACBrDeviceInterop.DEV_GetProcessMessages);
+			}
+			set
+			{
+				SetBool(ACBrDeviceInterop.DEV_SetProcessMessages, value);
+			}
+		}
+
 		#endregion Properties
 	}
 }

@@ -106,9 +106,6 @@ namespace ACBrFramework.ECFTeste
 			aacCupomManiaCheckBox.Checked = acbrAAC.IdentPaf.Paf.CupomMania;
 			aacMinasLegalCheckBox.Checked = acbrAAC.IdentPaf.Paf.MinasLegal;
 
-			//Dados parametros
-			aacParamsTextBox.Text = acbrAAC.Parametros;
-
 			//Dados ECFs autorizadas
 			int numeroEcfs = acbrAAC.IdentPaf.ECFsAutorizados.Count;
 
@@ -1231,6 +1228,11 @@ namespace ACBrFramework.ECFTeste
 		}
 
 		#endregion Eventos
+
+		private void checkBox3_CheckedChanged(object sender, EventArgs e)
+		{
+
+		}
 
 		#endregion Event Handlers
 	}

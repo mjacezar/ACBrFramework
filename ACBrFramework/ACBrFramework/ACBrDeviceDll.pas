@@ -416,6 +416,95 @@ begin
 
 end;
 
+Function DEV_GetMaxBandwidth(const deviceHandle: PDeviceHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (deviceHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := GetDevice(deviceHandle).MaxBandwidth;
+  except
+     on exception : Exception do
+     begin
+        deviceHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function DEV_SetMaxBandwidth(const deviceHandle: PDeviceHandle; const MaxBandwidth : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (deviceHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     GetDevice(deviceHandle).MaxBandwidth := MaxBandwidth;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        deviceHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function DEV_GetProcessMessages(const deviceHandle: PDeviceHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (deviceHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if GetDevice(deviceHandle).ProcessMessages then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        deviceHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function DEV_SetProcessMessages(const deviceHandle: PDeviceHandle; const value : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (deviceHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     GetDevice(deviceHandle).ProcessMessages := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        deviceHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 Function GetDevice(const deviceHandle: PDeviceHandle) : TACBrDevice;
 begin
 
@@ -439,7 +528,9 @@ DEV_GetStopBits, DEV_SetStopBits,
 DEV_GetHandShake, DEV_SetHandShake,
 DEV_GetHardFlow, DEV_SetHardFlow,
 DEV_GetSoftFlow, DEV_SetSoftFlow,
-DEV_GetTimeOut, DEV_SetTimeOut;
+DEV_GetTimeOut, DEV_SetTimeOut,
+DEV_GetProcessMessages, DEV_SetProcessMessages,
+DEV_GetMaxBandwidth, DEV_SetMaxBandwidth;
 
 
 end.

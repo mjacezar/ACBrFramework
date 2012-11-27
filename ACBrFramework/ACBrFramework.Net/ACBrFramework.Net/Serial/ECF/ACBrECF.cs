@@ -123,6 +123,67 @@ namespace ACBrFramework.ECF
 		}
 
 		[Category("Propriedades")]
+		public bool ArredondaPorQtd
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetArredondaPorQtd);
+			}
+			set
+			{
+				SetBool(ACBrECFInterop.ECF_SetArredondaPorQtd, value);
+			}
+		}
+
+		[Category("Propriedades")]
+		public bool ArredondaItemMFD
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetArredondaItemMFD);
+			}
+			set
+			{
+				SetBool(ACBrECFInterop.ECF_SetArredondaItemMFD, value);
+			}
+		}
+
+		[Category("Propriedades")]
+		public bool IgnorarTagsFormatacao
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetIgnorarTagsFormatacao);
+			}
+			set
+			{
+				SetBool(ACBrECFInterop.ECF_SetIgnorarTagsFormatacao, value);
+			}
+		}
+
+		[Category("Propriedades")]
+		public int PaginaDeCodigo
+		{
+			get
+			{
+				return GetInt32(ACBrECFInterop.ECF_GetPaginaDeCodigo);
+			}
+			set
+			{
+				SetInt32(ACBrECFInterop.ECF_SetPaginaDeCodigo, value);
+			}
+		}
+
+		[Category("Propriedades")]
+		public string About
+		{
+			get
+			{
+				return string.Format("ACBr: {0} ACBrFramework: {1}", GetString(ACBrECFInterop.ECF_GetAbout), this.GetType().Assembly.GetName().Version);
+			}
+		}
+
+		[Category("Propriedades")]
 		public string ArqLOG
 		{
 			get
