@@ -41,6 +41,9 @@ Símbolo : Significado
 
 Changelog
 
+27/11/2012 (ACBrFramework 0.9.1.27)
+[-] Corrigido bug no SetStringArray no ACBrInteropBase no ACBrFramework.Net - Rafael Batiati
+
 26/11/2012 (ACBrFramework 0.9.1.27)
 [+] Adicionado propriedade DEV_GetProcessMessages, DEV_SetProcessMessages - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [+] Adicionado propriedade DEV_GetMaxBandwidth, DEV_SetMaxBandwidth - ACBrFramework e ACBrFramework.Net - Rafael Dias.
