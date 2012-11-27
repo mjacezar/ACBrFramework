@@ -135,10 +135,14 @@ namespace ACBrFramework
 
 		protected void SetStringArray(SetComposedArrayStringEntryPointDelegate entryPoint, string[] value)
 		{
-			for (int i = 0; i < value.Length; i++)
-				value[i] = ToUTF8(value[i]);
+			string[] array = new string[value.Length];
 
-			int ret = entryPoint(Handle, composedHandle, value, value.Length);
+			for (int i = 0; i < value.Length; i++)
+			{
+				array[i] = ToUTF8(value[i]);
+			}
+
+			int ret = entryPoint(Handle, composedHandle, array, array.Length);
 			CheckResult(ret);
 		}
 

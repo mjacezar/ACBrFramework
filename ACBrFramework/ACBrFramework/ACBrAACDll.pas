@@ -574,7 +574,7 @@ begin
 
   try
      aacHandle^.AAC.Params.Clear;
-     for i := 0 to count do
+     for i := 0 to count - 1 do
      begin
         aacHandle^.AAC.Params.Add(Params[i]);
      end;

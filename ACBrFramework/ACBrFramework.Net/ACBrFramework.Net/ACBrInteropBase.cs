@@ -130,12 +130,14 @@ namespace ACBrFramework
 
 		protected void SetStringArray(SetArrayStringEntryPointDelegate entryPoint, string[] value)
 		{
+			string[] array = new string[value.Length];
+
 			for (int i = 0; i < value.Length; i++)
 			{
-				value[i] = ToUTF8(value[i]);
+				array[i] = ToUTF8(value[i]);
 			}
 
-			int ret = entryPoint(Handle, value, value.Length);
+			int ret = entryPoint(Handle, array, array.Length);
 			CheckResult(ret);
 		}
 
