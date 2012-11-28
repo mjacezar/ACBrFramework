@@ -196,7 +196,7 @@ namespace ACBrFramework.ECFTeste
 			acbrAAC.IdentPaf.Paf.MinasLegal = aacMinasLegalCheckBox.Checked;
 
 			//Dados parametros
-            lstParam.Items.CopyTo(acbrAAC.Parametros, 0);
+            lstParam.Items.CopyTo(acbrAAC.Params, 0);
 
 			//Dados ECFs autorizadas
 			//ACBrDll.TECFAutorizado ecfAutorizado;
@@ -848,6 +848,38 @@ namespace ACBrFramework.ECFTeste
 
 		#region Event Handlers
 
+        #region Eventos
+
+        private void acbrAAC_OnGetChave(object sender, ChaveEventArgs e)
+        {
+            e.Chave = "-----BEGIN RSA PRIVATE KEY-----" + Environment.NewLine +
+                       "MIICXwIBAAKBgQC+TZjfcw/a/SovoqQPOW5bbKn4CQw4DeZJA3Y9vJrYHKN4aCQv" + Environment.NewLine +
+                       "z0i3AG9kGdsTSZdZ/clh4xv6tUwPsBdZJHrm21gH7wN/zKLTvXbs+i3x7U00ElCB" + Environment.NewLine +
+                       "YyZ8BOXJWVMuye0UvSz7p4JwSopugzbjaImIGy+5LvgcjUCn3OZzWpwYWQIDAQAB" + Environment.NewLine +
+                       "AoGBAKAycEtB8An37ghVkGfkf7rkmZxb+XZCdSXnjSThXTQpv46/lB7PDrZG3n5U" + Environment.NewLine +
+                       "qa/t1kQCOQF3DnmZHqNiJ/V5mR7ApbciQj4WYVLkMCgltru3MmzIUQ9IiLtAgaCv" + Environment.NewLine +
+                       "uHc0MAzt/OWgQ93uFnLf4ubp4+2PTHiiIChv2m78s605wX2lAkEA+3pPsPdXcaOe" + Environment.NewLine +
+                       "7T7C4hn1qg93ksN96UutB1APF3YAjWVWuPwzZv4hExiMPc0uKvVK2H3tP4P5CkM5" + Environment.NewLine +
+                       "YMIEGEkF2wJBAMG5qmoYksz+MFZ2cd7gt68mf3Oq9F59qkHHcoV+1ttXx5pfzwat" + Environment.NewLine +
+                       "kelhKkN+LV1XsgS0bGAKu2NitOMBUAcnItsCQQCEJxqJ3PFO/rUd58VyHEJFRCuK" + Environment.NewLine +
+                       "LMGWP/aFyUSlB5XyuDaCr8YzcYjgCB5qu9BvMshKTKLIpgnRotIcTtjoCjfRAkEA" + Environment.NewLine +
+                       "tsqHn+Bb9A0McykDvPdwmlXLAMsYFWihk7urtYa/GOw0rNcmMvjnqrxB8rlF+MNc" + Environment.NewLine +
+                       "d8/+SokV02s5ntCIQJeO7QJBAKp2BCOIck+uhMPDiw/1788yQLD6mVb/pBzClzBn" + Environment.NewLine +
+                       "pTMAFPGJG2fO4YJn/pUHdtDtSenX8TibWve+gY6oFCFw/Ts=" + Environment.NewLine +
+                       "-----END RSA PRIVATE KEY-----";
+        }
+
+        private void acbrECF_OnBobinaAdicionaLinhas(object sender, BobinaEventArgs e)
+        {
+            bobina.Append(e.Linhas);
+            wbBobina.Navigate("about:blank");
+            HtmlDocument doc = wbBobina.Document;
+            doc.Write(string.Format("<HTML><head><meta charset=\"iso-8859-1\"></head><body>{0}</body></HTML>", bobina));
+            wbBobina.Refresh();
+        }
+
+        #endregion Eventos
+
         #region Botões
 
         private void ativarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1171,21 +1203,21 @@ namespace ACBrFramework.ECFTeste
             ConfigurarSerial();
         }
 
-        #endregion Botões
+        #endregion Botões        
 
-        #region Eventos
+        #region Checkbox
 
         private void usarAACCheckBox_CheckedChanged(object sender, EventArgs e)
-		{
-			if (usarAACCheckBox.Checked)
-			{
-				acbrECF.AAC = acbrAAC;
-			}
-			else
-			{
-				acbrECF.AAC = null;
-			}
-		}
+        {
+            if (usarAACCheckBox.Checked)
+            {
+                acbrECF.AAC = acbrAAC;
+            }
+            else
+            {
+                acbrECF.AAC = null;
+            }
+        }
 
         private void ativarCheckButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -1197,43 +1229,24 @@ namespace ACBrFramework.ECFTeste
             {
                 Desativar();
             }
-        }           		
+        }
 
-		private void acbrAAC_OnGetChave(object sender, ChaveEventArgs e)
-		{
-			e.Chave = "-----BEGIN RSA PRIVATE KEY-----" + Environment.NewLine +
-					   "MIICXwIBAAKBgQC+TZjfcw/a/SovoqQPOW5bbKn4CQw4DeZJA3Y9vJrYHKN4aCQv" + Environment.NewLine +
-					   "z0i3AG9kGdsTSZdZ/clh4xv6tUwPsBdZJHrm21gH7wN/zKLTvXbs+i3x7U00ElCB" + Environment.NewLine +
-					   "YyZ8BOXJWVMuye0UvSz7p4JwSopugzbjaImIGy+5LvgcjUCn3OZzWpwYWQIDAQAB" + Environment.NewLine +
-					   "AoGBAKAycEtB8An37ghVkGfkf7rkmZxb+XZCdSXnjSThXTQpv46/lB7PDrZG3n5U" + Environment.NewLine +
-					   "qa/t1kQCOQF3DnmZHqNiJ/V5mR7ApbciQj4WYVLkMCgltru3MmzIUQ9IiLtAgaCv" + Environment.NewLine +
-					   "uHc0MAzt/OWgQ93uFnLf4ubp4+2PTHiiIChv2m78s605wX2lAkEA+3pPsPdXcaOe" + Environment.NewLine +
-					   "7T7C4hn1qg93ksN96UutB1APF3YAjWVWuPwzZv4hExiMPc0uKvVK2H3tP4P5CkM5" + Environment.NewLine +
-					   "YMIEGEkF2wJBAMG5qmoYksz+MFZ2cd7gt68mf3Oq9F59qkHHcoV+1ttXx5pfzwat" + Environment.NewLine +
-					   "kelhKkN+LV1XsgS0bGAKu2NitOMBUAcnItsCQQCEJxqJ3PFO/rUd58VyHEJFRCuK" + Environment.NewLine +
-					   "LMGWP/aFyUSlB5XyuDaCr8YzcYjgCB5qu9BvMshKTKLIpgnRotIcTtjoCjfRAkEA" + Environment.NewLine +
-					   "tsqHn+Bb9A0McykDvPdwmlXLAMsYFWihk7urtYa/GOw0rNcmMvjnqrxB8rlF+MNc" + Environment.NewLine +
-					   "d8/+SokV02s5ntCIQJeO7QJBAKp2BCOIck+uhMPDiw/1788yQLD6mVb/pBzClzBn" + Environment.NewLine +
-					   "pTMAFPGJG2fO4YJn/pUHdtDtSenX8TibWve+gY6oFCFw/Ts=" + Environment.NewLine +
-					   "-----END RSA PRIVATE KEY-----";
-		}
+        #endregion Checkbox
 
-		private void acbrECF_OnBobinaAdicionaLinhas(object sender, BobinaEventArgs e)
-		{
-			bobina.Append(e.Linhas);
-			wbBobina.Navigate("about:blank");
-			HtmlDocument doc = wbBobina.Document;
-			doc.Write(string.Format("<HTML><head><meta charset=\"iso-8859-1\"></head><body>{0}</body></HTML>", bobina));
-			wbBobina.Refresh();
-		}
+        #region NumericUpDown
 
-		#endregion Eventos
+        private void nupMaxLinhasBuffer_ValueChanged(object sender, EventArgs e)
+        {
+            acbrECF.MaxLinhasBuffer = Convert.ToInt32(nupMaxLinhasBuffer.Value);
+        }
 
-		private void checkBox3_CheckedChanged(object sender, EventArgs e)
-		{
+        private void nupPaginaCodigo_ValueChanged(object sender, EventArgs e)
+        {
+            acbrECF.PaginaDeCodigo = Convert.ToInt32(nupPaginaCodigo.Value);
+        }
 
-		}
+        #endregion NumericUpDown      
 
-		#endregion Event Handlers
-	}
+        #endregion Event Handlers
+    }
 }
