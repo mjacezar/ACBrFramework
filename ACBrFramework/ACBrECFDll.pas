@@ -2925,7 +2925,6 @@ end;
 
 Function ECF_SetMemoParams(const ecfHandle: PECFHandle; const linhas : array of PChar; const LinhasCount: Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
-Lista: TStringList;
 i: Integer;
 begin
 
@@ -2936,12 +2935,11 @@ begin
   end;
 
   try
-  Lista := TStringList.Create();
+  ecfHandle^.ECF.MemoParams.Clear;
   for i := 0 to LinhasCount - 1 do
   begin
-  Lista.Add(String(linhas[i]));
+  ecfHandle^.ECF.MemoParams.Add(linhas[i]);
   end;
-  ecfHandle^.ECF.MemoParams := Lista;
   Result := 0 ;
   except
      on exception : Exception do

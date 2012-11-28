@@ -64,11 +64,12 @@
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="366"/>
-        <CursorPos X="1" Y="1"/>
-        <FoldState Value=" TCfK65 TJkC2{O TLkD0O2 T3l10N4 picjb0K[94djQ0J[94ZjL0Jo"/>
+        <TopLine Value="2924"/>
+        <CursorPos X="10" Y="2953"/>
+        <FoldState Value=" T3mZ0N4 pidjT0J[94YjK[96bjN0L[96P[RAI[94ZjK[I8O[a6ejS0M1? p0_Z0P2c"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -159,10 +160,9 @@
         <Filename Value="ACBrAACDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrAACDLL"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="553"/>
+        <TopLine Value="566"/>
         <CursorPos X="47" Y="578"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -412,8 +412,9 @@
         <UnitName Value="ACBrDeviceDll"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="485"/>
-        <CursorPos X="50" Y="496"/>
+        <TopLine Value="461"/>
+        <CursorPos X="1" Y="486"/>
+        <FoldState Value=" T3R0N4 piZjP0K[96M0J[96L[IAM2j"/>
         <UsageCount Value="23"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -552,7 +553,7 @@
         <UsageCount Value="30"/>
       </Unit54>
     </Units>
-    <JumpHistory Count="23" HistoryIndex="22">
+    <JumpHistory Count="24" HistoryIndex="23">
       <Position1>
         <Filename Value="ACBrAACDll.pas"/>
         <Caret Line="161" Column="60" TopLine="135"/>
@@ -645,6 +646,10 @@
         <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrAAC.pas"/>
         <Caret Line="193" Column="11" TopLine="167"/>
       </Position23>
+      <Position24>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="1084" Column="1" TopLine="1350"/>
+      </Position24>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

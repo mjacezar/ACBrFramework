@@ -68,7 +68,7 @@ namespace ACBrFramework.AAC
 		}
 
         [Category("AAC")]
-		public string[] Parametros
+        public string[] Params
 		{
 			get
 			{
