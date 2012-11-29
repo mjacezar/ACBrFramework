@@ -157,8 +157,7 @@ namespace ACBrFramework.AAC
                 SetBool(ACBrAACInterop.AAC_SetGravarTodosECFs, value);
             }
         }
-
-
+        
 		[Browsable(true)]
         [Category("Identificação")]
 		public ACBrECFIdenticacaoPaf IdentPaf { get; private set; }

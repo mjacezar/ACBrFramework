@@ -13,6 +13,7 @@ namespace ACBrFramework.AAC
 			this.Paf = new ACBrECFInfoPaf(this);
 			this.ECFsAutorizados = new ACBrAACECFs(this);
 			this.OutrosArquivos = new ACBrAACArquivos(this);
+            this.ArquivoListaAutenticados = new ACBrArquivoListaAutenticados(this);
 		}
 
 		#endregion Constructor
@@ -30,6 +31,9 @@ namespace ACBrFramework.AAC
 
 		[Browsable(true)]
 		public ACBrAACArquivos OutrosArquivos { get; private set; }
+
+        [Browsable(true)]
+        public ACBrArquivoListaAutenticados ArquivoListaAutenticados { get; private set; }
 
 		public string NumeroLaudo
 		{

@@ -128,14 +128,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AAC\ACBrAAC.cs" />
-    <Compile Include="AAC\ACBrAACArquivo.cs" />
-    <Compile Include="AAC\ACBrAACArquivos.cs" />
-    <Compile Include="AAC\ACBrAACECF.cs" />
-    <Compile Include="AAC\ACBrAACECFs.cs" />
+    <Compile Include="AAC\Classes\ACBrAACArquivo.cs" />
+    <Compile Include="AAC\Classes\ACBrAACArquivos.cs" />
+    <Compile Include="AAC\Classes\ACBrAACECF.cs" />
+    <Compile Include="AAC\Classes\ACBrAACECFs.cs" />
     <Compile Include="AAC\ACBrAACInterop.cs" />
-    <Compile Include="AAC\ACBrECFEmpresa.cs" />
-    <Compile Include="AAC\ACBrECFIdenticacaoPaf.cs" />
-    <Compile Include="AAC\ACBrECFInfoPaf.cs" />
+    <Compile Include="AAC\Classes\ACBrECFEmpresa.cs" />
+    <Compile Include="AAC\Classes\ACBrECFIdenticacaoPaf.cs" />
+    <Compile Include="AAC\Classes\ACBrECFInfoPaf.cs" />
+    <Compile Include="AAC\Classes\ACBrArquivoListaAutenticados.cs" />
     <Compile Include="ACBrEventHandler.cs" />
     <Compile Include="ACBrInteropEventHandlerBase.cs" />
     <Compile Include="ChaveEventArgs.cs" />
@@ -229,6 +230,8 @@
     <Compile Include="Serial\ECF\ACBrECF.cs" />
     <Compile Include="Serial\ECF\ACBrECFException.cs" />
     <Compile Include="Serial\ECF\ACBrECFInterop.cs" />
+    <Compile Include="Serial\ECF\Classes\ACBrECFRodape.cs" />
+    <Compile Include="Serial\ECF\Classes\ACBrECFRodapeNotaLegalDF.cs" />
     <Compile Include="Serial\ECF\Eventos\BobinaEventArgs.cs" />
     <Compile Include="Serial\ECF\Classes\ACBrECFAliquota.cs" />
     <Compile Include="Serial\ECF\Classes\ACBrECFComprovanteNaoFiscal.cs" />

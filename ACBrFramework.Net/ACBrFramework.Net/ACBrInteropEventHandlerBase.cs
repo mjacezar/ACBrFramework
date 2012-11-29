@@ -83,7 +83,7 @@ namespace ACBrFramework
 				}
 				else
 				{
-					synchronizeInvoke.BeginInvoke(eventHandler, new object[] { this, e });
+					synchronizeInvoke.Invoke(eventHandler, new object[] { this, e });
 				}
 			}
 		}

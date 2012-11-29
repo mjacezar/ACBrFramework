@@ -3952,8 +3952,12 @@
             this.acbrAAC.GravarDadosPAF = true;
             this.acbrAAC.GravarDadosSH = true;
             this.acbrAAC.GravarTodosECFs = true;
-            this.acbrAAC.NomeArquivoAuxiliar = "";
-            this.acbrAAC.Params = new string[] {"", "", "", ""};
+            this.acbrAAC.NomeArquivoAuxiliar = "arquivo_auxiliar_criptografado.txt";
+            this.acbrAAC.Params = new string[] {
+        "",
+        "",
+        "",
+        ""};
             this.acbrAAC.OnGetChave += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrAAC_OnGetChave);
             // 
             // MainForm

@@ -41,6 +41,23 @@ Símbolo : Significado
 
 Changelog
 
+27/11/2012 (ACBrFramework 0.9.1.29)
+[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_GetNome - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_SetNome - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_GetMD5 - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_SetMD5 - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetMD5, ECF_InfoRodapeCupom_SetMD5 - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetDav, ECF_InfoRodapeCupom_SetDav - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetDavOs, ECF_InfoRodapeCupom_SetDavOs - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetPreVenda, ECF_InfoRodapeCupom_SetPreVenda - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetCupomMania, ECF_InfoRodapeCupom_SetCupomMania - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetMinasLegal, ECF_InfoRodapeCupom_SetMinasLegal - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetParaibaLegal, ECF_InfoRodapeCupom_SetParaibaLegal - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetImprimir, ECF_InfoRodapeCupom_NotaLegalDF_SetImprimir - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetProgramaDeCredito,  ECF_InfoRodapeCupom_NotaLegalDF_SetProgramaDeCredito - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetValorICMS, ECF_InfoRodapeCupom_NotaLegalDF_SetValorICMS - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetValorISS, ECF_InfoRodapeCupom_NotaLegalDF_SetValorISS - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+
 27/11/2012 (ACBrFramework 0.9.1.28)
 [-] Corrigido bug no SetStringArray no ACBrInteropBase - ACBrFramework.Net - Rafael Batiati.
 

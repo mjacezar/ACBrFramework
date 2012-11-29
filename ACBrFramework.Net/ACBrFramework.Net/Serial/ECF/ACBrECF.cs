@@ -261,6 +261,10 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+        [Browsable(true)]
+        [Category("Rodape")]
+        public ACBrECFRodape InfoRodapeCupom { get; private set; }
+
 		#region Componentes ACBr
 
 		[Category("Componentes ACBr")]
@@ -2056,6 +2060,7 @@ namespace ACBrFramework.ECF
 		{
 			CallCreate(ACBrECFInterop.ECF_Create);
 			Device = new ACBrDevice(this);
+            this.InfoRodapeCupom = new ACBrECFRodape(this);
 		}
 
 		protected internal override void CheckResult(int ret)
