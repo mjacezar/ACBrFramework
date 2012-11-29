@@ -36,7 +36,8 @@ end;
 {Ponteiro para o Handle }
 type PPAFHandle = ^TPAFHandle;
 
-{Records estilo C utilizados nas funções}
+{%region Records estilo C utilizados nas funções}
+
 type TRegistroHD1Rec = record
    RAZAOSOCIAL      : array[0..50] of char;
    UF               : array[0..2] of char;
@@ -330,8 +331,11 @@ type TRegistroInsumoRec = record
    VlrUnitario : Double;
 end;
 
+{%endregion}
+
 implementation
 
+{%region Constructor/Destructor/Error}
 {
 PADRONIZAÇÃO DAS FUNÇÕES:
 
@@ -429,7 +433,10 @@ begin
   end;
 end;
 
-{ Funções mapeando as propriedades do componente }
+{%endregion}
+
+{%region Funções mapeando as propriedades do componente }
+
 Function PAF_GetPath(const pafHandle: PPAFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
@@ -752,7 +759,10 @@ begin
   end;
 end;
 
-{ Metodos do componente }
+{%endregion}
+
+{%region Metodos do componente }
+
 Function PAF_SaveFileTXT_B(const pafHandle: PPAFHandle; const RegistroB1Rec : TRegistroHD1Rec;
       const RegistroB2Rec : array of TRegistroB2Rec; const CountB2 : Integer; const Arquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
@@ -1260,6 +1270,7 @@ begin
   end;
 
   try
+
    IndexR3 := 0;
    IndexR5 := 0;
    IndexR7 := 0;
@@ -1442,9 +1453,9 @@ begin
    end;
 
   if (pafHandle^.PAF.SaveFileTXT_R(Arquivo))then
-       Result := 1
-     else
-       Result := 0;
+     Result := 1
+  else
+     Result := 0;
 
   except
      on exception : Exception do
@@ -1614,7 +1625,10 @@ begin
   end;
 end;
 
-{Eventos}
+{%endregion}
+
+{%region Eventos}
+
 procedure TEventHandlers.GetChaveRSA(var Chave : AnsiString);
 begin
   if (Length(ChaveRSA) > 0) then
@@ -1653,6 +1667,8 @@ begin
      end
   end;
 end;
+
+{%endregion}
 
 exports
 

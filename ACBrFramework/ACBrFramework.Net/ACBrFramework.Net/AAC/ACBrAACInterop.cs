@@ -446,11 +446,27 @@ namespace ACBrFramework.AAC
 
         #endregion Outros Arquivos
 
+        #region ArquivoListaAutenticados
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int AAC_IdentPaf_ArquivoListaAutenticados_GetNome(IntPtr aacHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int AAC_IdentPaf_ArquivoListaAutenticados_SetNome(IntPtr aacHandle, string buffer);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int AAC_IdentPaf_ArquivoListaAutenticados_GetMD5(IntPtr aacHandle, StringBuilder buffer, int bufferLen);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int AAC_IdentPaf_ArquivoListaAutenticados_SetMD5(IntPtr aacHandle, string buffer);
+
+        #endregion ArquivoListaAutenticados
+
         #endregion Propriedades do Componente
 
-		#region Métodos do Componente
+        #region Métodos do Componente
 
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int AAC_AbrirArquivo(IntPtr aacHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]

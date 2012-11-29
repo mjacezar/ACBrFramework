@@ -948,6 +948,104 @@ end;
 
 {%endregion}
 
+{%region ArquivoListaAutenticados}
+
+Function AAC_IdentPaf_ArquivoListaAutenticados_GetNome(const aacHandle: PAACHandle; Buffer : pChar; const BufferLen : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  StrTmp : String;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrTmp := aacHandle^.AAC.IdentPAF.ArquivoListaAutenticados.Nome;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_ArquivoListaAutenticados_SetNome(const aacHandle: PAACHandle; const Nome : pChar ) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.ArquivoListaAutenticados.Nome := Nome;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_ArquivoListaAutenticados_GetMD5(const aacHandle: PAACHandle; Buffer : pChar; const BufferLen : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  StrTmp : String;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrTmp := aacHandle^.AAC.IdentPAF.ArquivoListaAutenticados.MD5;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_ArquivoListaAutenticados_SetMD5(const aacHandle: PAACHandle; const md5 : pChar ) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.ArquivoListaAutenticados.MD5 := md5;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+{%endregion}
+
 {%region Dados da identificação do PAF}
 
 Function AAC_IdentPaf_GetNumeroLaudo (const aacHandle: PaacHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -2995,6 +3093,12 @@ AAC_IdentPaf_OutrosArquivos_Clear,
 AAC_IdentPaf_OutrosArquivos_New,
 AAC_IdentPaf_OutrosArquivos_Get,
 AAC_IdentPaf_OutrosArquivos_Count,
+
+{ ArquivoListaAutenticados }
+AAC_IdentPaf_ArquivoListaAutenticados_GetNome,
+AAC_IdentPaf_ArquivoListaAutenticados_SetNome,
+AAC_IdentPaf_ArquivoListaAutenticados_GetMD5,
+AAC_IdentPaf_ArquivoListaAutenticados_SetMD5,
 
 {Eventos}
 AAC_SetOnGetChave;
