@@ -41,13 +41,14 @@ Símbolo : Significado
 
 Changelog
 
-3o/11/2012
+30/11/2012
 
 -- ACBrFramework 0.9.1.30 --
 [+] Adicionado o metodo AAC_AtualizarMD5 - Rafael Dias.
 [+] Adicionado o metodo AAC_AchaECF - Rafael Dias.
 [+] Adicionado o metodo AAC_AchaIndiceECF - Rafael Dias.
 [+] Adicionado o metodo AAC_VerificaReCarregarArquivo - Rafael Dias.
+[-] Corrigido os registros R1 e R2 do ACBrPAF no ACBrFramework.Net - Rafael Batiati
 
 -- ACBrFramework.Net 0.9.1.30 --
 [+] Adicionado o metodo AtualizarMD5 no ACBrAAC - Rafael Dias.
