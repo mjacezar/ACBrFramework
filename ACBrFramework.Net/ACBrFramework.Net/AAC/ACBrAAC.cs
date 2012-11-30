@@ -178,6 +178,12 @@ namespace ACBrFramework.AAC
 			CheckResult(ret);
 		}
 
+        public void VerificaReCarregarArquivo()
+        {
+            int ret = ACBrAACInterop.AAC_VerificaReCarregarArquivo(this.Handle);
+            CheckResult(ret);
+        }
+
 		public int VerificarGTECF(string numSerie, ref decimal grandeTotal)
 		{
 			double _grandeTotal = 0d;
@@ -187,6 +193,47 @@ namespace ACBrFramework.AAC
 			grandeTotal = Convert.ToDecimal(_grandeTotal);
 			return ret;
 		}
+
+        public void AtualizarValorGT(string numSerie, decimal grandeTotal)
+        {
+            double _grandeTotal = Convert.ToDouble(grandeTotal);
+            int ret = ACBrAACInterop.AAC_AtualizarValorGT(this.Handle, numSerie, _grandeTotal);
+            CheckResult(ret);
+        }
+
+        public void AtualizarMD5(string md5)
+        {
+            int ret = ACBrAACInterop.AAC_AtualizarMD5(this.Handle,md5);
+            CheckResult(ret);
+        }
+
+        public int AchaIndiceECF(string serie)
+        {
+            int retorno = -1;
+            int ret = ACBrAACInterop.AAC_AchaIndiceECF(this.Handle, serie, ref retorno);
+            CheckResult(ret);           
+
+            return retorno;
+        }
+
+        public ACBrAACECF AchaECF(string serie)
+        {
+            ACBrAACInterop.TECFAutorizado ECFRec = new ACBrAACInterop.TECFAutorizado();
+            int ret = ACBrAACInterop.AAC_AchaECF(this.Handle, serie, ref ECFRec);
+            CheckResult(ret);
+
+            if (ret == 0)
+                return null;
+
+            ACBrAACECF retorno = new ACBrAACECF();
+            retorno.CNI = FromUTF8(ECFRec.CNI);
+            retorno.CRO = FromUTF8(ECFRec.CRO);
+            retorno.ValorGT = FromUTF8(ECFRec.ValorGT);
+            retorno.DtHrAtualizado = DateTime.FromOADate(ECFRec.DtHrAtualizado);
+            retorno.NumeroSerie = FromUTF8(ECFRec.NumeroSerie);
+
+            return retorno;
+        }
 
 		public int ECFsAutorizadosCount
 		{

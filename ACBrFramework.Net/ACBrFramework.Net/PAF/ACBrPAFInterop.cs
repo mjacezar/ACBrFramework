@@ -334,9 +334,6 @@ namespace ACBrFramework.PAF
 		[StructLayout(LayoutKind.Sequential)]
 		public struct RegistroN2Rec
 		{
-			[MarshalAs(UnmanagedType.I4)]
-			public int QTD_N3;
-
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 11)]
 			public string LAUDO;
 
@@ -875,7 +872,7 @@ namespace ACBrFramework.PAF
 		public static extern int PAF_SaveFileTXT_H(IntPtr pafHandle, RegistroHD2Rec RegistroH1, RegistroH2Rec[] RegistroH2, int CountH2, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_N(IntPtr pafHandle, RegistroHD1Rec RegistroN1, RegistroN2Rec RegistroN2, RegistroN3Rec[] RegistroN3, string Arquivo);
+		public static extern int PAF_SaveFileTXT_N(IntPtr pafHandle, RegistroHD1Rec RegistroN1, RegistroN2Rec RegistroN2, RegistroN3Rec[] RegistroN3, int CountN3, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int PAF_SaveFileTXT_P(IntPtr pafHandle, RegistroHD1Rec RegistroP1, RegistroP2Rec[] RegistroP2, int CountP2, string Arquivo);
