@@ -397,7 +397,7 @@ namespace ACBrFramework.PAF
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
 			public string TIPO_ECF;
 
-			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
 			public string MARCA_ECF;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
@@ -490,9 +490,6 @@ namespace ACBrFramework.PAF
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
 			public string PAR_ECF;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double DT_FIN;
 
 			[MarshalAs(UnmanagedType.U1)]
 			public bool RegistroValido;
