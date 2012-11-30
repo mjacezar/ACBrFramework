@@ -41,6 +41,9 @@ Símbolo : Significado
 
 Changelog
 
+29/11/2012 (ACBrFramework 0.9.1.29)
+[-] Corrigido métodos ToUTF8 e FromUTF8 do ACBrFramework.Net para receberem valores nulos - Rafael Batiati
+
 27/11/2012 (ACBrFramework 0.9.1.29)
 [+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_GetNome - ACBrFramework e ACBrFramework.Net - Rafael Dias.
 [+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_SetNome - ACBrFramework e ACBrFramework.Net - Rafael Dias.

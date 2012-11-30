@@ -49,16 +49,25 @@ namespace ACBrFramework
 
 		protected string ToUTF8(string value)
 		{
+			if (value == null) return null;
+			if (value.Length == 0) return string.Empty;
+
 			return Encoding.Default.GetString(Encoding.UTF8.GetBytes(value));
 		}
 
 		protected string FromUTF8(string value)
 		{
+			if (value == null) return null;
+			if (value.Length == 0) return string.Empty;
+
 			return Encoding.UTF8.GetString(Encoding.Default.GetBytes(value));
 		}
 
 		protected string FromUTF8(StringBuilder value)
 		{
+			if (value == null) return null;
+			if (value.Length == 0) return string.Empty;
+
 			return Encoding.UTF8.GetString(Encoding.Default.GetBytes(value.ToString()));
 		}
 
