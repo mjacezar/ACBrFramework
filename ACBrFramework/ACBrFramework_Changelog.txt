@@ -41,55 +41,128 @@ Símbolo : Significado
 
 Changelog
 
-29/11/2012 (ACBrFramework 0.9.1.29)
+3o/11/2012
+
+-- ACBrFramework 0.9.1.30 --
+[+] Adicionado o metodo AAC_AtualizarMD5 - Rafael Dias.
+[+] Adicionado o metodo AAC_AchaECF - Rafael Dias.
+[+] Adicionado o metodo AAC_AchaIndiceECF - Rafael Dias.
+[+] Adicionado o metodo AAC_VerificaReCarregarArquivo - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.1.30 --
+[+] Adicionado o metodo AtualizarMD5 no ACBrAAC - Rafael Dias.
+[+] Adicionado o metodo AtualizarValorGT no ACBrAAC - Rafael Dias.
+[+] Adicionado o metodo AchaECF no ACBrAAC - Rafael Dias.
+[+] Adicionado o metodo AchaIndiceECF no ACBrAAC - Rafael Dias.
+[+] Adicionado o metodo VerificaReCarregarArquivo  no ACBrAAC - Rafael Dias.
+[*] Modificado o PAF_SaveFileTXT_N para checar valores null - Rafael Dias.
+[*] Modificado o PAF_SaveFileTXT_R para checar valores null - Rafael Dias.
+
+29/11/2012
+
+-- ACBrFramework.Net 0.9.1.29 --
 [-] Corrigido métodos ToUTF8 e FromUTF8 do ACBrFramework.Net para receberem valores nulos - Rafael Batiati
 
-27/11/2012 (ACBrFramework 0.9.1.29)
-[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_GetNome - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_SetNome - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_GetMD5 - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_SetMD5 - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_InfoRodapeCupom_GetMD5, ECF_InfoRodapeCupom_SetMD5 - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_InfoRodapeCupom_GetDav, ECF_InfoRodapeCupom_SetDav - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_InfoRodapeCupom_GetDavOs, ECF_InfoRodapeCupom_SetDavOs - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_InfoRodapeCupom_GetPreVenda, ECF_InfoRodapeCupom_SetPreVenda - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_InfoRodapeCupom_GetCupomMania, ECF_InfoRodapeCupom_SetCupomMania - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_InfoRodapeCupom_GetMinasLegal, ECF_InfoRodapeCupom_SetMinasLegal - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_InfoRodapeCupom_GetParaibaLegal, ECF_InfoRodapeCupom_SetParaibaLegal - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetImprimir, ECF_InfoRodapeCupom_NotaLegalDF_SetImprimir - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetProgramaDeCredito,  ECF_InfoRodapeCupom_NotaLegalDF_SetProgramaDeCredito - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetValorICMS, ECF_InfoRodapeCupom_NotaLegalDF_SetValorICMS - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetValorISS, ECF_InfoRodapeCupom_NotaLegalDF_SetValorISS - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+27/11/2012
+ 
+-- ACBrFramework 0.9.1.29 --
+[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_GetNome - Rafael Dias.
+[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_SetNome - Rafael Dias.
+[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_GetMD5 - Rafael Dias.
+[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_SetMD5 - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetMD5, ECF_InfoRodapeCupom_SetMD5 - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetDav, ECF_InfoRodapeCupom_SetDav - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetDavOs, ECF_InfoRodapeCupom_SetDavOs - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetPreVenda, ECF_InfoRodapeCupom_SetPreVenda - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetCupomMania, ECF_InfoRodapeCupom_SetCupomMania - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetMinasLegal, ECF_InfoRodapeCupom_SetMinasLegal - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetParaibaLegal, ECF_InfoRodapeCupom_SetParaibaLegal - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetImprimir, ECF_InfoRodapeCupom_NotaLegalDF_SetImprimir - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetProgramaDeCredito,  ECF_InfoRodapeCupom_NotaLegalDF_SetProgramaDeCredito - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetValorICMS, ECF_InfoRodapeCupom_NotaLegalDF_SetValorICMS - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetValorISS, ECF_InfoRodapeCupom_NotaLegalDF_SetValorISS - Rafael Dias.
 
-27/11/2012 (ACBrFramework 0.9.1.28)
-[-] Corrigido bug no SetStringArray no ACBrInteropBase - ACBrFramework.Net - Rafael Batiati.
+-- ACBrFramework.Net 0.9.1.29 --
+[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_GetNome - Rafael Dias.
+[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_SetNome - Rafael Dias.
+[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_GetMD5 - Rafael Dias.
+[+] Adicionado propriedade AAC_IdentPaf_ArquivoListaAutenticados_SetMD5 - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetMD5, ECF_InfoRodapeCupom_SetMD5 - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetDav, ECF_InfoRodapeCupom_SetDav - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetDavOs, ECF_InfoRodapeCupom_SetDavOs - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetPreVenda, ECF_InfoRodapeCupom_SetPreVenda - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetCupomMania, ECF_InfoRodapeCupom_SetCupomMania - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetMinasLegal, ECF_InfoRodapeCupom_SetMinasLegal - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_GetParaibaLegal, ECF_InfoRodapeCupom_SetParaibaLegal - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetImprimir, ECF_InfoRodapeCupom_NotaLegalDF_SetImprimir - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetProgramaDeCredito,  ECF_InfoRodapeCupom_NotaLegalDF_SetProgramaDeCredito - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetValorICMS, ECF_InfoRodapeCupom_NotaLegalDF_SetValorICMS - Rafael Dias.
+[+] Adicionado propriedade ECF_InfoRodapeCupom_NotaLegalDF_GetValorISS, ECF_InfoRodapeCupom_NotaLegalDF_SetValorISS - Rafael Dias.
 
-26/11/2012 (ACBrFramework 0.9.1.27)
-[+] Adicionado propriedade DEV_GetProcessMessages, DEV_SetProcessMessages - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade DEV_GetMaxBandwidth, DEV_SetMaxBandwidth - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_GetArredondaPorQtd, ECF_SetArredondaPorQtd - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_GetArredondaItemMFD, ECF_SetArredondaItemMFD - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_GetIgnorarTagsFormatacao, ECF_SetIgnorarTagsFormatacao - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_GetPaginaDeCodigo, ECF_SetPaginaDeCodigo - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade ECF_GetAbout - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+27/11/2012
 
-26/11/2012 (ACBrFramework 0.9.1.26)
-[+] Adicionado propriedade AAC_GetCriarBAK, AAC_SetCriarBAK - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade AAC_GetEfetuarFlush, AAC_SetEfetuarFlush - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade AAC_GetGravarConfigApp, AAC_SetGravarConfigApp - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade AAC_GetGravarDadosPAF, AAC_SetGravarDadosPAF - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade AAC_GetGravarDadosSH, AAC_SetGravarDadosSH - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[+] Adicionado propriedade AAC_GetGravarTodosECFs, AAC_SetGravarTodosECFs - ACBrFramework e ACBrFramework.Net - Rafael Dias.
-[*] Melhorado a propriedade AAC_GetParams - ACBrFramework e ACBrFramework.Net - Rafael Dias.
+-- ACBrFramework.Net 0.9.1.28 --
+[-] Corrigido bug no SetStringArray no ACBrInteropBase - Rafael Batiati.
 
-26/11/2012 (ACBrFramework 0.9.1.25)
+26/11/2012 
+
+-- ACBrFramework 0.9.1.27 --
+[+] Adicionado propriedade DEV_GetProcessMessages, DEV_SetProcessMessages - Rafael Dias.
+[+] Adicionado propriedade DEV_GetMaxBandwidth, DEV_SetMaxBandwidth - Rafael Dias.
+[+] Adicionado propriedade ECF_GetArredondaPorQtd, ECF_SetArredondaPorQtd - Rafael Dias.
+[+] Adicionado propriedade ECF_GetArredondaItemMFD, ECF_SetArredondaItemMFD - Rafael Dias.
+[+] Adicionado propriedade ECF_GetIgnorarTagsFormatacao, ECF_SetIgnorarTagsFormatacao - Rafael Dias.
+[+] Adicionado propriedade ECF_GetPaginaDeCodigo, ECF_SetPaginaDeCodigo - Rafael Dias.
+[+] Adicionado propriedade ECF_GetAbout - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.1.27 --
+[+] Adicionado propriedade DEV_GetProcessMessages, DEV_SetProcessMessages - Rafael Dias.
+[+] Adicionado propriedade DEV_GetMaxBandwidth, DEV_SetMaxBandwidth - Rafael Dias.
+[+] Adicionado propriedade ECF_GetArredondaPorQtd, ECF_SetArredondaPorQtd - Rafael Dias.
+[+] Adicionado propriedade ECF_GetArredondaItemMFD, ECF_SetArredondaItemMFD - Rafael Dias.
+[+] Adicionado propriedade ECF_GetIgnorarTagsFormatacao, ECF_SetIgnorarTagsFormatacao - Rafael Dias.
+[+] Adicionado propriedade ECF_GetPaginaDeCodigo, ECF_SetPaginaDeCodigo - Rafael Dias.
+[+] Adicionado propriedade ECF_GetAbout - Rafael Dias.
+
+26/11/2012
+
+-- ACBrFramework 0.9.1.26 --
+[+] Adicionado propriedade AAC_GetCriarBAK, AAC_SetCriarBAK - Rafael Dias.
+[+] Adicionado propriedade AAC_GetEfetuarFlush, AAC_SetEfetuarFlush - Rafael Dias.
+[+] Adicionado propriedade AAC_GetGravarConfigApp, AAC_SetGravarConfigApp - Rafael Dias.
+[+] Adicionado propriedade AAC_GetGravarDadosPAF, AAC_SetGravarDadosPAF - Rafael Dias.
+[+] Adicionado propriedade AAC_GetGravarDadosSH, AAC_SetGravarDadosSH - Rafael Dias.
+[+] Adicionado propriedade AAC_GetGravarTodosECFs, AAC_SetGravarTodosECFs - Rafael Dias.
+[*] Melhorado a propriedade AAC_GetParams - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.1.26 --
+[+] Adicionado propriedade AAC_GetCriarBAK, AAC_SetCriarBAK - Rafael Dias.
+[+] Adicionado propriedade AAC_GetEfetuarFlush, AAC_SetEfetuarFlush - Rafael Dias.
+[+] Adicionado propriedade AAC_GetGravarConfigApp, AAC_SetGravarConfigApp - Rafael Dias.
+[+] Adicionado propriedade AAC_GetGravarDadosPAF, AAC_SetGravarDadosPAF - Rafael Dias.
+[+] Adicionado propriedade AAC_GetGravarDadosSH, AAC_SetGravarDadosSH - Rafael Dias.
+[+] Adicionado propriedade AAC_GetGravarTodosECFs, AAC_SetGravarTodosECFs - Rafael Dias.
+[*] Melhorado a propriedade AAC_GetParams - Rafael Dias.
+
+26/11/2012
+
+-- ACBrFramework 0.9.1.25 --
+[+] Adicionado propriedade UltimaLeitura e LerString no componente LCB - Rafael Batiati.
+
+-- ACBrFramework.Net 0.9.1.25 --
 [*] Mudança na classe ACBrInteropEventHandlerBase para disparar o evento na thread do controle/form que declara o handler,
-    previnindo erros de manipulação CrossThread de componentes da UI. - ACBrFramework.Net - Rafael Batiati. 
-[+] Adicionado propriedade UltimaLeitura e LerString no componente LCB - ACBrFramework e ACBrFramework.Net - Rafael Batiati.
+    previnindo erros de manipulação CrossThread de componentes da UI. - Rafael Batiati. 
+[+] Adicionado propriedade UltimaLeitura e LerString no componente LCB - Rafael Batiati.
 
-25/11/2012 (ACBrFramework 0.9.1.24)
+25/11/2012
+
+-- ACBrFramework 0.9.1.24 --
 [*] Mudança na classe ACBrTEFDReq adequando ao padrão do ComposedComponente suportando múltiplas instâncias. - Rafael Batiati.
-[+] Adicionado ECF_PreparaTEF - ACBrFramework e ACBrFramework.Net - Rafael Dias. 
+[+] Adicionado ECF_PreparaTEF - Rafael Dias. 
+
+-- ACBrFramework.Net 0.9.1.24 --
+[*] Mudança na classe ACBrTEFDReq adequando ao padrão do ComposedComponente suportando múltiplas instâncias. - Rafael Batiati.
+[+] Adicionado ECF_PreparaTEF - Rafael Dias. 
 
 24/11/2012 (ACBrFramework 0.9.1.23)
 [+] Adicionado SPDF_GetAbout, SPDF_GetArquivo, SPDF_SetArquivo - ACBrFramework e ACBrFramework.Net - Rafael Dias.

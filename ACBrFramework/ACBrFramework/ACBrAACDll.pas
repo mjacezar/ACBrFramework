@@ -703,7 +703,7 @@ begin
 
 end;
 
-Function AAC_AtualizarValorGT(const aacHandle: PAACHandle; const NumSerie : pChar; var GrandeTotal : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function AAC_AtualizarValorGT(const aacHandle: PAACHandle; const NumSerie : pChar; const GrandeTotal : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (aacHandle = nil) then
@@ -722,6 +722,105 @@ begin
      end
   end;
 
+end;
+
+Function AAC_AtualizarMD5(const aacHandle: PAACHandle; const md5 : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.AtualizarMD5(md5);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_AchaECF(const aacHandle: PAACHandle; const numero : pChar; var ECF : TECFAutorizado) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+  TECF : TACBrAACECF;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     TECF := aacHandle^.AAC.AchaECF(numero);
+     if TECF <> nil then
+     begin
+     ECF.CNI            := TECF.CNI;
+     ECF.CRO            := TECF.CRO;
+     ECF.DtHrAtualizado := TECF.DtHrAtualizado;
+     ECF.ValorGT        := TECF.ValorGT;
+     ECF.Serie          := TECF.NumeroSerie;
+     Result := 1;
+     end
+     else
+     begin
+     Result := 0;
+     end;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function AAC_AchaIndiceECF(const aacHandle: PAACHandle; const numero : pChar; var Indice : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Indice := aacHandle^.AAC.AchaIndiceECF(numero);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function AAC_VerificaReCarregarArquivo(const aacHandle: PAACHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.VerificaReCarregarArquivo;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
 end;
 
 {%endregion}
@@ -3015,7 +3114,6 @@ AAC_GetUltimoErro,
 { Propriedades do Componente }
 
 AAC_GetNomeArquivoAux, AAC_SetNomeArquivoAux,
-AAC_AtualizarValorGT, AAC_VerificarGTECF,
 AAC_GetParams, AAC_SetParams, AAC_GetParamsCount,
 AAC_GetChave,AAC_SetChave,
 AAC_GetArqLOG, AAC_SetArqLOG,
@@ -3079,8 +3177,10 @@ AAC_IdentPaf_Paf_GetMinasLegal,AAC_IdentPaf_Paf_SetMinasLegal,
 
 
 { Métodos do Componente }
-AAC_AbrirArquivo,
-AAC_SalvarArquivo,
+AAC_AbrirArquivo, AAC_SalvarArquivo,
+AAC_AtualizarValorGT, AAC_VerificarGTECF,
+AAC_AtualizarMD5, AAC_AchaECF,
+AAC_AchaIndiceECF, AAC_VerificaReCarregarArquivo,
 
 { ECFs Autorizados }
 AAC_IdentPaf_ECFsAutorizados_Clear,

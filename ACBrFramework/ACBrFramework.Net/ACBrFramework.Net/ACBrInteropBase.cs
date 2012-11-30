@@ -49,11 +49,35 @@ namespace ACBrFramework
 
 		protected string ToUTF8(string value)
 		{
-			if (value == null) return null;
-			if (value.Length == 0) return string.Empty;
+			if (string.IsNullOrEmpty(value)) return string.Empty;
 
 			return Encoding.Default.GetString(Encoding.UTF8.GetBytes(value));
 		}
+
+        protected int ToUTF8(int value)
+        {
+            int retorno = -1;
+
+            if (int.TryParse(value.ToString(), out retorno))
+                return retorno;
+
+            return retorno;
+        }
+
+        protected double ToUTF8(decimal value)
+        {
+            double retorno = -1;
+
+            if (double.TryParse(value.ToString(), out retorno))
+                return retorno;
+
+            return retorno;
+        }
+
+        protected double ToUTF8(DateTime value)
+        {
+            return value.ToOADate();
+        }
 
 		protected string FromUTF8(string value)
 		{
@@ -70,6 +94,26 @@ namespace ACBrFramework
 
 			return Encoding.UTF8.GetString(Encoding.Default.GetBytes(value.ToString()));
 		}
+
+        protected int FromUTF8(int value)
+        {
+            int retorno = -1;
+
+            if (int.TryParse(value.ToString(), out retorno))
+                return retorno;
+
+            return retorno;
+        }
+
+        protected decimal FromUTF8(double value)
+        {
+            decimal retorno = -1;
+
+            if (decimal.TryParse(value.ToString(), out retorno))
+                return retorno;
+
+            return retorno;
+        }
 
 		protected string GetString(GetStringEntryPointDelegate entryPoint)
 		{

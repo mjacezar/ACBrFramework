@@ -472,11 +472,23 @@ namespace ACBrFramework.AAC
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int AAC_SalvarArquivo(IntPtr aacHandle);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int AAC_VerificaReCarregarArquivo(IntPtr aacHandle);
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int AAC_VerificarGTECF(IntPtr aacHandle, string numSerie, ref double grandeTotal);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int AAC_AtualizarValorGT(IntPtr aacHandle, string numSerie, ref double grandeTotal);		
+		public static extern int AAC_AtualizarValorGT(IntPtr aacHandle, string numSerie, double grandeTotal);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int AAC_AchaECF(IntPtr aacHandle, string numSerie, ref TECFAutorizado ECF);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int AAC_AchaIndiceECF(IntPtr aacHandle, string numSerie, ref int indice);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int AAC_AtualizarMD5(IntPtr aacHandle, string md5);	
 
 		#endregion Métodos do Componente		
 
