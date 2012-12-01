@@ -5,6 +5,7 @@ interface
 uses
   Classes,
   SysUtils,
+  ACBrSpedDll,
   ACBrSpedFiscal;
 
 {Classe que armazena os EventHandlers para o componente ACBr}
@@ -21,26 +22,6 @@ end;
 {Ponteiro para o Handle }
 type PSPDFHandle = ^TSPDFHandle;
 
-{%region Records estilo C utilizados nos retornos das funções}
-
-type Bloco0Registro0000 = record
-  OD_VER     : Integer; /// Código da versão do leiaute: 100, 101, 102
-  COD_FIN    : Integer; /// Código da finalidade do arquivo: 0 - Remessa do arquivo original / 1 - Remessa do arquivo substituto.
-  DT_INI     : Double;           /// Data inicial das informações contidas no arquivo
-  DT_FIN     : Double;           /// Data final das informações contidas no arquivo
-  NOME       : array[0..100] of char;                 /// Nome empresarial do contribuinte:
-  CNPJ       : array[0..14] of char;               /// Número de inscrição do contribuinte:
-  CPF        : array[0..11] of char;                 /// Número de inscrição do contribuinte:
-  UF         : array[0..2] of char;                  /// Sigla da unidade da federação:
-  IE         : array[0..14] of char;                  /// Inscrição Estadual do contribuinte:
-  COD_MUN    : Integer;            /// Código do município do domicílio fiscal:
-  IM         : array[0..14] of char;                  /// Inscrição Municipal do contribuinte:
-  SUFRAMA    : array[0..9] of char;             /// Número de inscrição do contribuinte:
-  IND_PERFIL : Integer;     /// Perfil de apresentação do arquivo fiscal: A - Perfil A / B - Perfil B / C - Perfil C
-  IND_ATIV   : Integer;
-end;
-
-{%endregion}
 
 implementation
 

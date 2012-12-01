@@ -41,6 +41,14 @@ Símbolo : Significado
 
 Changelog
 
+01/12/2012
+
+-- ACBrFramework 0.9.1.30 --
+[+] Iniciado Bloco 0 Sped - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.1.30 --
+[+] Iniciado Bloco 0 ACBrSped - Rafael Dias.
+
 30/11/2012
 
 -- ACBrFramework 0.9.1.30 --
