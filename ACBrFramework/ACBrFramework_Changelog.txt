@@ -48,7 +48,6 @@ Changelog
 [+] Adicionado o metodo AAC_AchaECF - Rafael Dias.
 [+] Adicionado o metodo AAC_AchaIndiceECF - Rafael Dias.
 [+] Adicionado o metodo AAC_VerificaReCarregarArquivo - Rafael Dias.
-[-] Corrigido os registros R1 e R2 do ACBrPAF no ACBrFramework.Net - Rafael Batiati
 
 -- ACBrFramework.Net 0.9.1.30 --
 [+] Adicionado o metodo AtualizarMD5 no ACBrAAC - Rafael Dias.
@@ -58,6 +57,7 @@ Changelog
 [+] Adicionado o metodo VerificaReCarregarArquivo  no ACBrAAC - Rafael Dias.
 [*] Modificado o PAF_SaveFileTXT_N para checar valores null - Rafael Dias.
 [*] Modificado o PAF_SaveFileTXT_R para checar valores null - Rafael Dias.
+[-] Corrigido os registros R1 e R2 do ACBrPAF - Rafael Batiati
 
 29/11/2012
 
