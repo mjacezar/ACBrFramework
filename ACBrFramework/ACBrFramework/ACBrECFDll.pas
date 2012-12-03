@@ -5815,14 +5815,7 @@ begin
 end;
 
 try
-   if(aacHandle = nil) then
-   begin
-      ecfHandle^.ECF.PafMF_RelIdentificacaoPafECF(nil, indiceRelatorio);
-   end
-   else
-   begin
-     ecfHandle^.ECF.PafMF_RelIdentificacaoPafECF(aacHandle^.AAC.IdentPAF, indiceRelatorio);
-   end;
+   ecfHandle^.ECF.PafMF_RelIdentificacaoPafECF(aacHandle^.AAC.IdentPAF, indiceRelatorio);
    Result := 0;
 except
    on exception : Exception do
@@ -5842,14 +5835,7 @@ begin
 end;
 
 try
-   if(aacHandle = nil) then
-   begin
-     ecfHandle^.ECF.PafMF_RelParametrosConfiguracao(nil, indiceRelatorio);
-   end
-   else
-   begin
-     ecfHandle^.ECF.PafMF_RelParametrosConfiguracao(aacHandle^.AAC.IdentPAF.Paf, indiceRelatorio);
-   end;
+   ecfHandle^.ECF.PafMF_RelParametrosConfiguracao(aacHandle^.AAC.IdentPAF.Paf, indiceRelatorio);
    Result := 0;
 except
    on exception : Exception do

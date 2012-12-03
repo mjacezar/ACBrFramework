@@ -44,11 +44,10 @@
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="11" Y="18"/>
+        <CursorPos X="38" Y="14"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -67,10 +66,12 @@
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="283"/>
-        <CursorPos X="57" Y="291"/>
+        <TopLine Value="5601"/>
+        <CursorPos X="7" Y="5818"/>
+        <FoldState Value=" TJmX2#nY p0xV2#ie]9sb2#-b]9\Y2w1 po6pP2~p]AiXpe2~s2 pnAuM2}t]Kp6uH2{=[K4Pr92{7]Kjcm12{2]KlHnK2h111]BPrP2' T3nH0J]G0i,G0K1/[A4k20L5]u8]9I[946je0I213]BGlP0Y24114 pidpF0M4]MEk7033 TLkuV0{mA"/>
         <ExtraEditorCount Value="1"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -108,10 +109,12 @@
       <Unit6>
         <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
         <UnitName Value="ACBrECF"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1006"/>
-        <CursorPos X="15" Y="1018"/>
+        <TopLine Value="749"/>
+        <CursorPos X="15" Y="767"/>
         <UsageCount Value="74"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -201,7 +204,7 @@
         <Filename Value="ACBrPAFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrPAFDll"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="10"/>
         <CursorPos X="1" Y="23"/>
@@ -458,11 +461,10 @@
         <Filename Value="ACBrSpedDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrSpedDll"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="8"/>
         <CursorPos X="1" Y="51"/>
-        <FoldState Value=" TCBQF4K"/>
         <UsageCount Value="23"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -471,7 +473,7 @@
         <Filename Value="ACBrSpedFiscalDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrSpedFiscaldll"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="6"/>
         <CursorPos X="1" Y="25"/>
@@ -596,7 +598,7 @@
       <Unit59>
         <Filename Value="..\..\ACBr\Fontes\ACBrSPED\ACBrSPEDFiscal\ACBrEFDBloco_0.pas"/>
         <UnitName Value="ACBrEFDBloco_0"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="99"/>
         <CursorPos X="32" Y="110"/>
@@ -607,7 +609,7 @@
       <Unit60>
         <Filename Value="..\..\ACBr\Exemplos\ACBrSPED\Delphi\Fiscal\Frm_SPEDFiscal.pas"/>
         <UnitName Value="Frm_SPEDFiscal"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="139"/>
         <CursorPos X="1" Y="1"/>
@@ -625,7 +627,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit61>
     </Units>
-    <JumpHistory Count="17" HistoryIndex="16">
+    <JumpHistory Count="18" HistoryIndex="17">
       <Position1>
         <Filename Value="ACBrPAFDll.pas"/>
         <Caret Line="1277" Column="46" TopLine="1272"/>
@@ -694,6 +696,10 @@
         <Filename Value="..\..\ACBr\Fontes\ACBrSPED\ACBrSPEDFiscal\ACBrEFDBloco_0.pas"/>
         <Caret Line="194" Column="39" TopLine="81"/>
       </Position17>
+      <Position18>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="5819" Column="88" TopLine="5647"/>
+      </Position18>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
