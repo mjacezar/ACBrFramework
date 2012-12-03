@@ -1220,10 +1220,14 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void PafMF_RelIdentificacaoPafECF(int indiceRelatorio)
+        public void PafMF_RelIdentificacaoPafECF()
+        {
+            PafMF_RelIdentificacaoPafECF(this.AAC.IdentPaf, 0);
+        }
+        
+        public void PafMF_RelIdentificacaoPafECF(int indiceRelatorio)
 		{
-			int ret = ACBrECFInterop.ECF_PafMF_RelIdentificacaoPafECF(this.Handle, IntPtr.Zero, indiceRelatorio);
-			CheckResult(ret);
+            PafMF_RelIdentificacaoPafECF(this.AAC.IdentPaf, indiceRelatorio);
 		}
 
 		public void PafMF_RelIdentificacaoPafECF(ACBrECFIdenticacaoPaf identificacaoPAF, int indiceRelatorio)
@@ -1232,10 +1236,14 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void PafMF_RelParametrosConfiguracao(int indiceRelatorio)
+        public void PafMF_RelParametrosConfiguracao()
+        {
+            PafMF_RelParametrosConfiguracao(this.AAC.IdentPaf.Paf, 0);
+        }
+		
+        public void PafMF_RelParametrosConfiguracao(int indiceRelatorio)
 		{
-			int ret = ACBrECFInterop.ECF_PafMF_RelParametrosConfiguracao(this.Handle, IntPtr.Zero, indiceRelatorio);
-			CheckResult(ret);
+            PafMF_RelParametrosConfiguracao(this.AAC.IdentPaf.Paf, indiceRelatorio);
 		}
 
 		public void PafMF_RelParametrosConfiguracao(ACBrECFInfoPaf infoPAF, int indiceRelatorio)
