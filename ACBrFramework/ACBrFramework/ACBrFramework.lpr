@@ -16,7 +16,8 @@ uses
   ACBrTEFDll,
   ACBrCNIEEDll,
   ACBrSpedDll,
-  ACBrSpedFiscalDll
+  ACBrSpedFiscalDll,
+  ACBrSMSDll
   ;
 
 

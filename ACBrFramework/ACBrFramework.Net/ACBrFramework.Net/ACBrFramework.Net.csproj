@@ -250,6 +250,15 @@
     <Compile Include="Serial\SerialHandShake.cs" />
     <Compile Include="Serial\SerialParity.cs" />
     <Compile Include="Serial\SerialStopBits.cs" />
+    <Compile Include="Serial\SMS\ACBrSMS.cs" />
+    <Compile Include="Serial\SMS\ACBrSMSInterop.cs" />
+    <Compile Include="Serial\SMS\Classes\ACBrSMSFiltro.cs" />
+    <Compile Include="Serial\SMS\Classes\ACBrSMSMensagems.cs" />
+    <Compile Include="Serial\SMS\Classes\ACBrSMSModelo.cs" />
+    <Compile Include="Serial\SMS\Classes\ACBrSMSSimCard.cs" />
+    <Compile Include="Serial\SMS\Classes\ACBrSMSSincronismo.cs" />
+    <Compile Include="Serial\SMS\Classes\ACBrSMSMensagem.cs" />
+    <Compile Include="Serial\SMS\Classes\OnProgressoEventArgs.cs" />
     <Compile Include="Sintegra\ACBrSintegra.cs" />
     <Compile Include="Sintegra\ACBrSintegraInterop.cs" />
     <Compile Include="Sintegra\ACBrSintegraTipoReceita.cs" />
@@ -447,6 +456,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SPED\Fiscal\ico.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Serial\SMS\ico.bmp" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

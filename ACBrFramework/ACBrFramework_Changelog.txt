@@ -41,6 +41,14 @@ Símbolo : Significado
 
 Changelog
 
+05/12/2012
+
+-- ACBrFramework 0.9.1.31 --
+[+] Adicionado o ACBrSMS - ACBrSMS - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.1.31 --
+[+] Adicionado o ACBrSMS - ACBrSMS - Rafael Dias.
+
 03/12/2012
 
 -- ACBrFramework.Net 0.9.1.30 --
