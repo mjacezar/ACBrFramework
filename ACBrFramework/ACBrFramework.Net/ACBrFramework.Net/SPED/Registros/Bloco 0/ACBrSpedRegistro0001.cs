@@ -7,6 +7,7 @@ namespace ACBrFramework.SPED.Blocos.Bloco0
 			this.Registro0005 = new ACBrSpedRegistro0005();
 			this.Registro0015List = new ACBrSpedRegistro0015List();
 			this.Registro0100 = new ACBrSpedRegistro0100();
+            this.Registro0150List = new ACBrSpedRegistro0150List();
 		}
 
 		public ACBrCodFinalidade COD_FIN { get; set; }
@@ -16,5 +17,7 @@ namespace ACBrFramework.SPED.Blocos.Bloco0
 		public ACBrSpedRegistro0015List Registro0015List { get; private set; }
 
 		public ACBrSpedRegistro0100 Registro0100 { get; private set; }
+
+        public ACBrSpedRegistro0150List Registro0150List { get; private set; }
 	}
 }

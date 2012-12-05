@@ -88,9 +88,9 @@ namespace ACBrFramework.SPED.Blocos.Bloco0
 
 		#endregion Methods
 
-		#region IEnumerable<ACBrPAFRegistroB2>
+        #region IEnumerable<ACBrSpedRegistro0015>
 
-		public IEnumerator<ACBrSpedRegistro0015> GetEnumerator()
+        public IEnumerator<ACBrSpedRegistro0015> GetEnumerator()
 		{
 			return list.GetEnumerator();
 		}
@@ -98,8 +98,8 @@ namespace ACBrFramework.SPED.Blocos.Bloco0
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return list.GetEnumerator();
-		}
+        }
 
-		#endregion IEnumerable<ACBrPAFRegistroB2>
-	}
+        #endregion IEnumerable<ACBrSpedRegistro0015>
+    }
 }
