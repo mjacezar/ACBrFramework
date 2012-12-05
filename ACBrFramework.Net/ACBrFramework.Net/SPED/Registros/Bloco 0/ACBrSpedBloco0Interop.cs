@@ -143,5 +143,61 @@ namespace ACBrFramework.SPED.Blocos.Bloco0
 			[MarshalAs(UnmanagedType.I4)]
 			public int COD_MUN;                     /// Código do município, conforme tabela IBGE:
 		}
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Bloco0Registro0150
+        {
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COD_PART;     /// Código de identificação do participante:
+  
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 101)]
+			public string NOME;         /// Nome pessoal ou empresarial:
+  
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 6)]
+			public string COD_PAIS;     /// Código do país do participante:
+  
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CNPJ;         /// CNPJ do participante:
+  
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 12)]
+			public string CPF;          /// CPF do participante na unidade da federação do destinatário:
+  
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string IE;           /// Inscrição Estadual do participante:
+  
+            [MarshalAs(UnmanagedType.I4)]
+			public int COD_MUN;         /// Código do município:
+  
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+			public string SUFRAMA;      /// Número de inscrição na Suframa:
+  
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string ENDERECO;     /// Logradouro e endereço do imóvel:
+  
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 11)]
+			public string NUM;          /// Número do imóvel:
+  
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COMPL;        /// Dados complementares do endereço:
+  
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string BAIRRO;       /// Bairro em que o imóvel está situado:
+  
+            [MarshalAs(UnmanagedType.I4)]
+			public int Count0175;       /// BLOCO C - Lista de Registro0175 (FILHO)    
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Bloco0Registro0175
+        {
+            [MarshalAs(UnmanagedType.R8)]
+			public double DT_ALT;        /// Data de alteração do cadastro:
+  
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string NR_CAMPO;      /// Número do campo alterado (Somente campos 03 a 13):
+  
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 101)]
+			public string CONT_ANT;      /// Conteúdo anterior do campo:   
+        }
 	}
 }
