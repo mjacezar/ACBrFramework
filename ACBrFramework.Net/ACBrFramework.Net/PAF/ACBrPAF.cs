@@ -229,7 +229,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_B(this.Handle, RegistroB1Rec, RegistroB2Rec, PAF_B.RegistroB2.Count, ToUTF8(arquivo));
 			CheckResult(ret);
-
+            PAF_B.LimparRegistros();
 			return Convert.ToBoolean(ret);
 		}
 
@@ -268,7 +268,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_C(this.Handle, RegistroC1Rec, RegistroC2Rec, PAF_C.RegistroC2.Count, ToUTF8(arquivo));
 			CheckResult(ret);
-
+            PAF_C.LimparRegistros();
 			return Convert.ToBoolean(ret);
 		}
 
@@ -335,6 +335,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_D(this.Handle, RegistroD1Rec, RegistroD2Rec, PAF_D.RegistroD2.Count, RegistroD3Rec, ToUTF8(arquivo));
 			CheckResult(ret);
+            PAF_D.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -371,6 +372,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_E(this.Handle, RegistroE1Rec, RegistroE2Rec, PAF_E.RegistroE2.Count, ToUTF8(arquivo));
 			CheckResult(ret);
+            PAF_E.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -410,6 +412,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_H(this.Handle, RegistroH1Rec, RegistroH2Rec, PAF_H.RegistroH2.Count, ToUTF8(arquivo));
 			CheckResult(ret);
+            PAF_H.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -440,6 +443,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_N(Handle, RegistroN1Rec, RegistroN2Rec, RegistroN3Rec, PAF_N.RegistroN3.Count, ToUTF8(arquivo));
 			CheckResult(ret);
+            PAF_N.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -472,6 +476,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_P(this.Handle, RegistroP1Rec, RegistroP2Rec, PAF_P.RegistroP2.Count, ToUTF8(arquivo));
 			CheckResult(ret);
+            PAF_P.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -644,6 +649,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_R(this.Handle, RegistroR1Rec, RegistroR2Rec, PAF_R.RegistroR2.Count, RegistroR3Rec, RegistroR4Rec, PAF_R.RegistroR4.Count, RegistroR5Rec, RegistroR6Rec, PAF_R.RegistroR6.Count, RegistroR7Rec, ToUTF8(arquivo));
 			CheckResult(ret);
+            PAF_R.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -682,6 +688,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_T(this.Handle, RegistroT1Rec, RegistroT2Rec, PAF_T.RegistroT2.Count, ToUTF8(arquivo));
 			CheckResult(ret);
+            PAF_T.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -727,6 +734,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_TITP(this.Handle, MercadoriasRec, PAF_TITP.Mercadorias.Count, InsumosRec, ToUTF8(arquivo), ToUTF8(PAF_TITP.Titulo), PAF_TITP.Data.ToOADate());
 			CheckResult(ret);
+            PAF_TITP.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
