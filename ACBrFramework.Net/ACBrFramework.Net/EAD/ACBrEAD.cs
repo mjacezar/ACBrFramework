@@ -71,7 +71,7 @@ namespace ACBrFramework.EAD
         {
             get
             {
-                return string.Format("ACBr: {0} ACBrFramework: {1}", GetString(ACBrEADInterop.EAD_GetAbout), this.GetType().Assembly.GetName().Version); ;
+                return GetAbout(ACBrEADInterop.EAD_GetAbout);
             }
         }
 

@@ -115,6 +115,12 @@ namespace ACBrFramework
             return retorno;
         }
 
+        protected string GetAbout(GetStringEntryPointDelegate entryPoint)
+        {
+            const int BUFFER_LEN = 256;
+            return string.Format("ACBr: {0} ACBrFramework: {1}", GetString(entryPoint, BUFFER_LEN), this.GetType().Assembly.GetName().Version);
+        }
+
 		protected string GetString(GetStringEntryPointDelegate entryPoint)
 		{
 			const int BUFFER_LEN = 256;

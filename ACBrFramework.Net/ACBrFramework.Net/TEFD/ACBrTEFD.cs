@@ -289,7 +289,7 @@ namespace ACBrFramework.TEFD
 		{
 			get
 			{
-				return string.Format("ACBr: {0} ACBrFramework: {1}", GetString(ACBrTEFInterop.TEF_GetAbout), this.GetType().Assembly.GetName().Version);
+				return GetAbout(ACBrTEFInterop.TEF_GetAbout);
 			}
 		}
 
