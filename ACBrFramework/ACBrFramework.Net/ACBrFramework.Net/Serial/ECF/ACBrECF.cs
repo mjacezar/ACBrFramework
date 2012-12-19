@@ -179,7 +179,7 @@ namespace ACBrFramework.ECF
 		{
 			get
 			{
-				return string.Format("ACBr: {0} ACBrFramework: {1}", GetString(ACBrECFInterop.ECF_GetAbout), this.GetType().Assembly.GetName().Version);
+                return GetAbout(ACBrECFInterop.ECF_GetAbout);
 			}
 		}
 
