@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using ACBrFramework.SPED;
 
 namespace ACBrFramework.SPEDFiscal
 {
@@ -122,6 +123,9 @@ namespace ACBrFramework.SPEDFiscal
 			}
 		}
 
+		[Browsable(false)]
+		public ACBrSPEDBloco0 Bloco_0 { get; private set; }
+
 		#endregion Properties
 
 		#region Methods
@@ -137,6 +141,7 @@ namespace ACBrFramework.SPEDFiscal
 		protected internal override void OnInitializeComponent()
 		{
 			CallCreate(ACBrSPEDFiscalInterop.SPDF_Create);
+			Bloco_0 = new ACBrSPEDBloco0();
 		}
 
 		protected internal override void CheckResult(int ret)
