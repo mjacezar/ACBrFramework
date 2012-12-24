@@ -84,8 +84,8 @@ type Registro0150 = record
 end;
 
 type Registro0175 = record
-  DT_ALT   : Double;                     /// Data de alteração do cadastro:
-  NR_CAMPO : array[0..2] of char;       /// Número do campo alterado (Somente campos 03 a 13):
+  DT_ALT   : Double;                      /// Data de alteração do cadastro:
+  NR_CAMPO : array[0..2] of char;         /// Número do campo alterado (Somente campos 03 a 13):
   CONT_ANT : array[0..100] of char;       /// Conteúdo anterior do campo:
 end;
 
@@ -95,16 +95,16 @@ type Registro0190 = record
 end;
 
 type Registro0200 = record
-  COD_ITEM     : array[0..6] of char;         /// Código do item:
-  DESCR_ITEM   : array[0..6] of char;         /// Descrição do item:
-  COD_BARRA    : array[0..6] of char;         /// Código de barra do produto, se houver:
-  COD_ANT_ITEM : array[0..6] of char;         /// Código anterior do item (ultima apresentado):
+  COD_ITEM     : array[0..60] of char;        /// Código do item:
+  DESCR_ITEM   : array[0..200] of char;       /// Descrição do item:
+  COD_BARRA    : array[0..14] of char;        /// Código de barra do produto, se houver:
+  COD_ANT_ITEM : array[0..60] of char;        /// Código anterior do item (ultima apresentado):
   UNID_INV     : array[0..6] of char;         /// Unidade de medida do estoque:
   TIPO_ITEM    : Integer;                     /// Tipo do item - Atividades Industriais, Comerciais e Serviços: 00 - Mercadoria para Revenda, 01 - Matéria-Prima,  02 - Embalagem, 03 - Produto em Processo, 04 - Produto Acabado, 05 - Subproduto, 06 - Produto Intermediário, 07 - Material de Uso e Consumo, 08 - Ativo Imobilizado, 09 - Serviços, 10 - Outros insumos, 99 - Outras
-  COD_NCM      : array[0..6] of char;         /// Código da Nomenclatura Comum do Mercosul:
-  EX_IPI       : array[0..6] of char;         /// Código EX, conforme a TIPI:
-  COD_GEN      : array[0..6] of char;         /// Código gênero item, tabela indicada item 4.2.1:
-  COD_LST      : array[0..6] of char;         /// Código serviço Anexo I - Lei nº116/03:
+  COD_NCM      : array[0..8] of char;         /// Código da Nomenclatura Comum do Mercosul:
+  EX_IPI       : array[0..3] of char;         /// Código EX, conforme a TIPI:
+  COD_GEN      : array[0..2] of char;         /// Código gênero item, tabela indicada item 4.2.1:
+  COD_LST      : array[0..4] of char;         /// Código serviço Anexo I - Lei nº116/03:
   ALIQ_ICMS    : Double;                      /// Alíquota ICMS aplicável (operações internas):
 end;
 
