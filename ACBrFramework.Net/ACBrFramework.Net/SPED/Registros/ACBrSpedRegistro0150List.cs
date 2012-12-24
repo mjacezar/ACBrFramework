@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace ACBrFramework.SPED.Blocos.Bloco0
+namespace ACBrFramework.SPED
 {
     public sealed class ACBrSpedRegistro0150List : ICollection<ACBrSpedRegistro0150>
     {
@@ -80,6 +80,18 @@ namespace ACBrFramework.SPED.Blocos.Bloco0
         {
             return list.Remove(item);
         }
+
+		public bool LocalizaRegistro(string COD_PART)
+		{
+			bool retorno = false;
+			int ret = -1;
+
+			ret = list.FindIndex(p => p.COD_PART == COD_PART);
+			if (ret > -1)
+				retorno = true;
+
+			return retorno;
+		}
 
         public void Clear()
         {

@@ -1,4 +1,4 @@
-namespace ACBrFramework.SPED.Blocos.Bloco0
+namespace ACBrFramework.SPED
 {
 	public sealed class ACBrSpedRegistro0015
 	{

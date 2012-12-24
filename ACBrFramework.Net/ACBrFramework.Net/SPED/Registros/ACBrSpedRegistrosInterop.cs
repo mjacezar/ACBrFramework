@@ -1,8 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ACBrFramework.SPED.Blocos.Bloco0
+namespace ACBrFramework.SPED
 {
-	public static class ACBrSpedBloco0Interop
+	public static class ACBrSpedRegistrosInterop
 	{
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Bloco0Registro0000
@@ -199,5 +199,15 @@ namespace ACBrFramework.SPED.Blocos.Bloco0
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 101)]
 			public string CONT_ANT;      /// Conteúdo anterior do campo:   
         }
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct Bloco0Registro0190
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string UNID;      /// Número do campo alterado (Somente campos 03 a 13):
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 101)]
+			public string DESCR;      /// Conteúdo anterior do campo:   
+		}
 	}
 }

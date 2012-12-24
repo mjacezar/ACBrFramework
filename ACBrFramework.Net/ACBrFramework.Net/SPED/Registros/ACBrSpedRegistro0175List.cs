@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace ACBrFramework.SPED.Blocos.Bloco0
+namespace ACBrFramework.SPED
 {
-	public sealed class ACBrSpedRegistro0015List : ICollection<ACBrSpedRegistro0015>
+	public sealed class ACBrSpedRegistro0175List : ICollection<ACBrSpedRegistro0175>
 	{
 		#region Fields
 
-		private List<ACBrSpedRegistro0015> list;
+		private List<ACBrSpedRegistro0175> list;
 
 		#endregion Fields
 
 		#region Constructor
 
-		internal ACBrSpedRegistro0015List()
+		internal ACBrSpedRegistro0175List()
 		{
-			this.list = new List<ACBrSpedRegistro0015>();
+			this.list = new List<ACBrSpedRegistro0175>();
 		}
 
 		#endregion Constructor
@@ -40,7 +40,7 @@ namespace ACBrFramework.SPED.Blocos.Bloco0
 		}
 
 		[IndexerName("GetItem")]
-		public ACBrSpedRegistro0015 this[int index]
+		public ACBrSpedRegistro0175 this[int index]
 		{
 			get
 			{
@@ -56,27 +56,27 @@ namespace ACBrFramework.SPED.Blocos.Bloco0
 
 		#region Methods
 
-		public void Add(ACBrSpedRegistro0015 value)
+		public void Add(ACBrSpedRegistro0175 value)
 		{
 			list.Add(value);
 		}
 
-		public void AddRange(ACBrSpedRegistro0015[] values)
+		public void AddRange(ACBrSpedRegistro0175[] values)
 		{
 			list.AddRange(values);
 		}
 
-		public bool Contains(ACBrSpedRegistro0015 value)
+		public bool Contains(ACBrSpedRegistro0175 value)
 		{
 			return list.Contains(value);
 		}
 
-		public void CopyTo(ACBrSpedRegistro0015[] array, int arrayIndex)
+		public void CopyTo(ACBrSpedRegistro0175[] array, int arrayIndex)
 		{
 			list.CopyTo(array, arrayIndex);
 		}
 
-		public bool Remove(ACBrSpedRegistro0015 item)
+		public bool Remove(ACBrSpedRegistro0175 item)
 		{
 			return list.Remove(item);
 		}
@@ -88,9 +88,9 @@ namespace ACBrFramework.SPED.Blocos.Bloco0
 
 		#endregion Methods
 
-        #region IEnumerable<ACBrSpedRegistro0015>
+		#region IEnumerable<ACBrSpedRegistro0175>
 
-        public IEnumerator<ACBrSpedRegistro0015> GetEnumerator()
+		public IEnumerator<ACBrSpedRegistro0175> GetEnumerator()
 		{
 			return list.GetEnumerator();
 		}
@@ -98,8 +98,8 @@ namespace ACBrFramework.SPED.Blocos.Bloco0
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return list.GetEnumerator();
-        }
+		}
 
-        #endregion IEnumerable<ACBrSpedRegistro0015>
-    }
+		#endregion IEnumerable<ACBrSpedRegistro0175>
+	}
 }

@@ -1,14 +1,8 @@
-namespace ACBrFramework.SPED.Blocos.Bloco0
+namespace ACBrFramework.SPED
 {
-	public sealed class ACBrSpedRegistro0100
+	public sealed class ACBrSpedRegistro0005
 	{
-		public string NOME { get; set; }
-
-		public string CPF { get; set; }
-
-		public string CRC { get; set; }
-
-		public string CNPJ { get; set; }
+		public string FANTASIA { get; set; }
 
 		public string CEP { get; set; }
 
@@ -25,7 +19,5 @@ namespace ACBrFramework.SPED.Blocos.Bloco0
 		public string FAX { get; set; }
 
 		public string EMAIL { get; set; }
-
-		public int COD_MUN { get; set; }
 	}
 }
