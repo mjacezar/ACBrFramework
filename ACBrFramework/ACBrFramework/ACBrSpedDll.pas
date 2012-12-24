@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils;
 
-{%region Registros}
+{%region Registros Bloco 0}
 
 type Registro0000 = record
   OD_VER     : Integer; /// Código da versão do leiaute: 100, 101, 102
