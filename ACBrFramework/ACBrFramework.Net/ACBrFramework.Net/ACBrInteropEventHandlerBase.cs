@@ -79,11 +79,11 @@ namespace ACBrFramework
 
 				if (synchronizeInvoke == null)
 				{
-					eventHandler.DynamicInvoke(this, e);
+					eventHandler.DynamicInvoke(this.component, e);
 				}
 				else
 				{
-					synchronizeInvoke.Invoke(eventHandler, new object[] { this, e });
+					synchronizeInvoke.Invoke(eventHandler, new object[] { this.component, e });
 				}
 			}
 		}

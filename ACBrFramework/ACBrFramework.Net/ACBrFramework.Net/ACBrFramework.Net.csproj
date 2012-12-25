@@ -151,6 +151,9 @@
     <Compile Include="EAD\ACBrEAD.cs" />
     <Compile Include="EAD\ACBrEADInterop.cs" />
     <Compile Include="EAD\EADDigest.cs" />
+    <Compile Include="IBGE\ACBrIBGE.cs" />
+    <Compile Include="IBGE\ACBrIBGEInterop.cs" />
+    <Compile Include="IBGE\Classes\ACBrIBGECidade.cs" />
     <Compile Include="PAF\ACBrPAF.cs" />
     <Compile Include="PAF\ACBrPAFInterop.cs" />
     <Compile Include="PAF\ACBrPAFTipoDesenvolvimento.cs" />
@@ -467,7 +470,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Serial\SMS\ico.bmp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="IBGE\ico.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

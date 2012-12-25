@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ACBrFramework.SPED
 {
-	class ACBrSPEDBloco0
+	public class ACBrSPEDBloco0
 	{
 		public ACBrSPEDBloco0()
 		{
