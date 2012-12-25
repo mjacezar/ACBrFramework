@@ -42,8 +42,13 @@ Símbolo : Significado
 Changelog
 
 25/12/2012 ho! ho! ho!
--- ACBrFramework 0.9.1.31 --
-[+] Adicionado o ACBrIBGE - Rafael Batiati
+
+-- ACBrFramework 0.9.1.32 --
+[+] Adicionado o ACBrIBGE - Rafael Batiati.
+[-] Adicionado o pacote LazUtil com dependencia para compatibilidade com a nova versão do ACBr - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.1.32 --
+[+] Adicionado o ACBrIBGE - Rafael Batiati.
 
 05/12/2012
 
