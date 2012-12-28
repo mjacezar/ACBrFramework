@@ -27,7 +27,7 @@ namespace ACBrFramework.IBGE
 		#region Fields
 
 		private readonly ACBrEventHandler<ACBrIBGEInterop.OnBuscaEfetuadaCallback> onBuscaEfetuada;
-		private ACBrIBGECidade[] cidades;
+		private Cidade[] cidades;
 
 		#endregion Fields
 
@@ -43,7 +43,7 @@ namespace ACBrFramework.IBGE
 		#region Properties
 
 		[Browsable(false)]
-		public ACBrIBGECidade[] Cidades
+		public Cidade[] Cidades
 		{
 			get
 			{
@@ -75,7 +75,7 @@ namespace ACBrFramework.IBGE
 			int count = ACBrIBGEInterop.IBGE_Cidades_GetCount(this.Handle);
 			CheckResult(count);
 
-			cidades = new ACBrIBGECidade[count];
+			cidades = new Cidade[count];
 
 			for (int i = 0; i < count; i++)
 			{
@@ -83,7 +83,7 @@ namespace ACBrFramework.IBGE
 				int ret = ACBrIBGEInterop.IBGE_Cidades_GetItem(this.Handle, ref cidadeRec, i);
 				CheckResult(ret);
 
-				ACBrIBGECidade cidade = new ACBrIBGECidade();
+				Cidade cidade = new Cidade();
 				cidade.Municipio = FromUTF8(cidadeRec.Municipio);
 				cidade.CodMunicio = cidadeRec.CodMunicio;
 				cidade.UF = FromUTF8(cidadeRec.UF);

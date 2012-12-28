@@ -6,7 +6,7 @@ namespace ACBrFramework.TEFD
 	{
 		#region Constructor
 
-		internal ExibeMensagemEventArgs(ACBrTEFDOperacaoMensagem operacao, string mensagem)
+		internal ExibeMensagemEventArgs(OperacaoMensagem operacao, string mensagem)
 		{
 			this.Operacao = operacao;
 			this.Mensagem = mensagem;
@@ -16,7 +16,7 @@ namespace ACBrFramework.TEFD
 
 		#region Properties
 
-		public ACBrTEFDOperacaoMensagem Operacao { get; private set; }
+		public OperacaoMensagem Operacao { get; private set; }
 
 		public string Mensagem { get; private set; }
 

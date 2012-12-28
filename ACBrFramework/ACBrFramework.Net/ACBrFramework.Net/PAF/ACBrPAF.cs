@@ -229,7 +229,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_B(this.Handle, RegistroB1Rec, RegistroB2Rec, PAF_B.RegistroB2.Count, ToUTF8(arquivo));
 			CheckResult(ret);
-            PAF_B.LimparRegistros();
+			PAF_B.LimparRegistros();
 			return Convert.ToBoolean(ret);
 		}
 
@@ -268,7 +268,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_C(this.Handle, RegistroC1Rec, RegistroC2Rec, PAF_C.RegistroC2.Count, ToUTF8(arquivo));
 			CheckResult(ret);
-            PAF_C.LimparRegistros();
+			PAF_C.LimparRegistros();
 			return Convert.ToBoolean(ret);
 		}
 
@@ -335,7 +335,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_D(this.Handle, RegistroD1Rec, RegistroD2Rec, PAF_D.RegistroD2.Count, RegistroD3Rec, ToUTF8(arquivo));
 			CheckResult(ret);
-            PAF_D.LimparRegistros();
+			PAF_D.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -372,7 +372,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_E(this.Handle, RegistroE1Rec, RegistroE2Rec, PAF_E.RegistroE2.Count, ToUTF8(arquivo));
 			CheckResult(ret);
-            PAF_E.LimparRegistros();
+			PAF_E.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -412,7 +412,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_H(this.Handle, RegistroH1Rec, RegistroH2Rec, PAF_H.RegistroH2.Count, ToUTF8(arquivo));
 			CheckResult(ret);
-            PAF_H.LimparRegistros();
+			PAF_H.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -443,7 +443,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_N(Handle, RegistroN1Rec, RegistroN2Rec, RegistroN3Rec, PAF_N.RegistroN3.Count, ToUTF8(arquivo));
 			CheckResult(ret);
-            PAF_N.LimparRegistros();
+			PAF_N.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -476,7 +476,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_P(this.Handle, RegistroP1Rec, RegistroP2Rec, PAF_P.RegistroP2.Count, ToUTF8(arquivo));
 			CheckResult(ret);
-            PAF_P.LimparRegistros();
+			PAF_P.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -519,9 +519,9 @@ namespace ACBrFramework.PAF
 			RegistroR1Rec.MARCA_ECF = ToUTF8(PAF_R.RegistroR1.MARCA_ECF);
 			RegistroR1Rec.MODELO_ECF = ToUTF8(PAF_R.RegistroR1.MODELO_ECF);
 			RegistroR1Rec.VERSAO_SB = ToUTF8(PAF_R.RegistroR1.VERSAO_SB);
-            RegistroR1Rec.DT_INST_SB = ToUTF8(PAF_R.RegistroR1.DT_INST_SB);
+			RegistroR1Rec.DT_INST_SB = ToUTF8(PAF_R.RegistroR1.DT_INST_SB);
 			RegistroR1Rec.HR_INST_SB = ToUTF8(PAF_R.RegistroR1.HR_INST_SB);
-            RegistroR1Rec.NUM_SEQ_ECF = ToUTF8(PAF_R.RegistroR1.NUM_SEQ_ECF);
+			RegistroR1Rec.NUM_SEQ_ECF = ToUTF8(PAF_R.RegistroR1.NUM_SEQ_ECF);
 			RegistroR1Rec.CNPJ = ToUTF8(PAF_R.RegistroR1.CNPJ);
 			RegistroR1Rec.IE = ToUTF8(PAF_R.RegistroR1.IE);
 			RegistroR1Rec.CNPJ_SH = ToUTF8(PAF_R.RegistroR1.CNPJ_SH);
@@ -571,13 +571,13 @@ namespace ACBrFramework.PAF
 				RegistroR4Rec[i].COO = ToUTF8(PAF_R.RegistroR4[i].COO);
 				RegistroR4Rec[i].DT_INI = ToUTF8(PAF_R.RegistroR4[i].DT_INI);
 				RegistroR4Rec[i].SUB_DOCTO = ToUTF8(PAF_R.RegistroR4[i].SUB_DOCTO);
-                RegistroR4Rec[i].SUB_DESCTO = ToUTF8(PAF_R.RegistroR4[i].SUB_DESCTO);
+				RegistroR4Rec[i].SUB_DESCTO = ToUTF8(PAF_R.RegistroR4[i].SUB_DESCTO);
 				RegistroR4Rec[i].TP_DESCTO = ToUTF8(PAF_R.RegistroR4[i].TP_DESCTO);
-                RegistroR4Rec[i].SUB_ACRES = ToUTF8(PAF_R.RegistroR4[i].SUB_ACRES);
+				RegistroR4Rec[i].SUB_ACRES = ToUTF8(PAF_R.RegistroR4[i].SUB_ACRES);
 				RegistroR4Rec[i].TP_ACRES = ToUTF8(PAF_R.RegistroR4[i].TP_ACRES);
-                RegistroR4Rec[i].VL_TOT = ToUTF8(PAF_R.RegistroR4[i].VL_TOT);
+				RegistroR4Rec[i].VL_TOT = ToUTF8(PAF_R.RegistroR4[i].VL_TOT);
 				RegistroR4Rec[i].CANC = ToUTF8(PAF_R.RegistroR4[i].CANC);
-                RegistroR4Rec[i].VL_CA = ToUTF8(PAF_R.RegistroR4[i].VL_CA);
+				RegistroR4Rec[i].VL_CA = ToUTF8(PAF_R.RegistroR4[i].VL_CA);
 				RegistroR4Rec[i].ORDEM_DA = ToUTF8(PAF_R.RegistroR4[i].ORDEM_DA);
 				RegistroR4Rec[i].NOME_CLI = ToUTF8(PAF_R.RegistroR4[i].NOME_CLI);
 				RegistroR4Rec[i].CNPJ_CPF = ToUTF8(PAF_R.RegistroR4[i].CNPJ_CPF);
@@ -588,17 +588,17 @@ namespace ACBrFramework.PAF
 					RegistroR5Rec[ItemR5].NUM_ITEM = RegistroR5.NUM_ITEM;
 					RegistroR5Rec[ItemR5].COD_ITEM = ToUTF8(RegistroR5.COD_ITEM);
 					RegistroR5Rec[ItemR5].DESC_ITEM = ToUTF8(RegistroR5.DESC_ITEM);
-                    RegistroR5Rec[ItemR5].QTDE_ITEM = ToUTF8(RegistroR5.QTDE_ITEM);
+					RegistroR5Rec[ItemR5].QTDE_ITEM = ToUTF8(RegistroR5.QTDE_ITEM);
 					RegistroR5Rec[ItemR5].UN_MED = ToUTF8(RegistroR5.UN_MED);
-                    RegistroR5Rec[ItemR5].VL_UNIT = ToUTF8(RegistroR5.VL_UNIT);
-                    RegistroR5Rec[ItemR5].DESCTO_ITEM = ToUTF8(RegistroR5.DESCTO_ITEM);
-                    RegistroR5Rec[ItemR5].ACRES_ITEM = ToUTF8(RegistroR5.ACRES_ITEM);
-                    RegistroR5Rec[ItemR5].VL_TOT_ITEM = ToUTF8(RegistroR5.VL_TOT_ITEM);
+					RegistroR5Rec[ItemR5].VL_UNIT = ToUTF8(RegistroR5.VL_UNIT);
+					RegistroR5Rec[ItemR5].DESCTO_ITEM = ToUTF8(RegistroR5.DESCTO_ITEM);
+					RegistroR5Rec[ItemR5].ACRES_ITEM = ToUTF8(RegistroR5.ACRES_ITEM);
+					RegistroR5Rec[ItemR5].VL_TOT_ITEM = ToUTF8(RegistroR5.VL_TOT_ITEM);
 					RegistroR5Rec[ItemR5].COD_TOT_PARC = ToUTF8(RegistroR5.COD_TOT_PARC);
 					RegistroR5Rec[ItemR5].IND_CANC = ToUTF8(RegistroR5.IND_CANC);
-                    RegistroR5Rec[ItemR5].QTDE_CANC = ToUTF8(RegistroR5.QTDE_CANC);
-                    RegistroR5Rec[ItemR5].VL_CANC = ToUTF8(RegistroR5.VL_CANC);
-                    RegistroR5Rec[ItemR5].VL_CANC_ACRES = ToUTF8(RegistroR5.VL_CANC_ACRES);
+					RegistroR5Rec[ItemR5].QTDE_CANC = ToUTF8(RegistroR5.QTDE_CANC);
+					RegistroR5Rec[ItemR5].VL_CANC = ToUTF8(RegistroR5.VL_CANC);
+					RegistroR5Rec[ItemR5].VL_CANC_ACRES = ToUTF8(RegistroR5.VL_CANC_ACRES);
 					RegistroR5Rec[ItemR5].IAT = ToUTF8(RegistroR5.IAT);
 					RegistroR5Rec[ItemR5].IPPT = ToUTF8(RegistroR5.IPPT);
 					RegistroR5Rec[ItemR5].QTDE_DECIMAL = ToUTF8(RegistroR5.QTDE_DECIMAL);
@@ -612,9 +612,9 @@ namespace ACBrFramework.PAF
 					RegistroR7Rec[ItemR7].CCF = RegistroR7.CCF;
 					RegistroR7Rec[ItemR7].GNF = RegistroR7.GNF;
 					RegistroR7Rec[ItemR7].MP = ToUTF8(RegistroR7.MP);
-                    RegistroR7Rec[ItemR7].VL_PAGTO = ToUTF8(RegistroR7.VL_PAGTO);
+					RegistroR7Rec[ItemR7].VL_PAGTO = ToUTF8(RegistroR7.VL_PAGTO);
 					RegistroR7Rec[ItemR7].IND_EST = ToUTF8(RegistroR7.IND_EST);
-                    RegistroR7Rec[ItemR7].VL_EST = ToUTF8(RegistroR7.VL_EST);
+					RegistroR7Rec[ItemR7].VL_EST = ToUTF8(RegistroR7.VL_EST);
 					RegistroR7Rec[ItemR7].RegistroValido = RegistroR7.RegistroValido;
 					ItemR7++;
 				}
@@ -639,9 +639,9 @@ namespace ACBrFramework.PAF
 					RegistroR7Rec[ItemR7].CCF = RegistroR7.CCF;
 					RegistroR7Rec[ItemR7].GNF = RegistroR7.GNF;
 					RegistroR7Rec[ItemR7].MP = ToUTF8(RegistroR7.MP);
-                    RegistroR7Rec[ItemR7].VL_PAGTO = ToUTF8(RegistroR7.VL_PAGTO);
+					RegistroR7Rec[ItemR7].VL_PAGTO = ToUTF8(RegistroR7.VL_PAGTO);
 					RegistroR7Rec[ItemR7].IND_EST = ToUTF8(RegistroR7.IND_EST);
-                    RegistroR7Rec[ItemR7].VL_EST = ToUTF8(RegistroR7.VL_EST);
+					RegistroR7Rec[ItemR7].VL_EST = ToUTF8(RegistroR7.VL_EST);
 					RegistroR7Rec[ItemR7].RegistroValido = RegistroR7.RegistroValido;
 					ItemR7++;
 				}
@@ -649,7 +649,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_R(this.Handle, RegistroR1Rec, RegistroR2Rec, PAF_R.RegistroR2.Count, RegistroR3Rec, RegistroR4Rec, PAF_R.RegistroR4.Count, RegistroR5Rec, RegistroR6Rec, PAF_R.RegistroR6.Count, RegistroR7Rec, ToUTF8(arquivo));
 			CheckResult(ret);
-            PAF_R.LimparRegistros();
+			PAF_R.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -688,7 +688,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_T(this.Handle, RegistroT1Rec, RegistroT2Rec, PAF_T.RegistroT2.Count, ToUTF8(arquivo));
 			CheckResult(ret);
-            PAF_T.LimparRegistros();
+			PAF_T.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -734,7 +734,7 @@ namespace ACBrFramework.PAF
 
 			int ret = ACBrPAFInterop.PAF_SaveFileTXT_TITP(this.Handle, MercadoriasRec, PAF_TITP.Mercadorias.Count, InsumosRec, ToUTF8(arquivo), ToUTF8(PAF_TITP.Titulo), PAF_TITP.Data.ToOADate());
 			CheckResult(ret);
-            PAF_TITP.LimparRegistros();
+			PAF_TITP.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}

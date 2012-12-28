@@ -647,79 +647,79 @@ namespace ACBrFramework.ECF
 
 		#endregion Propriedades do Componente
 
-        #region InfoRodapeCupom
+		#region InfoRodapeCupom
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_GetMD5(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_GetMD5(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_SetMD5(IntPtr ecfHandle, string value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_SetMD5(IntPtr ecfHandle, string value);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_GetDav(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_GetDav(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_SetDav(IntPtr ecfHandle, string value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_SetDav(IntPtr ecfHandle, string value);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_GetDavOs(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_GetDavOs(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_SetDavOs(IntPtr ecfHandle, string value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_SetDavOs(IntPtr ecfHandle, string value);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_GetPreVenda(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_GetPreVenda(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_SetPreVenda(IntPtr ecfHandle, string value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_SetPreVenda(IntPtr ecfHandle, string value);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_GetCupomMania(IntPtr ecfHandle);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_GetCupomMania(IntPtr ecfHandle);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_SetCupomMania(IntPtr ecfHandle, bool value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_SetCupomMania(IntPtr ecfHandle, bool value);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_GetMinasLegal(IntPtr ecfHandle);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_GetMinasLegal(IntPtr ecfHandle);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_SetMinasLegal(IntPtr ecfHandle, bool value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_SetMinasLegal(IntPtr ecfHandle, bool value);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_GetParaibaLegal(IntPtr ecfHandle);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_GetParaibaLegal(IntPtr ecfHandle);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_SetParaibaLegal(IntPtr ecfHandle, bool value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_SetParaibaLegal(IntPtr ecfHandle, bool value);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_NotaLegalDF_GetImprimir(IntPtr ecfHandle);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_NotaLegalDF_GetImprimir(IntPtr ecfHandle);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_NotaLegalDF_SetImprimir(IntPtr ecfHandle, bool value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_NotaLegalDF_SetImprimir(IntPtr ecfHandle, bool value);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_NotaLegalDF_GetProgramaDeCredito(IntPtr ecfHandle);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_NotaLegalDF_GetProgramaDeCredito(IntPtr ecfHandle);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_NotaLegalDF_SetProgramaDeCredito(IntPtr ecfHandle, bool value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_NotaLegalDF_SetProgramaDeCredito(IntPtr ecfHandle, bool value);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_NotaLegalDF_GetValorICMS(IntPtr ecfHandle, ref double value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_NotaLegalDF_GetValorICMS(IntPtr ecfHandle, ref double value);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_NotaLegalDF_SetValorICMS(IntPtr ecfHandle, double value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_NotaLegalDF_SetValorICMS(IntPtr ecfHandle, double value);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_NotaLegalDF_GetValorISS(IntPtr ecfHandle, ref double value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_NotaLegalDF_GetValorISS(IntPtr ecfHandle, ref double value);
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_InfoRodapeCupom_NotaLegalDF_SetValorISS(IntPtr ecfHandle, double value);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_NotaLegalDF_SetValorISS(IntPtr ecfHandle, double value);
 
-        #endregion InfoRodapeCupom
+		#endregion InfoRodapeCupom
 
-        #region Cupom Fiscal
+		#region Cupom Fiscal
 
-        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_IdentificaConsumidor(IntPtr ecfHandle, string cpfCnpj, string nome, string endereco);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]

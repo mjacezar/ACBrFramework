@@ -34,7 +34,7 @@ namespace ACBrFramework.Sintegra
 
 		public DateTime DataDocumento { get; set; }
 
-		public ACBrSintegraTipoReceita TipoReceita { get; set; }
+		public TipoReceita TipoReceita { get; set; }
 
 		public int Aliquota { get; set; }
 	}

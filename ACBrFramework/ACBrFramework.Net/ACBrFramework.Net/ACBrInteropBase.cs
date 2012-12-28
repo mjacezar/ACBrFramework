@@ -54,30 +54,30 @@ namespace ACBrFramework
 			return Encoding.Default.GetString(Encoding.UTF8.GetBytes(value));
 		}
 
-        protected int ToUTF8(int value)
-        {
-            int retorno = -1;
+		protected int ToUTF8(int value)
+		{
+			int retorno = -1;
 
-            if (int.TryParse(value.ToString(), out retorno))
-                return retorno;
+			if (int.TryParse(value.ToString(), out retorno))
+				return retorno;
 
-            return retorno;
-        }
+			return retorno;
+		}
 
-        protected double ToUTF8(decimal value)
-        {
-            double retorno = -1;
+		protected double ToUTF8(decimal value)
+		{
+			double retorno = -1;
 
-            if (double.TryParse(value.ToString(), out retorno))
-                return retorno;
+			if (double.TryParse(value.ToString(), out retorno))
+				return retorno;
 
-            return retorno;
-        }
+			return retorno;
+		}
 
-        protected double ToUTF8(DateTime value)
-        {
-            return value.ToOADate();
-        }
+		protected double ToUTF8(DateTime value)
+		{
+			return value.ToOADate();
+		}
 
 		protected string FromUTF8(string value)
 		{
@@ -95,31 +95,31 @@ namespace ACBrFramework
 			return Encoding.UTF8.GetString(Encoding.Default.GetBytes(value.ToString()));
 		}
 
-        protected int FromUTF8(int value)
-        {
-            int retorno = -1;
+		protected int FromUTF8(int value)
+		{
+			int retorno = -1;
 
-            if (int.TryParse(value.ToString(), out retorno))
-                return retorno;
+			if (int.TryParse(value.ToString(), out retorno))
+				return retorno;
 
-            return retorno;
-        }
+			return retorno;
+		}
 
-        protected decimal FromUTF8(double value)
-        {
-            decimal retorno = -1;
+		protected decimal FromUTF8(double value)
+		{
+			decimal retorno = -1;
 
-            if (decimal.TryParse(value.ToString(), out retorno))
-                return retorno;
+			if (decimal.TryParse(value.ToString(), out retorno))
+				return retorno;
 
-            return retorno;
-        }
+			return retorno;
+		}
 
-        protected string GetAbout(GetStringEntryPointDelegate entryPoint)
-        {
-            const int BUFFER_LEN = 256;
-            return string.Format("ACBr: {0} ACBrFramework: {1}", GetString(entryPoint, BUFFER_LEN), this.GetType().Assembly.GetName().Version);
-        }
+		protected string GetAbout(GetStringEntryPointDelegate entryPoint)
+		{
+			const int BUFFER_LEN = 256;
+			return string.Format("ACBr: {0} ACBrFramework: {1}", GetString(entryPoint, BUFFER_LEN), this.GetType().Assembly.GetName().Version);
+		}
 
 		protected string GetString(GetStringEntryPointDelegate entryPoint)
 		{
@@ -271,7 +271,7 @@ namespace ACBrFramework
 		{
 			int ret = entryPoint(Handle, value);
 			CheckResult(ret);
-		}		
+		}
 
 		protected internal abstract void CheckResult(int result);
 

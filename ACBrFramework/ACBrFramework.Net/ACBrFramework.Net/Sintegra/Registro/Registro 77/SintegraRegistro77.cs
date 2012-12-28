@@ -32,6 +32,6 @@ namespace ACBrFramework.Sintegra
 
 		public string Serie { get; set; }
 
-		public ACBrSintegraTipoReceita TipoReceita { get; set; }
+		public TipoReceita TipoReceita { get; set; }
 	}
 }

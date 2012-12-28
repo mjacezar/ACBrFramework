@@ -11,7 +11,7 @@ namespace ACBrFramework.Net.CNIEETeste
 	{
 		#region Fields
 
-		private List<ACBrCNIEERegistro> Tabela;
+		private List<Registro> Tabela;
 
 		#endregion Fields
 
@@ -53,7 +53,7 @@ namespace ACBrFramework.Net.CNIEETeste
 				aCBrCNIEE1.Arquivo = txtArquivo.Text;
 				if (aCBrCNIEE1.AbrirTabela())
 				{
-					Tabela = new List<ACBrCNIEERegistro>();
+					Tabela = new List<Registro>();
 					Tabela.AddRange(aCBrCNIEE1.Registros);
 					dgvECFs.DataSource = Tabela;
 					dgvECFs.Refresh();
@@ -91,7 +91,7 @@ namespace ACBrFramework.Net.CNIEETeste
 		{
 			try
 			{
-				ACBrCNIEEExporta tipo = ACBrCNIEEExporta.exTXT;
+				Exporta tipo = Exporta.TXT;
 
 				SaveFileDialog dlg = new SaveFileDialog();
 
@@ -101,7 +101,7 @@ namespace ACBrFramework.Net.CNIEETeste
 					dlg.FileName = "TabelaCNIEE.csv";
 					dlg.DefaultExt = ".csv";
 					dlg.Filter = "Arquivos CSV|*.csv";
-					tipo = ACBrCNIEEExporta.exCSV;
+					tipo = Exporta.CSV;
 				}
 				else if (radDSV.Checked)
 				{
@@ -109,7 +109,7 @@ namespace ACBrFramework.Net.CNIEETeste
 					dlg.FileName = "TabelaCNIEE.dsv";
 					dlg.DefaultExt = ".dsv";
 					dlg.Filter = "Arquivos DSV|*.dsv";
-					tipo = ACBrCNIEEExporta.exDSV;
+					tipo = Exporta.DSV;
 				}
 				else if (radXML.Checked)
 				{
@@ -117,7 +117,7 @@ namespace ACBrFramework.Net.CNIEETeste
 					dlg.FileName = "TabelaCNIEE.xml";
 					dlg.DefaultExt = ".xml";
 					dlg.Filter = "Arquivos XML|*.xml";
-					tipo = ACBrCNIEEExporta.exXML;
+					tipo = Exporta.XML;
 				}
 				else if (radHTML.Checked)
 				{
@@ -125,7 +125,7 @@ namespace ACBrFramework.Net.CNIEETeste
 					dlg.FileName = "TabelaCNIEE.html";
 					dlg.DefaultExt = ".html";
 					dlg.Filter = "Arquivos HTML|*.";
-					tipo = ACBrCNIEEExporta.exHTML;
+					tipo = Exporta.HTML;
 				}
 
 				if (dlg.ShowDialog().Equals(DialogResult.OK))

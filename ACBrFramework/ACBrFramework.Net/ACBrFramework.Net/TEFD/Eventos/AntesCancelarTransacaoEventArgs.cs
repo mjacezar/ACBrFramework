@@ -6,7 +6,7 @@ namespace ACBrFramework.TEFD
 	{
 		#region Constructor
 
-		internal AntesCancelarTransacaoEventArgs(ACBrTEFDResp respostaPendente)
+		internal AntesCancelarTransacaoEventArgs(Resp respostaPendente)
 		{
 			this.RespostaPendente = respostaPendente;
 		}
@@ -15,7 +15,7 @@ namespace ACBrFramework.TEFD
 
 		#region Properties
 
-		public ACBrTEFDResp RespostaPendente { get; private set; }
+		public Resp RespostaPendente { get; private set; }
 
 		#endregion Properties
 	}
