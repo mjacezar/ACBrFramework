@@ -37,13 +37,13 @@ namespace ACBrFramework.ECFTeste
 		private void PopularAAC()
 		{
 			aacTipoDesenvolvimentoComboBox.Items.Clear();
-			foreach (var desenv in Enum.GetValues(typeof(ACBrPAFTipoDesenvolvimento))) aacTipoDesenvolvimentoComboBox.Items.Add(desenv);
+			foreach (var desenv in Enum.GetValues(typeof(TipoDesenvolvimento))) aacTipoDesenvolvimentoComboBox.Items.Add(desenv);
 
 			aacTipoIntegracaoComboBox.Items.Clear();
-			foreach (var integ in Enum.GetValues(typeof(ACBrPAFTipoIntegracao))) aacTipoIntegracaoComboBox.Items.Add(integ);
+			foreach (var integ in Enum.GetValues(typeof(TipoIntegracao))) aacTipoIntegracaoComboBox.Items.Add(integ);
 
 			aacTipoFuncionamentoComboBox.Items.Clear();
-			foreach (var func in Enum.GetValues(typeof(ACBrPAFTipoFuncionamento))) aacTipoFuncionamentoComboBox.Items.Add(func);
+			foreach (var func in Enum.GetValues(typeof(TipoFuncionamento))) aacTipoFuncionamentoComboBox.Items.Add(func);
 		}
 
 		private void CarregarAAC()
@@ -111,7 +111,7 @@ namespace ACBrFramework.ECFTeste
 
 			aacECFsAutorizadaDataGridView.Rows.Clear();
 
-			foreach (ACBrAACECF ecfAutorizado in acbrAAC.IdentPaf.ECFsAutorizados)
+			foreach (AACECF ecfAutorizado in acbrAAC.IdentPaf.ECFsAutorizados)
 			{
 				aacECFsAutorizadaDataGridView.Rows.Add(ecfAutorizado.NumeroSerie, ecfAutorizado.CRO, ecfAutorizado.CNI, ecfAutorizado.ValorGT);
 			}
@@ -158,15 +158,15 @@ namespace ACBrFramework.ECFTeste
 			//Dados de funcionalidade
 			if (aacTipoDesenvolvimentoComboBox.SelectedItem != null)
 			{
-				acbrAAC.IdentPaf.Paf.TipoDesenvolvimento = (ACBrPAFTipoDesenvolvimento)aacTipoDesenvolvimentoComboBox.SelectedItem;
+				acbrAAC.IdentPaf.Paf.TipoDesenvolvimento = (TipoDesenvolvimento)aacTipoDesenvolvimentoComboBox.SelectedItem;
 			}
 			if (aacTipoFuncionamentoComboBox.SelectedItem != null)
 			{
-				acbrAAC.IdentPaf.Paf.TipoFuncionamento = (ACBrPAFTipoFuncionamento)aacTipoFuncionamentoComboBox.SelectedItem;
+				acbrAAC.IdentPaf.Paf.TipoFuncionamento = (TipoFuncionamento)aacTipoFuncionamentoComboBox.SelectedItem;
 			}
 			if (aacTipoIntegracaoComboBox.SelectedItem != null)
 			{
-				acbrAAC.IdentPaf.Paf.TipoIntegracao = (ACBrPAFTipoIntegracao)aacTipoIntegracaoComboBox.SelectedItem;
+				acbrAAC.IdentPaf.Paf.TipoIntegracao = (TipoIntegracao)aacTipoIntegracaoComboBox.SelectedItem;
 			}
 
 			//Dados de não concomitância
@@ -205,7 +205,7 @@ namespace ACBrFramework.ECFTeste
 
 			foreach (DataGridViewRow row in aacECFsAutorizadaDataGridView.Rows)
 			{
-				ACBrAACECF ecfAutorizado = new ACBrAACECF();
+				AACECF ecfAutorizado = new AACECF();
 
 				ecfAutorizado.ValorGT = Convert.ToDecimal(row.Cells["valorGTColumn"].Value);
 				ecfAutorizado.NumeroSerie = row.Cells["numSerieColumn"].Value.ToString();

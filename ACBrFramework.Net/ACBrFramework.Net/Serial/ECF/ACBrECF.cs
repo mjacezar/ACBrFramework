@@ -43,10 +43,10 @@ namespace ACBrFramework.ECF
 
 		#region Fields
 
-		private ACBrECFAliquota[] aliquotas;
-		private ACBrECFFormaPagamento[] formasPagamento;
-		private ACBrECFComprovanteNaoFiscal[] comprovantesNaoFiscais;
-		private ACBrECFRelatorioGerencial[] relatoriosGerenciais;
+		private Aliquota[] aliquotas;
+		private FormaPagamento[] formasPagamento;
+		private ComprovanteNaoFiscal[] comprovantesNaoFiscais;
+		private RelatorioGerencial[] relatoriosGerenciais;
 		private ACBrAAC aac;
 		private ACBrEAD ead;
 
@@ -179,7 +179,7 @@ namespace ACBrFramework.ECF
 		{
 			get
 			{
-                return GetAbout(ACBrECFInterop.ECF_GetAbout);
+				return GetAbout(ACBrECFInterop.ECF_GetAbout);
 			}
 		}
 
@@ -261,9 +261,9 @@ namespace ACBrFramework.ECF
 			}
 		}
 
-        [Browsable(true)]
-        [Category("Rodape")]
-        public ACBrECFRodape InfoRodapeCupom { get; private set; }
+		[Browsable(true)]
+		[Category("Rodape")]
+		public Rodape InfoRodapeCupom { get; private set; }
 
 		#region Componentes ACBr
 
@@ -907,42 +907,42 @@ namespace ACBrFramework.ECF
 		}
 
 		[Browsable(false)]
-		public ACBrECFAliquota[] Aliquotas
+		public Aliquota[] Aliquotas
 		{
 			get
 			{
 				if (aliquotas == null) this.CarregaAliquotas();
-				return (ACBrECFAliquota[])aliquotas.Clone();
+				return (Aliquota[])aliquotas.Clone();
 			}
 		}
 
 		[Browsable(false)]
-		public ACBrECFFormaPagamento[] FormasPagamento
+		public FormaPagamento[] FormasPagamento
 		{
 			get
 			{
 				if (formasPagamento == null) CarregaFormasPagamento();
-				return (ACBrECFFormaPagamento[])formasPagamento;
+				return (FormaPagamento[])formasPagamento;
 			}
 		}
 
 		[Browsable(false)]
-		public ACBrECFRelatorioGerencial[] RelatoriosGerenciais
+		public RelatorioGerencial[] RelatoriosGerenciais
 		{
 			get
 			{
 				if (relatoriosGerenciais == null) CarregaRelatoriosGerenciais();
-				return (ACBrECFRelatorioGerencial[])relatoriosGerenciais;
+				return (RelatorioGerencial[])relatoriosGerenciais;
 			}
 		}
 
 		[Browsable(false)]
-		public ACBrECFComprovanteNaoFiscal[] ComprovantesNaoFiscais
+		public ComprovanteNaoFiscal[] ComprovantesNaoFiscais
 		{
 			get
 			{
 				if (comprovantesNaoFiscais == null) CarregaComprovantesNaoFiscais();
-				return (ACBrECFComprovanteNaoFiscal[])comprovantesNaoFiscais;
+				return (ComprovanteNaoFiscal[])comprovantesNaoFiscais;
 			}
 		}
 
@@ -1035,11 +1035,11 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-        public void PreparaTEF()
-        {
-            int ret = ACBrECFInterop.ECF_PreparaTEF(this.Handle);
-            CheckResult(ret);
-        }
+		public void PreparaTEF()
+		{
+			int ret = ACBrECFInterop.ECF_PreparaTEF(this.Handle);
+			CheckResult(ret);
+		}
 
 		#endregion Métodos ECF
 
@@ -1182,7 +1182,7 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void PafMF_RelDAVEmitidos(ACBrECFDAVs[] DAVs, string TituloRelatorio, string IndiceRelatorio)
+		public void PafMF_RelDAVEmitidos(DAVs[] DAVs, string TituloRelatorio, string IndiceRelatorio)
 		{
 			ACBrECFInterop.DAVsRec[] record = new ACBrECFInterop.DAVsRec[DAVs.Length];
 			for (int i = 0; i < DAVs.Length; i++)
@@ -1203,7 +1203,7 @@ namespace ACBrFramework.ECF
 
 		#region PAF Relatorios
 
-		public void PafMF_RelMeiosPagamento(ACBrECFFormaPagamento[] formasPagamento, string TituloRelatorio, int indiceRelatorio)
+		public void PafMF_RelMeiosPagamento(FormaPagamento[] formasPagamento, string TituloRelatorio, int indiceRelatorio)
 		{
 			ACBrECFInterop.FormaPagamentoRec[] record = new ACBrECFInterop.FormaPagamentoRec[formasPagamento.Length];
 			for (int i = 0; i < formasPagamento.Length; i++)
@@ -1220,33 +1220,33 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-        public void PafMF_RelIdentificacaoPafECF()
-        {
-            PafMF_RelIdentificacaoPafECF(this.AAC.IdentPaf, 0);
-        }
-        
-        public void PafMF_RelIdentificacaoPafECF(int indiceRelatorio)
+		public void PafMF_RelIdentificacaoPafECF()
 		{
-            PafMF_RelIdentificacaoPafECF(this.AAC.IdentPaf, indiceRelatorio);
+			PafMF_RelIdentificacaoPafECF(this.AAC.IdentPaf, 0);
 		}
 
-		public void PafMF_RelIdentificacaoPafECF(ACBrECFIdenticacaoPaf identificacaoPAF, int indiceRelatorio)
+		public void PafMF_RelIdentificacaoPafECF(int indiceRelatorio)
+		{
+			PafMF_RelIdentificacaoPafECF(this.AAC.IdentPaf, indiceRelatorio);
+		}
+
+		public void PafMF_RelIdentificacaoPafECF(IdenticacaoPaf identificacaoPAF, int indiceRelatorio)
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_RelIdentificacaoPafECF(this.Handle, identificacaoPAF.Handle, indiceRelatorio);
 			CheckResult(ret);
 		}
 
-        public void PafMF_RelParametrosConfiguracao()
-        {
-            PafMF_RelParametrosConfiguracao(this.AAC.IdentPaf.Paf, 0);
-        }
-		
-        public void PafMF_RelParametrosConfiguracao(int indiceRelatorio)
+		public void PafMF_RelParametrosConfiguracao()
 		{
-            PafMF_RelParametrosConfiguracao(this.AAC.IdentPaf.Paf, indiceRelatorio);
+			PafMF_RelParametrosConfiguracao(this.AAC.IdentPaf.Paf, 0);
 		}
 
-		public void PafMF_RelParametrosConfiguracao(ACBrECFInfoPaf infoPAF, int indiceRelatorio)
+		public void PafMF_RelParametrosConfiguracao(int indiceRelatorio)
+		{
+			PafMF_RelParametrosConfiguracao(this.AAC.IdentPaf.Paf, indiceRelatorio);
+		}
+
+		public void PafMF_RelParametrosConfiguracao(InfoPaf infoPAF, int indiceRelatorio)
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_RelParametrosConfiguracao(this.Handle, infoPAF.Handle, indiceRelatorio);
 			CheckResult(ret);
@@ -1274,7 +1274,7 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void ArquivoMFD_DLL(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo, ACBrECFFinalizaArqMFD Finaliza, params ACBrECFTipoDocumento[] Documentos)
+		public void ArquivoMFD_DLL(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo, FinalizaArqMFD Finaliza, params TipoDocumento[] Documentos)
 		{
 			int[] Docs = Array.ConvertAll(Documentos, value => (int)value);
 			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo), Docs, Docs.Length, (int)Finaliza);
@@ -1287,7 +1287,7 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void ArquivoMFD_DLL(int COOInicial, int COOFinal, string CaminhoArquivo, ACBrECFFinalizaArqMFD Finaliza, ACBrECFTipoContador TipoContador, params ACBrECFTipoDocumento[] Documentos)
+		public void ArquivoMFD_DLL(int COOInicial, int COOFinal, string CaminhoArquivo, FinalizaArqMFD Finaliza, TipoContador TipoContador, params TipoDocumento[] Documentos)
 		{
 			int[] Docs = Array.ConvertAll(Documentos, value => (int)value);
 			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL_COO(this.Handle, COOInicial, COOFinal, ToUTF8(CaminhoArquivo), Docs, Docs.Length, (int)Finaliza, (int)TipoContador);
@@ -1550,7 +1550,7 @@ namespace ACBrFramework.ECF
 			return GetString(ACBrECFInterop.ECF_GetDadosReducaoZ, BUFFER_LEN);
 		}
 
-		public ACBrECFDadosRZ GetDadosReducaoZClass()
+		public DadosRZ GetDadosReducaoZClass()
 		{
 			IntPtr ptr;
 			int ret = ACBrECFInterop.ECF_GetDadosReducaoZClass(this.Handle, out ptr);
@@ -1558,7 +1558,7 @@ namespace ACBrFramework.ECF
 
 			try
 			{
-				ACBrECFDadosRZ dadosRZ = new ACBrECFDadosRZ();
+				DadosRZ dadosRZ = new DadosRZ();
 				ACBrECFInterop.DadosRZRec record = (ACBrECFInterop.DadosRZRec)Marshal.PtrToStructure(ptr, typeof(ACBrECFInterop.DadosRZRec));
 
 				dadosRZ.COO = record.COO;
@@ -1568,13 +1568,13 @@ namespace ACBrFramework.ECF
 				dadosRZ.CRO = record.CRO;
 				dadosRZ.ValorVendaBruta = Convert.ToDecimal(record.ValorVendaBruta);
 
-				dadosRZ.TotalizadoresNaoFiscais = new ACBrECFComprovanteNaoFiscal[record.TotalizadoresNaoFiscaisLen];
+				dadosRZ.TotalizadoresNaoFiscais = new ComprovanteNaoFiscal[record.TotalizadoresNaoFiscaisLen];
 				for (int i = 0; i < record.TotalizadoresNaoFiscaisLen; i++)
 				{
 					IntPtr itemPtr = new IntPtr(record.TotalizadoresNaoFiscais.ToInt32() + (i * Marshal.SizeOf(typeof(ACBrECFInterop.ComprovanteNaoFiscalRec))));
 					ACBrECFInterop.ComprovanteNaoFiscalRec itemRec = (ACBrECFInterop.ComprovanteNaoFiscalRec)Marshal.PtrToStructure(itemPtr, typeof(ACBrECFInterop.ComprovanteNaoFiscalRec));
 
-					ACBrECFComprovanteNaoFiscal item = new ACBrECFComprovanteNaoFiscal();
+					ComprovanteNaoFiscal item = new ComprovanteNaoFiscal();
 					item.Indice = FromUTF8(itemRec.Indice);
 					item.PermiteVinculado = itemRec.PermiteVinculado;
 					item.Descricao = FromUTF8(itemRec.Descricao);
@@ -1585,15 +1585,15 @@ namespace ACBrFramework.ECF
 					dadosRZ.TotalizadoresNaoFiscais[i] = item;
 				}
 
-				dadosRZ.ICMS = new ACBrECFAliquota[record.ICMSLen];
+				dadosRZ.ICMS = new Aliquota[record.ICMSLen];
 				for (int i = 0; i < record.ICMSLen; i++)
 				{
 					IntPtr itemPtr = new IntPtr(record.ICMS.ToInt32() + (i * Marshal.SizeOf(typeof(ACBrECFInterop.AliquotaRec))));
 					ACBrECFInterop.AliquotaRec itemRec = (ACBrECFInterop.AliquotaRec)Marshal.PtrToStructure(itemPtr, typeof(ACBrECFInterop.AliquotaRec));
 
-					ACBrECFAliquota item = new ACBrECFAliquota();
+					Aliquota item = new Aliquota();
 					item.Indice = FromUTF8(itemRec.Indice);
-					item.Aliquota = Convert.ToDecimal(itemRec.Aliquota);
+					item.ValorAliquota = Convert.ToDecimal(itemRec.Aliquota);
 					item.Tipo = Convert.ToString(itemRec.Tipo);
 					item.Total = Convert.ToDecimal(itemRec.Total);
 					item.Sequencia = itemRec.Sequencia;
@@ -1605,13 +1605,13 @@ namespace ACBrFramework.ECF
 				dadosRZ.DescontoICMS = Convert.ToDecimal(record.DescontoICMS);
 				dadosRZ.NaoTributadoICMS = Convert.ToDecimal(record.NaoTributadoICMS);
 
-				dadosRZ.RelatorioGerencial = new ACBrECFRelatorioGerencial[record.RelatorioGerencialLen];
+				dadosRZ.RelatorioGerencial = new RelatorioGerencial[record.RelatorioGerencialLen];
 				for (int i = 0; i < record.RelatorioGerencialLen; i++)
 				{
 					IntPtr itemPtr = new IntPtr(record.RelatorioGerencial.ToInt32() + (i * Marshal.SizeOf(typeof(ACBrECFInterop.RelatorioGerencialRec))));
 					ACBrECFInterop.RelatorioGerencialRec itemRec = (ACBrECFInterop.RelatorioGerencialRec)Marshal.PtrToStructure(itemPtr, typeof(ACBrECFInterop.RelatorioGerencialRec));
 
-					ACBrECFRelatorioGerencial item = new ACBrECFRelatorioGerencial();
+					RelatorioGerencial item = new RelatorioGerencial();
 					item.Indice = FromUTF8(itemRec.Indice);
 					item.Descricao = FromUTF8(itemRec.Descricao);
 					item.Contador = itemRec.Contador;
@@ -1621,15 +1621,15 @@ namespace ACBrFramework.ECF
 
 				dadosRZ.CRZ = record.CRZ;
 
-				dadosRZ.ISSQN = new ACBrECFAliquota[record.ISSQNLen];
+				dadosRZ.ISSQN = new Aliquota[record.ISSQNLen];
 				for (int i = 0; i < record.ISSQNLen; i++)
 				{
 					IntPtr itemPtr = new IntPtr(record.ISSQN.ToInt32() + (i * Marshal.SizeOf(typeof(ACBrECFInterop.AliquotaRec))));
 					ACBrECFInterop.AliquotaRec itemRec = (ACBrECFInterop.AliquotaRec)Marshal.PtrToStructure(itemPtr, typeof(ACBrECFInterop.AliquotaRec));
 
-					ACBrECFAliquota item = new ACBrECFAliquota();
+					Aliquota item = new Aliquota();
 					item.Indice = FromUTF8(itemRec.Indice);
-					item.Aliquota = Convert.ToDecimal(itemRec.Aliquota);
+					item.ValorAliquota = Convert.ToDecimal(itemRec.Aliquota);
 					item.Tipo = Convert.ToString(itemRec.Tipo);
 					item.Total = Convert.ToDecimal(itemRec.Total);
 					item.Sequencia = itemRec.Sequencia;
@@ -1663,13 +1663,13 @@ namespace ACBrFramework.ECF
 				dadosRZ.NCN = record.NCN;
 				dadosRZ.DataDoMovimento = DateTime.FromOADate(record.DataDoMovimento);
 
-				dadosRZ.MeiosDePagamento = new ACBrECFFormaPagamento[record.MeiosDePagamentoLen];
+				dadosRZ.MeiosDePagamento = new FormaPagamento[record.MeiosDePagamentoLen];
 				for (int i = 0; i < record.MeiosDePagamentoLen; i++)
 				{
 					IntPtr itemPtr = new IntPtr(record.MeiosDePagamento.ToInt32() + (i * Marshal.SizeOf(typeof(ACBrECFInterop.FormaPagamentoRec))));
 					ACBrECFInterop.FormaPagamentoRec itemRec = (ACBrECFInterop.FormaPagamentoRec)Marshal.PtrToStructure(itemPtr, typeof(ACBrECFInterop.FormaPagamentoRec));
 
-					ACBrECFFormaPagamento item = new ACBrECFFormaPagamento();
+					FormaPagamento item = new FormaPagamento();
 					item.Indice = FromUTF8(itemRec.Indice);
 					item.Descricao = FromUTF8(itemRec.Descricao);
 					item.PermiteVinculado = itemRec.PermiteVinculado;
@@ -1755,7 +1755,7 @@ namespace ACBrFramework.ECF
 
 		private void CarregaRelatoriosGerenciais(int count)
 		{
-			relatoriosGerenciais = new ACBrECFRelatorioGerencial[count];
+			relatoriosGerenciais = new RelatorioGerencial[count];
 
 			for (int i = 0; i < count; i++)
 			{
@@ -1763,7 +1763,7 @@ namespace ACBrFramework.ECF
 				int ret = ACBrECFInterop.ECF_GetRelatoriosGerenciais(this.Handle, ref record, i);
 				CheckResult(ret);
 
-				ACBrECFRelatorioGerencial relatorio = new ACBrECFRelatorioGerencial()
+				RelatorioGerencial relatorio = new RelatorioGerencial()
 				{
 					Indice = FromUTF8(record.Indice),
 					Descricao = FromUTF8(record.Descricao),
@@ -1810,7 +1810,7 @@ namespace ACBrFramework.ECF
 
 		private void CarregaAliquotas(int count)
 		{
-			aliquotas = new ACBrECFAliquota[count];
+			aliquotas = new Aliquota[count];
 
 			for (int i = 0; i < count; i++)
 			{
@@ -1818,9 +1818,9 @@ namespace ACBrFramework.ECF
 				int ret = ACBrECFInterop.ECF_GetAliquota(this.Handle, ref record, i);
 				CheckResult(ret);
 
-				ACBrECFAliquota aliquota = new ACBrECFAliquota();
+				Aliquota aliquota = new Aliquota();
 				aliquota.Indice = FromUTF8(record.Indice);
-				aliquota.Aliquota = Convert.ToDecimal(record.Aliquota);
+				aliquota.ValorAliquota = Convert.ToDecimal(record.Aliquota);
 				aliquota.Sequencia = record.Sequencia;
 				aliquota.Tipo = record.Tipo.ToString();
 				aliquota.Total = Convert.ToDecimal(record.Total);
@@ -1854,7 +1854,7 @@ namespace ACBrFramework.ECF
 
 		#region Formas de Pagto
 
-		public ACBrECFFormaPagamento AchaFPGIndice(string indice)
+		public FormaPagamento AchaFPGIndice(string indice)
 		{
 			ACBrECFInterop.FormaPagamentoRec FormaRec = new ACBrECFInterop.FormaPagamentoRec();
 			int ret = ACBrECFInterop.ECF_AchaFPGIndice(this.Handle, indice, ref FormaRec);
@@ -1864,7 +1864,7 @@ namespace ACBrFramework.ECF
 				return null;
 			else
 			{
-				ACBrECFFormaPagamento Forma = new ACBrECFFormaPagamento();
+				FormaPagamento Forma = new FormaPagamento();
 				Forma.Data = DateTime.FromOADate(FormaRec.Data);
 				Forma.Descricao = FromUTF8(FormaRec.Descricao);
 				Forma.Indice = FromUTF8(FormaRec.Indice);
@@ -1886,14 +1886,14 @@ namespace ACBrFramework.ECF
 
 		private void CarregaFormasPagamento(int count)
 		{
-			formasPagamento = new ACBrECFFormaPagamento[count];
+			formasPagamento = new FormaPagamento[count];
 			for (int i = 0; i < count; i++)
 			{
 				var record = new ACBrECFInterop.FormaPagamentoRec();
 				int ret = ACBrECFInterop.ECF_GetFormaPagamento(this.Handle, ref record, i);
 				CheckResult(ret);
 
-				ACBrECFFormaPagamento formaPagamento = new ACBrECFFormaPagamento();
+				FormaPagamento formaPagamento = new FormaPagamento();
 				formaPagamento.Indice = FromUTF8(record.Indice);
 				formaPagamento.Descricao = FromUTF8(record.Descricao);
 				formaPagamento.PermiteVinculado = record.PermiteVinculado;
@@ -1938,14 +1938,14 @@ namespace ACBrFramework.ECF
 
 		private void CarregaComprovantesNaoFiscais(int count)
 		{
-			comprovantesNaoFiscais = new ACBrECFComprovanteNaoFiscal[count];
+			comprovantesNaoFiscais = new ComprovanteNaoFiscal[count];
 			for (int i = 0; i < count; i++)
 			{
 				var record = new ACBrECFInterop.ComprovanteNaoFiscalRec();
 				int ret = ACBrECFInterop.ECF_GetComprovanteNaoFiscal(this.Handle, ref record, i);
 				CheckResult(ret);
 
-				ACBrECFComprovanteNaoFiscal comprovanteNaoFiscal = new ACBrECFComprovanteNaoFiscal();
+				ComprovanteNaoFiscal comprovanteNaoFiscal = new ComprovanteNaoFiscal();
 				comprovanteNaoFiscal.Indice = FromUTF8(record.Indice);
 				comprovanteNaoFiscal.Descricao = FromUTF8(record.Descricao);
 				comprovanteNaoFiscal.PermiteVinculado = record.PermiteVinculado;
@@ -2068,7 +2068,7 @@ namespace ACBrFramework.ECF
 		{
 			CallCreate(ACBrECFInterop.ECF_Create);
 			Device = new ACBrDevice(this);
-            this.InfoRodapeCupom = new ACBrECFRodape(this);
+			this.InfoRodapeCupom = new Rodape(this);
 		}
 
 		protected internal override void CheckResult(int ret)
@@ -2078,11 +2078,11 @@ namespace ACBrFramework.ECF
 				case -1:
 
 					string error = GetString(ACBrECFInterop.ECF_GetUltimoErro);
-					throw new ACBrECFException(error);
+					throw new ACBrException(error);
 
 				case -2:
 
-					throw new ACBrECFException("ACBr ECF não inicializado.");
+					throw new ACBrException("ACBr ECF não inicializado.");
 			}
 		}
 

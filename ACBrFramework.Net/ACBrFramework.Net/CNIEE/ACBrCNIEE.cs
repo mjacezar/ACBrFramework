@@ -13,7 +13,7 @@ namespace ACBrFramework.CNIEE
 
 		#region Fields
 
-		private ACBrCNIEERegistro[] registros;
+		private Registro[] registros;
 
 		#endregion Fields
 
@@ -128,12 +128,12 @@ namespace ACBrFramework.CNIEE
 		}
 
 		[Browsable(false)]
-		public ACBrCNIEERegistro[] Registros
+		public Registro[] Registros
 		{
 			get
 			{
 				if (registros == null) CarregaRegistros();
-				return (ACBrCNIEERegistro[])registros;
+				return (Registro[])registros;
 			}
 		}
 
@@ -174,13 +174,13 @@ namespace ACBrFramework.CNIEE
 			CheckResult(ret);
 		}
 
-		public void Exportar(string path, ACBrCNIEEExporta tipo)
+		public void Exportar(string path, Exporta tipo)
 		{
 			int ret = ACBrCNIEEInterop.CNIEE_Exportar(Handle, ToUTF8(path), null, (int)tipo);
 			CheckResult(ret);
 		}
 
-		public ACBrCNIEERegistro BuscarECF(string marca, string modelo, string versaosb)
+		public Registro BuscarECF(string marca, string modelo, string versaosb)
 		{
 			var record = new ACBrCNIEEInterop.CNIEERegistroRec();
 			int ret = ACBrCNIEEInterop.CNIEE_BuscarECF(Handle, ref record, marca, modelo, versaosb);
@@ -189,7 +189,7 @@ namespace ACBrFramework.CNIEE
 			if (ret == 0)
 				return null;
 
-			ACBrCNIEERegistro registro = new ACBrCNIEERegistro();
+			Registro registro = new Registro();
 			registro.Marca = FromUTF8(record.Marca);
 			registro.Modelo = FromUTF8(record.Modelo);
 			registro.Versao = FromUTF8(record.Versao);
@@ -213,14 +213,14 @@ namespace ACBrFramework.CNIEE
 			int count = ACBrCNIEEInterop.CNIEE_GetRegistroCount(Handle);
 			CheckResult(count);
 
-			registros = new ACBrCNIEERegistro[count];
+			registros = new Registro[count];
 			for (int i = 0; i < count; i++)
 			{
 				var record = new ACBrCNIEEInterop.CNIEERegistroRec();
 				int ret = ACBrCNIEEInterop.CNIEE_GetRegistro(Handle, ref record, i);
 				CheckResult(ret);
 
-				ACBrCNIEERegistro registro = new ACBrCNIEERegistro();
+				Registro registro = new Registro();
 				registro.Marca = FromUTF8(record.Marca);
 				registro.Modelo = FromUTF8(record.Modelo);
 				registro.Versao = FromUTF8(record.Versao);

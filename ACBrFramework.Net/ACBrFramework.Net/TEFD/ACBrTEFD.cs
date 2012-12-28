@@ -463,10 +463,10 @@ namespace ACBrFramework.TEFD
 		}
 
 		[Category("Identificação")]
-		public ACBrTEFDIdentificacao Identificacao { get; private set; }
+		public Identificacao Identificacao { get; private set; }
 
 		[Browsable(false)]
-		public ACBrTEFDReq Req 
+		public Req Req
 		{
 			get
 			{
@@ -480,14 +480,13 @@ namespace ACBrFramework.TEFD
 				}
 				else
 				{
-					return new ACBrTEFDReq(this, composedComponent);
+					return new Req(this, composedComponent);
 				}
-
 			}
 		}
 
 		[Browsable(false)]
-		public ACBrTEFDResp Resp
+		public Resp Resp
 		{
 			get
 			{
@@ -501,13 +500,13 @@ namespace ACBrFramework.TEFD
 				}
 				else
 				{
-					return new ACBrTEFDResp(this, composedComponent);
+					return new Resp(this, composedComponent);
 				}
 			}
 		}
 
 		[Browsable(false)]
-		public ACBrTEFDRespostasPendentes RespostasPendentes
+		public RespostasPendentes RespostasPendentes
 		{
 			get
 			{
@@ -521,47 +520,47 @@ namespace ACBrFramework.TEFD
 				}
 				else
 				{
-					return new ACBrTEFDRespostasPendentes(this, composedComponent);
+					return new RespostasPendentes(this, composedComponent);
 				}
 			}
 		}
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public ACBrTEFDCliSiTef TEFCliSiTef { get; private set; }
+		public TefCliSiTef TEFCliSiTef { get; private set; }
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public ACBrTEFDDial TEFDial { get; private set; }
+		public TefDial TEFDial { get; private set; }
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public ACBrTEFDDisc TEFDisc { get; private set; }
+		public TefDisc TEFDisc { get; private set; }
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public ACBrTEFDHiper TEFHiper { get; private set; }
+		public TefHiper TEFHiper { get; private set; }
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public ACBrTEFDGPU TEFGPU { get; private set; }
+		public TefGPU TEFGPU { get; private set; }
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public ACBrTEFDAuttar TEFAuttar { get; private set; }
+		public TefAuttar TEFAuttar { get; private set; }
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public ACBrTEFDGood TEFGood { get; private set; }
+		public TefGood TEFGood { get; private set; }
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public ACBrTEFDFoxWin TEFFoxWin { get; private set; }
+		public TefFoxWin TEFFoxWin { get; private set; }
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public ACBrTEFDPetrocard TEFPetrocard { get; private set; }
+		public TefPetrocard TEFPetrocard { get; private set; }
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public ACBrTEFDCrediShop TEFCrediShop { get; private set; }
+		public TefCrediShop TEFCrediShop { get; private set; }
 
 		[Browsable(false)]
-		public ACBrTEFDTipo GPAtual
+		public TefTipo GPAtual
 		{
 			get
 			{
-				return (ACBrTEFDTipo)GetInt32(ACBrTEFInterop.TEF_GetGPAtual);
+				return (TefTipo)GetInt32(ACBrTEFInterop.TEF_GetGPAtual);
 			}
 			set
 			{
@@ -573,19 +572,19 @@ namespace ACBrFramework.TEFD
 
 		#region Methods
 
-		public void Initializar(ACBrTEFDTipo gp)
+		public void Initializar(TefTipo gp)
 		{
 			int ret = ACBrTEFInterop.TEF_Inicializar(this.Handle, (int)gp);
 			CheckResult(ret);
 		}
 
-		public void DesInicializar(ACBrTEFDTipo gp)
+		public void DesInicializar(TefTipo gp)
 		{
 			int ret = ACBrTEFInterop.TEF_DesInicializar(this.Handle, (int)gp);
 			CheckResult(ret);
 		}
 
-		public void AtivarGP(ACBrTEFDTipo gp)
+		public void AtivarGP(TefTipo gp)
 		{
 			int ret = ACBrTEFInterop.TEF_AtivarGP(this.Handle, (int)gp);
 			CheckResult(ret);
@@ -630,10 +629,10 @@ namespace ACBrFramework.TEFD
 
 		public void ATV()
 		{
-			ATV(ACBrTEFDTipo.Nenhum);
+			ATV(TefTipo.Nenhum);
 		}
 
-		public void ATV(ACBrTEFDTipo gp)
+		public void ATV(TefTipo gp)
 		{
 			int ret = ACBrTEFInterop.TEF_ATV(this.Handle, (int)gp);
 			CheckResult(ret);
@@ -641,10 +640,10 @@ namespace ACBrFramework.TEFD
 
 		public bool ADM()
 		{
-			return ADM(ACBrTEFDTipo.Nenhum);
+			return ADM(TefTipo.Nenhum);
 		}
 
-		public bool ADM(ACBrTEFDTipo gp)
+		public bool ADM(TefTipo gp)
 		{
 			int ret = ACBrTEFInterop.TEF_ADM(this.Handle, (int)gp);
 			CheckResult(ret);
@@ -737,17 +736,17 @@ namespace ACBrFramework.TEFD
 		{
 			CallCreate(ACBrTEFInterop.TEF_Create);
 
-			this.Identificacao = new ACBrTEFDIdentificacao(this);
-			this.TEFCliSiTef = new ACBrTEFDCliSiTef(this);
-			this.TEFDial = new ACBrTEFDDial(this);
-			this.TEFDisc = new ACBrTEFDDisc(this);
-			this.TEFHiper = new ACBrTEFDHiper(this);
-			this.TEFGPU = new ACBrTEFDGPU(this);
-			this.TEFAuttar = new ACBrTEFDAuttar(this);
-			this.TEFGood = new ACBrTEFDGood(this);
-			this.TEFFoxWin = new ACBrTEFDFoxWin(this);
-			this.TEFPetrocard = new ACBrTEFDPetrocard(this);
-			this.TEFCrediShop = new ACBrTEFDCrediShop(this);
+			this.Identificacao = new Identificacao(this);
+			this.TEFCliSiTef = new TefCliSiTef(this);
+			this.TEFDial = new TefDial(this);
+			this.TEFDisc = new TefDisc(this);
+			this.TEFHiper = new TefHiper(this);
+			this.TEFGPU = new TefGPU(this);
+			this.TEFAuttar = new TefAuttar(this);
+			this.TEFGood = new TefGood(this);
+			this.TEFFoxWin = new TefFoxWin(this);
+			this.TEFPetrocard = new TefPetrocard(this);
+			this.TEFCrediShop = new TefCrediShop(this);
 		}
 
 		protected override void OnDisposing()
@@ -774,7 +773,7 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnExibeMensagemCallback(ACBrTEFDOperacaoMensagem Operacao, string Mensagem, ref ModalResult AModalResult)
+		private void OnExibeMensagemCallback(OperacaoMensagem Operacao, string Mensagem, ref ModalResult AModalResult)
 		{
 			if (onExibeMensagem.IsAssigned)
 			{
@@ -818,11 +817,11 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnComandaECFCallback(ACBrTEFDOperacaoECF Operacao, IntPtr respHandle, ref int RetornoECF)
+		private void OnComandaECFCallback(OperacaoECF Operacao, IntPtr respHandle, ref int RetornoECF)
 		{
 			if (onComandaECF.IsAssigned)
 			{
-				ACBrTEFDResp resp;
+				Resp resp;
 
 				if (respHandle == IntPtr.Zero)
 				{
@@ -830,7 +829,7 @@ namespace ACBrFramework.TEFD
 				}
 				else
 				{
-					resp = new ACBrTEFDResp(this, respHandle);
+					resp = new Resp(this, respHandle);
 				}
 
 				ComandaECFEventArgs e = new ComandaECFEventArgs(Operacao, resp);
@@ -873,7 +872,7 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnComandaECFImprimeViaCallback(ACBrTEFDTipoRelatorio TipoRelatorio, int Via, IntPtr ImagemComprovante, int ImagemComprovanteCount, ref int RetornoECF)
+		private void OnComandaECFImprimeViaCallback(TipoRelatorio TipoRelatorio, int Via, IntPtr ImagemComprovante, int ImagemComprovanteCount, ref int RetornoECF)
 		{
 			if (onComandaECFImprimeVia.IsAssigned)
 			{
@@ -887,7 +886,7 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnInfoECFCallback(ACBrTEFDInfoECF Operacao, StringBuilder RetornoECF, int RetornoECFLen)
+		private void OnInfoECFCallback(InfoECF Operacao, StringBuilder RetornoECF, int RetornoECFLen)
 		{
 			if (onInfoECF.IsAssigned)
 			{
@@ -905,7 +904,7 @@ namespace ACBrFramework.TEFD
 		{
 			if (onAntesFinalizarRequisicao.IsAssigned)
 			{
-				ACBrTEFDReq req;
+				Req req;
 
 				if (reqHandle == IntPtr.Zero)
 				{
@@ -913,7 +912,7 @@ namespace ACBrFramework.TEFD
 				}
 				else
 				{
-					req = new ACBrTEFDReq(this, reqHandle);
+					req = new Req(this, reqHandle);
 				}
 
 				AntesFinalizarRequisicaoEventArgs e = new AntesFinalizarRequisicaoEventArgs(req);
@@ -926,7 +925,7 @@ namespace ACBrFramework.TEFD
 		{
 			if (onDepoisConfirmarTransacoes.IsAssigned)
 			{
-				ACBrTEFDRespostasPendentes respostasPendentes;
+				RespostasPendentes respostasPendentes;
 
 				if (respPendentesHandle == IntPtr.Zero)
 				{
@@ -934,7 +933,7 @@ namespace ACBrFramework.TEFD
 				}
 				else
 				{
-					respostasPendentes = new ACBrTEFDRespostasPendentes(this, respPendentesHandle);
+					respostasPendentes = new RespostasPendentes(this, respPendentesHandle);
 				}
 
 				DepoisConfirmarTransacoesEventArgs e = new DepoisConfirmarTransacoesEventArgs(respostasPendentes);
@@ -947,14 +946,14 @@ namespace ACBrFramework.TEFD
 		{
 			if (onAntesCancelarTransacao.IsAssigned)
 			{
-				ACBrTEFDResp resp;
+				Resp resp;
 				if (respPendenteHandle == IntPtr.Zero)
 				{
 					resp = null;
 				}
 				else
 				{
-					resp = new ACBrTEFDResp(this, respPendenteHandle);
+					resp = new Resp(this, respPendenteHandle);
 				}
 
 				AntesCancelarTransacaoEventArgs e = new AntesCancelarTransacaoEventArgs(resp);
@@ -967,7 +966,7 @@ namespace ACBrFramework.TEFD
 		{
 			if (onDepoisCancelarTransacoes.IsAssigned)
 			{
-				ACBrTEFDRespostasPendentes respostasPendentes;
+				RespostasPendentes respostasPendentes;
 
 				if (respostasPendentesHandle == IntPtr.Zero)
 				{
@@ -975,7 +974,7 @@ namespace ACBrFramework.TEFD
 				}
 				else
 				{
-					respostasPendentes = new ACBrTEFDRespostasPendentes(this, respostasPendentesHandle);
+					respostasPendentes = new RespostasPendentes(this, respostasPendentesHandle);
 				}
 
 				DepoisCancelarTransacoesEventArgs e = new DepoisCancelarTransacoesEventArgs(respostasPendentes);
@@ -984,7 +983,7 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnMudaEstadoReqCallback(ACBrTEFDReqEstado EstadoReq)
+		private void OnMudaEstadoReqCallback(ReqEstado EstadoReq)
 		{
 			if (onMudaEstadoReq.IsAssigned)
 			{
@@ -994,7 +993,7 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnMudaEstadoRespCallback(ACBrTEFDRespEstado EstadoResp)
+		private void OnMudaEstadoRespCallback(RespEstado EstadoResp)
 		{
 			if (onMudaEstadoResp.IsAssigned)
 			{

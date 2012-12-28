@@ -6,7 +6,7 @@ namespace ACBrFramework.TEFD
 	{
 		#region Constructor
 
-		internal MudaEstadoReqEventArgs(ACBrTEFDReqEstado estadoReq)
+		internal MudaEstadoReqEventArgs(ReqEstado estadoReq)
 		{
 			this.EstadoReq = estadoReq;
 		}
@@ -15,7 +15,7 @@ namespace ACBrFramework.TEFD
 
 		#region Properties
 
-		public ACBrTEFDReqEstado EstadoReq { get; private set; }
+		public ReqEstado EstadoReq { get; private set; }
 
 		#endregion Properties
 	}

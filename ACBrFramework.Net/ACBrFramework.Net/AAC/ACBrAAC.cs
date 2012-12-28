@@ -41,7 +41,7 @@ namespace ACBrFramework.AAC
 
 		#region Properties
 
-        [Category("AAC")]
+		[Category("AAC")]
 		public string NomeArquivoAuxiliar
 		{
 			get
@@ -54,8 +54,8 @@ namespace ACBrFramework.AAC
 			}
 		}
 
-        [Category("AAC")]
-        public string ArqLOG
+		[Category("AAC")]
+		public string ArqLOG
 		{
 			get
 			{
@@ -67,12 +67,12 @@ namespace ACBrFramework.AAC
 			}
 		}
 
-        [Category("AAC")]
-        public string[] Params
+		[Category("AAC")]
+		public string[] Params
 		{
 			get
 			{
-                return GetStringArray(ACBrAACInterop.AAC_GetParams, ACBrAACInterop.AAC_GetParamsCount);
+				return GetStringArray(ACBrAACInterop.AAC_GetParams, ACBrAACInterop.AAC_GetParamsCount);
 			}
 			set
 			{
@@ -80,87 +80,87 @@ namespace ACBrFramework.AAC
 			}
 		}
 
-        [Category("AAC")]
-        public bool CriarBAK
-        {
-            get
-            {
-                return GetBool(ACBrAACInterop.AAC_GetCriarBAK);
-            }
-            set
-            {
-                SetBool(ACBrAACInterop.AAC_SetCriarBAK, value);
-            }
-        }
+		[Category("AAC")]
+		public bool CriarBAK
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_GetCriarBAK);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_SetCriarBAK, value);
+			}
+		}
 
-        [Category("AAC")]
-        public bool EfetuarFlush
-        {
-            get
-            {
-                return GetBool(ACBrAACInterop.AAC_GetEfetuarFlush);
-            }
-            set
-            {
-                SetBool(ACBrAACInterop.AAC_SetEfetuarFlush, value);
-            }
-        }
+		[Category("AAC")]
+		public bool EfetuarFlush
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_GetEfetuarFlush);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_SetEfetuarFlush, value);
+			}
+		}
 
-        [Category("AAC")]
-        public bool GravarConfigApp
-        {
-            get
-            {
-                return GetBool(ACBrAACInterop.AAC_GetGravarConfigApp);
-            }
-            set
-            {
-                SetBool(ACBrAACInterop.AAC_SetGravarConfigApp, value);
-            }
-        }
+		[Category("AAC")]
+		public bool GravarConfigApp
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_GetGravarConfigApp);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_SetGravarConfigApp, value);
+			}
+		}
 
-        [Category("AAC")]
-        public bool GravarDadosPAF
-        {
-            get
-            {
-                return GetBool(ACBrAACInterop.AAC_GetGravarDadosPAF);
-            }
-            set
-            {
-                SetBool(ACBrAACInterop.AAC_SetGravarDadosPAF, value);
-            }
-        }
+		[Category("AAC")]
+		public bool GravarDadosPAF
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_GetGravarDadosPAF);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_SetGravarDadosPAF, value);
+			}
+		}
 
-        [Category("AAC")]
-        public bool GravarDadosSH
-        {
-            get
-            {
-                return GetBool(ACBrAACInterop.AAC_GetGravarDadosSH);
-            }
-            set
-            {
-                SetBool(ACBrAACInterop.AAC_SetGravarDadosSH, value);
-            }
-        }
+		[Category("AAC")]
+		public bool GravarDadosSH
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_GetGravarDadosSH);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_SetGravarDadosSH, value);
+			}
+		}
 
-        [Category("AAC")]
-        public bool GravarTodosECFs
-        {
-            get
-            {
-                return GetBool(ACBrAACInterop.AAC_GetGravarTodosECFs);
-            }
-            set
-            {
-                SetBool(ACBrAACInterop.AAC_SetGravarTodosECFs, value);
-            }
-        }
-        
+		[Category("AAC")]
+		public bool GravarTodosECFs
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_GetGravarTodosECFs);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_SetGravarTodosECFs, value);
+			}
+		}
+
 		[Browsable(true)]
-        [Category("Identificação")]
-		public ACBrECFIdenticacaoPaf IdentPaf { get; private set; }
+		[Category("Identificação")]
+		public IdenticacaoPaf IdentPaf { get; private set; }
 
 		#endregion Properties
 
@@ -178,11 +178,11 @@ namespace ACBrFramework.AAC
 			CheckResult(ret);
 		}
 
-        public void VerificaReCarregarArquivo()
-        {
-            int ret = ACBrAACInterop.AAC_VerificaReCarregarArquivo(this.Handle);
-            CheckResult(ret);
-        }
+		public void VerificaReCarregarArquivo()
+		{
+			int ret = ACBrAACInterop.AAC_VerificaReCarregarArquivo(this.Handle);
+			CheckResult(ret);
+		}
 
 		public int VerificarGTECF(string numSerie, ref decimal grandeTotal)
 		{
@@ -194,46 +194,46 @@ namespace ACBrFramework.AAC
 			return ret;
 		}
 
-        public void AtualizarValorGT(string numSerie, decimal grandeTotal)
-        {
-            double _grandeTotal = Convert.ToDouble(grandeTotal);
-            int ret = ACBrAACInterop.AAC_AtualizarValorGT(this.Handle, numSerie, _grandeTotal);
-            CheckResult(ret);
-        }
+		public void AtualizarValorGT(string numSerie, decimal grandeTotal)
+		{
+			double _grandeTotal = Convert.ToDouble(grandeTotal);
+			int ret = ACBrAACInterop.AAC_AtualizarValorGT(this.Handle, numSerie, _grandeTotal);
+			CheckResult(ret);
+		}
 
-        public void AtualizarMD5(string md5)
-        {
-            int ret = ACBrAACInterop.AAC_AtualizarMD5(this.Handle,md5);
-            CheckResult(ret);
-        }
+		public void AtualizarMD5(string md5)
+		{
+			int ret = ACBrAACInterop.AAC_AtualizarMD5(this.Handle, md5);
+			CheckResult(ret);
+		}
 
-        public int AchaIndiceECF(string serie)
-        {
-            int retorno = -1;
-            int ret = ACBrAACInterop.AAC_AchaIndiceECF(this.Handle, serie, ref retorno);
-            CheckResult(ret);           
+		public int AchaIndiceECF(string serie)
+		{
+			int retorno = -1;
+			int ret = ACBrAACInterop.AAC_AchaIndiceECF(this.Handle, serie, ref retorno);
+			CheckResult(ret);
 
-            return retorno;
-        }
+			return retorno;
+		}
 
-        public ACBrAACECF AchaECF(string serie)
-        {
-            ACBrAACInterop.TECFAutorizado ECFRec = new ACBrAACInterop.TECFAutorizado();
-            int ret = ACBrAACInterop.AAC_AchaECF(this.Handle, serie, ref ECFRec);
-            CheckResult(ret);
+		public AACECF AchaECF(string serie)
+		{
+			ACBrAACInterop.TECFAutorizado ECFRec = new ACBrAACInterop.TECFAutorizado();
+			int ret = ACBrAACInterop.AAC_AchaECF(this.Handle, serie, ref ECFRec);
+			CheckResult(ret);
 
-            if (ret == 0)
-                return null;
+			if (ret == 0)
+				return null;
 
-            ACBrAACECF retorno = new ACBrAACECF();
-            retorno.CNI = FromUTF8(ECFRec.CNI);
-            retorno.CRO = FromUTF8(ECFRec.CRO);
-            retorno.ValorGT = FromUTF8(ECFRec.ValorGT);
-            retorno.DtHrAtualizado = DateTime.FromOADate(ECFRec.DtHrAtualizado);
-            retorno.NumeroSerie = FromUTF8(ECFRec.NumeroSerie);
+			AACECF retorno = new AACECF();
+			retorno.CNI = FromUTF8(ECFRec.CNI);
+			retorno.CRO = FromUTF8(ECFRec.CRO);
+			retorno.ValorGT = FromUTF8(ECFRec.ValorGT);
+			retorno.DtHrAtualizado = DateTime.FromOADate(ECFRec.DtHrAtualizado);
+			retorno.NumeroSerie = FromUTF8(ECFRec.NumeroSerie);
 
-            return retorno;
-        }
+			return retorno;
+		}
 
 		public int ECFsAutorizadosCount
 		{
@@ -274,7 +274,7 @@ namespace ACBrFramework.AAC
 		protected internal override void OnInitializeComponent()
 		{
 			CallCreate(ACBrAACInterop.AAC_Create);
-			IdentPaf = new ACBrECFIdenticacaoPaf(this);
+			IdentPaf = new IdenticacaoPaf(this);
 		}
 
 		#endregion Overrides Methods

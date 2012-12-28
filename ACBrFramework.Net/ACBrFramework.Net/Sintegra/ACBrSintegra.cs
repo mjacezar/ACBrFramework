@@ -33,11 +33,11 @@ namespace ACBrFramework.Sintegra
 			}
 		}
 
-		public ACBrSintegraVersaoValidador VersaoValidador
+		public VersaoValidador VersaoValidador
 		{
 			get
 			{
-				return (ACBrSintegraVersaoValidador)GetInt32(ACBrSintegraInterop.SIN_GetVersaoValidador);
+				return (VersaoValidador)GetInt32(ACBrSintegraInterop.SIN_GetVersaoValidador);
 			}
 			set
 			{

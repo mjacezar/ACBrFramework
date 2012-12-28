@@ -6,7 +6,7 @@ namespace ACBrFramework.TEFD
 	{
 		#region Constructor
 
-		internal TEFCliSiTefObtemCampoEventArgs(string titulo, int tamanhoMinimo, int tamanhoMaximo, int tipoCampo, ACBrTEFDCliSiTefOperacaoCampo operacao)
+		internal TEFCliSiTefObtemCampoEventArgs(string titulo, int tamanhoMinimo, int tamanhoMaximo, int tipoCampo, TefCliSiTefOperacaoCampo operacao)
 		{
 			this.Titulo = titulo;
 			this.TamanhoMinimo = tamanhoMinimo;
@@ -27,7 +27,7 @@ namespace ACBrFramework.TEFD
 
 		public int TipoCampo { get; private set; }
 
-		public ACBrTEFDCliSiTefOperacaoCampo Operacao { get; private set; }
+		public TefCliSiTefOperacaoCampo Operacao { get; private set; }
 
 		public string Resposta { get; set; }
 

@@ -1164,7 +1164,7 @@
 			this.acBrTEFD1.AutoFinalizarCupom = true;
 			this.acBrTEFD1.CHQEmGerencial = false;
 			this.acBrTEFD1.EsperaSleep = 250;
-			this.acBrTEFD1.GPAtual = ACBrFramework.TEFD.ACBrTEFDTipo.TefDial;
+			this.acBrTEFD1.GPAtual = ACBrFramework.TEFD.TefTipo.TefDial;
 			this.acBrTEFD1.MultiplosCartoes = false;
 			this.acBrTEFD1.TEFAuttar.ArqReq = "C:\\Auttar_TefIP\\req\\intpos.001";
 			this.acBrTEFD1.TEFAuttar.ArqResp = "C:\\Auttar_TefIP\\resp\\intpos.001";

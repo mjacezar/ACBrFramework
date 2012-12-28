@@ -6,7 +6,7 @@ namespace ACBrFramework.TEFD
 	{
 		#region Constructor
 
-		internal ComandaECFImprimeViaEventArgs(ACBrTEFDTipoRelatorio tipoRelatorio, int via, string[] imagemComprovante)
+		internal ComandaECFImprimeViaEventArgs(TipoRelatorio tipoRelatorio, int via, string[] imagemComprovante)
 		{
 			this.TipoRelatorio = tipoRelatorio;
 			this.Via = via;
@@ -17,7 +17,7 @@ namespace ACBrFramework.TEFD
 
 		#region Properties
 
-		public ACBrTEFDTipoRelatorio TipoRelatorio { get; private set; }
+		public TipoRelatorio TipoRelatorio { get; private set; }
 
 		public int Via { get; private set; }
 
