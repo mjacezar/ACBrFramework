@@ -41,6 +41,10 @@ Símbolo : Significado
 
 Changelog
 
+28/12/2012
+[*] Refacory de nomes de classes dos componentes removendo prefixos desnecessários - Rafael Batiati
+[+] Componente ACBrSped parcialmente implementado - Rafael Batiati
+
 25/12/2012 ho! ho! ho!
 
 -- ACBrFramework 0.9.1.32 --
