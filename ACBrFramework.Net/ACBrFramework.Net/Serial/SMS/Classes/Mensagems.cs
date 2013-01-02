@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.ComponentModel;
 using System.Text;
 
 namespace ACBrFramework.SMS
-{
+{	
+	[DesignTimeVisible(false)]
 	public class Mensagems : ACBrComponent, ICollection<Mensagem>
 	{
 		#region Fields
