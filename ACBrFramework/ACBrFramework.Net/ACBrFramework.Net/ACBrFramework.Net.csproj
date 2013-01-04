@@ -586,6 +586,11 @@
     <Compile Include="TEFD\Eventos\TEFCliSiTefObtemCampoEventArgs.cs" />
     <Compile Include="TEFD\Classes\RespostasPendentes.cs" />
     <Compile Include="UnmanagedResources.cs" />
+    <Compile Include="Validador\ACBrValidador.cs" />
+    <Compile Include="Validador\ACBrValidadorInterop.cs" />
+    <Compile Include="Validador\Classes\CalcDigFormula.cs" />
+    <Compile Include="Validador\Classes\OnMsgErroEventArgs.cs" />
+    <Compile Include="Validador\Classes\ValTipoDocto.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -640,6 +645,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IBGE\ico.bmp" />
+    <EmbeddedResource Include="Validador\ico.bmp" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
