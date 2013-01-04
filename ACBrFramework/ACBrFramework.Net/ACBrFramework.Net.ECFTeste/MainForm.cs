@@ -230,6 +230,8 @@ namespace ACBrFramework.ECFTeste
 
 		#region ECF
 
+		#region Inicializar
+
 		private void InicializarECF()
 		{
 			List<string> fsMemoParams = new List<string>();
@@ -284,6 +286,10 @@ namespace ACBrFramework.ECFTeste
 
 			ativarCheckButton.Checked = false;
 		}
+
+		#endregion Inicializar
+
+		#region Ativar/Desativar
 
 		public void Ativar()
 		{
@@ -341,41 +347,9 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
-		public void Testar()
-		{
-			try
-			{
-				string message = string.Empty;
+		#endregion Ativar/Desativar		
 
-				message += string.Format("Impressora: {0}", acbrECF.ModeloStr);
-				message += string.Format("\nVersão: {0}", acbrECF.NumVersao);
-				message += string.Format("\nColunas: {0}", acbrECF.Colunas);
-				message += "\n";
-				message += string.Format("\nNúmero de série: {0}", acbrECF.NumSerie);
-				message += string.Format("\nNum do ECF: {0}", acbrECF.NumECF);
-				message += string.Format("\nData/Hora: {0:dd/MM/yyyy HH:mm:ss}", acbrECF.DataHora);
-
-				messageToolStripStatusLabel.Text = acbrECF.Estado.ToString();
-				descriptionToolStripStatusLabel.Text = string.Empty;
-
-				MessageBox.Show(this, message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-			}
-			catch (NullReferenceException)
-			{
-				messageToolStripStatusLabel.Text = "Não inicializado.";
-				descriptionToolStripStatusLabel.Text = string.Empty;
-			}
-			catch (Exception exception)
-			{
-				messageToolStripStatusLabel.Text = "Exception";
-				descriptionToolStripStatusLabel.Text = exception.Message;
-			}
-		}
-
-		public void Sair()
-		{
-			this.Close();
-		}
+		#region LerVariaveis
 
 		public void Ler_Estado()
 		{
@@ -548,30 +522,11 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
-		private void Ler_DadosReducaoZ()
+		private void Ler_ModeloSTR()
 		{
 			try
 			{
-				WriteResp(string.Format("DadosReducaoZ:\n{0}", acbrECF.GetDadosReducaoZ()));
-				descriptionToolStripStatusLabel.Text = string.Empty;
-			}
-			catch (NullReferenceException)
-			{
-				messageToolStripStatusLabel.Text = "Não inicializado.";
-				descriptionToolStripStatusLabel.Text = string.Empty;
-			}
-			catch (Exception exception)
-			{
-				messageToolStripStatusLabel.Text = "Exception";
-				descriptionToolStripStatusLabel.Text = exception.Message;
-			}
-		}
-
-		private void Ler_DadosUltimaReducaoZ()
-		{
-			try
-			{
-				WriteResp(string.Format("DadosUltimaReducaoZ:\n{0}", acbrECF.GetDadosUltimaReducaoZ()));
+				WriteResp(string.Format("Modelo: {0}", acbrECF.ModeloStr));
 				descriptionToolStripStatusLabel.Text = string.Empty;
 			}
 			catch (NullReferenceException)
@@ -640,6 +595,10 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
+		#endregion LerVariaveis
+
+		#region Cupom Fiscal
+		
 		private void TestaCupomFiscal()
 		{
 			try
@@ -696,6 +655,108 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
+		#endregion Cupom Fiscal
+
+		#region Redução Z\Leitura X
+
+		private void ReducaoZ()
+		{
+			try
+			{
+				if (acbrECF.Estado != EstadoECF.RequerZ)
+				{
+					if (MessageBox.Show("A Redução Z pode Bloquear o seu ECF até a 12:00pm.\nContinua assim mesmo ?", "ACBrFramework.Net", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.No))
+						return;
+
+					if (MessageBox.Show("Você tem certeza ?", "ACBrFramework.Net", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.No))
+						return;
+				}
+
+				bobina.Clear();
+
+				if (MessageBox.Show("Envia hora atual ?", "ACBrFramework.Net", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.No))
+					acbrECF.ReducaoZ();
+				else
+					acbrECF.ReducaoZ(DateTime.Now);
+
+				WriteResp("ReducaoZ OK");
+				descriptionToolStripStatusLabel.Text = string.Empty;
+			}
+			catch (NullReferenceException)
+			{
+				messageToolStripStatusLabel.Text = "Não inicializado.";
+				descriptionToolStripStatusLabel.Text = string.Empty;
+			}
+			catch (Exception exception)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = exception.Message;
+			}
+		}
+
+		private void LeituraX()
+		{
+			try
+			{
+				bobina.Clear();
+				acbrECF.LeituraX();
+				WriteResp("LeituaX OK");
+				descriptionToolStripStatusLabel.Text = string.Empty;
+			}
+			catch (NullReferenceException)
+			{
+				messageToolStripStatusLabel.Text = "Não inicializado.";
+				descriptionToolStripStatusLabel.Text = string.Empty;
+			}
+			catch (Exception exception)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = exception.Message;
+			}
+		}	
+
+		private void Ler_DadosReducaoZ()
+		{
+			try
+			{
+				WriteResp(string.Format("DadosReducaoZ:\n{0}", acbrECF.GetDadosReducaoZ()));
+				descriptionToolStripStatusLabel.Text = string.Empty;
+			}
+			catch (NullReferenceException)
+			{
+				messageToolStripStatusLabel.Text = "Não inicializado.";
+				descriptionToolStripStatusLabel.Text = string.Empty;
+			}
+			catch (Exception exception)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = exception.Message;
+			}
+		}
+
+		private void Ler_DadosUltimaReducaoZ()
+		{
+			try
+			{
+				WriteResp(string.Format("DadosUltimaReducaoZ:\n{0}", acbrECF.GetDadosUltimaReducaoZ()));
+				descriptionToolStripStatusLabel.Text = string.Empty;
+			}
+			catch (NullReferenceException)
+			{
+				messageToolStripStatusLabel.Text = "Não inicializado.";
+				descriptionToolStripStatusLabel.Text = string.Empty;
+			}
+			catch (Exception exception)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = exception.Message;
+			}
+		}
+
+		#endregion Redução Z\Leitura X
+
+		#region DAV
+
 		private void TestaCupomDAV()
 		{
 			try
@@ -734,49 +795,11 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
-		private void LeituraX()
-		{
-			try
-			{
-				bobina.Clear();
-				acbrECF.LeituraX();
-				WriteResp("LeituaX OK");
-				descriptionToolStripStatusLabel.Text = string.Empty;
-			}
-			catch (NullReferenceException)
-			{
-				messageToolStripStatusLabel.Text = "Não inicializado.";
-				descriptionToolStripStatusLabel.Text = string.Empty;
-			}
-			catch (Exception exception)
-			{
-				messageToolStripStatusLabel.Text = "Exception";
-				descriptionToolStripStatusLabel.Text = exception.Message;
-			}
-		}
+		#endregion DAV
 
-		private void ReducaoZ()
-		{
-			try
-			{
-				bobina.Clear();
-				acbrECF.ReducaoZ();
-				WriteResp("ReducaoZ OK");
-				descriptionToolStripStatusLabel.Text = string.Empty;
-			}
-			catch (NullReferenceException)
-			{
-				messageToolStripStatusLabel.Text = "Não inicializado.";
-				descriptionToolStripStatusLabel.Text = string.Empty;
-			}
-			catch (Exception exception)
-			{
-				messageToolStripStatusLabel.Text = "Exception";
-				descriptionToolStripStatusLabel.Text = exception.Message;
-			}
-		}
+		#region Forma de Pagamento
 
-        private void programaFormaPagamento()
+		private void programaFormaPagamento()
         {
             try
             {
@@ -807,7 +830,38 @@ namespace ACBrFramework.ECFTeste
             }
         }
 
-        private void ConfigurarSerial()
+		#endregion Forma de Pagamento
+
+		#region PAF
+
+		private void IdenticaPaf()
+		{
+			try
+			{
+				string prog = string.Empty, md5 = string.Empty;
+
+				if (InputBox.Show("Identifica PAF (Programa Aplicativo Fiscal)", "Programa e Versao:", ref prog).Equals(DialogResult.Cancel))
+					return;
+
+				if (InputBox.Show("Identifica PAF (Programa Aplicativo Fiscal)", "MD5:", ref md5).Equals(DialogResult.Cancel))
+					return;
+
+				acbrECF.IdentificaPAF(prog, md5);
+				string mensagem = string.Format("Identifica PAF: {0} {1}", prog, md5);
+				WriteResp(mensagem);
+			}
+			catch (Exception exception)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = exception.Message;
+			}			
+		}
+
+		#endregion PAF
+
+		#region Diversos
+
+		private void ConfigurarSerial()
         {
             using (SerialCFGForm CFG = new SerialCFGForm())
             {
@@ -842,15 +896,53 @@ namespace ACBrFramework.ECFTeste
 			lstCMD.SelectedIndex = lstCMD.Items.Count - 1;
 		}
 
+		public void Testar()
+		{
+			try
+			{
+				string message = string.Empty;
+
+				message += string.Format("Impressora: {0}", acbrECF.ModeloStr);
+				message += string.Format("\nVersão: {0}", acbrECF.NumVersao);
+				message += string.Format("\nColunas: {0}", acbrECF.Colunas);
+				message += "\n";
+				message += string.Format("\nNúmero de série: {0}", acbrECF.NumSerie);
+				message += string.Format("\nNum do ECF: {0}", acbrECF.NumECF);
+				message += string.Format("\nData/Hora: {0:dd/MM/yyyy HH:mm:ss}", acbrECF.DataHora);
+
+				messageToolStripStatusLabel.Text = acbrECF.Estado.ToString();
+				descriptionToolStripStatusLabel.Text = string.Empty;
+
+				MessageBox.Show(this, message, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			catch (NullReferenceException)
+			{
+				messageToolStripStatusLabel.Text = "Não inicializado.";
+				descriptionToolStripStatusLabel.Text = string.Empty;
+			}
+			catch (Exception exception)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = exception.Message;
+			}
+		}
+
+		public void Sair()
+		{
+			Close();
+		}
+
+		#endregion Diversos
+
 		#endregion ECF
 
 		#endregion Methods
 
 		#region Event Handlers
 
-        #region Eventos
+		#region Eventos
 
-        private void acbrAAC_OnGetChave(object sender, ChaveEventArgs e)
+		private void acbrAAC_OnGetChave(object sender, ChaveEventArgs e)
         {
             e.Chave = "-----BEGIN RSA PRIVATE KEY-----" + Environment.NewLine +
                        "MIICXwIBAAKBgQC+TZjfcw/a/SovoqQPOW5bbKn4CQw4DeZJA3Y9vJrYHKN4aCQv" + Environment.NewLine +
@@ -878,249 +970,23 @@ namespace ACBrFramework.ECFTeste
             wbBobina.Refresh();
         }
 
+		private void acbrECF_OnAguardandoRespostaChange(object sender, EventArgs e)
+		{
+			if (acbrECF.AguardandoResposta)
+			{
+				messageToolStripStatusLabel.Text = "Mensagem";
+				descriptionToolStripStatusLabel.Text = "Processando...";
+			}
+			else
+			{
+				messageToolStripStatusLabel.Text = "Mensagem";
+				descriptionToolStripStatusLabel.Text = string.Empty;
+			}
+		}
+
         #endregion Eventos
 
-        #region Botões
-
-        private void ativarToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ativar();
-		}
-
-		private void desativarToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Desativar();
-		}               
-
-		private void testarToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Testar();
-		}
-
-		private void sairToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Sair();
-		}
-
-		private void estadoToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ler_Estado();
-		}
-
-		private void dataHoraToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ler_DataHora();
-		}
-
-		private void numECFToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ler_NumECF();
-		}
-
-		private void numLojaToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ler_NumLoja();
-		}
-
-		private void numSérieToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ler_NumSerie();
-		}
-
-		private void numVersãoToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ler_NumVersao();
-		}
-
-		private void cNPJToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ler_CNPJ();
-		}
-
-		private void iEToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ler_IE();
-		}
-
-		private void pAFToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ler_PAF();
-		}
-
-		private void lerTodasAsVariáveisToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Ler_TodasVariaveis();
-		}
-
-		private void leituraXToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			LeituraX();
-		}
-
-		private void reToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			ReducaoZ();
-		}
-
-		private void leituraMemóriaFiscalToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			using (LeituraMemoriaFiscal form = new LeituraMemoriaFiscal())
-			{
-				var ret = form.ShowDialog();
-				if (ret == System.Windows.Forms.DialogResult.OK)
-				{
-					try
-					{
-						if (form.ByPeriod)
-						{
-							this.acbrECF.LeituraMemoriaFiscal(form.InitialDate, form.FinalDate, form.Simple);
-						}
-						else
-						{
-							this.acbrECF.LeituraMemoriaFiscal(form.InitialCCR, form.FinalCCR, form.Simple);
-						}
-
-						WriteResp("LeituraMemoriaFiscal OK");
-					}
-					catch (NullReferenceException)
-					{
-						messageToolStripStatusLabel.Text = "Não inicializado.";
-						descriptionToolStripStatusLabel.Text = string.Empty;
-					}
-					catch (Exception exception)
-					{
-						messageToolStripStatusLabel.Text = "Exception";
-						descriptionToolStripStatusLabel.Text = exception.Message;
-					}
-				}
-			}
-		}
-
-		private void leituraMemóriaFiscalSerialToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			using (LeituraMemoriaFiscal form = new LeituraMemoriaFiscal())
-			{
-				var ret = form.ShowDialog();
-				if (ret == System.Windows.Forms.DialogResult.OK)
-				{
-					string result;
-
-					try
-					{
-						if (form.ByPeriod)
-						{
-							result = this.acbrECF.LeituraMemoriaFiscalSerial(form.InitialDate, form.FinalDate, form.Simple);
-						}
-						else
-						{
-							result = this.acbrECF.LeituraMemoriaFiscalSerial(form.InitialCCR, form.FinalCCR, form.Simple);
-						}
-
-						WriteResp(result);
-					}
-					catch (NullReferenceException)
-					{
-						messageToolStripStatusLabel.Text = "Não inicializado.";
-						descriptionToolStripStatusLabel.Text = string.Empty;
-					}
-					catch (Exception exception)
-					{
-						messageToolStripStatusLabel.Text = "Exception";
-						descriptionToolStripStatusLabel.Text = exception.Message;
-					}
-				}
-			}
-		}
-
-		private void leituraMemToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			using (LeituraMemoriaFiscalPAF form = new LeituraMemoriaFiscalPAF())
-			{
-				var ret = form.ShowDialog();
-				if (ret == System.Windows.Forms.DialogResult.OK)
-				{
-					try
-					{
-						if (form.ByPeriod)
-						{
-							if (form.Simple)
-							{
-								if (form.Imprimir)
-									acbrECF.PafMF_LMFS_Impressao(form.InitialDate, form.FinalDate);
-								else if (form.SalvarEspelho)
-									acbrECF.PafMF_LMFS_Espelho(form.InitialDate, form.FinalDate, form.Caminho);
-							}
-							else
-							{
-								if (form.Imprimir)
-									acbrECF.PafMF_LMFC_Impressao(form.InitialDate, form.FinalDate);
-								else if (form.SalvarCotepe1704)
-									acbrECF.PafMF_LMFC_Cotepe1704(form.InitialDate, form.FinalDate, form.Caminho);
-								else if (form.SalvarEspelho)
-									acbrECF.PafMF_LMFC_Espelho(form.InitialDate, form.FinalDate, form.Caminho);
-							}
-						}
-						else
-						{
-							if (form.Simple)
-							{
-								if (form.Imprimir)
-									acbrECF.PafMF_LMFS_Impressao(form.InitialCCR, form.FinalCCR);
-								else if (form.SalvarEspelho)
-									acbrECF.PafMF_LMFS_Espelho(form.InitialCCR, form.FinalCCR, form.Caminho);
-							}
-							else
-							{
-								if (form.Imprimir)
-									acbrECF.PafMF_LMFC_Impressao(form.InitialCCR, form.FinalCCR);
-								else if (form.SalvarCotepe1704)
-									acbrECF.PafMF_LMFC_Cotepe1704(form.InitialCCR, form.FinalCCR, form.Caminho);
-								else if (form.SalvarEspelho)
-									acbrECF.PafMF_LMFC_Espelho(form.InitialCCR, form.FinalCCR, form.Caminho);
-							}
-						}
-
-						WriteResp("LeituraMemoriaFiscal PAF OK");
-					}
-					catch (NullReferenceException)
-					{
-						messageToolStripStatusLabel.Text = "Não inicializado.";
-						descriptionToolStripStatusLabel.Text = string.Empty;
-					}
-					catch (Exception exception)
-					{
-						messageToolStripStatusLabel.Text = "Exception";
-						descriptionToolStripStatusLabel.Text = exception.Message;
-					}
-				}
-			}
-		}
-
-		private void identificaPAFToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			using (IdentificaPAF form = new IdentificaPAF())
-			{
-				var ret = form.ShowDialog();
-				if (ret == System.Windows.Forms.DialogResult.OK)
-				{
-					try
-					{
-						acbrECF.IdentificaPAF(form.Linha1, form.Linha2);
-						WriteResp("Identifica PAF: " + form.Linha1);
-					}
-					catch (NullReferenceException)
-					{
-						messageToolStripStatusLabel.Text = "Não inicializado.";
-						descriptionToolStripStatusLabel.Text = string.Empty;
-					}
-					catch (Exception exception)
-					{
-						messageToolStripStatusLabel.Text = "Exception";
-						descriptionToolStripStatusLabel.Text = exception.Message;
-					}
-				}
-			}
-		}
+        #region Botões      
 
 		private void aacAbrirArquivoButton_Click(object sender, EventArgs e)
 		{
@@ -1247,6 +1113,111 @@ namespace ACBrFramework.ECFTeste
 
         #endregion NumericUpDown      
 
-        #endregion Event Handlers
-    }
+		#region Menu
+
+		private void ativarToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Ativar();
+		}
+
+		private void desativarToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Desativar();
+		}
+
+		private void testarToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Testar();
+		}
+
+		private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Sair();
+		}
+
+		private void estadoToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Ler_Estado();
+		}
+
+		private void dataHoraToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Ler_DataHora();
+		}
+
+		private void numECFToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Ler_NumECF();
+		}
+
+		private void numLojaToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Ler_NumLoja();
+		}
+
+		private void numSérieToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Ler_NumSerie();
+		}
+
+		private void numVersãoToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Ler_NumVersao();
+		}
+
+		private void cNPJToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Ler_CNPJ();
+		}
+
+		private void iEToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Ler_IE();
+		}
+
+		private void pAFToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Ler_PAF();
+		}
+
+		private void lerTodasAsVariáveisToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Ler_TodasVariaveis();
+		}
+
+		private void leituraXToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			LeituraX();
+		}
+
+		private void reToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ReducaoZ();
+		}
+		
+		private void identificaPAFToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			IdenticaPaf();
+		}
+
+		private void sobreACBrNETToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			string msg = string.Format("Projeto ACBrFramework.Net\n{0}", acbrECF.About);
+			MessageBox.Show(msg, "ACBrFramework.Net");
+		}
+
+		private void corrigeEstadoDeErroToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			acbrECF.CorrigeEstadoErro(false);
+		}
+
+		private void modeloStrToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Ler_ModeloSTR();
+		}
+
+		#endregion Menu		
+
+		#endregion Event Handlers
+	}
 }

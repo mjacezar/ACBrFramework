@@ -34,6 +34,9 @@ namespace ACBrFramework.ECF
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void PoucoPapelCallback();
 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void AguardandoRespostaChangeCallback();
+
 		[StructLayout(LayoutKind.Sequential)]
 		public struct AliquotaRec
 		{
@@ -880,7 +883,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_LeituraX(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_ReducaoZ(IntPtr ecfHandle);
+		public static extern int ECF_ReducaoZ(IntPtr ecfHandle, double data);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_AbreCupomVinculado(IntPtr ecfHandle, string coo, string codFormaPagto, double valor);
@@ -1029,6 +1032,9 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnPoucoPapel(IntPtr ecfHandle, PoucoPapelCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAguardandoRespostaChange(IntPtr ecfHandle, AguardandoRespostaChangeCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnBobinaAdicionaLinhas(IntPtr ecfHandle, BobinaAdicionaLinhasCallback method);
