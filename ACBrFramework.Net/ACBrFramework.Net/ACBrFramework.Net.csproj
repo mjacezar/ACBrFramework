@@ -234,6 +234,8 @@
     <Compile Include="Serial\ECF\ACBrECFInterop.cs" />
     <Compile Include="Serial\ECF\Classes\Rodape.cs" />
     <Compile Include="Serial\ECF\Classes\RodapeNotaLegalDF.cs" />
+    <Compile Include="Serial\ECF\Eventos\AbreCupomArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\AntesAbreRelatorioGerencialArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\BobinaEventArgs.cs" />
     <Compile Include="Serial\ECF\Classes\Aliquota.cs" />
     <Compile Include="Serial\ECF\Classes\ComprovanteNaoFiscal.cs" />

@@ -37,6 +37,18 @@ namespace ACBrFramework.ECF
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void AguardandoRespostaChangeCallback();
 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void AntesAbreCupomCallback(string CPF_CNPJ, string Nome, string Endereco);
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void AntesAbreCupomVinculadoCallback();
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void AntesAbreNaoFiscalCallback(string CPF_CNPJ, string Nome, string Endereco);
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void AntesAbreRelatorioGerencialCallback(int Indice);
+
 		[StructLayout(LayoutKind.Sequential)]
 		public struct AliquotaRec
 		{
@@ -1038,6 +1050,18 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnBobinaAdicionaLinhas(IntPtr ecfHandle, BobinaAdicionaLinhasCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesAbreCupom(IntPtr ecfHandle, AntesAbreCupomCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesAbreCupomVinculado(IntPtr ecfHandle, AntesAbreCupomVinculadoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesAbreNaoFiscal(IntPtr ecfHandle, AntesAbreNaoFiscalCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesAbreRelatorioGerencial(IntPtr ecfHandle, AntesAbreRelatorioGerencialCallback method);
 
 		#endregion Eventos
 

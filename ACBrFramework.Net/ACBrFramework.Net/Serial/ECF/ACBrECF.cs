@@ -39,6 +39,54 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		public event EventHandler<AbreCupomArgs> OnAntesAbreCupom
+		{
+			add
+			{
+				onAntesAbreCupom.Add(value);
+			}
+			remove
+			{
+				onAntesAbreCupom.Remove(value);
+			}
+		}
+
+		public event EventHandler OnAntesAbreCupomVinculado
+		{
+			add
+			{
+				onAntesAbreCupomVinculado.Add(value);
+			}
+			remove
+			{
+				onAntesAbreCupomVinculado.Remove(value);
+			}
+		}
+
+		public event EventHandler<AbreCupomArgs> OnAntesAbreNaoFiscal
+		{
+			add
+			{
+				onAntesAbreNaoFiscal.Add(value);
+			}
+			remove
+			{
+				onAntesAbreNaoFiscal.Remove(value);
+			}
+		}
+
+		public event EventHandler<AntesAbreRelatorioGerencialArgs> OnAntesAbreRelatorioGerencial
+		{
+			add
+			{
+				onAntesAbreRelatorioGerencial.Add(value);
+			}
+			remove
+			{
+				onAntesAbreRelatorioGerencial.Remove(value);
+			}
+		}
+
 		public event EventHandler<BobinaEventArgs> OnBobinaAdicionaLinhas
 		{
 			add
@@ -64,6 +112,10 @@ namespace ACBrFramework.ECF
 
 		private readonly ACBrEventHandler<ACBrECFInterop.PoucoPapelCallback> onPoucoPapel;
 		private readonly ACBrEventHandler<ACBrECFInterop.AguardandoRespostaChangeCallback> onAguardandoRespostaChange;
+		private readonly ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AntesAbreCupomCallback> onAntesAbreCupom;
+		private readonly ACBrEventHandler<ACBrECFInterop.AntesAbreCupomVinculadoCallback> onAntesAbreCupomVinculado;
+		private readonly ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AntesAbreNaoFiscalCallback> onAntesAbreNaoFiscal;
+		private readonly ACBrEventHandler< AntesAbreRelatorioGerencialArgs,ACBrECFInterop.AntesAbreRelatorioGerencialCallback> onAntesAbreRelatorioGerencial;
 		private readonly ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback> onBobinaAdicionaLinhas;
 
 		#endregion Fields
@@ -74,6 +126,10 @@ namespace ACBrFramework.ECF
 		{
 			onPoucoPapel = new ACBrEventHandler<ACBrECFInterop.PoucoPapelCallback>(this, OnPoucoPapelCallback, ACBrECFInterop.ECF_SetOnPoucoPapel);
 			onAguardandoRespostaChange = new ACBrEventHandler<ACBrECFInterop.AguardandoRespostaChangeCallback>(this, OnAguardandoRespostaChangeCallback, ACBrECFInterop.ECF_SetOnAguardandoRespostaChange);
+			onAntesAbreCupom = new ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AntesAbreCupomCallback>(this, OnAntesAbreCupomCallback, ACBrECFInterop.ECF_SetOnAntesAbreCupom);
+			onAntesAbreCupomVinculado = new ACBrEventHandler<ACBrECFInterop.AntesAbreCupomVinculadoCallback>(this, OnAntesAbreCupomVinculadoCallback, ACBrECFInterop.ECF_SetOnAntesAbreCupomVinculado);
+			onAntesAbreNaoFiscal = new ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AntesAbreNaoFiscalCallback>(this, OnAntesAbreNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesAbreNaoFiscal);
+			onAntesAbreRelatorioGerencial = new ACBrEventHandler<AntesAbreRelatorioGerencialArgs, ACBrECFInterop.AntesAbreRelatorioGerencialCallback>(this, OnAntesAbreRelatorioGerencialCallback, ACBrECFInterop.ECF_SetOnAntesAbreRelatorioGerencial);
 			onBobinaAdicionaLinhas = new ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback>(this, OnBobinaAdicionaLinhasCallback, ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas);
 		}	
 
@@ -2149,6 +2205,45 @@ namespace ACBrFramework.ECF
 			if (onAguardandoRespostaChange.IsAssigned)
 			{
 				onAguardandoRespostaChange.Raise();
+			}
+		}
+
+		[AllowReversePInvokeCalls]
+		private void OnAntesAbreCupomCallback(string CPF_CNPJ, string Nome, string Endereco)
+		{
+			if (onAntesAbreCupom.IsAssigned)
+			{
+				AbreCupomArgs e = new AbreCupomArgs(CPF_CNPJ, Nome, Endereco);
+				onAntesAbreCupom.Raise(e);
+			}
+		}
+
+		[AllowReversePInvokeCalls]
+		private void OnAntesAbreCupomVinculadoCallback()
+		{
+			if (onAntesAbreCupomVinculado.IsAssigned)
+			{
+				onAntesAbreCupomVinculado.Raise();
+			}
+		}
+
+		[AllowReversePInvokeCalls]
+		private void OnAntesAbreNaoFiscalCallback(string CPF_CNPJ, string Nome, string Endereco)
+		{
+			if (onAntesAbreNaoFiscal.IsAssigned)
+			{
+				AbreCupomArgs e = new AbreCupomArgs(CPF_CNPJ, Nome, Endereco);
+				onAntesAbreNaoFiscal.Raise(e);
+			}
+		}
+
+		[AllowReversePInvokeCalls]
+		private void OnAntesAbreRelatorioGerencialCallback(int Indice)
+		{
+			if (onAntesAbreRelatorioGerencial.IsAssigned)
+			{
+				AntesAbreRelatorioGerencialArgs e = new AntesAbreRelatorioGerencialArgs(Indice);
+				onAntesAbreRelatorioGerencial.Raise(e);
 			}
 		}
 
