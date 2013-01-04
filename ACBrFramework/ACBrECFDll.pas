@@ -17,12 +17,15 @@ uses
 { Ponteiros de função para uso nos eventos}
 type TBobinaProcedureCallback = procedure(const Linhas : PChar; const Operacao : PChar); cdecl;
 type TPoucoPapelCallback = procedure(); cdecl;
+type TAguardandoRespostaChangeCallback = procedure(); cdecl;
 
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
     OnPoucoPapelCallback : TPoucoPapelCallback;
+    OnAguardandoRespostaChangeCallback :  TAguardandoRespostaChangeCallback;
     OnBobinaAdicionaLinhasCallback : TBobinaProcedureCallback;
     procedure OnMsgPoucoPapel(Sender: TObject);
+    procedure OnAguardandoRespostaChange(Sender: TObject);
     procedure OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
 end;
 
@@ -4866,7 +4869,7 @@ end;
 
 {%region Redução Z }
 
-Function ECF_ReducaoZ(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_ReducaoZ(const ecfHandle: PECFHandle; Const date : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -4876,7 +4879,7 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.ReducaoZ;
+     ecfHandle^.ECF.ReducaoZ(date);
      Result := 0 ;
   except
      on exception : Exception do
@@ -6054,6 +6057,11 @@ begin
      OnPoucoPapelCallback();
 end;
 
+procedure TEventHandlers.OnAguardandoRespostaChange(Sender: TObject);
+begin
+     OnAguardandoRespostaChangeCallback();
+end;
+
 procedure TEventHandlers.OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
 var
   pLinhas: PChar;
@@ -6084,6 +6092,37 @@ begin
   begin
         ecfHandle^.ECF.OnMsgPoucoPapel := nil;
         ecfHandle^.EventHandlers.OnPoucoPapelCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAguardandoRespostaChange(const ecfHandle: PECFHandle; const method : TPoucoPapelCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAguardandoRespostaChange := ecfHandle^.EventHandlers.OnAguardandoRespostaChange;
+        ecfHandle^.EventHandlers.OnAguardandoRespostaChangeCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAguardandoRespostaChange := nil;
+        ecfHandle^.EventHandlers.OnAguardandoRespostaChangeCallback := nil;
         Result := 0;
   end;
   except
@@ -6443,7 +6482,8 @@ ECF_GetMemoParamsLineCount,
 
 {Eventos}
 
-ECF_SetOnPoucoPapel, ECF_SetOnBobinaAdicionaLinhas;
+ECF_SetOnPoucoPapel, ECF_SetOnAguardandoRespostaChange,
+ECF_SetOnBobinaAdicionaLinhas;
 
 {Não implementado}
 

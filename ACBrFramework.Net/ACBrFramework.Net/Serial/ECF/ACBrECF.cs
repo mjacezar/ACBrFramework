@@ -27,6 +27,18 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		public event EventHandler OnAguardandoRespostaChange
+		{
+			add
+			{
+				onAguardandoRespostaChange.Add(value);
+			}
+			remove
+			{
+				onAguardandoRespostaChange.Remove(value);
+			}
+		}
+
 		public event EventHandler<BobinaEventArgs> OnBobinaAdicionaLinhas
 		{
 			add
@@ -51,6 +63,7 @@ namespace ACBrFramework.ECF
 		private ACBrEAD ead;
 
 		private readonly ACBrEventHandler<ACBrECFInterop.PoucoPapelCallback> onPoucoPapel;
+		private readonly ACBrEventHandler<ACBrECFInterop.AguardandoRespostaChangeCallback> onAguardandoRespostaChange;
 		private readonly ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback> onBobinaAdicionaLinhas;
 
 		#endregion Fields
@@ -60,8 +73,9 @@ namespace ACBrFramework.ECF
 		public ACBrECF()
 		{
 			onPoucoPapel = new ACBrEventHandler<ACBrECFInterop.PoucoPapelCallback>(this, OnPoucoPapelCallback, ACBrECFInterop.ECF_SetOnPoucoPapel);
+			onAguardandoRespostaChange = new ACBrEventHandler<ACBrECFInterop.AguardandoRespostaChangeCallback>(this, OnAguardandoRespostaChangeCallback, ACBrECFInterop.ECF_SetOnAguardandoRespostaChange);
 			onBobinaAdicionaLinhas = new ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback>(this, OnBobinaAdicionaLinhasCallback, ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas);
-		}
+		}	
 
 		#endregion Constructor
 
@@ -1039,6 +1053,18 @@ namespace ACBrFramework.ECF
 		{
 			int ret = ACBrECFInterop.ECF_PreparaTEF(this.Handle);
 			CheckResult(ret);
+
+			ret = ACBrECFInterop.ECF_LerTotaisAliquota(this.Handle);
+			CheckResult(ret);
+			CarregaAliquotas(ret);
+
+			ret = ACBrECFInterop.ECF_LerTotaisFormaPagamento(this.Handle);
+			CheckResult(ret);
+			CarregaFormasPagamento(ret);
+
+			ret = ACBrECFInterop.ECF_LerTotaisComprovanteNaoFiscal(this.Handle);
+			CheckResult(ret);
+			CarregaComprovantesNaoFiscais(ret);
 		}
 
 		#endregion Métodos ECF
@@ -1534,7 +1560,17 @@ namespace ACBrFramework.ECF
 
 		public void ReducaoZ()
 		{
-			int ret = ACBrECFInterop.ECF_ReducaoZ(this.Handle);
+			ReducaoZ(0);
+		}
+
+		public void ReducaoZ(DateTime data)
+		{
+			ReducaoZ(data.ToOADate());
+		}
+
+		private void ReducaoZ(double data)
+		{
+			int ret = ACBrECFInterop.ECF_ReducaoZ(this.Handle, data);
 			CheckResult(ret);
 		}
 
@@ -2104,6 +2140,15 @@ namespace ACBrFramework.ECF
 			if (onPoucoPapel.IsAssigned)
 			{
 				onPoucoPapel.Raise();
+			}
+		}
+
+		[AllowReversePInvokeCalls]
+		private void OnAguardandoRespostaChangeCallback()
+		{
+			if (onAguardandoRespostaChange.IsAssigned)
+			{
+				onAguardandoRespostaChange.Raise();
 			}
 		}
 
