@@ -18,7 +18,8 @@ uses
   ACBrSpedDll,
   ACBrSpedFiscalDll,
   ACBrSMSDll,
-  ACBrIBGEDll
+  ACBrIBGEDll,
+  ACBrValidadorDll
   ;
 
 

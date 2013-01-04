@@ -42,6 +42,13 @@ Símbolo : Significado
 Changelog
 
 28/12/2012
+-- ACBrFramework 0.9.1.34 --
+[+] Adicionado o ACBrValidador - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.1.34 --
+[+] Adicionado o ACBrValidador - Rafael Dias.
+
+28/12/2012
 -- ACBrFramework 0.9.1.33 --
 [+] Componente ACBrSped parcialmente implementado - Rafael Batiati.
 
