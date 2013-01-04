@@ -14,21 +14,38 @@ uses
   ACBrPAFClass
   ;
 
-{ Ponteiros de função para uso nos eventos}
-type TBobinaProcedureCallback = procedure(const Linhas : PChar; const Operacao : PChar); cdecl;
+{%region Ponteiros de função para uso nos eventos}
+
 type TPoucoPapelCallback = procedure(); cdecl;
 type TAguardandoRespostaChangeCallback = procedure(); cdecl;
+type TAntesAbreCupomCallback = procedure(const CPF_CNPJ, Nome, Endereco : PChar); cdecl;
+type TAntesAbreCupomVinculadoCallback = procedure(); cdecl;
+type TAntesAbreNaoFiscalCallback = procedure(const CPF_CNPJ, Nome, Endereco : PChar); cdecl;
+type TAntesAbreRelatorioGerencialCallback = procedure(const Indice: Integer); cdecl;
+type TBobinaProcedureCallback = procedure(const Linhas : PChar; const Operacao : PChar); cdecl;
 
-{Classe que armazena os EventHandlers para o componente ACBr}
+{%endregion}
+
+{%region Classe que armazena os EventHandlers para o componente ACBr}
+
 type TEventHandlers = class
     OnPoucoPapelCallback : TPoucoPapelCallback;
     OnAguardandoRespostaChangeCallback :  TAguardandoRespostaChangeCallback;
+    OnAntesAbreCupomCallback : TAntesAbreCupomCallback;
+    OnAntesAbreCupomVinculadoCallback : TAntesAbreCupomVinculadoCallback;
+    OnAntesAbreNaoFiscalCallback : TAntesAbreNaoFiscalCallback;
+    OnAntesAbreRelatorioGerencialCallback : TAntesAbreRelatorioGerencialCallback;
     OnBobinaAdicionaLinhasCallback : TBobinaProcedureCallback;
     procedure OnMsgPoucoPapel(Sender: TObject);
     procedure OnAguardandoRespostaChange(Sender: TObject);
+    procedure OnAntesAbreCupom(const CPF_CNPJ, Nome, Endereco : String);
+    procedure OnAntesAbreCupomVinculado(Sender: TObject);
+    procedure OnAntesAbreNaoFiscal(const CPF_CNPJ, Nome, Endereco : String);
+    procedure OnAntesAbreRelatorioGerencial(const Indice: Integer);
     procedure OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
 end;
 
+{%endregion}
 
 {Handle para o componente TACBrECF }
 type TECFHandle = record
@@ -6062,6 +6079,26 @@ begin
      OnAguardandoRespostaChangeCallback();
 end;
 
+procedure TEventHandlers.OnAntesAbreCupom(const CPF_CNPJ, Nome, Endereco : String);
+begin
+     OnAntesAbreCupomCallback(PChar(CPF_CNPJ), PChar(Nome), PChar(Endereco));
+end;
+
+procedure TEventHandlers.OnAntesAbreCupomVinculado(Sender: TObject);
+begin
+     OnAntesAbreCupomVinculadoCallback();
+end;
+
+procedure TEventHandlers.OnAntesAbreNaoFiscal(const CPF_CNPJ, Nome, Endereco : String);
+begin
+     OnAntesAbreNaoFiscalCallback(PChar(CPF_CNPJ), PChar(Nome), PChar(Endereco));
+end;
+
+procedure TEventHandlers.OnAntesAbreRelatorioGerencial(const Indice: Integer);
+begin
+     OnAntesAbreRelatorioGerencial(Indice);
+end;
+
 procedure TEventHandlers.OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
 var
   pLinhas: PChar;
@@ -6071,6 +6108,10 @@ begin
      pOperacao := PChar(Operacao);
      OnBobinaAdicionaLinhasCallback(pLinhas, pOperacao);
 end;
+
+{%endregion}
+
+{%region Set Eventos }
 
 Function ECF_SetOnPoucoPapel(const ecfHandle: PECFHandle; const method : TPoucoPapelCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -6123,6 +6164,130 @@ begin
   begin
         ecfHandle^.ECF.OnAguardandoRespostaChange := nil;
         ecfHandle^.EventHandlers.OnAguardandoRespostaChangeCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesAbreCupom(const ecfHandle: PECFHandle; const method : TAntesAbreCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesAbreCupom := ecfHandle^.EventHandlers.OnAntesAbreCupom;
+        ecfHandle^.EventHandlers.OnAntesAbreCupomCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesAbreCupom := nil;
+        ecfHandle^.EventHandlers.OnAntesAbreCupomCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesAbreCupomVinculado(const ecfHandle: PECFHandle; const method : TAntesAbreCupomVinculadoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesAbreCupomVinculado := ecfHandle^.EventHandlers.OnAntesAbreCupomVinculado;
+        ecfHandle^.EventHandlers.OnAntesAbreCupomVinculadoCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesAbreCupomVinculado := nil;
+        ecfHandle^.EventHandlers.OnAntesAbreCupomVinculadoCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesAbreNaoFiscal(const ecfHandle: PECFHandle; const method : TAntesAbreNaoFiscalCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesAbreNaoFiscal := ecfHandle^.EventHandlers.OnAntesAbreNaoFiscal;
+        ecfHandle^.EventHandlers.OnAntesAbreNaoFiscalCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesAbreNaoFiscal := nil;
+        ecfHandle^.EventHandlers.OnAntesAbreNaoFiscalCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesAbreRelatorioGerencial(const ecfHandle: PECFHandle; const method : TAntesAbreRelatorioGerencialCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesAbreRelatorioGerencial := ecfHandle^.EventHandlers.OnAntesAbreRelatorioGerencial;
+        ecfHandle^.EventHandlers.OnAntesAbreRelatorioGerencialCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesAbreRelatorioGerencial := nil;
+        ecfHandle^.EventHandlers.OnAntesAbreRelatorioGerencialCallback := nil;
         Result := 0;
   end;
   except
@@ -6482,7 +6647,8 @@ ECF_GetMemoParamsLineCount,
 
 {Eventos}
 
-ECF_SetOnPoucoPapel, ECF_SetOnAguardandoRespostaChange,
+ECF_SetOnPoucoPapel, ECF_SetOnAguardandoRespostaChange, ECF_SetOnAntesAbreCupom,
+ECF_SetOnAntesAbreCupomVinculado, ECF_SetOnAntesAbreNaoFiscal, ECF_SetOnAntesAbreRelatorioGerencial,
 ECF_SetOnBobinaAdicionaLinhas;
 
 {Não implementado}
