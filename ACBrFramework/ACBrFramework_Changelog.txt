@@ -52,6 +52,7 @@ Changelog
 [+] Adicionado novos Eventos - ACBrECF - Rafael Dias.
 [*] Adicionado a opção de enviar a Data Atual na Redução Z - ACBrECF - Rafael Dias.
 [*] Adicionado a TestaPodeAbrirCupom - ACBrECF - Rafael Dias.
+[-] Corrigido erro no Registro 10 - ACBrSintegra - Rafael Dias.
 
 28/12/2012
 -- ACBrFramework 0.9.1.33 --
