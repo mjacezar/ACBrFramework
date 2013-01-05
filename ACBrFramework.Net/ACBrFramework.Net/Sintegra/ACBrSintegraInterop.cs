@@ -38,7 +38,7 @@ namespace ACBrFramework.Sintegra
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string Estado;
 
-			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 11)]
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 13)]
 			public string Telefone;
 
 			[MarshalAs(UnmanagedType.R8)]
