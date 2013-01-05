@@ -29,25 +29,16 @@ namespace ACBrFramework.ECF
 		#endregion Documentation
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void NoArgumentCallback();	
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void AbreCupomCallback(string CPF_CNPJ, string Nome, string Endereco);
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void IntArgumentCallback(int value);
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void BobinaAdicionaLinhasCallback(string linhas, string operacao);
-
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void PoucoPapelCallback();
-
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void AguardandoRespostaChangeCallback();
-
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void AntesAbreCupomCallback(string CPF_CNPJ, string Nome, string Endereco);
-
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void AntesAbreCupomVinculadoCallback();
-
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void AntesAbreNaoFiscalCallback(string CPF_CNPJ, string Nome, string Endereco);
-
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void AntesAbreRelatorioGerencialCallback(int Indice);
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct AliquotaRec
@@ -349,6 +340,9 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_PreparaTEF(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_TestaPodeAbrirCupom(IntPtr ecfHandle);
 
 		#endregion Métodos ECF
 
@@ -1043,25 +1037,34 @@ namespace ACBrFramework.ECF
 		#region Eventos
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetOnPoucoPapel(IntPtr ecfHandle, PoucoPapelCallback method);
+		public static extern int ECF_SetOnPoucoPapel(IntPtr ecfHandle, NoArgumentCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetOnAguardandoRespostaChange(IntPtr ecfHandle, AguardandoRespostaChangeCallback method);
+		public static extern int ECF_SetOnAguardandoRespostaChange(IntPtr ecfHandle, NoArgumentCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnBobinaAdicionaLinhas(IntPtr ecfHandle, BobinaAdicionaLinhasCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetOnAntesAbreCupom(IntPtr ecfHandle, AntesAbreCupomCallback method);
+		public static extern int ECF_SetOnAntesAbreCupom(IntPtr ecfHandle, AbreCupomCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetOnAntesAbreCupomVinculado(IntPtr ecfHandle, AntesAbreCupomVinculadoCallback method);
+		public static extern int ECF_SetOnAntesAbreCupomVinculado(IntPtr ecfHandle, NoArgumentCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetOnAntesAbreNaoFiscal(IntPtr ecfHandle, AntesAbreNaoFiscalCallback method);
+		public static extern int ECF_SetOnAntesAbreNaoFiscal(IntPtr ecfHandle, AbreCupomCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetOnAntesAbreRelatorioGerencial(IntPtr ecfHandle, AntesAbreRelatorioGerencialCallback method);
+		public static extern int ECF_SetOnAntesAbreRelatorioGerencial(IntPtr ecfHandle, IntArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesCancelaCupom(IntPtr ecfHandle, NoArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesCancelaItemNaoFiscal(IntPtr ecfHandle, IntArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesCancelaItemVendido(IntPtr ecfHandle, IntArgumentCallback method);
 
 		#endregion Eventos
 
