@@ -248,6 +248,7 @@
     <Compile Include="Serial\ECF\Classes\TipoDocumento.cs" />
     <Compile Include="Serial\ECF\Classes\EstadoECF.cs" />
     <Compile Include="Serial\ECF\Classes\ModeloECF.cs" />
+    <Compile Include="Serial\ECF\Eventos\CancelaItemArgs.cs" />
     <Compile Include="Serial\LCB\ACBrLCB.cs" />
     <Compile Include="Serial\LCB\ACBrLCBInterop.cs" />
     <Compile Include="Serial\SerialHandShake.cs" />

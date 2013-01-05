@@ -43,12 +43,15 @@ Changelog
 
 28/12/2012
 -- ACBrFramework 0.9.1.34 --
-[+] Adicionado o ACBrValidador - Rafael Dias.
-[+] Adicionado novos Eventos ao ACBrECF - Rafael Dias.
+[+] Adicionado o ACBrValidador - ACBrValidador - Rafael Dias.
+[+] Adicionado novos Eventos  - ACBrECF - Rafael Dias.
+[*] Adicionado a opção de enviar a Data Atual na Redução Z  - ACBrECF - Rafael Dias.
 
 -- ACBrFramework.Net 0.9.1.34 --
-[+] Adicionado o ACBrValidador - Rafael Dias.
-[+] Adicionado novos Eventos ao ACBrECF - Rafael Dias.
+[+] Adicionado o ACBrValidador - ACBrValidador - Rafael Dias.
+[+] Adicionado novos Eventos - ACBrECF - Rafael Dias.
+[*] Adicionado a opção de enviar a Data Atual na Redução Z - ACBrECF - Rafael Dias.
+[*] Adicionado a TestaPodeAbrirCupom - ACBrECF - Rafael Dias.
 
 28/12/2012
 -- ACBrFramework 0.9.1.33 --
@@ -61,11 +64,11 @@ Changelog
 25/12/2012 ho! ho! ho!
 
 -- ACBrFramework 0.9.1.32 --
-[+] Adicionado o ACBrIBGE - Rafael Batiati.
+[+] Adicionado o ACBrIBGE - ACBrIBGE - Rafael Batiati.
 [-] Adicionado o pacote LazUtil com dependencia para compatibilidade com a nova versão do ACBr - Rafael Dias.
 
 -- ACBrFramework.Net 0.9.1.32 --
-[+] Adicionado o ACBrIBGE - Rafael Batiati.
+[+] Adicionado o ACBrIBGE - ACBrIBGE - Rafael Batiati.
 
 05/12/2012
 
@@ -84,28 +87,28 @@ Changelog
 01/12/2012
 
 -- ACBrFramework 0.9.1.30 --
-[+] Iniciado Bloco 0 Sped - Rafael Dias.
+[+] Iniciado Bloco 0 - ACBrSped - Rafael Dias.
 
 -- ACBrFramework.Net 0.9.1.30 --
-[+] Iniciado Bloco 0 ACBrSped - Rafael Dias.
+[+] Iniciado Bloco 0 - ACBrSped - Rafael Dias.
 
 30/11/2012
 
 -- ACBrFramework 0.9.1.30 --
-[+] Adicionado o metodo AAC_AtualizarMD5 - Rafael Dias.
-[+] Adicionado o metodo AAC_AchaECF - Rafael Dias.
-[+] Adicionado o metodo AAC_AchaIndiceECF - Rafael Dias.
-[+] Adicionado o metodo AAC_VerificaReCarregarArquivo - Rafael Dias.
+[+] Adicionado o metodo AAC_AtualizarMD5 - ACBrAAC - Rafael Dias.
+[+] Adicionado o metodo AAC_AchaECF - ACBrAAC - Rafael Dias.
+[+] Adicionado o metodo AAC_AchaIndiceECF - ACBrAAC - Rafael Dias.
+[+] Adicionado o metodo AAC_VerificaReCarregarArquivo - ACBrAAC - Rafael Dias.
 
 -- ACBrFramework.Net 0.9.1.30 --
-[+] Adicionado o metodo AtualizarMD5 no ACBrAAC - Rafael Dias.
-[+] Adicionado o metodo AtualizarValorGT no ACBrAAC - Rafael Dias.
-[+] Adicionado o metodo AchaECF no ACBrAAC - Rafael Dias.
-[+] Adicionado o metodo AchaIndiceECF no ACBrAAC - Rafael Dias.
-[+] Adicionado o metodo VerificaReCarregarArquivo  no ACBrAAC - Rafael Dias.
-[*] Modificado o PAF_SaveFileTXT_N para checar valores null - Rafael Dias.
-[*] Modificado o PAF_SaveFileTXT_R para checar valores null - Rafael Dias.
-[-] Corrigido os registros R1 e R2 do ACBrPAF - Rafael Batiati
+[+] Adicionado o metodo AtualizarMD5 - ACBrAAC - Rafael Dias.
+[+] Adicionado o metodo AtualizarValorGT - ACBrAAC - Rafael Dias.
+[+] Adicionado o metodo AchaECF - ACBrAAC - Rafael Dias.
+[+] Adicionado o metodo AchaIndiceECF - ACBrAAC - Rafael Dias.
+[+] Adicionado o metodo VerificaReCarregarArquivo - ACBrAAC - Rafael Dias.
+[*] Modificado o PAF_SaveFileTXT_N para checar valores null - ACBrPAF - Rafael Dias.
+[*] Modificado o PAF_SaveFileTXT_R para checar valores null - ACBrPAF - Rafael Dias.
+[-] Corrigido os registros R1 e R2 - ACBrPAF - Rafael Batiati
 
 29/11/2012
 
