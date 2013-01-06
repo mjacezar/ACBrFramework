@@ -236,6 +236,8 @@
     <Compile Include="Serial\BAL\ModeloBal.cs" />
     <Compile Include="Serial\ECF\ACBrECF.cs" />
     <Compile Include="Serial\ECF\ACBrECFInterop.cs" />
+    <Compile Include="Serial\ECF\Classes\ConfigBarras.cs" />
+    <Compile Include="Serial\ECF\Classes\Consumidor.cs" />
     <Compile Include="Serial\ECF\Classes\Rodape.cs" />
     <Compile Include="Serial\ECF\Classes\RodapeNotaLegalDF.cs" />
     <Compile Include="Serial\ECF\Eventos\AbreCupomArgs.cs" />
