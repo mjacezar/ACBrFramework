@@ -224,8 +224,12 @@
       <DependentUpon>Framework64.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serial\ACBrDevice.cs" />
-    <Compile Include="Serial\ACBrDeviceInterop.cs" />
+    <Compile Include="RFD\ACBrRFD.cs" />
+    <Compile Include="RFD\ACBrRFDInterop.cs" />
+    <Compile Include="RFD\Eventos\CalcEADArgs.cs" />
+    <Compile Include="RFD\Eventos\OnCalcHashLogArgs.cs" />
+    <Compile Include="Serial\Device\ACBrDevice.cs" />
+    <Compile Include="Serial\Device\ACBrDeviceInterop.cs" />
     <Compile Include="Serial\BAL\ACBrBal.cs" />
     <Compile Include="Serial\BAL\ACBrBALInterop.cs" />
     <Compile Include="Serial\BAL\LePesoEventArgs.cs" />
@@ -251,9 +255,9 @@
     <Compile Include="Serial\ECF\Eventos\CancelaItemArgs.cs" />
     <Compile Include="Serial\LCB\ACBrLCB.cs" />
     <Compile Include="Serial\LCB\ACBrLCBInterop.cs" />
-    <Compile Include="Serial\SerialHandShake.cs" />
-    <Compile Include="Serial\SerialParity.cs" />
-    <Compile Include="Serial\SerialStopBits.cs" />
+    <Compile Include="Serial\Device\SerialHandShake.cs" />
+    <Compile Include="Serial\Device\SerialParity.cs" />
+    <Compile Include="Serial\Device\SerialStopBits.cs" />
     <Compile Include="Serial\SMS\ACBrSMS.cs" />
     <Compile Include="Serial\SMS\ACBrSMSInterop.cs" />
     <Compile Include="Serial\SMS\Classes\Filtro.cs" />
@@ -648,6 +652,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IBGE\ico.bmp" />
+    <EmbeddedResource Include="RFD\ico.bmp" />
     <EmbeddedResource Include="Validador\ico.bmp" />
   </ItemGroup>
   <ItemGroup />

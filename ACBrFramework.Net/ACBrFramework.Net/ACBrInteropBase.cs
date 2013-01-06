@@ -15,6 +15,8 @@ namespace ACBrFramework
 
 		protected delegate int GetInt32EntryPointDelegate(IntPtr handle);
 
+		protected delegate int GetInt32NEntryPointDelegate(IntPtr handle, ref int value);
+
 		protected delegate int SetStringEntryPointDelegate(IntPtr handle, string value);
 
 		protected delegate int SetArrayStringEntryPointDelegate(IntPtr handle, string[] value, int count);
@@ -237,6 +239,15 @@ namespace ACBrFramework
 			CheckResult(ret);
 
 			return ret;
+		}
+
+		protected int GetInt32(GetInt32NEntryPointDelegate entryPoint)
+		{
+			int value = 0;
+			int ret = entryPoint(Handle, ref value);
+			CheckResult(ret);
+
+			return value;
 		}
 
 		protected void SetInt32(SetInt32EntryPointDelegate entryPoint, int value)

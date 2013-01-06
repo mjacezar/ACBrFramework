@@ -1,6 +1,8 @@
 ﻿using ACBrFramework.AAC;
 using ACBrFramework.EAD;
+using ACBrFramework.RFD;
 using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -145,6 +147,7 @@ namespace ACBrFramework.ECF
 		private RelatorioGerencial[] relatoriosGerenciais;
 		private ACBrAAC aac;
 		private ACBrEAD ead;
+		private ACBrRFD rfd;
 
 		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onPoucoPapel;
 		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAguardandoRespostaChange;
@@ -419,7 +422,7 @@ namespace ACBrFramework.ECF
 					int ret = ACBrECFInterop.ECF_SetEAD(this.Handle, IntPtr.Zero);
 					CheckResult(ret);
 
-					this.aac = null;
+					this.ead = null;
 				}
 				else
 				{
@@ -427,6 +430,50 @@ namespace ACBrFramework.ECF
 					CheckResult(ret);
 
 					this.ead = value;
+				}
+			}
+		}
+
+		[Category("Componentes ACBr")]
+		public ACBrRFD RFD
+		{
+			get
+			{
+				return this.rfd;
+			}
+			set
+			{
+				if (value == null)
+				{
+					if (rfd != null)
+					{
+						int ret = ACBrECFInterop.ECF_SetRFD(this.Handle, IntPtr.Zero);
+						CheckResult(ret);
+
+						var orfd = rfd;
+						rfd = null;
+
+						if (orfd.ECF != null)
+							orfd.ECF = null;
+					}
+					else if (this.rfd != null)
+					{						
+						int ret = ACBrECFInterop.ECF_SetRFD(this.Handle, IntPtr.Zero);
+						CheckResult(ret);
+
+						this.rfd = null;
+					}
+					
+				}
+				else
+				{
+					int ret = ACBrECFInterop.ECF_SetRFD(this.Handle, value.Handle);
+					CheckResult(ret);					
+
+					this.rfd = value;
+
+					if (rfd.ECF == null)
+						this.rfd.ECF = this;
 				}
 			}
 		}
@@ -2230,6 +2277,10 @@ namespace ACBrFramework.ECF
 		{
 			if (this.Handle != IntPtr.Zero)
 			{
+				var orfd = rfd;
+				rfd = null;
+				if (orfd.ECF != null)
+					orfd.ECF = null;
 				CallDestroy(ACBrECFInterop.ECF_Destroy);
 			}
 		}

@@ -732,6 +732,7 @@ begin
   end;
 
   try
+     Indice := '';
      smsHandle^.SMS.EnviarSMS(telefone, menssagem, Indice);
      StrPLCopy(Buffer, Indice, BufferLen);
      Result := length(Indice);
@@ -757,6 +758,7 @@ begin
   end;
 
   try
+  Indice := '';
   smsHandle^.SMS.EnviarSMSLote(msgHandle^.Menssagens, Indice);
   StrPLCopy(Buffer, Indice, BufferLen);
   Result := length(Indice);

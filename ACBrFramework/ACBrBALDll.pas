@@ -5,8 +5,7 @@ interface
 uses
   SysUtils,
   Classes,
-  ACBrBal,
-  ACBrCommonDll;
+  ACBrBal;
 
 type TLePesoCallback = procedure(const value : Double); cdecl;
 

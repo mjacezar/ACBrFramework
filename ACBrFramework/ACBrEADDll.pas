@@ -6,8 +6,7 @@ uses
   SysUtils,
   Classes,
   ACBrEAD,
-  ACBrUtil,
-  ACBrCommonDll;
+  ACBrUtil;
 
 { Ponteiros de função }
 type TGetChaveCallback = function () : PChar; cdecl;

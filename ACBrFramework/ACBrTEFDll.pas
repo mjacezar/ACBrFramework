@@ -5,13 +5,11 @@ interface
 
 uses
   SysUtils,
-  Windows,
   Classes,
   ACBrTEFD,
   ACBrTEFDClass,
   ACBrTEFDCliSiTef,
-  ACBrUtil,
-  ACBrCommonDll;
+  ACBrUtil;
 
 { Ponteiros de função }
 type TAguardaRespCallback = procedure(const Arquivo: PChar; const SegundosTimeOut : Integer; var Interromper : Boolean); cdecl;
@@ -3761,8 +3759,6 @@ end;
 {%region Respostas Pendentes}
 
 Function TEF_RespostasPendentes_GetSaldoAPagar(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDRespostasPendentes; var SaldoAPagar : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  StrTmp : String;
 begin
 
   if (tefHandle = nil) then
@@ -3805,8 +3801,6 @@ begin
 end;
 
 Function TEF_RespostasPendentes_GetTotalPago(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDRespostasPendentes; var TotalPago : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  StrTmp : String;
 begin
 
   if (tefHandle = nil) then
@@ -3828,8 +3822,6 @@ begin
 end;
 
 Function TEF_RespostasPendentes_GetTotalDesconto(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDRespostasPendentes; var TotalDesconto : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  StrTmp : String;
 begin
 
   if (tefHandle = nil) then
@@ -3851,8 +3843,6 @@ begin
 end;
 
 Function TEF_RespostasPendentes_GetSaldoRestante(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDRespostasPendentes; var SaldoRestante : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  StrTmp : String;
 begin
 
   if (tefHandle = nil) then
@@ -3874,8 +3864,6 @@ begin
 end;
 
 Function TEF_RespostasPendentes_GetCount(const tefHandle : PTEFHandle; const respHandle : TACBrTEFDRespostasPendentes) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  StrTmp : String;
 begin
 
   if (tefHandle = nil) then

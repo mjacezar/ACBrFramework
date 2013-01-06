@@ -11,6 +11,7 @@ uses
   ACBrUtil,
   ACBrAACDLL,
   ACBrEADDll,
+  ACBrRFDDll,
   ACBrPAFClass
   ;
 
@@ -26,7 +27,7 @@ type TBobinaProcedureCallback = procedure(const Linhas : PChar; const Operacao :
 
 {%region Classe que armazena os EventHandlers para o componente ACBr}
 
-type TEventHandlers = class
+type TEventHandlersECF = class
 
     OnPoucoPapelCallback : TNoArgumentsCallback;
     OnAguardandoRespostaChangeCallback :  TNoArgumentsCallback;
@@ -57,7 +58,7 @@ end;
 type TECFHandle = record
   UltimoErro : String;
   ECF : TACBrECF;
-  EventHandlers : TEventHandlers;
+  EventHandlers : TEventHandlersECF;
 end;
 
 {Ponteiro para o Handle }
@@ -205,7 +206,7 @@ begin
      New(ecfHandle);
 
      ecfHandle^.ECF := TACBrECF.Create(nil);
-     ecfHandle^.EventHandlers := TEventHandlers.Create();
+     ecfHandle^.EventHandlers := TEventHandlersECF.Create();
      ecfHandle^.ECF.ReTentar := False;
      ecfHandle^.ECF.ExibeMensagem := False;
      ecfHandle^.ECF.BloqueiaMouseTeclado := False;
@@ -2793,22 +2794,24 @@ begin
      Exit;
   end;
 
+  try
+
   if (aacHandle = nil) then
   begin
-     ecfHandle^.ECF.AAC := nil;
+  ecfHandle^.ECF.AAC := nil;
+  Result := 0;
   end
   else
   begin
+  ecfHandle^.ECF.AAC := aacHandle^.AAC;
+  Result := 0;
+  end;
 
-    try
-       ecfHandle^.ECF.AAC := aacHandle^.AAC;
-       Result := 0;
-    except on exception : Exception do
-        begin
-         ecfHandle^.UltimoErro := exception.Message;
-         Result := -1;
-         end
-    end;
+  except on exception : Exception do
+  begin
+  ecfHandle^.UltimoErro := exception.Message;
+  Result := -1;
+  end
   end;
 end;
 
@@ -2821,24 +2824,52 @@ begin
      Exit;
   end;
 
+  try
   if (eadHandle = nil) then
   begin
-     ecfHandle^.ECF.EAD := nil;
+  ecfHandle^.ECF.EAD := nil;
+  Result := 0;
   end
   else
   begin
-
-    try
-       ecfHandle^.ECF.EAD := eadHandle^.EAD;
-       Result := 0;
-    except on exception : Exception do
-        begin
-         ecfHandle^.UltimoErro := exception.Message;
-         Result := -1;
-         end
-    end;
+  ecfHandle^.ECF.EAD := eadHandle^.EAD;
+  Result := 0;
+  end;
+  except on exception : Exception do
+  begin
+  ecfHandle^.UltimoErro := exception.Message;
+  Result := -1;
+  end
   end;
 end;
+
+Function ECF_SetRFD(const ecfHandle: PECFHandle; const rfdHandle : PRFDHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+  try
+  if (rfdHandle = nil) then
+  begin
+  ecfHandle^.ECF.RFD := nil;
+  Result := 0;
+  end
+  else
+  begin
+  ecfHandle^.ECF.RFD := rfdHandle^.RFD;
+  Result := 0;
+  end;
+  except on exception : Exception do
+  begin
+  ecfHandle^.UltimoErro := exception.Message;
+  Result := -1;
+  end
+  end;
+end;
+
 
 {%endregion}
 
@@ -5529,7 +5560,7 @@ end;
 try
 if (QTD_DOC = 0) And (Finalidade = -1) And (TipoContador = -1) then
 begin
-   ecfHandle^.ECF.ArquivoMFD_DLL(COOInicial, COOInicial, Arquivo);
+   ecfHandle^.ECF.ArquivoMFD_DLL(COOInicial, COOFinal, Arquivo);
 end
 else
 begin
@@ -5538,7 +5569,7 @@ for i := 0 to QTD_DOC - 1 do
 begin
   Include(DocumentSet, TACBrECFTipoDocumento(Documentos[i]));
 end;
-ecfHandle^.ECF.ArquivoMFD_DLL(COOInicial, COOInicial, Arquivo, DocumentSet, TACBrECFFinalizaArqMFD(Finalidade), TACBrECFTipoContador(TipoContador));
+ecfHandle^.ECF.ArquivoMFD_DLL(COOInicial, COOFinal, Arquivo, DocumentSet, TACBrECFFinalizaArqMFD(Finalidade), TACBrECFTipoContador(TipoContador));
 end;
 
 Result := 0;
@@ -5601,7 +5632,7 @@ end;
 try
 if (QTD_DOC = 0)then
 begin
-   ecfHandle^.ECF.EspelhoMFD_DLL(COOInicial, COOInicial, Arquivo);
+   ecfHandle^.ECF.EspelhoMFD_DLL(COOInicial, COOFinal, Arquivo);
 end
 else
 begin
@@ -5610,7 +5641,7 @@ for i := 0 to QTD_DOC - 1 do
 begin
   Include(DocumentSet, TACBrECFTipoDocumento(Documentos[i]));
 end;
-ecfHandle^.ECF.EspelhoMFD_DLL(COOInicial, COOInicial, Arquivo, DocumentSet);
+ecfHandle^.ECF.EspelhoMFD_DLL(COOInicial, COOFinal, Arquivo, DocumentSet);
 end;
 
 Result := 0;
@@ -6075,52 +6106,52 @@ end;
 
 {%region Eventos }
 
-procedure TEventHandlers.OnMsgPoucoPapel(Sender: TObject);
+procedure TEventHandlersECF.OnMsgPoucoPapel(Sender: TObject);
 begin
      OnPoucoPapelCallback();
 end;
 
-procedure TEventHandlers.OnAguardandoRespostaChange(Sender: TObject);
+procedure TEventHandlersECF.OnAguardandoRespostaChange(Sender: TObject);
 begin
      OnAguardandoRespostaChangeCallback();
 end;
 
-procedure TEventHandlers.OnAntesAbreCupom(const CPF_CNPJ, Nome, Endereco : String);
+procedure TEventHandlersECF.OnAntesAbreCupom(const CPF_CNPJ, Nome, Endereco : String);
 begin
      OnAntesAbreCupomCallback(PChar(CPF_CNPJ), PChar(Nome), PChar(Endereco));
 end;
 
-procedure TEventHandlers.OnAntesAbreCupomVinculado(Sender: TObject);
+procedure TEventHandlersECF.OnAntesAbreCupomVinculado(Sender: TObject);
 begin
      OnAntesAbreCupomVinculadoCallback();
 end;
 
-procedure TEventHandlers.OnAntesAbreNaoFiscal(const CPF_CNPJ, Nome, Endereco : String);
+procedure TEventHandlersECF.OnAntesAbreNaoFiscal(const CPF_CNPJ, Nome, Endereco : String);
 begin
      OnAntesAbreNaoFiscalCallback(PChar(CPF_CNPJ), PChar(Nome), PChar(Endereco));
 end;
 
-procedure TEventHandlers.OnAntesAbreRelatorioGerencial(const Indice: Integer);
+procedure TEventHandlersECF.OnAntesAbreRelatorioGerencial(const Indice: Integer);
 begin
      OnAntesAbreRelatorioGerencialCallback(Indice);
 end;
 
-procedure TEventHandlers.OnAntesCancelaCupom(Sender: TObject);
+procedure TEventHandlersECF.OnAntesCancelaCupom(Sender: TObject);
 begin
      OnAntesCancelaCupomCallback();
 end;
 
-procedure TEventHandlers.OnAntesCancelaItemNaoFiscal(const NumItem: Integer);
+procedure TEventHandlersECF.OnAntesCancelaItemNaoFiscal(const NumItem: Integer);
 begin
      OnAntesCancelaItemNaoFiscalCallback(NumItem);
 end;
 
-procedure TEventHandlers.OnAntesCancelaItemVendido(const NumItem: Integer);
+procedure TEventHandlersECF.OnAntesCancelaItemVendido(const NumItem: Integer);
 begin
      OnAntesCancelaItemVendidoCallback(NumItem);
 end;
 
-procedure TEventHandlers.OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
+procedure TEventHandlersECF.OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
 var
   pLinhas: PChar;
   pOperacao: PChar;
@@ -6702,7 +6733,7 @@ ECF_ReducaoZ,
 
 { Componentes ACBr }
 
-ECF_SetAAC, ECF_SetEAD,
+ECF_SetAAC, ECF_SetEAD, ECF_SetRFD,
 
 { Relatorio Gerenciais }
 

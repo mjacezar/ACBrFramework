@@ -5,23 +5,11 @@ library ACBrFramework;
 {$ENDIF}
 
 uses
-  ACBrDeviceDll,
-  ACBrECFDll,
-  ACBrPAFDll,
-  ACBrEADDll,
-  ACBrSintegraDll,
-  ACBrBALDll,
-  ACBrLCBDll,
-  ACBrAACDLL,
-  ACBrTEFDll,
-  ACBrCNIEEDll,
-  ACBrSpedDll,
-  ACBrSpedFiscalDll,
-  ACBrSMSDll,
-  ACBrIBGEDll,
-  ACBrValidadorDll
-  ;
 
+  ACBrDeviceDll, ACBrECFDll, ACBrPAFDll, ACBrEADDll,
+  ACBrSintegraDll, ACBrBALDll, ACBrLCBDll, ACBrAACDLL,
+  ACBrTEFDll, ACBrCNIEEDll, ACBrSpedDll, ACBrSpedFiscalDll,
+  ACBrSMSDll, ACBrIBGEDll, ACBrValidadorDll, ACBrRFDDll;
 
 {$R *.res}
 begin
