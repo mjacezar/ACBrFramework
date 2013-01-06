@@ -1502,6 +1502,333 @@ end;
 
 {%endregion}
 
+{%region Consumidor}
+
+Function ECF_Consumidor_GetDocumento(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := ecfHandle^.ECF.Consumidor.Documento;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_Consumidor_GetEndereco(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := ecfHandle^.ECF.Consumidor.Endereco;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_Consumidor_GetNome(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := ecfHandle^.ECF.Consumidor.Nome;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_Consumidor_GetEnviado(const ecfHandle: PECFHandle; var value : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     value := ecfHandle^.ECF.Consumidor.Enviado;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_Consumidor_SetEnviado(const ecfHandle: PECFHandle; const value : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.Consumidor.Enviado := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_Consumidor_GetAtribuido(const ecfHandle: PECFHandle; var value : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     value := ecfHandle^.ECF.Consumidor.Atribuido;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_Consumidor_AtribuiConsumidor(const ecfHandle: PECFHandle; const CPF_CNPJ, Nome, Endereco: pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.Consumidor.AtribuiConsumidor(CPF_CNPJ, Nome, Endereco);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_Consumidor_Zera(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.Consumidor.Zera;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+{%endregion}
+
+{%region ConfigBarras}
+
+Function ECF_ConfigBarras_GetAltura(const ecfHandle: PECFHandle; var value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     value := ecfHandle^.ECF.ConfigBarras.Altura;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_ConfigBarras_SetAltura(const ecfHandle: PECFHandle; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.ConfigBarras.Altura := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_ConfigBarras_GetLarguraLinha(const ecfHandle: PECFHandle; var value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     value := ecfHandle^.ECF.ConfigBarras.LarguraLinha;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_ConfigBarras_SetLarguraLinha(const ecfHandle: PECFHandle; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.ConfigBarras.LarguraLinha := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_ConfigBarras_GetMostrarCodigo(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     if ecfHandle^.ECF.ConfigBarras.MostrarCodigo Then
+        Result := 1
+     else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_ConfigBarras_SetMostrarCodigo(const ecfHandle: PECFHandle; const value : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.ConfigBarras.MostrarCodigo := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+{%endregion}
+
 {%region Propriedades - Não Visiveis }
 
 Function ECF_GetAtivo(const ecfHandle: PECFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
@@ -6705,7 +7032,7 @@ ECF_ImprimeCheque, ECF_CancelaImpressaoCheque,
 ECF_MudaHorarioVerao, ECF_MudaArredondamento,
 ECF_CorrigeEstadoErro,
 
-{InfoRodape Cupom}
+{ InfoRodape Cupom }
 
 ECF_InfoRodapeCupom_GetMD5, ECF_InfoRodapeCupom_SetMD5,
 ECF_InfoRodapeCupom_GetDav, ECF_InfoRodapeCupom_SetDav,
@@ -6718,6 +7045,18 @@ ECF_InfoRodapeCupom_NotaLegalDF_GetImprimir, ECF_InfoRodapeCupom_NotaLegalDF_Set
 ECF_InfoRodapeCupom_NotaLegalDF_GetProgramaDeCredito,  ECF_InfoRodapeCupom_NotaLegalDF_SetProgramaDeCredito,
 ECF_InfoRodapeCupom_NotaLegalDF_GetValorICMS, ECF_InfoRodapeCupom_NotaLegalDF_SetValorICMS,
 ECF_InfoRodapeCupom_NotaLegalDF_GetValorISS, ECF_InfoRodapeCupom_NotaLegalDF_SetValorISS,
+
+{ Consumidor }
+
+ECF_Consumidor_GetDocumento, ECF_Consumidor_GetEndereco, ECF_Consumidor_GetNome,
+ECF_Consumidor_GetEnviado, ECF_Consumidor_SetEnviado, ECF_Consumidor_GetAtribuido,
+ECF_Consumidor_AtribuiConsumidor, ECF_Consumidor_Zera,
+
+{ ConfigBarras }
+
+ECF_ConfigBarras_GetAltura, ECF_ConfigBarras_SetAltura,
+ECF_ConfigBarras_GetLarguraLinha, ECF_ConfigBarras_SetLarguraLinha,
+ECF_ConfigBarras_GetMostrarCodigo, ECF_ConfigBarras_SetMostrarCodigo,
 
 { Leitura Memoria Fiscal }
 

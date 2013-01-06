@@ -182,6 +182,8 @@ namespace ACBrFramework.ECF
 
 		#region Properties
 
+		#region Visiveis
+
 		[Category("Configutações ECF")]
 		public ModeloECF Modelo
 		{
@@ -379,6 +381,12 @@ namespace ACBrFramework.ECF
 		[Browsable(true)]
 		[Category("Rodape")]
 		public Rodape InfoRodapeCupom { get; private set; }
+
+		[Browsable(true)]
+		[Category("ConfigBarras")]
+		public ConfigBarras ConfigBarras { get; private set; }
+
+		#endregion Visiveis
 
 		#region Componentes ACBr
 
@@ -1104,6 +1112,9 @@ namespace ACBrFramework.ECF
 				return (ComprovanteNaoFiscal[])comprovantesNaoFiscais;
 			}
 		}
+
+		[Browsable(false)]
+		public Consumidor Consumidor { get; private set; }
 
 		#endregion Propriedades Não-visiveis
 
@@ -2256,6 +2267,8 @@ namespace ACBrFramework.ECF
 			CallCreate(ACBrECFInterop.ECF_Create);
 			Device = new ACBrDevice(this);
 			this.InfoRodapeCupom = new Rodape(this);
+			this.ConfigBarras = new ConfigBarras(this);
+			this.Consumidor = new Consumidor(this);
 		}
 
 		protected internal override void CheckResult(int ret)

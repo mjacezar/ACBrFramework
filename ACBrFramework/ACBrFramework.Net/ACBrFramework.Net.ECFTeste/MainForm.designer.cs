@@ -432,8 +432,8 @@
 			this.ativarCheckButton = new System.Windows.Forms.CheckBox();
 			this.pnlpanel1 = new System.Windows.Forms.Panel();
 			this.acbrECF = new ACBrFramework.ECF.ACBrECF();
-			this.acbrAAC = new ACBrFramework.AAC.ACBrAAC();
 			this.aCBrRFD1 = new ACBrFramework.RFD.ACBrRFD();
+			this.acbrAAC = new ACBrFramework.AAC.ACBrAAC();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl.SuspendLayout();
@@ -1647,6 +1647,7 @@
 			this.testaPodeAbrirCupomToolStripMenuItem.Name = "testaPodeAbrirCupomToolStripMenuItem";
 			this.testaPodeAbrirCupomToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.testaPodeAbrirCupomToolStripMenuItem.Text = "Testa Pode Abrir Cupom";
+			this.testaPodeAbrirCupomToolStripMenuItem.Click += new System.EventHandler(this.testaPodeAbrirCupomToolStripMenuItem_Click);
 			// 
 			// identificaConsumidorToolStripMenuItem
 			// 
@@ -3950,23 +3951,6 @@
 			this.acbrECF.RFD = this.aCBrRFD1;
 			this.acbrECF.OnAguardandoRespostaChange += new System.EventHandler(this.acbrECF_OnAguardandoRespostaChange);
 			// 
-			// acbrAAC
-			// 
-			this.acbrAAC.ArqLOG = "acbr_aac_log.txt";
-			this.acbrAAC.CriarBAK = true;
-			this.acbrAAC.EfetuarFlush = true;
-			this.acbrAAC.GravarConfigApp = true;
-			this.acbrAAC.GravarDadosPAF = true;
-			this.acbrAAC.GravarDadosSH = true;
-			this.acbrAAC.GravarTodosECFs = true;
-			this.acbrAAC.NomeArquivoAuxiliar = "arquivo_auxiliar_criptografado.txt";
-			this.acbrAAC.Params = new string[] {
-        "",
-        "",
-        "",
-        ""};
-			this.acbrAAC.OnGetChave += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrAAC_OnGetChave);
-			// 
 			// aCBrRFD1
 			// 
 			this.aCBrRFD1.Ativo = false;
@@ -3998,6 +3982,23 @@
 			this.aCBrRFD1.SH_NomeAplicativo = "";
 			this.aCBrRFD1.SH_NumeroAplicativo = "";
 			this.aCBrRFD1.SH_VersaoAplicativo = "";
+			// 
+			// acbrAAC
+			// 
+			this.acbrAAC.ArqLOG = "acbr_aac_log.txt";
+			this.acbrAAC.CriarBAK = true;
+			this.acbrAAC.EfetuarFlush = true;
+			this.acbrAAC.GravarConfigApp = true;
+			this.acbrAAC.GravarDadosPAF = true;
+			this.acbrAAC.GravarDadosSH = true;
+			this.acbrAAC.GravarTodosECFs = true;
+			this.acbrAAC.NomeArquivoAuxiliar = "arquivo_auxiliar_criptografado.txt";
+			this.acbrAAC.Params = new string[] {
+        "",
+        "",
+        "",
+        ""};
+			this.acbrAAC.OnGetChave += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrAAC_OnGetChave);
 			// 
 			// MainForm
 			// 

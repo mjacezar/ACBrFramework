@@ -655,6 +655,18 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
+		private void IdentificaConsumidor()
+		{
+			try
+			{
+			}
+			catch (Exception exception)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = exception.Message;
+			}
+		}
+
 		#endregion Cupom Fiscal
 
 		#region Redução Z\Leitura X
@@ -869,6 +881,19 @@ namespace ACBrFramework.ECFTeste
                 CFG.ShowDialog();
             }
         }
+
+		private void testaPodeAbrirCupom()
+		{
+			try
+			{
+				acbrECF.TestaPodeAbrirCupom();
+				WriteResp("Pode Abrir Cupom.. OK");
+			}
+			catch (Exception exception)
+			{
+				WriteResp("NAO Pode Abrir Cupom..\n pois " + exception);
+			}
+		}
 
 		private void WriteResp(string resp)
 		{
@@ -1215,8 +1240,13 @@ namespace ACBrFramework.ECFTeste
 		{
 			Ler_ModeloSTR();
 		}
+		
+		private void testaPodeAbrirCupomToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			testaPodeAbrirCupom();
+		}
 
-		#endregion Menu		
+		#endregion Menu				
 
 		#endregion Event Handlers
 	}

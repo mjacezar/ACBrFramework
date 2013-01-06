@@ -729,6 +729,56 @@ namespace ACBrFramework.ECF
 
 		#endregion InfoRodapeCupom
 
+		#region Consumidor
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_Consumidor_GetDocumento(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_Consumidor_GetEndereco(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_Consumidor_GetNome(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_Consumidor_GetEnviado(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_Consumidor_SetEnviado(IntPtr ecfHandle, bool value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_Consumidor_GetAtribuido(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_Consumidor_AtribuiConsumidor(IntPtr ecfHandle, string CPF_CNPJ, string Nome, string Endereco);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_Consumidor_Zera(IntPtr ecfHandle);
+
+		#endregion Consumidor
+
+		#region ConfigBarras
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ConfigBarras_GetAltura(IntPtr ecfHandle, ref int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ConfigBarras_SetAltura(IntPtr ecfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ConfigBarras_GetLarguraLinha(IntPtr ecfHandle, ref int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ConfigBarras_SetLarguraLinha(IntPtr ecfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ConfigBarras_GetMostrarCodigo(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ConfigBarras_SetMostrarCodigo(IntPtr ecfHandle, bool value);
+
+		#endregion ConfigBarras
+
 		#region Cupom Fiscal
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
