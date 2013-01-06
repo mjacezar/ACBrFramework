@@ -7,8 +7,7 @@ uses
   Classes,
   ACBrPAFClass,
   ACBrAAC,
-  ACBrUtil,
-  ACBrCommonDll;
+  ACBrUtil;
 
 { Ponteiros de função }
 type TGetChaveCallback = function () : PChar; cdecl;
@@ -539,8 +538,6 @@ begin
 end;
 
 Function AAC_GetParamsCount(const aacHandle: PAACHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  StrTmp : String;
 begin
 
   if (aacHandle = nil) then

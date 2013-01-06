@@ -186,8 +186,6 @@ begin
 end;
 
 Function IBGE_Cidades_GetCount(const ibgeHandle: PIBGEHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  cidade : TACBrIBGECidade;
 begin
 
   if (ibgeHandle = nil) then

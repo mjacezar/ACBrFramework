@@ -5,7 +5,6 @@ interface
 uses
   SysUtils,
   Classes,
-  ACBrCommonDll,
   ACBrLCB;
 
 { Ponteiros de função }

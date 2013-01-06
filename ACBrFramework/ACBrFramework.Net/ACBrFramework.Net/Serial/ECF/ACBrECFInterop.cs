@@ -654,6 +654,9 @@ namespace ACBrFramework.ECF
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetEAD(IntPtr ecfHandle, IntPtr eadHandle);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetRFD(IntPtr ecfHandle, IntPtr rfdHandle);
+
 		#endregion Propriedades do Componente
 
 		#region InfoRodapeCupom

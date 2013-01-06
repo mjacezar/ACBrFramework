@@ -433,6 +433,7 @@
 			this.pnlpanel1 = new System.Windows.Forms.Panel();
 			this.acbrECF = new ACBrFramework.ECF.ACBrECF();
 			this.acbrAAC = new ACBrFramework.AAC.ACBrAAC();
+			this.aCBrRFD1 = new ACBrFramework.RFD.ACBrRFD();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl.SuspendLayout();
@@ -3946,6 +3947,7 @@
 			this.acbrECF.Modelo = ACBrFramework.ECF.ModeloECF.Nenhum;
 			this.acbrECF.Operador = "";
 			this.acbrECF.PaginaDeCodigo = 0;
+			this.acbrECF.RFD = this.aCBrRFD1;
 			this.acbrECF.OnAguardandoRespostaChange += new System.EventHandler(this.acbrECF_OnAguardandoRespostaChange);
 			// 
 			// acbrAAC
@@ -3964,6 +3966,38 @@
         "",
         ""};
 			this.acbrAAC.OnGetChave += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrAAC_OnGetChave);
+			// 
+			// aCBrRFD1
+			// 
+			this.aCBrRFD1.Ativo = false;
+			this.aCBrRFD1.AtoCotepe = "PC5207 01.00.00";
+			this.aCBrRFD1.CONT_CNPJ = "";
+			this.aCBrRFD1.CONT_CROCadastro = -1;
+			this.aCBrRFD1.CONT_DataHoraCadastro = new System.DateTime(1899, 12, 30, 0, 0, 0, 0);
+			this.aCBrRFD1.CONT_Endereco = "";
+			this.aCBrRFD1.CONT_GTCadastro = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+			this.aCBrRFD1.CONT_IE = "";
+			this.aCBrRFD1.CONT_NumUsuario = -1;
+			this.aCBrRFD1.CONT_RazaoSocial = "";
+			this.aCBrRFD1.DataHoraSwBasico = new System.DateTime(1899, 12, 30, 0, 0, 0, 0);
+			this.aCBrRFD1.DirRFD = "C:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\IDE\\RFD";
+			this.aCBrRFD1.ECF = this.acbrECF;
+			this.aCBrRFD1.ECF_CROAtual = 0;
+			this.aCBrRFD1.ECF_RFDID = "";
+			this.aCBrRFD1.IgnoraEcfMfd = true;
+			this.aCBrRFD1.SH_CNPJ = "";
+			this.aCBrRFD1.SH_COO = "";
+			this.aCBrRFD1.SH_IE = "";
+			this.aCBrRFD1.SH_IM = "";
+			this.aCBrRFD1.SH_Linha1 = "";
+			this.aCBrRFD1.SH_Linha2 = "";
+			this.aCBrRFD1.SH_NomeAplicativo = "";
+			this.aCBrRFD1.SH_NumeroAplicativo = "";
+			this.aCBrRFD1.SH_VersaoAplicativo = "";
 			// 
 			// MainForm
 			// 
@@ -4443,7 +4477,8 @@
         private System.Windows.Forms.Button btnAACLog;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.ListBox lstParam;
+		private System.Windows.Forms.ListBox lstParam;
+		private RFD.ACBrRFD aCBrRFD1;
     }
 }
 
