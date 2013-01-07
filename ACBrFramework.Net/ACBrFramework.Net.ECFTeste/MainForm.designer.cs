@@ -430,10 +430,10 @@
 			this.aacParametrosTabPage = new System.Windows.Forms.TabPage();
 			this.lstParam = new System.Windows.Forms.ListBox();
 			this.ativarCheckButton = new System.Windows.Forms.CheckBox();
-			this.pnlpanel1 = new System.Windows.Forms.Panel();
 			this.acbrECF = new ACBrFramework.ECF.ACBrECF();
 			this.aCBrRFD1 = new ACBrFramework.RFD.ACBrRFD();
 			this.acbrAAC = new ACBrFramework.AAC.ACBrAAC();
+			this.pnlpanel1 = new System.Windows.Forms.Panel();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl.SuspendLayout();
@@ -1654,6 +1654,7 @@
 			this.identificaConsumidorToolStripMenuItem.Name = "identificaConsumidorToolStripMenuItem";
 			this.identificaConsumidorToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.identificaConsumidorToolStripMenuItem.Text = "Identifica Consumidor";
+			this.identificaConsumidorToolStripMenuItem.Click += new System.EventHandler(this.identificaConsumidorToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator30
 			// 
@@ -1665,6 +1666,7 @@
 			this.abreCupomToolStripMenuItem.Name = "abreCupomToolStripMenuItem";
 			this.abreCupomToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.abreCupomToolStripMenuItem.Text = "Abre Cupom";
+			this.abreCupomToolStripMenuItem.Click += new System.EventHandler(this.abreCupomToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator31
 			// 
@@ -1676,18 +1678,21 @@
 			this.vendeItemToolStripMenuItem.Name = "vendeItemToolStripMenuItem";
 			this.vendeItemToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.vendeItemToolStripMenuItem.Text = "Vende Item";
+			this.vendeItemToolStripMenuItem.Click += new System.EventHandler(this.vendeItemToolStripMenuItem_Click);
 			// 
 			// cancelaItemVendidoToolStripMenuItem
 			// 
 			this.cancelaItemVendidoToolStripMenuItem.Name = "cancelaItemVendidoToolStripMenuItem";
 			this.cancelaItemVendidoToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.cancelaItemVendidoToolStripMenuItem.Text = "Cancela Item Vendido";
+			this.cancelaItemVendidoToolStripMenuItem.Click += new System.EventHandler(this.cancelaItemVendidoToolStripMenuItem_Click);
 			// 
 			// descontoDeItemAnteriorToolStripMenuItem
 			// 
 			this.descontoDeItemAnteriorToolStripMenuItem.Name = "descontoDeItemAnteriorToolStripMenuItem";
 			this.descontoDeItemAnteriorToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.descontoDeItemAnteriorToolStripMenuItem.Text = "Desconto de Item Anterior";
+			this.descontoDeItemAnteriorToolStripMenuItem.Click += new System.EventHandler(this.descontoDeItemAnteriorToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator32
 			// 
@@ -1711,6 +1716,7 @@
 			this.fechaCupomToolStripMenuItem.Name = "fechaCupomToolStripMenuItem";
 			this.fechaCupomToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.fechaCupomToolStripMenuItem.Text = "Fecha Cupom";
+			this.fechaCupomToolStripMenuItem.Click += new System.EventHandler(this.fechaCupomToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator33
 			// 
@@ -3891,14 +3897,6 @@
 			this.ativarCheckButton.UseVisualStyleBackColor = true;
 			this.ativarCheckButton.CheckedChanged += new System.EventHandler(this.ativarCheckButton_CheckedChanged);
 			// 
-			// pnlpanel1
-			// 
-			this.pnlpanel1.BackgroundImage = global::ACBrFramework.ECFTeste.Properties.Resources.ACBr;
-			this.pnlpanel1.Location = new System.Drawing.Point(0, 418);
-			this.pnlpanel1.Name = "pnlpanel1";
-			this.pnlpanel1.Size = new System.Drawing.Size(651, 43);
-			this.pnlpanel1.TabIndex = 12;
-			// 
 			// acbrECF
 			// 
 			this.acbrECF.AAC = null;
@@ -3906,7 +3904,7 @@
 			this.acbrECF.ArqLOG = "acbrlog.txt";
 			this.acbrECF.ArredondaItemMFD = false;
 			this.acbrECF.ArredondaPorQtd = false;
-			this.acbrECF.ComandoLog = "ComprovantesNaoFiscais";
+			this.acbrECF.ComandoLog = "ChequePronto";
 			this.acbrECF.DecimaisPreco = 3;
 			this.acbrECF.DecimaisQtd = 3;
 			this.acbrECF.DescricaoGrande = false;
@@ -3999,6 +3997,14 @@
         "",
         ""};
 			this.acbrAAC.OnGetChave += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrAAC_OnGetChave);
+			// 
+			// pnlpanel1
+			// 
+			this.pnlpanel1.BackgroundImage = global::ACBrFramework.ECFTeste.Properties.Resources.ACBr;
+			this.pnlpanel1.Location = new System.Drawing.Point(0, 418);
+			this.pnlpanel1.Name = "pnlpanel1";
+			this.pnlpanel1.Size = new System.Drawing.Size(651, 43);
+			this.pnlpanel1.TabIndex = 12;
 			// 
 			// MainForm
 			// 

@@ -1274,7 +1274,12 @@ namespace ACBrFramework.ECF
 
 		public void DescontoAcrescimoItemAnterior(decimal valorDesconto, string descontoAcrescimo)
 		{
-			int ret = ACBrECFInterop.ECF_DescontoAcrescimoItemAnterior(this.Handle, (double)valorDesconto, ToUTF8(descontoAcrescimo));
+			DescontoAcrescimoItemAnterior(valorDesconto, descontoAcrescimo, "%", 0);
+		}
+
+		public void DescontoAcrescimoItemAnterior(decimal valorDesconto, string descontoAcrescimo, string tipodescontoAcrescimo, int item)
+		{
+			int ret = ACBrECFInterop.ECF_DescontoAcrescimoItemAnterior(this.Handle, (double)valorDesconto, ToUTF8(descontoAcrescimo), ToUTF8(tipodescontoAcrescimo), item);
 			CheckResult(ret);
 		}
 
@@ -2052,10 +2057,37 @@ namespace ACBrFramework.ECF
 
 		#region Formas de Pagto
 
+		public FormaPagamento AchaFPGDescricao(string descricao)
+		{
+			return AchaFPGDescricao(descricao, true, true);
+		}
+
+		public FormaPagamento AchaFPGDescricao(string descricao, bool buscaExata, bool ignoreCase)
+		{
+			ACBrECFInterop.FormaPagamentoRec FormaRec = new ACBrECFInterop.FormaPagamentoRec();
+			int ret = ACBrECFInterop.ECF_AchaFPGDescricao(this.Handle, ToUTF8(descricao), buscaExata, ignoreCase, ref FormaRec);
+			CheckResult(ret);
+
+			if (ret == 0)
+				return null;
+			else
+			{
+				FormaPagamento Forma = new FormaPagamento();
+				Forma.Data = DateTime.FromOADate(FormaRec.Data);
+				Forma.Descricao = FromUTF8(FormaRec.Descricao);
+				Forma.Indice = FromUTF8(FormaRec.Indice);
+				Forma.PermiteVinculado = FormaRec.PermiteVinculado;
+				Forma.TipoDoc = FromUTF8(FormaRec.TipoDoc);
+				Forma.Total = Convert.ToDecimal(FormaRec.Total);
+
+				return Forma;
+			}
+		}
+
 		public FormaPagamento AchaFPGIndice(string indice)
 		{
 			ACBrECFInterop.FormaPagamentoRec FormaRec = new ACBrECFInterop.FormaPagamentoRec();
-			int ret = ACBrECFInterop.ECF_AchaFPGIndice(this.Handle, indice, ref FormaRec);
+			int ret = ACBrECFInterop.ECF_AchaFPGIndice(this.Handle, ToUTF8(indice), ref FormaRec);
 			CheckResult(ret);
 
 			if (ret == 0)
@@ -2290,10 +2322,16 @@ namespace ACBrFramework.ECF
 		{
 			if (this.Handle != IntPtr.Zero)
 			{
-				var orfd = rfd;
-				rfd = null;
-				if (orfd.ECF != null)
-					orfd.ECF = null;
+				if (rfd != null)
+				{
+					if (this.Ativo)
+						Desativar();
+
+					var orfd = rfd;
+					rfd = null;
+					if (orfd.ECF != null)
+						orfd.ECF = null;
+				}
 				CallDestroy(ACBrECFInterop.ECF_Destroy);
 			}
 		}

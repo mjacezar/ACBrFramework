@@ -41,6 +41,14 @@ Símbolo : Significado
 
 Changelog
 
+07/01/2012
+
+-- ACBrFramework 0.9.1.36 --
+[+] Adicionado AchaFPGDescricao - ACBrECF - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.1.36 --
+[+] Adicionado AchaFPGDescricao - ACBrECF - Rafael Dias.
+
 06/01/2012
 
 -- ACBrFramework 0.9.1.36 --

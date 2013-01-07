@@ -3989,7 +3989,7 @@ begin
 end;
 
 Function ECF_DescontoAcrescimoItemAnterior(const ecfHandle: PECFHandle;
-                                           const ValorDescontoAcrescimo : Double; const DescontoAcrescimo : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+                                           const ValorDescontoAcrescimo : Double; const DescontoAcrescimo, TipoDescontoAcrescimo : pChar; const Item : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (ecfHandle = nil) then
@@ -3999,7 +3999,7 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.DescontoAcrescimoItemAnterior(ValorDescontoAcrescimo, DescontoAcrescimo);
+     ecfHandle^.ECF.DescontoAcrescimoItemAnterior(ValorDescontoAcrescimo, DescontoAcrescimo, TipoDescontoAcrescimo, Item);
      Result := 0 ;
   except
      on exception : Exception do
@@ -4656,6 +4656,44 @@ begin
         Result := -1;
      end
    end;
+end;
+
+Function ECF_AchaFPGDescricao(const ecfHandle: PECFHandle; const descricao : pChar; const BuscaExata, IgnorarCase : Boolean; var retFormaPagamento : TFormaPagamentoRec) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+var
+   FormPGT : TACBrECFFormaPagamento;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     FormPGT := ecfHandle^.ECF.AchaFPGDescricao(descricao, BuscaExata, IgnorarCase);
+     if FormPGT <> nil then
+     begin
+           retFormaPagamento.Data := FormPGT.Data;
+           retFormaPagamento.Descricao := FormPGT.Descricao;
+           retFormaPagamento.Indice := FormPGT.Indice;
+           retFormaPagamento.PermiteVinculado := FormPGT.PermiteVinculado;
+           retFormaPagamento.TipoDoc := FormPGT.TipoDoc;
+           retFormaPagamento.Total := FormPGT.Total;
+           Result := 1 ;
+     end
+     else
+     Begin
+           Result := 0;
+     end
+
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
 end;
 
 Function ECF_AchaFPGIndice(const ecfHandle: PECFHandle; const indice : pChar; var retFormaPagamento : TFormaPagamentoRec) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
@@ -6853,46 +6891,6 @@ begin
   end;
 end;
 
-
-Function ECF_AchaFPGDescricao(const ecfHandle: PECFHandle;
-const Descricao : pChar ;  var retorno : pchar  ) : Integer ;cdecl; export;
-   var FPG    : TACBrECFFormaPagamento  ;
-       vinc   : string;
-
-begin
-   if ECF = nil then
-    begin
-      Result := -2;
-      Exit ;
-    end;
-
-   try
-      FPG := ecfHandle^.ECF.AchaFPGDescricao( Descricao, False  ) ;
-
-      if FPG <> nil then
-      begin
-         Vinc := ' ';
-         If FPG.PermiteVinculado then
-           Vinc := 'V';
-
-         retorno := pchar(padL(FPG.Indice,4) +
-                          Vinc+
-                          padL( FPG.Descricao, 30));
-      end
-      else
-         retorno := pchar(padL('-1',4));
-
-      Result := 0 ;
-
-   except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-   end;
-end;
-
 Function EnviaComando(cmd: AnsiString; var resp : pchar ) : Integer ; cdecl;export; overload;
 begin
   if ECF = nil then
@@ -7011,8 +7009,8 @@ ECF_ProgramaAliquota, ECF_AchaIcmsAliquota,
 { Formas de Pagamento }
 
 ECF_GetFormaPagamento, ECF_CarregaFormasPagamento, ECF_LerTotaisFormaPagamento,
-ECF_GetFormasPagamentoStr, ECF_LerTotaisFormaPagamentoStr,  ECF_AchaFPGIndice,
-ECF_ProgramaFormaPagamento, {ECF_AchaFPGDescricao,}
+ECF_GetFormasPagamentoStr, ECF_LerTotaisFormaPagamentoStr, ECF_ProgramaFormaPagamento,
+ECF_AchaFPGDescricao, ECF_AchaFPGIndice,
 
 { Comprovante Não Fiscal }
 
