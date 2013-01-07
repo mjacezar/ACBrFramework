@@ -598,49 +598,61 @@ namespace ACBrFramework.ECFTeste
 		#endregion LerVariaveis
 
 		#region Cupom Fiscal
-		
-		private void TestaCupomFiscal()
+
+		private void testaPodeAbrirCupom()
 		{
 			try
 			{
-				if (acbrECF.Estado == EstadoECF.Livre)
+				acbrECF.TestaPodeAbrirCupom();
+				WriteResp("Pode Abrir Cupom.. OK");
+			}
+			catch (Exception exception)
+			{
+				WriteResp("NAO Pode Abrir Cupom..\n pois " + exception);
+			}
+		}
+		
+		private void AbreCupom()
+		{
+			try
+			{
+				string consumidor = string.Empty;
+				string documento = string.Empty;
+				string nome = string.Empty;
+				string endereco = string.Empty;
+
+				if(!string.IsNullOrEmpty(acbrECF.Consumidor.Documento))
 				{
-					lstResp.Items.Add("Abrindo cupom ...");
-					bobina.Clear();
-					acbrECF.AbreCupom("", "", "");
-					Application.DoEvents();
+					consumidor += acbrECF.Consumidor.Documento;
+				}
+				
+				if(!string.IsNullOrEmpty(acbrECF.Consumidor.Nome))
+				{
+					consumidor += "|" + acbrECF.Consumidor.Nome;
 				}
 
-				if (acbrECF.Estado == EstadoECF.Venda)
+				if (!string.IsNullOrEmpty(acbrECF.Consumidor.Endereco))
 				{
-					for (int i = 0; i < 10; i++)
-					{
-						lstResp.Items.Add(String.Format("Vende Item #{0} ...", i));
-						acbrECF.VendeItem(string.Format("{0:0000000000000}", i + 1), "PRODUTO àáèéìíòóùúü " + i, "I", 1, 1.99M, 0M, "UN", "%", "D");
-						Application.DoEvents();
-					}
-
-					acbrECF.SubtotalizaCupom(0M, "Mensagem SubtotalizaCupom ACBr.NET");
-					lstResp.Items.Add("Subtotaliza Cupom ...");
-					Application.DoEvents();
+					consumidor += "|" + acbrECF.Consumidor.Endereco;
 				}
 
-				if (acbrECF.Estado == EstadoECF.Pagamento)
-				{
-					if (acbrECF.TotalPago == 0)
-					{
-						var forma01 = acbrECF.FormasPagamento[0];
-						acbrECF.EfetuaPagamento(forma01.Indice, 50M, "Mensagem EfetuaPagamento ACBr.NET", false);
-						lstResp.Items.Add("Efetua Pagamento ...");
-						Application.DoEvents();
-					}
+				if (InputBox.Show("Identifica Consumidor", "Se necessário, Informe o Documento | Nome | Endereco\nNota: Use o sinal pipe (|) para separar os campos", ref consumidor).Equals(DialogResult.Cancel))
+					return;
 
-					acbrECF.FechaCupom("Mensagem àáèéìíòóùúü FechaCupom ACBr.NET");
-					lstResp.Items.Add("Fecha Cupom ...");
-					Application.DoEvents();
+				string[] dados = consumidor.Split('|');
 
-					WriteResp("Finalizado!");
-				}
+				if (dados.Length > 0)
+					documento = dados[0];
+
+				if (dados.Length > 1)
+					nome = dados[1];
+
+				if (dados.Length > 2)
+					endereco = dados[2];
+
+				acbrECF.AbreCupom(documento, nome, endereco);
+				WriteResp("Abre Cupom");
+
 			}
 			catch (NullReferenceException)
 			{
@@ -659,12 +671,79 @@ namespace ACBrFramework.ECFTeste
 		{
 			try
 			{
+				string documento = acbrECF.Consumidor.Documento;
+				string endereco = acbrECF.Consumidor.Endereco;
+				string nome = acbrECF.Consumidor.Nome;
+
+				if (InputBox.Show("Identifica Consumidor", "Informe o Documento:", ref documento).Equals(DialogResult.Cancel))
+					return;
+
+				if (InputBox.Show("Identifica Consumidor", "Informe o Nome do Consumidor:", ref nome).Equals(DialogResult.Cancel))
+					return;
+
+				if (InputBox.Show("Identifica Consumidor", "Se necessários, informe o Endereço do Consumidor:", ref endereco).Equals(DialogResult.Cancel))
+					return;
+
+				acbrECF.IdentificaConsumidor(documento, nome, endereco);
 			}
 			catch (Exception exception)
 			{
 				messageToolStripStatusLabel.Text = "Exception";
 				descriptionToolStripStatusLabel.Text = exception.Message;
 			}
+		}
+
+		private void vendeItem()
+		{
+			using (frmVendeItem Vendas = new frmVendeItem())
+			{
+				if (Vendas.ShowDialog().Equals(DialogResult.Cancel))
+					return;
+
+				var item = Vendas.Retorno;
+				string msg = string.Format("Vende Item: Cod:{0}\n Desc:{1}\n Aliq:{2}\n Qtd:{3}\n " +
+							"Preço:{4}\n Desc:{5}\n Un:{6}\n Tipo:{7}\n Desc:{8}", item.codigo, item.descricao, item.icms, item.quantidade, item.ValorUnitario, item.ValorDescAcres, item.Unidade, item.tipoDescAcres, item.DescAcres);
+
+				acbrECF.VendeItem(item.codigo, item.descricao, item.icms, item.quantidade, item.ValorUnitario, item.ValorDescAcres, item.Unidade, item.tipoDescAcres, item.DescAcres);
+				WriteResp(msg);
+			}			
+		}
+
+		private void cancelaItemVendido()
+		{
+			string item = "1";
+			int valor = 1;
+
+			if (InputBox.Show("Cancelar Item Vendido", "Informe o número da Sequencia de Venda:", ref item).Equals(DialogResult.Cancel))
+				return;
+
+			int.TryParse(item, out valor);
+
+			acbrECF.CancelaItemVendido(valor);
+			WriteResp("Cancela Item Vendido: " + item);
+		}
+
+		private void descontoDeItemAnterior()
+		{
+			acbrECF.DescontoAcrescimoItemAnterior(1, "D", "%", 3);
+		}
+
+		private void subtotalizacupom()
+		{
+			
+		}
+
+		private void FecharCupom()
+		{
+			string obs = "Componentes ACBrFramework|http://acbrframework.sf.net";
+			string msg = "Se Necessário digite alguma Observaçao (até 8 linhas)\nO sinal | (pipe) será convertido para quebra de linha";
+
+			if (InputBox.Show("Fechar Cupom", msg, ref obs).Equals(DialogResult.Cancel))
+				return;
+
+			obs.Replace("|", "\n");
+			acbrECF.FechaCupom(obs);
+			WriteResp("Fecha Cupom");
 		}
 
 		#endregion Cupom Fiscal
@@ -880,20 +959,7 @@ namespace ACBrFramework.ECFTeste
                 CFG.Device = acbrECF.Device;
                 CFG.ShowDialog();
             }
-        }
-
-		private void testaPodeAbrirCupom()
-		{
-			try
-			{
-				acbrECF.TestaPodeAbrirCupom();
-				WriteResp("Pode Abrir Cupom.. OK");
-			}
-			catch (Exception exception)
-			{
-				WriteResp("NAO Pode Abrir Cupom..\n pois " + exception);
-			}
-		}
+        }		
 
 		private void WriteResp(string resp)
 		{
@@ -1246,8 +1312,39 @@ namespace ACBrFramework.ECFTeste
 			testaPodeAbrirCupom();
 		}
 
-		#endregion Menu				
+		private void identificaConsumidorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			IdentificaConsumidor();
+		}
 
+		#endregion Menu
+
+		private void abreCupomToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			AbreCupom();
+		}
+
+		private void vendeItemToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			vendeItem();
+		}
+
+		private void cancelaItemVendidoToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			cancelaItemVendido();
+		}
+
+		private void descontoDeItemAnteriorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			descontoDeItemAnterior();
+		}
+
+		private void fechaCupomToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			FecharCupom();
+		}
+		
 		#endregion Event Handlers
+		
 	}
 }

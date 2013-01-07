@@ -677,10 +677,17 @@ namespace ACBrFramework.RFD
 		{
 			if (Handle != IntPtr.Zero)
 			{
-				var oecf = ecf;
-				ecf = null;
-				if (oecf.RFD != null)
-					oecf.RFD = null;
+				if (ecf != null)
+				{
+					if (this.Ativo)
+						Desativar();
+
+					var oecf = ecf;
+					ecf = null;
+					if (oecf.RFD != null)
+						oecf.RFD = null;
+				}
+
 				CallDestroy(ACBrRFDInterop.RFD_Destroy);
 			}
 		}

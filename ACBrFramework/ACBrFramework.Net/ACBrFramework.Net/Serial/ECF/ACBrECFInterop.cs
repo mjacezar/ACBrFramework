@@ -794,7 +794,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_VendeItem(IntPtr ecfHandle, string codigo, string descricao, string aliquotaICMS, double qtd, double valorUnitario, double descontoPorc, string unidade, string tipoDescontoAcrescimo, string descontoAcrescimo, int CodDepartamento);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_DescontoAcrescimoItemAnterior(IntPtr ecfHandle, double valorDescontoAcrescimo, string descontoAcrescimo);
+		public static extern int ECF_DescontoAcrescimoItemAnterior(IntPtr ecfHandle, double valorDescontoAcrescimo, string descontoAcrescimo, string TipoDescontoAcrescimo, int Item);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SubtotalizaCupom(IntPtr ecfHandle, double descontoAcrescimo, string mensagemRodape);
@@ -1006,6 +1006,10 @@ namespace ACBrFramework.ECF
 		#endregion Alíquotas
 
 		#region Formas de Pagto
+
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_AchaFPGDescricao(IntPtr ecfHandle, string descricao, bool buscaexata, bool ignorecase, ref FormaPagamentoRec formaPagamento);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_AchaFPGIndice(IntPtr ecfHandle, string indice, ref FormaPagamentoRec formaPagamento);
