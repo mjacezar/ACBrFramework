@@ -175,17 +175,7 @@ namespace ACBrFramework.Validador
 		}
 
 		[Browsable(false)]
-		public CalcDigFormula Modulo
-		{
-			get
-			{
-				return (CalcDigFormula)GetInt32(ACBrValidadorInterop.VAL_GetModulo);
-			}
-			set
-			{
-				SetInt32(ACBrValidadorInterop.VAL_SetModulo, (int)value);
-			}
-		}
+		public Modulo Modulo { get; private set; }
 
 		#endregion Properties
 
@@ -193,7 +183,7 @@ namespace ACBrFramework.Validador
 
 		#region Funções
 
-		private bool Validar()
+		public bool Validar()
 		{
 			int ret = ACBrValidadorInterop.VAL_Validar(this.Handle);
 			CheckResult(ret);
@@ -201,7 +191,7 @@ namespace ACBrFramework.Validador
 			return Convert.ToBoolean(ret);
 		}
 
-		private string Formatar()
+		public string Formatar()
 		{
 			const int bufferLen = 256;
 			StringBuilder buffer = new StringBuilder(bufferLen);
@@ -212,7 +202,7 @@ namespace ACBrFramework.Validador
 			return buffer.ToString();
 		}
 
-		private string FormatarCEP(string CEP)
+		public string FormatarCEP(string CEP)
 		{
 			const int bufferLen = 256;
 			StringBuilder buffer = new StringBuilder(bufferLen);
@@ -223,7 +213,7 @@ namespace ACBrFramework.Validador
 			return buffer.ToString();
 		}
 
-		private string FormatarCNPJ(string CNPJ)
+		public string FormatarCNPJ(string CNPJ)
 		{
 			const int bufferLen = 256;
 			StringBuilder buffer = new StringBuilder(bufferLen);
@@ -234,7 +224,7 @@ namespace ACBrFramework.Validador
 			return buffer.ToString();
 		}
 
-		private string FormatarCPF(string CPF)
+		public string FormatarCPF(string CPF)
 		{
 			const int bufferLen = 256;
 			StringBuilder buffer = new StringBuilder(bufferLen);
@@ -245,7 +235,7 @@ namespace ACBrFramework.Validador
 			return buffer.ToString();
 		}
 
-		private string FormatarIE(string IE, string UF)
+		public string FormatarIE(string IE, string UF)
 		{
 			const int bufferLen = 256;
 			StringBuilder buffer = new StringBuilder(bufferLen);
@@ -256,7 +246,7 @@ namespace ACBrFramework.Validador
 			return buffer.ToString();
 		}
 
-		private string FormatarPIS(string PIS)
+		public string FormatarPIS(string PIS)
 		{
 			const int bufferLen = 256;
 			StringBuilder buffer = new StringBuilder(bufferLen);
@@ -267,7 +257,7 @@ namespace ACBrFramework.Validador
 			return buffer.ToString();
 		}
 
-		private string FormatarCheque(string Cheque)
+		public string FormatarCheque(string Cheque)
 		{
 			const int bufferLen = 256;
 			StringBuilder buffer = new StringBuilder(bufferLen);
@@ -278,7 +268,7 @@ namespace ACBrFramework.Validador
 			return buffer.ToString();
 		}
 
-		private string FormatarSUFRAMA(string SUFRAMA)
+		public string FormatarSUFRAMA(string SUFRAMA)
 		{
 			const int bufferLen = 256;
 			StringBuilder buffer = new StringBuilder(bufferLen);
@@ -300,6 +290,7 @@ namespace ACBrFramework.Validador
 		protected internal override void OnInitializeComponent()
 		{
 			CallCreate(ACBrValidadorInterop.VAL_Create);
+			this.Modulo = new Modulo(this);
 		}
 
 		protected internal override void CheckResult(int ret)

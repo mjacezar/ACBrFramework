@@ -568,7 +568,13 @@ begin
   end;
 end;
 
-Function VAL_GetModulo(const valHandle: PVALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+{%endregion}
+
+{%region Modulo}
+
+Function VAL_Modulo_GetDocumento(const valHandle: PVALHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
 begin
 
   if (valHandle = nil) then
@@ -578,7 +584,9 @@ begin
   end;
 
  try
-     Result := Integer(valHandle^.Val.Modulo);
+     StrTmp := valHandle^.Val.Modulo.Documento;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
   except
      on exception : Exception do
      begin
@@ -589,7 +597,7 @@ begin
 
 end;
 
-Function VAL_SetModulo(const valHandle: PVALHandle; Const Modulo : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function VAL_Modulo_SetDocumento(const valHandle: PVALHandle; Const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (valHandle = nil) then
@@ -599,8 +607,287 @@ begin
   end;
 
  try
-     valHandle^.Val.Modulo := TACBrCalcDigito(Modulo);
+     valHandle^.Val.Modulo.Documento := value;
      Result := 0;
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_GetMultiplicadorInicial(const valHandle: PVALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := valHandle^.Val.Modulo.MultiplicadorInicial;
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_SetMultiplicadorInicial(const valHandle: PVALHandle; Const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     valHandle^.Val.Modulo.MultiplicadorInicial := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_GetMultiplicadorFinal(const valHandle: PVALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := valHandle^.Val.Modulo.MultiplicadorFinal;
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_SetMultiplicadorFinal(const valHandle: PVALHandle; Const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     valHandle^.Val.Modulo.MultiplicadorFinal := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_GetMultiplicadorAtual(const valHandle: PVALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := valHandle^.Val.Modulo.MultiplicadorAtual;
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_SetMultiplicadorAtual(const valHandle: PVALHandle; Const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     valHandle^.Val.Modulo.MultiplicadorAtual := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_GetDigitoFinal(const valHandle: PVALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := valHandle^.Val.Modulo.DigitoFinal;
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_GetModuloFinal(const valHandle: PVALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := valHandle^.Val.Modulo.ModuloFinal;
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_GetSomaDigitos(const valHandle: PVALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := valHandle^.Val.Modulo.SomaDigitos;
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_GetFormulaDigito(const valHandle: PVALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := Integer(valHandle^.Val.Modulo.FormulaDigito);
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_SetFormulaDigito(const valHandle: PVALHandle; Const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     valHandle^.Val.Modulo.FormulaDigito := TACBrCalcDigFormula(value);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_Calcular(const valHandle: PVALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    valHandle^.Val.Modulo.Calcular;
+    Result := 0;
+  except
+     on exception : Exception do
+     begin
+        valHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function VAL_Modulo_CalculoPadrao(const valHandle: PVALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (valHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+    valHandle^.Val.Modulo.CalculoPadrao;
+    Result := 0;
   except
      on exception : Exception do
      begin
@@ -893,7 +1180,16 @@ VAL_GetPermiteVazio, VAL_SetPermiteVazio, VAL_GetRaiseExcept, VAL_SetRaiseExcept
 
 { Funções mapeando as propriedades do componente não visiveis }
 VAL_GetDoctoValidado, VAL_GetMsgErro, VAL_GetDigitoCalculado,
-VAL_GetModulo, VAL_SetModulo,
+
+{ Modulo }
+VAL_Modulo_GetDocumento, VAL_Modulo_SetDocumento,
+VAL_Modulo_GetMultiplicadorInicial, VAL_Modulo_SetMultiplicadorInicial,
+VAL_Modulo_GetMultiplicadorFinal, VAL_Modulo_SetMultiplicadorFinal,
+VAL_Modulo_GetMultiplicadorAtual, VAL_Modulo_SetMultiplicadorAtual,
+VAL_Modulo_GetDigitoFinal, VAL_Modulo_GetModuloFinal, VAL_Modulo_GetSomaDigitos,
+VAL_Modulo_GetFormulaDigito, VAL_Modulo_SetFormulaDigito,
+VAL_Modulo_Calcular, VAL_Modulo_CalculoPadrao,
+
 
 { Metodos do Componente }
 VAL_Validar, VAL_Formatar, VAL_FormatarCEP, VAL_FormatarCheque,

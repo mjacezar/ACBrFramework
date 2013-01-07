@@ -43,11 +43,14 @@ Changelog
 
 07/01/2012
 
--- ACBrFramework 0.9.1.36 --
+-- ACBrFramework 0.9.1.37 --
 [+] Adicionado AchaFPGDescricao - ACBrECF - Rafael Dias.
+[+] Corrigido erro no Modulo - ACBrValidador - Rafael Dias.
 
--- ACBrFramework.Net 0.9.1.36 --
+-- ACBrFramework.Net 0.9.1.37 --
 [+] Adicionado AchaFPGDescricao - ACBrECF - Rafael Dias.
+[+] Corrigido erro no Modulo - ACBrValidador - Rafael Dias.
+[+] Adicionado o Demo - ACBrValidador - Rafael Dias.
 
 06/01/2012
 

@@ -88,13 +88,56 @@ namespace ACBrFramework.Validador
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int VAL_GetDigitoCalculado(IntPtr valHandle, StringBuilder buffer, int bufferLen);
 
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int VAL_GetModulo(IntPtr valHandle);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int VAL_SetModulo(IntPtr valHandle, int modulo);
-
 		#endregion Propriedades Não Visiveis do Componente
+
+		#region Modulo
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_GetDocumento(IntPtr valHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_SetDocumento(IntPtr valHandle, string documento);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_GetMultiplicadorInicial(IntPtr valHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_SetMultiplicadorInicial(IntPtr valHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_GetMultiplicadorFinal(IntPtr valHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_SetMultiplicadorFinal(IntPtr valHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_GetMultiplicadorAtual(IntPtr valHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_SetMultiplicadorAtual(IntPtr valHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_GetDigitoFinal(IntPtr valHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_GetModuloFinal(IntPtr valHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_GetSomaDigitos(IntPtr valHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_GetFormulaDigito(IntPtr valHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_SetFormulaDigito(IntPtr valHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_Calcular(IntPtr valHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int VAL_Modulo_CalculoPadrao(IntPtr valHandle);
+
+		#endregion Modulo
 
 		#region Constructors/Erro Handler
 

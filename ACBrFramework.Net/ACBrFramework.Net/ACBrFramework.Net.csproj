@@ -598,6 +598,7 @@
     <Compile Include="Validador\ACBrValidador.cs" />
     <Compile Include="Validador\ACBrValidadorInterop.cs" />
     <Compile Include="Validador\Classes\CalcDigFormula.cs" />
+    <Compile Include="Validador\Classes\Modulo.cs" />
     <Compile Include="Validador\Classes\OnMsgErroEventArgs.cs" />
     <Compile Include="Validador\Classes\ValTipoDocto.cs" />
   </ItemGroup>
