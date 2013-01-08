@@ -10,6 +10,78 @@ namespace ACBrFramework.AAC
 	{
 		#region EventHandlers
 
+		public event EventHandler<AntesArquivoArgs> OnAntesAbrirArquivo
+		{
+			add
+			{
+				onAntesAbrirArquivo.Add(value);
+			}
+			remove
+			{
+				onAntesAbrirArquivo.Remove(value);
+			}
+		}
+
+		public event EventHandler<AntesArquivoArgs> OnAntesGravarArquivo
+		{
+			add
+			{
+				onAntesGravarArquivo.Add(value);
+			}
+			remove
+			{
+				onAntesGravarArquivo.Remove(value);
+			}
+		}
+
+		public event EventHandler<OnCryptArgs> OnCrypt
+		{
+			add
+			{
+				onCrypt.Add(value);
+			}
+			remove
+			{
+				onCrypt.Remove(value);
+			}
+		}
+
+		public event EventHandler<OnDeCryptArgs> OnDeCrypt
+		{
+			add
+			{
+				onDeCrypt.Add(value);
+			}
+			remove
+			{
+				onDeCrypt.Remove(value);
+			}
+		}
+
+		public event EventHandler OnDepoisAbrirArquivo
+		{
+			add
+			{
+				onDepoisAbrirArquivo.Add(value);
+			}
+			remove
+			{
+				onDepoisAbrirArquivo.Remove(value);
+			}
+		}
+
+		public event EventHandler OnDepoisGravarArquivo
+		{
+			add
+			{
+				onDepoisGravarArquivo.Add(value);
+			}
+			remove
+			{
+				onDepoisGravarArquivo.Remove(value);
+			}
+		}
+
 		public event EventHandler<ChaveEventArgs> OnGetChave
 		{
 			add
@@ -22,11 +94,43 @@ namespace ACBrFramework.AAC
 			}
 		}
 
+		public event EventHandler<VerificarRecomporNumSerieArgs> VerificarRecomporNumSerie
+		{
+			add
+			{
+				onVerificarRecomporNumSerie.Add(value);
+			}
+			remove
+			{
+				onVerificarRecomporNumSerie.Remove(value);
+			}
+		}
+
+		public event EventHandler<VerificarRecomporValorGTArgs> VerificarRecomporValorGT
+		{
+			add
+			{
+				onVerificarRecomporValorGT.Add(value);
+			}
+			remove
+			{
+				onVerificarRecomporValorGT.Remove(value);
+			}
+		}
+
 		#endregion EventHandlers
 
 		#region Fields
 
+		private readonly ACBrEventHandler<AntesArquivoArgs, ACBrAACInterop.AntesArquivoCallback> onAntesAbrirArquivo;
+		private readonly ACBrEventHandler<AntesArquivoArgs, ACBrAACInterop.AntesArquivoCallback> onAntesGravarArquivo;
+		private readonly ACBrEventHandler<OnCryptArgs, ACBrAACInterop.CryptCallback> onCrypt;
+		private readonly ACBrEventHandler<OnDeCryptArgs, ACBrAACInterop.CryptCallback> onDeCrypt;
+		private readonly ACBrEventHandler<ACBrAACInterop.NoArgumentsCallback> onDepoisAbrirArquivo;
+		private readonly ACBrEventHandler<ACBrAACInterop.NoArgumentsCallback> onDepoisGravarArquivo;
 		private readonly ACBrEventHandler<ChaveEventArgs, ACBrAACInterop.OnGetChaveCallback> onGetChave;
+		private readonly ACBrEventHandler<VerificarRecomporNumSerieArgs, ACBrAACInterop.VerificarRecomporNumSerieCallback> onVerificarRecomporNumSerie;
+		private readonly ACBrEventHandler<VerificarRecomporValorGTArgs, ACBrAACInterop.VerificarRecomporValorGTCallback> onVerificarRecomporValorGT;
 
 		#endregion Fields
 
@@ -34,7 +138,15 @@ namespace ACBrFramework.AAC
 
 		public ACBrAAC()
 		{
+			onAntesAbrirArquivo = new ACBrEventHandler<AntesArquivoArgs, ACBrAACInterop.AntesArquivoCallback>(this, OnAntesAbrirArquivoCallBack, ACBrAACInterop.AAC_SetOnAntesAbrirArquivo);
+			onAntesGravarArquivo = new ACBrEventHandler<AntesArquivoArgs, ACBrAACInterop.AntesArquivoCallback>(this, OnAntesGravarArquivoCallBack, ACBrAACInterop.AAC_SetAntesGravarArquivo);
+			onCrypt = new ACBrEventHandler<OnCryptArgs, ACBrAACInterop.CryptCallback>(this, OnCryptCallBack, ACBrAACInterop.AAC_SetOnCrypt);
+			onDeCrypt = new ACBrEventHandler<OnDeCryptArgs, ACBrAACInterop.CryptCallback>(this, OnDeCryptCallBack, ACBrAACInterop.AAC_SetOnDeCrypt);
+			onDepoisAbrirArquivo = new ACBrEventHandler<ACBrAACInterop.NoArgumentsCallback>(this, OnDepoisAbrirArquivoCallBack,ACBrAACInterop.AAC_SetOnDepoisAbrirArquivo);
+			onDepoisGravarArquivo = new ACBrEventHandler<ACBrAACInterop.NoArgumentsCallback>(this, OnDepoisGravarArquivoCallBack, ACBrAACInterop.AAC_SetOnDepoisGravarArquivo);
 			onGetChave = new ACBrEventHandler<ChaveEventArgs, ACBrAACInterop.OnGetChaveCallback>(this, OnGetChaveCallBack, ACBrAACInterop.AAC_SetOnGetChave);
+			onVerificarRecomporNumSerie = new ACBrEventHandler<VerificarRecomporNumSerieArgs, ACBrAACInterop.VerificarRecomporNumSerieCallback>(this, OnVerificarRecomporNumSerieCallBack, ACBrAACInterop.AAC_SetVerificarRecomporNumSerie);
+			onVerificarRecomporValorGT = new ACBrEventHandler<VerificarRecomporValorGTArgs, ACBrAACInterop.VerificarRecomporValorGTCallback>(this, OnVerificarRecomporValorGTCallBack, ACBrAACInterop.AAC_SetVerificarRecomporValor);
 		}
 
 		#endregion Constructor
@@ -282,6 +394,66 @@ namespace ACBrFramework.AAC
 		#region EventHandlers
 
 		[AllowReversePInvokeCalls]
+		private bool OnAntesAbrirArquivoCallBack()
+		{
+			AntesArquivoArgs e = new AntesArquivoArgs();
+
+			if (onAntesAbrirArquivo.IsAssigned)
+				onAntesAbrirArquivo.Raise(e);
+
+			return e.Continua;
+		}
+
+		[AllowReversePInvokeCalls]
+		private bool OnAntesGravarArquivoCallBack()
+		{
+			AntesArquivoArgs e = new AntesArquivoArgs();
+
+			if (onAntesAbrirArquivo.IsAssigned)
+				onAntesAbrirArquivo.Raise(e);
+
+			return e.Continua;
+		}
+
+		[AllowReversePInvokeCalls]
+		private string OnCryptCallBack(string value)
+		{
+			OnCryptArgs e = new OnCryptArgs(value);
+
+			if (onCrypt.IsAssigned)
+				onCrypt.Raise(e);
+
+			return ToUTF8(e.Resposta);
+		}
+
+		[AllowReversePInvokeCalls]
+		private string OnDeCryptCallBack(string value)
+		{
+			OnDeCryptArgs e = new OnDeCryptArgs(value);
+
+			if (onDeCrypt.IsAssigned)
+				onDeCrypt.Raise(e);
+
+			return ToUTF8(e.Resposta);
+		}
+
+		[AllowReversePInvokeCalls]
+		private void OnDepoisAbrirArquivoCallBack()
+		{
+
+			if (onDepoisAbrirArquivo.IsAssigned)
+				onDepoisAbrirArquivo.Raise();
+		}
+
+		[AllowReversePInvokeCalls]
+		private void OnDepoisGravarArquivoCallBack()
+		{
+
+			if (onDepoisGravarArquivo.IsAssigned)
+				onDepoisGravarArquivo.Raise();
+		}
+
+		[AllowReversePInvokeCalls]
 		private string OnGetChaveCallBack()
 		{
 			ChaveEventArgs e = new ChaveEventArgs();
@@ -289,7 +461,30 @@ namespace ACBrFramework.AAC
 			if (onGetChave.IsAssigned)
 				onGetChave.Raise(e);
 
-			return e.Chave;
+			return ToUTF8(e.Chave);
+		}
+
+		[AllowReversePInvokeCalls]
+		private void OnVerificarRecomporNumSerieCallBack(string NumSerie, double ValorGT, ref int CRO, ref int CNI)
+		{
+			VerificarRecomporNumSerieArgs e = new VerificarRecomporNumSerieArgs(NumSerie, ValorGT);
+	
+			if (onVerificarRecomporNumSerie.IsAssigned)
+				onVerificarRecomporNumSerie.Raise(e);
+
+			CRO = e.CRO;
+			CNI = e.CNI;
+		}
+
+		[AllowReversePInvokeCalls]
+		private double OnVerificarRecomporValorGTCallBack(string NumSerie)
+		{
+			VerificarRecomporValorGTArgs e = new VerificarRecomporValorGTArgs(NumSerie);
+
+			if (onVerificarRecomporValorGT.IsAssigned)
+				onVerificarRecomporValorGT.Raise(e);
+
+			return e.ValorGT;
 		}
 
 		#endregion EventHandlers
