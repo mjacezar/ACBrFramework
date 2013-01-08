@@ -995,6 +995,9 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_GetAliquota(IntPtr ecfHandle, ref AliquotaRec aliquota, int index);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetALCount(IntPtr ecfHandle, ref int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_CarregaAliquotas(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
@@ -1017,6 +1020,9 @@ namespace ACBrFramework.ECF
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetFormaPagamento(IntPtr ecfHandle, ref FormaPagamentoRec formaPagamento, int index);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetFPGCount(IntPtr ecfHandle, ref int value);
+		
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_CarregaFormasPagamento(IntPtr ecfHandle);
 
@@ -1058,6 +1064,12 @@ namespace ACBrFramework.ECF
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetComprovanteNaoFiscal(IntPtr ecfHandle, ref ComprovanteNaoFiscalRec comprovanteNaoFiscal, int index);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetCNFCount(IntPtr ecfHandle, ref int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_AchaCNFDescricao(IntPtr ecfHandle, ref ComprovanteNaoFiscalRec comprovanteNaoFiscal, string descricao, bool busca, bool ignore);
+		
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_CarregaComprovantesNaoFiscais(IntPtr ecfHandle);
 

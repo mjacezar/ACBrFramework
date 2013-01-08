@@ -4284,23 +4284,39 @@ begin
 
    try
 
-      if (index >= 0) and (index < ecfHandle^.ECF.Aliquotas.Count) then
-      begin
-              aliquota := ecfHandle^.ECF.Aliquotas[index];
+   aliquota := ecfHandle^.ECF.Aliquotas[index];
+   StrPLCopy(retAliquota.Indice, aliquota.Indice, 4);
+   retAliquota.Aliquota := aliquota.Aliquota;
+   retAliquota.Tipo := aliquota.Tipo;
+   retAliquota.Total := aliquota.Total;
+   retAliquota.Sequencia := aliquota.Sequencia;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
 
-              StrPLCopy(retAliquota.Indice, aliquota.Indice, 4);
-              retAliquota.Aliquota := aliquota.Aliquota;
-              retAliquota.Tipo := aliquota.Tipo;
-              retAliquota.Total := aliquota.Total;
-              retAliquota.Sequencia := aliquota.Sequencia;
-              Result := 0;
+Function ECF_GetALCount(const ecfHandle: PECFHandle; var value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
 
-      end
-      else
-      begin
-              Result := -3;
-      end;
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
 
+   try
+   if Assigned(ecfHandle^.ECF.Aliquotas) then
+   begin
+     value := ecfHandle^.ECF.Aliquotas.Count;
+     Result := 1;
+   end
+   else
+     Result := 0;
    except
      on exception : Exception do
      begin
@@ -4516,6 +4532,32 @@ begin
    end;
 end;
 
+Function ECF_GetFPGCount(const ecfHandle: PECFHandle; var value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+    if Assigned(ecfHandle^.ECF.FormasPagamento) then
+   begin
+     value := ecfHandle^.ECF.FormasPagamento.Count;
+     Result := 1;
+   end
+   else
+     Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
 Function ECF_CarregaFormasPagamento(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -4548,7 +4590,7 @@ begin
   end;
 
    try
-      ecfHandle^.ECF.LerTotaisFormaPagamento ;
+      ecfHandle^.ECF.LerTotaisFormaPagamento;
       Result := ecfHandle^.ECF.FormasPagamento.Count;
    except
      on exception : Exception do
@@ -4899,6 +4941,32 @@ begin
    end;
 end;
 
+Function ECF_GetCNFCount(const ecfHandle: PECFHandle; var value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+    if Assigned(ecfHandle^.ECF.ComprovantesNaoFiscais) then
+   begin
+     value := ecfHandle^.ECF.ComprovantesNaoFiscais.Count;
+     Result := 1;
+   end
+   else
+     Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
 Function ECF_CarregaComprovantesNaoFiscais(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
@@ -4932,7 +5000,7 @@ begin
 
    try
      ecfHandle^.ECF.LerTotaisComprovanteNaoFiscal;
-     Result := ecfHandle^.ECF.Aliquotas.Count;
+     Result := ecfHandle^.ECF.ComprovantesNaoFiscais.Count;
    except
      on exception : Exception do
      begin
@@ -5045,36 +5113,32 @@ begin
    end;
 end;
 
-{
-Function ECF_AchaCNFDescricao( Descricao : String ;  var retorno : pchar  ) : Integer ;  cdecl;  export;
-   var CNF    : TACBrECFComprovanteNaoFiscal  ;
-       vinc   : string;
-
+Function ECF_AchaCNFDescricao(const ecfHandle: PECFHandle; var retComprovanteNaoFiscal : TComprovanteNaoFiscalRec; const descricao : pChar;
+                              const busca, ignore : Boolean) : Integer ;  cdecl;  export;
+var
+CNF    : TACBrECFComprovanteNaoFiscal;
 begin
-   if ECF = nil then
-    begin
+
+   if (ecfHandle = nil) then
+   begin
       Result := -2;
-      Exit ;
-    end;
+      Exit;
+   end;
 
    try
-      CNF := ecfHandle^.ECF.AchaCNFDescricao( Descricao, False  ) ;
-
-      if CNF <> nil then
-      begin
-         Vinc := ' ';
-         If CNF.PermiteVinculado then
-           Vinc := 'V';
-
-         retorno := pchar(padL(CNF.Indice,4) +
-                          Vinc+
-                          padL( CNF.Descricao, 30));
-      end
-      else
-         retorno := pchar(padL('-1',4));
-
-      Result := 0 ;
-
+   CNF := ecfHandle^.ECF.AchaCNFDescricao(descricao, busca, ignore);
+   if CNF <> nil then
+   Begin
+   StrPLCopy(retComprovanteNaoFiscal.Indice, CNF.Indice, 4);
+   StrPLCopy(retComprovanteNaoFiscal.Descricao, CNF.Descricao, 30);
+   retComprovanteNaoFiscal.PermiteVinculado := CNF.PermiteVinculado;
+   StrPLCopy(retComprovanteNaoFiscal.FormaPagamento, CNF.FormaPagamento, 4);
+   retComprovanteNaoFiscal.Total := CNF.Total;
+   retComprovanteNaoFiscal.Contador := CNF.Contador;
+   Result := 1;
+   end
+   else
+   Result := 0;
    except
      on exception : Exception do
      begin
@@ -5083,8 +5147,6 @@ begin
      end
    end;
 end;
-
-}
 
 {%endregion}
 
@@ -7002,7 +7064,8 @@ ECF_AbreCupomVinculado, ECF_AbreCupomVinculadoCNF,
 
 { Aliquotas }
 
-ECF_GetAliquota, ECF_CarregaAliquotas, ECF_LerTotaisAliquota,
+ECF_GetAliquota, ECF_GetALCount,
+ECF_CarregaAliquotas, ECF_LerTotaisAliquota,
 ECF_GetAliquotasStr, ECF_LerTotaisAliquotaStr,
 ECF_ProgramaAliquota, ECF_AchaIcmsAliquota,
 
@@ -7010,13 +7073,14 @@ ECF_ProgramaAliquota, ECF_AchaIcmsAliquota,
 
 ECF_GetFormaPagamento, ECF_CarregaFormasPagamento, ECF_LerTotaisFormaPagamento,
 ECF_GetFormasPagamentoStr, ECF_LerTotaisFormaPagamentoStr, ECF_ProgramaFormaPagamento,
-ECF_AchaFPGDescricao, ECF_AchaFPGIndice,
+ECF_AchaFPGDescricao, ECF_AchaFPGIndice, ECF_GetFPGCount,
 
 { Comprovante Não Fiscal }
 
 ECF_GetComprovanteNaoFiscal, ECF_CarregaComprovantesNaoFiscais,
 ECF_LerTotaisComprovanteNaoFiscal, ECF_ProgramaComprovanteNaoFiscal,
-ECF_ComprovantesNaoFiscais, ECF_LerTotaisComprovante, {ECF_AchaCNFDescricao,}
+ECF_ComprovantesNaoFiscais, ECF_LerTotaisComprovante, ECF_AchaCNFDescricao,
+ECF_GetCNFCount,
 
 ECF_TestaPodeAbrirCupom, ECF_Sangria, ECF_Suprimento,
 ECF_AbreNaoFiscal, ECF_RegistraItemNaoFiscal, ECF_SubtotalizaNaoFiscal, ECF_EfetuaPagamentoNaoFiscal,

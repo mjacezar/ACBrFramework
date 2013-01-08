@@ -1210,17 +1210,9 @@ namespace ACBrFramework.ECF
 			int ret = ACBrECFInterop.ECF_PreparaTEF(this.Handle);
 			CheckResult(ret);
 
-			ret = ACBrECFInterop.ECF_LerTotaisAliquota(this.Handle);
-			CheckResult(ret);
-			CarregaAliquotas(ret);
-
-			ret = ACBrECFInterop.ECF_LerTotaisFormaPagamento(this.Handle);
-			CheckResult(ret);
-			CarregaFormasPagamento(ret);
-
-			ret = ACBrECFInterop.ECF_LerTotaisComprovanteNaoFiscal(this.Handle);
-			CheckResult(ret);
-			CarregaComprovantesNaoFiscais(ret);
+			CarregaAliquotas(GetInt32(ACBrECFInterop.ECF_GetALCount));
+			CarregaFormasPagamento(GetInt32(ACBrECFInterop.ECF_GetFPGCount));
+			CarregaComprovantesNaoFiscais(GetInt32(ACBrECFInterop.ECF_GetCNFCount));
 		}
 
 		public void TestaPodeAbrirCupom()
@@ -2062,6 +2054,11 @@ namespace ACBrFramework.ECF
 			return AchaFPGDescricao(descricao, true, true);
 		}
 
+		public FormaPagamento AchaFPGDescricao(string descricao, bool buscaExata)
+		{
+			return AchaFPGDescricao(descricao, buscaExata, true);
+		}
+
 		public FormaPagamento AchaFPGDescricao(string descricao, bool buscaExata, bool ignoreCase)
 		{
 			ACBrECFInterop.FormaPagamentoRec FormaRec = new ACBrECFInterop.FormaPagamentoRec();
@@ -2158,6 +2155,38 @@ namespace ACBrFramework.ECF
 
 		#region Comprovantes Não Fiscal
 
+		public ComprovanteNaoFiscal AchaCNFDescricao(string descricao)
+		{
+			return AchaCNFDescricao(descricao, true, true);
+		}
+
+		public ComprovanteNaoFiscal AchaCNFDescricao(string descricao, bool buscaExata)
+		{
+			return AchaCNFDescricao(descricao, buscaExata, true);
+		}
+
+		public ComprovanteNaoFiscal AchaCNFDescricao(string descricao, bool buscaExata, bool ignoreCase)
+		{
+			ACBrECFInterop.ComprovanteNaoFiscalRec record = new ACBrECFInterop.ComprovanteNaoFiscalRec();
+			int ret = ACBrECFInterop.ECF_AchaCNFDescricao(this.Handle, ref record, ToUTF8(descricao), buscaExata, ignoreCase);
+			CheckResult(ret);
+
+			if (ret == 0)
+				return null;
+			else
+			{
+				ComprovanteNaoFiscal comprovanteNaoFiscal = new ComprovanteNaoFiscal();
+				comprovanteNaoFiscal.Indice = FromUTF8(record.Indice);
+				comprovanteNaoFiscal.Descricao = FromUTF8(record.Descricao);
+				comprovanteNaoFiscal.PermiteVinculado = record.PermiteVinculado;
+				comprovanteNaoFiscal.FormaPagamento = FromUTF8(record.FormaPagamento);
+				comprovanteNaoFiscal.Total = FromUTF8(record.Total);
+				comprovanteNaoFiscal.Contador = record.Contador;
+
+				return comprovanteNaoFiscal;
+			}
+		}
+
 		public void CarregaComprovantesNaoFiscais()
 		{
 			int count = ACBrECFInterop.ECF_CarregaComprovantesNaoFiscais(this.Handle);
@@ -2180,7 +2209,7 @@ namespace ACBrFramework.ECF
 				comprovanteNaoFiscal.Descricao = FromUTF8(record.Descricao);
 				comprovanteNaoFiscal.PermiteVinculado = record.PermiteVinculado;
 				comprovanteNaoFiscal.FormaPagamento = FromUTF8(record.FormaPagamento);
-				comprovanteNaoFiscal.Total = Convert.ToDecimal(record.Total);
+				comprovanteNaoFiscal.Total = FromUTF8(record.Total);
 				comprovanteNaoFiscal.Contador = record.Contador;
 
 				comprovantesNaoFiscais[i] = comprovanteNaoFiscal;
