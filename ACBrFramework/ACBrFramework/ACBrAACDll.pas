@@ -10,13 +10,37 @@ uses
   ACBrUtil;
 
 { Ponteiros de função }
+type TAntesArquivoCallback = function () : Boolean; cdecl;
+type TNoArgumentsCallback = procedure(); cdecl;
+type TCryptCallback = function(value : PChar) : PChar; cdecl;
 type TGetChaveCallback = function () : PChar; cdecl;
+type TVerificarRecomporNumSerieCallback = procedure(const NumSerie: String; const ValorGT: Double; var CRO, CNI: Integer); cdecl;
+type TVerificarRecomporValorGTCallback = function(value : PChar) : Double; cdecl;
 
 {Classe para armazenar EventHandlers do componente }
 type TEventHandlers = class
+
      ChaveCriptografia : String;
+
+     OnAntesAbrirArquivoCallback : TAntesArquivoCallback;
+     OnAntesGravarArquivoCallback : TAntesArquivoCallback;
+     OnCryptCallback : TCryptCallback;
+     OnDeCryptCallback : TCryptCallback;
+     OnDepoisAbrirArquivoCallback : TNoArgumentsCallback;
+     OnDepoisGravarArquivoCallback : TNoArgumentsCallback;
      OnGetChaveCallback : TGetChaveCallback;
+     VerificarRecomporNumSerieCallback : TVerificarRecomporNumSerieCallback;
+     VerificarRecomporValorGTCallback :  TVerificarRecomporValorGTCallback;
+
+     procedure OnAntesAbrirArquivo(var Continua : Boolean);
+     procedure OnAntesGravarArquivo(var Continua : Boolean);
+     procedure OnCrypt(ConteudoArquivo: AnsiString; var Resposta: AnsiString);
+     procedure OnDeCrypt(ConteudoCriptografado: AnsiString; var Resposta: AnsiString);
+     procedure OnDepoisAbrirArquivo(Sender : TObject);
+     procedure OnDepoisGravarArquivo(Sender: TObject);
      procedure OnGetChave(var Chave: AnsiString);
+     procedure VerificarRecomporNumSerie(const NumSerie: String; const ValorGT: Double; var CRO: Integer; var CNI: Integer);
+     procedure VerificarRecomporValorGT(const NumSerie: String; var ValorGT: Double);
 end;
 
 {Handle para o componente TACBrAAC}
@@ -3057,7 +3081,37 @@ end;
 
 {%endregion}
 
-{%region Eventos}
+{%region EventHandlers}
+
+procedure TEventHandlers.OnAntesAbrirArquivo(var Continua : Boolean);
+begin
+  Continua :=  OnAntesAbrirArquivoCallback();
+end;
+
+procedure TEventHandlers.OnAntesGravarArquivo(var Continua : Boolean);
+begin
+  Continua :=  OnAntesGravarArquivoCallback();
+end;
+
+procedure TEventHandlers.OnCrypt(ConteudoArquivo: AnsiString; var Resposta: AnsiString);
+begin
+  Resposta :=  OnCryptCallback(pChar(ConteudoArquivo));
+end;
+
+procedure TEventHandlers.OnDeCrypt(ConteudoCriptografado: AnsiString; var Resposta: AnsiString);
+begin
+  Resposta :=  OnCryptCallback(pChar(ConteudoCriptografado));
+end;
+
+procedure TEventHandlers.OnDepoisAbrirArquivo(Sender : TObject);
+begin
+  OnDepoisAbrirArquivoCallback();
+end;
+
+procedure TEventHandlers.OnDepoisGravarArquivo(Sender : TObject);
+begin
+  OnDepoisGravarArquivoCallback();
+end;
 
 procedure TEventHandlers.OnGetChave(var Chave: AnsiString);
 begin
@@ -3065,6 +3119,216 @@ begin
    Chave :=  ChaveCriptografia
   else
     Chave:= OnGetChaveCallback();
+end;
+
+procedure TEventHandlers.VerificarRecomporNumSerie(const NumSerie: String; const ValorGT: Double; var CRO: Integer; var CNI: Integer);
+var
+  retCRO, retCNI : Integer;
+begin
+  VerificarRecomporNumSerieCallback(pChar(NumSerie), ValorGT, retCRO, retCNI);
+  CRO := retCRO;
+  CNI := retCNI;
+end;
+
+procedure TEventHandlers.VerificarRecomporValorGT(const NumSerie: String; var ValorGT: Double);
+begin
+  ValorGT := VerificarRecomporValorGTCallback(pChar(NumSerie));
+end;
+
+{%endregion}
+
+{%region Set Eventos}
+
+Function AAC_SetOnAntesAbrirArquivo(const aacHandle: PAACHandle; const method : TAntesArquivoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if Assigned(method) then
+     begin
+     aacHandle^.AAC.OnAntesAbrirArquivo := aacHandle^.EventHandlers.OnAntesAbrirArquivo;
+     aacHandle^.EventHandlers.OnAntesAbrirArquivoCallback := method;
+     Result := 0;
+     end
+     else
+     begin
+        aacHandle^.AAC.OnAntesAbrirArquivo := nil;
+        aacHandle^.EventHandlers.OnAntesAbrirArquivoCallback := nil;
+        Result := 0;
+     end;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_SetOnAntesGravarArquivo(const aacHandle: PAACHandle; const method : TAntesArquivoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if Assigned(method) then
+     begin
+     aacHandle^.AAC.OnAntesGravarArquivo := aacHandle^.EventHandlers.OnAntesGravarArquivo;
+     aacHandle^.EventHandlers.OnAntesGravarArquivoCallback := method;
+     Result := 0;
+     end
+     else
+     begin
+        aacHandle^.AAC.OnAntesGravarArquivo := nil;
+        aacHandle^.EventHandlers.OnAntesGravarArquivoCallback := nil;
+        Result := 0;
+     end;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_SetOnCrypt(const aacHandle: PAACHandle; const method : TCryptCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if Assigned(method) then
+     begin
+     aacHandle^.AAC.OnCrypt := aacHandle^.EventHandlers.OnCrypt;
+     aacHandle^.EventHandlers.OnCryptCallback := method;
+     Result := 0;
+     end
+     else
+     begin
+        aacHandle^.AAC.OnCrypt := nil;
+        aacHandle^.EventHandlers.OnCryptCallback := nil;
+        Result := 0;
+     end;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_SetOnDeCrypt(const aacHandle: PAACHandle; const method : TCryptCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if Assigned(method) then
+     begin
+     aacHandle^.AAC.OnDeCrypt := aacHandle^.EventHandlers.OnDeCrypt;
+     aacHandle^.EventHandlers.OnDeCryptCallback := method;
+     Result := 0;
+     end
+     else
+     begin
+        aacHandle^.AAC.OnDeCrypt := nil;
+        aacHandle^.EventHandlers.OnDeCryptCallback := nil;
+        Result := 0;
+     end;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_SetOnDepoisAbrirArquivo(const aacHandle: PAACHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if Assigned(method) then
+     begin
+     aacHandle^.AAC.OnDepoisAbrirArquivo := aacHandle^.EventHandlers.OnDepoisAbrirArquivo;
+     aacHandle^.EventHandlers.OnDepoisAbrirArquivoCallback := method;
+     Result := 0;
+     end
+     else
+     begin
+        aacHandle^.AAC.OnDepoisAbrirArquivo := nil;
+        aacHandle^.EventHandlers.OnDepoisAbrirArquivoCallback := nil;
+        Result := 0;
+     end;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_SetOnDepoisGravarArquivo(const aacHandle: PAACHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if Assigned(method) then
+     begin
+     aacHandle^.AAC.OnDepoisGravarArquivo := aacHandle^.EventHandlers.OnDepoisGravarArquivo;
+     aacHandle^.EventHandlers.OnDepoisAbrirArquivoCallback := method;
+     Result := 0;
+     end
+     else
+     begin
+        aacHandle^.AAC.OnDepoisGravarArquivo := nil;
+        aacHandle^.EventHandlers.OnDepoisGravarArquivoCallback := nil;
+        Result := 0;
+     end;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
 end;
 
 Function AAC_SetOnGetChave(const aacHandle: PAACHandle; const method : TGetChaveCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -3087,6 +3351,70 @@ begin
      begin
         aacHandle^.AAC.OnGetChave := nil;
         aacHandle^.EventHandlers.OnGetChaveCallback := nil;
+        Result := 0;
+     end;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_SetVerificarRecomporNumSerie(const aacHandle: PAACHandle; const method : TVerificarRecomporNumSerieCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if Assigned(method) then
+     begin
+     aacHandle^.AAC.VerificarRecomporNumSerie := aacHandle^.EventHandlers.VerificarRecomporNumSerie;
+     aacHandle^.EventHandlers.VerificarRecomporNumSerieCallback := method;
+     Result := 0;
+     end
+     else
+     begin
+        aacHandle^.AAC.VerificarRecomporNumSerie := nil;
+        aacHandle^.EventHandlers.VerificarRecomporNumSerieCallback := nil;
+        Result := 0;
+     end;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_SetVerificarRecomporValorGT(const aacHandle: PAACHandle; const method : TVerificarRecomporValorGTCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if Assigned(method) then
+     begin
+     aacHandle^.AAC.VerificarRecomporValorGT := aacHandle^.EventHandlers.VerificarRecomporValorGT;
+     aacHandle^.EventHandlers.VerificarRecomporValorGTCallback := method;
+     Result := 0;
+     end
+     else
+     begin
+        aacHandle^.AAC.VerificarRecomporValorGT := nil;
+        aacHandle^.EventHandlers.VerificarRecomporValorGTCallback := nil;
         Result := 0;
      end;
   except
@@ -3198,9 +3526,10 @@ AAC_IdentPaf_ArquivoListaAutenticados_GetMD5,
 AAC_IdentPaf_ArquivoListaAutenticados_SetMD5,
 
 {Eventos}
-AAC_SetOnGetChave;
-
-
+AAC_SetOnAntesAbrirArquivo, AAC_SetOnAntesGravarArquivo,
+AAC_SetOnCrypt, AAC_SetOnDeCrypt, AAC_SetOnGetChave,
+AAC_SetOnDepoisAbrirArquivo, AAC_SetOnDepoisGravarArquivo,
+AAC_SetVerificarRecomporNumSerie, AAC_SetVerificarRecomporValorGT;
 
 end.
 

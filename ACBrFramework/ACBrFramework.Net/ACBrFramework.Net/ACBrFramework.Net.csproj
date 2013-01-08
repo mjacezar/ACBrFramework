@@ -137,8 +137,13 @@
     <Compile Include="AAC\Classes\IdenticacaoPaf.cs" />
     <Compile Include="AAC\Classes\InfoPaf.cs" />
     <Compile Include="AAC\Classes\ArquivoListaAutenticados.cs" />
+    <Compile Include="AAC\Eventos\OnCryptArgs.cs" />
+    <Compile Include="AAC\Eventos\OnDeCryptArgs.cs" />
+    <Compile Include="AAC\Eventos\VerificarRecomporNumSerieArgs.cs" />
+    <Compile Include="AAC\Eventos\VerificarRecomporValorGTArgs.cs" />
     <Compile Include="ACBrEventHandler.cs" />
     <Compile Include="ACBrInteropEventHandlerBase.cs" />
+    <Compile Include="AAC\Eventos\AntesArquivoArgs.cs" />
     <Compile Include="ChaveEventArgs.cs" />
     <Compile Include="ACBrComponent.cs" />
     <Compile Include="ACBrComposedComponent.cs" />

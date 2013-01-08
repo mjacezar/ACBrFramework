@@ -21,7 +21,23 @@ namespace ACBrFramework.AAC
 		#region Interop Types
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate bool AntesArquivoCallback();
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void NoArgumentsCallback();
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate string CryptCallback(string value);
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate string OnGetChaveCallback();
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void VerificarRecomporNumSerieCallback(string NumSerie, double ValorGT, ref int CRO, ref int CNI);
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate double VerificarRecomporValorGTCallback(string NumSerie);
+
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct TECFAutorizado
@@ -495,7 +511,32 @@ namespace ACBrFramework.AAC
 		#region Events
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int AAC_SetOnGetChave(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+		public static extern int AAC_SetOnAntesAbrirArquivo(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] AntesArquivoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_SetAntesGravarArquivo(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] AntesArquivoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_SetOnCrypt(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] CryptCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_SetOnDeCrypt(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] CryptCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_SetOnDepoisAbrirArquivo(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] NoArgumentsCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_SetOnDepoisGravarArquivo(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] NoArgumentsCallback method);
+		
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_SetOnGetChave(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] OnGetChaveCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_SetVerificarRecomporNumSerie(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] VerificarRecomporNumSerieCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_SetVerificarRecomporValor(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] VerificarRecomporValorGTCallback method);
+
 
 		#endregion Events
 
