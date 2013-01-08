@@ -41,6 +41,18 @@ Símbolo : Significado
 
 Changelog
 
+08/01/2012
+
+-- ACBrFramework 0.9.1.38 --
+[+] Adicionado AchaCNFDescricao - ACBrECF - Rafael Dias.
+[+] Adicionado GetFPGCount - ACBrECF - Rafael Dias.
+[+] Adicionado GetALCount - ACBrECF - Rafael Dias.
+[+] Adicionado GetCNFCount - ACBrECF - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.1.38 --
+[+] Adicionado AchaCNFDescricao - ACBrECF - Rafael Dias.
+
+
 07/01/2012
 
 -- ACBrFramework 0.9.1.37 --
