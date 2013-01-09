@@ -1081,6 +1081,168 @@ namespace ACBrFramework.ECF
 
 		#endregion Comprovante não fiscal
 
+		#region DadosReducaoZClass
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCOO(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCFD(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCancelamentoISSQN(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetGNFC(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCRO(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetValorVendaBruta(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetAcrescimoICMS(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetDescontoICMS(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetNaoTributadoICMS(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCRZ(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetGRG(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetValorGrandeTotal(IntPtr ecfHandle, ref double value);
+		
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetAcrescimoISSQN(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetNaoTributadoISSQN(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetIsentoICMS(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetSubstituicaoTributariaICMS(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetDataDaImpressora(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetTotalOperacaoNaoFiscal(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetDescontoISSQN(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCancelamentoOPNF(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetAcrescimoOPNF(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetDescontoOPNF(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCancelamentoICMS(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetGNF(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetIsentoISSQN(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetSubstituicaoTributariaISSQN(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetVendaLiquida(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCFC(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCCF(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetTotalISSQN(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetTotalICMS(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCDC(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCCDC(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetNCN(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetDataDoMovimento(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetNumeroCOOInicial(IntPtr ecfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetNumeroDoECF(IntPtr ecfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetNumeroDeSerie(IntPtr ecfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetNumeroDeSerieMFD(IntPtr ecfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetNumeroDaLoja(IntPtr ecfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetTotalTroco(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCNFCount(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetCNF(IntPtr ecfHandle, ref ComprovanteNaoFiscalRec record, int value);
+		
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetICMSCount(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetICMS(IntPtr ecfHandle, ref AliquotaRec record, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetRGCount(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetRG(IntPtr ecfHandle, ref RelatorioGerencialRec record, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetISSQNCount(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetISSQN(IntPtr ecfHandle, ref AliquotaRec record, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetFPGCount(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetFPG(IntPtr ecfHandle, ref FormaPagamentoRec record, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_CalculaValoresVirtuais(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_MontaDadosReducaoZ(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+		#endregion DadosReducaoZClass
+
 		#region LeituraMemoriaFiscal
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]

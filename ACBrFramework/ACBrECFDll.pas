@@ -64,7 +64,7 @@ end;
 {Ponteiro para o Handle }
 type PECFHandle = ^TECFHandle;
 
-{Records estilo C utilizados nos retornos das funções}
+{%region Records estilo C utilizados nos retornos das funções}
 
 type TAliquotaRec = record
       Indice    : array[0..3] of char;
@@ -107,62 +107,7 @@ type TRelatorioGerencialRec = record
     Contador  : Integer;
 end;
 
-type TDadosRZRec = record
-     COO: integer;
-     CFD: integer;
-     CancelamentoISSQN: double;
-     GNFC: integer;
-     CRO: integer;
-     ValorVendaBruta: double;
-     TotalizadoresNaoFiscais: array of TComprovanteNaoFiscalRec;
-     TotalizadoresNaoFiscaisLen : integer;
-     ICMS: array of TAliquotaRec;
-     ICMSLen : integer;
-     AcrescimoICMS: double;
-     DescontoICMS: double;
-     NaoTributadoICMS: double;
-     RelatorioGerencial: array of TRelatorioGerencialRec;
-     RelatorioGerencialLen: integer;
-     CRZ: integer;
-     ISSQN: array of TAliquotaRec;
-     ISSQNLen : integer;
-     GRG: integer;
-     ValorGrandeTotal: double;
-     AcrescimoISSQN: double;
-     NaoTributadoISSQN: double;
-     IsentoICMS: double;
-     SubstituicaoTributariaICMS: double;
-     DataDaImpressora: double;
-     TotalOperacaoNaoFiscal: double;
-     DescontoISSQN: double;
-     CancelamentoOPNF: double;
-     AcrescimoOPNF: double;
-     DescontoOPNF: double;
-     CancelamentoICMS: double;
-     GNF: integer;
-     IsentoISSQN: double;
-     SubstituicaoTributariaISSQN: double;
-     VendaLiquida: double;
-     CFC: integer;
-     CCF: integer;
-     TotalISSQN: double;
-     TotalICMS: double;
-     CDC: integer;
-     CCDC: integer;
-     NCN: integer;
-     DataDoMovimento: double;
-     MeiosDePagamento: array of TFormaPagamentoRec;
-     MeiosDePagamentoLen: integer;
-     NumeroCOOInicial: array[0..29] of char;
-     NumeroDoECF: array[0..29] of char;
-     NumeroDeSerie: array[0..29] of char;
-     NumeroDeSerieMFD: array[0..29] of char;
-     NumeroDaLoja: array[0..29] of char;
-     TotalTroco: double;
-end;
-
-{Ponteiro para o Handle }
-type PDadosRZRec = ^TDadosRZRec;
+{%endregion}
 
 implementation
 
@@ -5421,10 +5366,902 @@ begin
 
 end;
 
-Function ECF_GetDadosReducaoZClass(const ecfHandle: PECFHandle; var retDadosRZ : PDadosRZRec) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+{%endregion}
+
+{%region Redução Z Class}
+
+Function ECF_DadosReducaoZClass_GetCOO(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.COO;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetCFD(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.CFD;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetCancelamentoISSQN(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.CancelamentoISSQN;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetGNFC(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.GNFC;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetCRO(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.CRO;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetValorVendaBruta(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.ValorVendaBruta;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetAcrescimoICMS(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.AcrescimoICMS;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetDescontoICMS(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.DescontoICMS;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetNaoTributadoICMS(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.NaoTributadoICMS;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetCRZ(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.CRZ;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetGRG(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.GRG;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetValorGrandeTotal(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.ValorGrandeTotal;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetAcrescimoISSQN(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.AcrescimoISSQN;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetNaoTributadoISSQN(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.NaoTributadoISSQN;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetIsentoICMS(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.IsentoICMS;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetSubstituicaoTributariaICMS(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.SubstituicaoTributariaICMS;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetDataDaImpressora(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.DataDaImpressora;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetTotalOperacaoNaoFiscal(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.TotalOperacaoNaoFiscal;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetDescontoISSQN(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.DescontoISSQN;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetCancelamentoOPNF(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.CancelamentoOPNF;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetAcrescimoOPNF(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.AcrescimoOPNF;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetDescontoOPNF(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.DescontoOPNF;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetCancelamentoICMS(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.CancelamentoICMS;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetGNF(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.GNF;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetIsentoISSQN(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.IsentoISSQN;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetSubstituicaoTributariaISSQN(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.SubstituicaoTributariaISSQN;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetVendaLiquida(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.VendaLiquida;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetCFC(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.CFC;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetCCF(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.CCF;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetTotalISSQN(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.TotalISSQN;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetTotalICMS(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.TotalICMS;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetCDC(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.CDC;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetCCDC(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.CCDC;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetNCN(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.NCN;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetDataDoMovimento(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.DataDoMovimento;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetNumeroCOOInicial(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
-  I : integer;
-  dadosRZ : TACBrECFDadosRZ;
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := ecfHandle^.ECF.DadosReducaoZClass.NumeroCOOInicial;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_DadosReducaoZClass_GetNumeroDoECF(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := ecfHandle^.ECF.DadosReducaoZClass.NumeroDoECF;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_DadosReducaoZClass_GetNumeroDeSerie(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := ecfHandle^.ECF.DadosReducaoZClass.NumeroDeSerie;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_DadosReducaoZClass_GetNumeroDeSerieMFD(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := ecfHandle^.ECF.DadosReducaoZClass.NumeroDeSerieMFD;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_DadosReducaoZClass_GetNumeroDaLoja(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := ecfHandle^.ECF.DadosReducaoZClass.NumeroDaLoja;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_DadosReducaoZClass_GetTotalTroco(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.TotalTroco;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetCNFCount(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.TotalizadoresNaoFiscais.Count;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetCNF(const ecfHandle: PECFHandle; var retComprovanteNaoFiscal : TComprovanteNaoFiscalRec; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  comprovanteNaoFiscal : TACBrECFComprovanteNaoFiscal;
 begin
 
   if (ecfHandle = nil) then
@@ -5435,124 +6272,22 @@ begin
 
    try
 
-      dadosRZ := ecfHandle^.ECF.DadosReducaoZClass;
-
-      New(retDadosRZ);
-      retDadosRZ^.COO :=  dadosRZ.COO;
-      retDadosRZ^.CFD :=  dadosRZ.CFD;
-      retDadosRZ^.CancelamentoISSQN :=  dadosRZ.CancelamentoISSQN;
-      retDadosRZ^.GNFC :=  dadosRZ.GNFC;
-      retDadosRZ^.CRO :=  dadosRZ.CRO;
-      retDadosRZ^.ValorVendaBruta :=  dadosRZ.ValorVendaBruta;
-
-      SetLength(retDadosRZ^.TotalizadoresNaoFiscais, dadosRZ.TotalizadoresNaoFiscais.Count);
-      retDadosRZ^.TotalizadoresNaoFiscaisLen  :=  dadosRZ.TotalizadoresNaoFiscais.Count;
-      for I := 0 to dadosRZ.TotalizadoresNaoFiscais.Count -1 do
+      if (index >= 0) and (index < ecfHandle^.ECF.DadosReducaoZClass.TotalizadoresNaoFiscais.Count) then
       begin
+              comprovanteNaoFiscal := ecfHandle^.ECF.DadosReducaoZClass.TotalizadoresNaoFiscais[index];
 
-           StrPLCopy(retDadosRZ^.TotalizadoresNaoFiscais[I].Indice, dadosRZ.TotalizadoresNaoFiscais[I].Indice, 3);
-           StrPLCopy(retDadosRZ^.TotalizadoresNaoFiscais[I].FormaPagamento, dadosRZ.TotalizadoresNaoFiscais[I].FormaPagamento, 3);
-           StrPLCopy(retDadosRZ^.TotalizadoresNaoFiscais[I].Descricao, dadosRZ.TotalizadoresNaoFiscais[I].Descricao, 30);
-           retDadosRZ^.TotalizadoresNaoFiscais[I].PermiteVinculado := dadosRZ.TotalizadoresNaoFiscais[I].PermiteVinculado;
-           retDadosRZ^.TotalizadoresNaoFiscais[I].Contador := dadosRZ.TotalizadoresNaoFiscais[I].Contador;
-           retDadosRZ^.TotalizadoresNaoFiscais[I].Total := dadosRZ.TotalizadoresNaoFiscais[I].Total;
-
-      end;
-
-      SetLength(retDadosRZ^.ICMS, dadosRZ.ICMS.Count);
-      retDadosRZ^.ICMSLen := dadosRZ.ICMS.Count;
-      for I := 0 to dadosRZ.ICMS.Count -1 do
+              StrPLCopy(retComprovanteNaoFiscal.Indice, comprovanteNaoFiscal.Indice, 4);
+              StrPLCopy(retComprovanteNaoFiscal.Descricao, comprovanteNaoFiscal.Descricao, 30);
+              retComprovanteNaoFiscal.PermiteVinculado := comprovanteNaoFiscal.PermiteVinculado;
+              StrPLCopy(retComprovanteNaoFiscal.FormaPagamento, comprovanteNaoFiscal.FormaPagamento, 4);
+              retComprovanteNaoFiscal.Total := comprovanteNaoFiscal.Total;
+              retComprovanteNaoFiscal.Contador := comprovanteNaoFiscal.Contador;
+              Result := 0;
+      end
+      else
       begin
-
-           StrPLCopy(retDadosRZ^.ICMS[I].Indice, dadosRZ.ICMS[I].Indice, 3);
-           retDadosRZ^.ICMS[I].Aliquota := dadosRZ.ICMS[I].Aliquota;
-           retDadosRZ^.ICMS[I].Sequencia := dadosRZ.ICMS[I].Sequencia;
-           retDadosRZ^.ICMS[I].Tipo := dadosRZ.ICMS[I].Tipo;
-           retDadosRZ^.ICMS[I].Total := dadosRZ.ICMS[I].Total;
-
+              Result := -3;
       end;
-
-
-      retDadosRZ^.AcrescimoICMS :=  dadosRZ.AcrescimoICMS;
-      retDadosRZ^.DescontoICMS :=  dadosRZ.DescontoICMS;
-      retDadosRZ^.NaoTributadoICMS :=  dadosRZ.NaoTributadoICMS;
-
-      SetLength(retDadosRZ^.RelatorioGerencial, dadosRZ.RelatorioGerencial.Count);
-      retDadosRZ^.RelatorioGerencialLen :=  dadosRZ.RelatorioGerencial.Count;
-      for I := 0 to dadosRZ.RelatorioGerencial.Count -1 do
-      begin
-
-           StrPLCopy(retDadosRZ^.RelatorioGerencial[I].Indice, dadosRZ.RelatorioGerencial[I].Indice, 3);
-           StrPLCopy(retDadosRZ^.RelatorioGerencial[I].Descricao, dadosRZ.RelatorioGerencial[I].Descricao, 30);
-           retDadosRZ^.RelatorioGerencial[I].Contador := dadosRZ.RelatorioGerencial[I].Contador;
-
-      end;
-
-
-      retDadosRZ^.CRZ :=  dadosRZ.CRZ;
-
-      SetLength(retDadosRZ^.ISSQN, dadosRZ.ISSQN.Count);
-      retDadosRZ^.ISSQNLen  :=  dadosRZ.ISSQN.Count;
-      for I := 0 to dadosRZ.ISSQN.Count -1 do
-      begin
-
-           StrPLCopy(retDadosRZ^.ISSQN[I].Indice, dadosRZ.ISSQN[I].Indice, 3);
-           retDadosRZ^.ISSQN[I].Aliquota := dadosRZ.ISSQN[I].Aliquota;
-           retDadosRZ^.ISSQN[I].Sequencia := dadosRZ.ISSQN[I].Sequencia;
-           retDadosRZ^.ISSQN[I].Tipo := dadosRZ.ISSQN[I].Tipo;
-           retDadosRZ^.ISSQN[I].Total := dadosRZ.ISSQN[I].Total;
-
-      end;
-
-      retDadosRZ^.GRG :=  dadosRZ.GRG;
-      retDadosRZ^.ValorGrandeTotal :=  dadosRZ.ValorGrandeTotal;
-      retDadosRZ^.AcrescimoISSQN :=  dadosRZ.AcrescimoISSQN;
-      retDadosRZ^.NaoTributadoISSQN :=  dadosRZ.NaoTributadoISSQN;
-      retDadosRZ^.IsentoICMS :=  dadosRZ.IsentoICMS;
-      retDadosRZ^.SubstituicaoTributariaICMS :=  dadosRZ.SubstituicaoTributariaICMS;
-      retDadosRZ^.DataDaImpressora :=  double(dadosRZ.DataDaImpressora);
-      retDadosRZ^.TotalOperacaoNaoFiscal :=  dadosRZ.TotalOperacaoNaoFiscal;
-      retDadosRZ^.DescontoISSQN :=  dadosRZ.DescontoISSQN;
-      retDadosRZ^.CancelamentoOPNF :=  dadosRZ.CancelamentoOPNF;
-      retDadosRZ^.AcrescimoOPNF :=  dadosRZ.AcrescimoOPNF;
-      retDadosRZ^.DescontoOPNF :=  dadosRZ.DescontoOPNF;
-      retDadosRZ^.CancelamentoICMS :=  dadosRZ.CancelamentoICMS;
-      retDadosRZ^.GNF :=  dadosRZ.GNF;
-      retDadosRZ^.IsentoISSQN :=  dadosRZ.IsentoISSQN;
-      retDadosRZ^.SubstituicaoTributariaISSQN :=  dadosRZ.SubstituicaoTributariaISSQN;
-      retDadosRZ^.VendaLiquida :=  dadosRZ.VendaLiquida;
-      retDadosRZ^.CFC :=  dadosRZ.CFC;
-      retDadosRZ^.CCF :=  dadosRZ.CCF;
-      retDadosRZ^.TotalISSQN :=  dadosRZ.TotalISSQN;
-      retDadosRZ^.TotalICMS :=  dadosRZ.TotalICMS;
-      retDadosRZ^.CDC :=  dadosRZ.CDC;
-      retDadosRZ^.CCDC :=  dadosRZ.CCDC;
-      retDadosRZ^.NCN :=  dadosRZ.NCN;
-      retDadosRZ^.DataDoMovimento :=  double(dadosRZ.DataDoMovimento);
-
-      SetLength(retDadosRZ^.MeiosDePagamento, dadosRZ.MeiosDePagamento.Count);
-      retDadosRZ^.MeiosDePagamentoLen :=  dadosRZ.MeiosDePagamento.Count;
-      for I := 0 to dadosRZ.MeiosDePagamento.Count -1 do
-      begin
-
-           StrPLCopy(retDadosRZ^.MeiosDePagamento[I].Indice, dadosRZ.MeiosDePagamento[I].Indice, 3);
-           StrPLCopy(retDadosRZ^.MeiosDePagamento[I].Descricao, dadosRZ.MeiosDePagamento[I].Descricao, 30);
-           retDadosRZ^.MeiosDePagamento[I].PermiteVinculado := dadosRZ.MeiosDePagamento[I].PermiteVinculado;
-           retDadosRZ^.MeiosDePagamento[I].Total := dadosRZ.MeiosDePagamento[I].Total;
-           retDadosRZ^.MeiosDePagamento[I].Data := dadosRZ.MeiosDePagamento[I].Data;
-           StrPLCopy(retDadosRZ^.MeiosDePagamento[I].TipoDoc, dadosRZ.MeiosDePagamento[I].TipoDoc, 30);
-
-      end;
-
-      StrPLCopy(retDadosRZ^.NumeroCOOInicial, dadosRZ.NumeroCOOInicial, 30);
-      StrPLCopy(retDadosRZ^.NumeroDoECF, dadosRZ.NumeroDoECF, 30);
-      StrPLCopy(retDadosRZ^.NumeroDeSerie, dadosRZ.NumeroDeSerie, 30);
-      StrPLCopy(retDadosRZ^.NumeroDeSerieMFD, dadosRZ.NumeroDeSerieMFD, 30);
-      StrPLCopy(retDadosRZ^.NumeroDaLoja, dadosRZ.NumeroDaLoja, 30);
-
-      retDadosRZ^.TotalTroco :=  dadosRZ.TotalTroco;
-
-      Result := 0;
 
    except
      on exception : Exception do
@@ -5563,7 +6298,29 @@ begin
    end;
 end;
 
-Function ECF_DestroyDadosReducaoZClass(const ecfHandle: PECFHandle; var dadosRZ : PDadosRZRec) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_DadosReducaoZClass_GetICMSCount(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.ICMS.Count;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetICMS(const ecfHandle: PECFHandle; var retAliquota : TAliquotaRec; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  aliquota : TACBrECFAliquota;
 begin
 
   if (ecfHandle = nil) then
@@ -5574,9 +6331,69 @@ begin
 
    try
 
-      Dispose(dadosRZ);
-      dadosRZ := nil;
-      Result := 0;
+   aliquota := ecfHandle^.ECF.DadosReducaoZClass.ICMS[index];
+   StrPLCopy(retAliquota.Indice, aliquota.Indice, 4);
+   retAliquota.Aliquota := aliquota.Aliquota;
+   retAliquota.Tipo := aliquota.Tipo;
+   retAliquota.Total := aliquota.Total;
+   retAliquota.Sequencia := aliquota.Sequencia;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetRGCount(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.RelatorioGerencial.Count;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetRG(const ecfHandle: PECFHandle; var retRelatorios : TRelatorioGerencialRec; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  relatorios : TACBrECFRelatorioGerencial;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+
+      if (index >= 0) and (index < ecfHandle^.ECF.DadosReducaoZClass.RelatorioGerencial.Count) then
+      begin
+
+              relatorios := ecfHandle^.ECF.DadosReducaoZClass.RelatorioGerencial[index];
+
+              StrPLCopy(retRelatorios.Indice, relatorios.Indice, 4);
+              StrPLCopy(retRelatorios.Descricao, relatorios.Descricao, 30);
+              retRelatorios.Contador := relatorios.Contador;
+              Result := 0;
+      end
+      else
+      begin
+              Result := -3;
+      end;
 
    except
      on exception : Exception do
@@ -5585,6 +6402,161 @@ begin
         Result := -1;
      end
    end;
+end;
+
+Function ECF_DadosReducaoZClass_GetISSQNCount(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.ISSQN.Count;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetISSQN(const ecfHandle: PECFHandle; var retAliquota : TAliquotaRec; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  aliquota : TACBrECFAliquota;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+
+   aliquota := ecfHandle^.ECF.DadosReducaoZClass.ISSQN[index];
+   StrPLCopy(retAliquota.Indice, aliquota.Indice, 4);
+   retAliquota.Aliquota := aliquota.Aliquota;
+   retAliquota.Tipo := aliquota.Tipo;
+   retAliquota.Total := aliquota.Total;
+   retAliquota.Sequencia := aliquota.Sequencia;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end
+end;
+
+Function ECF_DadosReducaoZClass_GetFPGCount(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   Result := ecfHandle^.ECF.DadosReducaoZClass.MeiosDePagamento.Count;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_GetFPG(const ecfHandle: PECFHandle; var retFormaPagamento : TFormaPagamentoRec; const index : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  formaPagamento : TACBrECFFormaPagamento;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+
+      if (index >= 0) and (index < ecfHandle^.ECF.DadosReducaoZClass.MeiosDePagamento.Count) then
+      begin
+
+              formaPagamento := ecfHandle^.ECF.DadosReducaoZClass.MeiosDePagamento[index];
+
+              StrPLCopy(retFormaPagamento.Indice, formaPagamento.Indice, 4);
+              StrPLCopy(retFormaPagamento.Descricao, formaPagamento.Descricao, 30);
+              retFormaPagamento.PermiteVinculado := formaPagamento.PermiteVinculado;
+              retFormaPagamento.Total := formaPagamento.Total;
+              retFormaPagamento.Data:= formaPagamento.Data;
+              StrPLCopy(retFormaPagamento.TipoDoc, formaPagamento.TipoDoc, 30);
+              Result := 0;
+      end
+      else
+      begin
+              Result := -3;
+      end;
+
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_CalculaValoresVirtuais(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   ecfHandle^.ECF.DadosReducaoZClass.CalculaValoresVirtuais;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
+Function ECF_DadosReducaoZClass_MontaDadosReducaoZ(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := ecfHandle^.ECF.DadosReducaoZClass.MontaDadosReducaoZ;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
 end;
 
 {%endregion}
@@ -7010,44 +7982,29 @@ ECF_GetAtivo,
 
 { Propriedades do Componente }
 ECF_GetAbout, ECF_GetArqLOG, ECF_SetArqLOG,
-
 ECF_GetModelo, ECF_SetModelo, ECF_GetMaxLinhasBuffer, ECF_SetMaxLinhasBuffer,
-
-ECF_GetColunas, ECF_GetAguardandoResposta, ECF_GetComandoEnviado, ECF_GetRespostaComando, ECF_GetComandoLOG, ECF_SetComandoLOG,
-ECF_GetAguardaImpressao, ECF_SetAguardaImpressao,
-
+ECF_GetColunas, ECF_GetAguardandoResposta, ECF_GetComandoEnviado, ECF_GetRespostaComando,
+ECF_GetComandoLOG, ECF_SetComandoLOG, ECF_GetAguardaImpressao, ECF_SetAguardaImpressao,
 ECF_GetModeloStr, ECF_GetRFDID, ECF_GetDataHora, ECF_GetDataHoraStr,
 ECF_GetNumCupom, ECF_GetNumCOO, ECF_GetNumLoja, ECF_GetNumECF, ECF_GetNumSerie, ECF_GetNumVersao,
-
 ECF_GetDataMovimento, ECF_GetDataMovimentoStr, ECF_GetDataHoraSB, ECF_GetDataHoraSBStr,
 ECF_GetCNPJ, ECF_GetIE, ECF_GetIM, ECF_GetCliche, ECF_GetUsuarioAtual, ECF_GetSubModeloECF,
-
 ECF_GetPAF, ECF_GetNumCRZ, ECF_GetNumCRO, ECF_GetNumCCF, ECF_GetNumGNF, ECF_GetNumGRG, ECF_GetNumCDC,
 ECF_GetNumCOOInicial, ECF_GetVendaBruta, ECF_GetGrandeTotal,
 ECF_GetTotalCancelamentos, ECF_GetTotalDescontos, ECF_GetTotalAcrescimos, ECF_GetTotalTroco,
 ECF_GetTotalSubstituicaoTributaria, ECF_GetTotalNaoTributado, ECF_GetTotalIsencao,
-
 ECF_GetTotalCancelamentosISSQN, ECF_GetTotalDescontosISSQN,
 ECF_GetTotalAcrescimosISSQN, ECF_GetTotalSubstituicaoTributariaISSQN,
 ECF_GetTotalNaoTributadoISSQN, ECF_GetTotalIsencaoISSQN, ECF_GetTotalNaoFiscal,
-
 ECF_GetNumUltItem, ECF_GetArredondaPorQtd, ECF_SetArredondaPorQtd,
 ECF_GetArredondaItemMFD, ECF_SetArredondaItemMFD, ECF_GetIgnorarTagsFormatacao, ECF_SetIgnorarTagsFormatacao,
-
 ECF_GetEmLinha, ECF_GetPoucoPapel, ECF_GetEstado, ECF_GetHorarioVerao, ECF_GetArredonda,
 ECF_GetTermica, ECF_GetMFD, ECF_GetMFAdicional, ECF_GetIdentificaConsumidorRodape,
-ECF_GetPaginaDeCodigo, ECF_SetPaginaDeCodigo,
-
-ECF_GetSubTotal, ECF_GetTotalPago, ECF_GetGavetaAberta,
-
-ECF_GetChequePronto,
-ECF_GetIntervaloAposComando, ECF_SetIntervaloAposComando,
-ECF_GetDescricaoGrande, ECF_SetDescricaoGrande,
-ECF_GetGavetaSinalInvertido, ECF_SetGavetaSinalInvertido,
-ECF_GetOperador, ECF_SetOperador,
-ECF_GetLinhasEntreCupons, ECF_SetLinhasEntreCupons,
-ECF_GetDecimaisPreco, ECF_SetDecimaisPreco,
-ECF_GetDecimaisQtd, ECF_SetDecimaisQtd,
+ECF_GetPaginaDeCodigo, ECF_SetPaginaDeCodigo, ECF_GetSubTotal, ECF_GetTotalPago, ECF_GetGavetaAberta,
+ECF_GetChequePronto, ECF_GetIntervaloAposComando, ECF_SetIntervaloAposComando,
+ECF_GetDescricaoGrande, ECF_SetDescricaoGrande, ECF_GetGavetaSinalInvertido, ECF_SetGavetaSinalInvertido,
+ECF_GetOperador, ECF_SetOperador, ECF_GetLinhasEntreCupons, ECF_SetLinhasEntreCupons,
+ECF_GetDecimaisPreco, ECF_SetDecimaisPreco, ECF_GetDecimaisQtd, ECF_SetDecimaisQtd,
 
 { Métodos do Componente }
 
@@ -7056,10 +8013,8 @@ ECF_DescontoAcrescimoItemAnterior,  ECF_SubtotalizaCupom,
 ECF_EfetuaPagamento, ECF_EstornaPagamento, ECF_FechaCupom, ECF_CancelaCupom,
 ECF_CancelaItemVendido, ECF_CancelaItemVendidoParcial,
 ECF_CancelaDescontoAcrescimoItem, ECF_CancelaDescontoAcrescimoSubTotal,
-
 ECF_LeituraX, ECF_LinhaCupomVinculado, ECF_PreparaTEF,
 ECF_FechaRelatorio, ECF_PulaLinhas, ECF_CortaPapel,
-
 ECF_AbreCupomVinculado, ECF_AbreCupomVinculadoCNF,
 
 { Aliquotas }
@@ -7129,8 +8084,40 @@ ECF_LeituraMemoriaFiscalArquivoReducao, ECF_LeituraMemoriaFiscalArquivoData,
 { Reduzão Z }
 
 ECF_GetDadosReducaoZ, ECF_GetDadosUltimaReducaoZ,
-ECF_GetDadosReducaoZClass, ECF_DestroyDadosReducaoZClass,
 ECF_ReducaoZ,
+
+{ Redução Z Class }
+ECF_DadosReducaoZClass_GetCOO, ECF_DadosReducaoZClass_GetCFD,
+ECF_DadosReducaoZClass_GetCancelamentoISSQN, ECF_DadosReducaoZClass_GetGNFC,
+ECF_DadosReducaoZClass_GetCRO, ECF_DadosReducaoZClass_GetValorVendaBruta,
+ECF_DadosReducaoZClass_GetAcrescimoICMS, ECF_DadosReducaoZClass_GetDescontoICMS,
+ECF_DadosReducaoZClass_GetNaoTributadoICMS, ECF_DadosReducaoZClass_GetCRZ,
+ECF_DadosReducaoZClass_GetGRG, ECF_DadosReducaoZClass_GetValorGrandeTotal,
+ECF_DadosReducaoZClass_GetAcrescimoISSQN, ECF_DadosReducaoZClass_GetNaoTributadoISSQN,
+ECF_DadosReducaoZClass_GetIsentoICMS, ECF_DadosReducaoZClass_GetSubstituicaoTributariaICMS,
+ECF_DadosReducaoZClass_GetDataDaImpressora, ECF_DadosReducaoZClass_GetTotalOperacaoNaoFiscal,
+ECF_DadosReducaoZClass_GetDescontoISSQN, ECF_DadosReducaoZClass_GetCancelamentoOPNF,
+ECF_DadosReducaoZClass_GetAcrescimoOPNF, ECF_DadosReducaoZClass_GetDescontoOPNF,
+ECF_DadosReducaoZClass_GetCancelamentoICMS, ECF_DadosReducaoZClass_GetGNF,
+ECF_DadosReducaoZClass_GetIsentoISSQN, ECF_DadosReducaoZClass_GetSubstituicaoTributariaISSQN,
+ECF_DadosReducaoZClass_GetVendaLiquida, ECF_DadosReducaoZClass_GetCFC,
+ECF_DadosReducaoZClass_GetCCF, ECF_DadosReducaoZClass_GetTotalISSQN,
+ECF_DadosReducaoZClass_GetTotalICMS, ECF_DadosReducaoZClass_GetCDC,
+ECF_DadosReducaoZClass_GetCCDC, ECF_DadosReducaoZClass_GetNCN,
+ECF_DadosReducaoZClass_GetDataDoMovimento, ECF_DadosReducaoZClass_GetNumeroCOOInicial,
+ECF_DadosReducaoZClass_GetNumeroDoECF, ECF_DadosReducaoZClass_GetNumeroDeSerie,
+ECF_DadosReducaoZClass_GetNumeroDeSerieMFD, ECF_DadosReducaoZClass_GetNumeroDaLoja,
+ECF_DadosReducaoZClass_GetTotalTroco,
+
+ECF_DadosReducaoZClass_GetCNFCount, ECF_DadosReducaoZClass_GetCNF,
+ECF_DadosReducaoZClass_GetICMSCount, ECF_DadosReducaoZClass_GetICMS,
+ECF_DadosReducaoZClass_GetRGCount, ECF_DadosReducaoZClass_GetRG,
+ECF_DadosReducaoZClass_GetISSQNCount, ECF_DadosReducaoZClass_GetISSQN,
+ECF_DadosReducaoZClass_GetFPGCount, ECF_DadosReducaoZClass_GetFPG,
+
+ECF_DadosReducaoZClass_CalculaValoresVirtuais,
+ECF_DadosReducaoZClass_MontaDadosReducaoZ,
+
 
 { Componentes ACBr }
 

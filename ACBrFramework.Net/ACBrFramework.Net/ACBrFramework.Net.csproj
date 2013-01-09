@@ -250,7 +250,7 @@
     <Compile Include="Serial\ECF\Eventos\BobinaEventArgs.cs" />
     <Compile Include="Serial\ECF\Classes\Aliquota.cs" />
     <Compile Include="Serial\ECF\Classes\ComprovanteNaoFiscal.cs" />
-    <Compile Include="Serial\ECF\Classes\DadosRZ.cs" />
+    <Compile Include="Serial\ECF\Classes\DadosReducaoZClass.cs" />
     <Compile Include="Serial\ECF\Classes\DAVs.cs" />
     <Compile Include="Serial\ECF\Classes\FinalizaArqMFD.cs" />
     <Compile Include="Serial\ECF\Classes\FormaPagamento.cs" />
