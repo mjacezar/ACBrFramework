@@ -41,6 +41,14 @@ Símbolo : Significado
 
 Changelog
 
+09/01/2012
+
+-- ACBrFramework 0.9.1.39 --
+[*] Refactory completo na DadosReducaoZClass - ACBrECF - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.1.39 --
+[*] Refactory completo na DadosReducaoZClass - ACBrECF - Rafael Dias.
+
 08/01/2012
 
 -- ACBrFramework 0.9.1.38 --
