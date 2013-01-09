@@ -810,7 +810,7 @@ namespace ACBrFramework.ECFTeste
 		{
 			try
 			{
-				WriteResp(string.Format("DadosReducaoZ:\n{0}", acbrECF.GetDadosReducaoZ()));
+				WriteResp(string.Format("DadosReducaoZ:\n{0}", acbrECF.DadosReducaoZ()));
 				descriptionToolStripStatusLabel.Text = string.Empty;
 			}
 			catch (NullReferenceException)
@@ -829,7 +829,7 @@ namespace ACBrFramework.ECFTeste
 		{
 			try
 			{
-				WriteResp(string.Format("DadosUltimaReducaoZ:\n{0}", acbrECF.GetDadosUltimaReducaoZ()));
+				WriteResp(string.Format("DadosUltimaReducaoZ:\n{0}", acbrECF.DadosUltimaReducaoZ()));
 				descriptionToolStripStatusLabel.Text = string.Empty;
 			}
 			catch (NullReferenceException)
