@@ -1,5 +1,17 @@
-﻿namespace ACBrFramework.ECF
+﻿#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
+namespace ACBrFramework.ECF
 {
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("B066E951-6AC3-4991-B2DB-06073F026B7F")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 	public sealed class Aliquota
 	{
 		public int Sequencia { get; internal set; }

@@ -13,10 +13,11 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("http://acbrframework.sourceforge.net")]
 [assembly: AssemblyCulture("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible
-// to COM components.  If you need to access a type in this assembly from
-// COM, set the ComVisible attribute to true on that type.
+#if COM_INTEROP
 [assembly: ComVisible(true)]
+#else
+[assembly: ComVisible(false)]
+#endif
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("91fa361c-3acb-4e63-b09c-d8a77c7713cf")]
@@ -31,7 +32,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.1.39")]
-[assembly: AssemblyFileVersion("0.9.1.39")]
+[assembly: AssemblyVersion("0.9.1.40")]
+[assembly: AssemblyFileVersion("0.9.1.40")]
 
 internal sealed class ToolboxIcons { }

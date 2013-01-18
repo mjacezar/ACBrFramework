@@ -1,11 +1,29 @@
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
 namespace ACBrFramework.ECF
 {
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("9D0EF24E-5B1A-4EDE-8189-E70AC3419085")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 	public sealed class RodapeNotaLegalDF : ACBrComposedComponent
 	{
+		#region Constructor
+
 		internal RodapeNotaLegalDF(Rodape rodape)
 			: base(rodape.Parent)
 		{
 		}
+
+		#endregion Constructor
+
+		#region Properties
 
 		public bool Imprimir
 		{
@@ -54,5 +72,7 @@ namespace ACBrFramework.ECF
 				SetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_NotaLegalDF_SetValorISS, value);
 			}
 		}
+
+		#endregion Properties
 	}
 }

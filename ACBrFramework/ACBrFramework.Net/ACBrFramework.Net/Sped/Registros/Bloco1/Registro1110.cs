@@ -4,6 +4,8 @@ namespace ACBrFramework.Sped
 {
 	public class Registro1110
 	{
+		#region Properties
+
 		public string COD_PART { get; set; }
 
 		public string COD_MOD { get; set; }
@@ -21,5 +23,7 @@ namespace ACBrFramework.Sped
 		public decimal QTD { get; set; }
 
 		public string UNID { get; set; }
+
+		#endregion Properties
 	}
 }

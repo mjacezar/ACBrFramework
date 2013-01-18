@@ -1,7 +1,19 @@
 ﻿using System;
 
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
 namespace ACBrFramework.ECF
 {
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("A7735663-B7A8-436A-B428-10480363B2E9")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 	public sealed class DadosReducaoZClass : ACBrComposedComponent
 	{
 		#region Fields
@@ -11,13 +23,13 @@ namespace ACBrFramework.ECF
 		private RelatorioGerencial[] relatoriosGerenciais;
 		private Aliquota[] issqn;
 		private FormaPagamento[] formasPagamento;
-	
+
 		#endregion Fields
 
 		#region Constructor\Destructor
 
 		public DadosReducaoZClass(ACBrECF parent)
-			: base(parent)	
+			: base(parent)
 		{
 			CarregaComprovantesNaoFiscais();
 			CarregaICMS();

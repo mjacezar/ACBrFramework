@@ -1,5 +1,17 @@
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
 namespace ACBrFramework.ECF
 {
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("3DC074C6-C53F-476B-BCCD-E8C97B9D29EF")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 	public sealed class Rodape : ACBrComposedComponent
 	{
 		#region Constructor

@@ -41,7 +41,15 @@ Símbolo : Significado
 
 Changelog
 
-09/01/2012
+18/01/2013
+
+-- ACBrFramework 0.9.1.40 --
+[+] Modo de compilação "COM Interop" para o ACBrFramework.Net - Rafael Batiati
+    Permite usar o componente em VB6 e outras linguagens compatíveis com ActiveX
+
+[*] Implementação parcial do Sped - Rafael Batiati.
+
+09/01/2013
 
 -- ACBrFramework 0.9.1.39 --
 [*] Refactory completo na DadosReducaoZClass - ACBrECF - Rafael Dias.

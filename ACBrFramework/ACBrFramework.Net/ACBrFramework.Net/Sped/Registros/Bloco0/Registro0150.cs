@@ -2,10 +2,16 @@ namespace ACBrFramework.Sped
 {
 	public sealed class Registro0150
 	{
+		#region Constructor
+
 		public Registro0150()
 		{
 			this.Registro0175 = new RegistroList<Registro0175>();
 		}
+
+		#endregion Constructor
+
+		#region Properties
 
 		public string COD_PART { get; set; }
 
@@ -32,5 +38,7 @@ namespace ACBrFramework.Sped
 		public string BAIRRO { get; set; }
 
 		public RegistroList<Registro0175> Registro0175 { get; private set; }
+
+		#endregion Properties
 	}
 }

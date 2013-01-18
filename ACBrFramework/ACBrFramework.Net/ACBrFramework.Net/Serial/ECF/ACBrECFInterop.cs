@@ -29,7 +29,7 @@ namespace ACBrFramework.ECF
 		#endregion Documentation
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void NoArgumentCallback();	
+		public delegate void NoArgumentCallback();
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void AbreCupomCallback(string CPF_CNPJ, string Nome, string Endereco);
@@ -1010,7 +1010,6 @@ namespace ACBrFramework.ECF
 
 		#region Formas de Pagto
 
-
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_AchaFPGDescricao(IntPtr ecfHandle, string descricao, bool buscaexata, bool ignorecase, ref FormaPagamentoRec formaPagamento);
 
@@ -1022,7 +1021,7 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetFPGCount(IntPtr ecfHandle, ref int value);
-		
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_CarregaFormasPagamento(IntPtr ecfHandle);
 
@@ -1069,7 +1068,7 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_AchaCNFDescricao(IntPtr ecfHandle, ref ComprovanteNaoFiscalRec comprovanteNaoFiscal, string descricao, bool busca, bool ignore);
-		
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_CarregaComprovantesNaoFiscais(IntPtr ecfHandle);
 
@@ -1118,7 +1117,7 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DadosReducaoZClass_GetValorGrandeTotal(IntPtr ecfHandle, ref double value);
-		
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DadosReducaoZClass_GetAcrescimoISSQN(IntPtr ecfHandle, ref double value);
 
@@ -1211,7 +1210,7 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DadosReducaoZClass_GetCNF(IntPtr ecfHandle, ref ComprovanteNaoFiscalRec record, int value);
-		
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DadosReducaoZClass_GetICMSCount(IntPtr ecfHandle);
 
@@ -1241,6 +1240,7 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DadosReducaoZClass_MontaDadosReducaoZ(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+
 		#endregion DadosReducaoZClass
 
 		#region LeituraMemoriaFiscal

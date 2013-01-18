@@ -9,8 +9,8 @@ uses
 
 {%region Registros Bloco 0}
 
-type Registro0000 = record
-  OD_VER     : Integer; /// Código da versão do leiaute: 100, 101, 102
+type Bloco0Registro0000 = record
+  COD_VER    : Integer; /// Código da versão do leiaute: 100, 101, 102
   COD_FIN    : Integer; /// Código da finalidade do arquivo: 0 - Remessa do arquivo original / 1 - Remessa do arquivo substituto.
   DT_INI     : Double;           /// Data inicial das informações contidas no arquivo
   DT_FIN     : Double;           /// Data final das informações contidas no arquivo
@@ -26,15 +26,11 @@ type Registro0000 = record
   IND_ATIV   : Integer;
 end;
 
-type Registro0001 = record
-  COD_FIN : Integer;
-  QTD_15  : Integer;
-  QTD_150 : Integer;
-  QTD_190 : Integer;
-  QTD_200 : Integer;
+type Bloco0Registro0001 = record
+   IND_MOV    : Integer; /// Indicador de movimento: 0- Bloco com dados informados, 1- Bloco sem dados informados.
 end;
 
-type Registro0005 = record
+type Bloco0Registro0005 = record
   FANTASIA : array[0..60] of char;     /// Nome de fantasia associado:
   CEP      : array[0..8] of char;     /// Código de Endereçamento Postal:
   ENDERECO : array[0..60] of char;     /// Logradouro e endereço do imóvel:
@@ -46,12 +42,12 @@ type Registro0005 = record
   EMAIL    : array[0..150] of char;     /// Endereço do correio eletrônico:
 end;
 
-type Registro0015 = record
+type Bloco0Registro0015 = record
   UF_ST : array[0..2] of char;   /// Sigla da unidade da federação:
   IE_ST : array[0..14] of char;   /// Inscrição Estadual:
 end;
 
-type Registro0100 = record
+type Bloco0Registro0100 = record
   NOME     : array[0..100] of char;       /// Nome do contabilista/escritório:
   CPF      : array[0..11] of char;        /// Número de inscrição no CPF:
   CRC      : array[0..15] of char;        /// Número de inscrição no Conselho Regional:
@@ -67,7 +63,7 @@ type Registro0100 = record
   COD_MUN  : integer;                     /// Código do município, conforme tabela IBGE:
 end;
 
-type Registro0150 = record
+type Bloco0Registro0150 = record
   COD_PART  : array[0..60] of char;       /// Código de identificação do participante:
   NOME      : array[0..100] of char;      /// Nome pessoal ou empresarial:
   COD_PAIS  : array[0..5] of char;        /// Código do país do participante:
@@ -80,21 +76,20 @@ type Registro0150 = record
   NUM       : array[0..10] of char;       /// Número do imóvel:
   COMPL     : array[0..60] of char;       /// Dados complementares do endereço:
   BAIRRO    : array[0..60] of char;       /// Bairro em que o imóvel está situado:
-  Count0175 : integer;                    /// BLOCO C - Lista de Registro0175 (FILHO)
 end;
 
-type Registro0175 = record
+type Bloco0Registro0175 = record
   DT_ALT   : Double;                      /// Data de alteração do cadastro:
   NR_CAMPO : array[0..2] of char;         /// Número do campo alterado (Somente campos 03 a 13):
   CONT_ANT : array[0..100] of char;       /// Conteúdo anterior do campo:
 end;
 
-type Registro0190 = record
+type Bloco0Registro0190 = record
   UNID  : array[0..6] of char;        /// Código da unidade de medida:
   DESCR : array[0..100] of char;
 end;
 
-type Registro0200 = record
+type Bloco0Registro0200 = record
   COD_ITEM     : array[0..60] of char;        /// Código do item:
   DESCR_ITEM   : array[0..200] of char;       /// Descrição do item:
   COD_BARRA    : array[0..14] of char;        /// Código de barra do produto, se houver:
@@ -107,6 +102,300 @@ type Registro0200 = record
   COD_LST      : array[0..4] of char;         /// Código serviço Anexo I - Lei nº116/03:
   ALIQ_ICMS    : Double;                      /// Alíquota ICMS aplicável (operações internas):
 end;
+
+type Bloco0Registro0205 = record
+  DESCR_ANT_ITEM : array[0..200] of char;    /// Descrição anterior do item:
+  DT_INI         : double;                   /// Data inicial de utilização do código:
+  DT_FIN         : double;                   /// Data final de utilização do código:
+  COD_ANT_ITEM   : array[0..60] of char;     /// Código anterior do item com relação à última informação apresentada.
+end;
+
+type Bloco0Registro0206 = record
+  COD_COMB   : array[0..60] of char;      /// Código do combustível, conforme tabela publicada pela ANP:
+end;
+
+type Bloco0Registro0220 = record
+  UNID_CONV  : array[0..6] of char;       /// Unidade comercial a ser convertida na unidade de estoque, referida em 0200:
+  FAT_CONV   : Double;                    /// Fator de conversão:
+end;
+
+type Bloco0Registro0300 = record
+  COD_IND_BEM : array[0..60] of char;    /// Código individualizado do bem ou componente adotado no controle patrimonial do estabelecimento informante
+  IDENT_MERC  : Integer;                 /// Identificação do tipo de mercadoria: 1 = bem; 2 = componente.
+  DESCR_ITEM  : array[0..200] of char;   /// Descrição do bem ou componente (modelo, marca e outras características necessárias a sua individualização)
+  COD_PRNC    : array[0..60] of char;    /// Código de cadastro do bem principal nos casos em que o bem ou componente ( campo 02) esteja vinculado a um bem principal.
+  COD_CTA     : array[0..60] of char;    /// Código da conta analítica de contabilização do bem ou componente (campo 06 do Registro 0500)
+  NR_PARC     : Double;                  /// Número total de parcelas a serem apropriadas, segundo a legislação de cada unidade federada
+end;
+
+type Bloco0Registro0305 = record
+  COD_CCUS   : array[0..60] of char;     /// Código do centro de custo onde o bem está sendo ou será utilizado (campo 03 do Registro 0600)
+  FUNC       : array[0..200] of char;    /// Descrição sucinta da função do bem na atividade do estabelecimento
+  VIDA_UTIL  : Integer;                  /// Vida útil estimada do bem, em número de meses
+end;
+
+type Bloco0Registro0400 = record
+  COD_NAT    : array[0..60] of char;     /// Código da natureza:
+  DESCR_NAT  : array[0..200] of char;    /// Descrição da natureza:
+end;
+
+type Bloco0Registro0450 = record
+  COD_INF   : array[0..6] of char;      /// Código da informação complementar do documento fiscal:
+  TXT       : array[0..1023] of char;    /// Texto livre (1Kb):
+end;
+
+type Bloco0Registro0460 = record
+  COD_OBS   : array[0..6] of char;      /// Código da Observação do lançamento fiscal:
+  TXT       : array[0..1023] of char;   /// Descrição da observação vinculada ao lançamento fiscal:
+end;
+
+type Bloco0Registro0500 = record
+    DT_ALT     : double;                // Data da inclusão/alteração
+    COD_NAT_CC : array[0..2] of char;   // Código da natureza da conta/grupo de contas
+    IND_CTA    : array[0..1] of char;   // Indicador do tipo de conta:  S - Sintética ou A - Analítica
+    NIVEL      : array[0..5] of char;   // Nível da conta analítica/grupo de contas
+    COD_CTA    : array[0..60] of char;  // Código da conta analítica/grupo de conta
+    NOME_CTA   : array[0..60] of char;  // Nome da conta analítica/grupo de contas
+end;
+
+type Bloco0Registro0600 = record
+  DT_ALT     : double;        // Data da inclusão/alteração
+  COD_CCUS   : array[0..60] of char;       // Código do centro de custos.
+  CCUS       : array[0..60] of char;       // Nome do centro de custos.
+end;
+
+{%endregion}
+
+{%region Registros Bloco 1}
+
+type Bloco1Registro1001 = record
+   IND_MOV    : Integer; /// Indicador de movimento: 0- Bloco com dados informados, 1- Bloco sem dados informados.
+end;
+
+type Bloco1Registro1010 = record
+  IND_EXP   : array[0..1] of char; // Reg. 1100 - Ocorreu averbação (conclusão) de exportação no período:
+  IND_CCRF  : array[0..1] of char; // Reg. 1200 – Existem informações acerca de créditos de ICMS a serem controlados, definidos pela Sefaz:
+  IND_COMB  : array[0..1] of char; // Reg. 1300 – É comercio varejista de combustíveis:
+  IND_USINA : array[0..1] of char; // Reg. 1390 – Usinas de açúcar e/álcool – O estabelecimento é produtor de açúcar e/ou álcool carburante:
+  IND_VA    : array[0..1] of char; // Reg. 1400 – Existem informações a serem prestadas neste registro e o registro é obrigatório em sua Unidade da Federação:
+  IND_EE    : array[0..1] of char; // Reg. 1500 - A empresa é distribuidora de energia e ocorreu fornecimento de energia elétrica para consumidores de outra UF:
+  IND_CART  : array[0..1] of char; // Reg. 1600 - Realizou vendas com Cartão de Crédito ou de débito:
+  IND_FORM  : array[0..1] of char; // Reg. 1700 - É obrigatório em sua unidade da federação o controle de utilização de documentos  fiscais em papel:
+  IND_AER   : array[0..1] of char; // Reg. 1800 – A empresa prestou serviços de transporte aéreo de cargas e de passageiros:
+end;
+
+type Bloco1Registro1100 = record
+  IND_DOC   : Integer;                /// Informe o tipo de documento: 0 - Declaração de Exportação, 1 - Declaração Simplificada de Exportação.
+  NRO_DE    : array[0..11] of char;   /// Número da declaração
+  DT_DE     : Double;                 /// Data da declaração (DDMMAAAA)
+  NAT_EXP   : Integer;                /// Preencher com: 0 - Exportação Direta, 1 - Exportação Indireta
+  NRO_RE    : array[0..12] of char;   /// Nº do registro de Exportação
+  DT_RE     : Double;                 /// Data do Registro de Exportação (DDMMAAAA)
+  CHC_EMB   : array[0..18] of char;   /// Nº do conhecimento de embarque
+  DT_CHC    : Double;                 /// Data do conhecimento de embarque (DDMMAAAA)
+  DT_AVB    : Double;                 /// Data da averbação da Declaração de exportação (ddmmaaaa)
+  TP_CHC    : Integer;                /// Informação do tipo de conhecimento de transporte : 01 - AWB; 02 - MAWB; 03 - HAWB;04 - COMAT; 06 - R. EXPRESSAS; 07 - ETIQ. REXPRESSAS; 08 - HR. EXPRESSAS; 09 - AV7; 10 - BL; 11 - MBL; 12 - HBL; 13 - CRT; 14 - DSIC; 16 - COMAT BL; 17 - RWB; 18 - HRWB; 19 - TIF/DTA; 20 - CP2; 91 - NÂO IATA; 92 - MNAO IATA; 93 - HNAO IATA; 99 - OUTROS.
+  PAIS      : array[0..3] of char;            /// Código do país de destino da mercadoria (Preencher conforme tabela do SISCOMEX)
+end;
+
+type Bloco1Registro1105 = record
+    COD_MOD  : array[0..2] of char;        /// Código do modelo da NF, conforme tabela 4.1.1
+    SERIE    : array[0..3] of char;        /// Série da Nota Fiscal
+    NUM_DOC  : array[0..9] of char;        /// Número de Nota Fiscal de Exportação emitida pelo Exportador
+    CHV_NFE  : array[0..44] of char;       /// Chave da Nota Fiscal Eletrônica
+    DT_DOC   : Double;                     /// Data da emissão da NF de exportação
+    COD_ITEM : array[0..60] of char;       /// Código do item (campo 02 do Registro 0200)
+end;
+
+type Bloco1Registro1110 = record
+    COD_PART  : array[0..60] of char;
+    COD_MOD   : array[0..2] of char;
+    SER       : array[0..4] of char;
+    NUM_DOC   : array[0..9] of char;
+    DT_DOC    : Double;
+    CHV_NFE   : array[0..44] of char;
+    NR_MEMO   : array[0..60] of char;
+    QTD       : Double;
+    UNID      : array[0..6] of char;
+end;
+
+type Bloco1Registro1200 = record
+    COD_AJ_APUR : array[0..8] of char;
+    SLD_CRED    : Double;
+    CRED_APR    : Double;
+    CRED_RECEB  : Double;
+    CRED_UTIL   : Double;
+    SLD_CRED_FIM: Double;
+end;
+
+type Bloco1Registro1210 = record
+    TIPO_UTIL    : array[0..4] of char;
+    NR_DOC       : array[0..60] of char;
+    VL_CRED_UTIL : Double;
+end;
+
+type Bloco1Registro1300 = record
+    COD_ITEM     : array[0..60] of char;
+    DT_FECH      : Double;
+    ESTQ_ABERT   : Double;
+    VOL_ENTR     : Double;
+    VOL_DISP     : Double;
+    VOL_SAIDAS   : Double;
+    ESTQ_ESCR    : Double;
+    VAL_AJ_PERDA : Double;
+    VAL_AJ_GANHO : Double;
+    FECH_FISICO  : Double;
+end;
+
+
+type Bloco1Registro1310 = record
+     NUM_TANQUE  : array[0..3] of char;
+     ESTQ_ABERT  : Double;
+     VOL_ENTR    : Double;
+     VOL_DISP    : Double;
+     VOL_SAIDAS  : Double;
+     ESTQ_ESCR   : Double;
+     VAL_AJ_PERDA: Double;
+     VAL_AJ_GANHO: Double;
+     FECH_FISICO : Double;
+end;
+
+type Bloco1Registro1320 = record
+     NUM_BICO   : array[0..60] of char;
+     NR_INTERV  : array[0..60] of char;
+     MOT_INTERV : array[0..50] of char;
+     NOM_INTERV : array[0..30] of char;
+     CNPJ_INTERV: array[0..14] of char;
+     CPF_INTERV : array[0..11] of char;
+     VAL_FECHA  : Double;
+     VAL_ABERT  : Double;
+     VOL_AFERI  : Double;
+     VOL_VENDAS : Double;
+end;
+
+type Bloco1Registro1350 = record
+     SERIE        : array[0..4] of char;
+     FABRICANTE   : array[0..60] of char;
+     MODELO       : array[0..60] of char;
+     TIPO_MEDICAO : Integer;
+end;
+
+type Bloco1Registro1360 = record
+     NUM_LACRE   : array[0..20] of char;
+     DT_APLICACAO: Double;
+end;
+
+type Bloco1Registro1370 = record
+     NUM_BICO    : array[0..3] of char;
+     COD_ITEM    : array[0..60] of char;
+     NUM_TANQUE  : array[0..3] of char;
+end;
+
+type Bloco1Registro1390 = record
+     COD_PROD : array[0..2] of char;
+end;
+
+type Bloco1Registro1400 = record
+    COD_ITEM : array[0..60] of char;
+    MUN      : array[0..7] of char;
+    VALOR    : Double;
+end;
+
+type Bloco1Registro1500 = record
+     IND_OPER     : array[0..1] of char;
+     IND_EMIT     : array[0..1] of char;
+     COD_PART     : array[0..60] of char;
+     COD_MOD      : array[0..60] of char;
+     COD_SIT      : Integer;
+     SER          : array[0..4] of char;
+     SUB          : array[0..3] of char;
+     COD_CONS     : Integer;
+     NUM_DOC      : array[0..9] of char;
+     DT_DOC       : Double;
+     DT_E_S       : Double;
+     VL_DOC       : Double;
+     VL_DESC      : Double;
+     VL_FORN      : Double;
+     VL_SERV_NT   : Double;
+     VL_TERC      : Double;
+     VL_DA        : Double;
+     VL_BC_ICMS   : Double;
+     VL_ICMS      : Double;
+     VL_BC_ICMS_ST: Double;
+     VL_ICMS_ST   : Double;
+     COD_INF      : array[0..6] of char;
+     VL_PIS       : Double;
+     VL_COFINS    : Double;
+     TP_LIGACAO      : Integer;
+     COD_GRUPO_TENSAO: Integer;
+end;
+
+type Bloco1Registro1510 = record
+  NUM_ITEM        : array[0..3] of char;
+  COD_ITEM        : array[0..60] of char;
+  COD_CLASS       : array[0..4] of char;
+  QTD             : Double;
+  UNID            : array[0..6] of char;
+  VL_ITEM         : Double;
+  VL_DESC         : Double;
+  CST_ICMS        : array[0..3] of char;
+  CFOP            : array[0..4] of char;
+  VL_BC_ICMS      : Double;
+  ALIQ_ICMS       : Double;
+  VL_ICMS         : Double;
+  VL_BC_ICMS_ST   : Double;
+  ALIQ_ST         : Double;
+  VL_ICMS_ST      : Double;
+  IND_REC         : Integer;
+  COD_PART        : array[0..60] of char;
+  VL_PIS          : Double;
+  VL_COFINS       : Double;
+  COD_CTA         : array[0..60] of char;
+end;
+
+type Bloco1Registro1600 = record
+    COD_PART     : array[0..60] of char;
+    TOT_CREDITO  : Double;
+    TOT_DEBITO   : Double;
+end;
+
+type Bloco1Registro1700 = record
+     COD_DISP   : Integer;
+     COD_MOD    : array[0..2] of char;
+     SER        : array[0..4] of char;
+     SUB        : array[0..3] of char;
+     NUM_DOC_INI: array[0..12] of char;
+     NUM_DOC_FIN: array[0..12] of char;
+     NUM_AUT    : array[0..60] of char;
+end;
+
+type Bloco1Registro1710 = record
+     NUM_DOC_INI : array[0..12] of char;
+     NUM_DOC_FIN : array[0..12] of char;
+end;
+
+type Bloco1Registro1800 = record
+     VL_CARGA          : Double;
+     VL_PASS           : Double;
+     VL_FAT            : Double;
+     IND_RAT           : Double;
+     VL_ICMS_ANT       : Double;
+     VL_BC_ICMS        : Double;
+     VL_ICMS_APUR      : Double;
+     VL_BC_ICMS_APUR   : Double;
+     VL_DIF            : Double;
+end;
+
+
+
+
+
+
+
+
+
+
+
 
 {%endregion}
 

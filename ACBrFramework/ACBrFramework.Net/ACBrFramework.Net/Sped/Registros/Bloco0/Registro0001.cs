@@ -24,7 +24,7 @@ namespace ACBrFramework.Sped
 
 		#region Properties
 
-		public CodFinalidade COD_FIN { get; set; }
+		public IndicadorMovimento IND_MOV { get; set; }
 
 		public Registro0005 Registro0005 { get; set; }
 

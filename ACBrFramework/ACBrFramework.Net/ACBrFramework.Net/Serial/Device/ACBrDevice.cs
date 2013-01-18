@@ -1,5 +1,17 @@
-﻿namespace ACBrFramework
+﻿#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
+namespace ACBrFramework
 {
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("29A5B338-6E3C-47D3-AA31-91965AEF568C")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 	public class ACBrDevice : ACBrComposedComponent
 	{
 		#region Constructor

@@ -2,7 +2,6 @@
 using ACBrFramework.EAD;
 using ACBrFramework.RFD;
 using System;
-using System.Threading;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -12,6 +11,97 @@ using System.Text;
 
 namespace ACBrFramework.ECF
 {
+	#region COM Interop
+
+#if COM_INTEROP
+
+	#region IDispatch Interface
+
+	#region Documentation
+
+	/// <summary>
+	/// Interface contendo os eventos publicados pelo componente COM
+	/// </summary>
+
+	#endregion Documentation
+
+	[ComVisible(true)]
+	[Guid("EB11262D-1650-41D0-8235-4774384C6631")]
+	[InterfaceType(ComInterfaceType.InterfaceIsIDispatch)]
+	public interface IACBrECFEvents
+	{
+		[DispId(1)]
+		void OnPoucoPapel();
+
+		[DispId(2)]
+		void OnAguardandoRespostaChange();
+
+		[DispId(3)]
+		void OnAntesAbreCupom(AbreCupomArgs e);
+
+		[DispId(4)]
+		void OnAntesAbreCupomVinculado();
+
+		[DispId(5)]
+		void OnAntesAbreNaoFiscal(AbreCupomArgs e);
+
+		[DispId(6)]
+		void OnAntesAbreRelatorioGerencial(AntesAbreRelatorioGerencialArgs e);
+
+		[DispId(7)]
+		void OnAntesCancelaCupom();
+
+		[DispId(8)]
+		void OnAntesCancelaItemNaoFiscal(CancelaItemArgs e);
+
+		[DispId(9)]
+		void OnAntesCancelaItemVendido(CancelaItemArgs e);
+
+		[DispId(10)]
+		void OnBobinaAdicionaLinhas(BobinaEventArgs e);
+	}
+
+	#endregion IDispatch Interface
+
+	#region Delegates
+
+	#region Comments
+
+	///os componentes COM não suportam Generics
+	///Estas são implementações específicas de delegates que no .Net são representados como EventHandler<T>
+
+	#endregion Comments
+
+	public delegate void AntesAbreCupomEventHandler(AbreCupomArgs e);
+
+	public delegate void AntesAbreNaoFiscalEventHandler(AbreCupomArgs e);
+
+	public delegate void AntesAbreRelatorioGerencialEventHandler(AntesAbreRelatorioGerencialArgs e);
+
+	public delegate void AntesCancelaItemNaoFiscalEventHandler(CancelaItemArgs e);
+
+	public delegate void AntesCancelaItemVendidoEventHandler(CancelaItemArgs e);
+
+	public delegate void BobinaAdicionaLinhasEventHandler(BobinaEventArgs e);
+
+	#endregion Delegates
+
+#endif
+
+	#endregion COM Interop
+
+	#region COM Interop Attributes
+
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("7F5440D4-8D62-441B-9251-E911437D5F8F")]
+	[ComSourceInterfaces(typeof(IACBrECFEvents))]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+	#endregion COM Interop Attributes
+
 	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.Serial.ECF.ico.bmp")]
 	public class ACBrECF : ACBrComponent, IDisposable
 	{
@@ -41,7 +131,12 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+#if COM_INTEROP
+
+		public event AntesAbreCupomEventHandler OnAntesAbreCupom
+#else
 		public event EventHandler<AbreCupomArgs> OnAntesAbreCupom
+#endif
 		{
 			add
 			{
@@ -65,7 +160,12 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+#if COM_INTEROP
+
+		public event AntesAbreNaoFiscalEventHandler OnAntesAbreNaoFiscal
+#else
 		public event EventHandler<AbreCupomArgs> OnAntesAbreNaoFiscal
+#endif
 		{
 			add
 			{
@@ -77,7 +177,12 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+#if COM_INTEROP
+
+		public event AntesAbreRelatorioGerencialEventHandler OnAntesAbreRelatorioGerencial
+#else
 		public event EventHandler<AntesAbreRelatorioGerencialArgs> OnAntesAbreRelatorioGerencial
+#endif
 		{
 			add
 			{
@@ -101,7 +206,12 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+#if COM_INTEROP
+
+		public event AntesCancelaItemNaoFiscalEventHandler OnAntesCancelaItemNaoFiscal
+#else
 		public event EventHandler<CancelaItemArgs> OnAntesCancelaItemNaoFiscal
+#endif
 		{
 			add
 			{
@@ -113,7 +223,13 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+#if COM_INTEROP
+
+		public event AntesCancelaItemVendidoEventHandler OnAntesCancelaItemVendido
+#else
+
 		public event EventHandler<CancelaItemArgs> OnAntesCancelaItemVendido
+#endif
 		{
 			add
 			{
@@ -125,7 +241,12 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+#if COM_INTEROP
+
+		public event BobinaAdicionaLinhasEventHandler OnBobinaAdicionaLinhas
+#else
 		public event EventHandler<BobinaEventArgs> OnBobinaAdicionaLinhas
+#endif
 		{
 			add
 			{
@@ -154,7 +275,7 @@ namespace ACBrFramework.ECF
 		private readonly ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AbreCupomCallback> onAntesAbreCupom;
 		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAntesAbreCupomVinculado;
 		private readonly ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AbreCupomCallback> onAntesAbreNaoFiscal;
-		private readonly ACBrEventHandler< AntesAbreRelatorioGerencialArgs,ACBrECFInterop.IntArgumentCallback> onAntesAbreRelatorioGerencial;
+		private readonly ACBrEventHandler<AntesAbreRelatorioGerencialArgs, ACBrECFInterop.IntArgumentCallback> onAntesAbreRelatorioGerencial;
 		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAntesCancelaCupom;
 		private readonly ACBrEventHandler<CancelaItemArgs, ACBrECFInterop.IntArgumentCallback> onAntesCancelaItemNaoFiscal;
 		private readonly ACBrEventHandler<CancelaItemArgs, ACBrECFInterop.IntArgumentCallback> onAntesCancelaItemVendido;
@@ -173,10 +294,10 @@ namespace ACBrFramework.ECF
 			onAntesAbreNaoFiscal = new ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AbreCupomCallback>(this, OnAntesAbreNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesAbreNaoFiscal);
 			onAntesAbreRelatorioGerencial = new ACBrEventHandler<AntesAbreRelatorioGerencialArgs, ACBrECFInterop.IntArgumentCallback>(this, OnAntesAbreRelatorioGerencialCallback, ACBrECFInterop.ECF_SetOnAntesAbreRelatorioGerencial);
 			onAntesCancelaCupom = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnAntesCancelaCupomCallback, ACBrECFInterop.ECF_SetOnAntesCancelaCupom);
-			onAntesCancelaItemNaoFiscal = new ACBrEventHandler<CancelaItemArgs, ACBrECFInterop.IntArgumentCallback>(this, OnAntesCancelaItemNaoFiscalCallback ,ACBrECFInterop.ECF_SetOnAntesCancelaItemNaoFiscal);
+			onAntesCancelaItemNaoFiscal = new ACBrEventHandler<CancelaItemArgs, ACBrECFInterop.IntArgumentCallback>(this, OnAntesCancelaItemNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesCancelaItemNaoFiscal);
 			onAntesCancelaItemVendido = new ACBrEventHandler<CancelaItemArgs, ACBrECFInterop.IntArgumentCallback>(this, OnAntesCancelaItemVendidoCallback, ACBrECFInterop.ECF_SetOnAntesCancelaItemVendido);
 			onBobinaAdicionaLinhas = new ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback>(this, OnBobinaAdicionaLinhasCallback, ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas);
-		}	
+		}
 
 		#endregion Constructor
 
@@ -465,18 +586,17 @@ namespace ACBrFramework.ECF
 							orfd.ECF = null;
 					}
 					else if (this.rfd != null)
-					{						
+					{
 						int ret = ACBrECFInterop.ECF_SetRFD(this.Handle, IntPtr.Zero);
 						CheckResult(ret);
 
 						this.rfd = null;
 					}
-					
 				}
 				else
 				{
 					int ret = ACBrECFInterop.ECF_SetRFD(this.Handle, value.Handle);
-					CheckResult(ret);					
+					CheckResult(ret);
 
 					this.rfd = value;
 
@@ -1756,7 +1876,6 @@ namespace ACBrFramework.ECF
 			return retorno;
 		}
 
-		
 		#endregion Leitura X / Redução Z
 
 		#region Relatório Gerencial
@@ -2302,7 +2421,7 @@ namespace ACBrFramework.ECF
 			{
 				onAntesCancelaCupom.Raise();
 			}
-		}		
+		}
 
 		[AllowReversePInvokeCalls]
 		private void OnAntesCancelaItemNaoFiscalCallback(int NumItem)

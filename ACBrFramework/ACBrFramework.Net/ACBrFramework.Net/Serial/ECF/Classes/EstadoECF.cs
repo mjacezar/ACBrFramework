@@ -1,4 +1,5 @@
-﻿namespace ACBrFramework.ECF
+﻿
+namespace ACBrFramework.ECF
 {
 	public enum EstadoECF
 	{

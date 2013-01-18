@@ -4,10 +4,14 @@ namespace ACBrFramework.Sped
 {
 	public class Registro1300
 	{
+		#region Constructor
+
 		public Registro1300()
 		{
 			Registro1310 = new RegistroList<Registro1310>();
 		}
+
+		#endregion Constructor
 
 		#region Properties
 

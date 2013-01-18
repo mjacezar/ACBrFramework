@@ -2,6 +2,24 @@
 
 namespace ACBrFramework
 {
+	#region COM Interop
+
+#if COM_INTEROP
+
+	#region Documentation
+	/// <summary>
+	/// Redefine o tipo EventHandler para um delegate vazio
+	/// As assinaturas de eventos no .Net são diferentes dos componentes COM
+	/// Ex: um evento OnClick() no VB6 é OnClick(object sender, EventArgs e) no .Net
+	/// Esse novo delegate ajuda a manter o interop mais amigável ao COM
+	/// </summary>
+	#endregion Documentation
+	public delegate void EventHandler();
+	
+#endif
+
+	#endregion COM Interop
+
 	internal class ACBrEventHandler<TEventArgs, TCallback> : ACBrInteropEventHandlerBase<EventHandler<TEventArgs>, TCallback>
 		where TEventArgs : EventArgs
 		where TCallback : class
@@ -17,6 +35,17 @@ namespace ACBrFramework
 
 		#region Methods
 
+#if COM_INTEROP
+		public new void Add(Delegate value)
+		{
+			base.Add(value);
+		}
+
+		public new void Remove(Delegate value)
+		{
+			base.Remove(value);
+		}
+#else
 		public void Add(EventHandler<TEventArgs> value)
 		{
 			base.Add(value);
@@ -26,7 +55,7 @@ namespace ACBrFramework
 		{
 			base.Remove(value);
 		}
-
+#endif
 		public void Raise(TEventArgs e)
 		{
 			base.Raise(e);

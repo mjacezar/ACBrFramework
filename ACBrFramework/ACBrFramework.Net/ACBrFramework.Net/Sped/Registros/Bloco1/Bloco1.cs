@@ -2,56 +2,55 @@
 
 namespace ACBrFramework.Sped
 {
-	public class Bloco1
+	public class Bloco1 : ACBrComposedComponent
 	{
 		#region Constructor
 
-		public Bloco1()
+		public Bloco1(ACBrSpedFiscal parent) : base(parent)
 		{
-			Registro1010 = new RegistroList<Registro1010>();
-			Registro1100 = new RegistroList<Registro1100>();
-			Registro1200 = new RegistroList<Registro1200>();
-			Registro1300 = new RegistroList<Registro1300>();
-			Registro1350 = new RegistroList<Registro1350>();
-			Registro1390 = new RegistroList<Registro1390>();
-			Registro1400 = new RegistroList<Registro1400>();
-			Registro1500 = new RegistroList<Registro1500>();
-			Registro1600 = new RegistroList<Registro1600>();
-			Registro1700 = new RegistroList<Registro1700>();
-			Registro1800 = new RegistroList<Registro1800>();
+			Registro1001 = new Registro1001();
+			Registro1990 = new Registro1990(parent);
 		}
 
 		#endregion Constructor
 
 		#region Properties
 
-		public DateTime DT_INI { get; set; }
+		public DateTime DT_INI
+		{
+			get
+			{
+				return GetDateTime(ACBrSpedFiscalInterop.SPDF_Bloco_1_GetDT_INI);
+			}
+			set
+			{
+				SetDateTime(ACBrSpedFiscalInterop.SPDF_Bloco_1_SetDT_INI, value);
+			}
+		}
 
-		public DateTime DT_FIN { get; set; }
+		public DateTime DT_FIN
+		{
+			get
+			{
+				return GetDateTime(ACBrSpedFiscalInterop.SPDF_Bloco_1_GetDT_FIN);
+			}
+			set
+			{
+				SetDateTime(ACBrSpedFiscalInterop.SPDF_Bloco_1_SetDT_FIN, value);
+			}
+		}
 
-		public bool Gravado { get; set; }
+		public bool Gravado
+		{
+			get
+			{
+				return GetBool(ACBrSpedFiscalInterop.SPDF_Bloco_1_GetGravado);
+			}
+		}
 
-		public RegistroList<Registro1010> Registro1010 { get; private set; }
+		public Registro1001 Registro1001 { get; set; }
 
-		public RegistroList<Registro1100> Registro1100 { get; private set; }
-
-		public RegistroList<Registro1200> Registro1200 { get; private set; }
-
-		public RegistroList<Registro1300> Registro1300 { get; private set; }
-
-		public RegistroList<Registro1350> Registro1350 { get; private set; }
-
-		public RegistroList<Registro1390> Registro1390 { get; private set; }
-
-		public RegistroList<Registro1400> Registro1400 { get; private set; }
-
-		public RegistroList<Registro1500> Registro1500 { get; private set; }
-
-		public RegistroList<Registro1600> Registro1600 { get; private set; }
-
-		public RegistroList<Registro1700> Registro1700 { get; private set; }
-
-		public RegistroList<Registro1800> Registro1800 { get; private set; }
+		public Registro1990 Registro1990 { get; private set; }
 
 		#endregion Properties
 	}

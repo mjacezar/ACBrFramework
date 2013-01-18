@@ -1,5 +1,17 @@
-﻿namespace ACBrFramework.ECF
+﻿#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
+namespace ACBrFramework.ECF
 {
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("18BA0423-3605-4E51-92E6-192ED5B01723")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 	public sealed class ComprovanteNaoFiscal
 	{
 		public string Indice { get; internal set; }
