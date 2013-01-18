@@ -3836,6 +3836,27 @@ begin
   end;
 end;
 
+Function ECF_MemoLeParams(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  ecfHandle^.ECF.MemoLeParams;
+  Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 {%endregion}
 
 {%region Métodos do cupom fiscal}
@@ -8173,7 +8194,7 @@ ECF_PafMF_RelParametrosConfiguracao,
 { Bobina }
 
 ECF_SetMemoParams, ECF_GetMemoParams,
-ECF_GetMemoParamsLineCount,
+ECF_GetMemoParamsLineCount, ECF_MemoLeParams,
 
 {Eventos}
 

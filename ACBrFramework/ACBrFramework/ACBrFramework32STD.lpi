@@ -22,8 +22,8 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="9"/>
-      <RevisionNr Value="1"/>
-      <BuildNr Value="40"/>
+      <RevisionNr Value="2"/>
+      <BuildNr Value="1"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -45,11 +45,10 @@
         <PackageName Value="LazUtils"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="45">
+    <Units Count="46">
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
@@ -444,8 +443,20 @@
         <UsageCount Value="20"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit44>
+      <Unit45>
+        <Filename Value="ACBrNFeDll.pas"/>
+        <UnitName Value="ACBrNFeDll"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit45>
     </Units>
-    <JumpHistory Count="5" HistoryIndex="4">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="5148" Column="72" TopLine="1943"/>
@@ -466,6 +477,10 @@
         <Filename Value="ACBrTEFDll.pas"/>
         <Caret Line="1" Column="1" TopLine="1"/>
       </Position5>
+      <Position6>
+        <Filename Value="ACBrNFeDll.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position6>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
@@ -480,7 +495,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir);..\..\ACBr\Fontes\ACBrComum"/>
-      <OtherUnitFiles Value="..\..\ACBr\Fontes\ACBrSerial;..\..\ACBr\Fontes\ACBrTCP;..\..\ACBr\Fontes\ACBrComum;..\..\ACBr\Fontes\ACBrDiversos;..\..\ACBr\Fontes\ACBrPAF;..\..\ACBr\Fontes\ACBrTEFD;..\..\ACBr\Fontes\ACBrSintegra;..\..\ACBr\Fontes\ACBrSPED;..\..\ACBr\Fontes\ACBrSPED\ACBrSPEDFiscal;..\..\ACBr\Fontes\synalist"/>
+      <OtherUnitFiles Value="..\..\ACBr\Fontes\ACBrSerial;..\..\ACBr\Fontes\ACBrTCP;..\..\ACBr\Fontes\ACBrComum;..\..\ACBr\Fontes\ACBrDiversos;..\..\ACBr\Fontes\ACBrPAF;..\..\ACBr\Fontes\ACBrTEFD;..\..\ACBr\Fontes\ACBrSintegra;..\..\ACBr\Fontes\ACBrSPED;..\..\ACBr\Fontes\ACBrSPED\ACBrSPEDFiscal;..\..\ACBr\Fontes\ACBrNFe2;..\..\ACBr\Fontes\PCN2;..\..\ACBr\Fontes\synalist"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
