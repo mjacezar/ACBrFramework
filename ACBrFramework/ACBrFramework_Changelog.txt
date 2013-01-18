@@ -43,10 +43,10 @@ Changelog
 
 18/01/2013
 
--- ACBrFramework 0.9.1.40 --
+-- ACBrFramework 0.9.2.0 --
 [*] Implementação parcial do Sped - Rafael Batiati.
 
--- ACBrFramework.Net 0.9.1.40 --
+-- ACBrFramework.Net 0.9.2.0 --
 [+] Modo de compilação "COM Interop" para o ACBrFramework.Net - Rafael Batiati
     Permite usar o componente em VB6 e outras linguagens compatíveis com ActiveX
 	
