@@ -1467,7 +1467,6 @@ begin
   end;
 end;
 
-
 Function SPDF_Bloco_1_Registro1105New(const spdfHandle: PSPDFHandle; const registro1105 : Bloco1Registro1105) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -1916,7 +1915,6 @@ begin
   end;
 end;
 
-
 Function SPDF_Bloco_1_Registro1600New(const spdfHandle: PSPDFHandle; const registro1600 : Bloco1Registro1600) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -2054,7 +2052,7 @@ begin
   end;
 end;
 
-{%end region Bloco1}
+{%endregion Bloco1}
 
 exports
 
@@ -2076,6 +2074,7 @@ SPDF_GetDT_FIN, SPDF_SetDT_FIN,
 SPDF_IniciaGeracao,
 
 {%region Bloco0}
+
 SPDF_Bloco_0_GetDT_INI, SPDF_Bloco_0_SetDT_INI,
 SPDF_Bloco_0_GetDT_FIN, SPDF_Bloco_0_SetDT_FIN,
 SPDF_Bloco_0_GetGravado,
@@ -2099,9 +2098,11 @@ SPDF_Bloco_0_Registro0460New,
 SPDF_Bloco_0_Registro0500New,
 SPDF_Bloco_0_Registro0600New,
 SPDF_Bloco_0_Registro0990_GetQTD_LIN_0,
+
 {%endregion Bloco0}
 
 {%region Bloco1}
+
 SPDF_Bloco_1_GetDT_INI, SPDF_Bloco_1_SetDT_INI,
 SPDF_Bloco_1_GetDT_FIN, SPDF_Bloco_1_SetDT_FIN,
 SPDF_Bloco_1_GetGravado,
@@ -2120,8 +2121,8 @@ SPDF_Bloco_1_Registro1360New,
 SPDF_Bloco_1_Registro1370New,
 SPDF_Bloco_1_Registro1390New,
 SPDF_Bloco_1_Registro1400New,
-
 SPDF_Bloco_1_Registro1990_GetQTD_LIN_1
+
 {%endregion Bloco1}
 ;
 end.

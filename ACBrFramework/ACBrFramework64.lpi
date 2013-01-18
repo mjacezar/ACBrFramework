@@ -22,8 +22,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="9"/>
-      <RevisionNr Value="1"/>
-      <BuildNr Value="40"/>
+      <RevisionNr Value="2"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -45,14 +44,17 @@
         <PackageName Value="LazUtils"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="45">
+    <Units Count="46">
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="19" Y="12"/>
+        <CursorPos X="4" Y="13"/>
         <UsageCount Value="170"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
@@ -69,7 +71,6 @@
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="4417"/>
@@ -436,8 +437,19 @@
         <UsageCount Value="20"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit44>
+      <Unit45>
+        <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
+        <UnitName Value="pcnGerador"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="696"/>
+        <CursorPos X="56" Y="703"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit45>
     </Units>
-    <JumpHistory Count="4" HistoryIndex="3">
+    <JumpHistory Count="7" HistoryIndex="6">
       <Position1>
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="5148" Column="72" TopLine="1943"/>
@@ -454,6 +466,18 @@
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="4310" Column="25" TopLine="4301"/>
       </Position4>
+      <Position5>
+        <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position5>
+      <Position6>
+        <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
+        <Caret Line="702" Column="70" TopLine="687"/>
+      </Position6>
+      <Position7>
+        <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
+        <Caret Line="703" Column="56" TopLine="696"/>
+      </Position7>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
@@ -468,7 +492,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir);..\..\ACBr\Fontes\ACBrComum"/>
-      <OtherUnitFiles Value="..\..\ACBr\Fontes\ACBrSerial;..\..\ACBr\Fontes\ACBrTCP;..\..\ACBr\Fontes\ACBrComum;..\..\ACBr\Fontes\ACBrDiversos;..\..\ACBr\Fontes\ACBrPAF;..\..\ACBr\Fontes\ACBrSintegra;..\..\ACBr\Fontes\ACBrSPED;..\..\ACBr\Fontes\ACBrSPED\ACBrSPEDFiscal;..\..\ACBr\Fontes\ACBrTEFD;..\..\ACBr\Fontes\synalist"/>
+      <OtherUnitFiles Value="..\..\ACBr\Fontes\ACBrSerial;..\..\ACBr\Fontes\ACBrTCP;..\..\ACBr\Fontes\ACBrComum;..\..\ACBr\Fontes\ACBrDiversos;..\..\ACBr\Fontes\ACBrPAF;..\..\ACBr\Fontes\ACBrSintegra;..\..\ACBr\Fontes\ACBrSPED;..\..\ACBr\Fontes\ACBrSPED\ACBrSPEDFiscal;..\..\ACBr\Fontes\ACBrTEFD;..\..\ACBr\Fontes\ACBrNFe2;..\..\ACBr\Fontes\PCN2;..\..\ACBr\Fontes\synalist"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
