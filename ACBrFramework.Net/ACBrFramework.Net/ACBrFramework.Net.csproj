@@ -74,6 +74,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -110,6 +111,20 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>ACBrFramework.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COM Interop|AnyCPU'">
+    <OutputPath>bin\COM Interop\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COM Interop|x86'">
+    <OutputPath>bin\COM Interop\</OutputPath>
+    <DefineConstants>x86;COM_INTEROP</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COM Interop|x64'">
+    <OutputPath>bin\x64\COM Interop\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -337,6 +352,8 @@
     <Compile Include="Sped\Registros\Bloco0\Registro0600.cs" />
     <Compile Include="Sped\Registros\Bloco0\Registro0990.cs" />
     <Compile Include="Sped\Registros\Bloco1\Bloco1.cs" />
+    <Compile Include="Sped\Registros\Bloco1\Registro1990.cs" />
+    <Compile Include="Sped\Registros\Bloco1\Registro1001.cs" />
     <Compile Include="Sped\Registros\Bloco9\Bloco9.cs" />
     <Compile Include="Sped\ACBrSpedFiscal.cs" />
     <Compile Include="Sped\ACBrSpedFiscalInterop.cs" />
@@ -544,7 +561,6 @@
     <Compile Include="Sped\Registros\BlocoH\RegistroH010.cs" />
     <Compile Include="Sped\Registros\BlocoH\RegistroH020.cs" />
     <Compile Include="Sped\Registros\BlocoH\RegistroH990.cs" />
-    <Compile Include="Sped\Registros\RegistrosInterop.cs" />
     <Compile Include="Sped\Registros\Bloco0\Registro0001.cs" />
     <Compile Include="Sped\Registros\Bloco0\Registro0005.cs" />
     <Compile Include="Sped\Registros\Bloco0\Registro0015.cs" />

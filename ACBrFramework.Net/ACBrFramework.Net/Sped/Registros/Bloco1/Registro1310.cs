@@ -2,6 +2,17 @@
 {
 	public class Registro1310
 	{
+		#region Constructor
+
+		public Registro1310()
+		{
+			Registro1320 = new RegistroList<Registro1320>();
+		}
+
+		#endregion Constructor
+
+		#region Properties
+
 		public string NUM_TANQUE { get; set; }
 
 		public decimal ESTQ_ABERT { get; set; }
@@ -21,5 +32,7 @@
 		public decimal FECH_FISICO { get; set; }
 
 		public RegistroList<Registro1320> Registro1320 { get; private set; }
+
+		#endregion Properties
 	}
 }

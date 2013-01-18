@@ -2,6 +2,8 @@
 {
 	public class Registro1800
 	{
+		#region Properties
+
 		public decimal VL_CARGA { get; set; }
 
 		public decimal VL_PASS { get; set; }
@@ -19,5 +21,7 @@
 		public decimal VL_BC_ICMS_APUR { get; set; }
 
 		public decimal VL_DIF { get; set; }
+
+		#endregion Properties
 	}
 }

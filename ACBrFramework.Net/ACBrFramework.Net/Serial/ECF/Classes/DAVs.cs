@@ -1,7 +1,19 @@
 ﻿using System;
 
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
 namespace ACBrFramework.ECF
 {
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("C3E08AA0-2CCD-435D-B77E-CDACC2F2109C")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 	public sealed class DAVs
 	{
 		public string Numero { get; set; }

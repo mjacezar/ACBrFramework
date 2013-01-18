@@ -4,7 +4,9 @@ namespace ACBrFramework.Sped
 {
 	public class Registro0000
 	{
-		public VersaoLeiaute OD_VER { get; set; }
+		#region Properties
+
+		public VersaoLeiaute COD_VER { get; set; }
 
 		public CodFinalidade COD_FIN { get; set; }
 
@@ -31,5 +33,7 @@ namespace ACBrFramework.Sped
 		public Perfil IND_PERFIL { get; set; }
 
 		public Atividade IND_ATIV { get; set; }
+
+		#endregion Properties
 	}
 }

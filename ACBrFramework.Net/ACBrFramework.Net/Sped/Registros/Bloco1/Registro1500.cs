@@ -4,6 +4,17 @@ namespace ACBrFramework.Sped
 {
 	public class Registro1500
 	{
+		#region Constructor
+
+		public Registro1500()
+		{
+			Registro1510 = new RegistroList<Registro1510>();
+		}
+
+		#endregion Constructor
+
+		#region Properties
+
 		public string IND_OPER { get; set; }
 
 		public string IND_EMIT { get; set; }
@@ -57,5 +68,7 @@ namespace ACBrFramework.Sped
 		public GrupoTensao COD_GRUPO_TENSAO { get; set; }
 
 		public RegistroList<Registro1510> Registro1510 { get; private set; }
+
+		#endregion Properties
 	}
 }

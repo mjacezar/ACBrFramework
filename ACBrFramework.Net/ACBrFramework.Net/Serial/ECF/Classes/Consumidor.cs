@@ -1,5 +1,17 @@
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
 namespace ACBrFramework.ECF
 {
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("3DDCFD3E-B4D4-4B44-8D92-45BFA8A48553")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 	public sealed class Consumidor : ACBrComposedComponent
 	{
 		#region Constructor
@@ -7,7 +19,6 @@ namespace ACBrFramework.ECF
 		internal Consumidor(ACBrECF acbrECF)
 			: base(acbrECF)
 		{
-
 		}
 
 		#endregion Constructor
@@ -56,7 +67,7 @@ namespace ACBrFramework.ECF
 			{
 				SetBool(ACBrECFInterop.ECF_Consumidor_SetEnviado, value);
 			}
-		}		
+		}
 
 		#endregion Properties
 

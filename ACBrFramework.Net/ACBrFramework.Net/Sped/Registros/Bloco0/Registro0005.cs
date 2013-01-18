@@ -2,6 +2,8 @@ namespace ACBrFramework.Sped
 {
 	public sealed class Registro0005
 	{
+		#region Properties
+
 		public string FANTASIA { get; set; }
 
 		public string CEP { get; set; }
@@ -19,5 +21,7 @@ namespace ACBrFramework.Sped
 		public string FAX { get; set; }
 
 		public string EMAIL { get; set; }
+
+		#endregion Properties
 	}
 }

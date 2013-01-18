@@ -17,7 +17,7 @@ namespace ACBrFramework
 
 		#region Events
 
-		public event EventHandler Disposed;
+		public event System.EventHandler Disposed;
 
 		#endregion Events
 

@@ -2,6 +2,8 @@
 {
 	public class Registro1510
 	{
+		#region Properties
+
 		public string NUM_ITEM { get; set; }
 
 		public string COD_ITEM { get; set; }
@@ -41,5 +43,7 @@
 		public decimal VL_COFINS { get; set; }
 
 		public string COD_CTA { get; set; }
+
+		#endregion Properties
 	}
 }

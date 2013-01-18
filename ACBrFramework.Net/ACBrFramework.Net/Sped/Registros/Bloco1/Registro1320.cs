@@ -2,6 +2,8 @@
 {
 	public class Registro1320
 	{
+		#region Properties
+
 		public string NUM_BICO { get; set; }
 
 		public string NR_INTERV { get; set; }
@@ -21,5 +23,7 @@
 		public decimal VOL_AFERI { get; set; }
 
 		public decimal VOL_VENDAS { get; set; }
+
+		#endregion Properties
 	}
 }
