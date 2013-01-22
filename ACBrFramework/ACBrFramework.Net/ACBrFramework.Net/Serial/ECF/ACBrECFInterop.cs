@@ -40,6 +40,42 @@ namespace ACBrFramework.ECF
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void BobinaAdicionaLinhasCallback(string linhas, string operacao);
 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void EfetuaPagamentoCallback(string CodFormaPagto, double Valor, string Observacao, bool ImprimeVinculado);
+		
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void FechaCupomCallback(string Observacao, int IndiceBMP);
+		
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void SangriaSuprimentoCallback(double Valor, string Obs, string DescricaoCNF, string DescricaoFPG);
+		
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void SubtotalizaCupomCallback(double DescontoAcrescimo, string MensagemRodape); 
+		
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void VendeItemCallback(string Codigo, string Descricao, string AliquotaICMS, double Qtd, double ValorUnitario, double ValorDescontoAcrescimo, string Unidade, string TipoDescontoAcrescimo, string DescontoAcrescimo);
+		
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void ChangeEstadoCallback(int EstadoAnterior, int EstadoAtual); 
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate bool ChequeEstadoCallback(int EstadoAtual);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate bool OnErrorCallback();
+		
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate bool OnErrorRelatorioCallback(int Indice);
+		
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void StringCallback(string Mensagem);
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate bool OnMsgRetentarCallback(string Mensagem, string Situacao);
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate string GetKeyCallback();
+
 		[StructLayout(LayoutKind.Sequential)]
 		public struct AliquotaRec
 		{
@@ -138,158 +174,6 @@ namespace ACBrFramework.ECF
 			public int Contador;
 		}
 
-		[StructLayout(LayoutKind.Sequential)]
-		public struct DadosRZRec
-		{
-			[MarshalAs(UnmanagedType.I4)]
-			public int COO;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int CFD;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double CancelamentoISSQN;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int GNFC;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int CRO;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double ValorVendaBruta;
-
-			public IntPtr TotalizadoresNaoFiscais;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int TotalizadoresNaoFiscaisLen;
-
-			public IntPtr ICMS;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int ICMSLen;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double AcrescimoICMS;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double DescontoICMS;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double NaoTributadoICMS;
-
-			public IntPtr RelatorioGerencial;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int RelatorioGerencialLen;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int CRZ;
-
-			public IntPtr ISSQN;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int ISSQNLen;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int GRG;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double ValorGrandeTotal;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double AcrescimoISSQN;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double NaoTributadoISSQN;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double IsentoICMS;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double SubstituicaoTributariaICMS;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double DataDaImpressora;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double TotalOperacaoNaoFiscal;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double DescontoISSQN;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double CancelamentoOPNF;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double AcrescimoOPNF;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double DescontoOPNF;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double CancelamentoICMS;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int GNF;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double IsentoISSQN;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double SubstituicaoTributariaISSQN;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double VendaLiquida;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int CFC;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int CCF;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double TotalISSQN;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double TotalICMS;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int CDC;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int CCDC;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int NCN;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double DataDoMovimento;
-
-			public IntPtr MeiosDePagamento;
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int MeiosDePagamentoLen;
-
-			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 30)]
-			public string NumeroCOOInicial;
-
-			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 30)]
-			public string NumeroDoECF;
-
-			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 30)]
-			public string NumeroDeSerie;
-
-			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 30)]
-			public string NumeroDeSerieMFD;
-
-			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 30)]
-			public string NumeroDaLoja;
-
-			[MarshalAs(UnmanagedType.R8)]
-			public double TotalTroco;
-		}
-
 		#endregion Interop Types
 
 		#region Constructors/Erro Handler
@@ -343,6 +227,9 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_TestaPodeAbrirCupom(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_EnviaComando(IntPtr ecfHandle, string cmd, int timeout, StringBuilder buffer, int bufferlen);
 
 		#endregion Métodos ECF
 
@@ -656,6 +543,12 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetRFD(IntPtr ecfHandle, IntPtr rfdHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetPausaRelatorio(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetPausaRelatorio(IntPtr ecfHandle, int pausa);
 
 		#endregion Propriedades do Componente
 
@@ -1265,16 +1158,26 @@ namespace ACBrFramework.ECF
 
 		#endregion LeituraMemoriaFiscal
 
+		#region Cheque
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ImprimeCheque(IntPtr ecfHandle, string Banco, double Valor, string Favorecido, string Cidade, double Data, string Observacao);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_CancelaImpressaoCheque(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_LeituraCMC7(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+				
+		#endregion Cheque
+
 		#region Eventos
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnPoucoPapel(IntPtr ecfHandle, NoArgumentCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetOnAguardandoRespostaChange(IntPtr ecfHandle, NoArgumentCallback method);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetOnBobinaAdicionaLinhas(IntPtr ecfHandle, BobinaAdicionaLinhasCallback method);
+		public static extern int ECF_SetOnAguardandoRespostaChange(IntPtr ecfHandle, NoArgumentCallback method);		
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnAntesAbreCupom(IntPtr ecfHandle, AbreCupomCallback method);
@@ -1296,6 +1199,190 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnAntesCancelaItemVendido(IntPtr ecfHandle, IntArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesCancelaNaoFiscal(IntPtr ecfHandle, NoArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesEfetuaPagamento(IntPtr ecfHandle, EfetuaPagamentoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesEfetuaPagamentoNaoFiscal(IntPtr ecfHandle, EfetuaPagamentoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesFechaCupom(IntPtr ecfHandle, FechaCupomCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesFechaNaoFiscal(IntPtr ecfHandle, FechaCupomCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesFechaRelatorio(IntPtr ecfHandle, NoArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesLeituraX(IntPtr ecfHandle, NoArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesReducaoZ(IntPtr ecfHandle, NoArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesSangria(IntPtr ecfHandle, SangriaSuprimentoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesSubtotalizaCupom(IntPtr ecfHandle, SubtotalizaCupomCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesSubtotalizaNaoFiscal(IntPtr ecfHandle, SubtotalizaCupomCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesSuprimento(IntPtr ecfHandle, SangriaSuprimentoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnAntesVendeItem(IntPtr ecfHandle, VendeItemCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnBobinaAdicionaLinhas(IntPtr ecfHandle, BobinaAdicionaLinhasCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnChangeEstado(IntPtr ecfHandle, ChangeEstadoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnChequeEstado(IntPtr ecfHandle, ChequeEstadoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisAbreCupom(IntPtr ecfHandle, AbreCupomCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisAbreCupomVinculado(IntPtr ecfHandle, NoArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisAbreNaoFiscal(IntPtr ecfHandle, AbreCupomCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisAbreRelatorioGerencial(IntPtr ecfHandle, IntArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisCancelaCupom(IntPtr ecfHandle, NoArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisCancelaItemNaoFiscal(IntPtr ecfHandle, IntArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisCancelaItemVendido(IntPtr ecfHandle, IntArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisCancelaNaoFiscal(IntPtr ecfHandle, NoArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisEfetuaPagamento(IntPtr ecfHandle, EfetuaPagamentoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisEfetuaPagamentoNaoFiscal(IntPtr ecfHandle, EfetuaPagamentoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisFechaCupom(IntPtr ecfHandle, FechaCupomCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisFechaNaoFiscal(IntPtr ecfHandle, FechaCupomCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisFechaRelatorio(IntPtr ecfHandle, NoArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisLeituraX(IntPtr ecfHandle, NoArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisReducaoZ(IntPtr ecfHandle, NoArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisSangria(IntPtr ecfHandle, SangriaSuprimentoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisSubtotalizaCupom(IntPtr ecfHandle, SubtotalizaCupomCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisSubtotalizaNaoFiscal(IntPtr ecfHandle, SubtotalizaCupomCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisSuprimento(IntPtr ecfHandle, SangriaSuprimentoCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnDepoisVendeItem(IntPtr ecfHandle, VendeItemCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorAbreCupom(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorAbreCupomVinculado(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorAbreNaoFiscal(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorAbreRelatorioGerencial(IntPtr ecfHandle, OnErrorRelatorioCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorCancelaCupom(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorCancelaItemNaoFiscal(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorCancelaItemVendido(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorCancelaNaoFiscal(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorEfetuaPagamento(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorEfetuaPagamentoNaoFiscal(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorFechaCupom(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorFechaNaoFiscal(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorFechaRelatorio(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorLeituraX(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorReducaoZ(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorSangria(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorSemPapel(IntPtr ecfHandle, NoArgumentCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorSubtotalizaCupom(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorSubtotalizaNaoFiscal(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorSuprimento(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnErrorVendeItem(IntPtr ecfHandle, OnErrorCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnMsgAguarde(IntPtr ecfHandle, StringCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetOnMsgRetentar(IntPtr ecfHandle, OnMsgRetentarCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetPAFCalcEAD(IntPtr ecfHandle, StringCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SetPAFGetKeyRSA(IntPtr ecfHandle, GetKeyCallback method);
+
 
 		#endregion Eventos
 

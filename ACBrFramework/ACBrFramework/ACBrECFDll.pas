@@ -18,9 +18,20 @@ uses
 {%region Ponteiros de função para uso nos eventos}
 
 type TNoArgumentsCallback = procedure(); cdecl;
-type TAntesAbreCupomCallback = procedure(const CPF_CNPJ, Nome, Endereco : PChar); cdecl;
+type TAbreCupomCallback = procedure(const CPF_CNPJ, Nome, Endereco : PChar); cdecl;
 type TIntArgumentCallback = procedure(const Indice: Integer); cdecl;
+type TEfetuaPagamentoCallback = procedure(const CodFormaPagto: pChar; const Valor: Double; const Observacao: pChar; const ImprimeVinculado: Boolean); cdecl;
+type TFechaCupomCallback = procedure(const Observacao: pChar; const IndiceBMP: Integer); cdecl;
+type TSangriaSuprimentoCallback = procedure(const Valor: Double; const Obs, DescricaoCNF, DescricaoFPG : pChar); cdecl;
+type TSubtotalizaCupomCallback = procedure(const DescontoAcrescimo: Double; const MensagemRodape: pChar); cdecl;
+type TVendeItemCallback = procedure(const Codigo, Descricao, AliquotaICMS: pChar; const Qtd, ValorUnitario, ValorDescontoAcrescimo: Double; const Unidade, TipoDescontoAcrescimo, DescontoAcrescimo: pChar); cdecl;
 type TBobinaProcedureCallback = procedure(const Linhas : PChar; const Operacao : PChar); cdecl;
+type TChangeEstadoCallback = procedure(const EstadoAnterior, EstadoAtual: Integer); cdecl;
+type TChequeEstadoCallback = function(const EstadoAtual: Integer) : Boolean; cdecl;
+type TOnErrorCallback = function() : Boolean; cdecl;
+type TOnErrorRelatorioCallback = function(const Indice: Integer) : Boolean; cdecl;
+type TStringCallback = procedure(Mensagem : pChar); cdecl;
+type TOnMsgRetentarCallback = function(const Mensagem, Situacao: pChar) : Boolean; cdecl;
 
 
 {%endregion}
@@ -31,17 +42,83 @@ type TEventHandlersECF = class
 
     OnPoucoPapelCallback : TNoArgumentsCallback;
     OnAguardandoRespostaChangeCallback :  TNoArgumentsCallback;
-    OnAntesAbreCupomCallback : TAntesAbreCupomCallback;
+
+    OnAntesAbreCupomCallback : TAbreCupomCallback;
     OnAntesAbreCupomVinculadoCallback : TNoArgumentsCallback;
-    OnAntesAbreNaoFiscalCallback : TAntesAbreCupomCallback;
+    OnAntesAbreNaoFiscalCallback : TAbreCupomCallback;
     OnAntesAbreRelatorioGerencialCallback : TIntArgumentCallback;
     OnAntesCancelaCupomCallback : TNoArgumentsCallback;
     OnAntesCancelaItemNaoFiscalCallback : TIntArgumentCallback;
     OnAntesCancelaItemVendidoCallback : TIntArgumentCallback;
+    OnAntesCancelaNaoFiscalCallback : TNoArgumentsCallback;
+    OnAntesEfetuaPagamentoCallback : TEfetuaPagamentoCallback;
+    OnAntesEfetuaPagamentoNaoFiscalCallback : TEfetuaPagamentoCallback;
+    OnAntesFechaCupomCallback : TFechaCupomCallback;
+    OnAntesFechaNaoFiscalCallback : TFechaCupomCallback;
+    OnAntesFechaRelatorioCallback : TNoArgumentsCallback;
+    OnAntesLeituraXCallback : TNoArgumentsCallback;
+    OnAntesReducaoZCallback : TNoArgumentsCallback;
+    OnAntesSangriaCallback : TSangriaSuprimentoCallback;
+    OnAntesSubtotalizaCupomCallback : TSubtotalizaCupomCallback;
+    OnAntesSubtotalizaNaoFiscalCallback : TSubtotalizaCupomCallback;
+    OnAntesSuprimentoCallback : TSangriaSuprimentoCallback;
+    OnAntesVendeItemCallback : TVendeItemCallback;
+
     OnBobinaAdicionaLinhasCallback : TBobinaProcedureCallback;
+    OnChangeEstadoCallback : TChangeEstadoCallback;
+    OnChequeEstadoCallback : TChequeEstadoCallback;
+
+    OnDepoisAbreCupomCallback : TAbreCupomCallback;
+    OnDepoisAbreCupomVinculadoCallback : TNoArgumentsCallback;
+    OnDepoisAbreNaoFiscalCallback : TAbreCupomCallback;
+    OnDepoisAbreRelatorioGerencialCallback : TIntArgumentCallback;
+    OnDepoisCancelaCupomCallback : TNoArgumentsCallback;
+    OnDepoisCancelaItemNaoFiscalCallback : TIntArgumentCallback;
+    OnDepoisCancelaItemVendidoCallback : TIntArgumentCallback;
+    OnDepoisCancelaNaoFiscalCallback : TNoArgumentsCallback;
+    OnDepoisEfetuaPagamentoCallback : TEfetuaPagamentoCallback;
+    OnDepoisEfetuaPagamentoNaoFiscalCallback : TEfetuaPagamentoCallback;
+    OnDepoisFechaCupomCallback : TFechaCupomCallback;
+    OnDepoisFechaNaoFiscalCallback : TFechaCupomCallback;
+    OnDepoisFechaRelatorioCallback : TNoArgumentsCallback;
+    OnDepoisLeituraXCallback : TNoArgumentsCallback;
+    OnDepoisReducaoZCallback : TNoArgumentsCallback;
+    OnDepoisSangriaCallback : TSangriaSuprimentoCallback;
+    OnDepoisSubtotalizaCupomCallback : TSubtotalizaCupomCallback;
+    OnDepoisSubtotalizaNaoFiscalCallback : TSubtotalizaCupomCallback;
+    OnDepoisSuprimentoCallback : TSangriaSuprimentoCallback;
+    OnDepoisVendeItemCallback : TVendeItemCallback;
+
+    OnErrorAbreCupomCallback : TOnErrorCallback;
+    OnErrorAbreCupomVinculadoCallback : TOnErrorCallback;
+    OnErrorAbreNaoFiscalCallback : TOnErrorCallback;
+    OnErrorAbreRelatorioGerencialCallback : TOnErrorRelatorioCallback;
+    OnErrorCancelaCupomCallback : TOnErrorCallback;
+    OnErrorCancelaItemNaoFiscalCallback : TOnErrorCallback;
+    OnErrorCancelaItemVendidoCallback : TOnErrorCallback;
+    OnErrorCancelaNaoFiscalCallback : TOnErrorCallback;
+    OnErrorEfetuaPagamentoCallback : TOnErrorCallback;
+    OnErrorEfetuaPagamentoNaoFiscalCallback : TOnErrorCallback;
+    OnErrorFechaCupomCallback : TOnErrorCallback;
+    OnErrorFechaNaoFiscalCallback : TOnErrorCallback;
+    OnErrorFechaRelatorioCallback : TOnErrorCallback;
+    OnErrorLeituraXCallback : TOnErrorCallback;
+    OnErrorReducaoZCallback : TOnErrorCallback;
+    OnErrorSangriaCallback : TOnErrorCallback;
+    OnErrorSemPapelCallback : TNoArgumentsCallback;
+    OnErrorSubtotalizaCupomCallback : TOnErrorCallback;
+    OnErrorSubtotalizaNaoFiscalCallback : TOnErrorCallback;
+    OnErrorSuprimentoCallback : TOnErrorCallback;
+    OnErrorVendeItemCallback : TOnErrorCallback;
+
+    OnMsgAguardeCallback : TStringCallback;
+    OnMsgRetentarCallback : TOnMsgRetentarCallback;
+    OnPAFCalcEADCallback : TStringCallback;
+    OnPAFGetKeyRSACallback : TGetKeyCallback ;
 
     procedure OnMsgPoucoPapel(Sender: TObject);
     procedure OnAguardandoRespostaChange(Sender: TObject);
+
     procedure OnAntesAbreCupom(const CPF_CNPJ, Nome, Endereco : String);
     procedure OnAntesAbreCupomVinculado(Sender: TObject);
     procedure OnAntesAbreNaoFiscal(const CPF_CNPJ, Nome, Endereco : String);
@@ -49,7 +126,78 @@ type TEventHandlersECF = class
     procedure OnAntesCancelaCupom(Sender: TObject);
     procedure OnAntesCancelaItemNaoFiscal(const NumItem: Integer);
     procedure OnAntesCancelaItemVendido(const NumItem: Integer);
+    procedure OnAntesCancelaNaoFiscal(Sender: TObject);
+    procedure OnAntesEfetuaPagamento(const CodFormaPagto: String; const Valor: Double;
+          const Observacao: AnsiString; const ImprimeVinculado: Boolean);
+    procedure OnAntesEfetuaPagamentoNaoFiscal(const CodFormaPagto: String; const Valor: Double;
+          const Observacao: AnsiString; const ImprimeVinculado: Boolean);
+    procedure OnAntesFechaCupom(const Observacao: AnsiString; const IndiceBMP: Integer);
+    procedure OnAntesFechaNaoFiscal(const Observacao: AnsiString; const IndiceBMP: Integer);
+    procedure OnAntesFechaRelatorio(Sender: TObject);
+    procedure OnAntesLeituraX(Sender: TObject);
+    procedure OnAntesReducaoZ(Sender: TObject);
+    procedure OnAntesSangria(const Valor: Double; const Obs: AnsiString; const DescricaoCNF, DescricaoFPG: String);
+    procedure OnAntesSubtotalizaCupom(const DescontoAcrescimo: Double;  const MensagemRodape: AnsiString);
+    procedure OnAntesSubtotalizaNaoFiscal(const DescontoAcrescimo: Double;  const MensagemRodape: AnsiString);
+    procedure OnAntesSuprimento(const Valor: Double; const Obs: AnsiString; const DescricaoCNF, DescricaoFPG: String);
+    procedure OnAntesVendeItem(const Codigo, Descricao, AliquotaICMS: String; const Qtd, ValorUnitario,
+          ValorDescontoAcrescimo: Double; const Unidade, TipoDescontoAcrescimo, DescontoAcrescimo: String);
+
     procedure OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
+    procedure OnChangeEstado(const EstadoAnterior, EstadoAtual: TACBrECFEstado);
+    procedure OnChequeEstado(const EstadoAtual: TACBrECFCHQEstado;  var Continuar: Boolean);
+
+    procedure OnDepoisAbreCupom(const CPF_CNPJ, Nome, Endereco : String);
+    procedure OnDepoisAbreCupomVinculado(Sender: TObject);
+    procedure OnDepoisAbreNaoFiscal(const CPF_CNPJ, Nome, Endereco : String);
+    procedure OnDepoisAbreRelatorioGerencial(const Indice: Integer);
+    procedure OnDepoisCancelaCupom(Sender: TObject);
+    procedure OnDepoisCancelaItemNaoFiscal(const NumItem: Integer);
+    procedure OnDepoisCancelaItemVendido(const NumItem: Integer);
+    procedure OnDepoisCancelaNaoFiscal(Sender: TObject);
+    procedure OnDepoisEfetuaPagamento(const CodFormaPagto: String; const Valor: Double;
+          const Observacao: AnsiString; const ImprimeVinculado: Boolean);
+    procedure OnDepoisEfetuaPagamentoNaoFiscal(const CodFormaPagto: String; const Valor: Double;
+          const Observacao: AnsiString; const ImprimeVinculado: Boolean);
+    procedure OnDepoisFechaCupom(const Observacao: AnsiString; const IndiceBMP: Integer);
+    procedure OnDepoisFechaNaoFiscal(const Observacao: AnsiString; const IndiceBMP: Integer);
+    procedure OnDepoisFechaRelatorio(Sender: TObject);
+    procedure OnDepoisLeituraX(Sender: TObject);
+    procedure OnDepoisReducaoZ(Sender: TObject);
+    procedure OnDepoisSangria(const Valor: Double; const Obs: AnsiString; const DescricaoCNF, DescricaoFPG: String);
+    procedure OnDepoisSubtotalizaCupom(const DescontoAcrescimo: Double;  const MensagemRodape: AnsiString);
+    procedure OnDepoisSubtotalizaNaoFiscal(const DescontoAcrescimo: Double;  const MensagemRodape: AnsiString);
+    procedure OnDepoisSuprimento(const Valor: Double; const Obs: AnsiString; const DescricaoCNF, DescricaoFPG: String);
+    procedure OnDepoisVendeItem(const Codigo, Descricao, AliquotaICMS: String; const Qtd, ValorUnitario,
+          ValorDescontoAcrescimo: Double; const Unidade, TipoDescontoAcrescimo, DescontoAcrescimo: String);
+
+    procedure OnErrorAbreCupom(var Tratado: Boolean);
+    procedure OnErrorAbreCupomVinculado(var Tratado: Boolean);
+    procedure OnErrorAbreNaoFiscal(var Tratado: Boolean);
+    procedure OnErrorAbreRelatorioGerencial(var Tratado: Boolean; const Indice: Integer);
+    procedure OnErrorCancelaCupom(var Tratado: Boolean);
+    procedure OnErrorCancelaItemNaoFiscal(var Tratado: Boolean);
+    procedure OnErrorCancelaItemVendido(var Tratado: Boolean);
+    procedure OnErrorCancelaNaoFiscal(var Tratado: Boolean);
+    procedure OnErrorEfetuaPagamento(var Tratado: Boolean);
+    procedure OnErrorEfetuaPagamentoNaoFiscal(var Tratado: Boolean);
+    procedure OnErrorFechaCupom(var Tratado: Boolean);
+    procedure OnErrorFechaNaoFiscal(var Tratado: Boolean);
+    procedure OnErrorFechaRelatorio(var Tratado: Boolean);
+    procedure OnErrorLeituraX(var Tratado: Boolean);
+    procedure OnErrorReducaoZ(var Tratado: Boolean);
+    procedure OnErrorSangria(var Tratado: Boolean);
+    procedure OnErrorSemPapel(Sender: TObject);
+    procedure OnErrorSubtotalizaCupom(var Tratado: Boolean);
+    procedure OnErrorSubtotalizaNaoFiscal(var Tratado: Boolean);
+    procedure OnErrorSuprimento(var Tratado: Boolean);
+    procedure OnErrorVendeItem(var Tratado: Boolean);
+
+    procedure OnMsgAguarde(const Mensagem : String);
+    procedure OnMsgRetentar(const Mensagem: String; const Situacao: String; var Result: Boolean);
+    procedure OnPAFCalcEAD(Arquivo: String);
+    procedure OnPAFGetKeyRSA(var Chave: AnsiString);
+
 end;
 
 {%endregion}
@@ -925,6 +1073,47 @@ begin
 
   try
      ecfHandle^.ECF.MaxLinhasBuffer := MaxLinha;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetPausaRelatorio(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := ecfHandle^.ECF.PausaRelatorio;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetPausaRelatorio(const ecfHandle: PECFHandle; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.PausaRelatorio := value;
      Result := 0;
   except
      on exception : Exception do
@@ -7524,6 +7713,107 @@ end;
 
 {%endregion}
 
+{%region Cheques}
+
+Function ECF_ImprimeCheque(const ecfHandle: PECFHandle; const Banco: pChar; const Valor: Double;
+                           const Favorecido , Cidade: pChar; const Data: Double; const Observacao: pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+  if (ecfHandle = nil) then
+   begin
+     Result := -2;
+     Exit ;
+   end;
+
+  try
+     ecfHandle^.ECF.ImprimeCheque(Banco, Valor, Favorecido, Cidade, Data, Observacao);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result  := -1;
+     end
+  end;
+end;
+
+Function ECF_CancelaImpressaoCheque(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+  if (ecfHandle = nil) then
+   begin
+     Result := -2;
+     Exit ;
+   end;
+
+  try
+     ecfHandle^.ECF.CancelaImpressaoCheque;
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result  := -1;
+     end
+  end;
+end;
+
+Function ECF_LeituraCMC7(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+   strTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     strTmp := ecfHandle^.ECF.LeituraCMC7;
+     StrPLCopy(Buffer, strTmp, BufferLen);
+     Result := length(strTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result  := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%region Comando}
+
+Function ECF_EnviaComando(const ecfHandle: PECFHandle; cmd: pChar; const timeout : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+   strTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if (timeout < 0) then
+     strTmp := ecfHandle^.ECF.EnviaComando(cmd)
+  else
+     strTmp := ecfHandle^.ECF.EnviaComando(cmd, timeout);
+
+  StrPLCopy(Buffer, strTmp, BufferLen);
+  Result := length(strTmp);
+  except
+     on exception : Exception do
+     begin
+     ecfHandle^.UltimoErro := exception.Message;
+     Result  := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
 {%region Eventos }
 
 procedure TEventHandlersECF.OnMsgPoucoPapel(Sender: TObject);
@@ -7571,6 +7861,75 @@ begin
      OnAntesCancelaItemVendidoCallback(NumItem);
 end;
 
+procedure TEventHandlersECF.OnAntesCancelaNaoFiscal(Sender: TObject);
+begin
+     OnAntesCancelaNaoFiscalCallback();
+end;
+
+procedure TEventHandlersECF.OnAntesEfetuaPagamento(const CodFormaPagto: String; const Valor: Double;
+          const Observacao: AnsiString; const ImprimeVinculado: Boolean);
+begin
+     OnAntesEfetuaPagamentoCallback(pChar(CodFormaPagto), Valor, pChar(Observacao), ImprimeVinculado);
+end;
+
+procedure TEventHandlersECF.OnAntesEfetuaPagamentoNaoFiscal(const CodFormaPagto: String; const Valor: Double;
+          const Observacao: AnsiString; const ImprimeVinculado: Boolean);
+begin
+     OnAntesEfetuaPagamentoNaoFiscalCallback(pChar(CodFormaPagto), Valor, pChar(Observacao), ImprimeVinculado);
+end;
+
+procedure TEventHandlersECF.OnAntesFechaCupom(const Observacao: AnsiString; const IndiceBMP: Integer);
+begin
+     OnAntesFechaCupomCallback(pChar(Observacao), IndiceBMP);
+end;
+
+procedure TEventHandlersECF.OnAntesFechaNaoFiscal(const Observacao: AnsiString; const IndiceBMP: Integer);
+begin
+     OnAntesFechaNaoFiscalCallback(pChar(Observacao), IndiceBMP);
+end;
+
+procedure TEventHandlersECF.OnAntesFechaRelatorio(Sender: TObject);
+begin
+     OnAntesFechaRelatorioCallback();
+end;
+
+procedure TEventHandlersECF.OnAntesLeituraX(Sender: TObject);
+begin
+     OnAntesLeituraXCallback();
+end;
+
+procedure TEventHandlersECF.OnAntesReducaoZ(Sender: TObject);
+begin
+     OnAntesReducaoZCallback();
+end;
+
+procedure TEventHandlersECF.OnAntesSangria(const Valor: Double; const Obs: AnsiString; const DescricaoCNF, DescricaoFPG: String);
+begin
+     OnAntesSangriaCallback(Valor, pChar(Obs), pChar(DescricaoCNF), pChar(DescricaoFPG));
+end;
+
+procedure TEventHandlersECF.OnAntesSubtotalizaCupom(const DescontoAcrescimo: Double;  const MensagemRodape: AnsiString);
+begin
+     OnAntesSubtotalizaCupomCallback(DescontoAcrescimo, pChar(MensagemRodape));
+end;
+
+procedure TEventHandlersECF.OnAntesSubtotalizaNaoFiscal(const DescontoAcrescimo: Double;  const MensagemRodape: AnsiString);
+begin
+     OnAntesSubtotalizaNaoFiscalCallback(DescontoAcrescimo, pChar(MensagemRodape));
+end;
+
+procedure TEventHandlersECF.OnAntesSuprimento(const Valor: Double; const Obs: AnsiString; const DescricaoCNF, DescricaoFPG: String);
+begin
+     OnAntesSuprimentoCallback(Valor, pChar(Obs), pChar(DescricaoCNF), pChar(DescricaoFPG));
+end;
+
+procedure TEventHandlersECF.OnAntesVendeItem(const Codigo, Descricao, AliquotaICMS: String; const Qtd, ValorUnitario,
+          ValorDescontoAcrescimo: Double; const Unidade, TipoDescontoAcrescimo, DescontoAcrescimo: String);
+begin
+     OnAntesVendeItemCallback(pChar(Codigo), pChar(Descricao), pChar(AliquotaICMS), Qtd, ValorUnitario,
+          ValorDescontoAcrescimo, pChar(Unidade), pChar(TipoDescontoAcrescimo), pChar(DescontoAcrescimo));
+end;
+
 procedure TEventHandlersECF.OnBobinaAdicionaLinhas(const Linhas : String; const Operacao : String);
 var
   pLinhas: PChar;
@@ -7580,6 +7939,246 @@ begin
      pOperacao := PChar(Operacao);
      OnBobinaAdicionaLinhasCallback(pLinhas, pOperacao);
 end;
+
+procedure TEventHandlersECF.OnChangeEstado(const EstadoAnterior, EstadoAtual: TACBrECFEstado);
+begin
+     OnChangeEstadoCallback(Integer(EstadoAnterior), Integer(EstadoAtual));
+end;
+
+procedure TEventHandlersECF.OnChequeEstado(const EstadoAtual: TACBrECFCHQEstado;  var Continuar: Boolean);
+begin
+    Continuar := OnChequeEstadoCallback(Integer(EstadoAtual));
+end;
+
+procedure TEventHandlersECF.OnDepoisAbreCupom(const CPF_CNPJ, Nome, Endereco : String);
+begin
+     OnDepoisAbreCupomCallback(PChar(CPF_CNPJ), PChar(Nome), PChar(Endereco));
+end;
+
+procedure TEventHandlersECF.OnDepoisAbreCupomVinculado(Sender: TObject);
+begin
+     OnDepoisAbreCupomVinculadoCallback();
+end;
+
+procedure TEventHandlersECF.OnDepoisAbreNaoFiscal(const CPF_CNPJ, Nome, Endereco : String);
+begin
+     OnDepoisAbreNaoFiscalCallback(PChar(CPF_CNPJ), PChar(Nome), PChar(Endereco));
+end;
+
+procedure TEventHandlersECF.OnDepoisAbreRelatorioGerencial(const Indice: Integer);
+begin
+     OnDepoisAbreRelatorioGerencialCallback(Indice);
+end;
+
+procedure TEventHandlersECF.OnDepoisCancelaCupom(Sender: TObject);
+begin
+     OnDepoisCancelaCupomCallback();
+end;
+
+procedure TEventHandlersECF.OnDepoisCancelaItemNaoFiscal(const NumItem: Integer);
+begin
+     OnDepoisCancelaItemNaoFiscalCallback(NumItem);
+end;
+
+procedure TEventHandlersECF.OnDepoisCancelaItemVendido(const NumItem: Integer);
+begin
+     OnDepoisCancelaItemVendidoCallback(NumItem);
+end;
+
+procedure TEventHandlersECF.OnDepoisCancelaNaoFiscal(Sender: TObject);
+begin
+     OnDepoisCancelaNaoFiscalCallback();
+end;
+
+procedure TEventHandlersECF.OnDepoisEfetuaPagamento(const CodFormaPagto: String; const Valor: Double;
+          const Observacao: AnsiString; const ImprimeVinculado: Boolean);
+begin
+     OnDepoisEfetuaPagamentoCallback(pChar(CodFormaPagto), Valor, pChar(Observacao), ImprimeVinculado);
+end;
+
+procedure TEventHandlersECF.OnDepoisEfetuaPagamentoNaoFiscal(const CodFormaPagto: String; const Valor: Double;
+          const Observacao: AnsiString; const ImprimeVinculado: Boolean);
+begin
+     OnDepoisEfetuaPagamentoNaoFiscalCallback(pChar(CodFormaPagto), Valor, pChar(Observacao), ImprimeVinculado);
+end;
+
+procedure TEventHandlersECF.OnDepoisFechaCupom(const Observacao: AnsiString; const IndiceBMP: Integer);
+begin
+     OnDepoisFechaCupomCallback(pChar(Observacao), IndiceBMP);
+end;
+
+procedure TEventHandlersECF.OnDepoisFechaNaoFiscal(const Observacao: AnsiString; const IndiceBMP: Integer);
+begin
+     OnDepoisFechaNaoFiscalCallback(pChar(Observacao), IndiceBMP);
+end;
+
+procedure TEventHandlersECF.OnDepoisFechaRelatorio(Sender: TObject);
+begin
+     OnDepoisFechaRelatorioCallback();
+end;
+
+procedure TEventHandlersECF.OnDepoisLeituraX(Sender: TObject);
+begin
+     OnDepoisLeituraXCallback();
+end;
+
+procedure TEventHandlersECF.OnDepoisReducaoZ(Sender: TObject);
+begin
+     OnDepoisReducaoZCallback();
+end;
+
+procedure TEventHandlersECF.OnDepoisSangria(const Valor: Double; const Obs: AnsiString; const DescricaoCNF, DescricaoFPG: String);
+begin
+     OnDepoisSangriaCallback(Valor, pChar(Obs), pChar(DescricaoCNF), pChar(DescricaoFPG));
+end;
+
+procedure TEventHandlersECF.OnDepoisSubtotalizaCupom(const DescontoAcrescimo: Double;  const MensagemRodape: AnsiString);
+begin
+     OnDepoisSubtotalizaCupomCallback(DescontoAcrescimo, pChar(MensagemRodape));
+end;
+
+procedure TEventHandlersECF.OnDepoisSubtotalizaNaoFiscal(const DescontoAcrescimo: Double;  const MensagemRodape: AnsiString);
+begin
+     OnDepoisSubtotalizaNaoFiscalCallback(DescontoAcrescimo, pChar(MensagemRodape));
+end;
+
+procedure TEventHandlersECF.OnDepoisSuprimento(const Valor: Double; const Obs: AnsiString; const DescricaoCNF, DescricaoFPG: String);
+begin
+     OnDepoisSuprimentoCallback(Valor, pChar(Obs), pChar(DescricaoCNF), pChar(DescricaoFPG));
+end;
+
+procedure TEventHandlersECF.OnDepoisVendeItem(const Codigo, Descricao, AliquotaICMS: String; const Qtd, ValorUnitario,
+          ValorDescontoAcrescimo: Double; const Unidade, TipoDescontoAcrescimo, DescontoAcrescimo: String);
+begin
+     OnDepoisVendeItemCallback(pChar(Codigo), pChar(Descricao), pChar(AliquotaICMS), Qtd, ValorUnitario,
+          ValorDescontoAcrescimo, pChar(Unidade), pChar(TipoDescontoAcrescimo), pChar(DescontoAcrescimo));
+end;
+
+procedure TEventHandlersECF.OnErrorAbreCupom(var Tratado: Boolean);
+begin
+     Tratado := OnErrorAbreCupomCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorAbreCupomVinculado(var Tratado: Boolean);
+begin
+     Tratado := OnErrorAbreCupomVinculadoCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorAbreNaoFiscal(var Tratado: Boolean);
+begin
+     Tratado := OnErrorAbreNaoFiscalCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorAbreRelatorioGerencial(var Tratado: Boolean; const Indice: Integer);
+begin
+     Tratado := OnErrorAbreRelatorioGerencialCallback(Indice);
+end;
+
+procedure TEventHandlersECF.OnErrorCancelaCupom(var Tratado: Boolean);
+begin
+     Tratado := OnErrorCancelaCupomCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorCancelaItemNaoFiscal(var Tratado: Boolean);
+begin
+     Tratado := OnErrorCancelaItemNaoFiscalCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorCancelaItemVendido(var Tratado: Boolean);
+begin
+     Tratado := OnErrorCancelaItemVendidoCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorCancelaNaoFiscal(var Tratado: Boolean);
+begin
+     Tratado := OnErrorCancelaNaoFiscalCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorEfetuaPagamento(var Tratado: Boolean);
+begin
+     Tratado := OnErrorEfetuaPagamentoCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorEfetuaPagamentoNaoFiscal(var Tratado: Boolean);
+begin
+     Tratado := OnErrorEfetuaPagamentoNaoFiscalCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorFechaCupom(var Tratado: Boolean);
+begin
+     Tratado := OnErrorFechaCupomCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorFechaNaoFiscal(var Tratado: Boolean);
+begin
+     Tratado := OnErrorFechaNaoFiscalCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorFechaRelatorio(var Tratado: Boolean);
+begin
+     Tratado := OnErrorFechaRelatorioCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorLeituraX(var Tratado: Boolean);
+begin
+     Tratado := OnErrorLeituraXCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorReducaoZ(var Tratado: Boolean);
+begin
+     Tratado := OnErrorReducaoZCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorSangria(var Tratado: Boolean);
+begin
+     Tratado := OnErrorSangriaCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorSemPapel(Sender: TObject);
+begin
+     OnErrorSemPapelCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorSubtotalizaCupom(var Tratado: Boolean);
+begin
+     Tratado := OnErrorSubtotalizaCupomCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorSubtotalizaNaoFiscal(var Tratado: Boolean);
+begin
+     Tratado := OnErrorSubtotalizaNaoFiscalCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorSuprimento(var Tratado: Boolean);
+begin
+     Tratado := OnErrorSuprimentoCallback();
+end;
+
+procedure TEventHandlersECF.OnErrorVendeItem(var Tratado: Boolean);
+begin
+     Tratado := OnErrorVendeItemCallback();
+end;
+
+procedure TEventHandlersECF.OnMsgAguarde(const Mensagem : String);
+begin
+     OnMsgAguardeCallback(pChar(Mensagem));
+end;
+
+procedure TEventHandlersECF.OnMsgRetentar(const Mensagem: String; const Situacao: String; var Result: Boolean);
+begin
+     Result := OnMsgRetentarCallback(pChar(Mensagem), pChar(Situacao));
+end;
+
+procedure TEventHandlersECF.OnPAFCalcEAD(Arquivo: String);
+begin
+     OnPAFCalcEADCallback(pChar(Arquivo));
+end;
+
+procedure TEventHandlersECF.OnPAFGetKeyRSA(var Chave: AnsiString);
+begin
+     Chave := OnPAFGetKeyRSACallback();
+end;
+
 
 {%endregion}
 
@@ -7647,7 +8246,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnAntesAbreCupom(const ecfHandle: PECFHandle; const method : TAntesAbreCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnAntesAbreCupom(const ecfHandle: PECFHandle; const method : TAbreCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -7709,7 +8308,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnAntesAbreNaoFiscal(const ecfHandle: PECFHandle; const method : TAntesAbreCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnAntesAbreNaoFiscal(const ecfHandle: PECFHandle; const method : TAbreCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -7864,6 +8463,409 @@ begin
   end;
 end;
 
+Function ECF_SetOnAntesCancelaNaoFiscal(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesCancelaNaoFiscal := ecfHandle^.EventHandlers.OnAntesCancelaNaoFiscal;
+        ecfHandle^.EventHandlers.OnAntesCancelaNaoFiscalCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesCancelaNaoFiscal := nil;
+        ecfHandle^.EventHandlers.OnAntesCancelaNaoFiscalCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesEfetuaPagamento(const ecfHandle: PECFHandle; const method : TEfetuaPagamentoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesEfetuaPagamento := ecfHandle^.EventHandlers.OnAntesEfetuaPagamento;
+        ecfHandle^.EventHandlers.OnAntesEfetuaPagamentoCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesEfetuaPagamento := nil;
+        ecfHandle^.EventHandlers.OnAntesEfetuaPagamentoCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesEfetuaPagamentoNaoFiscal(const ecfHandle: PECFHandle; const method : TEfetuaPagamentoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesEfetuaPagamentoNaoFiscal := ecfHandle^.EventHandlers.OnAntesEfetuaPagamentoNaoFiscal;
+        ecfHandle^.EventHandlers.OnAntesEfetuaPagamentoNaoFiscalCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesEfetuaPagamentoNaoFiscal := nil;
+        ecfHandle^.EventHandlers.OnAntesEfetuaPagamentoNaoFiscalCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesFechaCupom(const ecfHandle: PECFHandle; const method : TFechaCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesFechaCupom := ecfHandle^.EventHandlers.OnAntesFechaCupom;
+        ecfHandle^.EventHandlers.OnAntesFechaCupomCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesFechaCupom := nil;
+        ecfHandle^.EventHandlers.OnAntesFechaCupomCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesFechaNaoFiscal(const ecfHandle: PECFHandle; const method : TFechaCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesFechaNaoFiscal := ecfHandle^.EventHandlers.OnAntesFechaNaoFiscal;
+        ecfHandle^.EventHandlers.OnAntesFechaNaoFiscalCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesFechaNaoFiscal := nil;
+        ecfHandle^.EventHandlers.OnAntesFechaNaoFiscalCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesFechaRelatorio(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesFechaRelatorio := ecfHandle^.EventHandlers.OnAntesFechaRelatorio;
+        ecfHandle^.EventHandlers.OnAntesFechaRelatorioCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesFechaRelatorio := nil;
+        ecfHandle^.EventHandlers.OnAntesFechaRelatorioCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesLeituraX(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesLeituraX := ecfHandle^.EventHandlers.OnAntesLeituraX;
+        ecfHandle^.EventHandlers.OnAntesLeituraXCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesLeituraX := nil;
+        ecfHandle^.EventHandlers.OnAntesLeituraXCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesReducaoZ(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesReducaoZ := ecfHandle^.EventHandlers.OnAntesReducaoZ;
+        ecfHandle^.EventHandlers.OnAntesReducaoZCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesReducaoZ := nil;
+        ecfHandle^.EventHandlers.OnAntesReducaoZCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesSangria(const ecfHandle: PECFHandle; const method : TSangriaSuprimentoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesSangria := ecfHandle^.EventHandlers.OnAntesSangria;
+        ecfHandle^.EventHandlers.OnAntesSangriaCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesSangria := nil;
+        ecfHandle^.EventHandlers.OnAntesSangriaCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesSubtotalizaCupom(const ecfHandle: PECFHandle; const method : TSubtotalizaCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesSubtotalizaCupom := ecfHandle^.EventHandlers.OnAntesSubtotalizaCupom;
+        ecfHandle^.EventHandlers.OnAntesSubtotalizaCupomCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesSubtotalizaCupom := nil;
+        ecfHandle^.EventHandlers.OnAntesSubtotalizaCupomCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesSubtotalizaNaoFiscal(const ecfHandle: PECFHandle; const method : TSubtotalizaCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesSubtotalizaNaoFiscal := ecfHandle^.EventHandlers.OnAntesSubtotalizaNaoFiscal;
+        ecfHandle^.EventHandlers.OnAntesSubtotalizaNaoFiscalCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesSubtotalizaNaoFiscal := nil;
+        ecfHandle^.EventHandlers.OnAntesSubtotalizaNaoFiscalCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesSuprimento(const ecfHandle: PECFHandle; const method : TSangriaSuprimentoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesSuprimento := ecfHandle^.EventHandlers.OnAntesSuprimento;
+        ecfHandle^.EventHandlers.OnAntesSuprimentoCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesSuprimento := nil;
+        ecfHandle^.EventHandlers.OnAntesSuprimentoCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnAntesVendeItem(const ecfHandle: PECFHandle; const method : TVendeItemCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnAntesVendeItem := ecfHandle^.EventHandlers.OnAntesVendeItem;
+        ecfHandle^.EventHandlers.OnAntesVendeItemCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnAntesVendeItem := nil;
+        ecfHandle^.EventHandlers.OnAntesVendeItemCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 Function ECF_SetOnBobinaAdicionaLinhas(const ecfHandle: PECFHandle; const method : TBobinaProcedureCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -7895,98 +8897,1465 @@ begin
   end;
 end;
 
+Function ECF_SetOnChangeEstado(const ecfHandle: PECFHandle; const method : TChangeEstadoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnChangeEstado := ecfHandle^.EventHandlers.OnChangeEstado;
+        ecfHandle^.EventHandlers.OnChangeEstadoCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnChangeEstado := nil;
+        ecfHandle^.EventHandlers.OnChangeEstadoCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnChequeEstado(const ecfHandle: PECFHandle; const method : TChequeEstadoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnChequeEstado := ecfHandle^.EventHandlers.OnChequeEstado;
+        ecfHandle^.EventHandlers.OnChequeEstadoCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnChangeEstado := nil;
+        ecfHandle^.EventHandlers.OnChequeEstadoCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisAbreCupom(const ecfHandle: PECFHandle; const method : TAbreCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisAbreCupom := ecfHandle^.EventHandlers.OnDepoisAbreCupom;
+        ecfHandle^.EventHandlers.OnDepoisAbreCupomCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisAbreCupom := nil;
+        ecfHandle^.EventHandlers.OnDepoisAbreCupomCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisAbreCupomVinculado(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisAbreCupomVinculado := ecfHandle^.EventHandlers.OnDepoisAbreCupomVinculado;
+        ecfHandle^.EventHandlers.OnDepoisAbreCupomVinculadoCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisAbreCupomVinculado := nil;
+        ecfHandle^.EventHandlers.OnDepoisAbreCupomVinculadoCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisAbreNaoFiscal(const ecfHandle: PECFHandle; const method : TAbreCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisAbreNaoFiscal := ecfHandle^.EventHandlers.OnDepoisAbreNaoFiscal;
+        ecfHandle^.EventHandlers.OnDepoisAbreNaoFiscalCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisAbreNaoFiscal := nil;
+        ecfHandle^.EventHandlers.OnDepoisAbreNaoFiscalCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisAbreRelatorioGerencial(const ecfHandle: PECFHandle; const method : TIntArgumentCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisAbreRelatorioGerencial := ecfHandle^.EventHandlers.OnDepoisAbreRelatorioGerencial;
+        ecfHandle^.EventHandlers.OnDepoisAbreRelatorioGerencialCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisAbreRelatorioGerencial := nil;
+        ecfHandle^.EventHandlers.OnDepoisAbreRelatorioGerencialCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisCancelaCupom(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisCancelaCupom := ecfHandle^.EventHandlers.OnDepoisCancelaCupom;
+        ecfHandle^.EventHandlers.OnDepoisCancelaCupomCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisCancelaCupom := nil;
+        ecfHandle^.EventHandlers.OnDepoisCancelaCupomCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisCancelaItemNaoFiscal(const ecfHandle: PECFHandle; const method : TIntArgumentCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisCancelaItemNaoFiscal := ecfHandle^.EventHandlers.OnDepoisCancelaItemNaoFiscal;
+        ecfHandle^.EventHandlers.OnDepoisCancelaItemNaoFiscalCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisCancelaItemNaoFiscal := nil;
+        ecfHandle^.EventHandlers.OnDepoisCancelaItemNaoFiscalCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisCancelaItemVendido(const ecfHandle: PECFHandle; const method : TIntArgumentCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisCancelaItemVendido := ecfHandle^.EventHandlers.OnDepoisCancelaItemVendido;
+        ecfHandle^.EventHandlers.OnDepoisCancelaItemVendidoCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisCancelaItemVendido := nil;
+        ecfHandle^.EventHandlers.OnDepoisCancelaItemVendidoCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisCancelaNaoFiscal(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisCancelaNaoFiscal := ecfHandle^.EventHandlers.OnDepoisCancelaNaoFiscal;
+        ecfHandle^.EventHandlers.OnDepoisCancelaNaoFiscalCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisCancelaNaoFiscal := nil;
+        ecfHandle^.EventHandlers.OnDepoisCancelaNaoFiscalCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisEfetuaPagamento(const ecfHandle: PECFHandle; const method : TEfetuaPagamentoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisEfetuaPagamento := ecfHandle^.EventHandlers.OnDepoisEfetuaPagamento;
+        ecfHandle^.EventHandlers.OnDepoisEfetuaPagamentoCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisEfetuaPagamento := nil;
+        ecfHandle^.EventHandlers.OnDepoisEfetuaPagamentoCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisEfetuaPagamentoNaoFiscal(const ecfHandle: PECFHandle; const method : TEfetuaPagamentoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisEfetuaPagamentoNaoFiscal := ecfHandle^.EventHandlers.OnDepoisEfetuaPagamentoNaoFiscal;
+        ecfHandle^.EventHandlers.OnDepoisEfetuaPagamentoNaoFiscalCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisEfetuaPagamentoNaoFiscal := nil;
+        ecfHandle^.EventHandlers.OnDepoisEfetuaPagamentoNaoFiscalCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisFechaCupom(const ecfHandle: PECFHandle; const method : TFechaCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisFechaCupom := ecfHandle^.EventHandlers.OnDepoisFechaCupom;
+        ecfHandle^.EventHandlers.OnDepoisFechaCupomCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisFechaCupom := nil;
+        ecfHandle^.EventHandlers.OnDepoisFechaCupomCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisFechaNaoFiscal(const ecfHandle: PECFHandle; const method : TFechaCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisFechaNaoFiscal := ecfHandle^.EventHandlers.OnDepoisFechaNaoFiscal;
+        ecfHandle^.EventHandlers.OnDepoisFechaNaoFiscalCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisFechaNaoFiscal := nil;
+        ecfHandle^.EventHandlers.OnDepoisFechaNaoFiscalCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisFechaRelatorio(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisFechaRelatorio := ecfHandle^.EventHandlers.OnDepoisFechaRelatorio;
+        ecfHandle^.EventHandlers.OnDepoisFechaRelatorioCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisFechaRelatorio := nil;
+        ecfHandle^.EventHandlers.OnDepoisFechaRelatorioCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisLeituraX(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisLeituraX := ecfHandle^.EventHandlers.OnDepoisLeituraX;
+        ecfHandle^.EventHandlers.OnDepoisLeituraXCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisLeituraX := nil;
+        ecfHandle^.EventHandlers.OnDepoisLeituraXCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisReducaoZ(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisReducaoZ := ecfHandle^.EventHandlers.OnDepoisReducaoZ;
+        ecfHandle^.EventHandlers.OnDepoisReducaoZCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisReducaoZ := nil;
+        ecfHandle^.EventHandlers.OnDepoisReducaoZCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisSangria(const ecfHandle: PECFHandle; const method : TSangriaSuprimentoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisSangria := ecfHandle^.EventHandlers.OnDepoisSangria;
+        ecfHandle^.EventHandlers.OnDepoisSangriaCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisSangria := nil;
+        ecfHandle^.EventHandlers.OnDepoisSangriaCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisSubtotalizaCupom(const ecfHandle: PECFHandle; const method : TSubtotalizaCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisSubtotalizaCupom := ecfHandle^.EventHandlers.OnDepoisSubtotalizaCupom;
+        ecfHandle^.EventHandlers.OnDepoisSubtotalizaCupomCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisSubtotalizaCupom := nil;
+        ecfHandle^.EventHandlers.OnDepoisSubtotalizaCupomCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisSubtotalizaNaoFiscal(const ecfHandle: PECFHandle; const method : TSubtotalizaCupomCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisSubtotalizaNaoFiscal := ecfHandle^.EventHandlers.OnDepoisSubtotalizaNaoFiscal;
+        ecfHandle^.EventHandlers.OnDepoisSubtotalizaNaoFiscalCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisSubtotalizaNaoFiscal := nil;
+        ecfHandle^.EventHandlers.OnDepoisSubtotalizaNaoFiscalCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisSuprimento(const ecfHandle: PECFHandle; const method : TSangriaSuprimentoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisSuprimento := ecfHandle^.EventHandlers.OnDepoisSuprimento;
+        ecfHandle^.EventHandlers.OnDepoisSuprimentoCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisSuprimento := nil;
+        ecfHandle^.EventHandlers.OnDepoisSuprimentoCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnDepoisVendeItem(const ecfHandle: PECFHandle; const method : TVendeItemCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        ecfHandle^.ECF.OnDepoisVendeItem := ecfHandle^.EventHandlers.OnDepoisVendeItem;
+        ecfHandle^.EventHandlers.OnDepoisVendeItemCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        ecfHandle^.ECF.OnDepoisVendeItem := nil;
+        ecfHandle^.EventHandlers.OnDepoisVendeItemCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetOnErrorAbreCupom(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorAbreCupom := ecfHandle^.EventHandlers.OnErrorAbreCupom;
+    ecfHandle^.EventHandlers.OnErrorAbreCupomCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorAbreCupom := nil;
+    ecfHandle^.EventHandlers.OnErrorAbreCupomCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorAbreCupomVinculado(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorAbreCupomVinculado := ecfHandle^.EventHandlers.OnErrorAbreCupomVinculado;
+    ecfHandle^.EventHandlers.OnErrorAbreCupomVinculadoCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorAbreCupomVinculado := nil;
+    ecfHandle^.EventHandlers.OnErrorAbreCupomVinculadoCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorAbreNaoFiscal(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorAbreNaoFiscal := ecfHandle^.EventHandlers.OnErrorAbreNaoFiscal;
+    ecfHandle^.EventHandlers.OnErrorAbreNaoFiscalCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorAbreNaoFiscal := nil;
+    ecfHandle^.EventHandlers.OnErrorAbreNaoFiscalCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorAbreRelatorioGerencial(const ecfHandle: PECFHandle; const method : TOnErrorRelatorioCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorAbreRelatorioGerencial := ecfHandle^.EventHandlers.OnErrorAbreRelatorioGerencial;
+    ecfHandle^.EventHandlers.OnErrorAbreRelatorioGerencialCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorAbreRelatorioGerencial := nil;
+    ecfHandle^.EventHandlers.OnErrorAbreRelatorioGerencialCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorCancelaCupom(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorCancelaCupom := ecfHandle^.EventHandlers.OnErrorCancelaCupom;
+    ecfHandle^.EventHandlers.OnErrorCancelaCupomCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorCancelaCupom := nil;
+    ecfHandle^.EventHandlers.OnErrorCancelaCupomCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorCancelaItemNaoFiscal(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorCancelaItemNaoFiscal := ecfHandle^.EventHandlers.OnErrorCancelaItemNaoFiscal;
+    ecfHandle^.EventHandlers.OnErrorCancelaItemNaoFiscalCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorCancelaItemNaoFiscal := nil;
+    ecfHandle^.EventHandlers.OnErrorCancelaItemNaoFiscalCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorCancelaItemVendido(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorCancelaItemVendido := ecfHandle^.EventHandlers.OnErrorCancelaItemVendido;
+    ecfHandle^.EventHandlers.OnErrorCancelaItemVendidoCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorCancelaItemVendido := nil;
+    ecfHandle^.EventHandlers.OnErrorCancelaItemVendidoCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorCancelaNaoFiscal(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorCancelaNaoFiscal := ecfHandle^.EventHandlers.OnErrorCancelaNaoFiscal;
+    ecfHandle^.EventHandlers.OnErrorCancelaNaoFiscalCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorCancelaNaoFiscal := nil;
+    ecfHandle^.EventHandlers.OnErrorCancelaNaoFiscalCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorEfetuaPagamento(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorEfetuaPagamento := ecfHandle^.EventHandlers.OnErrorEfetuaPagamento;
+    ecfHandle^.EventHandlers.OnErrorEfetuaPagamentoCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorEfetuaPagamento := nil;
+    ecfHandle^.EventHandlers.OnErrorEfetuaPagamentoCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorEfetuaPagamentoNaoFiscal(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorEfetuaPagamentoNaoFiscal := ecfHandle^.EventHandlers.OnErrorEfetuaPagamentoNaoFiscal;
+    ecfHandle^.EventHandlers.OnErrorEfetuaPagamentoNaoFiscalCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorEfetuaPagamentoNaoFiscal := nil;
+    ecfHandle^.EventHandlers.OnErrorEfetuaPagamentoNaoFiscalCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorFechaCupom(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorFechaCupom := ecfHandle^.EventHandlers.OnErrorFechaCupom;
+    ecfHandle^.EventHandlers.OnErrorFechaCupomCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorFechaCupom := nil;
+    ecfHandle^.EventHandlers.OnErrorFechaCupomCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorFechaNaoFiscal(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorFechaNaoFiscal := ecfHandle^.EventHandlers.OnErrorFechaNaoFiscal;
+    ecfHandle^.EventHandlers.OnErrorFechaNaoFiscalCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorFechaNaoFiscal := nil;
+    ecfHandle^.EventHandlers.OnErrorFechaNaoFiscalCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorFechaRelatorio(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorFechaRelatorio := ecfHandle^.EventHandlers.OnErrorFechaRelatorio;
+    ecfHandle^.EventHandlers.OnErrorFechaRelatorioCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorFechaRelatorio := nil;
+    ecfHandle^.EventHandlers.OnErrorFechaRelatorioCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorLeituraX(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorLeituraX := ecfHandle^.EventHandlers.OnErrorLeituraX;
+    ecfHandle^.EventHandlers.OnErrorLeituraXCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorLeituraX := nil;
+    ecfHandle^.EventHandlers.OnErrorLeituraXCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorReducaoZ(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorReducaoZ := ecfHandle^.EventHandlers.OnErrorReducaoZ;
+    ecfHandle^.EventHandlers.OnErrorReducaoZCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorReducaoZ := nil;
+    ecfHandle^.EventHandlers.OnErrorReducaoZCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorSangria(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorSangria := ecfHandle^.EventHandlers.OnErrorSangria;
+    ecfHandle^.EventHandlers.OnErrorSangriaCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorSangria := nil;
+    ecfHandle^.EventHandlers.OnErrorSangriaCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorSemPapel(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorSemPapel := ecfHandle^.EventHandlers.OnErrorSemPapel;
+    ecfHandle^.EventHandlers.OnErrorSemPapelCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorSemPapel := nil;
+    ecfHandle^.EventHandlers.OnErrorSemPapelCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorSubtotalizaCupom(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorSubtotalizaCupom := ecfHandle^.EventHandlers.OnErrorSubtotalizaCupom;
+    ecfHandle^.EventHandlers.OnErrorSubtotalizaCupomCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorSubtotalizaCupom := nil;
+    ecfHandle^.EventHandlers.OnErrorSubtotalizaCupomCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorSubtotalizaNaoFiscal(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorSubtotalizaNaoFiscal := ecfHandle^.EventHandlers.OnErrorSubtotalizaNaoFiscal;
+    ecfHandle^.EventHandlers.OnErrorSubtotalizaNaoFiscalCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorSubtotalizaNaoFiscal := nil;
+    ecfHandle^.EventHandlers.OnErrorSubtotalizaNaoFiscalCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorSuprimento(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorSuprimento := ecfHandle^.EventHandlers.OnErrorSuprimento;
+    ecfHandle^.EventHandlers.OnErrorSuprimentoCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorSuprimento := nil;
+    ecfHandle^.EventHandlers.OnErrorSuprimentoCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnErrorVendeItem(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnErrorVendeItem := ecfHandle^.EventHandlers.OnErrorVendeItem;
+    ecfHandle^.EventHandlers.OnErrorVendeItemCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnErrorVendeItem := nil;
+    ecfHandle^.EventHandlers.OnErrorVendeItemCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnMsgAguarde(const ecfHandle: PECFHandle; const method : TStringCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnMsgAguarde := ecfHandle^.EventHandlers.OnMsgAguarde;
+    ecfHandle^.EventHandlers.OnMsgAguardeCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnMsgAguarde := nil;
+    ecfHandle^.EventHandlers.OnMsgAguardeCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnMsgRetentar(const ecfHandle: PECFHandle; const method : TOnMsgRetentarCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnMsgRetentar := ecfHandle^.EventHandlers.OnMsgRetentar;
+    ecfHandle^.EventHandlers.OnMsgRetentarCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnMsgRetentar := nil;
+    ecfHandle^.EventHandlers.OnMsgRetentarCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnPAFCalcEAD(const ecfHandle: PECFHandle; const method : TStringCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnPAFCalcEAD := ecfHandle^.EventHandlers.OnPAFCalcEAD;
+    ecfHandle^.EventHandlers.OnPAFCalcEADCallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnPAFCalcEAD := nil;
+    ecfHandle^.EventHandlers.OnPAFCalcEADCallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
+Function ECF_SetOnPAFGetKeyRSA(const ecfHandle: PECFHandle; const method : TGetKeyCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+if (ecfHandle = nil) then
+begin
+ Result := -2;
+ Exit;
+end;
+
+try
+if Assigned(method) then
+begin
+    ecfHandle^.ECF.OnPAFGetKeyRSA := ecfHandle^.EventHandlers.OnPAFGetKeyRSA;
+    ecfHandle^.EventHandlers.OnPAFGetKeyRSACallback := method;
+    Result := 0;
+end
+else
+begin
+    ecfHandle^.ECF.OnPAFGetKeyRSA := nil;
+    ecfHandle^.EventHandlers.OnPAFGetKeyRSACallback := nil;
+    Result := 0;
+end;
+except
+ on exception : Exception do
+ begin
+    ecfHandle^.UltimoErro := exception.Message;
+    Result := -1;
+ end
+end;
+end;
+
 {%endregion}
 
-{
-NÀO IMPLEMENTADO
-
-Function ECF_ImprimeCheque(const ecfHandle: PECFHandle;
-                           const Banco: pChar;
-                           const Valor: Double;
-                           const Favorecido : pChar;
-                           const Cidade: pChar;
-                           const Data: TDateTime;
-                           const Observacao: String) : Integer ; cdecl;  export;
-begin
-  if ECF = nil then
-   begin
-     Result := -2;
-     Exit ;
-   end;
-
-  try
-     ecfHandle^.ECF.ImprimeCheque(Banco,Valor,Favorecido,Cidade,Data,Observacao);
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-end;
-
-Function ECF_CancelaImpressaoCheque(const ecfHandle: PECFHandle) : Integer ; cdecl;export;
-begin
-  if ECF = nil then
-   begin
-     Result := -2;
-     Exit ;
-   end;
-
-  try
-     ecfHandle^.ECF.CancelaImpressaoCheque;
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-end;
-
-Function EnviaComando(cmd: AnsiString; var resp : pchar ) : Integer ; cdecl;export; overload;
-begin
-  if ECF = nil then
-   begin
-     Result := -2;
-     Exit ;
-   end;
-
-  try
-     resp := pchar(ecfHandle^.ECF.EnviaComando(cmd));
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-end;
-
-Function EnviaComando(cmd: AnsiString; lTimeOut: Integer; var resp : pchar ) : Integer ; cdecl;  export; overload;
-begin
-  if ECF = nil then
-   begin
-     Result := -2;
-     Exit ;
-   end;
-
-  try
-     resp := pchar(ecfHandle^.ECF.EnviaComando(cmd,lTimeOut));
-     Result := 0 ;
-  except
-     on exception : Exception do
-     begin
-        ecfHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-end;
-
-}
 
 exports
 
@@ -8026,6 +10395,7 @@ ECF_GetChequePronto, ECF_GetIntervaloAposComando, ECF_SetIntervaloAposComando,
 ECF_GetDescricaoGrande, ECF_SetDescricaoGrande, ECF_GetGavetaSinalInvertido, ECF_SetGavetaSinalInvertido,
 ECF_GetOperador, ECF_SetOperador, ECF_GetLinhasEntreCupons, ECF_SetLinhasEntreCupons,
 ECF_GetDecimaisPreco, ECF_SetDecimaisPreco, ECF_GetDecimaisQtd, ECF_SetDecimaisQtd,
+ECF_GetPausaRelatorio, ECF_SetPausaRelatorio,
 
 { Métodos do Componente }
 
@@ -8063,12 +10433,15 @@ ECF_AbreNaoFiscal, ECF_RegistraItemNaoFiscal, ECF_SubtotalizaNaoFiscal, ECF_Efet
 ECF_FechaNaoFiscal, ECF_CancelaNaoFiscal, ECF_AcharECF, ECF_AcharPorta,
 
 ECF_AbreGaveta,
-{
-ECF_ImprimeCheque, ECF_CancelaImpressaoCheque,
-}
+
+{Cheques}
+
+ECF_ImprimeCheque, ECF_CancelaImpressaoCheque, ECF_LeituraCMC7,
+
+{Utilitarios}
 
 ECF_MudaHorarioVerao, ECF_MudaArredondamento,
-ECF_CorrigeEstadoErro,
+ECF_CorrigeEstadoErro, ECF_EnviaComando,
 
 { InfoRodape Cupom }
 
@@ -8201,16 +10574,26 @@ ECF_GetMemoParamsLineCount, ECF_MemoLeParams,
 ECF_SetOnPoucoPapel, ECF_SetOnAguardandoRespostaChange, ECF_SetOnAntesAbreCupom,
 ECF_SetOnAntesAbreCupomVinculado, ECF_SetOnAntesAbreNaoFiscal, ECF_SetOnAntesAbreRelatorioGerencial,
 ECF_SetOnAntesCancelaCupom, ECF_SetOnAntesCancelaItemNaoFiscal, ECF_SetOnAntesCancelaItemVendido,
-ECF_SetOnBobinaAdicionaLinhas;
-
-{Não implementado}
-
-{
-
-exports EnviaComando(cmd: AnsiString; var resp : pchar ) overload;
-exports EnviaComando(cmd: AnsiString; lTimeOut: Integer; var resp : pchar ) overload;
-
-}
+ECF_SetOnAntesCancelaNaoFiscal,ECF_SetOnAntesEfetuaPagamento, ECF_SetOnAntesEfetuaPagamentoNaoFiscal,
+ECF_SetOnAntesFechaCupom, ECF_SetOnAntesFechaNaoFiscal, ECF_SetOnAntesFechaRelatorio,
+ECF_SetOnAntesLeituraX, ECF_SetOnAntesReducaoZ, ECF_SetOnAntesSangria,
+ECF_SetOnAntesSubtotalizaCupom, ECF_SetOnAntesSubtotalizaNaoFiscal, ECF_SetOnAntesSuprimento,
+ECF_SetOnAntesVendeItem, ECF_SetOnBobinaAdicionaLinhas, ECF_SetOnChangeEstado,
+ECF_SetOnDepoisAbreCupom, ECF_SetOnDepoisAbreCupomVinculado, ECF_SetOnDepoisAbreNaoFiscal,
+ECF_SetOnDepoisAbreRelatorioGerencial, ECF_SetOnDepoisCancelaCupom, ECF_SetOnDepoisCancelaItemNaoFiscal,
+ECF_SetOnDepoisCancelaItemVendido, ECF_SetOnDepoisCancelaNaoFiscal,ECF_SetOnDepoisEfetuaPagamento,
+ECF_SetOnDepoisEfetuaPagamentoNaoFiscal, ECF_SetOnDepoisFechaCupom, ECF_SetOnDepoisFechaNaoFiscal,
+ECF_SetOnDepoisFechaRelatorio, ECF_SetOnDepoisLeituraX, ECF_SetOnDepoisReducaoZ,
+ECF_SetOnDepoisSangria, ECF_SetOnDepoisSubtotalizaCupom, ECF_SetOnDepoisSubtotalizaNaoFiscal,
+ECF_SetOnDepoisSuprimento, ECF_SetOnDepoisVendeItem, ECF_SetOnErrorAbreCupom,
+ECF_SetOnErrorAbreCupomVinculado, ECF_SetOnErrorAbreNaoFiscal, ECF_SetOnErrorAbreRelatorioGerencial,
+ECF_SetOnErrorCancelaCupom, ECF_SetOnErrorCancelaItemNaoFiscal,
+ECF_SetOnErrorCancelaItemVendido, ECF_SetOnErrorCancelaNaoFiscal,ECF_SetOnErrorEfetuaPagamento,
+ECF_SetOnErrorEfetuaPagamentoNaoFiscal, ECF_SetOnErrorFechaCupom, ECF_SetOnErrorFechaNaoFiscal,
+ECF_SetOnErrorFechaRelatorio, ECF_SetOnErrorLeituraX, ECF_SetOnErrorReducaoZ,
+ECF_SetOnErrorSangria, ECF_SetOnErrorSemPapel, ECF_SetOnErrorSubtotalizaCupom,
+ECF_SetOnErrorSubtotalizaNaoFiscal, ECF_SetOnErrorSuprimento, ECF_SetOnErrorVendeItem,
+ECF_SetOnMsgAguarde, ECF_SetOnMsgRetentar, ECF_SetOnPAFCalcEAD, ECF_SetOnPAFGetKeyRSA;
 
 end.
 
