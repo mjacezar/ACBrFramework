@@ -1155,7 +1155,7 @@
 			this.acBrECF1.Operador = "";
 			this.acBrECF1.Device.Porta = "COM1";
 			this.acBrECF1.Device.TimeOut = 3;
-			this.acBrECF1.OnPoucoPapel += new System.EventHandler(this.acBrECF1_OnPoucoPapel);
+			this.acBrECF1.OnMsgPoucoPapel += new System.EventHandler(this.acBrECF1_OnPoucoPapel);
 			// 
 			// acBrTEFD1
 			// 
