@@ -152,6 +152,12 @@
     <Compile Include="Forms\frmVendeItem.Designer.cs">
       <DependentUpon>frmVendeItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPagamento.Designer.cs">
+      <DependentUpon>frmPagamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\InputBox.cs" />
     <Compile Include="Utils\Item.cs" />
+    <EmbeddedResource Include="Forms\frmPagamento.resx">
+      <DependentUpon>frmPagamento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LeituraMemoriaFiscalPAF.resx">
       <DependentUpon>LeituraMemoriaFiscalPAF.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ECFTeste.ico" />
+    <None Include="Resources\Procurar16.png" />
     <None Include="Resources\ACBr.png" />
     <None Include="Resources\serial.png" />
   </ItemGroup>

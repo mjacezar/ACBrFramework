@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using ACBrFramework.ECF;
 
 namespace ACBrFramework.ECFTeste
 {
@@ -13,7 +10,9 @@ namespace ACBrFramework.ECFTeste
 	{
 		#region Field
 
-		public Item Retorno { get; private set; }
+		private Item item { get; set; }
+		public MainForm Main { get; set; }
+
 		#endregion Field
 
 		#region Constructor\Destructor
@@ -21,7 +20,7 @@ namespace ACBrFramework.ECFTeste
 		public frmVendeItem()
 		{
 			InitializeComponent();
-			Retorno = new Item();
+			item = new Item();
 		}
 
 		#endregion Constructor\Destructor
@@ -32,27 +31,31 @@ namespace ACBrFramework.ECFTeste
 		{
 			decimal valor = 0;
 
-			Retorno.codigo = txtCodigo.Text;
-			Retorno.descricao = txtDescricao.Text;
+			item.codigo = txtCodigo.Text;
+			item.descricao = txtDescricao.Text;
 			
 			decimal.TryParse(txtQuantidade.Text, out valor);
-			Retorno.quantidade = valor;
+			item.quantidade = valor;
 			valor = 0;
 
 			decimal.TryParse(txtPreco.Text, out valor);
-			Retorno.ValorUnitario = valor;
+			item.ValorUnitario = valor;
 			valor = 0;
 			
-			Retorno.Unidade = txtUnidade.Text;
-			Retorno.tipoDescAcres = radPercentagem.Checked ? "%" : "$";
-			Retorno.DescAcres = radAcrescimo.Checked ? "A" : "D";
+			item.Unidade = txtUnidade.Text;
+			item.tipoDescAcres = radPercentagem.Checked ? "%" : "$";
+			item.DescAcres = radAcrescimo.Checked ? "A" : "D";
 
 			decimal.TryParse(txtDescAcres.Text, out valor);
-			Retorno.ValorDescAcres = valor;
+			item.ValorDescAcres = valor;
 
-			Retorno.icms = txtICMS.Text;
+			item.icms = txtICMS.Text;
 
-			Close();
+			string msg = string.Format("Vende Item: Cod:{0}\n Desc:{1}\n Aliq:{2}\n Qtd:{3}\n " +
+							"Preço:{4}\n Desc:{5}\n Un:{6}\n Tipo:{7}\n Desc:{8}", item.codigo, item.descricao, item.icms, item.quantidade, item.ValorUnitario, item.ValorDescAcres, item.Unidade, item.tipoDescAcres, item.DescAcres);
+
+			Main.acbrECF.VendeItem(item.codigo, item.descricao, item.icms, item.quantidade, item.ValorUnitario, item.ValorDescAcres, item.Unidade, item.tipoDescAcres, item.DescAcres);
+			Main.WriteResp(msg);
 		}
 
 		private void Cancelar()

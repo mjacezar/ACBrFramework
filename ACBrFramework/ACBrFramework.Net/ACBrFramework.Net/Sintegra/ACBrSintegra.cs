@@ -170,10 +170,10 @@ namespace ACBrFramework.Sintegra
 			GerarRegistro54();
 			GerarRegistro55();
 			GerarRegistro56();
+			GerarRegistro60M();
 			GerarRegistro60A();
 			GerarRegistro60D();
-			GerarRegistro60I();
-			GerarRegistro60M();
+			GerarRegistro60I();			
 			GerarRegistro60R();
 			GerarRegistro61();
 			GerarRegistro61R();

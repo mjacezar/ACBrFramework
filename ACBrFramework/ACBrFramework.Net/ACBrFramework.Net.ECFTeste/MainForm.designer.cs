@@ -1704,12 +1704,14 @@
 			this.subTotalizaCupomToolStripMenuItem.Name = "subTotalizaCupomToolStripMenuItem";
 			this.subTotalizaCupomToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.subTotalizaCupomToolStripMenuItem.Text = "SubTotaliza Cupom";
+			this.subTotalizaCupomToolStripMenuItem.Click += new System.EventHandler(this.subTotalizaCupomToolStripMenuItem_Click);
 			// 
 			// efetuaPagamentoToolStripMenuItem
 			// 
 			this.efetuaPagamentoToolStripMenuItem.Name = "efetuaPagamentoToolStripMenuItem";
 			this.efetuaPagamentoToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.efetuaPagamentoToolStripMenuItem.Text = "Efetua Pagamento";
+			this.efetuaPagamentoToolStripMenuItem.Click += new System.EventHandler(this.efetuaPagamentoToolStripMenuItem_Click);
 			// 
 			// fechaCupomToolStripMenuItem
 			// 
@@ -3946,8 +3948,10 @@
 			this.acbrECF.Modelo = ACBrFramework.ECF.ModeloECF.Nenhum;
 			this.acbrECF.Operador = "";
 			this.acbrECF.PaginaDeCodigo = 0;
+			this.acbrECF.PausaRelatorio = 5;
 			this.acbrECF.RFD = this.aCBrRFD1;
 			this.acbrECF.OnAguardandoRespostaChange += new System.EventHandler(this.acbrECF_OnAguardandoRespostaChange);
+			this.acbrECF.OnBobinaAdicionaLinhas += new System.EventHandler<ACBrFramework.ECF.BobinaEventArgs>(this.acbrECF_OnBobinaAdicionaLinhas);
 			// 
 			// aCBrRFD1
 			// 
@@ -4336,7 +4340,6 @@
 		private System.Windows.Forms.ListBox lstCMD;
 		private System.Windows.Forms.Label label27;
 		private System.Windows.Forms.Label label26;
-		private ECF.ACBrECF acbrECF;
 		private AAC.ACBrAAC acbrAAC;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
 		private System.Windows.Forms.ToolStripMenuItem cupomVinculadoOuCCDToolStripMenuItem;
@@ -4486,6 +4489,7 @@
         private System.Windows.Forms.Label label39;
 		private System.Windows.Forms.ListBox lstParam;
 		private RFD.ACBrRFD aCBrRFD1;
+		public ECF.ACBrECF acbrECF;
     }
 }
 

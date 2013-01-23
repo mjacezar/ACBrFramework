@@ -2963,6 +2963,10 @@ namespace ACBrFramework.ECF
 				Forma.TipoDoc = FromUTF8(FormaRec.TipoDoc);
 				Forma.Total = Convert.ToDecimal(FormaRec.Total);
 
+				int count = GetInt32(ACBrECFInterop.ECF_GetFPGCount);
+				CheckResult(count);
+				CarregaFormasPagamento(count);
+
 				return Forma;
 			}
 		}
@@ -2984,6 +2988,10 @@ namespace ACBrFramework.ECF
 				Forma.PermiteVinculado = FormaRec.PermiteVinculado;
 				Forma.TipoDoc = FromUTF8(FormaRec.TipoDoc);
 				Forma.Total = Convert.ToDecimal(FormaRec.Total);
+
+				int count = GetInt32(ACBrECFInterop.ECF_GetFPGCount);
+				CheckResult(count);
+				CarregaFormasPagamento(count);
 
 				return Forma;
 			}
@@ -3068,6 +3076,10 @@ namespace ACBrFramework.ECF
 				comprovanteNaoFiscal.FormaPagamento = FromUTF8(record.FormaPagamento);
 				comprovanteNaoFiscal.Total = FromUTF8(record.Total);
 				comprovanteNaoFiscal.Contador = record.Contador;
+
+				int count = GetInt32(ACBrECFInterop.ECF_GetCNFCount);
+				CheckResult(count);
+				CarregaComprovantesNaoFiscais(count);
 
 				return comprovanteNaoFiscal;
 			}

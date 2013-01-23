@@ -117,14 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ACBr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ACBr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="serial" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Procurar16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Procurar16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAQAAAAAADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAwMDAAICAgAD///8AAAD/AAD/AAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIgAAAAAAAAAAAAAAAAABESIiAAAAAAAAAAAAAAABER
+        IAIiIAAAAAAAAAAAABERIhIgAiIgAAAAAAAAABERIhISIiACIiAAAAAAABERIhESEiIiIAIiIAAAAAIR
+        IhEREhIiIiIgAiIgAAACIhERERISIiIiIiACIAAAIhIRERESEiIiIiIiIAAAACMSEREREjIiIiIiIiIg
+        AAAjEhERETIhEiIiIiIiIgAAIxIRETMREiESIiIiIiICACMSETMRERESIRIiIiIiASAjEjMRFEESIRIh
+        EiIiIgEiIzIhFVESIRERAiESIiICACIxEiESIRERADECIRIiAAAAIjESIiERADMzARIhEgAAAAAiMRIi
+        ADM2YxAhEiAAAAAAACIxEiM2YzMwIiAAAAAAAAAAIjESMzNmMQAAAAAAAAAAAAAiMjNmMzMQAAAAAAAA
+        AAAAACIjMzZjMQAAAAAAAAAAAAAAIzZjMzMQAAAAAAAAAAAAAAIzMzZjMQAAAAAAAAAAAAAAIzZjMzMi
+        AAAAAAAAAAAAAAIzMzMiAAAAAAAAAAAAAAAAIzMiAAAAAAAAAAAAAAAAAAIiAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/8f///8B///8AH//8AAf/8AAB/8AA
+        AH+AAAAfgAAAD4AAAA8AAAAPAAAABwAAAAMAAAABAAAAAAAAAAAAAAADAAAAB8AAAAfwAAAf/AAAf/8A
+        Af//wAD///AAf//8AD///gAP//8AD///gD///8D////j/////////////////w==
+</value>
   </data>
 </root>
