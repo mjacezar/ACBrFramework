@@ -55,7 +55,8 @@ Changelog
 [+] Adicionado ImprimeCheque - ACBrECF - Rafael Dias.
 [+] Adicionado CancelaImpressaoCheque - ACBrECF - Rafael Dias.
 [+] Adicionado LeituraCMC7 - ACBrECF - Rafael Dias.
-[+] Adicionado eventos restantes - ACBrECF - Rafael Dias. 
+[+] Adicionado eventos restantes - ACBrECF - Rafael Dias.
+[-] Correções no salvamento dos arquivos - ACBrSintegra - Rafael Dias.
 
 18/01/2013
 

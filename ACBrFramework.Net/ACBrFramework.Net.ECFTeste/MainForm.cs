@@ -697,15 +697,8 @@ namespace ACBrFramework.ECFTeste
 		{
 			using (frmVendeItem Vendas = new frmVendeItem())
 			{
-				if (Vendas.ShowDialog().Equals(DialogResult.Cancel))
-					return;
-
-				var item = Vendas.Retorno;
-				string msg = string.Format("Vende Item: Cod:{0}\n Desc:{1}\n Aliq:{2}\n Qtd:{3}\n " +
-							"Preço:{4}\n Desc:{5}\n Un:{6}\n Tipo:{7}\n Desc:{8}", item.codigo, item.descricao, item.icms, item.quantidade, item.ValorUnitario, item.ValorDescAcres, item.Unidade, item.tipoDescAcres, item.DescAcres);
-
-				acbrECF.VendeItem(item.codigo, item.descricao, item.icms, item.quantidade, item.ValorUnitario, item.ValorDescAcres, item.Unidade, item.tipoDescAcres, item.DescAcres);
-				WriteResp(msg);
+				Vendas.Main = this;
+				Vendas.ShowDialog();				
 			}			
 		}
 
@@ -730,20 +723,65 @@ namespace ACBrFramework.ECFTeste
 
 		private void subtotalizacupom()
 		{
-			
+			try
+			{
+				const string msg1 = "Se Necessário digite alguma Observaçao (até 8 linhas)\nO sinal | (pipe) será convertido para quebra de linha";
+				const string msg2 = "Digite Valor negativo para Desconto\nou Valor Positivo para Acrescimo";
+				string desc = "0";
+				string obs = string.Empty;
+				decimal desconto = 0;
+
+				if (acbrECF.ModeloStr == "DataRegis")
+					if (InputBox.Show("Subtotaliza Cupom", msg1, ref obs).Equals(DialogResult.Cancel))
+						return;
+
+				if (InputBox.Show("Subtotaliza Cupom", msg2, ref desc).Equals(DialogResult.Cancel))
+					return;
+
+				decimal.TryParse(desc, out desconto);
+
+				acbrECF.SubtotalizaCupom(desconto, obs);
+				WriteResp(string.Format("Subtotaliza Cupom: {0:c}", desconto));
+			}
+			catch (Exception ex)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = ex.Message;
+			}
+		}
+
+		private void efetuaPagamento()
+		{
+			if(acbrECF.Modelo != ModeloECF.DataRegis || acbrECF.Modelo == ModeloECF.FiscNET)
+				MessageBox.Show("Impressora nao está em Estado de Pagamento\nPrimeiro use SubTotaliza Cupom", "AcbrFramework.Net", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+			using (frmPagamento pagamento = new frmPagamento())
+			{
+				pagamento.Main = this;
+				pagamento.Tipo = "F";
+				pagamento.ShowDialog();
+			}
 		}
 
 		private void FecharCupom()
 		{
-			string obs = "Componentes ACBrFramework|http://acbrframework.sf.net";
-			string msg = "Se Necessário digite alguma Observaçao (até 8 linhas)\nO sinal | (pipe) será convertido para quebra de linha";
+			try
+			{
+				string obs = "Componentes ACBrFramework|http://acbrframework.sf.net";
+				string msg = "Digite Valor negativo para Desconto\nou Valor Positivo para Acrescimo";
 
-			if (InputBox.Show("Fechar Cupom", msg, ref obs).Equals(DialogResult.Cancel))
-				return;
+				if (InputBox.Show("Fechar Cupom", msg, ref obs).Equals(DialogResult.Cancel))
+					return;
 
-			obs.Replace("|", "\n");
-			acbrECF.FechaCupom(obs);
-			WriteResp("Fecha Cupom");
+				obs.Replace("|", "\n");
+				acbrECF.FechaCupom(obs);
+				WriteResp("Fecha Cupom");
+			}
+			catch (Exception ex)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = ex.Message;
+			}
 		}
 
 		#endregion Cupom Fiscal
@@ -961,7 +999,7 @@ namespace ACBrFramework.ECFTeste
             }
         }		
 
-		private void WriteResp(string resp)
+		public void WriteResp(string resp)
 		{
 			if (string.IsNullOrEmpty(resp)) return;
 
@@ -1148,12 +1186,7 @@ namespace ACBrFramework.ECFTeste
 					MessageBox.Show("Coloque o nome do arquivo");
 				}
 			}
-		}
-
-        private void formaDePagamentoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            programaFormaPagamento();
-        }
+		}        
 
         private void btnSerial_Click(object sender, EventArgs e)
         {
@@ -1317,8 +1350,6 @@ namespace ACBrFramework.ECFTeste
 			IdentificaConsumidor();
 		}
 
-		#endregion Menu
-
 		private void abreCupomToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			AbreCupom();
@@ -1343,6 +1374,23 @@ namespace ACBrFramework.ECFTeste
 		{
 			FecharCupom();
 		}
+
+		private void formaDePagamentoToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			programaFormaPagamento();
+		}
+
+		private void subTotalizaCupomToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			subtotalizacupom();
+		}
+
+		private void efetuaPagamentoToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			efetuaPagamento();
+		}
+
+		#endregion Menu		
 		
 		#endregion Event Handlers
 		
