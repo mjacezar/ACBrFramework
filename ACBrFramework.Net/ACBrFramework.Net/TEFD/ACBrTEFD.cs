@@ -610,17 +610,17 @@ namespace ACBrFramework.TEFD
 
 		public bool CHQ(decimal valor, string indiceFPG_ECF)
 		{
-			return CHQ(valor, indiceFPG_ECF, string.Empty, string.Empty, string.Empty, string.Empty,
+			return CHQ(valor, indiceFPG_ECF, string.Empty, string.Empty, 'F', string.Empty,
 				DateTime.Now, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty,
 				string.Empty, string.Empty);
 		}
 
-		public bool CHQ(decimal valor, string indiceFPG_ECF, string documentoVinculado, string CMC7, string tipoPessoa,
+		public bool CHQ(decimal valor, string indiceFPG_ECF, string documentoVinculado, string CMC7, char tipoPessoa,
 			string documentoPessoa, DateTime DataCheque, string banco, string agencia,
 			string agenciaDC, string conta, string contaDC, string cheque, string chequeDC, string compensacao)
 		{
 			int ret = ACBrTEFInterop.TEF_CHQ(this.Handle, Convert.ToDouble(valor), ToUTF8(indiceFPG_ECF), ToUTF8(documentoVinculado), ToUTF8(CMC7),
-				Convert.ToChar(ToUTF8(tipoPessoa)), ToUTF8(documentoPessoa), DataCheque.ToOADate(), ToUTF8(banco), ToUTF8(agencia),
+				tipoPessoa, ToUTF8(documentoPessoa), DataCheque.ToOADate(), ToUTF8(banco), ToUTF8(agencia),
 				ToUTF8(agenciaDC), ToUTF8(conta), ToUTF8(contaDC), ToUTF8(cheque), ToUTF8(chequeDC), ToUTF8(compensacao));
 			CheckResult(ret);
 

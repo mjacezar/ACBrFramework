@@ -932,6 +932,42 @@ namespace ACBrFramework.Sintegra
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SIN_GetAtivo(IntPtr sinHandle);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_SetAtivo(IntPtr sinHandle, bool value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_GetVersao(IntPtr sinHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_GetInforma88C(IntPtr sinHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_SetInforma88C(IntPtr sinHandle, bool value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_GetInforma88EAN(IntPtr sinHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_SetInforma88EAN(IntPtr sinHandle, bool value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_GetInforma88SME(IntPtr sinHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_SetInforma88SME(IntPtr sinHandle, bool value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_GetInforma88SMS(IntPtr sinHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_SetInforma88SMS(IntPtr sinHandle, bool value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_GetInformaSapiMG(IntPtr sinHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SIN_SetInformaSapiMG(IntPtr sinHandle, bool value);
+
 		#endregion Propriedades do Componente
 
 		#region Constructors/Erro Handler

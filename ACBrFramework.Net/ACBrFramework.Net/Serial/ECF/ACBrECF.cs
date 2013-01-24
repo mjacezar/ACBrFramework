@@ -2840,7 +2840,7 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void PafMF_RelDAVEmitidos(DAVs[] DAVs, string TituloRelatorio, string IndiceRelatorio)
+		public void PafMF_RelDAVEmitidos(DAVs[] DAVs, string TituloRelatorio, int IndiceRelatorio)
 		{
 			ACBrECFInterop.DAVsRec[] record = new ACBrECFInterop.DAVsRec[DAVs.Length];
 			for (int i = 0; i < DAVs.Length; i++)
@@ -2853,7 +2853,7 @@ namespace ACBrFramework.ECF
 				record[i].Valor = Convert.ToDouble(DAVs[i].Valor);
 			}
 
-			int ret = ACBrECFInterop.ECF_PafMF_RelDAVEmitidos(this.Handle, record, DAVs.Length, ToUTF8(TituloRelatorio), ToUTF8(IndiceRelatorio));
+			int ret = ACBrECFInterop.ECF_PafMF_RelDAVEmitidos(this.Handle, record, DAVs.Length, ToUTF8(TituloRelatorio), IndiceRelatorio);
 			CheckResult(ret);
 		}
 

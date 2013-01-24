@@ -530,12 +530,6 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_GetDadosUltimaReducaoZ(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_GetDadosReducaoZClass(IntPtr ecfHandle, out IntPtr dadosRZ);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_DestroyDadosReducaoZClass(IntPtr ecfHandle, ref IntPtr dadosRZ);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetAAC(IntPtr ecfHandle, IntPtr aacHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
@@ -730,7 +724,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_DAV_RegistrarItem(IntPtr ecfHandle, string codigo, string descricao, string unidade, double quantidade, double vlrunitario, double desconto, double acrescimo, bool cancelado);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_PafMF_RelDAVEmitidos(IntPtr ecfHandle, DAVsRec[] DAVs, int index, string TituloRelatorio, string IndiceRelatorio);
+		public static extern int ECF_PafMF_RelDAVEmitidos(IntPtr ecfHandle, DAVsRec[] DAVs, int index, string TituloRelatorio, int IndiceRelatorio);
 
 		#endregion DAV
 

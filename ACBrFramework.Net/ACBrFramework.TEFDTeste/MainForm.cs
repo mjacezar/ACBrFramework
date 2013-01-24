@@ -821,6 +821,35 @@ namespace ACBrFramework.TEFDTeste
             }
         }
 
+		private void CHQ()
+		{
+			try
+			{
+				decimal valor = 0;
+				int indice = 0;
+
+				if (!decimal.TryParse(txtValorTEF.Text, out valor))
+				{
+					WriteResp("TEF - Valor incorreto");
+					return;
+				}
+
+				if (!int.TryParse(txtIndCheque.Text, out indice))
+				{
+					WriteResp("TEF - Indice incorreto");
+					return;
+				}
+
+				acBrTEFD1.CHQ(valor, string.Format("{0:D2}", indice));
+				MostrarSaldoRestante();
+			}
+			catch (Exception ex)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = ex.Message;
+			}
+		}
+
         private void WriteResp(string[] resp)
         {
             foreach (string linha in resp)
@@ -986,6 +1015,11 @@ namespace ACBrFramework.TEFDTeste
         {
             CRT();
         }
+
+		private void btnCHQ_Click(object sender, EventArgs e)
+		{
+			CHQ();
+		}
 
 		private void chkAutoAtivarGP_CheckedChanged(object sender, EventArgs e)
 		{
@@ -1430,6 +1464,7 @@ namespace ACBrFramework.TEFDTeste
         }
 
 		#endregion Eventos ECF        
+		
 
 		#endregion EventHandlers
         
