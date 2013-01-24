@@ -11,15 +11,14 @@ namespace ACBrFramework.ECF
 #if COM_INTEROP
 
 	[ComVisible(true)]
-
 	[Guid("55FBF954-EB34-4497-BB7D-DD8A0E8DFEF9")]
 	[ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
-	public class AbreRelatorioGerencialArgs : EventArgs
+	public class AbreRelatorioGerencialEventArgs : EventArgs
 	{
 		#region Constructor
 
-		internal AbreRelatorioGerencialArgs(int Indice)
+		internal AbreRelatorioGerencialEventArgs(int Indice)
 		{
 			this.Indice = Indice;
 		}

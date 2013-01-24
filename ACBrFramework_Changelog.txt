@@ -41,6 +41,10 @@ Símbolo : Significado
 
 Changelog
 
+23/01/2013
+-- ACBrFramework.Net 0.9.2.1 --
+[+] Suporte a ActiveX COM para as últimas alterações do ECF (eventos e métodos) - Rafael Batiati
+
 22/01/2013
 
 -- ACBrFramework 0.9.2.1 --

@@ -1,10 +1,22 @@
 using System;
 
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
 namespace ACBrFramework.ECF
 {
-	public class VendeItemArgs : EventArgs
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("C14CCCE3-B8EE-4A12-B15F-18F9B2C1218D")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+	public class VendeItemEventArgs : EventArgs
 	{
-		internal VendeItemArgs(string Codigo, string Descricao, string AliquotaICMS, decimal Qtd, decimal ValorUnitario, decimal ValorDescontoAcrescimo, string Unidade, string TipoDescontoAcrescimo, string DescontoAcrescimo)
+		internal VendeItemEventArgs(string Codigo, string Descricao, string AliquotaICMS, decimal Qtd, decimal ValorUnitario, decimal ValorDescontoAcrescimo, string Unidade, string TipoDescontoAcrescimo, string DescontoAcrescimo)
 		{
 			this.Codigo = Codigo;
 			this.Descricao = Descricao;
@@ -19,13 +31,21 @@ namespace ACBrFramework.ECF
 		}
 
 		public string Codigo { get; private set; }
+
 		public string Descricao { get; private set; }
+
 		public string AliquotaICMS { get; private set; }
+
 		public decimal Qtd { get; set; }
+
 		public decimal ValorUnitario { get; private set; }
+
 		public decimal ValorDescontoAcrescimo { get; private set; }
+
 		public string Unidade { get; private set; }
+
 		public string TipoDescontoAcrescimo { get; private set; }
+
 		public string DescontoAcrescimo { get; private set; }
 	}
 }
