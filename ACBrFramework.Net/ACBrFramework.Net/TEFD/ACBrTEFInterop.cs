@@ -652,9 +652,6 @@ namespace ACBrFramework.TEFD
 		public static extern int TEF_TEFCliSiTef_SetOnObtemCampo(IntPtr tefHandle, TEFCliSiTefObtemCampoCalback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_TEFCliSiTef_GetOperacaoReImpressao(IntPtr tefHandle);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFCliSiTef_DefineMensagemPermanentePinPad(IntPtr tefHandle, string mensagem);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
