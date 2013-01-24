@@ -114,7 +114,17 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-		//public string ParametrosAdicionais
+		public string[] ParametrosAdicionais
+		{
+			get
+			{
+				return GetStringArray(ACBrTEFInterop.TEF_TEFCliSiTef_GetParametrosAdicionais, ACBrTEFInterop.TEF_TEFCliSiTef_GetParametrosAdicionaisCount);
+			}
+			set
+			{
+				SetStringArray(ACBrTEFInterop.TEF_TEFCliSiTef_SetParametrosAdicionais, value);
+			}
+		}
 
 		public string Name
 		{
@@ -215,6 +225,22 @@ namespace ACBrFramework.TEFD
 		#endregion Properties
 
 		#region Methods
+
+		public int DefineMensagemPermanentePinPad(string mensagem)
+		{
+			int ret = ACBrTEFInterop.TEF_TEFCliSiTef_DefineMensagemPermanentePinPad(this.Handle, ToUTF8(mensagem));
+			CheckResult(ret);
+
+			return ret;
+		}
+
+		public int ObtemQuantidadeTransacoesPendentes(DateTime data, string CupomFiscal)
+		{
+			int ret = ACBrTEFInterop.TEF_TEFCliSiTef_ObtemQuantidadeTransacoesPendentes(this.Handle, ToUTF8(data), ToUTF8(CupomFiscal));
+			CheckResult(ret);
+
+			return ret;
+		}
 
 		#region Interop EventCallbacks
 

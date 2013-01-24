@@ -597,9 +597,6 @@ namespace ACBrFramework.TEFD
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFCliSiTef_SetRestricoes(IntPtr tefHandle, String Restricoes);
 
-		//Function TEF_TEFCliSiTef_GetParametrosAdicionais
-		//Function TEF_TEFCliSiTef_SetParametrosAdicionais
-
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFCliSiTef_GetName(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
 
@@ -653,6 +650,24 @@ namespace ACBrFramework.TEFD
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_TEFCliSiTef_SetOnObtemCampo(IntPtr tefHandle, TEFCliSiTefObtemCampoCalback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFCliSiTef_GetOperacaoReImpressao(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFCliSiTef_DefineMensagemPermanentePinPad(IntPtr tefHandle, string mensagem);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFCliSiTef_ObtemQuantidadeTransacoesPendentes(IntPtr tefHandle, double data, string cupom);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFCliSiTef_SetParametrosAdicionais(IntPtr ecfHandle, string[] linhas, int count);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFCliSiTef_GetParametrosAdicionais(IntPtr ecfHandle, StringBuilder linha, int bufferLen, int index);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFCliSiTef_GetParametrosAdicionaisCount(IntPtr ecfHandle);
 
 		#endregion TEFCliSiTef
 

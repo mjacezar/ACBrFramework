@@ -33,6 +33,14 @@ namespace ACBrFramework.Sintegra
 			}
 		}
 
+		public string Versao
+		{
+			get
+			{
+				return GetString(ACBrSintegraInterop.SIN_GetVersao);
+			}
+		}
+
 		public VersaoValidador VersaoValidador
 		{
 			get
@@ -51,75 +59,139 @@ namespace ACBrFramework.Sintegra
 			{
 				return GetBool(ACBrSintegraInterop.SIN_GetAtivo);
 			}
+			set
+			{
+				SetBool(ACBrSintegraInterop.SIN_SetAtivo, value);
+			}
 		}
 
-		[Browsable(true)]
+		public bool Informa88C
+		{
+			get
+			{
+				return GetBool(ACBrSintegraInterop.SIN_GetInforma88C);
+			}
+			set
+			{
+				SetBool(ACBrSintegraInterop.SIN_SetInforma88C, value);
+			}
+		}
+
+		public bool Informa88EAN
+		{
+			get
+			{
+				return GetBool(ACBrSintegraInterop.SIN_GetInforma88EAN);
+			}
+			set
+			{
+				SetBool(ACBrSintegraInterop.SIN_SetInforma88EAN, value);
+			}
+		}
+
+		public bool Informa88SME
+		{
+			get
+			{
+				return GetBool(ACBrSintegraInterop.SIN_GetInforma88SME);
+			}
+			set
+			{
+				SetBool(ACBrSintegraInterop.SIN_SetInforma88SME, value);
+			}
+		}
+
+		public bool Informa88SMS
+		{
+			get
+			{
+				return GetBool(ACBrSintegraInterop.SIN_GetInforma88SMS);
+			}
+			set
+			{
+				SetBool(ACBrSintegraInterop.SIN_SetInforma88SMS, value);
+			}
+		}
+
+		public bool InformaSapiMG
+		{
+			get
+			{
+				return GetBool(ACBrSintegraInterop.SIN_GetInformaSapiMG);
+			}
+			set
+			{
+				SetBool(ACBrSintegraInterop.SIN_SetInformaSapiMG, value);
+			}
+		}
+
+		[Browsable(false)]
 		public SintegraRegistro10 Registro10 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistro11 Registro11 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros50 Registro50 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros51 Registro51 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros53 Registro53 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros54 Registro54 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros55 Registro55 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros56 Registro56 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros60A Registro60A { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros60D Registro60D { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros60I Registro60I { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros60M Registro60M { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros60R Registro60R { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros61 Registro61 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros61R Registro61R { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros70 Registro70 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros71 Registro71 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros74 Registro74 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros75 Registro75 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros76 Registro76 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros77 Registro77 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros85 Registro85 { get; private set; }
 
-		[Browsable(true)]
+		[Browsable(false)]
 		public SintegraRegistros86 Registro86 { get; private set; }
 
 		#endregion Properties
@@ -130,8 +202,16 @@ namespace ACBrFramework.Sintegra
 
 		public void LimparRegistros()
 		{
-			int ret = ACBrSintegraInterop.SIN_LimparRegistros(this.Handle);
-			CheckResult(ret);
+			LimparRegistros(true);
+		}
+
+		private void LimparRegistros(bool componente)
+		{
+			if (componente)
+			{
+				int ret = ACBrSintegraInterop.SIN_LimparRegistros(this.Handle);
+				CheckResult(ret);
+			}
 
 			Registro10 = null;
 			Registro10 = new SintegraRegistro10();
@@ -188,6 +268,8 @@ namespace ACBrFramework.Sintegra
 
 			int ret = ACBrSintegraInterop.SIN_GeraArquivo(this.Handle);
 			CheckResult(ret);
+
+			LimparRegistros(false);
 		}
 
 		#endregion Metodos Sintegra

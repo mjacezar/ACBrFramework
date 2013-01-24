@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACBrFramework.Net.CNIEETest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACBrFramework.Net.ValidadorTeste", "ACBrFramework.Net.ValidadorTeste\ACBrFramework.Net.ValidadorTeste.csproj", "{60214559-9908-43EC-97B2-21D9B294BB25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACBrFramework.Net.SintegraTeste", "ACBrFramework.Net.SintegraTeste\ACBrFramework.Net.SintegraTeste.csproj", "{7B49BF1C-A848-4E3F-B049-21D35D1C2C80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		COM Interop|x64 = COM Interop|x64
@@ -109,6 +111,16 @@ Global
 		{60214559-9908-43EC-97B2-21D9B294BB25}.Release|x64.Build.0 = Release|x64
 		{60214559-9908-43EC-97B2-21D9B294BB25}.Release|x86.ActiveCfg = Release|x86
 		{60214559-9908-43EC-97B2-21D9B294BB25}.Release|x86.Build.0 = Release|x86
+		{7B49BF1C-A848-4E3F-B049-21D35D1C2C80}.COM Interop|x64.ActiveCfg = Release|x86
+		{7B49BF1C-A848-4E3F-B049-21D35D1C2C80}.COM Interop|x86.ActiveCfg = Release|x86
+		{7B49BF1C-A848-4E3F-B049-21D35D1C2C80}.Debug|x64.ActiveCfg = Debug|x64
+		{7B49BF1C-A848-4E3F-B049-21D35D1C2C80}.Debug|x64.Build.0 = Debug|x64
+		{7B49BF1C-A848-4E3F-B049-21D35D1C2C80}.Debug|x86.ActiveCfg = Debug|x86
+		{7B49BF1C-A848-4E3F-B049-21D35D1C2C80}.Debug|x86.Build.0 = Debug|x86
+		{7B49BF1C-A848-4E3F-B049-21D35D1C2C80}.Release|x64.ActiveCfg = Release|x64
+		{7B49BF1C-A848-4E3F-B049-21D35D1C2C80}.Release|x64.Build.0 = Release|x64
+		{7B49BF1C-A848-4E3F-B049-21D35D1C2C80}.Release|x86.ActiveCfg = Release|x86
+		{7B49BF1C-A848-4E3F-B049-21D35D1C2C80}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

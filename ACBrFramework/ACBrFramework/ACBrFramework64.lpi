@@ -23,7 +23,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="2"/>
+      <BuildNr Value="3"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -53,7 +53,7 @@
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="4" Y="13"/>
+        <CursorPos X="57" Y="12"/>
         <UsageCount Value="170"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -443,7 +443,7 @@
         <UnitName Value="pcnGerador"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="696"/>
+        <TopLine Value="694"/>
         <CursorPos X="56" Y="703"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
@@ -477,7 +477,7 @@
       </Position6>
       <Position7>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
-        <Caret Line="703" Column="56" TopLine="696"/>
+        <Caret Line="703" Column="56" TopLine="694"/>
       </Position7>
     </JumpHistory>
     <CustomSessionData Count="2">

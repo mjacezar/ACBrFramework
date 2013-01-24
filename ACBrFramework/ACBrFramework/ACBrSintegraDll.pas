@@ -21,7 +21,8 @@ type TSintegraHandle = record
   EventHandlers : TEventHandlers;
 end;
 
-{ Registro }
+{%region Registro }
+
 type TRegistro10Rec = record
   CNPJ                : array[0..14] of char;
   Inscricao           : array[0..14] of char;
@@ -358,10 +359,14 @@ type TRegistro86Rec = record
   Relacionamento     : array[0..1] of char;
 end;
 
+{%endregion}
+
 {Ponteiro para o Handle }
 type PSINHandle = ^TSintegraHandle;
 
 implementation
+
+{%region Constructor/Destructor/Erro}
 
 {
 PADRONIZAÇÃO DAS FUNÇÕES:
@@ -462,7 +467,10 @@ begin
   end;
 end;
 
-{ Funções mapeando as propriedades do componente }
+{%endregion}
+
+{%region Funções mapeando as propriedades do componente }
+
 Function SIN_GetFileName(const sinHandle: PSINHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
@@ -574,7 +582,288 @@ begin
 
 end;
 
-{ Registro }
+Function SIN_SetAtivo(const sinHandle: PSINHandle; const value : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (sinHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+
+    sinHandle^.Sintegra.Ativo := value;
+    Result := 0;
+  except
+     on exception : Exception do
+     begin
+        sinHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SIN_GetVersao(const sinHandle: PSINHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (sinHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := sinHandle^.Sintegra.Versao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        sinHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SIN_GetInforma88C(const sinHandle: PSINHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (sinHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if (sinHandle^.Sintegra.Informa88C) then
+        Result := 1
+     else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        sinHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SIN_SetInforma88C(const sinHandle: PSINHandle; const value : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (sinHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     sinHandle^.Sintegra.Informa88C := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        sinHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SIN_GetInforma88EAN(const sinHandle: PSINHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (sinHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if (sinHandle^.Sintegra.Informa88EAN) then
+        Result := 1
+     else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        sinHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SIN_SetInforma88EAN(const sinHandle: PSINHandle; const value : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (sinHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     sinHandle^.Sintegra.Informa88EAN := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        sinHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SIN_GetInforma88SME(const sinHandle: PSINHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (sinHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if (sinHandle^.Sintegra.Informa88SME) then
+        Result := 1
+     else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        sinHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SIN_SetInforma88SME(const sinHandle: PSINHandle; const value : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (sinHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     sinHandle^.Sintegra.Informa88SME := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        sinHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SIN_GetInforma88SMS(const sinHandle: PSINHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (sinHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if (sinHandle^.Sintegra.Informa88SMS) then
+        Result := 1
+     else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        sinHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SIN_SetInforma88SMS(const sinHandle: PSINHandle; const value : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (sinHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     sinHandle^.Sintegra.Informa88SMS := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        sinHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SIN_GetInformaSapiMG(const sinHandle: PSINHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (sinHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if (sinHandle^.Sintegra.InformaSapiMG) then
+        Result := 1
+     else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        sinHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SIN_SetInformaSapiMG(const sinHandle: PSINHandle; const value : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (sinHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     sinHandle^.Sintegra.InformaSapiMG := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        sinHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+{%endregion}
+
+{%region Registro }
+
 function SIN_Registro10(const sinHandle: PSINHandle; const Registro10Rec : TRegistro10Rec): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 try
@@ -1432,7 +1721,10 @@ except
  end;
 end;
 
-{ Funções do Componente}
+{%endregion}
+
+{%region Funções do Componente}
+
 function SIN_LimparRegistros(const sinHandle: PSINHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 try
@@ -1473,6 +1765,8 @@ except
  end;
 end;
 
+{%endregion}
+
 exports
 { Funções }
 SIN_Create, SIN_Destroy,
@@ -1481,7 +1775,12 @@ SIN_GetUltimoErro,
 { Funções mapeando as propriedades do componente }
 SIN_GetFileName, SIN_SetFileName,
 SIN_GetVersaoValidador, SIN_SetVersaoValidador,
-SIN_GetAtivo,
+SIN_GetAtivo, SIN_SetAtivo, SIN_GetVersao,
+SIN_GetInforma88C, SIN_SetInforma88C,
+SIN_GetInforma88EAN, SIN_SetInforma88EAN,
+SIN_GetInforma88SME, SIN_SetInforma88SME,
+SIN_GetInforma88SMS, SIN_SetInforma88SMS,
+SIN_GetInformaSapiMG, SIN_SetInformaSapiMG,
 
 { Funções do componente }
 SIN_LimparRegistros, SIN_GeraArquivo,

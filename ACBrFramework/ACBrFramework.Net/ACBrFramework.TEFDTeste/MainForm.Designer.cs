@@ -628,6 +628,7 @@
 			this.btnCHQ.TabIndex = 19;
 			this.btnCHQ.Text = "CHQ";
 			this.btnCHQ.UseVisualStyleBackColor = true;
+			this.btnCHQ.Click += new System.EventHandler(this.btnCHQ_Click);
 			// 
 			// btnCNC
 			// 
@@ -1142,30 +1143,70 @@
 			// 
 			this.acBrECF1.AAC = null;
 			this.acBrECF1.AguardaImpressao = false;
+			this.acBrECF1.ArqLOG = "";
+			this.acBrECF1.ArredondaItemMFD = false;
+			this.acBrECF1.ArredondaPorQtd = false;
 			this.acBrECF1.ComandoLog = "ComprovantesNaoFiscais";
 			this.acBrECF1.DecimaisPreco = 3;
 			this.acBrECF1.DecimaisQtd = 3;
 			this.acBrECF1.DescricaoGrande = false;
 			this.acBrECF1.EAD = null;
 			this.acBrECF1.GavetaSinalInvertido = false;
+			this.acBrECF1.IgnorarTagsFormatacao = false;
 			this.acBrECF1.IntervaloAposComando = 100;
 			this.acBrECF1.LinhasEntreCupons = 7;
 			this.acBrECF1.MaxLinhasBuffer = 3;
+			this.acBrECF1.MemoParams = new string[] {
+        "[Cabecalho]",
+        "LIN000=<center><b>Nome da Empresa</b></center>",
+        "LIN001=<center>Nome da Rua , 1234  -  Bairro</center>",
+        "LIN002=<center>Cidade  -  UF  -  99999-999</center>",
+        "LIN003=<center>CNPJ: 01.234.567/0001-22    IE: 012.345.678.90</center>",
+        "LIN004=<table width=100%><tr><td align=left><code>Data</code> <code>Hora</code></" +
+            "td><td align=right>COO: <b><code>NumCupom</code></b></td></tr></table>",
+        "LIN005=<hr>",
+        " ",
+        "[Cabecalho_Item]",
+        "LIN000=ITEM   CODIGO      DESCRICAO",
+        "LIN001=QTD         x UNITARIO       Aliq     VALOR (R$)",
+        "LIN002=<hr>",
+        "MascaraItem=III CCCCCCCCCCCCCC DDDDDDDDDDDDDDDDDDDDDDDDDDDDDQQQQQQQQ UU x VVVVVVV" +
+            "VVVVVV AAAAAA TTTTTTTTTTTTT",
+        " ",
+        "[Rodape]",
+        "LIN000=<hr>",
+        "LIN001=<table width=100%><tr><td align=left><code>Data</code> <code>Hora</code></" +
+            "td><td align=right>Projeto ACBr: <b><code>ACBR</code></b></td></tr></table>",
+        "LIN002=<center>Obrigado Volte Sempre</center>",
+        "LIN003=<hr>",
+        " ",
+        "[Formato]",
+        "Colunas=48",
+        "HTML=1",
+        "HTML_Title_Size=2",
+        "HTML_Font=<font size=\"2\" face=\"Lucida Console\">"};
 			this.acBrECF1.Modelo = ACBrFramework.ECF.ModeloECF.Nenhum;
 			this.acBrECF1.Operador = "";
-			this.acBrECF1.Device.Porta = "COM1";
-			this.acBrECF1.Device.TimeOut = 3;
+			this.acBrECF1.PaginaDeCodigo = 0;
+			this.acBrECF1.PausaRelatorio = 5;
+			this.acBrECF1.RFD = null;
 			this.acBrECF1.OnMsgPoucoPapel += new System.EventHandler(this.acBrECF1_OnPoucoPapel);
 			// 
 			// acBrTEFD1
 			// 
+			this.acBrTEFD1.ArqLOG = "";
 			this.acBrTEFD1.AutoAtivar = true;
 			this.acBrTEFD1.AutoEfetuarPagamento = true;
 			this.acBrTEFD1.AutoFinalizarCupom = true;
 			this.acBrTEFD1.CHQEmGerencial = false;
 			this.acBrTEFD1.EsperaSleep = 250;
+			this.acBrTEFD1.EsperaSTS = 7;
+			this.acBrTEFD1.ExibirMsgAutenticacao = true;
 			this.acBrTEFD1.GPAtual = ACBrFramework.TEFD.TefTipo.TefDial;
 			this.acBrTEFD1.MultiplosCartoes = false;
+			this.acBrTEFD1.NumeroMaximoCartoes = 0;
+			this.acBrTEFD1.NumVias = 2;
+			this.acBrTEFD1.PathBackup = "C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\TEF";
 			this.acBrTEFD1.TEFAuttar.ArqReq = "C:\\Auttar_TefIP\\req\\intpos.001";
 			this.acBrTEFD1.TEFAuttar.ArqResp = "C:\\Auttar_TefIP\\resp\\intpos.001";
 			this.acBrTEFD1.TEFAuttar.ArqSTS = "C:\\Auttar_TefIP\\resp\\intpos.sts";
@@ -1269,6 +1310,11 @@
 			this.acBrTEFD1.TEFPetrocard.Habilitado = false;
 			this.acBrTEFD1.TEFPetrocard.Name = "PetroCard";
 			this.acBrTEFD1.TEFPetrocard.NumVias = 2;
+			this.acBrTEFD1.TrocoMaximo = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
 			this.acBrTEFD1.OnAguardaResp += new System.EventHandler<ACBrFramework.TEFD.AguardaRespEventArgs>(this.tef_OnAguardaResp);
 			this.acBrTEFD1.OnExibeMensagem += new System.EventHandler<ACBrFramework.TEFD.ExibeMensagemEventArgs>(this.tef_OnExibeMensagem);
 			this.acBrTEFD1.OnBloqueiaMouseTeclado += new System.EventHandler<ACBrFramework.TEFD.BloqueiaMouseTecladoEventArgs>(this.tef_OnBloqueiaMouseTeclado);

@@ -16,6 +16,7 @@
 		CliDTEF,
 		Petrocard,
 		CrediShop,
-		TicketCar
+		TicketCar,
+		ConvCard
 	}
 }
