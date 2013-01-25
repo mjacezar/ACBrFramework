@@ -15,9 +15,9 @@ namespace ACBrFramework.ECF
 	[ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
 
-	public class AbreCupomArgs : EventArgs
+	public class AbreCupomEventArgs : EventArgs
 	{
-		internal AbreCupomArgs(string CPF_CNPJ, string Nome, string Endereco)
+		internal AbreCupomEventArgs(string CPF_CNPJ, string Nome, string Endereco)
 		{
 			this.CPF_CNPJ = CPF_CNPJ;
 			this.Nome = Nome;

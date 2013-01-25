@@ -13,10 +13,10 @@ namespace ACBrFramework.NFE
 			this.RefECF = new RefECF();
 		}
 
-		public virtual string refNFe { get; set; }
-		public virtual string refCTe { get; set; }
-		public virtual RefNF RefNF { get; private set; }
-		public virtual RefNFP RefNFP { get; private set; }
-		public virtual RefECF RefECF { get; private set; }
+		public string refNFe { get; set; }
+		public string refCTe { get; set; }
+		public RefNF RefNF { get; private set; }
+		public RefNFP RefNFP { get; private set; }
+		public RefECF RefECF { get; private set; }
 	}
 }

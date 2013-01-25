@@ -156,6 +156,7 @@
     <Compile Include="AAC\Eventos\OnDeCryptArgs.cs" />
     <Compile Include="AAC\Eventos\VerificarRecomporNumSerieArgs.cs" />
     <Compile Include="AAC\Eventos\VerificarRecomporValorGTArgs.cs" />
+    <Compile Include="ACBrClassInterop.cs" />
     <Compile Include="ACBrEventHandler.cs" />
     <Compile Include="ACBrInteropEventHandlerBase.cs" />
     <Compile Include="AAC\Eventos\AntesArquivoArgs.cs" />
@@ -269,10 +270,10 @@
       <DependentUpon>Framework64.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RFD\ACBrRFD.cs" />
-    <Compile Include="RFD\ACBrRFDInterop.cs" />
-    <Compile Include="RFD\Eventos\CalcEADArgs.cs" />
-    <Compile Include="RFD\Eventos\OnCalcHashLogArgs.cs" />
+    <Compile Include="Serial\RFD\ACBrRFD.cs" />
+    <Compile Include="Serial\RFD\ACBrRFDInterop.cs" />
+    <Compile Include="Serial\RFD\Eventos\CalcEADArgs.cs" />
+    <Compile Include="Serial\RFD\Eventos\OnCalcHashLogArgs.cs" />
     <Compile Include="Serial\Device\ACBrDevice.cs" />
     <Compile Include="Serial\Device\ACBrDeviceInterop.cs" />
     <Compile Include="Serial\BAL\ACBrBal.cs" />
@@ -286,8 +287,8 @@
     <Compile Include="Serial\ECF\Classes\Consumidor.cs" />
     <Compile Include="Serial\ECF\Classes\Rodape.cs" />
     <Compile Include="Serial\ECF\Classes\RodapeNotaLegalDF.cs" />
-    <Compile Include="Serial\ECF\Eventos\AbreCupomArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\AntesAbreRelatorioGerencialArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\AbreCupomEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\RelatorioGerencialEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\BobinaEventArgs.cs" />
     <Compile Include="Serial\ECF\Classes\Aliquota.cs" />
     <Compile Include="Serial\ECF\Classes\ComprovanteNaoFiscal.cs" />
@@ -300,16 +301,16 @@
     <Compile Include="Serial\ECF\Classes\TipoDocumento.cs" />
     <Compile Include="Serial\ECF\Classes\EstadoECF.cs" />
     <Compile Include="Serial\ECF\Classes\ModeloECF.cs" />
-    <Compile Include="Serial\ECF\Eventos\CancelaItemArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\ChangeEstadoArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\ChequeEstadoArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\EfetuaPagamentoArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\FechaCupomArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\OnErrorArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\OnErrorRelatorioArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\OnMsgArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\OnMsgRetentarArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\OnPAFCalcEADArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\CancelaItemEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\ChangeEstadoEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\ChequeEstadoEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\EfetuaPagamentoEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\FechaCupomEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\OnErrorEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\OnErrorRelatorioEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\OnMsgEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\OnMsgRetentarEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\OnPAFCalcEADEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\SangriaSuprimentoArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\SubtotalizaCupomArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\VendeItemArgs.cs" />
@@ -715,7 +716,7 @@
   <ItemGroup>
     <Content Include="IBGE\ico.bmp" />
     <EmbeddedResource Include="NFE\ico.bmp" />
-    <EmbeddedResource Include="RFD\ico.bmp" />
+    <EmbeddedResource Include="Serial\RFD\ico.bmp" />
     <EmbeddedResource Include="Validador\ico.bmp" />
   </ItemGroup>
   <ItemGroup />

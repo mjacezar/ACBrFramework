@@ -680,10 +680,10 @@ namespace ACBrFramework.RFD
 				if (ecf != null)
 				{
 					if (this.Ativo)
-					{
-						ecf.Desativar();
 						Desativar();
-					}
+
+					if(ecf.Ativo)
+						ecf.Desativar();
 
 					var oecf = ecf;
 					ecf = null;

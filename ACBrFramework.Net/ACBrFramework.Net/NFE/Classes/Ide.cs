@@ -18,28 +18,28 @@ namespace ACBrFramework.NFE
 			this.procEmi = ProcessoEmissao.AplicativoContribuinte;
 		}
 
-		public virtual int cUF { get; set; }
-		public virtual int cNF { get; set; }
-		public virtual string natOp { get; set; }
-		public virtual IndicadorPagamento indPag { get; set; }
-		public virtual int modelo { get; set; }
-		public virtual int serie { get; set; }
-		public virtual int nNF { get; set; }
-		public virtual DateTime dEmi { get; set; }
-		public virtual DateTime dSaiEnt { get; set; }
-		public virtual DateTime hSaiEnt { get; set; }
-		public virtual TipoNFe tpNF { get; set; }
-		public virtual int cMunFG { get; set; }
-		public virtual List<NFrefCollectionItem> NFrefCollection { get; private set; }
-		public virtual RefNFP refNFP { get; private set; }
-		public virtual TipoImpressao tpImp { get; set; }
-		public virtual TipoEmissao tpEmis { get; set; }
-		public virtual int cDV { get; set; }
-		public virtual TipoAmbiente tpAmb { get; set; }
-		public virtual FinalidadeNFe finNFe { get; set; }
-		public virtual ProcessoEmissao procEmi { get; set; }
-		public virtual string verProc { get; set; }
-		public virtual DateTime dhCont { get; set; }
-		public virtual string xJust { get; set; }
+		public int cUF { get; set; }
+		public int cNF { get; set; }
+		public string natOp { get; set; }
+		public IndicadorPagamento indPag { get; set; }
+		public int modelo { get; set; }
+		public int serie { get; set; }
+		public int nNF { get; set; }
+		public DateTime dEmi { get; set; }
+		public DateTime dSaiEnt { get; set; }
+		public DateTime hSaiEnt { get; set; }
+		public TipoNFe tpNF { get; set; }
+		public int cMunFG { get; set; }
+		public List<NFrefCollectionItem> NFrefCollection { get; private set; }
+		public RefNFP refNFP { get; private set; }
+		public TipoImpressao tpImp { get; set; }
+		public TipoEmissao tpEmis { get; set; }
+		public int cDV { get; set; }
+		public TipoAmbiente tpAmb { get; set; }
+		public FinalidadeNFe finNFe { get; set; }
+		public ProcessoEmissao procEmi { get; set; }
+		public string verProc { get; set; }
+		public DateTime dhCont { get; set; }
+		public string xJust { get; set; }
 	}
 }
