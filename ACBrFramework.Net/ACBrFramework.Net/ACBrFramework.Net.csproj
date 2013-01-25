@@ -156,7 +156,7 @@
     <Compile Include="AAC\Eventos\OnDeCryptArgs.cs" />
     <Compile Include="AAC\Eventos\VerificarRecomporNumSerieArgs.cs" />
     <Compile Include="AAC\Eventos\VerificarRecomporValorGTArgs.cs" />
-    <Compile Include="ACBrClassInterop.cs" />
+    <None Include="ACBrClassInterop.cs" />
     <Compile Include="ACBrEventHandler.cs" />
     <Compile Include="ACBrInteropEventHandlerBase.cs" />
     <Compile Include="AAC\Eventos\AntesArquivoArgs.cs" />
