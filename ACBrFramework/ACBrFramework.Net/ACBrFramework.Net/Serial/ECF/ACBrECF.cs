@@ -337,7 +337,7 @@ namespace ACBrFramework.ECF
 
 		public event AbreCupomEventHandler OnAntesAbreCupom
 #else
-		public event EventHandler<AbreCupomArgs> OnAntesAbreCupom
+		public event EventHandler<AbreCupomEventArgs> OnAntesAbreCupom
 #endif
 		{
 			add
@@ -366,7 +366,7 @@ namespace ACBrFramework.ECF
 
 		public event AbreCupomEventHandler OnAntesAbreNaoFiscal
 #else
-		public event EventHandler<AbreCupomArgs> OnAntesAbreNaoFiscal
+		public event EventHandler<AbreCupomEventArgs> OnAntesAbreNaoFiscal
 #endif
 		{
 			add
@@ -383,7 +383,7 @@ namespace ACBrFramework.ECF
 
 		public event AbreRelatorioGerencialEventHandler OnAntesAbreRelatorioGerencial
 #else
-		public event EventHandler<AbreRelatorioGerencialEventArgs> OnAntesAbreRelatorioGerencial
+		public event EventHandler<RelatorioGerencialEventArgs> OnAntesAbreRelatorioGerencial
 #endif
 		{
 			add
@@ -666,7 +666,7 @@ namespace ACBrFramework.ECF
 
 		public event ChangeEstadoEventHandler OnChangeEstado
 #else
-		public event EventHandler<ChangeEstadoArgs> OnChangeEstado
+		public event EventHandler<ChangeEstadoEventArgs> OnChangeEstado
 #endif
 		{
 			add
@@ -700,7 +700,7 @@ namespace ACBrFramework.ECF
 
 		public event AbreCupomEventHandler OnDepoisAbreCupom
 #else
-		public event EventHandler<AbreCupomArgs> OnDepoisAbreCupom
+		public event EventHandler<AbreCupomEventArgs> OnDepoisAbreCupom
 #endif
 		{
 			add
@@ -729,7 +729,7 @@ namespace ACBrFramework.ECF
 
 		public event AbreCupomEventHandler OnDepoisAbreNaoFiscal
 #else
-		public event EventHandler<AbreCupomArgs> OnDepoisAbreNaoFiscal
+		public event EventHandler<AbreCupomEventArgs> OnDepoisAbreNaoFiscal
 #endif
 		{
 			add
@@ -746,7 +746,7 @@ namespace ACBrFramework.ECF
 
 		public event AbreRelatorioGerencialEventHandler OnDepoisAbreRelatorioGerencial
 #else
-		public event EventHandler<AbreRelatorioGerencialEventArgs> OnDepoisAbreRelatorioGerencial
+		public event EventHandler<RelatorioGerencialEventArgs> OnDepoisAbreRelatorioGerencial
 #endif
 		{
 			add
@@ -1440,10 +1440,10 @@ namespace ACBrFramework.ECF
 
 		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onMsgPoucoPapel;
 		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAguardandoRespostaChange;
-		private readonly ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AbreCupomCallback> onAntesAbreCupom;
+		private readonly ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback> onAntesAbreCupom;
 		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAntesAbreCupomVinculado;
-		private readonly ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AbreCupomCallback> onAntesAbreNaoFiscal;
-		private readonly ACBrEventHandler<AbreRelatorioGerencialEventArgs, ACBrECFInterop.IntArgumentCallback> onAntesAbreRelatorioGerencial;
+		private readonly ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback> onAntesAbreNaoFiscal;
+		private readonly ACBrEventHandler<RelatorioGerencialEventArgs, ACBrECFInterop.IntArgumentCallback> onAntesAbreRelatorioGerencial;
 		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAntesCancelaCupom;
 		private readonly ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback> onAntesCancelaItemNaoFiscal;
 		private readonly ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback> onAntesCancelaItemVendido;
@@ -1461,12 +1461,12 @@ namespace ACBrFramework.ECF
 		private readonly ACBrEventHandler<SangriaSuprimentoEventArgs, ACBrECFInterop.SangriaSuprimentoCallback> onAntesSuprimento;
 		private readonly ACBrEventHandler<VendeItemEventArgs, ACBrECFInterop.VendeItemCallback> onAntesVendeItem;
 		private readonly ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback> onBobinaAdicionaLinhas;
-		private readonly ACBrEventHandler<ChangeEstadoArgs, ACBrECFInterop.ChangeEstadoCallback> onChangeEstado;
+		private readonly ACBrEventHandler<ChangeEstadoEventArgs, ACBrECFInterop.ChangeEstadoCallback> onChangeEstado;
 		private readonly ACBrEventHandler<ChequeEstadoEventArgs, ACBrECFInterop.ChequeEstadoCallback> onChequeEstado;
-		private readonly ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AbreCupomCallback> onDepoisAbreCupom;
+		private readonly ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback> onDepoisAbreCupom;
 		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onDepoisAbreCupomVinculado;
-		private readonly ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AbreCupomCallback> onDepoisAbreNaoFiscal;
-		private readonly ACBrEventHandler<AbreRelatorioGerencialEventArgs, ACBrECFInterop.IntArgumentCallback> onDepoisAbreRelatorioGerencial;
+		private readonly ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback> onDepoisAbreNaoFiscal;
+		private readonly ACBrEventHandler<RelatorioGerencialEventArgs, ACBrECFInterop.IntArgumentCallback> onDepoisAbreRelatorioGerencial;
 		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onDepoisCancelaCupom;
 		private readonly ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback> onDepoisCancelaItemNaoFiscal;
 		private readonly ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback> onDepoisCancelaItemVendido;
@@ -1518,10 +1518,10 @@ namespace ACBrFramework.ECF
 		{
 			onMsgPoucoPapel = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnMsgPoucoPapelCallback, ACBrECFInterop.ECF_SetOnPoucoPapel);
 			onAguardandoRespostaChange = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnAguardandoRespostaChangeCallback, ACBrECFInterop.ECF_SetOnAguardandoRespostaChange);
-			onAntesAbreCupom = new ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AbreCupomCallback>(this, OnAntesAbreCupomCallback, ACBrECFInterop.ECF_SetOnAntesAbreCupom);
+			onAntesAbreCupom = new ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback>(this, OnAntesAbreCupomCallback, ACBrECFInterop.ECF_SetOnAntesAbreCupom);
 			onAntesAbreCupomVinculado = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnAntesAbreCupomVinculadoCallback, ACBrECFInterop.ECF_SetOnAntesAbreCupomVinculado);
-			onAntesAbreNaoFiscal = new ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AbreCupomCallback>(this, OnAntesAbreNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesAbreNaoFiscal);
-			onAntesAbreRelatorioGerencial = new ACBrEventHandler<AbreRelatorioGerencialEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnAntesAbreRelatorioGerencialCallback, ACBrECFInterop.ECF_SetOnAntesAbreRelatorioGerencial);
+			onAntesAbreNaoFiscal = new ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback>(this, OnAntesAbreNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesAbreNaoFiscal);
+			onAntesAbreRelatorioGerencial = new ACBrEventHandler<RelatorioGerencialEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnAntesAbreRelatorioGerencialCallback, ACBrECFInterop.ECF_SetOnAntesAbreRelatorioGerencial);
 			onAntesCancelaCupom = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnAntesCancelaCupomCallback, ACBrECFInterop.ECF_SetOnAntesCancelaCupom);
 			onAntesCancelaItemNaoFiscal = new ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnAntesCancelaItemNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesCancelaItemNaoFiscal);
 			onAntesCancelaItemVendido = new ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnAntesCancelaItemVendidoCallback, ACBrECFInterop.ECF_SetOnAntesCancelaItemVendido);
@@ -1539,12 +1539,12 @@ namespace ACBrFramework.ECF
 			onAntesSuprimento = new ACBrEventHandler<SangriaSuprimentoEventArgs, ACBrECFInterop.SangriaSuprimentoCallback>(this, OnAntesSuprimentoCallback, ACBrECFInterop.ECF_SetOnAntesSuprimento);
 			onAntesVendeItem = new ACBrEventHandler<VendeItemEventArgs, ACBrECFInterop.VendeItemCallback>(this, OnAntesVendeItemCallback, ACBrECFInterop.ECF_SetOnAntesVendeItem);
 			onBobinaAdicionaLinhas = new ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback>(this, OnBobinaAdicionaLinhasCallback, ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas);
-			onChangeEstado = new ACBrEventHandler<ChangeEstadoArgs, ACBrECFInterop.ChangeEstadoCallback>(this, OnChangeEstadoCallback, ACBrECFInterop.ECF_SetOnChangeEstado);
+			onChangeEstado = new ACBrEventHandler<ChangeEstadoEventArgs, ACBrECFInterop.ChangeEstadoCallback>(this, OnChangeEstadoCallback, ACBrECFInterop.ECF_SetOnChangeEstado);
 			onChequeEstado = new ACBrEventHandler<ChequeEstadoEventArgs, ACBrECFInterop.ChequeEstadoCallback>(this, OnChequeEstadoCallback, ACBrECFInterop.ECF_SetOnChequeEstado);
-			onDepoisAbreCupom = new ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AbreCupomCallback>(this, OnDepoisAbreCupomCallback, ACBrECFInterop.ECF_SetOnDepoisAbreCupom);
+			onDepoisAbreCupom = new ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback>(this, OnDepoisAbreCupomCallback, ACBrECFInterop.ECF_SetOnDepoisAbreCupom);
 			onDepoisAbreCupomVinculado = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnDepoisAbreCupomVinculadoCallback, ACBrECFInterop.ECF_SetOnDepoisAbreCupomVinculado);
-			onDepoisAbreNaoFiscal = new ACBrEventHandler<AbreCupomArgs, ACBrECFInterop.AbreCupomCallback>(this, OnDepoisAbreNaoFiscalCallback, ACBrECFInterop.ECF_SetOnDepoisAbreNaoFiscal);
-			onDepoisAbreRelatorioGerencial = new ACBrEventHandler<AbreRelatorioGerencialEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnDepoisAbreRelatorioGerencialCallback, ACBrECFInterop.ECF_SetOnDepoisAbreRelatorioGerencial);
+			onDepoisAbreNaoFiscal = new ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback>(this, OnDepoisAbreNaoFiscalCallback, ACBrECFInterop.ECF_SetOnDepoisAbreNaoFiscal);
+			onDepoisAbreRelatorioGerencial = new ACBrEventHandler<RelatorioGerencialEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnDepoisAbreRelatorioGerencialCallback, ACBrECFInterop.ECF_SetOnDepoisAbreRelatorioGerencial);
 			onDepoisCancelaCupom = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnDepoisCancelaCupomCallback, ACBrECFInterop.ECF_SetOnDepoisCancelaCupom);
 			onDepoisCancelaItemNaoFiscal = new ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnDepoisCancelaItemNaoFiscalCallback, ACBrECFInterop.ECF_SetOnDepoisCancelaItemNaoFiscal);
 			onDepoisCancelaItemVendido = new ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnDepoisCancelaItemVendidoCallback, ACBrECFInterop.ECF_SetOnDepoisCancelaItemVendido);
@@ -3701,10 +3701,10 @@ namespace ACBrFramework.ECF
 				if (rfd != null)
 				{
 					if (this.Ativo)
-					{
-						rfd.Desativar();
 						Desativar();
-					}
+
+					if(rfd.Ativo)
+						rfd.Desativar();
 
 					var orfd = rfd;
 					rfd = null;
@@ -3742,7 +3742,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onAntesAbreCupom.IsAssigned)
 			{
-				AbreCupomArgs e = new AbreCupomArgs(FromUTF8(CPF_CNPJ), FromUTF8(Nome), FromUTF8(Endereco));
+				AbreCupomEventArgs e = new AbreCupomEventArgs(FromUTF8(CPF_CNPJ), FromUTF8(Nome), FromUTF8(Endereco));
 				onAntesAbreCupom.Raise(e);
 			}
 		}
@@ -3761,7 +3761,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onAntesAbreNaoFiscal.IsAssigned)
 			{
-				AbreCupomArgs e = new AbreCupomArgs(FromUTF8(CPF_CNPJ), FromUTF8(Nome), FromUTF8(Endereco));
+				AbreCupomEventArgs e = new AbreCupomEventArgs(FromUTF8(CPF_CNPJ), FromUTF8(Nome), FromUTF8(Endereco));
 				onAntesAbreNaoFiscal.Raise(e);
 			}
 		}
@@ -3771,7 +3771,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onAntesAbreRelatorioGerencial.IsAssigned)
 			{
-				AbreRelatorioGerencialEventArgs e = new AbreRelatorioGerencialEventArgs(Indice);
+				RelatorioGerencialEventArgs e = new RelatorioGerencialEventArgs(Indice);
 				onAntesAbreRelatorioGerencial.Raise(e);
 			}
 		}
@@ -3952,7 +3952,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onChangeEstado.IsAssigned)
 			{
-				ChangeEstadoArgs e = new ChangeEstadoArgs((EstadoECF)EstadoAnterior, (EstadoECF)EstadoAtual);
+				ChangeEstadoEventArgs e = new ChangeEstadoEventArgs((EstadoECF)EstadoAnterior, (EstadoECF)EstadoAtual);
 				onChangeEstado.Raise(e);
 			}
 		}
@@ -3973,7 +3973,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onDepoisAbreCupom.IsAssigned)
 			{
-				AbreCupomArgs e = new AbreCupomArgs(FromUTF8(CPF_CNPJ), FromUTF8(Nome), FromUTF8(Endereco));
+				AbreCupomEventArgs e = new AbreCupomEventArgs(FromUTF8(CPF_CNPJ), FromUTF8(Nome), FromUTF8(Endereco));
 				onDepoisAbreCupom.Raise(e);
 			}
 		}
@@ -3992,7 +3992,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onDepoisAbreNaoFiscal.IsAssigned)
 			{
-				AbreCupomArgs e = new AbreCupomArgs(FromUTF8(CPF_CNPJ), FromUTF8(Nome), FromUTF8(Endereco));
+				AbreCupomEventArgs e = new AbreCupomEventArgs(FromUTF8(CPF_CNPJ), FromUTF8(Nome), FromUTF8(Endereco));
 				onDepoisAbreNaoFiscal.Raise(e);
 			}
 		}
@@ -4002,7 +4002,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onDepoisAbreRelatorioGerencial.IsAssigned)
 			{
-				AbreRelatorioGerencialEventArgs e = new AbreRelatorioGerencialEventArgs(Indice);
+				RelatorioGerencialEventArgs e = new RelatorioGerencialEventArgs(Indice);
 				onDepoisAbreRelatorioGerencial.Raise(e);
 			}
 		}

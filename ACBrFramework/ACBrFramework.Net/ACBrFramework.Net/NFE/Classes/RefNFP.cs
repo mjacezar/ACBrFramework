@@ -5,12 +5,12 @@ namespace ACBrFramework.NFE
 {
 	public class RefNFP
 	{
-		public virtual int cUF { get; set; }
-		public virtual string AAMM { get; set; }
-		public virtual string CNPJCPF { get; set; }
-		public virtual string IE { get; set; }
-		public virtual int modelo { get; set; }
-		public virtual int serie { get; set; }
-		public virtual int nNF { get; set; }
+		public int cUF { get; set; }
+		public string AAMM { get; set; }
+		public string CNPJCPF { get; set; }
+		public string IE { get; set; }
+		public int modelo { get; set; }
+		public int serie { get; set; }
+		public int nNF { get; set; }
 	}
 }

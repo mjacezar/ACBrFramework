@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace ACBrFramework.NFE
 {
@@ -18,9 +17,9 @@ namespace ACBrFramework.NFE
 
 		#region Properties
 
-		public virtual Schema Schema { get; set; }
-		public virtual infNFe infNFe { get; private set; }
-		public virtual Ide Ide { get; private set; }
+		public Schema Schema { get; set; }
+		public infNFe infNFe { get; private set; }
+		public Ide Ide { get; private set; }
 		#endregion Properties
 
 		#region Methods
