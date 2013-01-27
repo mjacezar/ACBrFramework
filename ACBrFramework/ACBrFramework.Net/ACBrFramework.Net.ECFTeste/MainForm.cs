@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -784,6 +785,137 @@ namespace ACBrFramework.ECFTeste
 			}
 		}
 
+		private void cancelaCupom()
+		{
+			try
+			{
+				acbrECF.CancelaCupom();
+				WriteResp("Cancela Cupom");
+			}
+			catch (Exception ex)
+			{
+				messageToolStripStatusLabel.Text = "Exception";
+				descriptionToolStripStatusLabel.Text = ex.Message;
+			}
+		}
+
+		private void numeroCupom()
+		{
+			WriteResp(string.Format("Num Ultimo Cupom: {0}", acbrECF.NumCupom));
+		}
+
+		private void subTotal()
+		{
+			WriteResp(string.Format("SubTotal:  {0}", acbrECF.SubTotal));
+		}
+
+		private void totalPago()
+		{
+			WriteResp(string.Format("Total Pago: {0}", acbrECF.TotalPago));
+		}
+
+		private void numeroUltimoItem()
+		{
+			WriteResp(string.Format("NumUltItem: {0}", acbrECF.NumUltItem));
+		}
+
+		private void testedeVelocidade()
+		{
+			acbrECF.CarregaFormasPagamento();
+			if (acbrECF.FormasPagamento.Length < 1)
+			{
+				MessageBox.Show("Nenhuma Forma de Pagamento programada no ECF");
+				return;
+			}
+
+			string cItens = "10";
+			if (InputBox.Show("Teste de Velocidade", "Numero de Itens a imprimir:", ref cItens).Equals(DialogResult.Cancel))
+				return;
+
+			string cCupons = "1";
+			if (InputBox.Show("Teste de Velocidade", "Numero de Cupons a imprimir:", ref cCupons).Equals(DialogResult.Cancel))
+				return;
+
+			var resp = MessageBox.Show("Monitorar estado do ECF ?", "ACBrFramework.Net", MessageBoxButtons.YesNoCancel);
+
+			if(resp == DialogResult.Cancel)
+				return;
+
+			int Itens, Cupons = 0;
+
+			if (!int.TryParse(cItens, out Itens))
+				return;
+
+			if (!int.TryParse(cCupons, out Cupons))
+				return;
+
+			if (Itens < 1 || Cupons < 1)
+				return;
+
+			var DtInicio = DateTime.Now;
+			WriteResp(string.Format("Testes Iniciados em: {0}", DtInicio));
+
+			for (int i = 0; i < Cupons; i++)
+			{
+				var DtIni = DateTime.Now;
+				WriteResp(string.Format("Imprimindo {0} itens.", cItens));
+				WriteResp(string.Format("Iniciando Cupom: {0}", DtIni));
+
+				acbrECF.AbreCupom();
+
+				WriteResp(string.Format("Cupom Aberto: {0}", DateTime.Now.Subtract(DtIni)));
+
+				for (int j = 0; j < Itens; j++)
+				{
+					if (j == 0)
+						if (resp == DialogResult.Yes)
+							WriteResp(string.Format("Estado ECF: {0}", acbrECF.Estado));
+
+					string numItem = string.Format("{0:000}", j + 1);
+					string descricaoItem = string.Format("DESCRICAO PRODUTO: {0:000}", j + 1);
+					decimal valor = j+1;
+					valor /= 100;
+					acbrECF.VendeItem(numItem, descricaoItem, "NN", 1, valor, 0, "UN");
+					acbrECF.EmLinha(1);
+
+					WriteResp(string.Format("Item {0:000}: {1} segundos", j + 1, DateTime.Now.Subtract(DtIni)));
+				}
+
+				decimal SubTotal = acbrECF.SubTotal;
+				decimal Desc = 0;
+
+				if (SubTotal > 0)
+					Desc = SubTotal - Math.Truncate(SubTotal);
+
+				WriteResp(string.Format("SubTotalizado: {0} segundos", DateTime.Now.Subtract(DtIni)));
+
+				if (resp == DialogResult.Yes)
+					WriteResp(string.Format("Estado ECF: {0}", acbrECF.Estado));
+
+				// Efetuando ultimo pagamento no Item 0, deve zerar o Saldo a pagar
+				acbrECF.EfetuaPagamento(acbrECF.FormasPagamento[0].Indice, (acbrECF.SubTotal - acbrECF.TotalPago),
+					"ZERANDO SALDO A PAGAR RESTANTE");
+
+				WriteResp(string.Format("Pagamento Efetuado: {0} segundos", DateTime.Now.Subtract(DtIni)));
+
+				if (resp == DialogResult.Yes)
+					WriteResp(string.Format("Estado ECF: {0}", acbrECF.Estado));
+
+				acbrECF.FechaCupom("TESTE DE CUPOM");
+
+				DateTime dtFim = DateTime.Now;
+
+				WriteResp(string.Format("Finalizado em: {0}", dtFim));
+				WriteResp(string.Format("Diferença: {0} segundos", dtFim.Subtract(DtIni)));
+				WriteResp("---------------------------------");
+			}
+
+			var DtFimTeste = DateTime.Now;
+			var resultado = DtInicio.Subtract(DtFimTeste);
+			WriteResp(string.Format("Testes Finalizados em: {0}", DtFimTeste));
+			WriteResp(string.Format("Tempo de execução: {0}", resultado));
+		}
+
 		#endregion Cupom Fiscal
 
 		#region Redução Z\Leitura X
@@ -1389,10 +1521,39 @@ namespace ACBrFramework.ECFTeste
 		{
 			efetuaPagamento();
 		}
+				
+		private void cancelaCupomToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			cancelaCupom();
+		}
+
+		private void numCupomToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			numeroCupom();
+		}
+
+		private void subTotalToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			subTotal();
+		}
+
+		private void totalPagoToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			totalPago();
+		}
+
+		private void numUltimoItemToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			numeroUltimoItem();
+		}
+
+		private void testeDeVelocidadeToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			testedeVelocidade();
+		}
 
 		#endregion Menu		
-		
+
 		#endregion Event Handlers
-		
 	}
 }

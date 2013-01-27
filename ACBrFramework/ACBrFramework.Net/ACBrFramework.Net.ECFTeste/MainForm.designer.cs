@@ -1730,6 +1730,7 @@
 			this.cancelaCupomToolStripMenuItem.Name = "cancelaCupomToolStripMenuItem";
 			this.cancelaCupomToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.cancelaCupomToolStripMenuItem.Text = "Cancela Cupom";
+			this.cancelaCupomToolStripMenuItem.Click += new System.EventHandler(this.cancelaCupomToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator34
 			// 
@@ -1752,24 +1753,28 @@
 			this.numCupomToolStripMenuItem.Name = "numCupomToolStripMenuItem";
 			this.numCupomToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
 			this.numCupomToolStripMenuItem.Text = "Num Cupom";
+			this.numCupomToolStripMenuItem.Click += new System.EventHandler(this.numCupomToolStripMenuItem_Click);
 			// 
 			// subTotalToolStripMenuItem
 			// 
 			this.subTotalToolStripMenuItem.Name = "subTotalToolStripMenuItem";
 			this.subTotalToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
 			this.subTotalToolStripMenuItem.Text = "SubTotal";
+			this.subTotalToolStripMenuItem.Click += new System.EventHandler(this.subTotalToolStripMenuItem_Click);
 			// 
 			// totalPagoToolStripMenuItem
 			// 
 			this.totalPagoToolStripMenuItem.Name = "totalPagoToolStripMenuItem";
 			this.totalPagoToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
 			this.totalPagoToolStripMenuItem.Text = "Total Pago";
+			this.totalPagoToolStripMenuItem.Click += new System.EventHandler(this.totalPagoToolStripMenuItem_Click);
 			// 
 			// numUltimoItemToolStripMenuItem
 			// 
 			this.numUltimoItemToolStripMenuItem.Name = "numUltimoItemToolStripMenuItem";
 			this.numUltimoItemToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
 			this.numUltimoItemToolStripMenuItem.Text = "Num.Ultimo Item";
+			this.numUltimoItemToolStripMenuItem.Click += new System.EventHandler(this.numUltimoItemToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator35
 			// 
@@ -1781,6 +1786,7 @@
 			this.testeDeVelocidadeToolStripMenuItem.Name = "testeDeVelocidadeToolStripMenuItem";
 			this.testeDeVelocidadeToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.testeDeVelocidadeToolStripMenuItem.Text = "Teste de Velocidade";
+			this.testeDeVelocidadeToolStripMenuItem.Click += new System.EventHandler(this.testeDeVelocidadeToolStripMenuItem_Click);
 			// 
 			// testeArredondamentoToolStripMenuItem
 			// 
