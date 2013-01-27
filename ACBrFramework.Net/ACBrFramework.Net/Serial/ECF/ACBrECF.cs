@@ -2360,19 +2360,7 @@ namespace ACBrFramework.ECF
 				return GetInt32(ACBrECFInterop.ECF_GetNumUltItem);
 			}
 		}
-
-		[Browsable(false)]
-		public bool EmLinha
-		{
-			get
-			{
-				const int DEFAULT_TIMEOUT = 1;
-				int ret = ACBrECFInterop.ECF_GetEmLinha(this.Handle, DEFAULT_TIMEOUT);
-				CheckResult(ret);
-
-				return Convert.ToBoolean(ret);
-			}
-		}
+		
 
 		[Browsable(false)]
 		public bool PoucoPapel
@@ -2662,6 +2650,19 @@ namespace ACBrFramework.ECF
 			return FromUTF8(buffer.ToString());
 		}
 
+		public bool EmLinha()
+		{
+			return EmLinha(1);
+		}
+
+		public bool EmLinha(int timeout)
+		{
+			int ret = ACBrECFInterop.ECF_GetEmLinha(this.Handle, timeout);
+			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
+		}
+
 		#endregion Métodos ECF
 
 		#region Métodos Cheque
@@ -2724,6 +2725,21 @@ namespace ACBrFramework.ECF
 		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario)
 		{
 			VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, 0, "UN", "%", "D", -1);
+		}
+
+		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario, decimal descontoPorc)
+		{
+			VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, descontoPorc, "UN", "%", "D", -1);
+		}
+
+		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario, decimal descontoPorc, string unidade)
+		{
+			VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, descontoPorc, unidade, "%", "D", -1);
+		}
+
+		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario, decimal descontoPorc, string unidade, string tipoDescontoAcrescimo)
+		{
+			VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, descontoPorc, unidade, tipoDescontoAcrescimo, "D", -1);
 		}
 
 		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario, decimal descontoPorc, string unidade, string tipoDescontoAcrescimo, string descontoAcrescimo)
