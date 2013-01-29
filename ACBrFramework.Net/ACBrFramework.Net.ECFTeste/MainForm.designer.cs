@@ -481,6 +481,7 @@
 			this.statusStrip1.Location = new System.Drawing.Point(0, 464);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(651, 22);
+			this.statusStrip1.Stretch = false;
 			this.statusStrip1.TabIndex = 0;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -502,7 +503,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
 			this.descriptionToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
 			this.descriptionToolStripStatusLabel.Name = "descriptionToolStripStatusLabel";
-			this.descriptionToolStripStatusLabel.Size = new System.Drawing.Size(486, 17);
+			this.descriptionToolStripStatusLabel.Size = new System.Drawing.Size(455, 17);
 			this.descriptionToolStripStatusLabel.Spring = true;
 			this.descriptionToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -1793,6 +1794,7 @@
 			this.testeArredondamentoToolStripMenuItem.Name = "testeArredondamentoToolStripMenuItem";
 			this.testeArredondamentoToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.testeArredondamentoToolStripMenuItem.Text = "Teste Arredondamento";
+			this.testeArredondamentoToolStripMenuItem.Click += new System.EventHandler(this.testeArredondamentoToolStripMenuItem_Click);
 			// 
 			// nãoFiscalToolStripMenuItem
 			// 
