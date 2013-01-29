@@ -8,7 +8,7 @@ using ACBrFramework.ECF;
 
 namespace ACBrFramework.RFD
 {
-	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.RFD.ico.bmp")]
+	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.Serial.RFD.ico.bmp")]
 	public class ACBrRFD : ACBrComponent, IDisposable
 	{
 		#region Events
