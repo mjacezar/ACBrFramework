@@ -22,7 +22,14 @@ namespace ACBrFramework.ECF
 
 		public bool PermiteVinculado { get; set; }
 
-		public decimal Total { get; set; }
+		public decimal Total
+		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
+			get;
+			set;
+		}
 
 		public DateTime Data { get; set; }
 

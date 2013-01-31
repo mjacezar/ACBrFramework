@@ -22,7 +22,14 @@ namespace ACBrFramework.ECF
 			this.MensagemRodape = MensagemRodape;
 		}
 
-		public decimal DescontoAcrescimo { get; private set; }
+		public decimal DescontoAcrescimo
+		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
+			get;
+			private set; 
+		}
 
 		public string MensagemRodape { get; private set; }
 	}

@@ -36,11 +36,32 @@ namespace ACBrFramework.ECF
 
 		public string AliquotaICMS { get; private set; }
 
-		public decimal Qtd { get; set; }
+		public decimal Qtd
+		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
+			get;
+			private set; 
+		}
 
-		public decimal ValorUnitario { get; private set; }
+		public decimal ValorUnitario
+		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
+			get; 
+			private set; 
+		}
 
-		public decimal ValorDescontoAcrescimo { get; private set; }
+		public decimal ValorDescontoAcrescimo
+		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
+			get; 
+			private set; 
+		}
 
 		public string Unidade { get; private set; }
 

@@ -16,6 +16,8 @@ namespace ACBrFramework.ECF
 #endif
 	public class OnMsgRetentarEventArgs : EventArgs
 	{
+		public OnMsgRetentarEventArgs() { }
+
 		internal OnMsgRetentarEventArgs(string msg, string situacao)
 		{
 			this.Mensagem = msg;

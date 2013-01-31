@@ -6,7 +6,7 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7D3D0596-A97E-4E91-9EF9-AAC50A5DB9B2}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ACBrFramework.ECFTeste</RootNamespace>
     <AssemblyName>ACBrFramework.ECFTeste</AssemblyName>
@@ -97,12 +97,16 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COM Interop|x86'">
-    <OutputPath>bin\x86\COM Interop\</OutputPath>
+    <OutputPath>bin\COM Interop\</OutputPath>
     <PlatformTarget>x86</PlatformTarget>
+    <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COM Interop|x64'">
     <OutputPath>bin\x64\COM Interop\</OutputPath>
     <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -122,74 +126,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\LeituraMemoriaFiscalPAF.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\LeituraMemoriaFiscalPAF.Designer.cs">
-      <DependentUpon>LeituraMemoriaFiscalPAF.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\IdentificaPAF.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\IdentificaPAF.Designer.cs">
-      <DependentUpon>IdentificaPAF.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\LeituraMemoriaFiscal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\LeituraMemoriaFiscal.Designer.cs">
-      <DependentUpon>LeituraMemoriaFiscal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SerialCFGForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SerialCFGForm.Designer.cs">
-      <DependentUpon>SerialCFGForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmVendeItem.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmVendeItem.Designer.cs">
-      <DependentUpon>frmVendeItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmPagamento.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmPagamento.Designer.cs">
-      <DependentUpon>frmPagamento.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\InputBox.cs" />
     <Compile Include="Utils\Item.cs" />
-    <EmbeddedResource Include="Forms\frmPagamento.resx">
-      <DependentUpon>frmPagamento.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LeituraMemoriaFiscalPAF.resx">
-      <DependentUpon>LeituraMemoriaFiscalPAF.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\IdentificaPAF.resx">
-      <DependentUpon>IdentificaPAF.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LeituraMemoriaFiscal.resx">
-      <DependentUpon>LeituraMemoriaFiscal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SerialCFGForm.resx">
-      <DependentUpon>SerialCFGForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmVendeItem.resx">
-      <DependentUpon>frmVendeItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -238,6 +178,9 @@
     <None Include="Resources\Procurar16.png" />
     <None Include="Resources\ACBr.png" />
     <None Include="Resources\serial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,6 +13,35 @@ namespace ACBrFramework.ECF
 {
 	#region COM Interop
 
+	/* NOTAS para COM INTEROP
+	 * Há um modo de compilação com a diretiva COM_INTEROP que inseri atributos e código específico
+	 * para a DLL ser exportada para COM (ActiveX)
+	 *
+	 * O modelo COM possui alguma limitações/diferenças em relação ao modelo .NET
+	 * Inserir os #if COM_INTEROP para prover implementações distintas nas modificações necessárias para COM:
+	 *
+	 * - Inserir atributos ComVisible(true), Guid("xxx") e ClassInterface(ClassInterfaceType.AutoDual) em todas as classes envolvidas
+	 *
+	 * - Propriedades/métodos que usam "Decimal" devem incluir o atributo MarshalAs(UnmanagedType.Currency)
+	 *   usar [return: ...] para retornos de métodos e propriedades ou [param: ...] para o set de propriedades
+	 *
+	 * - Métodos que recebem array como parâmetros devem fazer como "ref".
+	 *   Propriedades só podem retornar arrays, nunca receber.
+	 *
+	 * - Overload não é permitido. Métodos com mesmos nomes devem ser renomeados.
+	 *   É possível usar parâmetros default, simplificando a necessidade de Overload
+	 *
+	 * - Generic não deve ser usado. Todas as classes Generic devem ser re-escritas como classes específicas
+	 *
+	 * - Eventos precisam de uma Interface com as declarações dos métodos (eventos) com o atributo [InterfaceType(ComInterfaceType.InterfaceIsIDispatch)]
+	 *   A classe que declara os eventos precisa do atributo [ComSourceInterfaces(typeof(INomeDaInterface))]
+	 *   Nenhum delegate deverá ser Generic, precisam ser re-escritos.
+	 *
+	 *   OBS: Por padrão o modelo .Net recebe os eventos com a assinatura void(object sender, EventArgs e)
+	 *   O modelo COM não precisa desses parâmetros. Assim o delegate EventHandler foi redefinido para uma assinatura void()
+	 *   Outros EventArgs devem seguir a assitarua COM void(MyEventArg e) ao invés da assinatura .NET void(object sender, MyEventArgs e)
+	 * */
+
 #if COM_INTEROP
 
 	#region IDispatch Interface
@@ -37,16 +66,16 @@ namespace ACBrFramework.ECF
 		void OnAguardandoRespostaChange();
 
 		[DispId(3)]
-		void OnAntesAbreCupom(AbreCupomArgs e);
+		void OnAntesAbreCupom(AbreCupomEventArgs e);
 
 		[DispId(4)]
 		void OnAntesAbreCupomVinculado();
 
 		[DispId(5)]
-		void OnAntesAbreNaoFiscal(AbreCupomArgs e);
+		void OnAntesAbreNaoFiscal(AbreCupomEventArgs e);
 
 		[DispId(6)]
-		void OnAntesAbreRelatorioGerencial(AbreRelatorioGerencialEventArgs e);
+		void OnAntesAbreRelatorioGerencial(RelatorioGerencialEventArgs e);
 
 		[DispId(7)]
 		void OnAntesCancelaCupom();
@@ -82,7 +111,7 @@ namespace ACBrFramework.ECF
 		void OnAntesReducaoZ();
 
 		[DispId(18)]
-		void OnAntesSangria();
+		void OnAntesSangria(SangriaSuprimentoEventArgs e);
 
 		[DispId(19)]
 		void OnAntesSubtotalizaCupom(SubtotalizaCupomEventArgs e);
@@ -100,22 +129,22 @@ namespace ACBrFramework.ECF
 		void OnBobinaAdicionaLinhas(BobinaEventArgs e);
 
 		[DispId(24)]
-		void OnChangeEstado(ChangeEstadoArgs e);
+		void OnChangeEstado(ChangeEstadoEventArgs e);
 
-		[DispId(25)]
-		void OnChequeEstado(ChequeEstadoEventArgs e);
+	//[DispId(25)]
+	//void OnChequeEstado(ChequeEstadoEventArgs e);
 
 		[DispId(26)]
-		void OnDepoisAbreCupom(AbreCupomArgs e);
+		void OnDepoisAbreCupom(AbreCupomEventArgs e);
 
 		[DispId(27)]
 		void OnDepoisAbreCupomVinculado();
 
 		[DispId(28)]
-		void OnDepoisAbreNaoFiscal(AbreCupomArgs e);
+		void OnDepoisAbreNaoFiscal(AbreCupomEventArgs e);
 
 		[DispId(29)]
-		void OnDepoisAbreRelatorioGerencial(AbreRelatorioGerencialEventArgs e);
+		void OnDepoisAbreRelatorioGerencial(RelatorioGerencialEventArgs e);
 
 		[DispId(30)]
 		void OnDepoisCancelaCupom();
@@ -193,7 +222,7 @@ namespace ACBrFramework.ECF
 		void OnErrorEfetuaPagamento(OnErrorEventArgs e);
 
 		[DispId(55)]
-		void OnErrorArgs(OnErrorEventArgs e);
+		void OnErrorEfetuaPagamentoNaoFiscal(OnErrorEventArgs e);
 
 		[DispId(56)]
 		void OnErrorFechaCupom(OnErrorEventArgs e);
@@ -234,11 +263,11 @@ namespace ACBrFramework.ECF
 		[DispId(68)]
 		void OnMsgRetentar(OnMsgRetentarEventArgs e);
 
-		[DispId(69)]
-		void OnPAFCalcEAD(OnPAFCalcEADEventArgs e);
+		//[DispId(69)]
+		//void OnPAFCalcEAD(PAFCalcEADEventArgs e);
 
-		[DispId(70)]
-		void OnPAFGetKeyRSA(ChaveEventArgs e);
+		//[DispId(70)]
+		//void OnPAFGetKeyRSA(ChaveEventArgs e);
 	}
 
 	#endregion IDispatch Interface
@@ -252,9 +281,9 @@ namespace ACBrFramework.ECF
 
 	#endregion Comments
 
-	public delegate void AbreCupomEventHandler(AbreCupomArgs e);
+	public delegate void AbreCupomEventHandler(AbreCupomEventArgs e);
 
-	public delegate void AbreRelatorioGerencialEventHandler(AbreRelatorioGerencialEventArgs e);
+	public delegate void RelatorioGerencialEventHandler(RelatorioGerencialEventArgs e);
 
 	public delegate void CancelaItemEventHandler(CancelaItemEventArgs e);
 
@@ -270,7 +299,7 @@ namespace ACBrFramework.ECF
 
 	public delegate void VendeItemEventHandler(VendeItemEventArgs e);
 
-	public delegate void ChangeEstadoEventHandler(ChangeEstadoArgs e);
+	public delegate void ChangeEstadoEventHandler(ChangeEstadoEventArgs e);
 
 	public delegate void ChequeEstadoEventHandler(ChequeEstadoEventArgs e);
 
@@ -282,7 +311,7 @@ namespace ACBrFramework.ECF
 
 	public delegate void OnMsgRetentarEventHandler(OnMsgRetentarEventArgs e);
 
-	public delegate void OnPAFCalcEADEventHandler(OnPAFCalcEADEventArgs e);
+	public delegate void OnPAFCalcEADEventHandler(PAFCalcEADEventArgs e);
 
 	public delegate void ChaveEventHandler(ChaveEventArgs e);
 
@@ -311,10 +340,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnMsgPoucoPapel
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onMsgPoucoPapel.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onMsgPoucoPapel.Remove(value);
@@ -323,10 +369,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnAguardandoRespostaChange
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAguardandoRespostaChange.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAguardandoRespostaChange.Remove(value);
@@ -334,16 +397,33 @@ namespace ACBrFramework.ECF
 		}
 
 #if COM_INTEROP
-
 		public event AbreCupomEventHandler OnAntesAbreCupom
 #else
+
 		public event EventHandler<AbreCupomEventArgs> OnAntesAbreCupom
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesAbreCupom.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesAbreCupom.Remove(value);
@@ -352,10 +432,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnAntesAbreCupomVinculado
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesAbreCupomVinculado.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesAbreCupomVinculado.Remove(value);
@@ -366,13 +463,31 @@ namespace ACBrFramework.ECF
 
 		public event AbreCupomEventHandler OnAntesAbreNaoFiscal
 #else
+
 		public event EventHandler<AbreCupomEventArgs> OnAntesAbreNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesAbreNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesAbreNaoFiscal.Remove(value);
@@ -381,15 +496,33 @@ namespace ACBrFramework.ECF
 
 #if COM_INTEROP
 
-		public event AbreRelatorioGerencialEventHandler OnAntesAbreRelatorioGerencial
+		public event RelatorioGerencialEventHandler OnAntesAbreRelatorioGerencial
 #else
+
 		public event EventHandler<RelatorioGerencialEventArgs> OnAntesAbreRelatorioGerencial
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesAbreRelatorioGerencial.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesAbreRelatorioGerencial.Remove(value);
@@ -398,10 +531,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnAntesCancelaCupom
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesCancelaCupom.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesCancelaCupom.Remove(value);
@@ -409,16 +559,33 @@ namespace ACBrFramework.ECF
 		}
 
 #if COM_INTEROP
-
 		public event CancelaItemEventHandler OnAntesCancelaItemNaoFiscal
 #else
+
 		public event EventHandler<CancelaItemEventArgs> OnAntesCancelaItemNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesCancelaItemNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesCancelaItemNaoFiscal.Remove(value);
@@ -433,10 +600,27 @@ namespace ACBrFramework.ECF
 		public event EventHandler<CancelaItemEventArgs> OnAntesCancelaItemVendido
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesCancelaItemVendido.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesCancelaItemVendido.Remove(value);
@@ -445,10 +629,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnAntesCancelaNaoFiscal
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesCancelaNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesCancelaNaoFiscal.Remove(value);
@@ -459,13 +660,31 @@ namespace ACBrFramework.ECF
 
 		public event EfetuaPagamentoEventHandler OnAntesEfetuaPagamento
 #else
+
 		public event EventHandler<EfetuaPagamentoEventArgs> OnAntesEfetuaPagamento
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesEfetuaPagamento.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesEfetuaPagamento.Remove(value);
@@ -476,13 +695,31 @@ namespace ACBrFramework.ECF
 
 		public event EfetuaPagamentoEventHandler OnAntesEfetuaPagamentoNaoFiscal
 #else
+
 		public event EventHandler<EfetuaPagamentoEventArgs> OnAntesEfetuaPagamentoNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesEfetuaPagamentoNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesEfetuaPagamentoNaoFiscal.Remove(value);
@@ -493,13 +730,31 @@ namespace ACBrFramework.ECF
 
 		public event FechaCupomEventHandler OnAntesFechaCupom
 #else
+
 		public event EventHandler<FechaCupomEventArgs> OnAntesFechaCupom
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesFechaCupom.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesFechaCupom.Remove(value);
@@ -510,13 +765,31 @@ namespace ACBrFramework.ECF
 
 		public event FechaCupomEventHandler OnAntesFechaNaoFiscal
 #else
+
 		public event EventHandler<FechaCupomEventArgs> OnAntesFechaNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesFechaNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesFechaNaoFiscal.Remove(value);
@@ -525,10 +798,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnAntesFechaRelatorio
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesFechaRelatorio.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesFechaRelatorio.Remove(value);
@@ -537,10 +827,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnAntesLeituraX
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesLeituraX.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesLeituraX.Remove(value);
@@ -549,10 +856,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnAntesReducaoZ
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesReducaoZ.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesReducaoZ.Remove(value);
@@ -567,10 +891,27 @@ namespace ACBrFramework.ECF
 		public event EventHandler<SangriaSuprimentoEventArgs> OnAntesSangria
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesSangria.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesSangria.Remove(value);
@@ -581,13 +922,31 @@ namespace ACBrFramework.ECF
 
 		public event SubtotalizaCupomEventHandler OnAntesSubtotalizaCupom
 #else
+
 		public event EventHandler<SubtotalizaCupomEventArgs> OnAntesSubtotalizaCupom
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesSubtotalizaCupom.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesSubtotalizaCupom.Remove(value);
@@ -598,13 +957,31 @@ namespace ACBrFramework.ECF
 
 		public event SubtotalizaCupomEventHandler OnAntesSubtotalizaNaoFiscal
 #else
+
 		public event EventHandler<SubtotalizaCupomEventArgs> OnAntesSubtotalizaNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesSubtotalizaNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesSubtotalizaNaoFiscal.Remove(value);
@@ -615,13 +992,31 @@ namespace ACBrFramework.ECF
 
 		public event SangriaSuprimentoEventHandler OnAntesSuprimento
 #else
+
 		public event EventHandler<SangriaSuprimentoEventArgs> OnAntesSuprimento
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesSuprimento.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesSuprimento.Remove(value);
@@ -632,13 +1027,31 @@ namespace ACBrFramework.ECF
 
 		public event VendeItemEventHandler OnAntesVendeItem
 #else
+
 		public event EventHandler<VendeItemEventArgs> OnAntesVendeItem
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesVendeItem.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesVendeItem.Remove(value);
@@ -649,13 +1062,25 @@ namespace ACBrFramework.ECF
 
 		public event BobinaAdicionaLinhasEventHandler OnBobinaAdicionaLinhas
 #else
+
 		public event EventHandler<BobinaEventArgs> OnBobinaAdicionaLinhas
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onBobinaAdicionaLinhas.Add(value);
 			}
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
 			remove
 			{
 				onBobinaAdicionaLinhas.Remove(value);
@@ -666,13 +1091,31 @@ namespace ACBrFramework.ECF
 
 		public event ChangeEstadoEventHandler OnChangeEstado
 #else
+
 		public event EventHandler<ChangeEstadoEventArgs> OnChangeEstado
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onChangeEstado.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onChangeEstado.Remove(value);
@@ -683,13 +1126,31 @@ namespace ACBrFramework.ECF
 
 		public event ChequeEstadoEventHandler OnChequeEstado
 #else
+
 		public event EventHandler<ChequeEstadoEventArgs> OnChequeEstado
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onChequeEstado.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onChequeEstado.Remove(value);
@@ -700,13 +1161,31 @@ namespace ACBrFramework.ECF
 
 		public event AbreCupomEventHandler OnDepoisAbreCupom
 #else
+
 		public event EventHandler<AbreCupomEventArgs> OnDepoisAbreCupom
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisAbreCupom.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisAbreCupom.Remove(value);
@@ -715,10 +1194,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnDepoisAbreCupomVinculado
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisAbreCupomVinculado.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisAbreCupomVinculado.Remove(value);
@@ -729,13 +1225,31 @@ namespace ACBrFramework.ECF
 
 		public event AbreCupomEventHandler OnDepoisAbreNaoFiscal
 #else
+
 		public event EventHandler<AbreCupomEventArgs> OnDepoisAbreNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisAbreNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisAbreNaoFiscal.Remove(value);
@@ -744,15 +1258,33 @@ namespace ACBrFramework.ECF
 
 #if COM_INTEROP
 
-		public event AbreRelatorioGerencialEventHandler OnDepoisAbreRelatorioGerencial
+		public event RelatorioGerencialEventHandler OnDepoisAbreRelatorioGerencial
 #else
+
 		public event EventHandler<RelatorioGerencialEventArgs> OnDepoisAbreRelatorioGerencial
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisAbreRelatorioGerencial.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisAbreRelatorioGerencial.Remove(value);
@@ -761,10 +1293,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnDepoisCancelaCupom
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisCancelaCupom.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisCancelaCupom.Remove(value);
@@ -775,13 +1324,31 @@ namespace ACBrFramework.ECF
 
 		public event CancelaItemEventHandler OnDepoisCancelaItemNaoFiscal
 #else
+
 		public event EventHandler<CancelaItemEventArgs> OnDepoisCancelaItemNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisCancelaItemNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisCancelaItemNaoFiscal.Remove(value);
@@ -792,13 +1359,31 @@ namespace ACBrFramework.ECF
 
 		public event CancelaItemEventHandler OnDepoisCancelaItemVendido
 #else
+
 		public event EventHandler<CancelaItemEventArgs> OnDepoisCancelaItemVendido
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisCancelaItemVendido.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisCancelaItemVendido.Remove(value);
@@ -807,10 +1392,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnDepoisCancelaNaoFiscal
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisCancelaNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisCancelaNaoFiscal.Remove(value);
@@ -821,13 +1423,31 @@ namespace ACBrFramework.ECF
 
 		public event EfetuaPagamentoEventHandler OnDepoisEfetuaPagamento
 #else
+
 		public event EventHandler<EfetuaPagamentoEventArgs> OnDepoisEfetuaPagamento
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisEfetuaPagamento.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisEfetuaPagamento.Remove(value);
@@ -838,13 +1458,31 @@ namespace ACBrFramework.ECF
 
 		public event EfetuaPagamentoEventHandler OnDepoisEfetuaPagamentoNaoFiscal
 #else
+
 		public event EventHandler<EfetuaPagamentoEventArgs> OnDepoisEfetuaPagamentoNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisEfetuaPagamentoNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisEfetuaPagamentoNaoFiscal.Remove(value);
@@ -855,13 +1493,31 @@ namespace ACBrFramework.ECF
 
 		public event FechaCupomEventHandler OnDepoisFechaCupom
 #else
+
 		public event EventHandler<FechaCupomEventArgs> OnDepoisFechaCupom
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisFechaCupom.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisFechaCupom.Remove(value);
@@ -872,13 +1528,31 @@ namespace ACBrFramework.ECF
 
 		public event FechaCupomEventHandler OnDepoisFechaNaoFiscal
 #else
+
 		public event EventHandler<FechaCupomEventArgs> OnDepoisFechaNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisFechaNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisFechaNaoFiscal.Remove(value);
@@ -887,10 +1561,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnDepoisFechaRelatorio
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisFechaRelatorio.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisFechaRelatorio.Remove(value);
@@ -899,10 +1590,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnDepoisLeituraX
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisLeituraX.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisLeituraX.Remove(value);
@@ -911,10 +1619,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnDepoisReducaoZ
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisReducaoZ.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisReducaoZ.Remove(value);
@@ -925,13 +1650,31 @@ namespace ACBrFramework.ECF
 
 		public event SangriaSuprimentoEventHandler OnDepoisSangria
 #else
+
 		public event EventHandler<SangriaSuprimentoEventArgs> OnDepoisSangria
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisSangria.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisSangria.Remove(value);
@@ -942,13 +1685,31 @@ namespace ACBrFramework.ECF
 
 		public event SubtotalizaCupomEventHandler OnDepoisSubtotalizaCupom
 #else
+
 		public event EventHandler<SubtotalizaCupomEventArgs> OnDepoisSubtotalizaCupom
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisSubtotalizaCupom.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisSubtotalizaCupom.Remove(value);
@@ -959,13 +1720,31 @@ namespace ACBrFramework.ECF
 
 		public event SubtotalizaCupomEventHandler OnDepoisSubtotalizaNaoFiscal
 #else
+
 		public event EventHandler<SubtotalizaCupomEventArgs> OnDepoisSubtotalizaNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisSubtotalizaNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisSubtotalizaNaoFiscal.Remove(value);
@@ -976,13 +1755,31 @@ namespace ACBrFramework.ECF
 
 		public event SangriaSuprimentoEventHandler OnDepoisSuprimento
 #else
+
 		public event EventHandler<SangriaSuprimentoEventArgs> OnDepoisSuprimento
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisSuprimento.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisSuprimento.Remove(value);
@@ -993,13 +1790,31 @@ namespace ACBrFramework.ECF
 
 		public event VendeItemEventHandler OnDepoisVendeItem
 #else
+
 		public event EventHandler<VendeItemEventArgs> OnDepoisVendeItem
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisVendeItem.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisVendeItem.Remove(value);
@@ -1010,13 +1825,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorAbreCupom
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorAbreCupom
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorAbreCupom.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorAbreCupom.Remove(value);
@@ -1027,13 +1860,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorAbreCupomVinculado
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorAbreCupomVinculado
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorAbreCupomVinculado.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorAbreCupomVinculado.Remove(value);
@@ -1044,13 +1895,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorAbreNaoFiscal
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorAbreNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorAbreNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorAbreNaoFiscal.Remove(value);
@@ -1061,13 +1930,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorRelatorioEventHandler OnErrorAbreRelatorioGerencial
 #else
+
 		public event EventHandler<OnErrorRelatorioEventArgs> OnErrorAbreRelatorioGerencial
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorAbreRelatorioGerencial.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorAbreRelatorioGerencial.Remove(value);
@@ -1078,13 +1965,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorCancelaCupom
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorCancelaCupom
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorCancelaCupom.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorCancelaCupom.Remove(value);
@@ -1095,13 +2000,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorCancelaItemNaoFiscal
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorCancelaItemNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorCancelaItemNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorCancelaItemNaoFiscal.Remove(value);
@@ -1112,13 +2035,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorCancelaItemVendido
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorCancelaItemVendido
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorCancelaItemVendido.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorCancelaItemVendido.Remove(value);
@@ -1129,13 +2070,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorCancelaNaoFiscal
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorCancelaNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorCancelaNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorCancelaNaoFiscal.Remove(value);
@@ -1146,13 +2105,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorEfetuaPagamento
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorEfetuaPagamento
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorEfetuaPagamento.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorEfetuaPagamento.Remove(value);
@@ -1163,13 +2140,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorEfetuaPagamentoNaoFiscal
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorEfetuaPagamentoNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorEfetuaPagamentoNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorEfetuaPagamentoNaoFiscal.Remove(value);
@@ -1180,13 +2175,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorFechaCupom
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorFechaCupom
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorFechaCupom.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorFechaCupom.Remove(value);
@@ -1197,13 +2210,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorFechaNaoFiscal
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorFechaNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorFechaNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorFechaNaoFiscal.Remove(value);
@@ -1214,13 +2245,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorFechaRelatorio
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorFechaRelatorio
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorFechaRelatorio.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorFechaRelatorio.Remove(value);
@@ -1231,13 +2280,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorLeituraX
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorLeituraX
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorLeituraX.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorLeituraX.Remove(value);
@@ -1248,13 +2315,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorReducaoZ
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorReducaoZ
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorReducaoZ.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorReducaoZ.Remove(value);
@@ -1265,13 +2350,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorSangria
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorSangria
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorSangria.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorSangria.Remove(value);
@@ -1280,10 +2383,27 @@ namespace ACBrFramework.ECF
 
 		public event EventHandler OnErrorSemPapel
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorSemPapel.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorSemPapel.Remove(value);
@@ -1294,13 +2414,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorSubtotalizaCupom
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorSubtotalizaCupom
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorSubtotalizaCupom.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorSubtotalizaCupom.Remove(value);
@@ -1311,13 +2449,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorSubtotalizaNaoFiscal
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorSubtotalizaNaoFiscal
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorSubtotalizaNaoFiscal.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorSubtotalizaNaoFiscal.Remove(value);
@@ -1328,13 +2484,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorSuprimento
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorSuprimento
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorSuprimento.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorSuprimento.Remove(value);
@@ -1345,13 +2519,31 @@ namespace ACBrFramework.ECF
 
 		public event OnErrorEventHandler OnErrorVendeItem
 #else
+
 		public event EventHandler<OnErrorEventArgs> OnErrorVendeItem
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onErrorVendeItem.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onErrorVendeItem.Remove(value);
@@ -1362,13 +2554,31 @@ namespace ACBrFramework.ECF
 
 		public event OnMsgEventHandler OnMsgAguarde
 #else
+
 		public event EventHandler<OnMsgEventArgs> OnMsgAguarde
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onMsgAguarde.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onMsgAguarde.Remove(value);
@@ -1379,13 +2589,31 @@ namespace ACBrFramework.ECF
 
 		public event OnMsgRetentarEventHandler OnMsgRetentar
 #else
+
 		public event EventHandler<OnMsgRetentarEventArgs> OnMsgRetentar
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onMsgRetentar.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onMsgRetentar.Remove(value);
@@ -1396,13 +2624,31 @@ namespace ACBrFramework.ECF
 
 		public event OnPAFCalcEADEventHandler OnPAFCalcEAD
 #else
-		public event EventHandler<OnPAFCalcEADEventArgs> OnPAFCalcEAD
+
+		public event EventHandler<PAFCalcEADEventArgs> OnPAFCalcEAD
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onPAFCalcEAD.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onPAFCalcEAD.Remove(value);
@@ -1413,13 +2659,31 @@ namespace ACBrFramework.ECF
 
 		public event ChaveEventHandler OnPAFGetKeyRSA
 #else
+
 		public event EventHandler<ChaveEventArgs> OnPAFGetKeyRSA
 #endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onPAFGetKeyRSA.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onPAFGetKeyRSA.Remove(value);
@@ -1507,7 +2771,7 @@ namespace ACBrFramework.ECF
 
 		private readonly ACBrEventHandler<OnMsgEventArgs, ACBrECFInterop.StringCallback> onMsgAguarde;
 		private readonly ACBrEventHandler<OnMsgRetentarEventArgs, ACBrECFInterop.OnMsgRetentarCallback> onMsgRetentar;
-		private readonly ACBrEventHandler<OnPAFCalcEADEventArgs, ACBrECFInterop.StringCallback> onPAFCalcEAD;
+		private readonly ACBrEventHandler<PAFCalcEADEventArgs, ACBrECFInterop.StringCallback> onPAFCalcEAD;
 		private readonly ACBrEventHandler<ChaveEventArgs, ACBrECFInterop.GetKeyCallback> onPAFGetKeyRSA;
 
 		#endregion Fields
@@ -1584,7 +2848,7 @@ namespace ACBrFramework.ECF
 			onErrorVendeItem = new ACBrEventHandler<OnErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorVendeItemCallback, ACBrECFInterop.ECF_SetOnErrorVendeItem);
 			onMsgAguarde = new ACBrEventHandler<OnMsgEventArgs, ACBrECFInterop.StringCallback>(this, OnMsgAguardeCallback, ACBrECFInterop.ECF_SetOnMsgAguarde);
 			onMsgRetentar = new ACBrEventHandler<OnMsgRetentarEventArgs, ACBrECFInterop.OnMsgRetentarCallback>(this, OnMsgRetentarCallback, ACBrECFInterop.ECF_SetOnMsgRetentar);
-			onPAFCalcEAD = new ACBrEventHandler<OnPAFCalcEADEventArgs, ACBrECFInterop.StringCallback>(this, OnPAFCalcEADCallback, ACBrECFInterop.ECF_SetPAFCalcEAD);
+			onPAFCalcEAD = new ACBrEventHandler<PAFCalcEADEventArgs, ACBrECFInterop.StringCallback>(this, OnPAFCalcEADCallback, ACBrECFInterop.ECF_SetPAFCalcEAD);
 			onPAFGetKeyRSA = new ACBrEventHandler<ChaveEventArgs, ACBrECFInterop.GetKeyCallback>(this, OnPAFGetKeyRSACallback, ACBrECFInterop.ECF_SetPAFGetKeyRSA);
 		}
 
@@ -2211,6 +3475,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal VendaBruta
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetVendaBruta);
@@ -2220,6 +3492,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal GrandeTotal
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetGrandeTotal);
@@ -2229,6 +3509,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalCancelamentos
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalCancelamentos);
@@ -2238,6 +3526,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalDescontos
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalDescontos);
@@ -2247,6 +3543,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalAcrescimos
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalAcrescimos);
@@ -2256,6 +3560,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalTroco
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalTroco);
@@ -2265,6 +3577,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalSubstituicaoTributaria
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalSubstituicaoTributaria);
@@ -2274,6 +3594,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalNaoTributado
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalNaoTributado);
@@ -2283,6 +3611,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalIsencao
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalIsencao);
@@ -2292,6 +3628,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalCancelamentosISSQN
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalCancelamentosISSQN);
@@ -2301,6 +3645,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalDescontosISSQN
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalDescontosISSQN);
@@ -2310,6 +3662,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalAcrescimosISSQN
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalAcrescimosISSQN);
@@ -2319,6 +3679,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalSubstituicaoTributariaISSQN
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalSubstituicaoTributariaISSQN);
@@ -2328,6 +3696,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalNaoTributadoISSQN
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalNaoTributadoISSQN);
@@ -2337,6 +3713,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalIsencaoISSQN
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalIsencaoISSQN);
@@ -2346,6 +3730,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalNaoFiscal
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalNaoFiscal);
@@ -2360,7 +3752,19 @@ namespace ACBrFramework.ECF
 				return GetInt32(ACBrECFInterop.ECF_GetNumUltItem);
 			}
 		}
-		
+
+		[Browsable(false)]
+		public bool EmLinha
+		{
+			get
+			{
+				const int DEFAULT_TIMEOUT = 1;
+				int ret = ACBrECFInterop.ECF_GetEmLinha(this.Handle, DEFAULT_TIMEOUT);
+				CheckResult(ret);
+
+				return Convert.ToBoolean(ret);
+			}
+		}
 
 		[Browsable(false)]
 		public bool PoucoPapel
@@ -2437,6 +3841,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal SubTotal
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetSubTotal);
@@ -2446,6 +3858,14 @@ namespace ACBrFramework.ECF
 		[Browsable(false)]
 		public decimal TotalPago
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_GetTotalPago);
@@ -2553,22 +3973,49 @@ namespace ACBrFramework.ECF
 
 		#region Métodos ECF
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public bool AcharECF()
 		{
 			return AcharECF(true, true, 3);
 		}
+
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public bool AcharECF(bool Modelo)
 		{
 			return AcharECF(Modelo, true, 3);
 		}
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public bool AcharECF(bool Modelo, bool Porta)
 		{
 			return AcharECF(Modelo, Porta, 3);
 		}
 
-		public bool AcharECF(bool Modelo, bool Porta, int TimeOut)
+		public bool AcharECF(bool Modelo = true, bool Porta = true, int TimeOut = 3)
 		{
 			int ret = ACBrECFInterop.ECF_AcharECF(this.Handle, Modelo, Porta, TimeOut);
 			CheckResult(ret);
@@ -2576,12 +4023,21 @@ namespace ACBrFramework.ECF
 			return Convert.ToBoolean(ret);
 		}
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public bool AcharPorta()
 		{
 			return AcharPorta(3);
 		}
 
-		public bool AcharPorta(int TimeOut)
+		public bool AcharPorta(int TimeOut = 3)
 		{
 			int ret = ACBrECFInterop.ECF_AcharPorta(this.Handle, TimeOut);
 			CheckResult(ret);
@@ -2601,12 +4057,21 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public void CorrigeEstadoErro()
 		{
 			CorrigeEstadoErro(true);
 		}
 
-		public void CorrigeEstadoErro(bool reducaoZ)
+		public void CorrigeEstadoErro(bool reducaoZ = true)
 		{
 			int ret = ACBrECFInterop.ECF_CorrigeEstadoErro(this.Handle, reducaoZ);
 			CheckResult(ret);
@@ -2634,12 +4099,21 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public string EnviaComando(string cmd)
 		{
 			return EnviaComando(cmd, -1);
 		}
 
-		public string EnviaComando(string cmd, int timeout)
+		public string EnviaComando(string cmd, int timeout = - 1)
 		{
 			int bufferlen = 512;
 			StringBuilder buffer = new StringBuilder(bufferlen);
@@ -2650,29 +4124,16 @@ namespace ACBrFramework.ECF
 			return FromUTF8(buffer.ToString());
 		}
 
-		public bool EmLinha()
-		{
-			return EmLinha(1);
-		}
-
-		public bool EmLinha(int timeout)
-		{
-			int ret = ACBrECFInterop.ECF_GetEmLinha(this.Handle, timeout);
-			CheckResult(ret);
-
-			return Convert.ToBoolean(ret);
-		}
-
 		#endregion Métodos ECF
 
 		#region Métodos Cheque
 
-		public void ImprimeCheque(string Banco, decimal Valor, string Favorecido, string Cidade, DateTime Data)
+		public void ImprimeCheque(string Banco, [MarshalAs(UnmanagedType.Currency)] decimal Valor, string Favorecido, string Cidade, DateTime Data)
 		{
 			ImprimeCheque(Banco, Valor, Favorecido, Cidade, Data, string.Empty);
 		}
 
-		public void ImprimeCheque(string Banco, decimal Valor, string Favorecido, string Cidade, DateTime Data, string Observacao)
+		public void ImprimeCheque(string Banco, [MarshalAs(UnmanagedType.Currency)] decimal Valor, string Favorecido, string Cidade, DateTime Data, string Observacao)
 		{
 			int ret = ACBrECFInterop.ECF_ImprimeCheque(this.Handle, ToUTF8(Banco), ToUTF8(Valor), ToUTF8(Favorecido), ToUTF8(Cidade), ToUTF8(Data), ToUTF8(Observacao));
 			CheckResult(ret);
@@ -2705,12 +4166,21 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public void AbreCupom()
 		{
 			AbreCupom(string.Empty, string.Empty, string.Empty);
 		}
 
-		public void AbreCupom(string cpfCnpj, string nome, string endereco)
+		public void AbreCupom(string cpfCnpj = "", string nome = "", string endereco = "")
 		{
 			int ret = ACBrECFInterop.ECF_AbreCupom(this.Handle, ToUTF8(cpfCnpj), ToUTF8(nome), ToUTF8(endereco));
 			CheckResult(ret);
@@ -2722,70 +4192,109 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario)
 		{
 			VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, 0, "UN", "%", "D", -1);
 		}
 
-		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario, decimal descontoPorc)
-		{
-			VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, descontoPorc, "UN", "%", "D", -1);
-		}
+		#region COM_INTEROP
 
-		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario, decimal descontoPorc, string unidade)
-		{
-			VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, descontoPorc, unidade, "%", "D", -1);
-		}
+#if COM_INTEROP
 
-		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario, decimal descontoPorc, string unidade, string tipoDescontoAcrescimo)
-		{
-			VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, descontoPorc, unidade, tipoDescontoAcrescimo, "D", -1);
-		}
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario, decimal descontoPorc, string unidade, string tipoDescontoAcrescimo, string descontoAcrescimo)
 		{
 			VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, descontoPorc, unidade, tipoDescontoAcrescimo, descontoAcrescimo, -1);
 		}
 
-		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario, decimal descontoPorc, string unidade, string tipoDescontoAcrescimo, string descontoAcrescimo, int CodDepartamento)
+		public void VendeItem(string codigo, string descricao, string aliquotaICMS, [MarshalAs(UnmanagedType.Currency)]decimal qtd, [MarshalAs(UnmanagedType.Currency)]decimal valorUnitario, [MarshalAs(UnmanagedType.Currency)]decimal descontoPorc = 0M, string unidade = "UN", string tipoDescontoAcrescimo = "%", string descontoAcrescimo = "D", int CodDepartamento = -1)
 		{
 			int ret = ACBrECFInterop.ECF_VendeItem(this.Handle, ToUTF8(codigo), ToUTF8(descricao), ToUTF8(aliquotaICMS), (double)qtd, (double)valorUnitario, (double)descontoPorc, ToUTF8(unidade), ToUTF8(tipoDescontoAcrescimo), ToUTF8(descontoAcrescimo), CodDepartamento);
 			CheckResult(ret);
 		}
+
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public void DescontoAcrescimoItemAnterior(decimal valorDesconto, string descontoAcrescimo)
 		{
 			DescontoAcrescimoItemAnterior(valorDesconto, descontoAcrescimo, "%", 0);
 		}
 
-		public void DescontoAcrescimoItemAnterior(decimal valorDesconto, string descontoAcrescimo, string tipodescontoAcrescimo, int item)
+		public void DescontoAcrescimoItemAnterior([MarshalAs(UnmanagedType.Currency)] decimal valorDesconto, string descontoAcrescimo, string tipodescontoAcrescimo = "%", int item = 0)
 		{
 			int ret = ACBrECFInterop.ECF_DescontoAcrescimoItemAnterior(this.Handle, (double)valorDesconto, ToUTF8(descontoAcrescimo), ToUTF8(tipodescontoAcrescimo), item);
 			CheckResult(ret);
 		}
+
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public void SubtotalizaCupom()
 		{
 			SubtotalizaCupom(0, "");
 		}
 
-		public void SubtotalizaCupom(decimal descontoAcrescimo, string mensagemRodape)
+		public void SubtotalizaCupom([MarshalAs(UnmanagedType.Currency)] decimal descontoAcrescimo = 0M, string mensagemRodape = "")
 		{
 			int ret = ACBrECFInterop.ECF_SubtotalizaCupom(this.Handle, (double)descontoAcrescimo, ToUTF8(mensagemRodape));
 			CheckResult(ret);
 		}
+
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public void EfetuaPagamento(string codFormaPagto, decimal valor)
 		{
 			EfetuaPagamento(codFormaPagto, valor, string.Empty, false);
 		}
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public void EfetuaPagamento(string codFormaPagto, decimal valor, string observacao)
 		{
 			EfetuaPagamento(codFormaPagto, valor, observacao, false);
 		}
 
-		public void EfetuaPagamento(string codFormaPagto, decimal valor, string observacao, bool imprimeVinculado)
+		public void EfetuaPagamento(string codFormaPagto, [MarshalAs(UnmanagedType.Currency)] decimal valor, string observacao = "", bool imprimeVinculado = false)
 		{
 			int ret = ACBrECFInterop.ECF_EfetuaPagamento(this.Handle, ToUTF8(codFormaPagto), (double)valor, ToUTF8(observacao), imprimeVinculado);
 			CheckResult(ret);
@@ -2796,7 +4305,7 @@ namespace ACBrFramework.ECF
 			int ret = ACBrECFInterop.ECF_EstornaPagamento(this.Handle, ToUTF8(codFormaPagtoEstornar), ToUTF8(codFormaPagtoEfetivar), valor, ToUTF8(observacao));
 		}
 
-		public void FechaCupom(string observacao)
+		public void FechaCupom(string observacao = "")
 		{
 			int ret = ACBrECFInterop.ECF_FechaCupom(this.Handle, ToUTF8(observacao));
 			CheckResult(ret);
@@ -2814,7 +4323,7 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void CancelaItemVendidoParcial(int numItem, decimal quantidade)
+		public void CancelaItemVendidoParcial(int numItem, [MarshalAs(UnmanagedType.Currency)] decimal quantidade)
 		{
 			int ret = ACBrECFInterop.ECF_CancelaItemVendidoParcial(this.Handle, numItem, (double)quantidade);
 			CheckResult(ret);
@@ -2856,7 +4365,12 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+#if COM_INTEROP
+		public void PafMF_RelDAVEmitidos(ref DAVs[] DAVs, string TituloRelatorio, int IndiceRelatorio)
+#else
+
 		public void PafMF_RelDAVEmitidos(DAVs[] DAVs, string TituloRelatorio, int IndiceRelatorio)
+#endif
 		{
 			ACBrECFInterop.DAVsRec[] record = new ACBrECFInterop.DAVsRec[DAVs.Length];
 			for (int i = 0; i < DAVs.Length; i++)
@@ -2877,7 +4391,12 @@ namespace ACBrFramework.ECF
 
 		#region PAF Relatorios
 
+#if COM_INTEROP
+		public void PafMF_RelMeiosPagamento(ref FormaPagamento[] formasPagamento, string TituloRelatorio, int indiceRelatorio)
+#else
+
 		public void PafMF_RelMeiosPagamento(FormaPagamento[] formasPagamento, string TituloRelatorio, int indiceRelatorio)
+#endif
 		{
 			ACBrECFInterop.FormaPagamentoRec[] record = new ACBrECFInterop.FormaPagamentoRec[formasPagamento.Length];
 			for (int i = 0; i < formasPagamento.Length; i++)
@@ -2984,37 +4503,73 @@ namespace ACBrFramework.ECF
 
 		#region PAF LMFC
 
+#if COM_INTEROP
+
+		public void PafMF_LMFC_Cotepe1704PorData(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo)
+#else
+
 		public void PafMF_LMFC_Cotepe1704(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_LMFC_Cotepe1704(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo));
 			CheckResult(ret);
 		}
 
+#if COM_INTEROP
+
+		public void PafMF_LMFC_Cotepe1704PorCRZ(int CRZInicial, int CRZFinal, string CaminhoArquivo)
+#else
+
 		public void PafMF_LMFC_Cotepe1704(int CRZInicial, int CRZFinal, string CaminhoArquivo)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_LMFC_Cotepe1704_CRZ(this.Handle, CRZInicial, CRZFinal, ToUTF8(CaminhoArquivo));
 			CheckResult(ret);
 		}
 
+#if COM_INTEROP
+
+		public void PafMF_LMFC_EspelhoPorData(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo)
+#else
+
 		public void PafMF_LMFC_Espelho(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_LMFC_Espelho(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo));
 			CheckResult(ret);
 		}
 
+#if COM_INTEROP
+
+		public void PafMF_LMFC_EspelhoPorCRZ(int CRZInicial, int CRZFinal, string CaminhoArquivo)
+#else
+
 		public void PafMF_LMFC_Espelho(int CRZInicial, int CRZFinal, string CaminhoArquivo)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_LMFC_Espelho_CRZ(this.Handle, CRZInicial, CRZFinal, ToUTF8(CaminhoArquivo));
 			CheckResult(ret);
 		}
 
+#if COM_INTEROP
+
+		public void PafMF_LMFC_ImpressaoPorData(DateTime DataInicial, DateTime DataFinal)
+#else
+
 		public void PafMF_LMFC_Impressao(DateTime DataInicial, DateTime DataFinal)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_LMFC_Impressao(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate());
 			CheckResult(ret);
 		}
 
+#if COM_INTEROP
+
+		public void PafMF_LMFC_ImpressaoPorCRZ(int CRZInicial, int CRZFinal)
+#else
+
 		public void PafMF_LMFC_Impressao(int CRZInicial, int CRZFinal)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_LMFC_Impressao_CRZ(this.Handle, CRZInicial, CRZFinal);
 			CheckResult(ret);
@@ -3024,25 +4579,49 @@ namespace ACBrFramework.ECF
 
 		#region PAF LMFS
 
+#if COM_INTEROP
+
+		public void PafMF_LMFS_EspelhoPorData(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo)
+#else
+
 		public void PafMF_LMFS_Espelho(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_LMFS_Espelho(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo));
 			CheckResult(ret);
 		}
 
+#if COM_INTEROP
+
+		public void PafMF_LMFS_EspelhoPorCRZ(int CRZInicial, int CRZFinal, string CaminhoArquivo)
+#else
+
 		public void PafMF_LMFS_Espelho(int CRZInicial, int CRZFinal, string CaminhoArquivo)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_LMFS_Espelho_CRZ(this.Handle, CRZInicial, CRZFinal, ToUTF8(CaminhoArquivo));
 			CheckResult(ret);
 		}
 
+#if COM_INTEROP
+
+		public void PafMF_LMFS_ImpressaoPorData(DateTime DataInicial, DateTime DataFinal)
+#else
+
 		public void PafMF_LMFS_Impressao(DateTime DataInicial, DateTime DataFinal)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_LMFS_Impressao(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate());
 			CheckResult(ret);
 		}
 
+#if COM_INTEROP
+
+		public void PafMF_LMFS_ImpressaoPorCRZ(int CRZInicial, int CRZFinal)
+#else
+
 		public void PafMF_LMFS_Impressao(int CRZInicial, int CRZFinal)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_LMFS_Impressao_CRZ(this.Handle, CRZInicial, CRZFinal);
 			CheckResult(ret);
@@ -3052,13 +4631,25 @@ namespace ACBrFramework.ECF
 
 		#region PAF Espelho MFD
 
+#if COM_INTEROP
+
+		public void PafMF_MFD_Cotepe1704PorData(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo)
+#else
+
 		public void PafMF_MFD_Cotepe1704(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_MFD_Cotepe1704(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo));
 			CheckResult(ret);
 		}
 
+#if COM_INTEROP
+
+		public void PafMF_MFD_Cotepe1704PorCOO(int COOInicial, int COOFinal, string CaminhoArquivo)
+#else
+
 		public void PafMF_MFD_Cotepe1704(int COOInicial, int COOFinal, string CaminhoArquivo)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_MFD_Cotepe1704_COO(this.Handle, COOInicial, COOFinal, ToUTF8(CaminhoArquivo));
 			CheckResult(ret);
@@ -3068,13 +4659,25 @@ namespace ACBrFramework.ECF
 
 		#region PAF Arq. MFD
 
+#if COM_INTEROP
+
+		public void PafMF_MFD_EspelhoPorData(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo)
+#else
+
 		public void PafMF_MFD_Espelho(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_MFD_Espelho(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo));
 			CheckResult(ret);
 		}
 
+#if COM_INTEROP
+
+		public void PafMF_MFD_EspelhoPorCOO(int COOInicial, int COOFinal, string CaminhoArquivo)
+#else
+
 		public void PafMF_MFD_Espelho(int COOInicial, int COOFinal, string CaminhoArquivo)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_PafMF_MFD_Espelho_COO(this.Handle, COOInicial, COOFinal, ToUTF8(CaminhoArquivo));
 			CheckResult(ret);
@@ -3084,34 +4687,64 @@ namespace ACBrFramework.ECF
 
 		#region Leitura Memoria Fiscal
 
+#if !COM_INTEROP
+
 		public void LeituraMemoriaFiscal(int reducaoInicial, int reducaoFinal)
 		{
 			LeituraMemoriaFiscal(reducaoInicial, reducaoFinal, false);
 		}
 
-		public void LeituraMemoriaFiscal(int reducaoInicial, int reducaoFinal, bool simplificada)
+#endif
+
+#if COM_INTEROP
+
+		public void LeituraMemoriaFiscalPorCRZ(int reducaoInicial, int reducaoFinal, bool simplificada = false)
+#else
+
+		public void LeituraMemoriaFiscal(int reducaoInicial, int reducaoFinal, bool simplificada = false)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_LeituraMemoriaFiscalReducao(this.Handle, reducaoInicial, reducaoFinal, simplificada);
 			CheckResult(ret);
 		}
+
+#if !COM_INTEROP
 
 		public void LeituraMemoriaFiscal(DateTime dataInicial, DateTime dataFinal)
 		{
 			LeituraMemoriaFiscal(dataInicial, dataFinal, false);
 		}
 
-		public void LeituraMemoriaFiscal(DateTime dataInicial, DateTime dataFinal, bool simplificada)
+#endif
+
+#if COM_INTEROP
+
+		public void LeituraMemoriaFiscalPorData(DateTime dataInicial, DateTime dataFinal, bool simplificada = false)
+#else
+
+		public void LeituraMemoriaFiscal(DateTime dataInicial, DateTime dataFinal, bool simplificada = false)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_LeituraMemoriaFiscalData(this.Handle, dataInicial.ToOADate(), dataFinal.ToOADate(), simplificada);
 			CheckResult(ret);
 		}
+
+#if !COM_INTEROP
 
 		public string LeituraMemoriaFiscalSerial(int reducaoInicial, int reducaoFinal)
 		{
 			return LeituraMemoriaFiscalSerial(reducaoInicial, reducaoFinal, false);
 		}
 
-		public string LeituraMemoriaFiscalSerial(int reducaoInicial, int reducaoFinal, bool simplificada)
+#endif
+
+#if COM_INTEROP
+
+		public string LeituraMemoriaFiscalSerialPorCRZ(int reducaoInicial, int reducaoFinal, bool simplificada = false)
+#else
+
+		public string LeituraMemoriaFiscalSerial(int reducaoInicial, int reducaoFinal, bool simplificada = false)
+#endif
 		{
 			const int LEN = 10 * 1024;
 			StringBuilder buffer = new StringBuilder(LEN);
@@ -3123,12 +4756,22 @@ namespace ACBrFramework.ECF
 			return FromUTF8(buffer);
 		}
 
+#if !COM_INTEROP
+
 		public string LeituraMemoriaFiscalSerial(DateTime dataInicial, DateTime dataFinal)
 		{
 			return LeituraMemoriaFiscalSerial(dataInicial, dataFinal, false);
 		}
 
-		public string LeituraMemoriaFiscalSerial(DateTime dataInicial, DateTime dataFinal, bool simplificada)
+#endif
+
+#if COM_INTEROP
+
+		public string LeituraMemoriaFiscalSerialPorData(DateTime dataInicial, DateTime dataFinal, bool simplificada = false)
+#else
+
+		public string LeituraMemoriaFiscalSerial(DateTime dataInicial, DateTime dataFinal, bool simplificada = false)
+#endif
 		{
 			const int LEN = 10 * 1024;
 			StringBuilder buffer = new StringBuilder(LEN);
@@ -3140,23 +4783,43 @@ namespace ACBrFramework.ECF
 			return FromUTF8(buffer);
 		}
 
+#if !COM_INTEROP
+
 		public void LeituraMemoriaFiscalSerial(int reducaoInicial, int reducaoFinal, string nomeArquivo)
 		{
 			LeituraMemoriaFiscalSerial(reducaoInicial, reducaoFinal, ToUTF8(nomeArquivo), false);
 		}
 
-		public void LeituraMemoriaFiscalSerial(int reducaoInicial, int reducaoFinal, string nomeArquivo, bool simplificada)
+#endif
+
+#if COM_INTEROP
+
+		public void LeituraMemoriaFiscalSerialPorCRZ(int reducaoInicial, int reducaoFinal, string nomeArquivo, bool simplificada = false)
+#else
+
+		public void LeituraMemoriaFiscalSerial(int reducaoInicial, int reducaoFinal, string nomeArquivo, bool simplificada = false)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_LeituraMemoriaFiscalArquivoReducao(this.Handle, reducaoInicial, reducaoFinal, ToUTF8(nomeArquivo), simplificada);
 			CheckResult(ret);
 		}
+
+#if !COM_INTEROP
 
 		public void LeituraMemoriaFiscalSerial(DateTime dataInicial, DateTime dataFinal, string nomeArquivo)
 		{
 			LeituraMemoriaFiscalSerial(dataInicial, dataFinal, ToUTF8(nomeArquivo), false);
 		}
 
-		public void LeituraMemoriaFiscalSerial(DateTime dataInicial, DateTime dataFinal, string nomeArquivo, bool simplificada)
+#endif
+
+#if COM_INTEROP
+
+		public void LeituraMemoriaFiscalSerialPorData(DateTime dataInicial, DateTime dataFinal, string nomeArquivo, bool simplificada = false)
+#else
+
+		public void LeituraMemoriaFiscalSerial(DateTime dataInicial, DateTime dataFinal, string nomeArquivo, bool simplificada = false)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_LeituraMemoriaFiscalArquivoData(this.Handle, dataInicial.ToOADate(), dataFinal.ToOADate(), ToUTF8(nomeArquivo), simplificada);
 			CheckResult(ret);
@@ -3166,29 +4829,48 @@ namespace ACBrFramework.ECF
 
 		#region Cupom Vinculado
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public void AbreCupomVinculado(int coo, string codFormaPagto, decimal valor)
 		{
 			var cooStr = string.Format("{0:000000}", coo);
 			AbreCupomVinculado(cooStr, codFormaPagto, valor);
 		}
 
-		public void AbreCupomVinculado(string coo, string codFormaPagto, decimal valor)
+		public void AbreCupomVinculado(string coo, string codFormaPagto, [MarshalAs(UnmanagedType.Currency)] decimal valor)
 		{
 			int ret = ACBrECFInterop.ECF_AbreCupomVinculado(this.Handle, ToUTF8(coo), ToUTF8(codFormaPagto), (double)valor);
 			CheckResult(ret);
 		}
 
+#if COM_INTEROP
+
+		public void AbreCupomVinculadoCNF(string coo, string codFormaPagto, string codComprovanteNaoFiscal, [MarshalAs(UnmanagedType.Currency)] decimal valor)
+#else
+
 		public void AbreCupomVinculado(string coo, string codFormaPagto, string codComprovanteNaoFiscal, decimal valor)
+#endif
 		{
 			int ret = ACBrECFInterop.ECF_AbreCupomVinculadoCNF(this.Handle, ToUTF8(coo), ToUTF8(codFormaPagto), ToUTF8(codComprovanteNaoFiscal), (double)valor);
 			CheckResult(ret);
 		}
+
+#if !COM_INTEROP
 
 		public void LinhaCupomVinculado(string[] linhas)
 		{
 			foreach (string linha in linhas)
 				LinhaCupomVinculado(linha);
 		}
+
+#endif
 
 		public void LinhaCupomVinculado(string linha)
 		{
@@ -3246,11 +4928,20 @@ namespace ACBrFramework.ECF
 
 		#region Relatório Gerencial
 
-		public void AbreRelatorioGerencial(int indice)
+		public void AbreRelatorioGerencial(int indice = 0)
 		{
 			int ret = ACBrECFInterop.ECF_AbreRelatorioGerencial(this.Handle, indice);
 			CheckResult(ret);
 		}
+
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public void LinhaRelatorioGerencial(string[] linhas)
 		{
@@ -3260,23 +4951,41 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public void LinhaRelatorioGerencial(string linha)
 		{
 			LinhaRelatorioGerencial(linha, 0);
 		}
 
-		public void LinhaRelatorioGerencial(string linha, int indiceBMP)
+		public void LinhaRelatorioGerencial(string linha, int indiceBMP = 0)
 		{
 			int ret = ACBrECFInterop.ECF_LinhaRelatorioGerencial(this.Handle, ToUTF8(linha), indiceBMP);
 			CheckResult(ret);
 		}
+
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public void ProgramaRelatoriosGerenciais(string descricao)
 		{
 			ProgramaRelatoriosGerenciais(descricao, String.Empty);
 		}
 
-		public void ProgramaRelatoriosGerenciais(string descricao, string posicao)
+		public void ProgramaRelatoriosGerenciais(string descricao, string posicao = "")
 		{
 			int ret = ACBrECFInterop.ECF_ProgramaRelatoriosGerenciais(this.Handle, ToUTF8(descricao), posicao);
 			CheckResult(ret);
@@ -3319,10 +5028,28 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public void RelatorioGerencial(List<string> relatorio, int vias, int indice)
 		{
 			RelatorioGerencial(relatorio.ToArray(), vias, indice);
 		}
+
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public void RelatorioGerencial(IEnumerable<string> relatorio, int vias, int indice)
 		{
@@ -3382,12 +5109,21 @@ namespace ACBrFramework.ECF
 			CarregaAliquotas(count);
 		}
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public void ProgramaAliquota(decimal aliquota, string tipo)
 		{
 			ProgramaAliquota(aliquota, tipo, string.Empty);
 		}
 
-		public void ProgramaAliquota(decimal aliquota, string tipo, string posicao)
+		public void ProgramaAliquota([MarshalAs(UnmanagedType.Currency)] decimal aliquota, string tipo, string posicao = "")
 		{
 			if (string.IsNullOrEmpty(tipo)) throw new ArgumentException();
 
@@ -3399,17 +5135,35 @@ namespace ACBrFramework.ECF
 
 		#region Formas de Pagto
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public FormaPagamento AchaFPGDescricao(string descricao)
 		{
 			return AchaFPGDescricao(descricao, true, true);
 		}
+
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public FormaPagamento AchaFPGDescricao(string descricao, bool buscaExata)
 		{
 			return AchaFPGDescricao(descricao, buscaExata, true);
 		}
 
-		public FormaPagamento AchaFPGDescricao(string descricao, bool buscaExata, bool ignoreCase)
+		public FormaPagamento AchaFPGDescricao(string descricao, bool buscaExata = true, bool ignoreCase = true)
 		{
 			ACBrECFInterop.FormaPagamentoRec FormaRec = new ACBrECFInterop.FormaPagamentoRec();
 			int ret = ACBrECFInterop.ECF_AchaFPGDescricao(this.Handle, ToUTF8(descricao), buscaExata, ignoreCase, ref FormaRec);
@@ -3498,12 +5252,21 @@ namespace ACBrFramework.ECF
 			CarregaFormasPagamento(count);
 		}
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public void ProgramaFormaPagamento(string descricao, bool permiteVinculado)
 		{
 			ProgramaFormaPagamento(descricao, permiteVinculado, string.Empty);
 		}
 
-		public void ProgramaFormaPagamento(string descricao, bool permiteVinculado, string posicao)
+		public void ProgramaFormaPagamento(string descricao, bool permiteVinculado, string posicao = "")
 		{
 			int ret = ACBrECFInterop.ECF_ProgramaFormaPagamento(this.Handle, ToUTF8(descricao), permiteVinculado, ToUTF8(posicao));
 			CheckResult(ret);
@@ -3513,17 +5276,35 @@ namespace ACBrFramework.ECF
 
 		#region Comprovantes Não Fiscal
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public ComprovanteNaoFiscal AchaCNFDescricao(string descricao)
 		{
 			return AchaCNFDescricao(descricao, true, true);
 		}
+
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public ComprovanteNaoFiscal AchaCNFDescricao(string descricao, bool buscaExata)
 		{
 			return AchaCNFDescricao(descricao, buscaExata, true);
 		}
 
-		public ComprovanteNaoFiscal AchaCNFDescricao(string descricao, bool buscaExata, bool ignoreCase)
+		public ComprovanteNaoFiscal AchaCNFDescricao(string descricao, bool buscaExata = true, bool ignoreCase = true)
 		{
 			ACBrECFInterop.ComprovanteNaoFiscalRec record = new ACBrECFInterop.ComprovanteNaoFiscalRec();
 			int ret = ACBrECFInterop.ECF_AchaCNFDescricao(this.Handle, ref record, ToUTF8(descricao), buscaExata, ignoreCase);
@@ -3605,29 +5386,47 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void RegistraItemNaoFiscal(string codCNF, decimal value, string obs)
+		public void RegistraItemNaoFiscal(string codCNF, [MarshalAs(UnmanagedType.Currency)] decimal value, string obs)
 		{
 			int ret = ACBrECFInterop.ECF_RegistraItemNaoFiscal(this.Handle, ToUTF8(codCNF), Convert.ToDouble(value), ToUTF8(obs));
 			CheckResult(ret);
 		}
 
-		public void SubtotalizaNaoFiscal(decimal descontoAcrescimo, string mensagemRodape)
+		public void SubtotalizaNaoFiscal([MarshalAs(UnmanagedType.Currency)] decimal descontoAcrescimo, string mensagemRodape)
 		{
 			int ret = ACBrECFInterop.ECF_SubtotalizaNaoFiscal(this.Handle, Convert.ToDouble(descontoAcrescimo), ToUTF8(mensagemRodape));
 			CheckResult(ret);
 		}
+
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor)
 		{
 			EfetuaPagamentoNaoFiscal(codFormaPagto, valor, string.Empty, false);
 		}
 
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
 		public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor, string observacao)
 		{
 			EfetuaPagamentoNaoFiscal(codFormaPagto, valor, observacao, false);
 		}
 
-		public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor, string observacao, bool imprimeVinculado)
+		public void EfetuaPagamentoNaoFiscal(string codFormaPagto, [MarshalAs(UnmanagedType.Currency)] decimal valor, string observacao = "", bool imprimeVinculado = false)
 		{
 			int ret = ACBrECFInterop.ECF_EfetuaPagamentoNaoFiscal(this.Handle, codFormaPagto, Convert.ToDouble(valor), observacao, imprimeVinculado);
 			CheckResult(ret);
@@ -3649,13 +5448,13 @@ namespace ACBrFramework.ECF
 
 		#region Suprimento e Sangria
 
-		public void Suprimento(decimal valor, string obs)
+		public void Suprimento([MarshalAs(UnmanagedType.Currency)] decimal valor, string obs)
 		{
 			int ret = ACBrECFInterop.ECF_Suprimento(this.Handle, (double)valor, ToUTF8(obs));
 			CheckResult(ret);
 		}
 
-		public void Sangria(decimal valor, string obs)
+		public void Sangria([MarshalAs(UnmanagedType.Currency)] decimal valor, string obs)
 		{
 			int ret = ACBrECFInterop.ECF_Sangria(this.Handle, (double)valor, ToUTF8(obs));
 			CheckResult(ret);
@@ -3719,7 +5518,7 @@ namespace ACBrFramework.ECF
 					if (this.Ativo)
 						Desativar();
 
-					if(rfd.Ativo)
+					if (rfd.Ativo)
 						rfd.Desativar();
 
 					var orfd = rfd;
@@ -3835,7 +5634,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onAntesEfetuaPagamento.IsAssigned)
 			{
-				EfetuaPagamentoEventArgs e = new EfetuaPagamentoEventArgs(FromUTF8(CodFormaPagto), Valor, FromUTF8(Observacao), ImprimeVinculado);
+				EfetuaPagamentoEventArgs e = new EfetuaPagamentoEventArgs(FromUTF8(CodFormaPagto), Convert.ToDecimal(Valor), FromUTF8(Observacao), ImprimeVinculado);
 				onAntesEfetuaPagamento.Raise(e);
 			}
 		}
@@ -3845,7 +5644,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onAntesEfetuaPagamentoNaoFiscal.IsAssigned)
 			{
-				EfetuaPagamentoEventArgs e = new EfetuaPagamentoEventArgs(FromUTF8(CodFormaPagto), Valor, FromUTF8(Observacao), ImprimeVinculado);
+				EfetuaPagamentoEventArgs e = new EfetuaPagamentoEventArgs(FromUTF8(CodFormaPagto), Convert.ToDecimal(Valor), FromUTF8(Observacao), ImprimeVinculado);
 				onAntesEfetuaPagamentoNaoFiscal.Raise(e);
 			}
 		}
@@ -4066,7 +5865,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onDepoisEfetuaPagamento.IsAssigned)
 			{
-				EfetuaPagamentoEventArgs e = new EfetuaPagamentoEventArgs(FromUTF8(CodFormaPagto), Valor, FromUTF8(Observacao), ImprimeVinculado);
+				EfetuaPagamentoEventArgs e = new EfetuaPagamentoEventArgs(FromUTF8(CodFormaPagto), Convert.ToDecimal(Valor), FromUTF8(Observacao), ImprimeVinculado);
 				onDepoisEfetuaPagamento.Raise(e);
 			}
 		}
@@ -4076,7 +5875,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onDepoisEfetuaPagamentoNaoFiscal.IsAssigned)
 			{
-				EfetuaPagamentoEventArgs e = new EfetuaPagamentoEventArgs(FromUTF8(CodFormaPagto), Valor, FromUTF8(Observacao), ImprimeVinculado);
+				EfetuaPagamentoEventArgs e = new EfetuaPagamentoEventArgs(FromUTF8(CodFormaPagto), Convert.ToDecimal(Valor), FromUTF8(Observacao), ImprimeVinculado);
 				onDepoisEfetuaPagamentoNaoFiscal.Raise(e);
 			}
 		}
@@ -4435,7 +6234,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onPAFCalcEAD.IsAssigned)
 			{
-				OnPAFCalcEADEventArgs e = new OnPAFCalcEADEventArgs(FromUTF8(arquivo));
+				PAFCalcEADEventArgs e = new PAFCalcEADEventArgs(FromUTF8(arquivo));
 				onPAFCalcEAD.Raise(e);
 			}
 		}

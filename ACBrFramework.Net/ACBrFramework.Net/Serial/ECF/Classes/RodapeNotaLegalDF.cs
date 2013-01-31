@@ -51,10 +51,16 @@ namespace ACBrFramework.ECF
 
 		public decimal ValorICMS
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_NotaLegalDF_GetValorICMS);
 			}
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			set
 			{
 				SetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_NotaLegalDF_SetValorICMS, value);
@@ -63,10 +69,16 @@ namespace ACBrFramework.ECF
 
 		public decimal ValorISS
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_NotaLegalDF_GetValorISS);
 			}
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			set
 			{
 				SetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_NotaLegalDF_SetValorISS, value);

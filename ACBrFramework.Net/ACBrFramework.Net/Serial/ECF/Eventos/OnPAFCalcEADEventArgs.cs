@@ -11,12 +11,14 @@ namespace ACBrFramework.ECF
 #if COM_INTEROP
 
 	[ComVisible(true)]
-	[Guid("264F96AE-A597-49A9-93B8-D7F987B818FF")]
+	[Guid("CCFF892B-8451-48E0-AD09-33D45A7E5408")]
 	[ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
-	public class OnPAFCalcEADEventArgs : EventArgs
+	public class PAFCalcEADEventArgs : EventArgs
 	{
-		internal OnPAFCalcEADEventArgs(string arquivo)
+		public PAFCalcEADEventArgs() { }
+
+		internal PAFCalcEADEventArgs(string arquivo)
 		{
 			this.Arquivo = arquivo;
 		}

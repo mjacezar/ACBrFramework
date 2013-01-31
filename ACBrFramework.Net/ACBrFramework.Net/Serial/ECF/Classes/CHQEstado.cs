@@ -1,6 +1,13 @@
+#if COM_INTEROP
+using System.Runtime.InteropServices;
+#endif
+
 namespace ACBrFramework.ECF
 {
-	public enum CHQEstado
+#if COM_INTEROP
+	[ComVisible(true)]
+#endif
+	public enum CHQEstado : int
 	{
 		Idle,
 		Posicione,
