@@ -131,8 +131,8 @@ namespace ACBrFramework.ECF
 		[DispId(24)]
 		void OnChangeEstado(ChangeEstadoEventArgs e);
 
-	//[DispId(25)]
-	//void OnChequeEstado(ChequeEstadoEventArgs e);
+		//[DispId(25)]
+		//void OnChequeEstado(ChequeEstadoEventArgs e);
 
 		[DispId(26)]
 		void OnDepoisAbreCupom(AbreCupomEventArgs e);
@@ -397,6 +397,7 @@ namespace ACBrFramework.ECF
 		}
 
 #if COM_INTEROP
+
 		public event AbreCupomEventHandler OnAntesAbreCupom
 #else
 
@@ -559,6 +560,7 @@ namespace ACBrFramework.ECF
 		}
 
 #if COM_INTEROP
+
 		public event CancelaItemEventHandler OnAntesCancelaItemNaoFiscal
 #else
 
@@ -3186,6 +3188,19 @@ namespace ACBrFramework.ECF
 		}
 
 		[Browsable(false)]
+		public bool EmLinha
+		{
+			get
+			{
+				const int DEFAULT_TIMEOUT = 1;
+				int ret = ACBrECFInterop.ECF_GetEmLinha(this.Handle, DEFAULT_TIMEOUT);
+				CheckResult(ret);
+
+				return Convert.ToBoolean(ret);
+			}
+		}
+
+		[Browsable(false)]
 		public int Colunas
 		{
 			get
@@ -3750,19 +3765,6 @@ namespace ACBrFramework.ECF
 			get
 			{
 				return GetInt32(ACBrECFInterop.ECF_GetNumUltItem);
-			}
-		}
-
-		[Browsable(false)]
-		public bool EmLinha
-		{
-			get
-			{
-				const int DEFAULT_TIMEOUT = 1;
-				int ret = ACBrECFInterop.ECF_GetEmLinha(this.Handle, DEFAULT_TIMEOUT);
-				CheckResult(ret);
-
-				return Convert.ToBoolean(ret);
 			}
 		}
 
@@ -4366,6 +4368,7 @@ namespace ACBrFramework.ECF
 		}
 
 #if COM_INTEROP
+
 		public void PafMF_RelDAVEmitidos(ref DAVs[] DAVs, string TituloRelatorio, int IndiceRelatorio)
 #else
 
@@ -4392,6 +4395,7 @@ namespace ACBrFramework.ECF
 		#region PAF Relatorios
 
 #if COM_INTEROP
+
 		public void PafMF_RelMeiosPagamento(ref FormaPagamento[] formasPagamento, string TituloRelatorio, int indiceRelatorio)
 #else
 
