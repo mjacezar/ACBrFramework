@@ -4,23 +4,30 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
+#if COM_INTEROP
+[assembly: AssemblyTitle("ACBrFramework")]
+[assembly: AssemblyDescription("ACBrFramework ActiveX")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("ACBr")]
+[assembly: AssemblyProduct("ACBrFramework")]
+[assembly: TypeLibVersion(109, 23)]
+#else
 [assembly: AssemblyTitle("ACBrFramework.Net")]
 [assembly: AssemblyDescription("Projeto ACBrFramework para .Net")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ACBr")]
 [assembly: AssemblyProduct("ACBrFramework.Net")]
-[assembly: AssemblyCopyright("Direitos Autorais © ACBr 2010-2012")]
+#endif
+
+[assembly: AssemblyCopyright("Direitos Autorais © ACBr 2010-2013")]
 [assembly: AssemblyTrademark("http://acbrframework.sourceforge.net")]
 [assembly: AssemblyCulture("")]
 
-#if COM_INTEROP
-[assembly: ComVisible(true)]
-#else
 [assembly: ComVisible(false)]
-#endif
+
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("91fa361c-3acb-4e63-b09c-d8a77c7713cf")]
+[assembly: Guid("D487CB83-4CD7-4C64-BBC3-FEF2DCD04023")]
 
 // Version information for an assembly consists of the following four values:
 //

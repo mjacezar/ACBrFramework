@@ -18,10 +18,24 @@ namespace ACBrFramework.ECF
 
 		public string Indice { get; internal set; }
 
-		public decimal ValorAliquota { get; internal set; }
+		public decimal ValorAliquota
+		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
+			get;
+			internal set;
+		}
 
 		public string Tipo { get; internal set; }
 
-		public decimal Total { get; internal set; }
+		public decimal Total
+		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
+			get;
+			internal set;
+		}
 	}
 }

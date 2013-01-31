@@ -60,6 +60,9 @@ namespace ACBrFramework.ECF
 
 		public decimal CancelamentoISSQN
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetCancelamentoISSQN);
@@ -82,7 +85,15 @@ namespace ACBrFramework.ECF
 			}
 		}
 
-		public decimal ValorVendaBruta { get; internal set; }
+		public decimal ValorVendaBruta
+		{
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
+			get;
+			internal set;
+		}
 
 		public ComprovanteNaoFiscal[] TotalizadoresNaoFiscais
 		{
@@ -102,6 +113,9 @@ namespace ACBrFramework.ECF
 
 		public decimal AcrescimoICMS
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetAcrescimoICMS);
@@ -110,6 +124,9 @@ namespace ACBrFramework.ECF
 
 		public decimal DescontoICMS
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetDescontoICMS);
@@ -118,6 +135,9 @@ namespace ACBrFramework.ECF
 
 		public decimal NaoTributadoICMS
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetNaoTributadoICMS);
@@ -158,6 +178,9 @@ namespace ACBrFramework.ECF
 
 		public decimal ValorGrandeTotal
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetValorGrandeTotal);
@@ -166,6 +189,9 @@ namespace ACBrFramework.ECF
 
 		public decimal AcrescimoISSQN
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetAcrescimoISSQN);
@@ -174,6 +200,9 @@ namespace ACBrFramework.ECF
 
 		public decimal NaoTributadoISSQN
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetNaoTributadoISSQN);
@@ -182,6 +211,9 @@ namespace ACBrFramework.ECF
 
 		public decimal IsentoICMS
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetIsentoICMS);
@@ -190,6 +222,9 @@ namespace ACBrFramework.ECF
 
 		public decimal SubstituicaoTributariaICMS
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetSubstituicaoTributariaICMS);
@@ -206,6 +241,9 @@ namespace ACBrFramework.ECF
 
 		public decimal TotalOperacaoNaoFiscal
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetTotalOperacaoNaoFiscal);
@@ -214,6 +252,9 @@ namespace ACBrFramework.ECF
 
 		public decimal DescontoISSQN
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetDescontoISSQN);
@@ -222,6 +263,9 @@ namespace ACBrFramework.ECF
 
 		public decimal CancelamentoOPNF
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetCancelamentoOPNF);
@@ -230,6 +274,9 @@ namespace ACBrFramework.ECF
 
 		public decimal AcrescimoOPNF
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetAcrescimoOPNF);
@@ -238,6 +285,9 @@ namespace ACBrFramework.ECF
 
 		public decimal DescontoOPNF
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetDescontoOPNF);
@@ -246,6 +296,9 @@ namespace ACBrFramework.ECF
 
 		public decimal CancelamentoICMS
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetCancelamentoICMS);
@@ -262,6 +315,9 @@ namespace ACBrFramework.ECF
 
 		public decimal IsentoISSQN
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetIsentoISSQN);
@@ -270,6 +326,9 @@ namespace ACBrFramework.ECF
 
 		public decimal SubstituicaoTributariaISSQN
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetSubstituicaoTributariaISSQN);
@@ -278,6 +337,9 @@ namespace ACBrFramework.ECF
 
 		public decimal VendaLiquida
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetVendaLiquida);
@@ -302,6 +364,9 @@ namespace ACBrFramework.ECF
 
 		public decimal TotalISSQN
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetTotalISSQN);
@@ -310,6 +375,9 @@ namespace ACBrFramework.ECF
 
 		public decimal TotalICMS
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetTotalICMS);
@@ -398,6 +466,9 @@ namespace ACBrFramework.ECF
 
 		public decimal TotalTroco
 		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetTotalTroco);

@@ -11,7 +11,7 @@ namespace ACBrFramework.ECF
 #if COM_INTEROP
 
 	[ComVisible(true)]
-	[Guid("14529A93-F63A-4298-B7C0-59A263DB5610")]
+	[Guid("9E47AAFE-7BEA-4FC1-AE28-A00302C239AD")]
 	[ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
 	public class ChequeEstadoEventArgs : EventArgs

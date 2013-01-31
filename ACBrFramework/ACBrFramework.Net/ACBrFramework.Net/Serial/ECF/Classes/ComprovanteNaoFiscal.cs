@@ -22,7 +22,14 @@ namespace ACBrFramework.ECF
 
 		public string FormaPagamento { get; internal set; }
 
-		public decimal Total { get; internal set; }
+		public decimal Total
+		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
+			get;
+			internal set;
+		}
 
 		public int Contador { get; internal set; }
 	}

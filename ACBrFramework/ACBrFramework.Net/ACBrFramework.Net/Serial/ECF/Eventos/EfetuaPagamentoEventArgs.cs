@@ -16,7 +16,7 @@ namespace ACBrFramework.ECF
 #endif
 	public class EfetuaPagamentoEventArgs : EventArgs
 	{
-		internal EfetuaPagamentoEventArgs(string CodFormaPagto, double Valor, string Observacao, bool ImprimeVinculado)
+		internal EfetuaPagamentoEventArgs(string CodFormaPagto, decimal Valor, string Observacao, bool ImprimeVinculado)
 		{
 			this.CodFormaPagto = CodFormaPagto;
 			this.Valor = Valor;
@@ -26,7 +26,14 @@ namespace ACBrFramework.ECF
 
 		public string CodFormaPagto { get; private set; }
 
-		public double Valor { get; private set; }
+		public decimal Valor
+		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
+			get; 
+			private set; 
+		}
 
 		public string Observacao { get; private set; }
 

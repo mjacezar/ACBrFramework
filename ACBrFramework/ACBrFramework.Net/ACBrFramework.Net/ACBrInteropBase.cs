@@ -5,6 +5,12 @@ using System.Text;
 
 namespace ACBrFramework
 {
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("812A142D-B9E8-44FE-8C4E-FEFA76EF869D")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 	public abstract class ACBrInteropBase
 	{
 		#region Inner Types

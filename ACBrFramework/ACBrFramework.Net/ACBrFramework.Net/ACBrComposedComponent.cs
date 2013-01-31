@@ -1,9 +1,18 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Text;
+#if COM_INTEROP
+using System.Runtime.InteropServices;
+#endif
 
 namespace ACBrFramework
 {
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("93CB443A-7AA7-4E6F-816E-8BFE5CA18261")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public abstract class ACBrComposedComponent : ACBrInteropBase
 	{

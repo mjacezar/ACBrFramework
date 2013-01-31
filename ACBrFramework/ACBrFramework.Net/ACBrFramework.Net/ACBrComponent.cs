@@ -1,8 +1,20 @@
 ﻿using System;
 using System.ComponentModel;
 
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
 namespace ACBrFramework
 {
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("9FA0F390-307D-44AE-972F-6E63BB77509F")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 	[DesignerCategory("ACBr")]
 	[DesignTimeVisible(true)]
 	public abstract class ACBrComponent : ACBrInteropBase, IComponent, IDisposable
@@ -17,7 +29,23 @@ namespace ACBrFramework
 
 		#region Events
 
-		public event System.EventHandler Disposed;
+		public event System.EventHandler Disposed
+		{
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+			add
+			{
+				disposed += value;
+			}
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+			remove
+			{
+				disposed -= value;
+			}
+		}
 
 		#endregion Events
 
@@ -25,6 +53,7 @@ namespace ACBrFramework
 
 		private IntPtr handle;
 		private ISite site;
+		private System.EventHandler disposed;
 
 		#endregion Fields
 
@@ -124,7 +153,7 @@ namespace ACBrFramework
 
 			OnDisposing();
 
-			if (Disposed != null) Disposed(this, EventArgs.Empty);
+			if (disposed != null) disposed(this, EventArgs.Empty);
 		}
 
 		public void Dispose()

@@ -24,7 +24,15 @@ namespace ACBrFramework.ECF
 			this.DescricaoFPG = DescricaoFPG;
 		}
 
-		public decimal Valor { get; private set; }
+		public decimal Valor
+		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
+			get;
+			private set; 
+		}
+
 
 		public string Obs { get; private set; }
 

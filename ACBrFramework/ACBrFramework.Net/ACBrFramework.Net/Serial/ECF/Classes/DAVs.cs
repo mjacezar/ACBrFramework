@@ -24,7 +24,17 @@ namespace ACBrFramework.ECF
 
 		public string Titulo { get; set; }
 
-		public decimal Valor { get; set; }
+		public decimal Valor
+		{
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)] 
+#endif
+			get;
+#if COM_INTEROP
+			[param: MarshalAs(UnmanagedType.Currency)]
+#endif
+			set;
+		}
 
 		public DateTime DtEmissao { get; set; }
 	}
