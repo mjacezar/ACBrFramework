@@ -3188,19 +3188,6 @@ namespace ACBrFramework.ECF
 		}
 
 		[Browsable(false)]
-		public bool EmLinha
-		{
-			get
-			{
-				const int DEFAULT_TIMEOUT = 1;
-				int ret = ACBrECFInterop.ECF_GetEmLinha(this.Handle, DEFAULT_TIMEOUT);
-				CheckResult(ret);
-
-				return Convert.ToBoolean(ret);
-			}
-		}
-
-		[Browsable(false)]
 		public int Colunas
 		{
 			get
@@ -3313,6 +3300,15 @@ namespace ACBrFramework.ECF
 			get
 			{
 				return GetString(ACBrECFInterop.ECF_GetNumSerie);
+			}
+		}
+
+		[Browsable(false)]
+		public string NumSerieMFD
+		{
+			get
+			{
+				return GetString(ACBrECFInterop.ECF_GetNumSerieMFD);
 			}
 		}
 
@@ -3841,6 +3837,15 @@ namespace ACBrFramework.ECF
 		}
 
 		[Browsable(false)]
+		public bool ParamDescontoISSQN
+		{
+			get
+			{
+				return GetBool(ACBrECFInterop.ECF_GetParamDescontoISSQN);
+			}
+		}
+
+		[Browsable(false)]
 		public decimal SubTotal
 		{
 			#region COM_INTEROP
@@ -4047,6 +4052,28 @@ namespace ACBrFramework.ECF
 			return Convert.ToBoolean(ret);
 		}
 
+
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+		public bool EmLinha()
+		{
+			return EmLinha(1);
+		}
+
+		public bool EmLinha(int timeOut = 1)
+		{
+			int ret = ACBrECFInterop.ECF_GetEmLinha(this.Handle, timeOut);
+			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
+		}
+
 		public void PulaLinhas(int numLinhas)
 		{
 			int ret = ACBrECFInterop.ECF_PulaLinhas(this.Handle, numLinhas);
@@ -4083,6 +4110,11 @@ namespace ACBrFramework.ECF
 		{
 			int ret = ACBrECFInterop.ECF_MudaHorarioVerao(this.Handle);
 			CheckResult(ret);
+		}
+
+		public void MudaArredondamento(bool arredonda)
+		{
+			int ret = ACBrECFInterop.ECF_MudaArredondamento(this.Handle, arredonda);
 		}
 
 		public void PreparaTEF()
