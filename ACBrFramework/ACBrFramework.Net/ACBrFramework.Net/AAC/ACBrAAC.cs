@@ -298,11 +298,11 @@ namespace ACBrFramework.AAC
 
 		public int VerificarGTECF(string numSerie, ref decimal grandeTotal)
 		{
-			double _grandeTotal = 0d;
+			double _grandeTotal = ToUTF8(grandeTotal);
 			int ret = ACBrAACInterop.AAC_VerificarGTECF(this.Handle, numSerie, ref _grandeTotal);
 			CheckResult(ret);
 
-			grandeTotal = Convert.ToDecimal(_grandeTotal);
+			grandeTotal = FromUTF8(_grandeTotal);
 			return ret;
 		}
 

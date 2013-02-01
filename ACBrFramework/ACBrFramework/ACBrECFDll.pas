@@ -3781,7 +3781,7 @@ begin
    end;
 end;
 
-Function ECF_Sangria(const ecfHandle: PECFHandle; const Valor: Double; const Obs: pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_Sangria(const ecfHandle: PECFHandle; const Valor: Double; const Obs, DescricaoCNF, DescricaoFPG : pChar;  IndiceBMP: Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 
@@ -3792,7 +3792,7 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.Sangria(Valor, Obs);
+     ecfHandle^.ECF.Sangria(Valor, Obs, DescricaoCNF, DescricaoFPG, IndiceBMP);
      Result := 0 ;
   except
      on exception : Exception do
@@ -3803,7 +3803,7 @@ begin
   end;
 end;
 
-Function ECF_Suprimento(const ecfHandle: PECFHandle; const Valor: Double; const Obs: pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_Suprimento(const ecfHandle: PECFHandle; const Valor: Double; const Obs, DescricaoCNF, DescricaoFPG : pChar;  IndiceBMP: Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -3813,7 +3813,7 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.Suprimento(Valor, Obs);
+     ecfHandle^.ECF.Suprimento(Valor, Obs, DescricaoCNF, DescricaoFPG, IndiceBMP);
      Result := 0 ;
   except
      on exception : Exception do
@@ -4121,7 +4121,7 @@ begin
 
 end;
 
-Function ECF_AbreCupom(const ecfHandle: PECFHandle; const CPF_CNPJ, Nome, Endereco : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function ECF_AbreCupom(const ecfHandle: PECFHandle; const CPF_CNPJ, Nome, Endereco : pChar; const ModoPreVenda : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (ecfHandle = nil) then
@@ -4131,7 +4131,7 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.AbreCupom( CPF_CNPJ, Nome, Endereco );
+     ecfHandle^.ECF.AbreCupom( CPF_CNPJ, Nome, Endereco, ModoPreVenda);
      Result := 0;
   except
      on exception : Exception do
@@ -4984,7 +4984,7 @@ end;
 
 {%region Comprovantes Não Fiscais}
 
-Function ECF_AbreNaoFiscal(const ecfHandle: PECFHandle; const CPF_CNPJ : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function ECF_AbreNaoFiscal(const ecfHandle: PECFHandle; const CPF_CNPJ, Nome, Endereco : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
   if (ecfHandle = nil) then
   begin
@@ -4993,7 +4993,7 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.AbreNaoFiscal(CPF_CNPJ);
+     ecfHandle^.ECF.AbreNaoFiscal(CPF_CNPJ, Nome, Endereco);
      Result := 0 ;
   except
      on exception : Exception do
@@ -5064,7 +5064,7 @@ begin
   end;
 end;
 
-Function ECF_FechaNaoFiscal(const ecfHandle: PECFHandle; const Observacao: pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function ECF_FechaNaoFiscal(const ecfHandle: PECFHandle; const Observacao: pChar; const IndiceBMP : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (ecfHandle = nil) then
@@ -5074,7 +5074,7 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.FechaNaoFiscal(Observacao);
+     ecfHandle^.ECF.FechaNaoFiscal(Observacao, IndiceBMP);
      Result := 0 ;
   except
      on exception : Exception do
@@ -7363,7 +7363,7 @@ end;
 
 Function ECF_DAV_Abrir(const ecfHandle: PECFHandle; const AEmissao : double;
       const ADescrDocumento, ANumero, ASituacao, AVendedor, AObservacao,
-      ACNPJCPF, ANomeCliente, AEndereco: pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+      ACNPJCPF, ANomeCliente, AEndereco: pChar; AIndice : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (ecfHandle = nil) then
@@ -7373,7 +7373,7 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.DAV_Abrir(AEmissao, AdescrDocumento, ANumero, ASituacao, AVendedor, AObservacao, ACNPJCPF, ANomeCliente, AEndereco);
+     ecfHandle^.ECF.DAV_Abrir(AEmissao, AdescrDocumento, ANumero, ASituacao, AVendedor, AObservacao, ACNPJCPF, ANomeCliente, AEndereco, AIndice);
      Result := 0;
   except
      on exception : Exception do
@@ -7523,10 +7523,18 @@ end;
 
 Function ECF_PafMF_RelIdentificacaoPafECF(const ecfHandle: PECFHandle; const aacHandle : PAACHandle; const indiceRelatorio : Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
+
 if (ecfHandle = nil) then
 begin
-   Result := -2;
-   Exit;
+    Result := -2;
+    Exit;
+end;
+
+if (aacHandle = nil) then
+begin
+    Result := -1;
+    ecfHandle^.UltimoErro := 'A Identificação não pode ser nula';
+    Exit;
 end;
 
 try
@@ -7547,6 +7555,13 @@ if (ecfHandle = nil) then
 begin
    Result := -2;
    Exit;
+end;
+
+if (aacHandle = nil) then
+begin
+    Result := -1;
+    ecfHandle^.UltimoErro := 'Os Parametros não podem ser nulos';
+    Exit;
 end;
 
 try

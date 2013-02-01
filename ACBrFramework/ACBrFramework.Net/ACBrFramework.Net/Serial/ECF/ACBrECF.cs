@@ -3980,48 +3980,6 @@ namespace ACBrFramework.ECF
 
 		#region Métodos ECF
 
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public bool AcharECF()
-		{
-			return AcharECF(true, true, 3);
-		}
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public bool AcharECF(bool Modelo)
-		{
-			return AcharECF(Modelo, true, 3);
-		}
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public bool AcharECF(bool Modelo, bool Porta)
-		{
-			return AcharECF(Modelo, Porta, 3);
-		}
-
 		public bool AcharECF(bool Modelo = true, bool Porta = true, int TimeOut = 3)
 		{
 			int ret = ACBrECFInterop.ECF_AcharECF(this.Handle, Modelo, Porta, TimeOut);
@@ -4030,40 +3988,12 @@ namespace ACBrFramework.ECF
 			return Convert.ToBoolean(ret);
 		}
 
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public bool AcharPorta()
-		{
-			return AcharPorta(3);
-		}
-
 		public bool AcharPorta(int TimeOut = 3)
 		{
 			int ret = ACBrECFInterop.ECF_AcharPorta(this.Handle, TimeOut);
 			CheckResult(ret);
 
 			return Convert.ToBoolean(ret);
-		}
-
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-		public bool EmLinha()
-		{
-			return EmLinha(1);
 		}
 
 		public bool EmLinha(int timeOut = 1)
@@ -4080,24 +4010,10 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void CortaPapel(bool corteParcial)
+		public void CortaPapel(bool corteParcial = false)
 		{
 			int ret = ACBrECFInterop.ECF_CortaPapel(this.Handle, corteParcial);
 			CheckResult(ret);
-		}
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void CorrigeEstadoErro()
-		{
-			CorrigeEstadoErro(true);
 		}
 
 		public void CorrigeEstadoErro(bool reducaoZ = true)
@@ -4133,20 +4049,6 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public string EnviaComando(string cmd)
-		{
-			return EnviaComando(cmd, -1);
-		}
-
 		public string EnviaComando(string cmd, int timeout = - 1)
 		{
 			int bufferlen = 512;
@@ -4162,12 +4064,7 @@ namespace ACBrFramework.ECF
 
 		#region Métodos Cheque
 
-		public void ImprimeCheque(string Banco, [MarshalAs(UnmanagedType.Currency)] decimal Valor, string Favorecido, string Cidade, DateTime Data)
-		{
-			ImprimeCheque(Banco, Valor, Favorecido, Cidade, Data, string.Empty);
-		}
-
-		public void ImprimeCheque(string Banco, [MarshalAs(UnmanagedType.Currency)] decimal Valor, string Favorecido, string Cidade, DateTime Data, string Observacao)
+		public void ImprimeCheque(string Banco, [MarshalAs(UnmanagedType.Currency)] decimal Valor, string Favorecido, string Cidade, DateTime Data, string Observacao = "")
 		{
 			int ret = ACBrECFInterop.ECF_ImprimeCheque(this.Handle, ToUTF8(Banco), ToUTF8(Valor), ToUTF8(Favorecido), ToUTF8(Cidade), ToUTF8(Data), ToUTF8(Observacao));
 			CheckResult(ret);
@@ -4192,7 +4089,7 @@ namespace ACBrFramework.ECF
 
 		#endregion Métodos Cheque
 
-		#region Métodos do Cupom Fiscal
+		#region Cupom Fiscal
 
 		public void IdentificaConsumidor(string cpfCnpj, string nome, string endereco)
 		{
@@ -4200,23 +4097,9 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void AbreCupom()
+		public void AbreCupom(string cpfCnpj = "", string nome = "", string endereco = "", bool ModoPreVenda = false)
 		{
-			AbreCupom(string.Empty, string.Empty, string.Empty);
-		}
-
-		public void AbreCupom(string cpfCnpj = "", string nome = "", string endereco = "")
-		{
-			int ret = ACBrECFInterop.ECF_AbreCupom(this.Handle, ToUTF8(cpfCnpj), ToUTF8(nome), ToUTF8(endereco));
+			int ret = ACBrECFInterop.ECF_AbreCupom(this.Handle, ToUTF8(cpfCnpj), ToUTF8(nome), ToUTF8(endereco), ModoPreVenda);
 			CheckResult(ret);
 		}
 
@@ -4226,52 +4109,10 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario)
-		{
-			VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, 0, "UN", "%", "D", -1);
-		}
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void VendeItem(string codigo, string descricao, string aliquotaICMS, decimal qtd, decimal valorUnitario, decimal descontoPorc, string unidade, string tipoDescontoAcrescimo, string descontoAcrescimo)
-		{
-			VendeItem(codigo, descricao, aliquotaICMS, qtd, valorUnitario, descontoPorc, unidade, tipoDescontoAcrescimo, descontoAcrescimo, -1);
-		}
-
 		public void VendeItem(string codigo, string descricao, string aliquotaICMS, [MarshalAs(UnmanagedType.Currency)]decimal qtd, [MarshalAs(UnmanagedType.Currency)]decimal valorUnitario, [MarshalAs(UnmanagedType.Currency)]decimal descontoPorc = 0M, string unidade = "UN", string tipoDescontoAcrescimo = "%", string descontoAcrescimo = "D", int CodDepartamento = -1)
 		{
 			int ret = ACBrECFInterop.ECF_VendeItem(this.Handle, ToUTF8(codigo), ToUTF8(descricao), ToUTF8(aliquotaICMS), (double)qtd, (double)valorUnitario, (double)descontoPorc, ToUTF8(unidade), ToUTF8(tipoDescontoAcrescimo), ToUTF8(descontoAcrescimo), CodDepartamento);
 			CheckResult(ret);
-		}
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void DescontoAcrescimoItemAnterior(decimal valorDesconto, string descontoAcrescimo)
-		{
-			DescontoAcrescimoItemAnterior(valorDesconto, descontoAcrescimo, "%", 0);
 		}
 
 		public void DescontoAcrescimoItemAnterior([MarshalAs(UnmanagedType.Currency)] decimal valorDesconto, string descontoAcrescimo, string tipodescontoAcrescimo = "%", int item = 0)
@@ -4280,52 +4121,10 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void SubtotalizaCupom()
-		{
-			SubtotalizaCupom(0, "");
-		}
-
 		public void SubtotalizaCupom([MarshalAs(UnmanagedType.Currency)] decimal descontoAcrescimo = 0M, string mensagemRodape = "")
 		{
 			int ret = ACBrECFInterop.ECF_SubtotalizaCupom(this.Handle, (double)descontoAcrescimo, ToUTF8(mensagemRodape));
 			CheckResult(ret);
-		}
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void EfetuaPagamento(string codFormaPagto, decimal valor)
-		{
-			EfetuaPagamento(codFormaPagto, valor, string.Empty, false);
-		}
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void EfetuaPagamento(string codFormaPagto, decimal valor, string observacao)
-		{
-			EfetuaPagamento(codFormaPagto, valor, observacao, false);
 		}
 
 		public void EfetuaPagamento(string codFormaPagto, [MarshalAs(UnmanagedType.Currency)] decimal valor, string observacao = "", bool imprimeVinculado = false)
@@ -4374,15 +4173,15 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		#endregion Métodos do Cupom Fiscal
+		#endregion Cupom Fiscal
 
 		#region Métodos DAV
 
-		public void DAV_Abrir(DateTime emissao, string decrdocumento, string numero, string situacao, string vendedor, string observacao, string cpfCnpj, string nome, string endereco)
+		public void DAV_Abrir(DateTime emissao, string decrdocumento, string numero, string situacao, string vendedor, string observacao, string cpfCnpj, string nome, string endereco, int indice = 0)
 		{
 			int ret = ACBrECFInterop.ECF_DAV_Abrir(this.Handle, emissao.ToOADate(), ToUTF8(decrdocumento),
 				ToUTF8(numero), ToUTF8(situacao), ToUTF8(vendedor), ToUTF8(observacao),
-				ToUTF8(cpfCnpj), ToUTF8(nome), ToUTF8(endereco));
+				ToUTF8(cpfCnpj), ToUTF8(nome), ToUTF8(endereco), indice);
 			CheckResult(ret);
 		}
 
@@ -4449,35 +4248,29 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void PafMF_RelIdentificacaoPafECF()
+		public void PafMF_RelIdentificacaoPafECF(IdenticacaoPaf identificacaoPAF = null, int indiceRelatorio = 0)
 		{
-			PafMF_RelIdentificacaoPafECF(this.AAC.IdentPaf, 0);
-		}
+			IdenticacaoPaf identificaPAF;
 
-		public void PafMF_RelIdentificacaoPafECF(int indiceRelatorio)
-		{
-			PafMF_RelIdentificacaoPafECF(this.AAC.IdentPaf, indiceRelatorio);
-		}
+			if (identificacaoPAF == null)
+				identificaPAF = this.AAC.IdentPaf;
+			else
+				identificaPAF = identificacaoPAF;
 
-		public void PafMF_RelIdentificacaoPafECF(IdenticacaoPaf identificacaoPAF, int indiceRelatorio)
-		{
-			int ret = ACBrECFInterop.ECF_PafMF_RelIdentificacaoPafECF(this.Handle, identificacaoPAF.Handle, indiceRelatorio);
+			int ret = ACBrECFInterop.ECF_PafMF_RelIdentificacaoPafECF(this.Handle, identificaPAF.Handle, indiceRelatorio);
 			CheckResult(ret);
 		}
 
-		public void PafMF_RelParametrosConfiguracao()
+		public void PafMF_RelParametrosConfiguracao(InfoPaf infoPAF = null, int indiceRelatorio = 1)
 		{
-			PafMF_RelParametrosConfiguracao(this.AAC.IdentPaf.Paf, 0);
-		}
+			InfoPaf Info;
 
-		public void PafMF_RelParametrosConfiguracao(int indiceRelatorio)
-		{
-			PafMF_RelParametrosConfiguracao(this.AAC.IdentPaf.Paf, indiceRelatorio);
-		}
+			if (infoPAF == null)
+				Info = this.AAC.IdentPaf.Paf;
+			else
+				Info = infoPAF;
 
-		public void PafMF_RelParametrosConfiguracao(InfoPaf infoPAF, int indiceRelatorio)
-		{
-			int ret = ACBrECFInterop.ECF_PafMF_RelParametrosConfiguracao(this.Handle, infoPAF.Handle, indiceRelatorio);
+			int ret = ACBrECFInterop.ECF_PafMF_RelParametrosConfiguracao(this.Handle, Info.Handle, indiceRelatorio);
 			CheckResult(ret);
 		}
 
@@ -4497,28 +4290,29 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void ArquivoMFD_DLL(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo)
+		public void ArquivoMFD_DLL(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo, FinalizaArqMFD Finaliza = FinalizaArqMFD.MFD, params TipoDocumento[] Documentos)
 		{
-			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo), null, 0, -1);
-			CheckResult(ret);
-		}
+			int[] Docs;
 
-		public void ArquivoMFD_DLL(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo, FinalizaArqMFD Finaliza, params TipoDocumento[] Documentos)
-		{
-			int[] Docs = Array.ConvertAll(Documentos, value => (int)value);
+			if (Documentos.Length > 0)
+				Docs = Array.ConvertAll(Documentos, value => (int)value);
+			else
+				Docs = new int[1] { (int)TipoDocumento.Todos };
+
 			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo), Docs, Docs.Length, (int)Finaliza);
+						
 			CheckResult(ret);
 		}
 
-		public void ArquivoMFD_DLL(int COOInicial, int COOFinal, string CaminhoArquivo)
+		public void ArquivoMFD_DLL(int COOInicial, int COOFinal, string CaminhoArquivo, FinalizaArqMFD Finaliza = FinalizaArqMFD.MFD, TipoContador TipoContador = TipoContador.COO, params TipoDocumento[] Documentos)
 		{
-			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL_COO(this.Handle, COOInicial, COOFinal, ToUTF8(CaminhoArquivo), null, 0, -1, -1);
-			CheckResult(ret);
-		}
+			int[] Docs;
 
-		public void ArquivoMFD_DLL(int COOInicial, int COOFinal, string CaminhoArquivo, FinalizaArqMFD Finaliza, TipoContador TipoContador, params TipoDocumento[] Documentos)
-		{
-			int[] Docs = Array.ConvertAll(Documentos, value => (int)value);
+			if (Documentos.Length > 0)
+				Docs = Array.ConvertAll(Documentos, value => (int)value);
+			else
+				Docs = new int[1] { (int)TipoDocumento.Todos };
+
 			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL_COO(this.Handle, COOInicial, COOFinal, ToUTF8(CaminhoArquivo), Docs, Docs.Length, (int)Finaliza, (int)TipoContador);
 			CheckResult(ret);
 		}
@@ -4723,15 +4517,6 @@ namespace ACBrFramework.ECF
 
 		#region Leitura Memoria Fiscal
 
-#if !COM_INTEROP
-
-		public void LeituraMemoriaFiscal(int reducaoInicial, int reducaoFinal)
-		{
-			LeituraMemoriaFiscal(reducaoInicial, reducaoFinal, false);
-		}
-
-#endif
-
 #if COM_INTEROP
 
 		public void LeituraMemoriaFiscalPorCRZ(int reducaoInicial, int reducaoFinal, bool simplificada = false)
@@ -4744,15 +4529,6 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-#if !COM_INTEROP
-
-		public void LeituraMemoriaFiscal(DateTime dataInicial, DateTime dataFinal)
-		{
-			LeituraMemoriaFiscal(dataInicial, dataFinal, false);
-		}
-
-#endif
-
 #if COM_INTEROP
 
 		public void LeituraMemoriaFiscalPorData(DateTime dataInicial, DateTime dataFinal, bool simplificada = false)
@@ -4764,15 +4540,6 @@ namespace ACBrFramework.ECF
 			int ret = ACBrECFInterop.ECF_LeituraMemoriaFiscalData(this.Handle, dataInicial.ToOADate(), dataFinal.ToOADate(), simplificada);
 			CheckResult(ret);
 		}
-
-#if !COM_INTEROP
-
-		public string LeituraMemoriaFiscalSerial(int reducaoInicial, int reducaoFinal)
-		{
-			return LeituraMemoriaFiscalSerial(reducaoInicial, reducaoFinal, false);
-		}
-
-#endif
 
 #if COM_INTEROP
 
@@ -4792,15 +4559,6 @@ namespace ACBrFramework.ECF
 			return FromUTF8(buffer);
 		}
 
-#if !COM_INTEROP
-
-		public string LeituraMemoriaFiscalSerial(DateTime dataInicial, DateTime dataFinal)
-		{
-			return LeituraMemoriaFiscalSerial(dataInicial, dataFinal, false);
-		}
-
-#endif
-
 #if COM_INTEROP
 
 		public string LeituraMemoriaFiscalSerialPorData(DateTime dataInicial, DateTime dataFinal, bool simplificada = false)
@@ -4819,15 +4577,6 @@ namespace ACBrFramework.ECF
 			return FromUTF8(buffer);
 		}
 
-#if !COM_INTEROP
-
-		public void LeituraMemoriaFiscalSerial(int reducaoInicial, int reducaoFinal, string nomeArquivo)
-		{
-			LeituraMemoriaFiscalSerial(reducaoInicial, reducaoFinal, ToUTF8(nomeArquivo), false);
-		}
-
-#endif
-
 #if COM_INTEROP
 
 		public void LeituraMemoriaFiscalSerialPorCRZ(int reducaoInicial, int reducaoFinal, string nomeArquivo, bool simplificada = false)
@@ -4839,15 +4588,6 @@ namespace ACBrFramework.ECF
 			int ret = ACBrECFInterop.ECF_LeituraMemoriaFiscalArquivoReducao(this.Handle, reducaoInicial, reducaoFinal, ToUTF8(nomeArquivo), simplificada);
 			CheckResult(ret);
 		}
-
-#if !COM_INTEROP
-
-		public void LeituraMemoriaFiscalSerial(DateTime dataInicial, DateTime dataFinal, string nomeArquivo)
-		{
-			LeituraMemoriaFiscalSerial(dataInicial, dataFinal, ToUTF8(nomeArquivo), false);
-		}
-
-#endif
 
 #if COM_INTEROP
 
@@ -4865,20 +4605,15 @@ namespace ACBrFramework.ECF
 
 		#region Cupom Vinculado
 
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
+#if !COM_INTEROP
 
 		public void AbreCupomVinculado(int coo, string codFormaPagto, decimal valor)
 		{
 			var cooStr = string.Format("{0:000000}", coo);
 			AbreCupomVinculado(cooStr, codFormaPagto, valor);
 		}
+
+#endif
 
 		public void AbreCupomVinculado(string coo, string codFormaPagto, [MarshalAs(UnmanagedType.Currency)] decimal valor)
 		{
@@ -4924,14 +4659,9 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void ReducaoZ()
+		public void ReducaoZ(Nullable<DateTime> data = null)
 		{
-			ReducaoZ(0);
-		}
-
-		public void ReducaoZ(DateTime data)
-		{
-			ReducaoZ(data.ToOADate());
+			ReducaoZ(data.HasValue ? data.Value.ToOADate() : 0);
 		}
 
 		private void ReducaoZ(double data)
@@ -4970,55 +4700,22 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		#region COM_INTEROP
+#if !COM_INTEROP
 
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void LinhaRelatorioGerencial(string[] linhas)
+		public void LinhaRelatorioGerencial(string[] linhas, int indiceBMP = 0)
 		{
 			foreach (string linha in linhas)
 			{
-				LinhaRelatorioGerencial(linha, 0);
+				LinhaRelatorioGerencial(linha, indiceBMP);
 			}
 		}
 
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void LinhaRelatorioGerencial(string linha)
-		{
-			LinhaRelatorioGerencial(linha, 0);
-		}
-
+#endif			
+		
 		public void LinhaRelatorioGerencial(string linha, int indiceBMP = 0)
 		{
 			int ret = ACBrECFInterop.ECF_LinhaRelatorioGerencial(this.Handle, ToUTF8(linha), indiceBMP);
 			CheckResult(ret);
-		}
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void ProgramaRelatoriosGerenciais(string descricao)
-		{
-			ProgramaRelatoriosGerenciais(descricao, String.Empty);
 		}
 
 		public void ProgramaRelatoriosGerenciais(string descricao, string posicao = "")
@@ -5064,35 +4761,21 @@ namespace ACBrFramework.ECF
 			}
 		}
 
-		#region COM_INTEROP
+#if !COM_INTEROP
 
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void RelatorioGerencial(List<string> relatorio, int vias, int indice)
+		public void RelatorioGerencial(List<string> relatorio, int vias = 1, int indice = 0)
 		{
 			RelatorioGerencial(relatorio.ToArray(), vias, indice);
 		}
 
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void RelatorioGerencial(IEnumerable<string> relatorio, int vias, int indice)
+		public void RelatorioGerencial(IEnumerable<string> relatorio, int vias = 1, int indice= 0)
 		{
 			RelatorioGerencial(relatorio.ToArray(), vias, indice);
 		}
 
-		public void RelatorioGerencial(string[] relatorio, int vias, int indice)
+#endif
+
+		public void RelatorioGerencial(string[] relatorio, int vias = 1, int indice = 0)
 		{
 			int ret = ACBrECFInterop.ECF_RelatorioGerencial(this.Handle, relatorio, relatorio.Length, vias, indice);
 			CheckResult(ret);
@@ -5145,20 +4828,6 @@ namespace ACBrFramework.ECF
 			CarregaAliquotas(count);
 		}
 
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void ProgramaAliquota(decimal aliquota, string tipo)
-		{
-			ProgramaAliquota(aliquota, tipo, string.Empty);
-		}
-
 		public void ProgramaAliquota([MarshalAs(UnmanagedType.Currency)] decimal aliquota, string tipo, string posicao = "")
 		{
 			if (string.IsNullOrEmpty(tipo)) throw new ArgumentException();
@@ -5170,34 +4839,6 @@ namespace ACBrFramework.ECF
 		#endregion Alíquotas
 
 		#region Formas de Pagto
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public FormaPagamento AchaFPGDescricao(string descricao)
-		{
-			return AchaFPGDescricao(descricao, true, true);
-		}
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public FormaPagamento AchaFPGDescricao(string descricao, bool buscaExata)
-		{
-			return AchaFPGDescricao(descricao, buscaExata, true);
-		}
 
 		public FormaPagamento AchaFPGDescricao(string descricao, bool buscaExata = true, bool ignoreCase = true)
 		{
@@ -5288,20 +4929,6 @@ namespace ACBrFramework.ECF
 			CarregaFormasPagamento(count);
 		}
 
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void ProgramaFormaPagamento(string descricao, bool permiteVinculado)
-		{
-			ProgramaFormaPagamento(descricao, permiteVinculado, string.Empty);
-		}
-
 		public void ProgramaFormaPagamento(string descricao, bool permiteVinculado, string posicao = "")
 		{
 			int ret = ACBrECFInterop.ECF_ProgramaFormaPagamento(this.Handle, ToUTF8(descricao), permiteVinculado, ToUTF8(posicao));
@@ -5311,34 +4938,6 @@ namespace ACBrFramework.ECF
 		#endregion Formas de Pagto
 
 		#region Comprovantes Não Fiscal
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public ComprovanteNaoFiscal AchaCNFDescricao(string descricao)
-		{
-			return AchaCNFDescricao(descricao, true, true);
-		}
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public ComprovanteNaoFiscal AchaCNFDescricao(string descricao, bool buscaExata)
-		{
-			return AchaCNFDescricao(descricao, buscaExata, true);
-		}
 
 		public ComprovanteNaoFiscal AchaCNFDescricao(string descricao, bool buscaExata = true, bool ignoreCase = true)
 		{
@@ -5403,12 +5002,7 @@ namespace ACBrFramework.ECF
 			CarregaComprovantesNaoFiscais(count);
 		}
 
-		public void ProgramaComprovanteNaoFiscal(string descricao, string tipo)
-		{
-			ProgramaComprovanteNaoFiscal(descricao, tipo, string.Empty);
-		}
-
-		public void ProgramaComprovanteNaoFiscal(string descricao, string tipo, string posicao)
+		public void ProgramaComprovanteNaoFiscal(string descricao, string tipo, string posicao = "")
 		{
 			if (string.IsNullOrEmpty(tipo)) throw new ArgumentException();
 
@@ -5416,50 +5010,22 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void AbreNaoFiscal(string cpfCnpj)
+		public void AbreNaoFiscal(string cpfCnpj = "", string nome = "", string endereco = "")
 		{
-			int ret = ACBrECFInterop.ECF_AbreNaoFiscal(this.Handle, ToUTF8(cpfCnpj));
+			int ret = ACBrECFInterop.ECF_AbreNaoFiscal(this.Handle, ToUTF8(cpfCnpj), ToUTF8(nome), ToUTF8(endereco));
 			CheckResult(ret);
 		}
 
-		public void RegistraItemNaoFiscal(string codCNF, [MarshalAs(UnmanagedType.Currency)] decimal value, string obs)
+		public void RegistraItemNaoFiscal(string codCNF, [MarshalAs(UnmanagedType.Currency)] decimal value, string obs = "")
 		{
 			int ret = ACBrECFInterop.ECF_RegistraItemNaoFiscal(this.Handle, ToUTF8(codCNF), Convert.ToDouble(value), ToUTF8(obs));
 			CheckResult(ret);
 		}
 
-		public void SubtotalizaNaoFiscal([MarshalAs(UnmanagedType.Currency)] decimal descontoAcrescimo, string mensagemRodape)
+		public void SubtotalizaNaoFiscal([MarshalAs(UnmanagedType.Currency)] decimal descontoAcrescimo, string mensagemRodape = "")
 		{
 			int ret = ACBrECFInterop.ECF_SubtotalizaNaoFiscal(this.Handle, Convert.ToDouble(descontoAcrescimo), ToUTF8(mensagemRodape));
 			CheckResult(ret);
-		}
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor)
-		{
-			EfetuaPagamentoNaoFiscal(codFormaPagto, valor, string.Empty, false);
-		}
-
-		#region COM_INTEROP
-
-#if COM_INTEROP
-
-		[ComVisible(false)]
-#endif
-
-		#endregion COM_INTEROP
-
-		public void EfetuaPagamentoNaoFiscal(string codFormaPagto, decimal valor, string observacao)
-		{
-			EfetuaPagamentoNaoFiscal(codFormaPagto, valor, observacao, false);
 		}
 
 		public void EfetuaPagamentoNaoFiscal(string codFormaPagto, [MarshalAs(UnmanagedType.Currency)] decimal valor, string observacao = "", bool imprimeVinculado = false)
@@ -5468,9 +5034,9 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void FechaNaoFiscal(string observacao)
+		public void FechaNaoFiscal(string observacao = "", int IndiceBMP = 0)
 		{
-			int ret = ACBrECFInterop.ECF_FechaNaoFiscal(this.Handle, ToUTF8(observacao));
+			int ret = ACBrECFInterop.ECF_FechaNaoFiscal(this.Handle, ToUTF8(observacao), IndiceBMP);
 			CheckResult(ret);
 		}
 
@@ -5484,15 +5050,15 @@ namespace ACBrFramework.ECF
 
 		#region Suprimento e Sangria
 
-		public void Suprimento([MarshalAs(UnmanagedType.Currency)] decimal valor, string obs)
+		public void Suprimento([MarshalAs(UnmanagedType.Currency)] decimal valor, string obs, string DescricaoCNF = "SUPRIMENTO", string DescricaoFPG = "DINHEIRO", int indicebmp = 0)
 		{
-			int ret = ACBrECFInterop.ECF_Suprimento(this.Handle, (double)valor, ToUTF8(obs));
+			int ret = ACBrECFInterop.ECF_Suprimento(this.Handle, (double)valor, ToUTF8(obs), ToUTF8(DescricaoCNF), ToUTF8(DescricaoFPG), indicebmp);
 			CheckResult(ret);
 		}
 
-		public void Sangria([MarshalAs(UnmanagedType.Currency)] decimal valor, string obs)
+		public void Sangria([MarshalAs(UnmanagedType.Currency)] decimal valor, string obs, string DescricaoCNF = "SANGRIA", string DescricaoFPG = "DINHEIRO", int indicebmp = 0)
 		{
-			int ret = ACBrECFInterop.ECF_Sangria(this.Handle, (double)valor, ToUTF8(obs));
+			int ret = ACBrECFInterop.ECF_Sangria(this.Handle, (double)valor, ToUTF8(obs), ToUTF8(DescricaoCNF), ToUTF8(DescricaoFPG), indicebmp);
 			CheckResult(ret);
 		}
 

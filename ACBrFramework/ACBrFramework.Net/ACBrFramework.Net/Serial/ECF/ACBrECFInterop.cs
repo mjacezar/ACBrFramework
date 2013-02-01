@@ -214,10 +214,10 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_MudaArredondamento(IntPtr ecfHandle, bool arredonda);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_Sangria(IntPtr ecfHandle, double valor, string obs);
+		public static extern int ECF_Sangria(IntPtr ecfHandle, double valor, string obs, string DescricaoCNF, string DescricaoFPG, int indicebmp);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_Suprimento(IntPtr ecfHandle, double valor, string obs);
+		public static extern int ECF_Suprimento(IntPtr ecfHandle, double valor, string obs, string DescricaoCNF, string DescricaoFPG, int indicebmp);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_AbreGaveta(IntPtr ecfHandle);
@@ -681,7 +681,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_IdentificaConsumidor(IntPtr ecfHandle, string cpfCnpj, string nome, string endereco);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_AbreCupom(IntPtr ecfHandle, string cpfCnpj, string nome, string endereco);
+		public static extern int ECF_AbreCupom(IntPtr ecfHandle, string cpfCnpj, string nome, string endereco, bool ModoPreVenda);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_LegendaInmetroProximoItem(IntPtr ecfHandle);
@@ -724,7 +724,7 @@ namespace ACBrFramework.ECF
 		#region DAV
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_DAV_Abrir(IntPtr ecfHandle, double emissao, string decrdocumento, string numero, string situacao, string vendedor, string observacao, string cpfCnpj, string nome, string endereco);
+		public static extern int ECF_DAV_Abrir(IntPtr ecfHandle, double emissao, string decrdocumento, string numero, string situacao, string vendedor, string observacao, string cpfCnpj, string nome, string endereco, int indice);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DAV_Fechar(IntPtr ecfHandle, string observacao);
@@ -866,7 +866,7 @@ namespace ACBrFramework.ECF
 		#region Cupom Não Fiscal
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_AbreNaoFiscal(IntPtr ecfHandle, string cpfCnpj);
+		public static extern int ECF_AbreNaoFiscal(IntPtr ecfHandle, string cpfCnpj, string nome, string endereco);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_RegistraItemNaoFiscal(IntPtr ecfHandle, string codCNF, double value, string obs);
@@ -878,7 +878,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_EfetuaPagamentoNaoFiscal(IntPtr ecfHandle, string codFormaPagto, double valor, string observacao, bool imprimeVinculado);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_FechaNaoFiscal(IntPtr ecfHandle, string observacao);
+		public static extern int ECF_FechaNaoFiscal(IntPtr ecfHandle, string observacao, int indicebmp);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_CancelaNaoFiscal(IntPtr ecfHandle);
