@@ -2336,6 +2336,30 @@ begin
   end;
 end;
 
+Function ECF_GetNumSerieMFD(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+   strTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     strTmp := ecfHandle^.ECF.NumSerieMFD;
+     StrPLCopy(Buffer, strTmp, BufferLen);
+     Result := length(strTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 Function ECF_GetNumVersao(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
    strTmp : String;
@@ -3550,6 +3574,31 @@ begin
      end
   end;
 end;
+
+Function ECF_GetParamDescontoISSQN(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     If ecfHandle^.ECF.ParamDescontoISSQN then
+        Result:= 1
+     Else
+        Result := 0;
+
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 
 Function ECF_GetSubTotal(const ecfHandle: PECFHandle; var SubTotal : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -10376,7 +10425,7 @@ ECF_GetModelo, ECF_SetModelo, ECF_GetMaxLinhasBuffer, ECF_SetMaxLinhasBuffer,
 ECF_GetColunas, ECF_GetAguardandoResposta, ECF_GetComandoEnviado, ECF_GetRespostaComando,
 ECF_GetComandoLOG, ECF_SetComandoLOG, ECF_GetAguardaImpressao, ECF_SetAguardaImpressao,
 ECF_GetModeloStr, ECF_GetRFDID, ECF_GetDataHora, ECF_GetDataHoraStr,
-ECF_GetNumCupom, ECF_GetNumCOO, ECF_GetNumLoja, ECF_GetNumECF, ECF_GetNumSerie, ECF_GetNumVersao,
+ECF_GetNumCupom, ECF_GetNumCOO, ECF_GetNumLoja, ECF_GetNumECF, ECF_GetNumSerie, ECF_GetNumSerieMFD, ECF_GetNumVersao,
 ECF_GetDataMovimento, ECF_GetDataMovimentoStr, ECF_GetDataHoraSB, ECF_GetDataHoraSBStr,
 ECF_GetCNPJ, ECF_GetIE, ECF_GetIM, ECF_GetCliche, ECF_GetUsuarioAtual, ECF_GetSubModeloECF,
 ECF_GetPAF, ECF_GetNumCRZ, ECF_GetNumCRO, ECF_GetNumCCF, ECF_GetNumGNF, ECF_GetNumGRG, ECF_GetNumCDC,
@@ -10389,7 +10438,7 @@ ECF_GetTotalNaoTributadoISSQN, ECF_GetTotalIsencaoISSQN, ECF_GetTotalNaoFiscal,
 ECF_GetNumUltItem, ECF_GetArredondaPorQtd, ECF_SetArredondaPorQtd,
 ECF_GetArredondaItemMFD, ECF_SetArredondaItemMFD, ECF_GetIgnorarTagsFormatacao, ECF_SetIgnorarTagsFormatacao,
 ECF_GetEmLinha, ECF_GetPoucoPapel, ECF_GetEstado, ECF_GetHorarioVerao, ECF_GetArredonda,
-ECF_GetTermica, ECF_GetMFD, ECF_GetMFAdicional, ECF_GetIdentificaConsumidorRodape,
+ECF_GetTermica, ECF_GetMFD, ECF_GetMFAdicional, ECF_GetIdentificaConsumidorRodape, ECF_GetParamDescontoISSQN,
 ECF_GetPaginaDeCodigo, ECF_SetPaginaDeCodigo, ECF_GetSubTotal, ECF_GetTotalPago, ECF_GetGavetaAberta,
 ECF_GetChequePronto, ECF_GetIntervaloAposComando, ECF_SetIntervaloAposComando,
 ECF_GetDescricaoGrande, ECF_SetDescricaoGrande, ECF_GetGavetaSinalInvertido, ECF_SetGavetaSinalInvertido,

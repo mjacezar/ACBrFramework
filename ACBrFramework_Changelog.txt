@@ -44,6 +44,10 @@ Changelog
 31/01/2013
 -- ACBrFramework.Net 0.9.2.3 --
 [*] Modificações para COM Interop - ACBrECF - Rafael Batiati
+[+] Adicionadas propriedades NumSerieMFD, ParamDescontoISSQN  - Rafael Batiati
+[+] Adicionado método MudaArredondamento(bool arredondar)  - Rafael Batiati
+[+] Adicionado demo VB6 com ACBrFramework.ActiveX  - Rafael Batiati
+    Baseado no demo do projeto ACBrX desenvolvido por Robson Braga
 
 25/01/2013
 

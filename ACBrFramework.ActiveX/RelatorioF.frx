@@ -1,0 +1,14 @@
+ÿm1...+....2....+....3....+....4....+...
+      TESTE DE RELATORIO
+
+O relatorio deve respeitar a 
+propriedade COLUNAS do componente 
+ACBrECF.
+
+A maioria dos ECF's trabalham com 40 
+colunas, alguns com 48 colunas.
+
+O Relatorio Gerencial e usado pelas 
+rotinas de TEF para imprirmir 
+comprovantes, quando a impressao do 
+Cupom NAO Fiscal vinculado falhar.
