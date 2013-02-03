@@ -1,17 +1,26 @@
+#region COM_INTEROP
+
 #if COM_INTEROP
 
 using System.Runtime.InteropServices;
 
 #endif
 
+#endregion COM_INTEROP
+
 namespace ACBrFramework.ECF
 {
+	#region COM_INTEROP
+
 #if COM_INTEROP
 
 	[ComVisible(true)]
 	[Guid("DF17E675-E0D2-4E60-A725-0D4FCB52EBFD")]
 	[ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
+
+	#endregion COM_INTEROP
+
 	public sealed class ConfigBarras : ACBrComposedComponent
 	{
 		#region Constructor
