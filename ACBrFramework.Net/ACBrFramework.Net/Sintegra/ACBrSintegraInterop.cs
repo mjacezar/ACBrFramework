@@ -63,7 +63,7 @@ namespace ACBrFramework.Sintegra
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 29)]
 			public string Responsavel;
 
-			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
 			public string Bairro;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 9)]
