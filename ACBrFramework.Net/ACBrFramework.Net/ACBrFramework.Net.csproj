@@ -275,6 +275,14 @@
       <DependentUpon>Framework64.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serial\ECF\Eventos\ErrorEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\ErrorRelatorioEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\MsgEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\MsgRetentarEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\PAFCalcEADEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\SangriaSuprimentoEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\SubtotalizaCupomEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\VendeItemEventArgs.cs" />
     <Compile Include="Serial\RFD\ACBrRFD.cs" />
     <Compile Include="Serial\RFD\ACBrRFDInterop.cs" />
     <Compile Include="Serial\RFD\Eventos\CalcEADArgs.cs" />
@@ -311,14 +319,6 @@
     <Compile Include="Serial\ECF\Eventos\ChequeEstadoEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\EfetuaPagamentoEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\FechaCupomEventArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\OnErrorEventArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\OnErrorRelatorioEventArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\OnMsgEventArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\OnMsgRetentarEventArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\OnPAFCalcEADEventArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\SangriaSuprimentoArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\SubtotalizaCupomArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\VendeItemArgs.cs" />
     <Compile Include="Serial\LCB\ACBrLCB.cs" />
     <Compile Include="Serial\LCB\ACBrLCBInterop.cs" />
     <Compile Include="Serial\Device\Classes\SerialHandShake.cs" />
