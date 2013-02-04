@@ -165,11 +165,17 @@
     <Compile Include="ACBrEventHandler.cs" />
     <Compile Include="ACBrInteropEventHandlerBase.cs" />
     <Compile Include="AAC\Eventos\AntesArquivoArgs.cs" />
+    <Compile Include="CEP\Classes\CEPWebService.cs" />
+    <Compile Include="CEP\Classes\Endereco.cs" />
+    <Compile Include="CEP\Classes\Enderecos.cs" />
+    <Compile Include="CEP\Eventos\AntesAbrirHTTPEventArgs.cs" />
     <Compile Include="ChaveEventArgs.cs" />
     <Compile Include="ACBrComponent.cs" />
     <Compile Include="ACBrComposedComponent.cs" />
     <Compile Include="ACBrException.cs" />
     <Compile Include="ACBrInteropBase.cs" />
+    <Compile Include="CEP\ACBrCEP.cs" />
+    <Compile Include="CEP\ACBrCEPInterop.cs" />
     <Compile Include="CNIEE\ACBrCNIEE.cs" />
     <Compile Include="CNIEE\ACBrCNIEEInterop.cs" />
     <Compile Include="CNIEE\Registro.cs" />
@@ -719,6 +725,7 @@
     <EmbeddedResource Include="Serial\SMS\ico.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CEP\ico.bmp" />
     <Content Include="IBGE\ico.bmp" />
     <EmbeddedResource Include="NFE\ico.bmp" />
     <EmbeddedResource Include="Serial\RFD\ico.bmp" />
