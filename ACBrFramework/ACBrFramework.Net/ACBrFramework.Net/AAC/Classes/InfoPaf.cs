@@ -345,6 +345,18 @@ namespace ACBrFramework.AAC
 			}
 		}
 
+		public bool RecompoeNumSerie
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetRecompoeNumSerie);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetRecompoeNumSerie, value);
+			}
+		}
+
 		public bool EmitePED
 		{
 			get
@@ -378,6 +390,30 @@ namespace ACBrFramework.AAC
 			set
 			{
 				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetMinasLegal, value);
+			}
+		}
+
+		public bool ParaibaLegal
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetParaibaLegal);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetParaibaLegal, value);
+			}
+		}
+
+		public bool NotaLegalDF
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetNotaLegalDF);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetNotaLegalDF, value);
 			}
 		}
 
