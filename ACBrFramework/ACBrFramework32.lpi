@@ -48,10 +48,9 @@
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="3"/>
+        <TopLine Value="1"/>
         <CursorPos X="3" Y="13"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -162,10 +161,14 @@
         <Filename Value="ACBrAACDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrAACDLL"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="33" Y="9"/>
+        <TopLine Value="3626"/>
+        <CursorPos X="59" Y="3637"/>
+        <FoldState Value=" T7KMN TJiT2{J1 ps4uM2}Q]AjUoC2{L[A4AlU2{F]An2pG2{p]AoUrb2~70]B0x82#j8]9t52s1 T3\L0J4 piZjL0K[96M[I6ajQ[I6djU0N]9j0jX0K[95[I4[j6T[s9[\8P[I9[{9K[{05[s4x"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
@@ -765,7 +768,7 @@
         <UnitName Value="ACBrCEPDll"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="841"/>
+        <TopLine Value="877"/>
         <CursorPos X="5" Y="962"/>
         <UsageCount Value="32"/>
         <Loaded Value="True"/>

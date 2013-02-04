@@ -2558,6 +2558,135 @@ begin
 
 end;
 
+Function AAC_IdentPaf_Paf_GetParaibaLegal(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(aacHandle^.AAC.IdentPAF.Paf.ParaibaLegal);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetParaibaLegal(const aacHandle: PaacHandle; const ParaibaLegal : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.ParaibaLegal := ParaibaLegal;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_GetNotaLegalDF(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(aacHandle^.AAC.IdentPAF.Paf.NotaLegalDF);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetNotaLegalDF(const aacHandle: PaacHandle; const NotaLegalDF : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.NotaLegalDF := NotaLegalDF;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_GetRecompoeNumSerie(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(aacHandle^.AAC.IdentPAF.Paf.RecompoeNumSerie);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetRecompoeNumSerie(const aacHandle: PaacHandle; const RecompoeNumSerie : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.RecompoeNumSerie:= RecompoeNumSerie;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 {%endregion}
 
 {%region DADOS DA SOFTWARE HOUSE}
@@ -3464,6 +3593,7 @@ AAC_IdentPaf_Paf_GetRealizaLancamentoMesa,AAC_IdentPaf_Paf_SetRealizaLancamentoM
 AAC_IdentPaf_Paf_GetTipoFuncionamento,AAC_IdentPaf_Paf_SetTipoFuncionamento,
 AAC_IdentPaf_Paf_GetTipoDesenvolvimento,AAC_IdentPaf_Paf_SetTipoDesenvolvimento,
 AAC_IdentPaf_Paf_GetIntegracaoPafECF,AAC_IdentPaf_Paf_SetIntegracaoPafECF,
+
 //software house
 AAC_IdentPaf_Empresa_GetCNPJ, AAC_IdentPaf_Empresa_SetCNPJ,
 AAC_IdentPaf_Empresa_GetRazaoSocial,AAC_IdentPaf_Empresa_SetRazaoSocial,
@@ -3476,6 +3606,7 @@ AAC_IdentPaf_Empresa_GetContato,AAC_IdentPaf_Empresa_SetContato,
 AAC_IdentPaf_Empresa_GetEmail,AAC_IdentPaf_Empresa_SetEmail,
 AAC_IdentPaf_Empresa_GetIE,AAC_IdentPaf_Empresa_SetIE,
 AAC_IdentPaf_Empresa_GetIM,AAC_IdentPaf_Empresa_SetIM,
+
 //aplicativo
 AAC_IdentPaf_Paf_GetNome,AAC_IdentPaf_Paf_SetNome,
 AAC_IdentPaf_Paf_GetLinguagem,AAC_IdentPaf_Paf_SetLinguagem,
@@ -3484,6 +3615,7 @@ AAC_IdentPaf_Paf_GetSistemaOperacional,AAC_IdentPaf_Paf_SetSistemaOperacional,
 AAC_IdentPaf_Paf_GetVersao, AAC_IdentPaf_Paf_SetVersao,
 AAC_IdentPaf_Paf_PrincipalExe_GetNome,AAC_IdentPaf_Paf_PrincipalExe_SetNome,
 AAC_IdentPaf_Paf_PrincipalExe_GetMD5,AAC_IdentPaf_Paf_PrincipalExe_SetMD5,
+
 //especiais
 AAC_IdentPaf_Paf_GetIndiceTecnicoProd,AAC_IdentPaf_Paf_SetIndiceTecnicoProd,
 AAC_IdentPaf_Paf_GetBarSimilarECFRestaurante,AAC_IdentPaf_Paf_SetBarSimilarECFRestaurante,
@@ -3491,6 +3623,7 @@ AAC_IdentPaf_Paf_GetBarSimilarECFComum,AAC_IdentPaf_Paf_SetBarSimilarECFComum,
 AAC_IdentPaf_Paf_GetBarSimilarBalanca,AAC_IdentPaf_Paf_SetBarSimilarBalanca,
 AAC_IdentPaf_Paf_GetUsaImpressoraNaoFiscal,AAC_IdentPaf_Paf_SetUsaImpressoraNaoFiscal,
 AAC_IdentPaf_Paf_GetDAVDiscrFormula,AAC_IdentPaf_Paf_SetDAVDiscrFormula,
+
 //criterios por uf
 AAC_IdentPaf_Paf_GetTotalizaValoresLista,AAC_IdentPaf_Paf_SetTotalizaValoresLista,
 AAC_IdentPaf_Paf_GetTransfPreVenda,AAC_IdentPaf_Paf_SetTransfPreVenda,
@@ -3499,7 +3632,9 @@ AAC_IdentPaf_Paf_GetRecompoeGT,AAC_IdentPaf_Paf_SetRecompoeGT,
 AAC_IdentPaf_Paf_GetEmitePED,AAC_IdentPaf_Paf_SetEmitePED,
 AAC_IdentPaf_Paf_GetCupomMania,AAC_IdentPaf_Paf_SetCupomMania,
 AAC_IdentPaf_Paf_GetMinasLegal,AAC_IdentPaf_Paf_SetMinasLegal,
-
+AAC_IdentPaf_Paf_GetParaibaLegal, AAC_IdentPaf_Paf_SetParaibaLegal,
+AAC_IdentPaf_Paf_GetNotaLegalDF, AAC_IdentPaf_Paf_SetNotaLegalDF,
+AAC_IdentPaf_Paf_GetRecompoeNumSerie, AAC_IdentPaf_Paf_SetRecompoeNumSerie,
 
 { Métodos do Componente }
 AAC_AbrirArquivo, AAC_SalvarArquivo,

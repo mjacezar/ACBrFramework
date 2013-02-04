@@ -415,6 +415,24 @@ namespace ACBrFramework.AAC
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int AAC_IdentPaf_Paf_SetMinasLegal(IntPtr aacHandle, bool check);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetParaibaLegal(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetParaibaLegal(IntPtr aacHandle, bool check);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetNotaLegalDF(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetNotaLegalDF(IntPtr aacHandle, bool check);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetRecompoeNumSerie(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetRecompoeNumSerie(IntPtr aacHandle, bool check);
+
 		#endregion Dados Criterios UF
 
 		#region Dados Parametros
