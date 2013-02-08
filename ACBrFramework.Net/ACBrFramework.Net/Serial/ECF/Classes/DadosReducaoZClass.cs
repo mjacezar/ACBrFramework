@@ -632,7 +632,7 @@ namespace ACBrFramework.ECF
 				comprovanteNaoFiscal.Descricao = FromUTF8(record.Descricao);
 				comprovanteNaoFiscal.PermiteVinculado = record.PermiteVinculado;
 				comprovanteNaoFiscal.FormaPagamento = FromUTF8(record.FormaPagamento);
-				comprovanteNaoFiscal.Total = FromUTF8(record.Total);
+				comprovanteNaoFiscal.Total = Convert.ToDecimal(record.Total);
 				comprovanteNaoFiscal.Contador = record.Contador;
 
 				comprovantesNaoFiscais[i] = comprovanteNaoFiscal;

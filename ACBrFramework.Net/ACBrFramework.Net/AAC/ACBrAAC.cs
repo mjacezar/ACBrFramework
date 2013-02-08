@@ -298,11 +298,11 @@ namespace ACBrFramework.AAC
 
 		public int VerificarGTECF(string numSerie, ref decimal grandeTotal)
 		{
-			double _grandeTotal = ToUTF8(grandeTotal);
+			double _grandeTotal = Convert.ToDouble(grandeTotal);
 			int ret = ACBrAACInterop.AAC_VerificarGTECF(this.Handle, numSerie, ref _grandeTotal);
 			CheckResult(ret);
 
-			grandeTotal = FromUTF8(_grandeTotal);
+			grandeTotal = Convert.ToDecimal(_grandeTotal);
 			return ret;
 		}
 
@@ -338,9 +338,9 @@ namespace ACBrFramework.AAC
 				return null;
 
 			AACECF retorno = new AACECF();
-			retorno.CNI = FromUTF8(ECFRec.CNI);
-			retorno.CRO = FromUTF8(ECFRec.CRO);
-			retorno.ValorGT = FromUTF8(ECFRec.ValorGT);
+			retorno.CNI = ECFRec.CNI;
+			retorno.CRO = ECFRec.CRO;
+			retorno.ValorGT = Convert.ToDecimal(ECFRec.ValorGT);
 			retorno.DtHrAtualizado = DateTime.FromOADate(ECFRec.DtHrAtualizado);
 			retorno.NumeroSerie = FromUTF8(ECFRec.NumeroSerie);
 

@@ -11,6 +11,7 @@ namespace ACBrFramework
 	[Guid("812A142D-B9E8-44FE-8C4E-FEFA76EF869D")]
 	[ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
+
 	public abstract class ACBrInteropBase
 	{
 		#region Inner Types
@@ -58,33 +59,7 @@ namespace ACBrFramework
 		protected string ToUTF8(string value)
 		{
 			if (string.IsNullOrEmpty(value)) return string.Empty;
-
 			return Encoding.Default.GetString(Encoding.UTF8.GetBytes(value));
-		}
-
-		protected int ToUTF8(int value)
-		{
-			int retorno = -1;
-
-			if (int.TryParse(value.ToString(), out retorno))
-				return retorno;
-
-			return retorno;
-		}
-
-		protected double ToUTF8(decimal value)
-		{
-			double retorno = -1;
-
-			if (double.TryParse(value.ToString(), out retorno))
-				return retorno;
-
-			return retorno;
-		}
-
-		protected double ToUTF8(DateTime value)
-		{
-			return value.ToOADate();
 		}
 
 		protected string FromUTF8(string value)
@@ -103,24 +78,14 @@ namespace ACBrFramework
 			return Encoding.UTF8.GetString(Encoding.Default.GetBytes(value.ToString()));
 		}
 
-		protected int FromUTF8(int value)
+		protected double ToOADate(DateTime value)
 		{
-			int retorno = -1;
-
-			if (int.TryParse(value.ToString(), out retorno))
-				return retorno;
-
-			return retorno;
+			return value.ToOADate();
 		}
 
-		protected decimal FromUTF8(double value)
+		protected DateTime FromOADate(double value)
 		{
-			decimal retorno = -1;
-
-			if (decimal.TryParse(value.ToString(), out retorno))
-				return retorno;
-
-			return retorno;
+			return DateTime.FromOADate(value);
 		}
 
 		protected string GetAbout(GetStringEntryPointDelegate entryPoint)

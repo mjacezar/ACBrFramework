@@ -2,10 +2,14 @@
 {
 	public class Registro1990 : ACBrComposedComponent
 	{
+		#region Constructor
+
 		internal Registro1990(ACBrSpedFiscal parent)
 			: base(parent)
 		{
 		}
+
+		#endregion Constructor
 
 		#region Properties
 

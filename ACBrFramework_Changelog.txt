@@ -41,6 +41,11 @@ Símbolo : Significado
 
 Changelog
 
+07/02/2013
+
+-- ACBrFramework 0.9.2.5 --
+[+] Implementação parcial dos blocos 0,1,9 e C - ACBrSped - Rafael Batiati.
+
 04/02/2013
 
 -- ACBrFramework 0.9.2.5 --

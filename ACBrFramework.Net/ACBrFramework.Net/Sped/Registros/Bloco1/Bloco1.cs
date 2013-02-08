@@ -6,7 +6,7 @@ namespace ACBrFramework.Sped
 	{
 		#region Constructor
 
-		public Bloco1(ACBrSpedFiscal parent) : base(parent)
+		internal Bloco1(ACBrSpedFiscal parent) : base(parent)
 		{
 			Registro1001 = new Registro1001();
 			Registro1990 = new Registro1990(parent);

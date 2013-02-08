@@ -519,9 +519,9 @@ namespace ACBrFramework.PAF
 			RegistroR1Rec.MARCA_ECF = ToUTF8(PAF_R.RegistroR1.MARCA_ECF);
 			RegistroR1Rec.MODELO_ECF = ToUTF8(PAF_R.RegistroR1.MODELO_ECF);
 			RegistroR1Rec.VERSAO_SB = ToUTF8(PAF_R.RegistroR1.VERSAO_SB);
-			RegistroR1Rec.DT_INST_SB = ToUTF8(PAF_R.RegistroR1.DT_INST_SB);
-			RegistroR1Rec.HR_INST_SB = ToUTF8(PAF_R.RegistroR1.HR_INST_SB);
-			RegistroR1Rec.NUM_SEQ_ECF = ToUTF8(PAF_R.RegistroR1.NUM_SEQ_ECF);
+			RegistroR1Rec.DT_INST_SB = PAF_R.RegistroR1.DT_INST_SB.ToOADate();
+			RegistroR1Rec.HR_INST_SB = PAF_R.RegistroR1.HR_INST_SB.ToOADate();
+			RegistroR1Rec.NUM_SEQ_ECF = PAF_R.RegistroR1.NUM_SEQ_ECF;
 			RegistroR1Rec.CNPJ = ToUTF8(PAF_R.RegistroR1.CNPJ);
 			RegistroR1Rec.IE = ToUTF8(PAF_R.RegistroR1.IE);
 			RegistroR1Rec.CNPJ_SH = ToUTF8(PAF_R.RegistroR1.CNPJ_SH);
@@ -531,8 +531,8 @@ namespace ACBrFramework.PAF
 			RegistroR1Rec.NOME_PAF = ToUTF8(PAF_R.RegistroR1.NOME_PAF);
 			RegistroR1Rec.VER_PAF = ToUTF8(PAF_R.RegistroR1.VER_PAF);
 			RegistroR1Rec.COD_MD5 = ToUTF8(PAF_R.RegistroR1.COD_MD5);
-			RegistroR1Rec.DT_INI = ToUTF8(PAF_R.RegistroR1.DT_INI);
-			RegistroR1Rec.DT_FIN = ToUTF8(PAF_R.RegistroR1.DT_FIN);
+			RegistroR1Rec.DT_INI = PAF_R.RegistroR1.DT_INI.ToOADate();
+			RegistroR1Rec.DT_FIN = PAF_R.RegistroR1.DT_FIN.ToOADate();
 			RegistroR1Rec.ER_PAF_ECF = ToUTF8(PAF_R.RegistroR1.ER_PAF_ECF);
 			RegistroR1Rec.InclusaoExclusao = PAF_R.RegistroR1.InclusaoExclusao;
 			RegistroR1Rec.RegistroValido = PAF_R.RegistroR1.RegistroValido;
@@ -541,21 +541,21 @@ namespace ACBrFramework.PAF
 			for (i = 0; i < PAF_R.RegistroR2.Count; i++)
 			{
 				RegistroR2Rec[i].QTD_R3 = PAF_R.RegistroR2[i].RegistroR3.Count;
-				RegistroR2Rec[i].NUM_USU = ToUTF8(PAF_R.RegistroR2[i].NUM_USU);
-				RegistroR2Rec[i].CRZ = ToUTF8(PAF_R.RegistroR2[i].CRZ);
-				RegistroR2Rec[i].COO = ToUTF8(PAF_R.RegistroR2[i].COO);
-				RegistroR2Rec[i].CRO = ToUTF8(PAF_R.RegistroR2[i].CRO);
-				RegistroR2Rec[i].DT_MOV = ToUTF8(PAF_R.RegistroR2[i].DT_MOV);
-				RegistroR2Rec[i].DT_EMI = ToUTF8(PAF_R.RegistroR2[i].DT_EMI);
-				RegistroR2Rec[i].HR_EMI = ToUTF8(PAF_R.RegistroR2[i].HR_EMI);
-				RegistroR2Rec[i].VL_VBD = ToUTF8(PAF_R.RegistroR2[i].VL_VBD);
+				RegistroR2Rec[i].NUM_USU = PAF_R.RegistroR2[i].NUM_USU;
+				RegistroR2Rec[i].CRZ = PAF_R.RegistroR2[i].CRZ;
+				RegistroR2Rec[i].COO = PAF_R.RegistroR2[i].COO;
+				RegistroR2Rec[i].CRO = PAF_R.RegistroR2[i].CRO;
+				RegistroR2Rec[i].DT_MOV = PAF_R.RegistroR2[i].DT_MOV.ToOADate();
+				RegistroR2Rec[i].DT_EMI = PAF_R.RegistroR2[i].DT_EMI.ToOADate();
+				RegistroR2Rec[i].HR_EMI = PAF_R.RegistroR2[i].HR_EMI.ToOADate();
+				RegistroR2Rec[i].VL_VBD = Convert.ToDouble(PAF_R.RegistroR2[i].VL_VBD);
 				RegistroR2Rec[i].PAR_ECF = ToUTF8(PAF_R.RegistroR2[i].PAR_ECF);
 				RegistroR2Rec[i].RegistroValido = PAF_R.RegistroR2[i].RegistroValido;
 
 				foreach (ACBrPAFRegistroR3 RegistroR3 in PAF_R.RegistroR2[i].RegistroR3)
 				{
 					RegistroR3Rec[ItemR3].TOT_PARCIAL = ToUTF8(RegistroR3.TOT_PARCIAL);
-					RegistroR3Rec[ItemR3].VL_ACUM = ToUTF8(RegistroR3.VL_ACUM);
+					RegistroR3Rec[ItemR3].VL_ACUM = Convert.ToDouble(RegistroR3.VL_ACUM);
 					RegistroR3Rec[ItemR3].RegistroValido = RegistroR3.RegistroValido;
 					ItemR3++;
 				}
@@ -566,18 +566,18 @@ namespace ACBrFramework.PAF
 			{
 				RegistroR4Rec[i].QTD_R5 = PAF_R.RegistroR4[i].RegistroR5.Count;
 				RegistroR4Rec[i].QTD_R7 = PAF_R.RegistroR4[i].RegistroR7.Count;
-				RegistroR4Rec[i].NUM_USU = ToUTF8(PAF_R.RegistroR4[i].NUM_USU);
-				RegistroR4Rec[i].NUM_CONT = ToUTF8(PAF_R.RegistroR4[i].NUM_CONT);
-				RegistroR4Rec[i].COO = ToUTF8(PAF_R.RegistroR4[i].COO);
-				RegistroR4Rec[i].DT_INI = ToUTF8(PAF_R.RegistroR4[i].DT_INI);
-				RegistroR4Rec[i].SUB_DOCTO = ToUTF8(PAF_R.RegistroR4[i].SUB_DOCTO);
-				RegistroR4Rec[i].SUB_DESCTO = ToUTF8(PAF_R.RegistroR4[i].SUB_DESCTO);
+				RegistroR4Rec[i].NUM_USU = PAF_R.RegistroR4[i].NUM_USU;
+				RegistroR4Rec[i].NUM_CONT = PAF_R.RegistroR4[i].NUM_CONT;
+				RegistroR4Rec[i].COO = PAF_R.RegistroR4[i].COO;
+				RegistroR4Rec[i].DT_INI = PAF_R.RegistroR4[i].DT_INI.ToOADate();
+				RegistroR4Rec[i].SUB_DOCTO = Convert.ToDouble(PAF_R.RegistroR4[i].SUB_DOCTO);
+				RegistroR4Rec[i].SUB_DESCTO = Convert.ToDouble(PAF_R.RegistroR4[i].SUB_DESCTO);
 				RegistroR4Rec[i].TP_DESCTO = ToUTF8(PAF_R.RegistroR4[i].TP_DESCTO);
-				RegistroR4Rec[i].SUB_ACRES = ToUTF8(PAF_R.RegistroR4[i].SUB_ACRES);
+				RegistroR4Rec[i].SUB_ACRES = Convert.ToDouble(PAF_R.RegistroR4[i].SUB_ACRES);
 				RegistroR4Rec[i].TP_ACRES = ToUTF8(PAF_R.RegistroR4[i].TP_ACRES);
-				RegistroR4Rec[i].VL_TOT = ToUTF8(PAF_R.RegistroR4[i].VL_TOT);
+				RegistroR4Rec[i].VL_TOT = Convert.ToDouble(PAF_R.RegistroR4[i].VL_TOT);
 				RegistroR4Rec[i].CANC = ToUTF8(PAF_R.RegistroR4[i].CANC);
-				RegistroR4Rec[i].VL_CA = ToUTF8(PAF_R.RegistroR4[i].VL_CA);
+				RegistroR4Rec[i].VL_CA = Convert.ToDouble(PAF_R.RegistroR4[i].VL_CA);
 				RegistroR4Rec[i].ORDEM_DA = ToUTF8(PAF_R.RegistroR4[i].ORDEM_DA);
 				RegistroR4Rec[i].NOME_CLI = ToUTF8(PAF_R.RegistroR4[i].NOME_CLI);
 				RegistroR4Rec[i].CNPJ_CPF = ToUTF8(PAF_R.RegistroR4[i].CNPJ_CPF);
@@ -588,21 +588,21 @@ namespace ACBrFramework.PAF
 					RegistroR5Rec[ItemR5].NUM_ITEM = RegistroR5.NUM_ITEM;
 					RegistroR5Rec[ItemR5].COD_ITEM = ToUTF8(RegistroR5.COD_ITEM);
 					RegistroR5Rec[ItemR5].DESC_ITEM = ToUTF8(RegistroR5.DESC_ITEM);
-					RegistroR5Rec[ItemR5].QTDE_ITEM = ToUTF8(RegistroR5.QTDE_ITEM);
+					RegistroR5Rec[ItemR5].QTDE_ITEM = Convert.ToDouble(RegistroR5.QTDE_ITEM);
 					RegistroR5Rec[ItemR5].UN_MED = ToUTF8(RegistroR5.UN_MED);
-					RegistroR5Rec[ItemR5].VL_UNIT = ToUTF8(RegistroR5.VL_UNIT);
-					RegistroR5Rec[ItemR5].DESCTO_ITEM = ToUTF8(RegistroR5.DESCTO_ITEM);
-					RegistroR5Rec[ItemR5].ACRES_ITEM = ToUTF8(RegistroR5.ACRES_ITEM);
-					RegistroR5Rec[ItemR5].VL_TOT_ITEM = ToUTF8(RegistroR5.VL_TOT_ITEM);
+					RegistroR5Rec[ItemR5].VL_UNIT = Convert.ToDouble(RegistroR5.VL_UNIT);
+					RegistroR5Rec[ItemR5].DESCTO_ITEM = Convert.ToDouble(RegistroR5.DESCTO_ITEM);
+					RegistroR5Rec[ItemR5].ACRES_ITEM = Convert.ToDouble(RegistroR5.ACRES_ITEM);
+					RegistroR5Rec[ItemR5].VL_TOT_ITEM = Convert.ToDouble(RegistroR5.VL_TOT_ITEM);
 					RegistroR5Rec[ItemR5].COD_TOT_PARC = ToUTF8(RegistroR5.COD_TOT_PARC);
 					RegistroR5Rec[ItemR5].IND_CANC = ToUTF8(RegistroR5.IND_CANC);
-					RegistroR5Rec[ItemR5].QTDE_CANC = ToUTF8(RegistroR5.QTDE_CANC);
-					RegistroR5Rec[ItemR5].VL_CANC = ToUTF8(RegistroR5.VL_CANC);
-					RegistroR5Rec[ItemR5].VL_CANC_ACRES = ToUTF8(RegistroR5.VL_CANC_ACRES);
+					RegistroR5Rec[ItemR5].QTDE_CANC = Convert.ToDouble(RegistroR5.QTDE_CANC);
+					RegistroR5Rec[ItemR5].VL_CANC = Convert.ToDouble(RegistroR5.VL_CANC);
+					RegistroR5Rec[ItemR5].VL_CANC_ACRES = Convert.ToDouble(RegistroR5.VL_CANC_ACRES);
 					RegistroR5Rec[ItemR5].IAT = ToUTF8(RegistroR5.IAT);
 					RegistroR5Rec[ItemR5].IPPT = ToUTF8(RegistroR5.IPPT);
-					RegistroR5Rec[ItemR5].QTDE_DECIMAL = ToUTF8(RegistroR5.QTDE_DECIMAL);
-					RegistroR5Rec[ItemR5].VL_DECIMAL = ToUTF8(RegistroR5.VL_DECIMAL);
+					RegistroR5Rec[ItemR5].QTDE_DECIMAL = RegistroR5.QTDE_DECIMAL;
+					RegistroR5Rec[ItemR5].VL_DECIMAL = RegistroR5.VL_DECIMAL;
 					RegistroR5Rec[ItemR5].RegistroValido = RegistroR5.RegistroValido;
 					ItemR5++;
 				}
@@ -612,9 +612,9 @@ namespace ACBrFramework.PAF
 					RegistroR7Rec[ItemR7].CCF = RegistroR7.CCF;
 					RegistroR7Rec[ItemR7].GNF = RegistroR7.GNF;
 					RegistroR7Rec[ItemR7].MP = ToUTF8(RegistroR7.MP);
-					RegistroR7Rec[ItemR7].VL_PAGTO = ToUTF8(RegistroR7.VL_PAGTO);
+					RegistroR7Rec[ItemR7].VL_PAGTO = Convert.ToDouble(RegistroR7.VL_PAGTO);
 					RegistroR7Rec[ItemR7].IND_EST = ToUTF8(RegistroR7.IND_EST);
-					RegistroR7Rec[ItemR7].VL_EST = ToUTF8(RegistroR7.VL_EST);
+					RegistroR7Rec[ItemR7].VL_EST = Convert.ToDouble(RegistroR7.VL_EST);
 					RegistroR7Rec[ItemR7].RegistroValido = RegistroR7.RegistroValido;
 					ItemR7++;
 				}
@@ -624,14 +624,14 @@ namespace ACBrFramework.PAF
 			for (i = 0; i < PAF_R.RegistroR6.Count; i++)
 			{
 				RegistroR6Rec[i].QTD_R7 = PAF_R.RegistroR6[i].RegistroR7.Count;
-				RegistroR6Rec[i].NUM_USU = ToUTF8(PAF_R.RegistroR6[i].NUM_USU);
-				RegistroR6Rec[i].COO = ToUTF8(PAF_R.RegistroR6[i].COO);
-				RegistroR6Rec[i].GNF = ToUTF8(PAF_R.RegistroR6[i].GNF);
-				RegistroR6Rec[i].GRG = ToUTF8(PAF_R.RegistroR6[i].GRG);
-				RegistroR6Rec[i].CDC = ToUTF8(PAF_R.RegistroR6[i].CDC);
+				RegistroR6Rec[i].NUM_USU = PAF_R.RegistroR6[i].NUM_USU;
+				RegistroR6Rec[i].COO = PAF_R.RegistroR6[i].COO;
+				RegistroR6Rec[i].GNF = PAF_R.RegistroR6[i].GNF;
+				RegistroR6Rec[i].GRG = PAF_R.RegistroR6[i].GRG;
+				RegistroR6Rec[i].CDC = PAF_R.RegistroR6[i].CDC;
 				RegistroR6Rec[i].DENOM = ToUTF8(PAF_R.RegistroR6[i].DENOM);
-				RegistroR6Rec[i].DT_FIN = ToUTF8(PAF_R.RegistroR6[i].DT_FIN);
-				RegistroR6Rec[i].HR_FIN = ToUTF8(PAF_R.RegistroR6[i].HR_FIN);
+				RegistroR6Rec[i].DT_FIN = PAF_R.RegistroR6[i].DT_FIN.ToOADate();
+				RegistroR6Rec[i].HR_FIN = PAF_R.RegistroR6[i].HR_FIN.ToOADate();
 				RegistroR6Rec[i].RegistroValido = PAF_R.RegistroR6[i].RegistroValido;
 
 				foreach (ACBrPAFRegistroR7 RegistroR7 in PAF_R.RegistroR6[i].RegistroR7)
@@ -639,9 +639,9 @@ namespace ACBrFramework.PAF
 					RegistroR7Rec[ItemR7].CCF = RegistroR7.CCF;
 					RegistroR7Rec[ItemR7].GNF = RegistroR7.GNF;
 					RegistroR7Rec[ItemR7].MP = ToUTF8(RegistroR7.MP);
-					RegistroR7Rec[ItemR7].VL_PAGTO = ToUTF8(RegistroR7.VL_PAGTO);
+					RegistroR7Rec[ItemR7].VL_PAGTO = Convert.ToDouble(RegistroR7.VL_PAGTO);
 					RegistroR7Rec[ItemR7].IND_EST = ToUTF8(RegistroR7.IND_EST);
-					RegistroR7Rec[ItemR7].VL_EST = ToUTF8(RegistroR7.VL_EST);
+					RegistroR7Rec[ItemR7].VL_EST = Convert.ToDouble(RegistroR7.VL_EST);
 					RegistroR7Rec[ItemR7].RegistroValido = RegistroR7.RegistroValido;
 					ItemR7++;
 				}
