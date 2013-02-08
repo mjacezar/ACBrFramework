@@ -4066,7 +4066,7 @@ namespace ACBrFramework.ECF
 
 		public void ImprimeCheque(string Banco, [MarshalAs(UnmanagedType.Currency)] decimal Valor, string Favorecido, string Cidade, DateTime Data, string Observacao = "")
 		{
-			int ret = ACBrECFInterop.ECF_ImprimeCheque(this.Handle, ToUTF8(Banco), ToUTF8(Valor), ToUTF8(Favorecido), ToUTF8(Cidade), ToUTF8(Data), ToUTF8(Observacao));
+			int ret = ACBrECFInterop.ECF_ImprimeCheque(this.Handle, ToUTF8(Banco), Convert.ToDouble(Valor), ToUTF8(Favorecido), ToUTF8(Cidade), Data.ToOADate(), ToUTF8(Observacao));
 			CheckResult(ret);
 		}
 
@@ -4954,7 +4954,7 @@ namespace ACBrFramework.ECF
 				comprovanteNaoFiscal.Descricao = FromUTF8(record.Descricao);
 				comprovanteNaoFiscal.PermiteVinculado = record.PermiteVinculado;
 				comprovanteNaoFiscal.FormaPagamento = FromUTF8(record.FormaPagamento);
-				comprovanteNaoFiscal.Total = FromUTF8(record.Total);
+				comprovanteNaoFiscal.Total = Convert.ToDecimal(record.Total);
 				comprovanteNaoFiscal.Contador = record.Contador;
 
 				int count = GetInt32(ACBrECFInterop.ECF_GetCNFCount);
@@ -4987,7 +4987,7 @@ namespace ACBrFramework.ECF
 				comprovanteNaoFiscal.Descricao = FromUTF8(record.Descricao);
 				comprovanteNaoFiscal.PermiteVinculado = record.PermiteVinculado;
 				comprovanteNaoFiscal.FormaPagamento = FromUTF8(record.FormaPagamento);
-				comprovanteNaoFiscal.Total = FromUTF8(record.Total);
+				comprovanteNaoFiscal.Total = Convert.ToDecimal(record.Total);
 				comprovanteNaoFiscal.Contador = record.Contador;
 
 				comprovantesNaoFiscais[i] = comprovanteNaoFiscal;
@@ -5303,7 +5303,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onAntesSangria.IsAssigned)
 			{
-				SangriaSuprimentoEventArgs e = new SangriaSuprimentoEventArgs(FromUTF8(Valor), FromUTF8(Obs), FromUTF8(DescricaoCNF), FromUTF8(DescricaoFPG));
+				SangriaSuprimentoEventArgs e = new SangriaSuprimentoEventArgs(Convert.ToDecimal(Valor), FromUTF8(Obs), FromUTF8(DescricaoCNF), FromUTF8(DescricaoFPG));
 				onAntesSangria.Raise(e);
 			}
 		}
@@ -5313,7 +5313,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onAntesSubtotalizaCupom.IsAssigned)
 			{
-				SubtotalizaCupomEventArgs e = new SubtotalizaCupomEventArgs(FromUTF8(DescontoAcrescimo), FromUTF8(MensagemRodape));
+				SubtotalizaCupomEventArgs e = new SubtotalizaCupomEventArgs(Convert.ToDecimal(DescontoAcrescimo), FromUTF8(MensagemRodape));
 				onAntesSubtotalizaCupom.Raise(e);
 			}
 		}
@@ -5323,7 +5323,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onAntesSubtotalizaNaoFiscal.IsAssigned)
 			{
-				SubtotalizaCupomEventArgs e = new SubtotalizaCupomEventArgs(FromUTF8(DescontoAcrescimo), FromUTF8(MensagemRodape));
+				SubtotalizaCupomEventArgs e = new SubtotalizaCupomEventArgs(Convert.ToDecimal(DescontoAcrescimo), FromUTF8(MensagemRodape));
 				onAntesSubtotalizaNaoFiscal.Raise(e);
 			}
 		}
@@ -5333,7 +5333,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onAntesSuprimento.IsAssigned)
 			{
-				SangriaSuprimentoEventArgs e = new SangriaSuprimentoEventArgs(FromUTF8(Valor), FromUTF8(Obs), FromUTF8(DescricaoCNF), FromUTF8(DescricaoFPG));
+				SangriaSuprimentoEventArgs e = new SangriaSuprimentoEventArgs(Convert.ToDecimal(Valor), FromUTF8(Obs), FromUTF8(DescricaoCNF), FromUTF8(DescricaoFPG));
 				onAntesSuprimento.Raise(e);
 			}
 		}
@@ -5346,7 +5346,7 @@ namespace ACBrFramework.ECF
 			if (onAntesVendeItem.IsAssigned)
 			{
 				VendeItemEventArgs e = new VendeItemEventArgs(FromUTF8(Codigo), FromUTF8(Descricao), FromUTF8(AliquotaICMS),
-					FromUTF8(Qtd), FromUTF8(ValorUnitario), FromUTF8(ValorDescontoAcrescimo), FromUTF8(Unidade),
+					Convert.ToDecimal(Qtd), Convert.ToDecimal(ValorUnitario), Convert.ToDecimal(ValorDescontoAcrescimo), FromUTF8(Unidade),
 					FromUTF8(TipoDescontoAcrescimo), FromUTF8(DescontoAcrescimo));
 				onAntesVendeItem.Raise(e);
 			}
@@ -5534,7 +5534,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onDepoisSangria.IsAssigned)
 			{
-				SangriaSuprimentoEventArgs e = new SangriaSuprimentoEventArgs(FromUTF8(Valor), FromUTF8(Obs), FromUTF8(DescricaoCNF), FromUTF8(DescricaoFPG));
+				SangriaSuprimentoEventArgs e = new SangriaSuprimentoEventArgs(Convert.ToDecimal(Valor), FromUTF8(Obs), FromUTF8(DescricaoCNF), FromUTF8(DescricaoFPG));
 				onDepoisSangria.Raise(e);
 			}
 		}
@@ -5544,7 +5544,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onDepoisSubtotalizaCupom.IsAssigned)
 			{
-				SubtotalizaCupomEventArgs e = new SubtotalizaCupomEventArgs(FromUTF8(DescontoAcrescimo), FromUTF8(MensagemRodape));
+				SubtotalizaCupomEventArgs e = new SubtotalizaCupomEventArgs(Convert.ToDecimal(DescontoAcrescimo), FromUTF8(MensagemRodape));
 				onDepoisSubtotalizaCupom.Raise(e);
 			}
 		}
@@ -5554,7 +5554,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onDepoisSubtotalizaNaoFiscal.IsAssigned)
 			{
-				SubtotalizaCupomEventArgs e = new SubtotalizaCupomEventArgs(FromUTF8(DescontoAcrescimo), FromUTF8(MensagemRodape));
+				SubtotalizaCupomEventArgs e = new SubtotalizaCupomEventArgs(Convert.ToDecimal(DescontoAcrescimo), FromUTF8(MensagemRodape));
 				onDepoisSubtotalizaNaoFiscal.Raise(e);
 			}
 		}
@@ -5564,7 +5564,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onDepoisSuprimento.IsAssigned)
 			{
-				SangriaSuprimentoEventArgs e = new SangriaSuprimentoEventArgs(FromUTF8(Valor), FromUTF8(Obs), FromUTF8(DescricaoCNF), FromUTF8(DescricaoFPG));
+				SangriaSuprimentoEventArgs e = new SangriaSuprimentoEventArgs(Convert.ToDecimal(Valor), FromUTF8(Obs), FromUTF8(DescricaoCNF), FromUTF8(DescricaoFPG));
 				onDepoisSuprimento.Raise(e);
 			}
 		}
@@ -5577,7 +5577,7 @@ namespace ACBrFramework.ECF
 			if (onDepoisVendeItem.IsAssigned)
 			{
 				VendeItemEventArgs e = new VendeItemEventArgs(FromUTF8(Codigo), FromUTF8(Descricao), FromUTF8(AliquotaICMS),
-					FromUTF8(Qtd), FromUTF8(ValorUnitario), FromUTF8(ValorDescontoAcrescimo), FromUTF8(Unidade),
+					Convert.ToDecimal(Qtd), Convert.ToDecimal(ValorUnitario), Convert.ToDecimal(ValorDescontoAcrescimo), FromUTF8(Unidade),
 					FromUTF8(TipoDescontoAcrescimo), FromUTF8(DescontoAcrescimo));
 				onDepoisVendeItem.Raise(e);
 			}

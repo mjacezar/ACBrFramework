@@ -236,7 +236,7 @@ namespace ACBrFramework.TEFD
 
 		public int ObtemQuantidadeTransacoesPendentes(DateTime data, string CupomFiscal)
 		{
-			int ret = ACBrTEFInterop.TEF_TEFCliSiTef_ObtemQuantidadeTransacoesPendentes(this.Handle, ToUTF8(data), ToUTF8(CupomFiscal));
+			int ret = ACBrTEFInterop.TEF_TEFCliSiTef_ObtemQuantidadeTransacoesPendentes(this.Handle, ToOADate(data), ToUTF8(CupomFiscal));
 			CheckResult(ret);
 
 			return ret;

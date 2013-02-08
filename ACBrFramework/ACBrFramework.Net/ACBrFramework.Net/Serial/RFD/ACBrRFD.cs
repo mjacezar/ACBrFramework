@@ -599,13 +599,13 @@ namespace ACBrFramework.RFD
 
 		public void VendeItem(string codigo, string descricao, decimal Qtd, decimal ValorUnitario, string Unidade, decimal ValorDescAcres, string Aliquota)
 		{
-			int ret = ACBrRFDInterop.RFD_VendeItem(this.Handle, ToUTF8(codigo), ToUTF8(descricao), ToUTF8(Qtd), ToUTF8(ValorUnitario), ToUTF8(Unidade),ToUTF8(ValorDescAcres), ToUTF8(Aliquota));
+			int ret = ACBrRFDInterop.RFD_VendeItem(this.Handle, ToUTF8(codigo), ToUTF8(descricao), Convert.ToDouble(Qtd), Convert.ToDouble(ValorUnitario), ToUTF8(Unidade),Convert.ToDouble(ValorDescAcres), ToUTF8(Aliquota));
 			CheckResult(ret);
 		}
 
 		public void SubTotalizaCupom(decimal DescontoAcrescimo)
 		{
-			int ret = ACBrRFDInterop.RFD_SubTotalizaCupom(this.Handle, ToUTF8(DescontoAcrescimo));
+			int ret = ACBrRFDInterop.RFD_SubTotalizaCupom(this.Handle, Convert.ToDouble(DescontoAcrescimo));
 			CheckResult(ret);
 		}
 
@@ -641,7 +641,7 @@ namespace ACBrFramework.RFD
 
 		public void EfetuaPagamento(string DescricaoFormaPagto, decimal Valor)
 		{
-			int ret = ACBrRFDInterop.RFD_EfetuaPagamento(this.Handle, ToUTF8(DescricaoFormaPagto), ToUTF8(Valor));
+			int ret = ACBrRFDInterop.RFD_EfetuaPagamento(this.Handle, ToUTF8(DescricaoFormaPagto), Convert.ToDouble(Valor));
 			CheckResult(ret);
 		}
 

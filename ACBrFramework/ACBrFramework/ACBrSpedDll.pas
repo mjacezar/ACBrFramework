@@ -386,6 +386,57 @@ type Bloco1Registro1800 = record
      VL_DIF            : Double;
 end;
 
+{%endregion Registros Bloco 1}
+
+{%region Registros Bloco 9}
+
+type Bloco9Registro9001 = record
+   IND_MOV    : Integer;
+end;
+
+type Bloco9Registro9900 = record
+REG_BLC     : array[0..4] of char;
+QTD_REG_BLC : Integer;
+end;
+
+{%endregion Registros Bloco 9}
+
+{%region Registros Bloco C}
+
+type BlocoCRegistroC001 = record
+   IND_MOV    : Integer;
+end;
+
+type BlocoCRegistroC100 = record
+ IND_OPER               : Integer;
+ IND_EMIT               : Integer;
+ COD_PART               : array[0..60] of char;
+ COD_MOD                : array[0..2] of char;
+ COD_SIT                : Integer;
+ SER                    : array[0..3] of char;
+ NUM_DOC                : array[0..9] of char;
+ CHV_NFE                : array[0..44] of char;
+ DT_DOC                 : Double;
+ DT_E_S                 : Double;
+ VL_DOC                 : Double;
+ IND_PGTO               : Integer;
+ VL_DESC                : Double;
+ VL_ABAT_NT             : Double;
+ VL_MERC                : Double;
+ IND_FRT                : Integer;
+ VL_FRT                 : Double;
+ VL_SEG                 : Double;
+ VL_OUT_DA              : Double;
+ VL_BC_ICMS             : Double;
+ VL_ICMS                : Double;
+ VL_BC_ICMS_ST          : Double;
+ VL_ICMS_ST             : Double;
+ VL_IPI                 : Double;
+ VL_PIS                 : Double;
+ VL_COFINS              : Double;
+ VL_PIS_ST              : Double;
+ VL_COFINS_ST           : Double;
+end;
 
 
 
@@ -395,9 +446,7 @@ end;
 
 
 
-
-
-{%endregion}
+{%endregion Registros Bloco C}
 
 implementation
 

@@ -845,6 +845,109 @@ namespace ACBrFramework.Sped
 
 		#endregion Bloco1
 
+		#region Bloco9
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct Bloco9Registro9001
+		{
+			[MarshalAs(UnmanagedType.I4)]
+			public int IND_MOV;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct Bloco9Registro9900
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string REG_BLC;
+
+			[MarshalAs(UnmanagedType.I4)]
+			public int QTD_REG_BLC;
+		}
+
+		#endregion Bloco9
+
+		#region BlocoC
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoCRegistroC001
+		{
+			[MarshalAs(UnmanagedType.I4)]
+			public int IND_MOV;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoCRegistroC100
+		{
+			[MarshalAs(UnmanagedType.I4)]
+			public int IND_OPER;
+
+			[MarshalAs(UnmanagedType.I4)]
+			public int IND_EMIT;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COD_PART;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string COD_MOD;
+
+			[MarshalAs(UnmanagedType.I4)]
+			public int COD_SIT;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string SER;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+			public string NUM_DOC;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
+			public string CHV_NFE;
+			
+			public double DT_DOC;
+			
+			public double DT_E_S;
+			
+			public double VL_DOC;
+
+			[MarshalAs(UnmanagedType.I4)]
+			public int IND_PGTO;
+			
+			public double VL_DESC;
+			
+			public double VL_ABAT_NT;
+			
+			public double VL_MERC;
+
+			[MarshalAs(UnmanagedType.I4)]
+			public int IND_FRT;
+			
+			public double VL_FRT;
+			
+			public double VL_SEG;
+			
+			public double VL_OUT_DA;
+			
+			public double VL_BC_ICMS;
+			
+			public double VL_ICMS;
+			
+			public double VL_BC_ICMS_ST;
+			
+			public double VL_ICMS_ST;
+			
+			public double VL_IPI;
+			
+			public double VL_PIS;
+			
+			public double VL_COFINS;
+			
+			public double VL_PIS_ST;
+			
+			public double VL_COFINS_ST;
+		}
+
+
+		#endregion BlocoC
+
 		#endregion InnerTypes
 
 		#region DLL
@@ -1086,7 +1189,7 @@ namespace ACBrFramework.Sped
 		public static extern int SPDF_Bloco_1_Registro1700New(IntPtr spdfHandle, Bloco1Registro1700 registro1700);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int SPDF_Bloco_1_Registro1701New(IntPtr spdfHandle, Bloco1Registro1710 registro1710);
+		public static extern int SPDF_Bloco_1_Registro1710New(IntPtr spdfHandle, Bloco1Registro1710 registro1710);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SPDF_Bloco_1_Registro1800New(IntPtr spdfHandle, Bloco1Registro1800 registro1800);
@@ -1095,6 +1198,65 @@ namespace ACBrFramework.Sped
 		public static extern int SPDF_Bloco_1_Registro1990_GetQTD_LIN_1(IntPtr spdfHandle);
 
 		#endregion Bloco_1
+
+		#region Bloco_9
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_9_GetDT_INI(IntPtr spdfHandle, ref double dtIni);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_9_SetDT_INI(IntPtr spdfHandle, double dtIni);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_9_GetDT_FIN(IntPtr spdfHandle, ref double dtFin);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_9_SetDT_FIN(IntPtr spdfHandle, double dtFin);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_9_GetGravado(IntPtr spdfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_9_Registro9001New(IntPtr spdfHandle, Bloco9Registro9001 registro9001);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_9_Registro9900New(IntPtr spdfHandle, Bloco9Registro9900 registro9900);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_9_Registro9990_GetQTD_LIN_9(IntPtr spdfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_9_Registro9999_GetQTD_LIN(IntPtr spdfHandle);
+
+		#endregion Bloco_9
+
+		#region BlocoC
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_GetDT_INI(IntPtr spdfHandle, ref double dtIni);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_SetDT_INI(IntPtr spdfHandle, double dtIni);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_GetDT_FIN(IntPtr spdfHandle, ref double dtFin);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_SetDT_FIN(IntPtr spdfHandle, double dtFin);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_GetGravado(IntPtr spdfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_RegistroC001New(IntPtr spdfHandle, BlocoCRegistroC001 registroC001);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_RegistroC100New(IntPtr spdfHandle, BlocoCRegistroC100 registroC100);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_RegistroC990_GetQTD_LIN_C(IntPtr spdfHandle);
+
+		#endregion BlocoC
 
 		#endregion Metodos
 

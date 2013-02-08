@@ -176,7 +176,7 @@ namespace ACBrFramework.Sped
 			record.CPF = ToUTF8(Bloco_0.Registro0000.CPF);
 			record.UF = ToUTF8(Bloco_0.Registro0000.UF);
 			record.IE = ToUTF8(Bloco_0.Registro0000.IE);
-			record.COD_MUN = ToUTF8(Bloco_0.Registro0000.COD_MUN);
+			record.COD_MUN = Bloco_0.Registro0000.COD_MUN;
 			record.IM = ToUTF8(Bloco_0.Registro0000.IM);
 			record.SUFRAMA = ToUTF8(Bloco_0.Registro0000.SUFRAMA);
 			record.IND_PERFIL = (int)Bloco_0.Registro0000.IND_PERFIL;
@@ -485,7 +485,7 @@ namespace ACBrFramework.Sped
 		private void SendRegistro0600(Registro0600 item)
 		{
 			var record = new ACBrSpedFiscalInterop.Bloco0Registro0600();
-			record.DT_ALT  = item.DT_ALT.ToOADate();
+			record.DT_ALT = item.DT_ALT.ToOADate();
 			record.COD_CCUS = ToUTF8(record.COD_CCUS);
 			record.CCUS = ToUTF8(record.CCUS);
 
@@ -493,7 +493,7 @@ namespace ACBrFramework.Sped
 			CheckResult(ret);
 		}
 
-#endregion Bloco0 Interop
+		#endregion Bloco0 Interop
 
 		#region Bloco1 Interop
 
@@ -569,7 +569,7 @@ namespace ACBrFramework.Sped
 		private void SendRegistro1010(Registro1010 item)
 		{
 			var record = new ACBrSpedFiscalInterop.Bloco1Registro1010();
-			record.IND_EXP   = ToUTF8(item.IND_EXP);
+			record.IND_EXP = ToUTF8(item.IND_EXP);
 			record.IND_CCRF = ToUTF8(item.IND_CCRF);
 			record.IND_COMB = ToUTF8(item.IND_COMB);
 			record.IND_USINA = ToUTF8(item.IND_USINA);
@@ -616,7 +616,7 @@ namespace ACBrFramework.Sped
 			record.CHV_NFE = ToUTF8(item.CHV_NFE);
 			record.DT_DOC = item.DT_DOC.ToOADate();
 			record.COD_ITEM = ToUTF8(item.COD_ITEM);
-			
+
 			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_1_Registro1105New(this.Handle, record);
 			CheckResult(ret);
 
@@ -738,40 +738,221 @@ namespace ACBrFramework.Sped
 
 		private void SendRegistro1350(Registro1350 item)
 		{
-			throw new NotImplementedException();
+			var record = new ACBrSpedFiscalInterop.Bloco1Registro1350();
+			record.SERIE = item.SERIE;
+			record.FABRICANTE = item.FABRICANTE;
+			record.MODELO = item.MODELO;
+			record.TIPO_MEDICAO = (int)item.TIPO_MEDICAO;
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_1_Registro1350New(this.Handle, record);
+			CheckResult(ret);
+
+			foreach (var item1360 in item.Registro1360)
+			{
+				SendRegistro1360(item1360);
+			}
+
+			foreach (var item1370 in item.Registro1370)
+			{
+				SendRegistro1370(item1370);
+			}
+		}
+
+		private void SendRegistro1360(Registro1360 item)
+		{
+			var record = new ACBrSpedFiscalInterop.Bloco1Registro1360();
+			record.NUM_LACRE = item.NUM_LACRE;
+			record.DT_APLICACAO = item.DT_APLICACAO.ToOADate();
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_1_Registro1360New(this.Handle, record);
+			CheckResult(ret);
+		}
+
+		private void SendRegistro1370(Registro1370 item)
+		{
+			var record = new ACBrSpedFiscalInterop.Bloco1Registro1370();
+			record.NUM_BICO = item.NUM_BICO;
+			record.COD_ITEM = item.COD_ITEM;
+			record.NUM_TANQU = item.NUM_TANQUE;
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_1_Registro1370New(this.Handle, record);
+			CheckResult(ret);
 		}
 
 		private void SendRegistro1390(Registro1390 item)
 		{
-			throw new NotImplementedException();
+			var record = new ACBrSpedFiscalInterop.Bloco1Registro1390();
+			record.COD_PROD = item.COD_PROD;
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_1_Registro1390New(this.Handle, record);
+			CheckResult(ret);
 		}
 
 		private void SendRegistro1400(Registro1400 item)
 		{
-			throw new NotImplementedException();
+			var record = new ACBrSpedFiscalInterop.Bloco1Registro1400();
+			record.COD_ITEM = item.COD_ITEM;
+			record.MUN = item.MUN;
+			record.VALOR = Convert.ToDouble(item.VALOR);
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_1_Registro1400New(this.Handle, record);
+			CheckResult(ret);
 		}
 
 		private void SendRegistro1500(Registro1500 item)
 		{
-			throw new NotImplementedException();
+			var record = new ACBrSpedFiscalInterop.Bloco1Registro1500();
+			record.IND_OPER = item.IND_OPER;
+			record.IND_EMIT = item.IND_EMIT;
+			record.COD_PART = item.COD_PART;
+			record.COD_MOD = item.COD_MOD;
+			record.COD_SIT = (int)item.COD_SIT;
+			record.SER = item.SER;
+			record.SUB = item.SUB;
+			record.COD_CONS = (int)item.COD_CONS;
+			record.NUM_DOC = item.NUM_DOC;
+			record.DT_DOC = item.DT_DOC.ToOADate();
+			record.DT_E_S = item.DT_E_S.ToOADate();
+			record.VL_DOC = Convert.ToDouble(item.VL_DOC);
+			record.VL_DESC = Convert.ToDouble(item.VL_DESC);
+			record.VL_FORN = Convert.ToDouble(item.VL_FORN);
+			record.VL_SERV_NT = Convert.ToDouble(item.VL_SERV_NT);
+			record.VL_TERC = Convert.ToDouble(item.VL_TERC);
+			record.VL_DA = Convert.ToDouble(item.VL_DA);
+			record.VL_BC_ICMS = Convert.ToDouble(item.VL_BC_ICMS);
+			record.VL_ICMS = Convert.ToDouble(item.VL_ICMS);
+			record.VL_BC_ICMS_ST = Convert.ToDouble(item.VL_BC_ICMS_ST);
+			record.VL_ICMS_ST = Convert.ToDouble(item.VL_ICMS_ST);
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_1_Registro1500New(this.Handle, record);
+			CheckResult(ret);
+
+			foreach (var item1510 in item.Registro1510)
+			{
+				SendRegistro1510(item1510);
+			}
+		}
+
+		private void SendRegistro1510(Registro1510 item)
+		{
+			var record = new ACBrSpedFiscalInterop.Bloco1Registro1510();
+			record.NUM_ITEM = item.NUM_ITEM;
+			record.COD_ITEM = item.COD_ITEM;
+			record.COD_CLASS = item.COD_CLASS;
+			record.QTD = Convert.ToDouble(item.QTD);
+			record.UNID = item.UNID;
+			record.VL_ITEM = Convert.ToDouble(item.VL_ITEM);
+			record.VL_DESC = Convert.ToDouble(item.VL_DESC);
+			record.CST_ICMS = item.CST_ICMS;
+			record.CFOP = item.CFOP;
+			record.VL_BC_ICMS = Convert.ToDouble(item.VL_BC_ICMS);
+			record.ALIQ_ICMS = Convert.ToDouble(item.ALIQ_ICMS);
+			record.VL_ICMS = Convert.ToDouble(item.VL_ICMS);
+			record.VL_BC_ICMS_ST = Convert.ToDouble(item.VL_BC_ICMS_ST);
+			record.ALIQ_ST = Convert.ToDouble(item.ALIQ_ST);
+			record.VL_ICMS_ST = Convert.ToDouble(item.VL_ICMS_ST);
+			record.IND_REC = (int)item.IND_REC;
+			record.COD_PART = item.COD_PART;
+			record.VL_PIS = Convert.ToDouble(item.VL_PIS);
+			record.VL_COFINS = Convert.ToDouble(item.VL_COFINS);
+			record.COD_CTA = item.COD_CTA;
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_1_Registro1510New(this.Handle, record);
+			CheckResult(ret);
 		}
 
 		private void SendRegistro1600(Registro1600 item)
 		{
-			throw new NotImplementedException();
+			var record = new ACBrSpedFiscalInterop.Bloco1Registro1600();
+			record.COD_PART = item.COD_PART;
+			record.TOT_CREDITO = Convert.ToDouble(item.TOT_CREDITO);
+			record.TOT_DEBITO = Convert.ToDouble(item.TOT_DEBITO);
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_1_Registro1600New(this.Handle, record);
+			CheckResult(ret);
 		}
 
 		private void SendRegistro1700(Registro1700 item)
 		{
-			throw new NotImplementedException();
+			var record = new ACBrSpedFiscalInterop.Bloco1Registro1700();
+			record.COD_DISP = (int)item.COD_DISP;
+			record.COD_MOD = item.COD_MOD;
+			record.SER = item.SER;
+			record.SUB = item.SUB;
+			record.NUM_DOC_INI = item.NUM_DOC_INI;
+			record.NUM_DOC_FIN = item.NUM_DOC_FIN;
+			record.NUM_AUT = item.NUM_AUT;
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_1_Registro1700New(this.Handle, record);
+			CheckResult(ret);
+
+			foreach (var item1710 in item.Registro1710)
+			{
+				SendRegistro1710(item1710);
+			}
+		}
+
+		private void SendRegistro1710(Registro1710 item)
+		{
+			var record = new ACBrSpedFiscalInterop.Bloco1Registro1710();
+			record.NUM_DOC_INI = item.NUM_DOC_INI;
+			record.NUM_DOC_FIN = item.NUM_DOC_FIN;
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_1_Registro1710New(this.Handle, record);
+			CheckResult(ret);
 		}
 
 		private void SendRegistro1800(Registro1800 item)
 		{
-			throw new NotImplementedException();
+			var record = new ACBrSpedFiscalInterop.Bloco1Registro1800();
+			record.VL_CARGA = Convert.ToDouble(item.VL_CARGA);
+			record.VL_PASS = Convert.ToDouble(item.VL_PASS);
+			record.VL_FAT = Convert.ToDouble(item.VL_FAT);
+			record.IND_RAT = Convert.ToDouble(item.IND_RAT);
+			record.VL_ICMS_ANT = Convert.ToDouble(item.VL_ICMS_ANT);
+			record.VL_BC_ICMS = Convert.ToDouble(item.VL_BC_ICMS);
+			record.VL_ICMS_APUR = Convert.ToDouble(item.VL_ICMS_APUR);
+			record.VL_BC_ICMS_APUR = Convert.ToDouble(item.VL_BC_ICMS_APUR);
+			record.VL_DIF = Convert.ToDouble(item.VL_DIF);
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_1_Registro1800New(this.Handle, record);
+			CheckResult(ret);
 		}
 
 		#endregion Bloco1 Interop
+
+		#region Bloco9 Interop
+
+		private void SendBloco9()
+		{
+			SendRegistro9001();
+
+			foreach (var item9900 in this.Bloco_9.Registro9900)
+			{
+				SendRegistro9900(item9900);
+			}
+		}
+
+		private void SendRegistro9001()
+		{
+			var record = new ACBrSpedFiscalInterop.Bloco9Registro9001();
+			record.IND_MOV = (int)Bloco_9.Registro9001.IND_MOV;
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_9_Registro9001New(this.Handle, record);
+			CheckResult(ret);
+		}
+
+		private void SendRegistro9900(Registro9900 item)
+		{
+			var record = new ACBrSpedFiscalInterop.Bloco9Registro9900();
+			record.REG_BLC = item.REG_BLC;
+			record.QTD_REG_BLC = item.QTD_REG_BLC;
+
+			int ret = ACBrSpedFiscalInterop.SPDF_Bloco_9_Registro9900New(this.Handle, record);
+			CheckResult(ret);
+		}
+
+		#endregion Bloco9 Interop
 
 		#region Override Methods
 
@@ -781,8 +962,8 @@ namespace ACBrFramework.Sped
 
 			Bloco_0 = new Bloco0(this);
 			Bloco_1 = new Bloco1(this);
-			Bloco_9 = new Bloco9();
-			Bloco_C = new BlocoC();
+			Bloco_9 = new Bloco9(this);
+			Bloco_C = new BlocoC(this);
 			Bloco_D = new BlocoD();
 			Bloco_E = new BlocoE();
 			Bloco_G = new BlocoG();
