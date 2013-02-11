@@ -16,8 +16,6 @@ namespace ACBrFramework
 	[Guid("F31FB210-ECDF-4050-9FAE-352D72700FD9")]
 	[ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
-	[DesignerCategory("ACBr")]
-	[DesignTimeVisible(true)]
 	public abstract class ACBrClassInterop : ACBrInteropBase, IDisposable
 	{
 		#region Inner Types
