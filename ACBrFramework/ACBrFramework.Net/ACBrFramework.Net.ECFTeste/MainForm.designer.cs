@@ -343,6 +343,30 @@
 			this.btnLerDados = new System.Windows.Forms.Button();
 			this.lstReducaoZ = new System.Windows.Forms.ListBox();
 			this.menuFiscalPage = new System.Windows.Forms.TabPage();
+			this.checkBox10 = new System.Windows.Forms.CheckBox();
+			this.checkBox9 = new System.Windows.Forms.CheckBox();
+			this.label40 = new System.Windows.Forms.Label();
+			this.tabControl4 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+			this.label42 = new System.Windows.Forms.Label();
+			this.label41 = new System.Windows.Forms.Label();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+			this.label43 = new System.Windows.Forms.Label();
+			this.label44 = new System.Windows.Forms.Label();
+			this.button10 = new System.Windows.Forms.Button();
+			this.btnImprimeMeiosPGTO = new System.Windows.Forms.Button();
+			this.button7 = new System.Windows.Forms.Button();
+			this.button6 = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
+			this.button4 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
+			this.button8 = new System.Windows.Forms.Button();
 			this.aacTabPage = new System.Windows.Forms.TabPage();
 			this.btnAACLog = new System.Windows.Forms.Button();
 			this.textBox12 = new System.Windows.Forms.TextBox();
@@ -456,6 +480,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudnumericUpDown3)).BeginInit();
 			this.reducaoZPage.SuspendLayout();
+			this.menuFiscalPage.SuspendLayout();
+			this.tabControl4.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			this.tabPage2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.aacTabPage.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.aacDadosTabPage.SuspendLayout();
@@ -503,7 +533,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
 			this.descriptionToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
 			this.descriptionToolStripStatusLabel.Name = "descriptionToolStripStatusLabel";
-			this.descriptionToolStripStatusLabel.Size = new System.Drawing.Size(455, 17);
+			this.descriptionToolStripStatusLabel.Size = new System.Drawing.Size(486, 17);
 			this.descriptionToolStripStatusLabel.Spring = true;
 			this.descriptionToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -3037,6 +3067,20 @@
 			// 
 			// menuFiscalPage
 			// 
+			this.menuFiscalPage.Controls.Add(this.checkBox10);
+			this.menuFiscalPage.Controls.Add(this.checkBox9);
+			this.menuFiscalPage.Controls.Add(this.label40);
+			this.menuFiscalPage.Controls.Add(this.tabControl4);
+			this.menuFiscalPage.Controls.Add(this.button10);
+			this.menuFiscalPage.Controls.Add(this.btnImprimeMeiosPGTO);
+			this.menuFiscalPage.Controls.Add(this.button7);
+			this.menuFiscalPage.Controls.Add(this.button6);
+			this.menuFiscalPage.Controls.Add(this.button5);
+			this.menuFiscalPage.Controls.Add(this.button4);
+			this.menuFiscalPage.Controls.Add(this.button3);
+			this.menuFiscalPage.Controls.Add(this.button2);
+			this.menuFiscalPage.Controls.Add(this.button1);
+			this.menuFiscalPage.Controls.Add(this.button8);
 			this.menuFiscalPage.Location = new System.Drawing.Point(4, 22);
 			this.menuFiscalPage.Name = "menuFiscalPage";
 			this.menuFiscalPage.Padding = new System.Windows.Forms.Padding(3);
@@ -3044,6 +3088,232 @@
 			this.menuFiscalPage.TabIndex = 7;
 			this.menuFiscalPage.Text = "Menu Fiscal";
 			this.menuFiscalPage.UseVisualStyleBackColor = true;
+			// 
+			// checkBox10
+			// 
+			this.checkBox10.AutoSize = true;
+			this.checkBox10.Location = new System.Drawing.Point(17, 226);
+			this.checkBox10.Name = "checkBox10";
+			this.checkBox10.Size = new System.Drawing.Size(459, 17);
+			this.checkBox10.TabIndex = 21;
+			this.checkBox10.Text = "Gerar o arquivo no formato do ato Cotepe 17/04 (Somente para os menus: LMFC, Arq." +
+    "MFD)";
+			this.checkBox10.UseVisualStyleBackColor = true;
+			// 
+			// checkBox9
+			// 
+			this.checkBox9.AutoSize = true;
+			this.checkBox9.Location = new System.Drawing.Point(17, 203);
+			this.checkBox9.Name = "checkBox9";
+			this.checkBox9.Size = new System.Drawing.Size(164, 17);
+			this.checkBox9.TabIndex = 20;
+			this.checkBox9.Text = "Efetuar a geração de arquivo";
+			this.checkBox9.UseVisualStyleBackColor = true;
+			// 
+			// label40
+			// 
+			this.label40.AutoSize = true;
+			this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label40.ForeColor = System.Drawing.Color.Green;
+			this.label40.Location = new System.Drawing.Point(147, 176);
+			this.label40.Name = "label40";
+			this.label40.Size = new System.Drawing.Size(363, 13);
+			this.label40.TabIndex = 19;
+			this.label40.Text = "Dica: Para os menus que geram arquivos, verificar o DemoPAF";
+			// 
+			// tabControl4
+			// 
+			this.tabControl4.Controls.Add(this.tabPage1);
+			this.tabControl4.Controls.Add(this.tabPage2);
+			this.tabControl4.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.tabControl4.Location = new System.Drawing.Point(3, 264);
+			this.tabControl4.Name = "tabControl4";
+			this.tabControl4.SelectedIndex = 0;
+			this.tabControl4.Size = new System.Drawing.Size(637, 100);
+			this.tabControl4.TabIndex = 18;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.dateTimePicker2);
+			this.tabPage1.Controls.Add(this.dateTimePicker1);
+			this.tabPage1.Controls.Add(this.label42);
+			this.tabPage1.Controls.Add(this.label41);
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(629, 74);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Emissão por intervalo de data";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// dateTimePicker2
+			// 
+			this.dateTimePicker2.Location = new System.Drawing.Point(312, 26);
+			this.dateTimePicker2.Name = "dateTimePicker2";
+			this.dateTimePicker2.Size = new System.Drawing.Size(227, 20);
+			this.dateTimePicker2.TabIndex = 3;
+			// 
+			// dateTimePicker1
+			// 
+			this.dateTimePicker1.Location = new System.Drawing.Point(32, 26);
+			this.dateTimePicker1.Name = "dateTimePicker1";
+			this.dateTimePicker1.Size = new System.Drawing.Size(232, 20);
+			this.dateTimePicker1.TabIndex = 2;
+			// 
+			// label42
+			// 
+			this.label42.AutoSize = true;
+			this.label42.Location = new System.Drawing.Point(284, 27);
+			this.label42.Name = "label42";
+			this.label42.Size = new System.Drawing.Size(22, 13);
+			this.label42.TabIndex = 1;
+			this.label42.Text = "até";
+			// 
+			// label41
+			// 
+			this.label41.AutoSize = true;
+			this.label41.Location = new System.Drawing.Point(7, 27);
+			this.label41.Name = "label41";
+			this.label41.Size = new System.Drawing.Size(19, 13);
+			this.label41.TabIndex = 0;
+			this.label41.Text = "de";
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.numericUpDown2);
+			this.tabPage2.Controls.Add(this.numericUpDown1);
+			this.tabPage2.Controls.Add(this.label43);
+			this.tabPage2.Controls.Add(this.label44);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(629, 74);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "Emissão por intervalo de COO";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// numericUpDown2
+			// 
+			this.numericUpDown2.Location = new System.Drawing.Point(32, 26);
+			this.numericUpDown2.Name = "numericUpDown2";
+			this.numericUpDown2.Size = new System.Drawing.Size(120, 20);
+			this.numericUpDown2.TabIndex = 5;
+			// 
+			// numericUpDown1
+			// 
+			this.numericUpDown1.Location = new System.Drawing.Point(186, 26);
+			this.numericUpDown1.Name = "numericUpDown1";
+			this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+			this.numericUpDown1.TabIndex = 4;
+			// 
+			// label43
+			// 
+			this.label43.AutoSize = true;
+			this.label43.Location = new System.Drawing.Point(158, 28);
+			this.label43.Name = "label43";
+			this.label43.Size = new System.Drawing.Size(22, 13);
+			this.label43.TabIndex = 3;
+			this.label43.Text = "até";
+			// 
+			// label44
+			// 
+			this.label44.AutoSize = true;
+			this.label44.Location = new System.Drawing.Point(7, 28);
+			this.label44.Name = "label44";
+			this.label44.Size = new System.Drawing.Size(19, 13);
+			this.label44.TabIndex = 2;
+			this.label44.Text = "de";
+			// 
+			// button10
+			// 
+			this.button10.Location = new System.Drawing.Point(222, 20);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(148, 29);
+			this.button10.TabIndex = 17;
+			this.button10.Text = "Espelho MFD";
+			this.button10.UseVisualStyleBackColor = true;
+			// 
+			// btnImprimeMeiosPGTO
+			// 
+			this.btnImprimeMeiosPGTO.Location = new System.Drawing.Point(398, 20);
+			this.btnImprimeMeiosPGTO.Name = "btnImprimeMeiosPGTO";
+			this.btnImprimeMeiosPGTO.Size = new System.Drawing.Size(148, 29);
+			this.btnImprimeMeiosPGTO.TabIndex = 16;
+			this.btnImprimeMeiosPGTO.Text = "Meios Pagto.";
+			this.btnImprimeMeiosPGTO.UseVisualStyleBackColor = true;
+			this.btnImprimeMeiosPGTO.Click += new System.EventHandler(this.btnImprimeMeiosPGTO_Click);
+			// 
+			// button7
+			// 
+			this.button7.Location = new System.Drawing.Point(39, 55);
+			this.button7.Name = "button7";
+			this.button7.Size = new System.Drawing.Size(148, 29);
+			this.button7.TabIndex = 15;
+			this.button7.Text = "LMFC";
+			this.button7.UseVisualStyleBackColor = true;
+			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(222, 55);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(148, 29);
+			this.button6.TabIndex = 14;
+			this.button6.Text = "Arq. MFD";
+			this.button6.UseVisualStyleBackColor = true;
+			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(398, 55);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(148, 29);
+			this.button5.TabIndex = 13;
+			this.button5.Text = "DAV Emitidos";
+			this.button5.UseVisualStyleBackColor = true;
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(39, 90);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(148, 29);
+			this.button4.TabIndex = 12;
+			this.button4.Text = "LMFS";
+			this.button4.UseVisualStyleBackColor = true;
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(222, 90);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(148, 29);
+			this.button3.TabIndex = 11;
+			this.button3.Text = "Configurações do PAF-ECF";
+			this.button3.UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(398, 90);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(148, 29);
+			this.button2.TabIndex = 10;
+			this.button2.Text = "Identificação PAF-ECF";
+			this.button2.UseVisualStyleBackColor = true;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(39, 125);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(148, 29);
+			this.button1.TabIndex = 9;
+			this.button1.Text = "CAT52";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// button8
+			// 
+			this.button8.Location = new System.Drawing.Point(39, 20);
+			this.button8.Name = "button8";
+			this.button8.Size = new System.Drawing.Size(148, 29);
+			this.button8.TabIndex = 8;
+			this.button8.Text = "LX";
+			this.button8.UseVisualStyleBackColor = true;
 			// 
 			// aacTabPage
 			// 
@@ -4064,6 +4334,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudnumericUpDown3)).EndInit();
 			this.reducaoZPage.ResumeLayout(false);
+			this.menuFiscalPage.ResumeLayout(false);
+			this.menuFiscalPage.PerformLayout();
+			this.tabControl4.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.tabPage1.PerformLayout();
+			this.tabPage2.ResumeLayout(false);
+			this.tabPage2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			this.aacTabPage.ResumeLayout(false);
 			this.aacTabPage.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
@@ -4498,6 +4777,30 @@
 		private System.Windows.Forms.ListBox lstParam;
 		private RFD.ACBrRFD aCBrRFD1;
 		public ECF.ACBrECF acbrECF;
+		private System.Windows.Forms.Button button8;
+		private System.Windows.Forms.CheckBox checkBox10;
+		private System.Windows.Forms.CheckBox checkBox9;
+		private System.Windows.Forms.Label label40;
+		private System.Windows.Forms.TabControl tabControl4;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.DateTimePicker dateTimePicker2;
+		private System.Windows.Forms.DateTimePicker dateTimePicker1;
+		private System.Windows.Forms.Label label42;
+		private System.Windows.Forms.Label label41;
+		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.NumericUpDown numericUpDown2;
+		private System.Windows.Forms.NumericUpDown numericUpDown1;
+		private System.Windows.Forms.Label label43;
+		private System.Windows.Forms.Label label44;
+		private System.Windows.Forms.Button button10;
+		private System.Windows.Forms.Button btnImprimeMeiosPGTO;
+		private System.Windows.Forms.Button button7;
+		private System.Windows.Forms.Button button6;
+		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button1;
     }
 }
 

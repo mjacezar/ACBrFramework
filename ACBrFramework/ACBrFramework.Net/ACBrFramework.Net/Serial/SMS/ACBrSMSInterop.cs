@@ -166,26 +166,57 @@ namespace ACBrFramework.SMS
 
 		#endregion Eventos
 
+		#region ACBrSMSMensagem
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SMS_MSG_Create(ref IntPtr msgHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SMS_MSG_Destroy(ref IntPtr msgHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SMS_MSG_GetUltimoErro(IntPtr msgHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SMS_MSG_GetMensagem(IntPtr msgHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SMS_MSG_SetMensagem(IntPtr msgHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SMS_MSG_GetTelefone(IntPtr msgHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SMS_MSG_SetTelefone(IntPtr msgHandle, string value);
+
+		#endregion ACBrSMSMensagem
+
 		#region ACBrSMSMensagems
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int MSG_Create(ref IntPtr msgHandle);
+		public static extern int SMS_MSGC_Create(ref IntPtr msgcHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int MSG_Destroy(ref IntPtr msgHandle);
+		public static extern int SMS_MSGC_Destroy(ref IntPtr msgcHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int MSG_GetUltimoErro(IntPtr msgHandle, StringBuilder buffer, int bufferLen);
+		public static extern int SMS_MSGC_GetUltimoErro(IntPtr msgcHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int MSG_Add(IntPtr msgHandle, string telefone, string menssagem);
+		public static extern int SMS_MSGC_Add(IntPtr msgcHandle, IntPtr msgHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int MSG_LoadFromFrile(IntPtr msgHandle, string arquivo);
+		public static extern int SMS_MSGC_Remove(IntPtr msgcHandle, IntPtr msgHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int MSG_GetMessage(IntPtr msgHandle, StringBuilder telefone, StringBuilder mensagem, int bufferLen, int index);
+		public static extern int SMS_MSGC_Clear(IntPtr msgcHandle);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SMS_MSGC_LoadFromFrile(IntPtr msgcHandle, string arquivo);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SMS_MSGC_GetMSG(IntPtr msgcHandle, IntPtr msgHandle, int index);
+		
 		#endregion ACBrSMSMensagems
 
 		#endregion ACBrSMS

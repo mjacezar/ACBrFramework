@@ -1182,6 +1182,22 @@ namespace ACBrFramework.ECFTeste
 			}			
 		}
 
+		private void ImprimeMeiosPgto()
+		{
+			List<FormaPagamento> FPgto = new List<FormaPagamento>();
+
+			var item = new FormaPagamento();
+
+			item.Data = DateTime.Now;
+			item.Descricao = "Dinheiro";
+			item.Indice = "01";
+			item.PermiteVinculado = false;
+			item.TipoDoc = "Cumpom Fiscal";
+			item.Total = 10.30m;
+
+			FPgto.Add(item);
+		}
+
 		#endregion PAF
 
 		#region Diversos
@@ -1311,7 +1327,7 @@ namespace ACBrFramework.ECFTeste
 
         #endregion Eventos
 
-        #region Botões      
+        #region Botões
 
 		private void aacAbrirArquivoButton_Click(object sender, EventArgs e)
 		{
@@ -1622,6 +1638,15 @@ namespace ACBrFramework.ECFTeste
 		}
 
 		#endregion Menu			
+
+		#region Menu PAF
+
+		private void btnImprimeMeiosPGTO_Click(object sender, EventArgs e)
+		{
+			ImprimeMeiosPgto();
+		}
+
+		#endregion Menu PAF
 
 		#endregion Event Handlers
 	}

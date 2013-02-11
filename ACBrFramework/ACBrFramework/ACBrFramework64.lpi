@@ -48,7 +48,6 @@
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
@@ -82,10 +81,13 @@
       <Unit3>
         <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
         <UnitName Value="ACBrUtil"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="934"/>
-        <CursorPos X="28" Y="943"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="1502"/>
+        <CursorPos X="15" Y="1510"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
@@ -440,7 +442,7 @@
       <Unit45>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
         <UnitName Value="pcnGerador"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="694"/>
         <CursorPos X="56" Y="703"/>
@@ -449,7 +451,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit45>
     </Units>
-    <JumpHistory Count="7" HistoryIndex="6">
+    <JumpHistory Count="8" HistoryIndex="7">
       <Position1>
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="5148" Column="72" TopLine="1943"/>
@@ -478,6 +480,10 @@
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
         <Caret Line="703" Column="56" TopLine="694"/>
       </Position7>
+      <Position8>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
+        <Caret Line="943" Column="28" TopLine="934"/>
+      </Position8>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
