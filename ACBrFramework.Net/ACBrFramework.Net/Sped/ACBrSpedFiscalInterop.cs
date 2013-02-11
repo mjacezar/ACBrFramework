@@ -2787,7 +2787,20 @@ namespace ACBrFramework.Sped
 			public string DESCR_NR_TOT;
 		}
 
-
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD370
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_ORIG;
+		
+			public double VL_SERV;
+			
+			public double QTD_BILH;
+			
+			public double VL_BC_ICMS;
+			
+			public double VL_ICMS;
+		}
 
 		#endregion BlocoD
 
@@ -3354,6 +3367,9 @@ namespace ACBrFramework.Sped
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SPDF_Bloco_D_RegistroD365New(IntPtr spdfHandle, BlocoDRegistroD365 registroD365);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD370New(IntPtr spdfHandle, BlocoDRegistroD370 registroD370);
 
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
