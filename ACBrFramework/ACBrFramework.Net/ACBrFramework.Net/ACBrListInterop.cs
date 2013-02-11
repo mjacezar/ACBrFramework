@@ -17,8 +17,6 @@ namespace ACBrFramework
 	[ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
 
-	[DesignerCategory("ACBr")]
-	[DesignTimeVisible(true)]
 	public abstract class ACBrListInterop<TItem> : ACBrClassInterop, IEnumerable<TItem> where TItem : ACBrClassInterop
 	{
 		#region Inner Types
