@@ -990,28 +990,236 @@ type BlocoCRegistroC700 = record
   CHV_COD_DIG          : array[0..32] of char;
 end;
 
+type BlocoCRegistroC790 = record
+  CST_ICMS              : array[0..3] of char;
+  CFOP                  : array[0..4] of char;
+  ALIQ_ICMS             : Double;
+  VL_OPR                : Double;
+  VL_BC_ICMS            : Double;
+  VL_ICMS               : Double;
+  VL_BC_ICMS_ST         : Double;
+  VL_ICMS_ST            : Double;
+  VL_RED_BC             : Double;
+  COD_OBS               : array[0..6] of char;
+end;
 
+type BlocoCRegistroC791 = record
+   UF                   : array[0..2] of char;
+   VL_BC_ICMS_ST        : Double;
+   VL_ICMS_ST           : Double;
+end;
 
+type BlocoCRegistroC800 = record
+  COD_MOD               : array[0..2] of char;
+  COD_SIT               : Integer;
+  NUM_CFE               : array[0..6] of char;
+  DT_DOC                : Double;
+  VL_CFE                : Double;
+  VL_PIS                : Double;
+  VL_COFINS             : Double;
+  CNPJ_CPF              : array[0..14] of char;
+  NR_SAT                : array[0..9] of char;
+  CHV_CFE               : array[0..44] of char;
+  VL_DESC               : Double;
+  VL_MERC               : Double;
+  VL_OUT_DA             : Double;
+  VL_ICMS               : Double;
+  VL_PIS_ST             : Double;
+  VL_COFINS_ST          : Double;
+end;
 
+type BlocoCRegistroC850 = record
+  CST_ICMS              : array[0..3] of char;
+  CFOP                  : array[0..4] of char;
+  ALIQ_ICMS             : Double;
+  VL_OPR                : Double;
+  VL_BC_ICMS            : Double;
+  VL_ICMS               : Double;
+  COD_OBS               : array[0..6] of char;
+end;
 
+type BlocoCRegistroC860 = record
+  COD_MOD               : array[0..2] of char;
+  NR_SAT                : array[0..9] of char;
+  DT_DOC                : Double;
+  DOC_INI               : array[0..6] of char;
+  DOC_FIN               : array[0..6] of char;
+end;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+type BlocoCRegistroC890 = record
+  CST_ICMS                : array[0..3] of char;
+  CFOP                    : array[0..4] of char;
+  ALIQ_ICMS               : currency;
+  VL_OPR                  : currency;
+  VL_BC_ICMS              : currency;
+  VL_ICMS                 : currency;
+  COD_OBS                 : array[0..6] of char;
+end;
 
 
 {%endregion Registros Bloco C}
+
+{%region Registro Bloco D}
+
+type BlocoDRegistroD001 = record
+   IND_MOV    : Integer;
+end;
+
+type BlocoDRegistroD100 = record
+  IND_OPER              : Integer;
+  IND_EMIT              : Integer;
+  COD_PART              : array[0..60] of char;
+  COD_MOD               : array[0..2] of char;
+  COD_SIT               : Integer;
+  SER                   : array[0..4] of char;
+  SUB                   : array[0..3] of char;
+  NUM_DOC               : array[0..9] of char;
+  CHV_CTE               : array[0..44] of char;
+  DT_DOC                : Double;
+  DT_A_P                : Double;
+  TP_CT_e               : array[0..1] of char;
+  CHV_CTE_REF           : array[0..44] of char;
+  VL_DOC                : Double;
+  VL_DESC               : Double;
+  IND_FRT               : Integer;
+  VL_SERV               : Double;
+  VL_BC_ICMS            : Double;
+  VL_ICMS               : Double;
+  VL_NT                 : Double;
+  COD_INF               : array[0..6] of char;
+  COD_CTA               : array[0..60] of char;
+end;
+
+type BlocoDRegistroD110 = record
+  COD_ITEM              : array[0..60] of char;
+  NUN_ITEM              : integer;
+  VL_SERV               : Double;
+  VL_OUT                : Double;
+end;
+
+type BlocoDRegistroD120 = record
+  COD_MUN_ORIG          :array[0..7] of char;
+  COD_MUN_DEST          :array[0..7] of char;
+  VEIC_ID               :array[0..7] of char;
+  UF_ID                 :array[0..2] of char;
+end;
+
+type BlocoDRegistroD130 = record
+  COD_PART_CONSG        : array[0..60] of char;
+  COD_PART_RED          : array[0..60] of char;
+  IND_FRT_RED           : integer;
+  COD_MUN_ORIG          : array[0..7] of char;
+  COD_MUN_DEST          : array[0..7] of char;
+  VEIC_ID               : array[0..7] of char;
+  VL_LIQ_FRT            : Double;
+  VL_SEC_CAT            : Double;
+  VL_DESP               : Double;
+  VL_PEDG               : Double;
+  VL_OUT                : Double;
+  VL_FRT                : Double;
+  UF_ID                 : array[0..2] of char;
+end;
+
+type BlocoDRegistroD140 = record
+  COD_PART_CONSG        : array[0..60] of char;
+  COD_MUN_ORIG          : array[0..7] of char;
+  COD_MUN_DEST          : array[0..7] of char;
+  IND_VEIC              : array[0..1] of char;
+  VEIC_ID               : Integer;
+  IND_NAV               : Integer;
+  VIAGEM                : array[0..60] of char;
+  VL_FRT_LIQ            : Double;
+  VL_DESP_PORT          : Double;
+  VL_DESP_CAR_DESC      : Double;
+  VL_OUT                : Double;
+  VL_FRT_BRT            : Double;
+  VL_FRT_MM             : Double;
+end;
+
+type BlocoDRegistroD150 = record
+  COD_MUN_ORIG          : array[0..7] of char;
+  COD_MUN_DEST          : array[0..7] of char;
+  VEIC_ID               : array[0..60] of char;
+  VIAGEM                : array[0..60] of char;
+  IND_TFA               : Integer;
+  VL_PESO_TX            : Double;
+  VL_TX_TERR            : Double;
+  VL_TX_RED             : Double;
+  VL_OUT                : Double;
+  VL_TX_ADV             : Double;
+end;
+
+type BlocoDRegistroD160 = record
+  DESPACHO              : array[0..60] of char;
+  CNPJ_CPF_REM          : array[0..14] of char;
+  IE_REM                : array[0..14] of char;
+  COD_MUN_ORI           : array[0..7] of char;
+  CNPJ_CPF_DEST         : array[0..14] of char;
+  IE_DEST               : array[0..14] of char;
+  COD_MUN_DEST          : array[0..7] of char;
+end;
+
+type BlocoDRegistroD161 = record
+  IND_CARGA             : Integer;
+  CNPJ_COL              : array[0..14] of char;
+  IE_COL                : array[0..14] of char;
+  COD_MUN_COL           : array[0..7] of char;
+  CNPJ_ENTG             : array[0..14] of char;
+  IE_ENTG               : array[0..14] of char;
+  COD_MUN_ENTG          : array[0..7] of char;
+end;
+
+type BlocoDRegistroD162 = record
+  COD_MOD               : array[0..2] of char;
+  SER                   : array[0..4] of char;
+  NUM_DOC               : array[0..9] of char;
+  DT_DOC                : Double;
+  VL_DOC                : Double;
+  VL_MERC               : Double;
+  QTD_VOL               : Integer;
+  PESO_BRT              : Double;
+  PESO_LIQ              : Double;
+end;
+
+type BlocoDRegistroD170 = record
+  COD_PART_CONSG        : array[0..60] of char;
+  COD_PART_RED          : array[0..60] of char;
+  COD_MUN_ORIG          : array[0..7] of char;
+  COD_MUN_DEST          : array[0..7] of char;
+  OTM                   : array[0..60] of char;
+  IND_NAT_FRT           : Integer;
+  VL_LIQ_FRT            : Double;
+  VL_GRIS               : Double;
+  VL_PDG                : Double;
+  VL_OUT                : Double;
+  VL_FRT                : Double;
+  VEIC_ID               : array[0..7] of char;
+  UF_ID                 : array[0..2] of char;
+end;
+
+type BlocoDRegistroD180 = record
+  NUM_SEQ               : array[0..60] of char;
+  IND_EMIT              : Integer;
+  CNPJ_EMIT             : array[0..14] of char;
+  UF_EMIT               : array[0..2] of char;
+  IE_EMIT               : array[0..14] of char;
+  COD_MUN_ORIG          : array[0..7] of char;
+  CNPJ_CPF_TOM          : array[0..14] of char;
+  UF_TOM                : array[0..2] of char;
+  IE_TOM                : array[0..14] of char;
+  COD_MUN_DEST          : array[0..7] of char;
+  COD_MOD               : array[0..2] of char;
+  SER                   : array[0..4] of char;
+  SUB                   : array[0..3] of char;
+  NUM_DOC               : array[0..9] of char;
+  DT_DOC                : Double;
+  VL_DOC                : Double;
+end;
+
+
+
+
+{%endregion Registro Bloco D}
 
 implementation
 
