@@ -182,7 +182,6 @@
     <Compile Include="CNIEE\Registro.cs" />
     <Compile Include="CNIEE\Classes\Exporta.cs" />
     <Compile Include="ACBrListInterop.cs" />
-    <None Include="Copy of ACBrClassInterop.cs" />
     <Compile Include="EAD\ACBrEAD.cs" />
     <Compile Include="EAD\ACBrEADInterop.cs" />
     <Compile Include="NFE\ACBrNFE.cs" />
