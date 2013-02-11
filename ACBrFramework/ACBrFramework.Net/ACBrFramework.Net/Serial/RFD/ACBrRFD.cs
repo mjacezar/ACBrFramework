@@ -653,7 +653,7 @@ namespace ACBrFramework.RFD
 
 		#region Override Methods
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrRFDInterop.RFD_Create);
 		}

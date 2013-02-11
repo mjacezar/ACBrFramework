@@ -1216,6 +1216,100 @@ type BlocoDRegistroD180 = record
   VL_DOC                : Double;
 end;
 
+type BlocoDRegistroD190 = record
+   CST_ICMS             : array[0..3] of char;
+   CFOP                 : array[0..4] of char;
+   ALIQ_ICMS            : Double;
+   VL_OPR               : Double;
+   VL_BC_ICMS           : Double;
+   VL_ICMS              : Double;
+   VL_RED_BC            : Double;
+   COD_OBS              : array[0..6] of char;
+end;
+
+type BlocoDRegistroD195 = record
+  COD_OBS               : array[0..6] of char;
+  TXT_COMPL             : array[0..1023] of char;
+end;
+
+type BlocoDRegistroD197 = record
+  COD_AJ               : array[0..10] of char;
+  DESCR_COMPL_AJ       : array[0..254] of char;
+  COD_ITEM             : array[0..60] of char;
+  VL_BC_ICMS           : Double;
+  ALIQ_ICMS            : Double;
+  VL_ICMS              : Double;
+  VL_OUTROS            : Double;
+end;
+
+type BlocoDRegistroD300 = record
+  COD_MOD               : array[0..2] of char;
+  SER                   : array[0..4] of char;
+  SUB                   : array[0..3] of char;
+  NUM_DOC_INI           : array[0..6] of char;
+  NUM_DOC_FIN           : array[0..6] of char;
+  CST_ICMS              : array[0..3] of char;
+  CFOP                  : array[0..4] of char;
+  ALIQ_ICMS             : Double;
+  DT_DOC                : Double;
+  VL_OPR                : Double;
+  VL_DESC               : Double;
+  VL_SERV               : Double;
+  VL_SEG                : Double;
+  VL_OUT_DESP           : Double;
+  VL_BC_ICMS            : Double;
+  VL_ICMS               : Double;
+  VL_RED_BC             : Double;
+  COD_OBS               : array[0..6] of char;
+  COD_CTA               : array[0..60] of char;
+end;
+
+type BlocoDRegistroD301 = record
+  NUM_DOC_CANC          : array[0..60] of char;
+end;
+
+type BlocoDRegistroD310 = record
+  COD_MUN_ORIG          : array[0..7] of char;
+  VL_SERV               : Double;
+  VL_BC_ICMS            : Double;
+  VL_ICMS               : Double;
+end;
+
+type BlocoDRegistroD350 = record
+  COD_MOD               : array[0..2] of char;
+  ECF_MOD               : array[0..20] of char;
+  ECF_FAB               : array[0..20] of char;
+  ECF_CX                : array[0..3] of char;
+end;
+
+type BlocoDRegistroD355 = record
+  DT_DOC                : Double;
+  CRO                   : integer;
+  CRZ                   : integer;
+  NUM_COO_FIN           : integer;
+  GT_FIN                : Double;
+  VL_BRT                : Double;
+end;
+
+type BlocoDRegistroD360 = record
+  VL_PIS               : Double;
+  VL_COFINS            : Double;
+end;
+
+type BlocoDRegistroD365 = record
+  COD_TOT_PAR           : array[0..7] of char;
+  VLR_ACUM_TOT          : Double;
+  NR_TOT                : array[0..2] of char;
+  DESCR_NR_TOT          : array[0..254] of char;
+end;
+
+type BlocoDRegistroD370 = record
+   COD_MUN_ORIG         : array[0..7] of char;
+   VL_SERV              : Double;
+   QTD_BILH             : Double;
+   VL_BC_ICMS           : Double;
+   VL_ICMS              : Double;
+end;
 
 
 

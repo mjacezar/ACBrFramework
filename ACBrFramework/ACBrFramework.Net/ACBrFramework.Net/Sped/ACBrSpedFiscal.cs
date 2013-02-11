@@ -1217,7 +1217,6 @@ namespace ACBrFramework.Sped
 			{
 				SendRegistroD695(itemD695);
 			}
-
 		}
 
 		private void SendRegistroD100(RegistroD100 item)
@@ -1337,42 +1336,207 @@ namespace ACBrFramework.Sped
 
 		private void SendRegistroD190(RegistroD190 item)
 		{
-			throw new NotImplementedException();
+			SendRecord<ACBrSpedFiscalInterop.BlocoDRegistroD190>(item, ACBrSpedFiscalInterop.SPDF_Bloco_D_RegistroD190New);
 		}
 
 		private void SendRegistroD195(RegistroD195 item)
 		{
-			throw new NotImplementedException();
+			SendRecord<ACBrSpedFiscalInterop.BlocoDRegistroD195>(item, ACBrSpedFiscalInterop.SPDF_Bloco_D_RegistroD195New);
+
+			foreach (var itemD197 in item.RegistroD197)
+			{
+				SendRegistroD197(itemD197);
+			}
+		}
+
+		private void SendRegistroD197(RegistroD197 item)
+		{
+			SendRecord<ACBrSpedFiscalInterop.BlocoDRegistroD197>(item, ACBrSpedFiscalInterop.SPDF_Bloco_D_RegistroD197New);
 		}
 
 		private void SendRegistroD300(RegistroD300 item)
 		{
-			throw new NotImplementedException();
+			SendRecord<ACBrSpedFiscalInterop.BlocoDRegistroD300>(item, ACBrSpedFiscalInterop.SPDF_Bloco_D_RegistroD300New);
+
+			foreach (var itemD301 in item.RegistroD301)
+			{
+				SendRegistroD301(itemD301);
+			}
+
+			foreach (var itemD310 in item.RegistroD310)
+			{
+				SendRegistroD310(itemD310);
+			}
+		}
+
+		private void SendRegistroD301(RegistroD301 item)
+		{
+			SendRecord<ACBrSpedFiscalInterop.BlocoDRegistroD301>(item, ACBrSpedFiscalInterop.SPDF_Bloco_D_RegistroD301New);
+		}
+
+		private void SendRegistroD310(RegistroD310 item)
+		{
+			SendRecord<ACBrSpedFiscalInterop.BlocoDRegistroD310>(item, ACBrSpedFiscalInterop.SPDF_Bloco_D_RegistroD310New);
 		}
 
 		private void SendRegistroD350(RegistroD350 item)
+		{
+			SendRecord<ACBrSpedFiscalInterop.BlocoDRegistroD350>(item, ACBrSpedFiscalInterop.SPDF_Bloco_D_RegistroD350New);
+
+			foreach (var itemD355 in item.RegistroD355)
+			{
+				SendRegistroD355(itemD355);
+			}
+		}
+
+		private void SendRegistroD355(RegistroD355 item)
+		{
+			SendRecord<ACBrSpedFiscalInterop.BlocoDRegistroD355>(item, ACBrSpedFiscalInterop.SPDF_Bloco_D_RegistroD355New);
+
+			foreach (var itemD360 in item.RegistroD360)
+			{
+				SendRegistroD360(itemD360);
+			}
+
+			foreach (var itemD365 in item.RegistroD365)
+			{
+				SendRegistroD365(itemD365);
+			}
+
+			foreach (var itemD390 in item.RegistroD390)
+			{
+				SendRegistroD390(itemD390);
+			}
+		}
+
+		private void SendRegistroD360(RegistroD360 item)
+		{
+			SendRecord<ACBrSpedFiscalInterop.BlocoDRegistroD360>(item, ACBrSpedFiscalInterop.SPDF_Bloco_D_RegistroD360New);
+		}
+
+		private void SendRegistroD365(RegistroD365 item)
+		{
+			SendRecord<ACBrSpedFiscalInterop.BlocoDRegistroD365>(item, ACBrSpedFiscalInterop.SPDF_Bloco_D_RegistroD365New);
+
+			foreach (var itemD370 in item.RegistroD370)
+			{
+				SendRegistroD370(itemD370);
+			}
+		}
+
+		private void SendRegistroD370(RegistroD370 item)
+		{
+			throw new NotImplementedException();
+		}
+
+		private void SendRegistroD390(RegistroD390 item)
 		{
 			throw new NotImplementedException();
 		}
 
 		private void SendRegistroD400(RegistroD400 item)
 		{
+			foreach (var itemD410 in item.RegistroD410)
+			{
+				SendRegistroD410(itemD410);
+			}
+
+			foreach (var itemD420 in item.RegistroD420)
+			{
+				SendRegistroD420(itemD420);
+			}
+		}
+
+		private void SendRegistroD410(RegistroD410 item)
+		{
+			foreach (var itemD411 in item.RegistroD411)
+			{
+				SendRegistroD411(itemD411);
+			}
+		}
+
+		private void SendRegistroD411(RegistroD411 item)
+		{
+			throw new NotImplementedException();
+		}
+
+		private void SendRegistroD420(RegistroD420 item)
+		{
 			throw new NotImplementedException();
 		}
 
 		private void SendRegistroD500(RegistroD500 item)
+		{
+			foreach (var itemD510 in item.RegistroD510)
+			{
+				SendRegistroD510(itemD510);
+			}
+
+			foreach (var itemD530 in item.RegistroD530)
+			{
+				SendRegistroD530(itemD530);
+			}
+
+			foreach (var itemD590 in item.RegistroD590)
+			{
+				SendRegistroD590(itemD590);
+			}
+		}
+
+		private void SendRegistroD510(RegistroD510 item)
+		{
+			throw new NotImplementedException();
+		}
+
+		private void SendRegistroD530(RegistroD530 item)
+		{
+			throw new NotImplementedException();
+		}
+
+		private void SendRegistroD590(RegistroD590 item)
 		{
 			throw new NotImplementedException();
 		}
 
 		private void SendRegistroD600(RegistroD600 item)
 		{
-			throw new NotImplementedException();
+			foreach (var itemD610 in item.RegistroD610)
+			{
+				SendRegistroD610(itemD610);
+			}
+
+			foreach (var itemD690 in item.RegistroD690)
+			{
+				SendRegistroD690(itemD690);
+			}
+		}
+
+		private void SendRegistroD610(RegistroD610 item)
+		{
+		}
+
+		private void SendRegistroD690(RegistroD690 item)
+		{
 		}
 
 		private void SendRegistroD695(RegistroD695 item)
 		{
-			throw new NotImplementedException();
+			foreach (var itemD696 in item.RegistroD696)
+			{
+				SendRegistroD696(itemD696);
+			}
+		}
+
+		private void SendRegistroD696(RegistroD696 item)
+		{
+			foreach (var itemD697 in item.RegistroD697)
+			{
+				SendRegistroD697(itemD697);
+			}
+		}
+
+		private void SendRegistroD697(RegistroD697 item)
+		{
 		}
 
 		#endregion BlocoD Interop
@@ -1441,7 +1605,7 @@ namespace ACBrFramework.Sped
 
 		#region Override Methods
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrSpedFiscalInterop.SPDF_Create);
 

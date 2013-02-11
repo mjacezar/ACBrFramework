@@ -794,7 +794,7 @@ namespace ACBrFramework.Sintegra
 
 		#region Override Methods
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrSintegraInterop.SIN_Create);
 			Registro10 = new SintegraRegistro10();

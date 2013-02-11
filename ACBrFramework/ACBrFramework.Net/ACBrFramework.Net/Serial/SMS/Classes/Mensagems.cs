@@ -5,7 +5,48 @@ using System.ComponentModel;
 using System.Text;
 
 namespace ACBrFramework.SMS
-{	
+{
+	/*
+	public class MemsagemItem : ACBrClassInterop
+	{
+		protected internal override void OnInitialize()
+		{
+			CallCreate(ACBrSMSInterop.MSG_Create);
+		}
+
+		protected override void OnDisposing()
+		{
+			CallDestroy(ACBrSMSInterop.MSG_Destroy);
+		}
+	}
+
+	public class MensagensCollection : ACBrListInterop<MemsagemItem>
+	{
+		public MensagensCollection()
+			: base(ACBrSMSInterop.SMS_MSGC_Add, ACBrSMSInterop.SMS_MSGC_Remove, ACBrSMSInterop.SMS_MSGC_Clear)
+		{
+		}
+
+	}
+
+	public class Program()
+	{
+		public static void Main()
+		{
+			MensagensCollection collection = new MensagensCollection();
+			
+			MemsagemItem item = new MemsagemItem();
+			
+			collection.Add(item);
+
+			collection.Remove(item);
+
+			collection.Clear();
+
+		}
+	}
+	*/
+
 	[DesignTimeVisible(false)]
 	public class Mensagems : ACBrComponent, ICollection<Mensagem>
 	{
@@ -137,7 +178,7 @@ namespace ACBrFramework.SMS
 			}
 		}
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 		}
 

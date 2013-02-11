@@ -44,7 +44,7 @@ namespace ACBrFramework.NFE
 
 		#region Override Methods
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrNFEInterop.NFE_Create);
 			this.Configuracoes = new NFEConfiguracoes(this);

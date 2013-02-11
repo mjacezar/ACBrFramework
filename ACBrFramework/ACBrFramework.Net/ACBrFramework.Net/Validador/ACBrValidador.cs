@@ -287,7 +287,7 @@ namespace ACBrFramework.Validador
 
 		#region Override Methods
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrValidadorInterop.VAL_Create);
 			this.Modulo = new Modulo(this);
