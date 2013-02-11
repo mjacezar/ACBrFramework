@@ -2110,23 +2110,508 @@ namespace ACBrFramework.Sped
 			public string CHV_COD_DIG;
 		}
 
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoCRegistroC790
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string CST_ICMS;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public double CFOP;
+			
+			public double ALIQ_ICMS;
+			
+			public double VL_OPR;
+			
+			public double VL_BC_ICMS;
+			
+			public double VL_ICMS;
+			
+			public double VL_BC_ICMS_ST;
+			
+			public double VL_ICMS_ST;
+			
+			public double VL_RED_BC;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string COD_OBS;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoCRegistroC791
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string UF;
+
+			public double VL_BC_ICMS_ST;
+
+			public double VL_ICMS_ST;
+		}
 
 
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoCRegistroC800
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string COD_MOD;
+			
+			public int COD_SIT;
 
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string NUM_CFE;
+			
+			public double DT_DOC;
+			
+			public double VL_CFE;
+			
+			public double VL_PIS;
+			
+			public double VL_COFINS;
 
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CNPJ_CPF;
 
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+			public string NR_SAT;
 
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
+			public string CHV_CFE;
+			
+			public double VL_DESC;
+			
+			public double VL_MERC;
+			
+			public double VL_OUT_DA;
+			
+			public double VL_ICMS;
+			
+			public double VL_PIS_ST;
+			
+			public double VL_COFINS_ST;
+		}
 
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoCRegistroC850
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string CST_ICMS;
 
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string CFOP;
+			
+			public double ALIQ_ICMS;
+			
+			public double VL_OPR;
+			
+			public double VL_BC_ICMS;
+			
+			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string COD_OBS;
+		}
 
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoCRegistroC860
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string COD_MOD;
 
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+			public string NR_SAT;
+			
+			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string DOC_INI;
 
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string DOC_FIN;
+		}
 
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoCRegistroC890
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string CST_ICMS;
 
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string CFOP;
+
+			public double ALIQ_ICMS;
+
+			public double VL_OPR;
+
+			public double VL_BC_ICMS;
+
+			public double VL_ICMS;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string COD_OBS;
+		}
 
 		#endregion BlocoC
+
+		#region BlocoD
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD001
+		{
+			[MarshalAs(UnmanagedType.I4)]
+			public int IND_MOV;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD100
+		{
+			public int IND_OPER;
+			
+			public int IND_EMIT;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COD_PART;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string COD_MOD;
+			
+			public int COD_SIT;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string SER;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string SUB;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+			public string NUM_DOC;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
+			public string CHV_CTE;
+			
+			public double DT_DOC;
+			
+			public double DT_A_P;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
+			public string TP_CT_e;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
+			public string CHV_CTE_REF;
+			
+			public double VL_DOC;
+			
+			public double VL_DESC;
+			
+			public int IND_FRT;
+			
+			public double VL_SERV;
+			
+			public double VL_BC_ICMS;
+			
+			public double VL_ICMS;
+			
+			public double VL_NT;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string COD_INF;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COD_CTA;
+		}
+
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD110
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COD_ITEM;
+
+			public int NUN_ITEM;
+			
+			public double VL_SERV;
+			
+			public double VL_OUT;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD120
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_ORIG;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_DEST;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string VEIC_ID;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string UF_ID;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD130
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COD_PART_CONSG;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COD_PART_RED;
+			
+			public int IND_FRT_RED;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_ORIG;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_DEST;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string VEIC_ID;
+			
+			public double VL_LIQ_FRT;
+			
+			public double VL_SEC_CAT;
+			
+			public double VL_DESP;
+			
+			public double VL_PEDG;
+			
+			public double VL_OUT;
+			
+			public double VL_FRT;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string UF_ID;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD140
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COD_PART_CONSG;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_ORIG;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_DEST;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
+			public string IND_VEIC;
+
+			public int VEIC_ID;
+			
+			public int IND_NAV;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string VIAGEM;
+			
+			public double VL_FRT_LIQ;
+			
+			public double VL_DESP_PORT;
+			
+			public double VL_DESP_CAR_DESC;
+			
+			public double VL_OUT;
+			
+			public double VL_FRT_BRT;
+			
+			public double VL_FRT_MM;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD150
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_ORIG;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_DEST;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string VEIC_ID;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string VIAGEM;
+			
+			public int IND_TFA;
+			
+			public double VL_PESO_TX;
+			
+			public double VL_TX_TERR;
+			
+			public double VL_TX_RED;
+			
+			public double VL_OUT;
+			
+			public double VL_TX_ADV;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD160
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string DESPACHO;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CNPJ_CPF_REM;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string IE_REM;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_ORI;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CNPJ_CPF_DEST;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string IE_DEST;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_DEST;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD161
+		{
+			public int IND_CARGA;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CNPJ_COL;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string IE_COL;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_COL;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CNPJ_ENTG;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string IE_ENTG;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_ENTG;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD162
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string COD_MOD;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string SER;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+			public string NUM_DOC;
+			
+			public double DT_DOC;
+			
+			public double VL_DOC;
+			
+			public double VL_MERC;
+			
+			public double QTD_VOL;
+			
+			public double PESO_BRT;
+			
+			public double PESO_LIQ;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD170
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COD_PART_CONSG;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COD_PART_RED;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_ORIG;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_DEST;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string OTM;
+			
+			public int IND_NAT_FRT;
+			
+			public double VL_LIQ_FRT;
+			
+			public double VL_GRIS;
+			
+			public double VL_PDG;
+			
+			public double VL_OUT;
+			
+			public double VL_FRT;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string VEIC_ID;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string UF_ID;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD180
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string NUM_SEQ;
+			
+			public int IND_EMIT;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CNPJ_EMIT;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string UF_EMIT;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string IE_EMIT;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_ORIG;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CNPJ_CPF_TOM;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string UF_TOM;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string IE_TOM;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_DEST;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string COD_MOD;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string SER;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string SUB;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+			public string NUM_DOC;
+			
+			public double DT_DOC;
+			
+			public double VL_DOC;
+		}
+
+
+
+
+		#endregion BlocoD
 
 		#endregion InnerTypes
 
@@ -2587,9 +3072,86 @@ namespace ACBrFramework.Sped
 		public static extern int SPDF_Bloco_C_RegistroC700New(IntPtr spdfHandle, BlocoCRegistroC700 registroC700);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_RegistroC790New(IntPtr spdfHandle, BlocoCRegistroC790 registroC790);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_RegistroC791New(IntPtr spdfHandle, BlocoCRegistroC791 registroC791);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_RegistroC800New(IntPtr spdfHandle, BlocoCRegistroC800 registroC800);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_RegistroC850New(IntPtr spdfHandle, BlocoCRegistroC850 registroC850);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_RegistroC860New(IntPtr spdfHandle, BlocoCRegistroC860 registroC860);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_C_RegistroC890New(IntPtr spdfHandle, BlocoCRegistroC890 registroC890);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SPDF_Bloco_C_RegistroC990_GetQTD_LIN_C(IntPtr spdfHandle);
 
 		#endregion BlocoC
+
+		#region Bloco_D
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_GetDT_INI(IntPtr spdfHandle, ref double dtIni);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_SetDT_INI(IntPtr spdfHandle, double dtIni);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_GetDT_FIN(IntPtr spdfHandle, ref double dtFin);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_SetDT_FIN(IntPtr spdfHandle, double dtFin);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_GetGravado(IntPtr spdfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD001New(IntPtr spdfHandle, BlocoDRegistroD001 registroD001);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD100New(IntPtr spdfHandle, BlocoDRegistroD100 registroD100);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD110New(IntPtr spdfHandle, BlocoDRegistroD110 registroD110);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD120New(IntPtr spdfHandle, BlocoDRegistroD120 registroD120);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD130New(IntPtr spdfHandle, BlocoDRegistroD130 registroD130);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD140New(IntPtr spdfHandle, BlocoDRegistroD140 registroD140);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD150New(IntPtr spdfHandle, BlocoDRegistroD150 registroD150);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD160New(IntPtr spdfHandle, BlocoDRegistroD160 registroD160);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD161New(IntPtr spdfHandle, BlocoDRegistroD161 registroD161);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD162New(IntPtr spdfHandle, BlocoDRegistroD162 registroD162);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD170New(IntPtr spdfHandle, BlocoDRegistroD170 registroD170);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD180New(IntPtr spdfHandle, BlocoDRegistroD180 registroD180);
+
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD990_GetQTD_LIN_D(IntPtr spdfHandle);
+
+		#endregion Bloco_9
 
 		#endregion Metodos
 
