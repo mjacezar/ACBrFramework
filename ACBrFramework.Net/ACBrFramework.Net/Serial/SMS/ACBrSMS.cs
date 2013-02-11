@@ -279,21 +279,14 @@ namespace ACBrFramework.SMS
 			AIndice = buffer.ToString();
 		}
 
-		public void EnviarSMSLote(Mensagems menssagens, ref string AIndice)
+		public void EnviarSMSLote(MensagemCollection menssagens, ref string AIndice)
 		{
 			const int bufferLen = 512;
 			StringBuilder buffer = new StringBuilder(bufferLen);
-			menssagens.Iniciar();
-			for (int i = 0; i < menssagens.Count; i++)
-			{
-				int resp = ACBrSMSInterop.MSG_Add(menssagens.Handle, ToUTF8(menssagens[i].Telefone), ToUTF8(menssagens[i].MensagemTexto));
-				menssagens.CheckResult(resp);
-			}
 
 			int ret = ACBrSMSInterop.SMS_EnviarSMSLote(this.Handle, menssagens.Handle, buffer, bufferLen);
 			CheckResult(ret);
-			menssagens.Finalizar();
-			AIndice = buffer.ToString();
+			AIndice = FromUTF8(buffer.ToString());
 		}
 
 		public void ListarMensagens(Filtro filtro, string path)

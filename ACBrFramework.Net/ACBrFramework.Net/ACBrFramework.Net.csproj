@@ -335,7 +335,7 @@
     <Compile Include="Serial\SMS\ACBrSMS.cs" />
     <Compile Include="Serial\SMS\ACBrSMSInterop.cs" />
     <Compile Include="Serial\SMS\Classes\Filtro.cs" />
-    <Compile Include="Serial\SMS\Classes\Mensagems.cs" />
+    <Compile Include="Serial\SMS\Classes\MensagemCollection.cs" />
     <Compile Include="Serial\SMS\Classes\Modelo.cs" />
     <Compile Include="Serial\SMS\Classes\SimCard.cs" />
     <Compile Include="Serial\SMS\Classes\Sincronismo.cs" />

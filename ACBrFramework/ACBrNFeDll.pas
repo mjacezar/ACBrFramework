@@ -21,8 +21,15 @@ type TNFEHandle = record
   EventHandlers : TEventHandlersNFE;
 end;
 
+type TNFHandle = record
+  UltimoErro : String;
+  NF : NotaFiscal;
+  NFEHandle : ^TNFEHandle;
+end;
+
 {Ponteiro para o Handle }
 type PNFEHandle = ^TNFEHandle;
+type PNFHandle = ^TNFHandle;
 
 implementation
 
@@ -1683,7 +1690,7 @@ end;
 
 {%region NotasFiscais }
 
-Function NFE_GetNotasFiscais(const nfeHandle: PNFEHandle; var nfHandle : TNotasFiscais) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NotasFiscais_ADD(const nfeHandle: PNFEHandle; const nfHandle : PNFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -1693,7 +1700,9 @@ begin
   end;
 
   try
-     nfHandle := nfeHandle^.NFE.NotasFiscais;
+     nfeHandle^.NFE.NotasFiscais.Add(nfHandle^.NF);
+     nfHandle^.NF := nfeHandle^.NFE.NotasFiscais[nfHandle^.NF := nfeHandle^.NFE.NotasFiscais.Count - 1];
+     nfHandle^.NFEHandle := nfeHandle;
      Result := 0;
   except
      on exception : Exception do

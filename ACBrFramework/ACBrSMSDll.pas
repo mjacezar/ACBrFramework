@@ -17,22 +17,30 @@ type TEventHandlers = class
   procedure OnProgresso(const AAtual, ATotal: Integer);
 end;
 
-{Handle para o componente TACBrECF }
+{%region Handle para o componente TACBrECF }
+
 type TSMSHandle = record
   UltimoErro : String;
   SMS : TACBrSMS;
   EventHandlers : TEventHandlers;
-  Menssagens    : TACBrSMSMensagens;
 end;
 
-type TMSGHandle = record
+type TMSGCHandle = record
   UltimoErro : String;
   Menssagens : TACBrSMSMensagens;
 end;
 
+type TMSGHandle = record
+  UltimoErro : String;
+  Menssagem : TACBrSMSMensagem;
+end;
+
 {Ponteiro para o Handle }
 type PSMSHandle = ^TSMSHandle;
+type PMSGCHandle = ^TMSGCHandle;
 type PMSGHandle = ^TMSGHandle;
+
+{%endregion}
 
 implementation
 
@@ -746,7 +754,7 @@ begin
 
 end;
 
-Function SMS_EnviarSMSLote(const smsHandle: PSMSHandle; const msgHandle: PMSGHandle; Buffer : pChar; const BufferLen : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function SMS_EnviarSMSLote(const smsHandle: PSMSHandle; const msgcHandle: PMSGCHandle; Buffer : pChar; const BufferLen : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 var
   Indice : AnsiString;
 begin
@@ -759,7 +767,7 @@ begin
 
   try
   Indice := '';
-  smsHandle^.SMS.EnviarSMSLote(msgHandle^.Menssagens, Indice);
+  smsHandle^.SMS.EnviarSMSLote(msgcHandle^.Menssagens, Indice);
   StrPLCopy(Buffer, Indice, BufferLen);
   Result := length(Indice);
   except
@@ -818,16 +826,193 @@ end;
 
 {%endregion}
 
+{%region Mensagems }
+
+Function SMS_MSGC_Create(var msgcHandle: PMSGCHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  try
+
+     New(msgcHandle);
+
+     msgcHandle^.Menssagens := TACBrSMSMensagens.create();
+     msgcHandle^.UltimoErro := '';
+     Result := 0;
+
+  except
+     on exception : Exception do
+     begin
+        Result := -1;
+        msgcHandle^.UltimoErro := exception.Message;
+     end
+  end;
+
+end;
+
+Function SMS_MSGC_Destroy(var msgcHandle: PMSGCHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (msgcHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+
+    msgcHandle^.Menssagens.Destroy;
+    msgcHandle^.Menssagens := nil;
+
+    Dispose(msgcHandle);
+    msgcHandle := nil;
+    Result := 0;
+
+  except
+     on exception : Exception do
+     begin
+        Result := -1;
+        msgcHandle^.UltimoErro := exception.Message;
+     end
+  end;
+
+end;
+
+Function SMS_MSGC_GetUltimoErro(const msgcHandle: PMSGCHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  try
+     StrPLCopy(Buffer, msgcHandle^.UltimoErro, BufferLen);
+     Result := length(msgcHandle^.UltimoErro);
+  except
+     on exception : Exception do
+     begin
+        msgcHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SMS_MSGC_Add(const msgcHandle: PMSGCHandle; const msgHandle: PMSGHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (msgcHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     msgcHandle^.Menssagens.Add(msgHandle^.Menssagem);
+     msgHandle^.Menssagem := msgcHandle^.Menssagens[msgcHandle^.Menssagens.Count - 1];
+     Result := msgcHandle^.Menssagens.Count;
+  except
+     on exception : Exception do
+     begin
+        msgcHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SMS_MSGC_Remove(const msgcHandle: PMSGCHandle; const msgHandle: PMSGHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (msgcHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     msgcHandle^.Menssagens.Remove(msgHandle^.Menssagem);
+     Result := msgcHandle^.Menssagens.Count;
+  except
+     on exception : Exception do
+     begin
+        msgcHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SMS_MSGC_Clear(const msgcHandle: PMSGCHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (msgcHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     msgcHandle^.Menssagens.Clear;
+     Result := msgcHandle^.Menssagens.Count;
+  except
+     on exception : Exception do
+     begin
+        msgcHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function SMS_MSGC_LoadFromFrile(const msgcHandle: PMSGCHandle; const arquivo : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (msgcHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     msgcHandle^.Menssagens.LoadFromFrile(arquivo);
+     Result := msgcHandle^.Menssagens.Count;
+  except
+     on exception : Exception do
+     begin
+        msgcHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SMS_MSGC_GetMSG(const msgcHandle: PMSGCHandle; const msgHandle: PMSGHandle; const idx : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (msgcHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     msgHandle^.Menssagem := msgcHandle^.Menssagens[idx];
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        msgcHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
 {%region Mensagem }
 
-Function MSG_Create(var msgHandle: PMSGHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function SMS_MSG_Create(var msgHandle: PMSGHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   try
 
      New(msgHandle);
 
-     msgHandle^.Menssagens := TACBrSMSMensagens.create();
+     msgHandle^.Menssagem.Create;
      msgHandle^.UltimoErro := '';
      Result := 0;
 
@@ -841,7 +1026,7 @@ begin
 
 end;
 
-Function MSG_Destroy(var msgHandle: PMSGHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function SMS_MSG_Destroy(var msgHandle: PMSGHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (msgHandle = nil) then
@@ -852,8 +1037,8 @@ begin
 
   try
 
-    msgHandle^.Menssagens.Destroy;
-    msgHandle^.Menssagens := nil;
+    msgHandle^.Menssagem.Destroy;
+    msgHandle^.Menssagem := nil;
 
     Dispose(msgHandle);
     msgHandle := nil;
@@ -869,7 +1054,7 @@ begin
 
 end;
 
-Function MSG_GetUltimoErro(const msgHandle: PMSGHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function SMS_MSG_GetUltimoErro(const msgHandle: PMSGHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   try
@@ -884,9 +1069,7 @@ begin
   end;
 end;
 
-Function MSG_Add(const msgHandle: PMSGHandle; const telefone, mensagem : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
-var
-  msg : TACBrSMSMensagem;
+Function SMS_MSG_GetMensagem(const msgHandle: PMSGHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (msgHandle = nil) then
@@ -896,11 +1079,8 @@ begin
   end;
 
   try
-     msg.Create;
-     msg.Telefone := telefone;
-     msg.Mensagem := mensagem;
-     msgHandle^.Menssagens.Add(msg);
-     Result := msgHandle^.Menssagens.Count;
+     StrPLCopy(Buffer, msgHandle^.Menssagem.Mensagem, BufferLen);
+     Result := length(msgHandle^.Menssagem.Mensagem);
   except
      on exception : Exception do
      begin
@@ -908,10 +1088,9 @@ begin
         Result := -1;
      end
   end;
-
 end;
 
-Function MSG_LoadFromFrile(const msgHandle: PMSGHandle; const arquivo : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function SMS_MSG_SetMensagem(const msgHandle: PMSGHandle; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (msgHandle = nil) then
@@ -921,8 +1100,8 @@ begin
   end;
 
   try
-     msgHandle^.Menssagens.LoadFromFrile(arquivo);
-     Result := msgHandle^.Menssagens.Count;
+     msgHandle^.Menssagem.Mensagem := value;
+     Result := length(msgHandle^.Menssagem.Mensagem);
   except
      on exception : Exception do
      begin
@@ -930,11 +1109,9 @@ begin
         Result := -1;
      end
   end;
-
 end;
 
-Function MSG_GetMensagem(const msgHandle: PMSGHandle; telefone, menssagem : pChar;
-             const BufferLen : Integer; const Index : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function SMS_MSG_GetTelefone(const msgHandle: PMSGHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (msgHandle = nil) then
@@ -944,9 +1121,8 @@ begin
   end;
 
   try
-     StrPLCopy(telefone, msgHandle^.Menssagens[Index].Telefone, BufferLen);
-     StrPLCopy(menssagem, msgHandle^.Menssagens[Index].Mensagem, BufferLen);
-     Result := 0;
+     StrPLCopy(Buffer, msgHandle^.Menssagem.Telefone, BufferLen);
+     Result := length(msgHandle^.Menssagem.Telefone);
   except
      on exception : Exception do
      begin
@@ -954,7 +1130,27 @@ begin
         Result := -1;
      end
   end;
+end;
 
+Function SMS_MSG_SetTelefone(const msgHandle: PMSGHandle; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (msgHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     msgHandle^.Menssagem.Telefone := value;
+     Result := length(msgHandle^.Menssagem.Telefone);
+  except
+     on exception : Exception do
+     begin
+        msgHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
 end;
 
 {%endregion}
@@ -1020,8 +1216,13 @@ SMS_Ativar, SMS_Desativar, SMS_EnviarSMS, SMS_EnviarSMSLote,
 SMS_ListarMensagens,
 
 { Mensagens }
-MSG_Create, MSG_Destroy, MSG_GetUltimoErro, MSG_Add,
-MSG_LoadFromFrile, MSG_GetMensagem,
+SMS_MSGC_Create, SMS_MSGC_Destroy, SMS_MSGC_GetUltimoErro, SMS_MSGC_Add,
+SMS_MSGC_Remove, SMS_MSGC_Clear, SMS_MSGC_LoadFromFrile, SMS_MSGC_GetMSG,
+
+{ Mensagem }
+SMS_MSG_Create, SMS_MSG_Destroy, SMS_MSG_GetUltimoErro,
+SMS_MSG_GetMensagem, SMS_MSG_SetMensagem,
+SMS_MSG_GetTelefone, SMS_MSG_SetTelefone,
 
 { Eventos }
 SMS_SetOnProgresso;
