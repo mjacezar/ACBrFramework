@@ -1426,7 +1426,7 @@ namespace ACBrFramework.Sped
 
 		private void SendRegistroD370(RegistroD370 item)
 		{
-			throw new NotImplementedException();
+			SendRecord<ACBrSpedFiscalInterop.BlocoDRegistroD370>(item, ACBrSpedFiscalInterop.SPDF_Bloco_D_RegistroD370New);
 		}
 
 		private void SendRegistroD390(RegistroD390 item)
