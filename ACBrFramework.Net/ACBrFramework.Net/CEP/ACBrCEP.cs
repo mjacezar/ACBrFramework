@@ -234,7 +234,7 @@ namespace ACBrFramework.CEP
 
 		#region Override Methods
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrCEPInterop.CEP_Create);
 		}

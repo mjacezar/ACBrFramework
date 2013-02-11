@@ -162,7 +162,7 @@
     <Compile Include="AAC\Eventos\OnDeCryptArgs.cs" />
     <Compile Include="AAC\Eventos\VerificarRecomporNumSerieArgs.cs" />
     <Compile Include="AAC\Eventos\VerificarRecomporValorGTArgs.cs" />
-    <None Include="ACBrClassInterop.cs" />
+    <Compile Include="ACBrClassInterop.cs" />
     <Compile Include="ACBrEventHandler.cs" />
     <Compile Include="ACBrInteropEventHandlerBase.cs" />
     <Compile Include="AAC\Eventos\AntesArquivoArgs.cs" />
@@ -181,6 +181,7 @@
     <Compile Include="CNIEE\ACBrCNIEEInterop.cs" />
     <Compile Include="CNIEE\Registro.cs" />
     <Compile Include="CNIEE\Classes\Exporta.cs" />
+    <Compile Include="ACBrListInterop.cs" />
     <Compile Include="EAD\ACBrEAD.cs" />
     <Compile Include="EAD\ACBrEADInterop.cs" />
     <Compile Include="NFE\ACBrNFE.cs" />

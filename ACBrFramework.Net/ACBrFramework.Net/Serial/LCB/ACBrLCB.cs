@@ -114,7 +114,7 @@ namespace ACBrFramework.LCB
 
 		#region Override Methods
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrLCBInterop.LCB_Create);
 			Device = new ACBrDevice(this);

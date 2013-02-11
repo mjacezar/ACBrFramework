@@ -48,6 +48,11 @@ namespace ACBrFramework
 
 		#region Constructor
 
+		static ACBrInteropBase()
+		{
+			UnmanagedResources.Extract();
+		}
+
 		protected ACBrInteropBase()
 		{
 		}

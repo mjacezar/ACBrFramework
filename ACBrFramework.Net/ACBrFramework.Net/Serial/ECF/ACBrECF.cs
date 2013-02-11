@@ -5086,7 +5086,7 @@ namespace ACBrFramework.ECF
 
 		#region Override Methods
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrECFInterop.ECF_Create);
 			Device = new ACBrDevice(this);

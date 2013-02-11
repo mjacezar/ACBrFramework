@@ -158,7 +158,7 @@ namespace ACBrFramework.BAL
 			}
 		}
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrBALInterop.BAL_Create);
 			Device = new ACBrDevice(this);

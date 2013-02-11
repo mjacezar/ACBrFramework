@@ -1,8 +1,23 @@
 using System;
+using System.ComponentModel;
+
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
 
 namespace ACBrFramework
 {
-	public abstract class ACBrClassInterop : ACBrInteropBase
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("F31FB210-ECDF-4050-9FAE-352D72700FD9")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+	[DesignerCategory("ACBr")]
+	[DesignTimeVisible(true)]
+	public abstract class ACBrClassInterop : ACBrInteropBase, IDisposable
 	{
 		#region Inner Types
 
@@ -12,15 +27,38 @@ namespace ACBrFramework
 
 		#endregion Inner Types
 
+		#region Events
+
+		public event System.EventHandler Disposed
+		{
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+			add
+			{
+				disposed += value;
+			}
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+			remove
+			{
+				disposed -= value;
+			}
+		}
+
+		#endregion Events
+
 		#region Fields
 
 		private IntPtr handle;
-		private bool list;
+		private System.EventHandler disposed;
 
 		#endregion Fields
 
 		#region Properties
 
+		[Browsable(false)]
 		public override IntPtr Handle
 		{
 			get
@@ -29,21 +67,13 @@ namespace ACBrFramework
 			}
 		}
 
-		public override bool IsListed
-		{
-			get
-			{
-				return list;
-			}
-		}
-
 		#endregion Properties
 
 		#region Constructor
 
-		static ACBrClassInterop()
+		protected ACBrClassInterop()
 		{
-
+			OnInitialize();
 		}
 
 		~ACBrClassInterop()
@@ -98,6 +128,14 @@ namespace ACBrFramework
 
 		#endregion P/Invoke Helpers
 
+		#region Abstract Methods
+
+		protected internal abstract void OnInitialize();
+
+		protected abstract void OnDisposing();
+
+		#endregion Abstract Methods
+
 		#region Dispose Methods
 
 		private void Dispose(bool disposing)
@@ -109,7 +147,7 @@ namespace ACBrFramework
 
 			OnDisposing();
 
-			if (Disposed != null) Disposed(this, EventArgs.Empty);
+			if (disposed != null) disposed(this, EventArgs.Empty);
 		}
 
 		public void Dispose()

@@ -326,7 +326,7 @@ namespace ACBrFramework.SMS
 
 		#region Override Methods
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrSMSInterop.SMS_Create);
 			Device = new ACBrDevice(this);

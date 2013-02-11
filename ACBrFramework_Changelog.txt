@@ -41,6 +41,11 @@ Símbolo : Significado
 
 Changelog
 
+11/02/2013
+
+-- ACBrFramework.Net 0.9.2.5 --
+[*] Alteração nas classes bases ACBrClassInterop, ACBrComponent e ACBrListInterop - Rafael Batiati.
+
 10/02/2013
 
 -- ACBrFramework 0.9.2.5 --

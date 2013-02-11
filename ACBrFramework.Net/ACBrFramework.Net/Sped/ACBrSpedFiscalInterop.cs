@@ -2608,6 +2608,184 @@ namespace ACBrFramework.Sped
 			public double VL_DOC;
 		}
 
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD190
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string CST_ICMS;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string CFOP;
+			
+			public double ALIQ_ICMS;
+			
+			public double VL_OPR;
+			
+			public double VL_BC_ICMS;
+			
+			public double VL_ICMS;
+			
+			public double VL_RED_BC;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string COD_OBS;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD195
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string COD_OBS;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 1024)]
+			public string TXT_COMPL;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD197
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 11)]
+			public string COD_AJ;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 255)]
+			public string DESCR_COMPL_AJ;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COD_ITEM;
+			
+			public double VL_BC_ICMS;
+			
+			public double ALIQ_ICMS;
+			
+			public double VL_ICMS;
+			
+			public double VL_OUTROS;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD300
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string COD_MOD;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string SER;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string SUB;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string NUM_DOC_INI;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string NUM_DOC_FIN;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string CST_ICMS;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+			public string CFOP;
+
+			public double ALIQ_ICMS;
+			
+			public double DT_DOC;
+			
+			public double VL_OPR;
+			
+			public double VL_DESC;
+			
+			public double VL_SERV;
+			
+			public double VL_SEG;
+			
+			public double VL_OUT_DESP;
+			
+			public double VL_BC_ICMS;
+			
+			public double VL_ICMS;
+			
+			public double VL_RED_BC;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+			public string COD_OBS;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string COD_CTA;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD301
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
+			public string NUM_DOC_CANC;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD310
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_MUN_ORIG;
+		
+			public double VL_SERV;
+			
+			public double VL_BC_ICMS;
+			
+			public double VL_ICMS;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD350
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
+			public string COD_MOD;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
+			public string ECF_MOD;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
+			public string ECF_FAB;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string ECF_CX;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD355
+		{
+			public double DT_DOC;
+			
+			public int CRO;
+			
+			public int CRZ;
+			
+			public int NUM_COO_FIN;
+			
+			public double GT_FIN;
+			
+			public double VL_BRT;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD360
+		{
+			public double VL_PIS;
+		
+			public double VL_COFINS;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct BlocoDRegistroD365
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string COD_TOT_PAR;
+		
+			public double VLR_ACUM_TOT;
+			
+			public double NR_TOT;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 255)]
+			public string DESCR_NR_TOT;
+		}
 
 
 
@@ -3146,6 +3324,36 @@ namespace ACBrFramework.Sped
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SPDF_Bloco_D_RegistroD180New(IntPtr spdfHandle, BlocoDRegistroD180 registroD180);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD190New(IntPtr spdfHandle, BlocoDRegistroD190 registroD190);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD195New(IntPtr spdfHandle, BlocoDRegistroD195 registroD195);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD197New(IntPtr spdfHandle, BlocoDRegistroD197 registroD197);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD300New(IntPtr spdfHandle, BlocoDRegistroD300 registroD300);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD301New(IntPtr spdfHandle, BlocoDRegistroD301 registroD301);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD310New(IntPtr spdfHandle, BlocoDRegistroD310 registroD310);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD350New(IntPtr spdfHandle, BlocoDRegistroD350 registroD350);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD355New(IntPtr spdfHandle, BlocoDRegistroD355 registroD355);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD360New(IntPtr spdfHandle, BlocoDRegistroD360 registroD360);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SPDF_Bloco_D_RegistroD365New(IntPtr spdfHandle, BlocoDRegistroD365 registroD365);
 
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]

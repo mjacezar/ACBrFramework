@@ -741,7 +741,7 @@ namespace ACBrFramework.PAF
 
 		#region Override Methods
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrPAFInterop.PAF_Create);
 			PAF_B = new ACBrPAF_B(this);

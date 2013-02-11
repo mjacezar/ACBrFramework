@@ -732,7 +732,7 @@ namespace ACBrFramework.TEFD
 			}
 		}
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrTEFInterop.TEF_Create);
 

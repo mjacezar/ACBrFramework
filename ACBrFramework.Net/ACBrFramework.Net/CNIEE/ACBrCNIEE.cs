@@ -247,7 +247,7 @@ namespace ACBrFramework.CNIEE
 
 		#region Override Methods
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrCNIEEInterop.CNIEE_Create);
 		}

@@ -383,7 +383,7 @@ namespace ACBrFramework.AAC
 			}
 		}
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrAACInterop.AAC_Create);
 			IdentPaf = new IdenticacaoPaf(this);

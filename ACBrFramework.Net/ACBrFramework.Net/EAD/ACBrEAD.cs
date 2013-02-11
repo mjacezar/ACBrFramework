@@ -275,7 +275,7 @@ namespace ACBrFramework.EAD
 
 		#region Override Methods
 
-		protected internal override void OnInitializeComponent()
+		protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrEADInterop.EAD_Create);
 		}
