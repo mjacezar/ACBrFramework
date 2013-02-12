@@ -390,6 +390,7 @@
     <Compile Include="Sintegra\Registro\Registro 85\SintegraRegistros85.cs" />
     <Compile Include="Sintegra\Registro\Registro 86\SintegraRegistro86.cs" />
     <Compile Include="Sintegra\Registro\Registro 86\SintegraRegistros86.cs" />
+    <Compile Include="Sped\Eventos\ErrorEventArgs.cs" />
     <Compile Include="Sped\Registros\Bloco0\Bloco0.cs" />
     <Compile Include="Sped\Registros\Bloco0\Registro0200.cs" />
     <Compile Include="Sped\Registros\Bloco0\Registro0205.cs" />

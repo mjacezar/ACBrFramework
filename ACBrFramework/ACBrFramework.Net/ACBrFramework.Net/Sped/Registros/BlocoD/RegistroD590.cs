@@ -16,9 +16,9 @@
 
 		public decimal VL_ICMS { get; set; }
 
-		public decimal VL_BC_ICMS_ST { get; set; }
+		public decimal VL_BC_ICMS_UF { get; set; }
 
-		public decimal VL_ICMS_ST { get; set; }
+		public decimal VL_ICMS_UF { get; set; }
 
 		public decimal VL_RED_BC { get; set; }
 

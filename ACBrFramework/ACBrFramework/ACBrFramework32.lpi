@@ -249,11 +249,14 @@
         <Filename Value="ACBrSpedFiscalDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrSpedFiscaldll"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="4219"/>
-        <FoldState Value=" TJk02~l111 p0jq42#mD T3t50J4[I4h1[95iajM0M3 pj7jb0Y[95k60S[94Fk80T[945jg0IJ"/>
+        <TopLine Value="6727"/>
+        <CursorPos X="31" Y="529"/>
+        <FoldState Value=" TJuV2#nZ p0xW2#pL]9zI2}a1 piiginY2#+1]L\f2#mW]9wT2~x T3k:S0JC"/>
         <UsageCount Value="204"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit20>
       <Unit21>
@@ -340,12 +343,10 @@
         <Filename Value="ACBrSMSDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrSMSDll"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="894"/>
         <CursorPos X="61" Y="983"/>
-        <FoldState Value=" TJi32{M1 ppTs72{$03 p0vT2c T3wG0J4 pj2jZ0K]9iZjQ0L[96R0J[94YjK0J1("/>
         <UsageCount Value="208"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -533,7 +534,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit49>
     </Units>
-    <JumpHistory Count="3" HistoryIndex="2">
+    <JumpHistory Count="5" HistoryIndex="4">
       <Position1>
         <Filename Value="ACBrSMSDll.pas"/>
         <Caret Line="731" Column="41" TopLine="674"/>
@@ -546,6 +547,14 @@
         <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrSMSClass.pas"/>
         <Caret Line="80" Column="28" TopLine="60"/>
       </Position3>
+      <Position4>
+        <Filename Value="ACBrSpedFiscalDll.pas"/>
+        <Caret Line="4219" Column="1" TopLine="1"/>
+      </Position4>
+      <Position5>
+        <Filename Value="ACBrSpedFiscalDll.pas"/>
+        <Caret Line="545" Column="10" TopLine="531"/>
+      </Position5>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
