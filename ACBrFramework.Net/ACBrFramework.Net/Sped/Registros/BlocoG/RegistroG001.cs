@@ -4,7 +4,7 @@
 	{
 		#region Constructor
 
-		public RegistroG001()
+		internal RegistroG001()
 		{
 			RegistroG110 = new RegistroList<RegistroG110>();
 		}

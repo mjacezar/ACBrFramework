@@ -12,6 +12,8 @@ uses
 
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlers = class
+  OnErrorCallback : TStringCallback;
+  procedure OnError(const MsnError: AnsiString);
 end;
 
 {Handle para o componente TACBrSPEDFiscal}
@@ -519,27 +521,6 @@ end;
 
 {%region Methods }
 
-Function SPDF_IniciaGeracao(const spdfHandle: PSPDFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (spdfHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     spdfHandle^.SPEDFiscal.IniciaGeracao;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        spdfHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
 Function SPDF_SaveFileTXT(const spdfHandle: PSPDFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -562,6 +543,50 @@ begin
 end;
 
 {%endregion}
+
+{%region Eventos }
+
+procedure TEventHandlers.OnError(const MsnError: AnsiString);
+begin
+     OnErrorCallback(pchar(MsnError));
+end;
+
+{%endregion Eventos }
+
+{%region Set Eventos }
+
+Function SPDF_SetOnError(const spdfHandle: PSPDFHandle; const method : TStringCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        spdfHandle^.SPEDFiscal.OnError := spdfHandle^.EventHandlers.OnError;
+        spdfHandle^.EventHandlers.OnErrorCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        spdfHandle^.SPEDFiscal.OnError := nil;
+        spdfHandle^.EventHandlers.OnErrorCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion Set Eventos }
 
 {%region Bloco0}
 
@@ -4849,6 +4874,639 @@ begin
   end;
 end;
 
+Function SPDF_Bloco_D_RegistroD301New(const spdfHandle: PSPDFHandle; const registroD301 : BlocoDRegistroD301) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD301New do
+     begin
+          NUM_DOC_CANC := registroD301.NUM_DOC_CANC;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD310New(const spdfHandle: PSPDFHandle; const registroD310 : BlocoDRegistroD310) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD310New do
+     begin
+         COD_MUN_ORIG := registroD310.COD_MUN_ORIG;
+         VL_SERV      := Currency(registroD310.VL_SERV);
+         VL_BC_ICMS   := Currency(registroD310.VL_BC_ICMS);
+         VL_ICMS      := Currency(registroD310.VL_ICMS);
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD350New(const spdfHandle: PSPDFHandle; const registroD350 : BlocoDRegistroD350) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD350New do
+     begin
+        COD_MOD := registroD350.COD_MOD;
+        ECF_MOD := registroD350.ECF_MOD;
+        ECF_FAB := registroD350.ECF_FAB;
+        ECF_CX  := registroD350.ECF_CX;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD355New(const spdfHandle: PSPDFHandle; const registroD355 : BlocoDRegistroD355) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD355New do
+     begin
+        DT_DOC        := TDateTime(registroD355.DT_DOC);
+        CRO           := registroD355.CRO;
+        CRZ           := registroD355.CRZ;
+        NUM_COO_FIN   := registroD355.NUM_COO_FIN;
+        GT_FIN        := Currency(registroD355.GT_FIN);
+        VL_BRT        := Currency(registroD355.VL_BRT);
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD360New(const spdfHandle: PSPDFHandle; const registroD360 : BlocoDRegistroD360) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD360New do
+     begin
+         VL_PIS    := registroD360.VL_PIS;
+         VL_COFINS := registroD360.VL_COFINS;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD365New(const spdfHandle: PSPDFHandle; const registroD365 : BlocoDRegistroD365) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD365New do
+     begin
+        COD_TOT_PAR  := registroD365.COD_TOT_PAR;
+        VLR_ACUM_TOT := Currency(registroD365.VLR_ACUM_TOT);
+        NR_TOT       := registroD365.NR_TOT;
+        DESCR_NR_TOT := registroD365.DESCR_NR_TOT;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD370New(const spdfHandle: PSPDFHandle; const registroD370 : BlocoDRegistroD370) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD370New do
+     begin
+        COD_MUN_ORIG := registroD370.COD_MUN_ORIG;
+        VL_SERV      := Currency(registroD370.VL_SERV);
+        QTD_BILH     := Currency(registroD370.QTD_BILH);
+        VL_BC_ICMS   := Currency(registroD370.VL_BC_ICMS);
+        VL_ICMS      := Currency(registroD370.VL_ICMS);
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD390New(const spdfHandle: PSPDFHandle; const registroD390 : BlocoDRegistroD390) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD390New do
+     begin
+         CST_ICMS       := registroD390.CST_ICMS;
+         CFOP           := registroD390.CFOP;
+         ALIQ_ICMS      := Currency(registroD390.ALIQ_ICMS);
+         VL_OPR         := Currency(registroD390.VL_OPR);
+         VL_BC_ISSQN    := Currency(registroD390.VL_BC_ISSQN);
+         ALIQ_ISSQN     := Currency(registroD390.ALIQ_ISSQN);
+         VL_ISSQN       := Currency(registroD390.VL_ISSQN);
+         VL_BC_ICMS     := Currency(registroD390.VL_BC_ICMS);
+         VL_ICMS        := Currency(registroD390.VL_ICMS);
+         COD_OBS        := registroD390.COD_OBS;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD400New(const spdfHandle: PSPDFHandle; const registroD400 : BlocoDRegistroD400) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD400New do
+     begin
+        COD_PART       := registroD400.COD_PART;
+        COD_MOD        := registroD400.COD_MOD;
+        COD_SIT        := TACBrSituacaoDocto(registroD400.COD_SIT);
+        SER            := registroD400.SER;
+        SUB            := registroD400.SUB;
+        NUM_DOC        := registroD400.NUM_DOC;
+        DT_DOC         := TDateTime(registroD400.DT_DOC);
+        VL_DOC         := Currency(registroD400.VL_DOC);
+        VL_DESC        := Currency(registroD400.VL_DESC);
+        VL_SERV        := Currency(registroD400.VL_SERV);
+        VL_BC_ICMS     := Currency(registroD400.VL_BC_ICMS);
+        VL_ICMS        := Currency(registroD400.VL_ICMS);
+        VL_PIS         := Currency(registroD400.VL_PIS);
+        VL_COFINS      := Currency(registroD400.VL_COFINS);
+        COD_CTA        := registroD400.COD_CTA;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD410New(const spdfHandle: PSPDFHandle; const registroD410 : BlocoDRegistroD410) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD410New do
+     begin
+        COD_MOD        := registroD410.COD_MOD;
+        SER            := registroD410.SER;
+        SUB            := registroD410.SUB;
+        NUM_DOC_INI    := registroD410.NUM_DOC_INI;
+        NUM_DOC_FIN    := registroD410.NUM_DOC_FIN;
+        DT_DOC         := TDateTime(registroD410.DT_DOC);
+        CST_ICMS       := registroD410.CST_ICMS;
+        CFOP           := registroD410.CFOP;
+        ALIQ_ICMS      := registroD410.ALIQ_ICMS;
+        VL_OPR         := Currency(registroD410.VL_OPR);
+        VL_DESC        := Currency(registroD410.VL_DESC);
+        VL_SERV        := Currency(registroD410.VL_SERV);
+        VL_BC_ICMS     := Currency(registroD410.VL_BC_ICMS);
+        VL_ICMS        := Currency(registroD410.VL_ICMS);
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD411New(const spdfHandle: PSPDFHandle; const registroD411 : BlocoDRegistroD411) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD411New do
+     begin
+        NUM_DOC_CANC := registroD411.NUM_DOC_CANC;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD420New(const spdfHandle: PSPDFHandle; const registroD420 : BlocoDRegistroD420) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD420New do
+     begin
+        COD_MUN_ORIG := registroD420.COD_MUN_ORIG;
+        VL_SERV      := Currency(registroD420.VL_SERV);
+        VL_BC_ICMS   := Currency(registroD420.VL_BC_ICMS);
+        VL_ICMS      := Currency(registroD420.VL_ICMS);
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD500New(const spdfHandle: PSPDFHandle; const registroD500 : BlocoDRegistroD500) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD500New do
+     begin
+        IND_OPER        := TACBrTipoOperacao(registroD500.IND_OPER);
+        IND_EMIT        := TACBrEmitente(registroD500.IND_EMIT);
+        COD_PART        := registroD500.COD_PART;
+        COD_MOD         := registroD500.COD_MOD;
+        COD_SIT         := TACBrSituacaoDocto(registroD500.COD_SIT);
+        SER             := registroD500.SER;
+        SUB             := registroD500.SUB;
+        NUM_DOC         := registroD500.NUM_DOC;
+        DT_DOC          := TDateTime(registroD500.DT_DOC);
+        DT_A_P          := TDateTime(registroD500.DT_A_P);
+        VL_DOC          := Currency(registroD500.VL_DOC);
+        VL_DESC         := Currency(registroD500.VL_DESC);
+        VL_SERV         := Currency(registroD500.VL_SERV);
+        VL_SERV_NT      := Currency(registroD500.VL_SERV_NT);
+        VL_TERC         := Currency(registroD500.VL_TERC);
+        VL_DA           := Currency(registroD500.VL_DA);
+        VL_BC_ICMS      := Currency(registroD500.VL_BC_ICMS);
+        VL_ICMS         := Currency(registroD500.VL_ICMS);
+        COD_INF         := registroD500.COD_INF;
+        VL_PIS          := Currency(registroD500.VL_PIS);
+        VL_COFINS       := Currency(registroD500.VL_COFINS);
+        COD_CTA         := registroD500.COD_CTA;
+        TP_ASSINANTE    := TACBrTipoAssinante(registroD500.TP_ASSINANTE);
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD510New(const spdfHandle: PSPDFHandle; const registroD510 : BlocoDRegistroD510) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD510New do
+     begin
+        IND_REC := TACBrIndTipoReceita(registroD510.IND_REC);
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD530New(const spdfHandle: PSPDFHandle; const registroD530 : BlocoDRegistroD530) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD530New do
+     begin
+        IND_SERV := TACBrServicoPrestado(registroD530.IND_SERV);
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD590New(const spdfHandle: PSPDFHandle; const registroD590 : BlocoDRegistroD590) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD590New do
+     begin
+        CST_ICMS       := registroD590.CST_ICMS;
+        CFOP           := registroD590.CFOP;
+        ALIQ_ICMS      := Currency(registroD590.ALIQ_ICMS);
+        VL_OPR         := Currency(registroD590.VL_OPR);
+        VL_BC_ICMS     := Currency(registroD590.VL_BC_ICMS);
+        VL_ICMS        := Currency(registroD590.VL_ICMS);
+        VL_BC_ICMS_UF  := Currency(registroD590.VL_BC_ICMS_UF);
+        VL_ICMS_UF     := Currency(registroD590.VL_ICMS_UF);
+        VL_RED_BC      := Currency(registroD590.VL_RED_BC);
+        COD_OBS        := registroD590.COD_OBS;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD600New(const spdfHandle: PSPDFHandle; const registroD600 : BlocoDRegistroD600) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD600New do
+     begin
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+
+Function SPDF_Bloco_D_RegistroD610New(const spdfHandle: PSPDFHandle; const registroD610 : BlocoDRegistroD610) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD610New do
+     begin
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD690New(const spdfHandle: PSPDFHandle; const registroD690 : BlocoDRegistroD690) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD690New do
+     begin
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD695New(const spdfHandle: PSPDFHandle; const registroD695 : BlocoDRegistroD695) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD695New do
+     begin
+        COD_MOD        := registroD695.COD_MOD;
+        SER            := registroD695.SER;
+        NRO_ORD_INI    := registroD695.NRO_ORD_INI;
+        NRO_ORD_FIN    := registroD695.NRO_ORD_FIN;
+        DT_DOC_INI     := TDateTime(registroD695.DT_DOC_INI);
+        DT_DOC_FIN     := TDateTime(registroD695.DT_DOC_FIN);
+        NOM_MEST       := registroD695.NOM_MEST;
+        CHV_COD_DIG    := registroD695.CHV_COD_DIG;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD696New(const spdfHandle: PSPDFHandle; const registroD696 : BlocoDRegistroD696) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD696New do
+     begin
+        CST_ICMS          := registroD696.CST_ICMS;
+        CFOP              := registroD696.CFOP;
+        ALIQ_ICMS         := Currency(registroD696.ALIQ_ICMS);
+        VL_OPR            := Currency(registroD696.VL_OPR);
+        VL_BC_ICMS        := Currency(registroD696.VL_BC_ICMS);
+        VL_ICMS           := Currency(registroD696.VL_ICMS);
+        VL_BC_ICMS_UF     := Currency(registroD696.VL_BC_ICMS_UF);
+        VL_ICMS_UF        := Currency(registroD696.VL_ICMS_UF);
+        VL_RED_BC         := Currency(registroD696.VL_RED_BC);
+        COD_OBS           := registroD696.COD_OBS;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_D_RegistroD697New(const spdfHandle: PSPDFHandle; const registroD697 : BlocoDRegistroD697) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD697New do
+     begin
+        UF          := registroD697.UF;
+        VL_BC_ICMS  := Currency(registroD697.VL_BC_ICMS);
+        VL_ICMS     := Currency(registroD697.VL_ICMS);
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 Function SPDF_Bloco_D_RegistroD990_GetQTD_LIN_D(const spdfHandle: PSPDFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -4871,6 +5529,1239 @@ end;
 
 {%endregion BlocoD}
 
+{%region BlocoE}
+
+Function SPDF_Bloco_E_GetDT_INI(const spdfHandle: PSPDFHandle; var dtIni : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     dtIni  := Double(spdfHandle^.SPEDFiscal.Bloco_E.DT_INI);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_SetDT_INI(const spdfHandle: PSPDFHandle; const dtIni : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     spdfHandle^.SPEDFiscal.Bloco_E.DT_INI := TDateTime(dtIni);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_GetDT_FIN(const spdfHandle: PSPDFHandle; var dtFin : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     dtFin  := Double(spdfHandle^.SPEDFiscal.Bloco_E.DT_FIN);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_SetDT_FIN(const spdfHandle: PSPDFHandle; const dtFin : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     spdfHandle^.SPEDFiscal.Bloco_E.DT_FIN := TDateTime(dtFin);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_GetGravado(const spdfHandle: PSPDFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if spdfHandle^.SPEDFiscal.Bloco_E.Gravado then
+     Result := 1
+     else
+     Result := 0;
+
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE001New(const spdfHandle: PSPDFHandle; const registroE001 : BlocoERegistroE001) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE001New do
+     BEGIN
+          IND_MOV := TACBrIndicadorMovimento(registroE001.IND_MOV);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE100New(const spdfHandle: PSPDFHandle; const registroE100 : BlocoERegistroE100) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE100New do
+     BEGIN
+        DT_INI := TDateTime(registroE100.DT_INI);
+        DT_FIN := TDateTime(registroE100.DT_FIN);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE110New(const spdfHandle: PSPDFHandle; const registroE110 : BlocoERegistroE110) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE110New do
+     BEGIN
+        VL_TOT_DEBITOS               := Currency(registroE110.VL_TOT_DEBITOS);
+        VL_AJ_DEBITOS                := Currency(registroE110.VL_AJ_DEBITOS);
+        VL_TOT_AJ_DEBITOS            := Currency(registroE110.VL_TOT_AJ_DEBITOS);
+        VL_ESTORNOS_CRED             := Currency(registroE110.VL_ESTORNOS_CRED);
+        VL_TOT_CREDITOS              := Currency(registroE110.VL_TOT_CREDITOS);
+        VL_AJ_CREDITOS               := Currency(registroE110.VL_AJ_CREDITOS);
+        VL_TOT_AJ_CREDITOS           := Currency(registroE110.VL_TOT_AJ_CREDITOS);
+        VL_ESTORNOS_DEB              := Currency(registroE110.VL_ESTORNOS_DEB);
+        VL_SLD_CREDOR_ANT            := Currency(registroE110.VL_SLD_CREDOR_ANT);
+        VL_SLD_APURADO               := Currency(registroE110.VL_SLD_APURADO);
+        VL_TOT_DED                   := Currency(registroE110.VL_TOT_DED);
+        VL_ICMS_RECOLHER             := Currency(registroE110.VL_ICMS_RECOLHER);
+        VL_SLD_CREDOR_TRANSPORTAR    := Currency(registroE110.VL_SLD_CREDOR_TRANSPORTAR);
+        DEB_ESP                      := Currency(registroE110.DEB_ESP);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE111New(const spdfHandle: PSPDFHandle; const registroE111 : BlocoERegistroE111) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE111New do
+     BEGIN
+        COD_AJ_APUR     := registroE111.COD_AJ_APUR;
+        DESCR_COMPL_AJ  := registroE111.DESCR_COMPL_AJ;
+        VL_AJ_APUR      := Currency(registroE111.VL_AJ_APUR);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE112New(const spdfHandle: PSPDFHandle; const registroE112 : BlocoERegistroE112) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE112New do
+     BEGIN
+         NUM_DA       := registroE112.NUM_DA;
+         NUM_PROC     := registroE112.NUM_PROC;
+         IND_PROC     := TACBrOrigemProcesso(registroE112.IND_PROC);
+         PROC         := registroE112.PROC;
+         TXT_COMPL    := registroE112.TXT_COMPL;
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE113New(const spdfHandle: PSPDFHandle; const registroE113 : BlocoERegistroE113) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE113New do
+     BEGIN
+        COD_PART    :=  registroE113.COD_PART;
+        COD_MOD     :=  registroE113.COD_MOD;
+        SER         :=  registroE113.SER;
+        SUB         :=  registroE113.SUB;
+        NUM_DOC     :=  registroE113.NUM_DOC;
+        DT_DOC      :=  TDateTime(registroE113.DT_DOC);
+        CHV_NFE     :=  registroE113.CHV_NFE;
+        COD_ITEM    :=  registroE113.COD_ITEM;
+        VL_AJ_ITEM  :=  Currency(registroE113.VL_AJ_ITEM);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE115New(const spdfHandle: PSPDFHandle; const registroE115 : BlocoERegistroE115) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE115New do
+     BEGIN
+        COD_INF_ADIC    := registroE115.COD_INF_ADIC;
+        VL_INF_ADIC     := Currency(registroE115.VL_INF_ADIC);
+        DESCR_COMPL_AJ  := registroE115.DESCR_COMPL_AJ;
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE116New(const spdfHandle: PSPDFHandle; const registroE116 : BlocoERegistroE116) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE116New do
+     BEGIN
+         COD_OR      := registroE116.COD_OR;
+         VL_OR       := Currency(registroE116.VL_OR);
+         DT_VCTO     := TDateTime(registroE116.DT_VCTO);
+         COD_REC     := registroE116.COD_REC;
+         NUM_PROC    := registroE116.NUM_PROC;
+         IND_PROC    := TACBrOrigemProcesso(registroE116.IND_PROC);
+         PROC        := registroE116.PROC;
+         TXT_COMPL   := registroE116.TXT_COMPL;
+         MES_REF     := registroE116.MES_REF;
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE200New(const spdfHandle: PSPDFHandle; const registroE200 : BlocoERegistroE200) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE200New do
+     BEGIN
+        UF       := registroE200.UF;
+        DT_INI   := TDateTime(registroE200.DT_INI);
+        DT_FIN   := TDateTime(registroE200.DT_FIN);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE210New(const spdfHandle: PSPDFHandle; const registroE210 : BlocoERegistroE210) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE210New do
+     BEGIN
+        IND_MOV_ST                  := TACBRMovimentoST(registroE210.IND_MOV_ST);
+        VL_SLD_CRED_ANT_ST          := Currency(registroE210.VL_SLD_CRED_ANT_ST);
+        VL_DEVOL_ST                 := Currency(registroE210.VL_DEVOL_ST);
+        VL_RESSARC_ST               := Currency(registroE210.VL_RESSARC_ST);
+        VL_OUT_CRED_ST              := Currency(registroE210.VL_OUT_CRED_ST);
+        VL_AJ_CREDITOS_ST           := Currency(registroE210.VL_AJ_CREDITOS_ST);
+        VL_RETENCAO_ST              := Currency(registroE210.VL_RETENCAO_ST);
+        VL_OUT_DEB_ST               := Currency(registroE210.VL_OUT_DEB_ST);
+        VL_AJ_DEBITOS_ST            := Currency(registroE210.VL_AJ_DEBITOS_ST);
+        VL_SLD_DEV_ANT_ST           := Currency(registroE210.VL_SLD_DEV_ANT_ST);
+        VL_DEDUCOES_ST              := Currency(registroE210.VL_DEDUCOES_ST);
+        VL_ICMS_RECOL_ST            := Currency(registroE210.VL_ICMS_RECOL_ST);
+        VL_SLD_CRED_ST_TRANSPORTAR  := Currency(registroE210.VL_SLD_CRED_ST_TRANSPORTAR);
+        DEB_ESP_ST                  := Currency(registroE210.DEB_ESP_ST);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE220New(const spdfHandle: PSPDFHandle; const registroE220 : BlocoERegistroE220) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE220New do
+     BEGIN
+        COD_AJ_APUR     := registroE220.COD_AJ_APUR;
+        DESCR_COMPL_AJ  := registroE220.DESCR_COMPL_AJ;
+        VL_AJ_APUR      := Currency(registroE220.VL_AJ_APUR);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE230New(const spdfHandle: PSPDFHandle; const registroE230 : BlocoERegistroE230) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE230New do
+     BEGIN
+        NUM_DA     := registroE230.NUM_DA;
+        NUM_PROC   := registroE230.NUM_PROC;
+        IND_PROC   := TACBrOrigemProcesso(registroE230.IND_PROC);
+        PROC       := registroE230.PROC;
+        TXT_COMPL  := registroE230.TXT_COMPL;
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE240New(const spdfHandle: PSPDFHandle; const registroE240 : BlocoERegistroE240) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE240New do
+     BEGIN
+        COD_PART     := registroE240.COD_PART;
+        COD_MOD      := registroE240.COD_MOD;
+        SER          := registroE240.SER;
+        SUB          := registroE240.SUB;
+        NUM_DOC      := registroE240.NUM_DOC;
+        DT_DOC       := TDateTime(registroE240.DT_DOC);
+        CHV_NFE      := registroE240.CHV_NFE;
+        COD_ITEM     := registroE240.COD_ITEM;
+        VL_AJ_ITEM   := Currency(registroE240.VL_AJ_ITEM);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE250New(const spdfHandle: PSPDFHandle; const registroE250 : BlocoERegistroE250) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE250New do
+     BEGIN
+        COD_OR       := registroE250.COD_OR;
+        VL_OR        := Currency(registroE250.VL_OR);
+        DT_VCTO      := TDateTime(registroE250.DT_VCTO);
+        COD_REC      := registroE250.COD_REC;
+        NUM_PROC     := registroE250.NUM_PROC;
+        IND_PROC     := TACBrOrigemProcesso(registroE250.IND_PROC);
+        PROC         := registroE250.PROC;
+        TXT_COMPL    := registroE250.TXT_COMPL;
+        MES_REF      := registroE250.MES_REF;
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE500New(const spdfHandle: PSPDFHandle; const registroE500 : BlocoERegistroE500) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE500New do
+     BEGIN
+         IND_APUR  := TACBrApuracaoIPI(registroE500.IND_APUR);
+         DT_INI    := TDateTime(registroE500.DT_INI);
+         DT_FIN    := TDateTime(registroE500.DT_FIN);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE510New(const spdfHandle: PSPDFHandle; const registroE510 : BlocoERegistroE510) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE510New do
+     BEGIN
+        CFOP          := registroE510.CFOP;
+        CST_IPI       := registroE510.CST_IPI;
+        VL_CONT_IPI   := Currency(registroE510.VL_CONT_IPI);
+        VL_BC_IPI     := Currency(registroE510.VL_BC_IPI);
+        VL_IPI        := Currency(registroE510.VL_IPI);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE520New(const spdfHandle: PSPDFHandle; const registroE520 : BlocoERegistroE520) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE520New do
+     BEGIN
+        VL_SD_ANT_IPI := Currency(registroE520.VL_SD_ANT_IPI);
+        VL_DEB_IPI    := Currency(registroE520.VL_DEB_IPI);
+        VL_CRED_IPI   := Currency(registroE520.VL_CRED_IPI);
+        VL_OD_IPI     := Currency(registroE520.VL_OD_IPI);
+        VL_OC_IPI     := Currency(registroE520.VL_OC_IPI);
+        VL_SC_IPI     := Currency(registroE520.VL_SC_IPI);
+        VL_SD_IPI     := Currency(registroE520.VL_SD_IPI);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE530New(const spdfHandle: PSPDFHandle; const registroE530 : BlocoERegistroE530) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE530New do
+     BEGIN
+        IND_AJ   := TACBrTipoAjuste(registroE530.IND_AJ);
+        VL_AJ    := Currency(registroE530.VL_AJ);
+        COD_AJ   := registroE530.COD_AJ;
+        IND_DOC  := TACBrOrigemDocto(registroE530.IND_DOC);
+        NUM_DOC  := registroE530.NUM_DOC;
+        DESCR_AJ := registroE530.DESCR_AJ;
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_E_RegistroE990_GetQTD_LIN_E(const spdfHandle: PSPDFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := spdfHandle^.SPEDFiscal.Bloco_E.RegistroE990.QTD_LIN_E;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion BlocoE}
+
+{%region BlocoG}
+
+Function SPDF_Bloco_G_GetDT_INI(const spdfHandle: PSPDFHandle; var dtIni : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     dtIni  := Double(spdfHandle^.SPEDFiscal.Bloco_G.DT_INI);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_G_SetDT_INI(const spdfHandle: PSPDFHandle; const dtIni : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     spdfHandle^.SPEDFiscal.Bloco_G.DT_INI := TDateTime(dtIni);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_G_GetDT_FIN(const spdfHandle: PSPDFHandle; var dtFin : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     dtFin  := Double(spdfHandle^.SPEDFiscal.Bloco_G.DT_FIN);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_G_SetDT_FIN(const spdfHandle: PSPDFHandle; const dtFin : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     spdfHandle^.SPEDFiscal.Bloco_G.DT_FIN := TDateTime(dtFin);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_G_GetGravado(const spdfHandle: PSPDFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if spdfHandle^.SPEDFiscal.Bloco_G.Gravado then
+     Result := 1
+     else
+     Result := 0;
+
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_G_RegistroG001New(const spdfHandle: PSPDFHandle; const registroG001 : BlocoGRegistroG001) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_G.RegistroG001New do
+     BEGIN
+          IND_MOV := TACBrIndicadorMovimento(registroG001.IND_MOV);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_G_RegistroG110New(const spdfHandle: PSPDFHandle; const registroG110 : BlocoGRegistroG110) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_G.RegistroG110New do
+     BEGIN
+        MODO_CIAP     := registroG110.MODO_CIAP;
+        SALDO_IN_ICMS := Currency(registroG110.SALDO_IN_ICMS);
+        SALDO_FN_ICMS := Currency(registroG110.SALDO_FN_ICMS);
+        SOM_PARC      := Currency(registroG110.SOM_PARC);
+        VL_TRIB_EXP   := Currency(registroG110.VL_TRIB_EXP);
+        VL_TOTAL      := Currency(registroG110.VL_TOTAL);
+        IND_PER_SAI   := Currency(registroG110.IND_PER_SAI);
+        ICMS_APROP    := Currency(registroG110.ICMS_APROP);
+        SOM_ICMS_OC   := Currency(registroG110.SOM_ICMS_OC);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_G_RegistroG125New(const spdfHandle: PSPDFHandle; const registroG125 : BlocoGRegistroG125) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_G.RegistroG125New do
+     BEGIN
+        COD_IND_BEM         := registroG125.COD_IND_BEM;
+        DT_MOV              := TDateTime(registroG125.DT_MOV);
+        TIPO_MOV            := TACBrMovimentoBens(registroG125.TIPO_MOV);
+        VL_IMOB_ICMS_OP     := Currency(registroG125.VL_IMOB_ICMS_OP);
+        VL_IMOB_ICMS_ST     := Currency(registroG125.VL_IMOB_ICMS_ST);
+        VL_IMOB_ICMS_FRT    := Currency(registroG125.VL_IMOB_ICMS_FRT);
+        VL_IMOB_ICMS_DIF    := Currency(registroG125.VL_IMOB_ICMS_DIF);
+        NUM_PARC            := registroG125.NUM_PARC;
+        VL_PARC_PASS        := Currency(registroG125.VL_PARC_PASS);
+        VL_PARC_APROP       := Currency(registroG125.VL_PARC_APROP);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_G_RegistroG126New(const spdfHandle: PSPDFHandle; const registroG126 : BlocoGRegistroG126) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_G.RegistroG126New do
+     BEGIN
+         DT_INI         := TDateTime(registroG126.DT_INI);
+         DT_FIN         := TDateTime(registroG126.DT_FIN);
+         NUM_PARC       := registroG126.NUM_PARC;
+         VL_PARC_PASS   := Currency(registroG126.VL_PARC_PASS);
+         VL_TRIB_OC     := Currency(registroG126.VL_TRIB_OC);
+         VL_TOTAL       := Currency(registroG126.VL_TOTAL);
+         IND_PER_SAI    := registroG126.IND_PER_SAI;
+         VL_PARC_APROP  := Currency(registroG126.VL_PARC_APROP);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_G_RegistroG130New(const spdfHandle: PSPDFHandle; const registroG130 : BlocoGRegistroG130) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_G.RegistroG130New do
+     BEGIN
+         IND_EMIT     := TACBrEmitente(registroG130.IND_EMIT);
+         COD_PART     := registroG130.COD_PART;
+         COD_MOD      := registroG130.COD_MOD;
+         SERIE        := registroG130.SERIE;
+         NUM_DOC      := registroG130.NUM_DOC;
+         CHV_NFE_CTE  := registroG130.CHV_NFE_CTE;
+         DT_DOC       := TDateTime(registroG130.DT_DOC);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_G_RegistroG140New(const spdfHandle: PSPDFHandle; const registroG140 : BlocoGRegistroG140) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_G.RegistroG140New do
+     BEGIN
+        NUM_ITEM    := registroG140.NUM_ITEM;
+        COD_ITEM    := registroG140.COD_ITEM;
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_G_RegistroG990_GetQTD_LIN_G(const spdfHandle: PSPDFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := spdfHandle^.SPEDFiscal.Bloco_G.RegistroG990.QTD_LIN_G;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+
+{%endregion BlocoG}
+
+{%region BlocoH}
+
+Function SPDF_Bloco_H_GetDT_INI(const spdfHandle: PSPDFHandle; var dtIni : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     dtIni  := Double(spdfHandle^.SPEDFiscal.Bloco_H.DT_INI);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_H_SetDT_INI(const spdfHandle: PSPDFHandle; const dtIni : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     spdfHandle^.SPEDFiscal.Bloco_H.DT_INI := TDateTime(dtIni);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_H_GetDT_FIN(const spdfHandle: PSPDFHandle; var dtFin : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     dtFin  := Double(spdfHandle^.SPEDFiscal.Bloco_H.DT_FIN);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_H_SetDT_FIN(const spdfHandle: PSPDFHandle; const dtFin : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     spdfHandle^.SPEDFiscal.Bloco_H.DT_FIN := TDateTime(dtFin);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_H_GetGravado(const spdfHandle: PSPDFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if spdfHandle^.SPEDFiscal.Bloco_H.Gravado then
+     Result := 1
+     else
+     Result := 0;
+
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_H_RegistroH001New(const spdfHandle: PSPDFHandle; const registroH001 : BlocoHRegistroH001) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_H.RegistroH001New do
+     BEGIN
+          IND_MOV := TACBrIndicadorMovimento(registroH001.IND_MOV);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_H_RegistroH005New(const spdfHandle: PSPDFHandle; const registroH005 : BlocoHRegistroH005) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_H.RegistroH005New do
+     BEGIN
+        DT_INV   := TDateTime(registroH005.DT_INV);
+        VL_INV   := Currency(registroH005.VL_INV);
+        MOT_INV  := TACBrMotivoInventario(registroH005.MOT_INV);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_H_RegistroH010New(const spdfHandle: PSPDFHandle; const registroH010 : BlocoHRegistroH010) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_H.RegistroH010New do
+     BEGIN
+        COD_ITEM   := registroH010.COD_ITEM;
+        UNID       := registroH010.UNID;
+        QTD        := registroH010.QTD;
+        VL_UNIT    := registroH010.VL_UNIT;
+        VL_ITEM    := Currency(registroH010.VL_ITEM);
+        IND_PROP   := TACBrPosseItem(registroH010.IND_PROP);
+        COD_PART   := registroH010.COD_PART;
+        TXT_COMPL  := registroH010.TXT_COMPL;
+        COD_CTA    := registroH010.COD_CTA;
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function SPDF_Bloco_H_RegistroH020New(const spdfHandle: PSPDFHandle; const registroH020 : BlocoHRegistroH020) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_H.RegistroH020New do
+     BEGIN
+        CST_ICMS  := registroH020.CST_ICMS;
+        BC_ICMS   := Currency(registroH020.BC_ICMS);
+        VL_ICMS   := Currency(registroH020.VL_ICMS);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+
+Function SPDF_Bloco_H_RegistroH990_GetQTD_LIN_H(const spdfHandle: PSPDFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := spdfHandle^.SPEDFiscal.Bloco_H.RegistroH990.QTD_LIN_H;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion BlocoH}
+
 exports
 
 { Create/Destroy/Erro }
@@ -4888,7 +6779,10 @@ SPDF_SetTrimString, SPDF_GetDT_INI, SPDF_SetDT_INI,
 SPDF_GetDT_FIN, SPDF_SetDT_FIN,
 
 { Methods }
-SPDF_IniciaGeracao, SPDF_SaveFileTXT,
+SPDF_SaveFileTXT,
+
+{ Events }
+SPDF_SetOnError,
 
 {%region Bloco0}
 
@@ -5043,13 +6937,85 @@ SPDF_Bloco_D_RegistroD190New,
 SPDF_Bloco_D_RegistroD195New,
 SPDF_Bloco_D_RegistroD197New,
 SPDF_Bloco_D_RegistroD300New,
-
-SPDF_Bloco_D_RegistroD990_GetQTD_LIN_D
-
+SPDF_Bloco_D_RegistroD301New,
+SPDF_Bloco_D_RegistroD310New,
+SPDF_Bloco_D_RegistroD350New,
+SPDF_Bloco_D_RegistroD355New,
+SPDF_Bloco_D_RegistroD360New,
+SPDF_Bloco_D_RegistroD365New,
+SPDF_Bloco_D_RegistroD370New,
+SPDF_Bloco_D_RegistroD390New,
+SPDF_Bloco_D_RegistroD400New,
+SPDF_Bloco_D_RegistroD410New,
+SPDF_Bloco_D_RegistroD411New,
+SPDF_Bloco_D_RegistroD420New,
+SPDF_Bloco_D_RegistroD500New,
+SPDF_Bloco_D_RegistroD510New,
+SPDF_Bloco_D_RegistroD530New,
+SPDF_Bloco_D_RegistroD590New,
+SPDF_Bloco_D_RegistroD600New,
+SPDF_Bloco_D_RegistroD610New,
+SPDF_Bloco_D_RegistroD690New,
+SPDF_Bloco_D_RegistroD695New,
+SPDF_Bloco_D_RegistroD696New,
+SPDF_Bloco_D_RegistroD697New,
+SPDF_Bloco_D_RegistroD990_GetQTD_LIN_D,
 {%endregion BlocoD}
 
+{%region BlocoE}
 
+SPDF_Bloco_E_GetDT_INI, SPDF_Bloco_E_SetDT_INI,
+SPDF_Bloco_E_GetDT_FIN, SPDF_Bloco_E_SetDT_FIN,
+SPDF_Bloco_E_GetGravado,
+SPDF_Bloco_E_RegistroE001New,
+SPDF_Bloco_E_RegistroE100New,
+SPDF_Bloco_E_RegistroE110New,
+SPDF_Bloco_E_RegistroE111New,
+SPDF_Bloco_E_RegistroE112New,
+SPDF_Bloco_E_RegistroE113New,
+SPDF_Bloco_E_RegistroE115New,
+SPDF_Bloco_E_RegistroE116New,
+SPDF_Bloco_E_RegistroE200New,
+SPDF_Bloco_E_RegistroE210New,
+SPDF_Bloco_E_RegistroE220New,
+SPDF_Bloco_E_RegistroE230New,
+SPDF_Bloco_E_RegistroE240New,
+SPDF_Bloco_E_RegistroE250New,
+SPDF_Bloco_E_RegistroE500New,
+SPDF_Bloco_E_RegistroE510New,
+SPDF_Bloco_E_RegistroE520New,
+SPDF_Bloco_E_RegistroE530New,
+SPDF_Bloco_E_RegistroE990_GetQTD_LIN_E,
 
+{%endregion BlocoE}
+
+{%region BlocoG}
+
+SPDF_Bloco_G_GetDT_INI, SPDF_Bloco_G_SetDT_INI,
+SPDF_Bloco_G_GetDT_FIN, SPDF_Bloco_G_SetDT_FIN,
+SPDF_Bloco_G_GetGravado,
+SPDF_Bloco_G_RegistroG001New,
+SPDF_Bloco_G_RegistroG110New,
+SPDF_Bloco_G_RegistroG125New,
+SPDF_Bloco_G_RegistroG126New,
+SPDF_Bloco_G_RegistroG130New,
+SPDF_Bloco_G_RegistroG140New,
+SPDF_Bloco_G_RegistroG990_GetQTD_LIN_G,
+
+{%endregion BlocoG}
+
+{%region BlocoH}
+
+SPDF_Bloco_H_GetDT_INI, SPDF_Bloco_H_SetDT_INI,
+SPDF_Bloco_H_GetDT_FIN, SPDF_Bloco_H_SetDT_FIN,
+SPDF_Bloco_H_GetGravado,
+SPDF_Bloco_H_RegistroH001New,
+SPDF_Bloco_H_RegistroH005New,
+SPDF_Bloco_H_RegistroH010New,
+SPDF_Bloco_H_RegistroH020New,
+SPDF_Bloco_H_RegistroH990_GetQTD_LIN_H
+
+{%endregion BlocoH}
 ;
 end.
 

@@ -7,6 +7,13 @@ interface
 uses
   Classes, SysUtils;
 
+{%region Ponteiros de função para uso nos eventos}
+
+type TNoArgumentsCallback = procedure(); cdecl;
+type TStringCallback = procedure(const str : PChar); cdecl;
+
+{%endregion Ponteiros de função para uso nos eventos}
+
 {%region Registros Bloco 0}
 
 type Bloco0Registro0000 = record
@@ -1311,9 +1318,411 @@ type BlocoDRegistroD370 = record
    VL_ICMS              : Double;
 end;
 
+type BlocoDRegistroD390 = record
+  CST_ICMS              : array[0..3] of char;
+  CFOP                  : array[0..4] of char;
+  ALIQ_ICMS             : Double;
+  VL_OPR                : Double;
+  VL_BC_ISSQN           : Double;
+  ALIQ_ISSQN            : Double;
+  VL_ISSQN              : Double;
+  VL_BC_ICMS            : Double;
+  VL_ICMS               : Double;
+  COD_OBS               : array[0..6] of char;
+end;
 
+type BlocoDRegistroD400 = record
+  COD_PART              : array[0..60] of char;
+  COD_MOD               : array[0..2] of char;
+  COD_SIT               : Integer;
+  SER                   : array[0..4] of char;
+  SUB                   : array[0..3] of char;
+  NUM_DOC               : array[0..6] of char;
+  DT_DOC                : Double;
+  VL_DOC                : Double;
+  VL_DESC               : Double;
+  VL_SERV               : Double;
+  VL_BC_ICMS            : Double;
+  VL_ICMS               : Double;
+  VL_PIS                : Double;
+  VL_COFINS             : Double;
+  COD_CTA               : array[0..60] of char;
+end;
+
+type BlocoDRegistroD410 = record
+  COD_MOD               : array[0..2] of char;
+  SER                   : array[0..4] of char;
+  SUB                   : array[0..3] of char;
+  NUM_DOC_INI           : array[0..6] of char;
+  NUM_DOC_FIN           : array[0..6] of char;
+  DT_DOC                : Double;
+  CST_ICMS              : array[0..3] of char;
+  CFOP                  : array[0..4] of char;
+  ALIQ_ICMS             : Double;
+  VL_OPR                : Double;
+  VL_DESC               : Double;
+  VL_SERV               : Double;
+  VL_BC_ICMS            : Double;
+  VL_ICMS               : Double;
+end;
+
+type BlocoDRegistroD411 = record
+  NUM_DOC_CANC          : array[0..60] of char;
+end;
+
+type BlocoDRegistroD420 = record
+  COD_MUN_ORIG          : array[0..7] of char;
+  VL_SERV               : Double;
+  VL_BC_ICMS            : Double;
+  VL_ICMS               : Double;
+end;
+
+type BlocoDRegistroD500 = record
+  IND_OPER              : Integer;
+  IND_EMIT              : Integer;
+  COD_PART              : array[0..60] of char;
+  COD_MOD               : array[0..2] of char;
+  COD_SIT               : Integer;
+  SER                   : array[0..4] of char;
+  SUB                   : array[0..3] of char;
+  NUM_DOC               : array[0..9] of char;
+  DT_DOC                : Double;
+  DT_A_P                : Double;
+  VL_DOC                : Double;
+  VL_DESC               : Double;
+  VL_SERV               : Double;
+  VL_SERV_NT            : Double;
+  VL_TERC               : Double;
+  VL_DA                 : Double;
+  VL_BC_ICMS            : Double;
+  VL_ICMS               : Double;
+  COD_INF               : array[0..6] of char;
+  VL_PIS                : Double;
+  VL_COFINS             : Double;
+  COD_CTA               : array[0..60] of char;
+  TP_ASSINANTE          : Integer;
+end;
+
+type BlocoDRegistroD510 = record
+   IND_REC             : Integer;
+end;
+
+type BlocoDRegistroD530 = record
+  IND_SERV             : Integer;
+end;
+
+type BlocoDRegistroD590 = record
+  CST_ICMS              : array[0..3] of char;
+  CFOP                  : array[0..4] of char;
+  ALIQ_ICMS             : Double;
+  VL_OPR                : Double;
+  VL_BC_ICMS            : Double;
+  VL_ICMS               : Double;
+  VL_BC_ICMS_UF         : Double;
+  VL_ICMS_UF            : Double;
+  VL_RED_BC             : Double;
+  COD_OBS               : array[0..6] of char;
+end;
+
+type BlocoDRegistroD600 = record
+end;
+
+type BlocoDRegistroD610 = record
+end;
+
+type BlocoDRegistroD690 = record
+end;
+
+type BlocoDRegistroD695 = record
+  COD_MOD               : array[0..2] of char;
+  SER                   : array[0..4] of char;
+  NRO_ORD_INI           : integer;
+  NRO_ORD_FIN           : integer;
+  DT_DOC_INI            : Double;
+  DT_DOC_FIN            : Double;
+  NOM_MEST              : array[0..15] of char;
+  CHV_COD_DIG           : array[0..32] of char;
+end;
+
+type BlocoDRegistroD696 = record
+  CST_ICMS              : array[0..3] of char;
+  CFOP                  : array[0..4] of char;
+  ALIQ_ICMS             : Double;
+  VL_OPR                : Double;
+  VL_BC_ICMS            : Double;
+  VL_ICMS               : Double;
+  VL_BC_ICMS_UF         : Double;
+  VL_ICMS_UF            : Double;
+  VL_RED_BC             : Double;
+  COD_OBS               : array[0..6] of char;
+end;
+
+type BlocoDRegistroD697 = record
+ UF                     : array[0..2] of char;
+ VL_BC_ICMS             : Double;
+ VL_ICMS                : Double;
+end;
 
 {%endregion Registro Bloco D}
+
+{%region Registro Bloco E}
+
+type BlocoERegistroE001 = record
+     IND_MOV            : Integer;
+end;
+
+type BlocoERegistroE100 = record
+    DT_INI              : Double;
+    DT_FIN              : Double;
+end;
+
+type BlocoERegistroE110 = record
+  VL_TOT_DEBITOS             : Double;
+  VL_AJ_DEBITOS              : Double;
+  VL_TOT_AJ_DEBITOS          : Double;
+  VL_ESTORNOS_CRED           : Double;
+  VL_TOT_CREDITOS            : Double;
+  VL_AJ_CREDITOS             : Double;
+  VL_TOT_AJ_CREDITOS         : Double;
+  VL_ESTORNOS_DEB            : Double;
+  VL_SLD_CREDOR_ANT          : Double;
+  VL_SLD_APURADO             : Double;
+  VL_TOT_DED                 : Double;
+  VL_ICMS_RECOLHER           : Double;
+  VL_SLD_CREDOR_TRANSPORTAR  : Double;
+  DEB_ESP                    : Double;
+end;
+
+type BlocoERegistroE111 = record
+  COD_AJ_APUR           : array[0..8] of char;
+  DESCR_COMPL_AJ        : array[0..254] of char;
+  VL_AJ_APUR            : Double;
+end;
+
+type BlocoERegistroE112 = record
+  NUM_DA                : array[0..60] of char;
+  NUM_PROC              : array[0..15] of char;
+  IND_PROC              : Integer;
+  PROC                  : array[0..1023] of char;
+  TXT_COMPL             : array[0..1023] of char;
+end;
+
+type BlocoERegistroE113 = record
+  COD_PART              : array[0..60] of char;
+  COD_MOD               : array[0..2] of char;
+  SER                   : array[0..4] of char;
+  SUB                   : array[0..3] of char;
+  NUM_DOC               : array[0..9] of char;
+  DT_DOC                : Double;
+  CHV_NFE               : array[0..44] of char;
+  COD_ITEM              : array[0..60] of char;
+  VL_AJ_ITEM            : Double;
+end;
+
+type BlocoERegistroE115 = record
+  COD_INF_ADIC         : array[0..8] of char;
+  VL_INF_ADIC          : Double;
+  DESCR_COMPL_AJ       : array[0..1023] of char;
+end;
+
+type BlocoERegistroE116 = record
+  COD_OR                : array[0..3] of char;
+  VL_OR                 : Double;
+  DT_VCTO               : Double;
+  COD_REC               : array[0..60] of char;
+  NUM_PROC              : array[0..15] of char;
+  IND_PROC              : Integer;
+  PROC                  : array[0..1023] of char;
+  TXT_COMPL             : array[0..1023] of char;
+  MES_REF               : array[0..6] of char;
+end;
+
+type BlocoERegistroE200 = record
+ UF                     : array[0..2] of char;
+ DT_INI                 : Double;
+ DT_FIN                 : Double;
+end;
+
+type BlocoERegistroE210 = record
+  IND_MOV_ST                     : Integer;
+  VL_SLD_CRED_ANT_ST             : Double;
+  VL_DEVOL_ST                    : Double;
+  VL_RESSARC_ST                  : Double;
+  VL_OUT_CRED_ST                 : Double;
+  VL_AJ_CREDITOS_ST              : Double;
+  VL_RETENCAO_ST                 : Double;
+  VL_OUT_DEB_ST                  : Double;
+  VL_AJ_DEBITOS_ST               : Double;
+  VL_SLD_DEV_ANT_ST              : Double;
+  VL_DEDUCOES_ST                 : Double;
+  VL_ICMS_RECOL_ST               : Double;
+  VL_SLD_CRED_ST_TRANSPORTAR     : Double;
+  DEB_ESP_ST                     : Double;
+end;
+
+type BlocoERegistroE220 = record
+  COD_AJ_APUR           : array[0..8] of char;
+  DESCR_COMPL_AJ        : array[0..1023] of char;
+  VL_AJ_APUR            : Double;
+end;
+
+type BlocoERegistroE230 = record
+  NUM_DA                : array[0..60] of char;
+  NUM_PROC              : array[0..15] of char;
+  IND_PROC              : Integer;
+  PROC                  : array[0..1023] of char;
+  TXT_COMPL             : array[0..1023] of char;
+end;
+
+type BlocoERegistroE240 = record
+  COD_PART              : array[0..60] of char;
+  COD_MOD               : array[0..2] of char;
+  SER                   : array[0..4] of char;
+  SUB                   : array[0..3] of char;
+  NUM_DOC               : array[0..9] of char;
+  DT_DOC                : Double;
+  CHV_NFE               : array[0..44] of char;
+  COD_ITEM              : array[0..60] of char;
+  VL_AJ_ITEM            : Double;
+end;
+
+type BlocoERegistroE250 = record
+  COD_OR                : array[0..3] of char;
+  VL_OR                 : Double;
+  DT_VCTO               : Double;
+  COD_REC               : array[0..60] of char;
+  NUM_PROC              : array[0..15] of char;
+  IND_PROC              : Integer;
+  PROC                  : array[0..1023] of char;
+  TXT_COMPL             : array[0..1023] of char;
+  MES_REF               : array[0..6] of char;
+end;
+
+type BlocoERegistroE500 = record
+ IND_APUR               : Integer;
+ DT_INI                 : Double;
+ DT_FIN                 : Double;
+end;
+
+type BlocoERegistroE510 = record
+  CFOP                  : array[0..4] of char;
+  CST_IPI               : array[0..2] of char;
+  VL_CONT_IPI           : Double;
+  VL_BC_IPI             : Double;
+  VL_IPI                : Double;
+end;
+
+type BlocoERegistroE520 = record
+  VL_SD_ANT_IPI         : Double;
+  VL_DEB_IPI            : Double;
+  VL_CRED_IPI           : Double;
+  VL_OD_IPI             : Double;
+  VL_OC_IPI             : Double;
+  VL_SC_IPI             : Double;
+  VL_SD_IPI             : Double;
+end;
+
+type BlocoERegistroE530 = record
+  IND_AJ                : Integer;
+  VL_AJ                 : Double;
+  COD_AJ                : array[0..3] of char;
+  IND_DOC               : Integer;
+  NUM_DOC               : array[0..60] of char;
+  DESCR_AJ              : array[0..1023] of char;
+end;
+
+{%endregion Registro Bloco E}
+
+{%region Registro Bloco G}
+
+type BlocoGRegistroG001 = record
+       IND_MOV            : Integer;
+end;
+
+type BlocoGRegistroG110 = record
+  MODO_CIAP             : array[0..60] of char;
+  SALDO_IN_ICMS         : Double;
+  SALDO_FN_ICMS         : Double;
+  SOM_PARC              : Double;
+  VL_TRIB_EXP           : Double;
+  VL_TOTAL              : Double;
+  IND_PER_SAI           : Double;
+  ICMS_APROP            : Double;
+  SOM_ICMS_OC           : Double;
+end;
+
+type BlocoGRegistroG125 = record
+  COD_IND_BEM           : array[0..60] of char;
+  DT_MOV                : Double;
+  TIPO_MOV              : Integer;
+  VL_IMOB_ICMS_OP       : Double;
+  VL_IMOB_ICMS_ST       : Double;
+  VL_IMOB_ICMS_FRT      : Double;
+  VL_IMOB_ICMS_DIF      : Double;
+  NUM_PARC              : Integer;
+  VL_PARC_PASS          : Double;
+  VL_PARC_APROP         : Double;
+end;
+
+type BlocoGRegistroG126 = record
+  DT_INI                : Double;
+  DT_FIN                : Double;
+  NUM_PARC              : Integer;
+  VL_PARC_PASS          : Double;
+  VL_TRIB_OC            : Double;
+  VL_TOTAL              : Double;
+  IND_PER_SAI           : Double;
+  VL_PARC_APROP         : Double;
+end;
+
+type BlocoGRegistroG130 = record
+  IND_EMIT              : Integer;
+  COD_PART              : array[0..60] of char;
+  COD_MOD               : array[0..2] of char;
+  SERIE                 : array[0..3] of char;
+  NUM_DOC               : array[0..9] of char;
+  CHV_NFE_CTE           : array[0..44] of char;
+  DT_DOC                : Double;
+end;
+
+type BlocoGRegistroG140 = record
+  NUM_ITEM              : array[0..3] of char;
+  COD_ITEM              : array[0..60] of char;
+end;
+
+{%endregion Registro Bloco G}
+
+{%region Registro Bloco H}
+
+type BlocoHRegistroH001 = record
+  IND_MOV            : Integer;
+end;
+
+type BlocoHRegistroH005 = record
+  DT_INV                : Double;
+  VL_INV                : Double;
+  MOT_INV               : Integer;
+end;
+
+type BlocoHRegistroH010 = record
+  COD_ITEM              : array[0..60] of char;
+  UNID                  : array[0..6] of char;
+  QTD                   : Double;
+  VL_UNIT               : Double;
+  VL_ITEM               : Double;
+  IND_PROP              : Integer;
+  COD_PART              : array[0..60] of char;
+  TXT_COMPL             : array[0..1023] of char;
+  COD_CTA               : array[0..60] of char;
+end;
+
+type BlocoHRegistroH020 = record
+  CST_ICMS              : array[0..3] of char;
+  BC_ICMS               : Double;
+  VL_ICMS               : Double;
+end;
+
+{%endregion Registro Bloco H}
 
 implementation
 
