@@ -188,9 +188,6 @@ namespace ACBrFramework.Sped
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string BAIRRO;       /// Bairro em que o imóvel está situado:
-
-			[MarshalAs(UnmanagedType.I4)]
-			public int Count0175;       /// BLOCO C - Lista de Registro0175 (FILHO)
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
