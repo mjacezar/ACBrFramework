@@ -776,14 +776,14 @@ begin
      begin
 
        FANTASIA     := registro0005.FANTASIA;
-       CEP          := registro0005.FANTASIA;
-       ENDERECO     := registro0005.FANTASIA;
-       NUM          := registro0005.FANTASIA;
-       COMPL        := registro0005.FANTASIA;
-       BAIRRO       := registro0005.FANTASIA;
-       FONE         := registro0005.FANTASIA;
-       FAX          := registro0005.FANTASIA;
-       EMAIL        := registro0005.FANTASIA;
+       CEP          := registro0005.CEP;
+       ENDERECO     := registro0005.ENDERECO;
+       NUM          := registro0005.NUM;
+       COMPL        := registro0005.COMPL;
+       BAIRRO       := registro0005.BAIRRO;
+       FONE         := registro0005.FONE;
+       FAX          := registro0005.FAX;
+       EMAIL        := registro0005.EMAIL;
      end;
      Result := 0;
   except

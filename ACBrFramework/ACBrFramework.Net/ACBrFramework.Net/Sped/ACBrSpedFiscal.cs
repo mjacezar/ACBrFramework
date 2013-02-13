@@ -1922,7 +1922,7 @@ namespace ACBrFramework.Sped
 			Type recordType = typeof(TRecord);
 			Type itemType = item.GetType();
 
-			TRecord record = new TRecord();
+			object record = new TRecord();
 
 			foreach (var field in recordType.GetFields())
 			{
@@ -1933,7 +1933,8 @@ namespace ACBrFramework.Sped
 
 				if (field.FieldType == typeof(string))
 				{
-					field.SetValue(record, ToUTF8((string)value));
+					var str = ToUTF8((string)value);
+					field.SetValue(record, str);
 				}
 				else if (field.FieldType == typeof(double))
 				{
@@ -1964,11 +1965,11 @@ namespace ACBrFramework.Sped
 				}
 				else
 				{
-					throw new NotImplementedException();
+					throw new Exception(string.Format("{0}: Tipo de dado {0} não esperado.", itemType.Name, field.FieldType.Name));
 				}
 			}
 
-			return record;
+			return (TRecord)record;
 		}
 
 		#endregion Interop
