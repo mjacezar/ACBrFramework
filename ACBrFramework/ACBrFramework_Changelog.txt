@@ -43,12 +43,18 @@ Changelog
 
 13/02/2013
 
--- ACBrFramework.Net 0.9.2.5 e ACBrFramework 0.9.2.5 --
+-- ACBrFramework.Net 0.9.2.6 --
+[-] ACBrSped Correções- Rafael Batiati.
+
+-- ACBrFramework 0.9.2.6 --
 [-] ACBrSped Correções- Rafael Batiati.
 
 12/02/2013
 
--- ACBrFramework.Net 0.9.2.6 e ACBrFramework 0.9.2.6 --
+-- ACBrFramework.Net 0.9.2.6 --
+[*] ACBrSped implementado (em debug)- Rafael Batiati.
+
+-- ACBrFramework 0.9.2.6 --
 [*] ACBrSped implementado (em debug)- Rafael Batiati.
 
 11/02/2013
