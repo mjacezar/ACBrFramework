@@ -19,7 +19,7 @@ namespace ACBrFramework.Sped
 
 		public DateTime DT_FIN { get; set; }
 
-		public RegistroE110 RegistroE110 { get; set; }
+		public RegistroE110 RegistroE110 { get; private set; }
 
 		#endregion Properties
 	}

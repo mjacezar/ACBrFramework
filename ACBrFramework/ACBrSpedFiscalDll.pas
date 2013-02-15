@@ -3688,6 +3688,40 @@ begin
   end;
 end;
 
+Function SPDF_Bloco_C_RegistroC470New(const spdfHandle: PSPDFHandle; const registroC470 : BlocoCRegistroC470) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with spdfHandle^.SPEDFiscal.Bloco_C.RegistroC470New do
+     begin
+        COD_ITEM   := registroC470.COD_ITEM;
+        QTD        := registroC470.QTD;
+        QTD_CANC   := registroC470.QTD_CANC;
+        UNID       := registroC470.UNID;
+        VL_ITEM    := Currency(registroC470.VL_ITEM);
+        CST_ICMS   := registroC470.CST_ICMS;
+        CFOP       := registroC470.CFOP;
+        ALIQ_ICMS  := Currency(registroC470.ALIQ_ICMS);
+        VL_PIS     := Currency(registroC470.VL_PIS);
+        VL_COFINS  := Currency(registroC470.VL_COFINS);
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+
 Function SPDF_Bloco_C_RegistroC490New(const spdfHandle: PSPDFHandle; const registroC490 : BlocoCRegistroC490) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -6916,6 +6950,7 @@ SPDF_Bloco_C_RegistroC410New,
 SPDF_Bloco_C_RegistroC420New,
 SPDF_Bloco_C_RegistroC425New,
 SPDF_Bloco_C_RegistroC460New,
+SPDF_Bloco_C_RegistroC470New,
 SPDF_Bloco_C_RegistroC490New,
 SPDF_Bloco_C_RegistroC495New,
 SPDF_Bloco_C_RegistroC500New,

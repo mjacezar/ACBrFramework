@@ -97,7 +97,7 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.cbConcomitante.Text = "Gerar Concomitante";
 			this.toolTip1.SetToolTip(this.cbConcomitante, "Grava os Registros a medida que são alimentados\r\nEconomizando memória. \r\nÚtil par" +
         "a evitar erros em arquivos Enormes");
-			this.cbConcomitante.Click += new System.EventHandler(this.cbConcomitanteClick);
+			this.cbConcomitante.Click += new System.EventHandler(this.cbConcomitante_Click);
 			// 
 			// Label2
 			// 
@@ -174,7 +174,7 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.btnError.TabIndex = 7;
 			this.btnError.Text = "Gerar TXT Error";
 			this.btnError.UseVisualStyleBackColor = false;
-			this.btnError.Click += new System.EventHandler(this.btnErrorClick);
+			this.btnError.Click += new System.EventHandler(this.btnError_Click);
 			// 
 			// btnTXT
 			// 
@@ -186,7 +186,7 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.btnTXT.TabIndex = 8;
 			this.btnTXT.Text = "Gerar TXT";
 			this.btnTXT.UseVisualStyleBackColor = false;
-			this.btnTXT.Click += new System.EventHandler(this.btnTXTClick);
+			this.btnTXT.Click += new System.EventHandler(this.btnTXT_Click);
 			// 
 			// Panel1
 			// 
@@ -243,8 +243,8 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.edtFile.Size = new System.Drawing.Size(309, 20);
 			this.edtFile.TabIndex = 0;
 			this.edtFile.Text = "ACBrSpedFiscal.txt";
-			this.edtFile.ModifiedChanged += new System.EventHandler(this.edtFileChange);
-			this.edtFile.Leave += new System.EventHandler(this.edtFileChange);
+			this.edtFile.ModifiedChanged += new System.EventHandler(this.edtFile_Changed);
+			this.edtFile.Leave += new System.EventHandler(this.edtFile_Changed);
 			// 
 			// edNotas
 			// 
@@ -296,7 +296,7 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.btnB_0.TabIndex = 1;
 			this.btnB_0.Text = "Registros Bloco 0";
 			this.btnB_0.UseVisualStyleBackColor = false;
-			this.btnB_0.Click += new System.EventHandler(this.btnB_0Click);
+			this.btnB_0.Click += new System.EventHandler(this.btnB_0_Click);
 			// 
 			// btnB_1
 			// 
@@ -308,7 +308,7 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.btnB_1.TabIndex = 7;
 			this.btnB_1.Text = "Registros Bloco 1";
 			this.btnB_1.UseVisualStyleBackColor = false;
-			this.btnB_1.Click += new System.EventHandler(this.btnB_1Click);
+			this.btnB_1.Click += new System.EventHandler(this.btnB_1_Click);
 			// 
 			// btnB_C
 			// 
@@ -320,7 +320,7 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.btnB_C.TabIndex = 2;
 			this.btnB_C.Text = "Registros Bloco C";
 			this.btnB_C.UseVisualStyleBackColor = false;
-			this.btnB_C.Click += new System.EventHandler(this.btnB_CClick);
+			this.btnB_C.Click += new System.EventHandler(this.btnB_C_Click);
 			// 
 			// btnB_D
 			// 
@@ -332,7 +332,7 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.btnB_D.TabIndex = 3;
 			this.btnB_D.Text = "Registros Bloco D";
 			this.btnB_D.UseVisualStyleBackColor = false;
-			this.btnB_D.Click += new System.EventHandler(this.btnB_DClick);
+			this.btnB_D.Click += new System.EventHandler(this.btnB_D_Click);
 			// 
 			// btnB_E
 			// 
@@ -344,7 +344,7 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.btnB_E.TabIndex = 4;
 			this.btnB_E.Text = "Registros Bloco E";
 			this.btnB_E.UseVisualStyleBackColor = false;
-			this.btnB_E.Click += new System.EventHandler(this.btnB_EClick);
+			this.btnB_E.Click += new System.EventHandler(this.btnB_E_Click);
 			// 
 			// btnB_H
 			// 
@@ -356,7 +356,7 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.btnB_H.TabIndex = 6;
 			this.btnB_H.Text = "Registros Bloco H";
 			this.btnB_H.UseVisualStyleBackColor = false;
-			this.btnB_H.Click += new System.EventHandler(this.btnB_HClick);
+			this.btnB_H.Click += new System.EventHandler(this.btnB_H_Click);
 			// 
 			// btnB_G
 			// 
@@ -368,7 +368,7 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.btnB_G.TabIndex = 5;
 			this.btnB_G.Text = "Registros Bloco G";
 			this.btnB_G.UseVisualStyleBackColor = false;
-			this.btnB_G.Click += new System.EventHandler(this.btnB_GClick);
+			this.btnB_G.Click += new System.EventHandler(this.btnB_G_Click);
 			// 
 			// btnB_Completo
 			// 
@@ -379,7 +379,7 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.btnB_Completo.TabIndex = 0;
 			this.btnB_Completo.Text = "Gerar o arquivo do SPED Fiscal completo";
 			this.btnB_Completo.UseVisualStyleBackColor = false;
-			this.btnB_Completo.Click += new System.EventHandler(this.btnB_CompletoClick);
+			this.btnB_Completo.Click += new System.EventHandler(this.btnB_Completo_Click);
 			// 
 			// btnB_9
 			// 
@@ -392,7 +392,7 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			this.btnB_9.TabIndex = 6;
 			this.btnB_9.Text = "Gravar Bloco 9";
 			this.btnB_9.UseVisualStyleBackColor = false;
-			this.btnB_9.Click += new System.EventHandler(this.btnB_9Click);
+			this.btnB_9.Click += new System.EventHandler(this.btnB_9_Click);
 			// 
 			// edBufLinhas
 			// 

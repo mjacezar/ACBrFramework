@@ -4,7 +4,7 @@
 	{
 		#region Constructor
 
-		public RegistroE110()
+		internal RegistroE110()
 		{
 			RegistroE111 = new RegistroList<RegistroE111>();
 			RegistroE115 = new RegistroList<RegistroE115>();
