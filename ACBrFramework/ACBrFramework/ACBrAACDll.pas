@@ -1526,6 +1526,359 @@ end;
 
 {%endregion}
 
+{%region Posto Combustivel }
+
+Function AAC_IdentPaf_Paf_GetAcumulaVolumeDiario(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(aacHandle^.AAC.IdentPAF.Paf.AcumulaVolumeDiario);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetAcumulaVolumeDiario(const aacHandle: PaacHandle; const AcumulaVolumeDiario : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.AcumulaVolumeDiario := AcumulaVolumeDiario;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_GetArmazenaEncerranteIniFinal(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(aacHandle^.AAC.IdentPAF.Paf.ArmazenaEncerranteIniFinal);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetArmazenaEncerranteIniFinal(const aacHandle: PaacHandle; const ArmazenaEncerranteIniFinal : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.ArmazenaEncerranteIniFinal := ArmazenaEncerranteIniFinal;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_GetCadastroPlacaBomba(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(aacHandle^.AAC.IdentPAF.Paf.CadastroPlacaBomba);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetCadastroPlacaBomba(const aacHandle: PaacHandle; const CadastroPlacaBomba : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.CadastroPlacaBomba := CadastroPlacaBomba;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_GetEmiteContrEncerrAposREDZLEIX(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(aacHandle^.AAC.IdentPAF.Paf.EmiteContrEncerrAposREDZLEIX);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetEmiteContrEncerrAposREDZLEIX(const aacHandle: PaacHandle; const EmiteContrEncerrAposREDZLEIX : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.EmiteContrEncerrAposREDZLEIX := EmiteContrEncerrAposREDZLEIX;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_GetImpedeVendaVlrZero(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(aacHandle^.AAC.IdentPAF.Paf.ImpedeVendaVlrZero);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetImpedeVendaVlrZero(const aacHandle: PaacHandle; const ImpedeVendaVlrZero : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.ImpedeVendaVlrZero := ImpedeVendaVlrZero;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_GetIntegradoComBombas(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(aacHandle^.AAC.IdentPAF.Paf.IntegradoComBombas);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetIntegradoComBombas(const aacHandle: PaacHandle; const IntegradoComBombas : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.IntegradoComBombas := IntegradoComBombas;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_GetCriaAbastDivergEncerrante(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(aacHandle^.AAC.IdentPAF.Paf.CriaAbastDivergEncerrante);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetCriaAbastDivergEncerrante(const aacHandle: PaacHandle; const CriaAbastDivergEncerrante : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.CriaAbastDivergEncerrante := CriaAbastDivergEncerrante;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+{%endregion}
+
+{%region Transporte Passageiros }
+
+Function AAC_IdentPaf_Paf_GetTransportePassageiro(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(aacHandle^.AAC.IdentPAF.Paf.TransportePassageiro);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetTransportePassageiro(const aacHandle: PaacHandle; const TransportePassageiro : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.TransportePassageiro := TransportePassageiro;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+
+{%endregion}
+
 {%region DADOS DE FUNCIONALIDADE}
 
 Function AAC_IdentPaf_Paf_GetTipoFuncionamento(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
@@ -2687,6 +3040,49 @@ begin
 
 end;
 
+Function AAC_IdentPaf_Paf_GetTrocoEmCartao(const aacHandle: PaacHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(aacHandle^.AAC.IdentPAF.Paf.TrocoEmCartao);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetTrocoEmCartao(const aacHandle: PaacHandle; const TrocoEmCartao : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.TrocoEmCartao:= TrocoEmCartao;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 {%endregion}
 
 {%region DADOS DA SOFTWARE HOUSE}
@@ -3635,6 +4031,19 @@ AAC_IdentPaf_Paf_GetMinasLegal,AAC_IdentPaf_Paf_SetMinasLegal,
 AAC_IdentPaf_Paf_GetParaibaLegal, AAC_IdentPaf_Paf_SetParaibaLegal,
 AAC_IdentPaf_Paf_GetNotaLegalDF, AAC_IdentPaf_Paf_SetNotaLegalDF,
 AAC_IdentPaf_Paf_GetRecompoeNumSerie, AAC_IdentPaf_Paf_SetRecompoeNumSerie,
+AAC_IdentPaf_Paf_GetTrocoEmCartao, AAC_IdentPaf_Paf_SetTrocoEmCartao,
+
+//posto combustiveis
+AAC_IdentPaf_Paf_GetAcumulaVolumeDiario, AAC_IdentPaf_Paf_SetAcumulaVolumeDiario,
+AAC_IdentPaf_Paf_GetArmazenaEncerranteIniFinal, AAC_IdentPaf_Paf_SetArmazenaEncerranteIniFinal,
+AAC_IdentPaf_Paf_GetCadastroPlacaBomba, AAC_IdentPaf_Paf_SetCadastroPlacaBomba,
+AAC_IdentPaf_Paf_GetEmiteContrEncerrAposREDZLEIX, AAC_IdentPaf_Paf_SetEmiteContrEncerrAposREDZLEIX,
+AAC_IdentPaf_Paf_GetImpedeVendaVlrZero, AAC_IdentPaf_Paf_SetImpedeVendaVlrZero,
+AAC_IdentPaf_Paf_GetIntegradoComBombas,AAC_IdentPaf_Paf_SetIntegradoComBombas,
+AAC_IdentPaf_Paf_GetCriaAbastDivergEncerrante, AAC_IdentPaf_Paf_SetCriaAbastDivergEncerrante,
+
+//Transporte Passageiros
+AAC_IdentPaf_Paf_GetTransportePassageiro, AAC_IdentPaf_Paf_SetTransportePassageiro,
 
 { Métodos do Componente }
 AAC_AbrirArquivo, AAC_SalvarArquivo,
