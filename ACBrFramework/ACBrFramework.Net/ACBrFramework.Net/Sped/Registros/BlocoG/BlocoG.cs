@@ -49,9 +49,9 @@ namespace ACBrFramework.Sped
 			}
 		}
 
-		public RegistroG001 RegistroG001 { get; set; }
+		public RegistroG001 RegistroG001 { get; private set; }
 
-		public RegistroG990 RegistroG990 { get; set; }
+		public RegistroG990 RegistroG990 { get; private set; }
 
 		#endregion Properties
 	}

@@ -45,9 +45,11 @@ Changelog
 
 -- ACBrFramework 0.9.2.7 --
 [*] Adicionados opções de posto de combustivel e transporte de passageiros - ACBrAAC - Rafael Dias.
+[-] Correções de bugs - ACBrSped - Rafael Batiati.
 
 -- ACBrFramework.Net 0.9.2.7 --
 [*] Adicionados opções de posto de combustivel e transporte de passageiros - ACBrAAC - Rafael Dias.
+[+] ACBrSpedFiscalTeste - Rafael Batiati.
 
 13/02/2013
 
