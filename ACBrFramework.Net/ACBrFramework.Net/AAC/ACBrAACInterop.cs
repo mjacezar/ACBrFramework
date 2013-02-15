@@ -433,7 +433,69 @@ namespace ACBrFramework.AAC
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int AAC_IdentPaf_Paf_SetRecompoeNumSerie(IntPtr aacHandle, bool check);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetTrocoEmCartao(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetTrocoEmCartao(IntPtr aacHandle, bool check);
+
 		#endregion Dados Criterios UF
+
+		#region Posto Combustiveis
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetAcumulaVolumeDiario(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetAcumulaVolumeDiario(IntPtr aacHandle, bool check);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetArmazenaEncerranteIniFinal(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetArmazenaEncerranteIniFinal(IntPtr aacHandle, bool check);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetCadastroPlacaBomba(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetCadastroPlacaBomba(IntPtr aacHandle, bool check);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetEmiteContrEncerrAposREDZLEIX(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetEmiteContrEncerrAposREDZLEIX(IntPtr aacHandle, bool check);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetImpedeVendaVlrZero(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetImpedeVendaVlrZero(IntPtr aacHandle, bool check);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetIntegradoComBombas(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetIntegradoComBombas(IntPtr aacHandle, bool check);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetCriaAbastDivergEncerrante(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetCriaAbastDivergEncerrante(IntPtr aacHandle, bool check);
+
+		#endregion Posto Combustiveis
+
+		#region Transporte Passageiros
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetTransportePassageiro(IntPtr aacHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetTransportePassageiro(IntPtr aacHandle, bool check);
+
+		#endregion Transporte Passageiros
 
 		#region Dados Parametros
 

@@ -41,20 +41,28 @@ Símbolo : Significado
 
 Changelog
 
+15/02/2013
+
+-- ACBrFramework 0.9.2.7 --
+[*] Adicionados opções de posto de combustivel e transporte de passageiros - ACBrAAC - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.2.7 --
+[*] Adicionados opções de posto de combustivel e transporte de passageiros - ACBrAAC - Rafael Dias.
+
 13/02/2013
 
--- ACBrFramework.Net 0.9.2.6 --
-[-] ACBrSped Correções- Rafael Batiati.
-
 -- ACBrFramework 0.9.2.6 --
-[-] ACBrSped Correções- Rafael Batiati.
+[-] Correções nos records - ACBrSpedFiscal - Rafael Batiati.
+
+-- ACBrFramework.Net 0.9.2.6 --
+[-] Correções nos records - ACBrSpedFiscal - Rafael Batiati.
 
 12/02/2013
 
--- ACBrFramework.Net 0.9.2.6 --
+-- ACBrFramework 0.9.2.6 --
 [*] ACBrSped implementado (em debug)- Rafael Batiati.
 
--- ACBrFramework 0.9.2.6 --
+-- ACBrFramework.Net 0.9.2.6 --
 [*] ACBrSped implementado (em debug)- Rafael Batiati.
 
 11/02/2013

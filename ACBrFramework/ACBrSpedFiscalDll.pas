@@ -521,6 +521,27 @@ end;
 
 {%region Methods }
 
+Function SPDF_IniciaGeracao(const spdfHandle: PSPDFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (spdfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     spdfHandle^.SPEDFiscal.IniciaGeracao;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        spdfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 Function SPDF_SaveFileTXT(const spdfHandle: PSPDFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -6779,7 +6800,7 @@ SPDF_SetTrimString, SPDF_GetDT_INI, SPDF_SetDT_INI,
 SPDF_GetDT_FIN, SPDF_SetDT_FIN,
 
 { Methods }
-SPDF_SaveFileTXT,
+SPDF_SaveFileTXT, SPDF_IniciaGeracao,
 
 { Events }
 SPDF_SetOnError,
