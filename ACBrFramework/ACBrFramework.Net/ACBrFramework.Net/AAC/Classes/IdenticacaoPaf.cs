@@ -1,7 +1,28 @@
 ﻿using System.ComponentModel;
 
+#region COM_INTEROP
+
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
+#endregion COM_INTEROP
+
 namespace ACBrFramework.AAC
 {
+	#region COM_INTEROP
+
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("CE8FB949-42A9-4FB6-856D-41D1F662F003")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+	#endregion COM_INTEROP
+
 	public sealed class IdenticacaoPaf : ACBrComposedComponent
 	{
 		#region Constructor

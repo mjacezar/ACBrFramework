@@ -4300,7 +4300,7 @@ namespace ACBrFramework.ECF
 				Docs = new int[1] { (int)TipoDocumento.Todos };
 
 			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo), Docs, Docs.Length, (int)Finaliza);
-						
+
 			CheckResult(ret);
 		}
 
@@ -4659,14 +4659,34 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void ReducaoZ(Nullable<DateTime> data = null)
+		public void ReducaoZ([Optional]DateTime data)
 		{
-			ReducaoZ(data.HasValue ? data.Value.ToOADate() : 0);
+			int ret;
+
+			if (data == default(DateTime))
+			{
+				ret = ACBrECFInterop.ECF_ReducaoZ(this.Handle, 0d);
+			}
+			else
+			{
+				ret = ACBrECFInterop.ECF_ReducaoZ(this.Handle, data.ToOADate());
+			}
+
+			CheckResult(ret);
 		}
 
-		private void ReducaoZ(double data)
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
+		public void ReducaoZ()
 		{
-			int ret = ACBrECFInterop.ECF_ReducaoZ(this.Handle, data);
+			int ret = ACBrECFInterop.ECF_ReducaoZ(this.Handle, 0d);
 			CheckResult(ret);
 		}
 
@@ -4700,7 +4720,14 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-#if !COM_INTEROP
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public void LinhaRelatorioGerencial(string[] linhas, int indiceBMP = 0)
 		{
@@ -4710,8 +4737,6 @@ namespace ACBrFramework.ECF
 			}
 		}
 
-#endif			
-		
 		public void LinhaRelatorioGerencial(string linha, int indiceBMP = 0)
 		{
 			int ret = ACBrECFInterop.ECF_LinhaRelatorioGerencial(this.Handle, ToUTF8(linha), indiceBMP);
@@ -4761,19 +4786,33 @@ namespace ACBrFramework.ECF
 			}
 		}
 
-#if !COM_INTEROP
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
 
 		public void RelatorioGerencial(List<string> relatorio, int vias = 1, int indice = 0)
 		{
 			RelatorioGerencial(relatorio.ToArray(), vias, indice);
 		}
 
-		public void RelatorioGerencial(IEnumerable<string> relatorio, int vias = 1, int indice= 0)
+		#region COM_INTEROP
+
+#if COM_INTEROP
+
+		[ComVisible(false)]
+#endif
+
+		#endregion COM_INTEROP
+
+		public void RelatorioGerencial(IEnumerable<string> relatorio, int vias = 1, int indice = 0)
 		{
 			RelatorioGerencial(relatorio.ToArray(), vias, indice);
 		}
-
-#endif
 
 		public void RelatorioGerencial(string[] relatorio, int vias = 1, int indice = 0)
 		{

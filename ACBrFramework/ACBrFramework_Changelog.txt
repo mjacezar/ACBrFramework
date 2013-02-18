@@ -41,6 +41,16 @@ Símbolo : Significado
 
 Changelog
 
+17/02/2013
+
+-- ACBrFramework.Net 0.9.2.7 --
+[+] Adicionado COM_INTEROP em ACBrAAC e ACBrEAD - Rafael Batiati.
+[*] Refactoring de nomes de EventArgs para adequar ao padrão .Net - Rafael Batiati.
+[-] Refactoring do método ReducaoZ(DateTime) para suportar parâmetro opicional no COM_INTEROP - Rafael Batiati.
+
+-- ACBrFramework.ActiveX
+[-] Adequação do demo em VB6 para as últimas mudanças no projeto - Rafael Batiati.
+
 15/02/2013
 
 -- ACBrFramework 0.9.2.7 --
