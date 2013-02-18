@@ -1,5 +1,26 @@
-﻿namespace ACBrFramework.AAC
+﻿#region COM_INTEROP
+
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
+#endregion COM_INTEROP
+
+namespace ACBrFramework.AAC
 {
+	#region COM_INTEROP
+
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("17376497-6E66-4E59-BBB8-680EC6A19697")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+	#endregion COM_INTEROP
+
 	public sealed class Empresa : ACBrComposedComponent
 	{
 		#region Constructor

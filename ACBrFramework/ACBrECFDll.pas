@@ -3337,6 +3337,7 @@ begin
      Exit;
   end;
   try
+
   if (rfdHandle = nil) then
   begin
   ecfHandle^.ECF.RFD := nil;

@@ -47,7 +47,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;x86</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -58,7 +58,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;x86</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -115,6 +115,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COM Interop|AnyCPU'">
     <OutputPath>bin\COM Interop\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <DefineConstants>x86;COM_INTEROP</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COM Interop|x86'">
     <OutputPath>bin\COM Interop\</OutputPath>
@@ -158,14 +160,24 @@
     <Compile Include="AAC\Classes\IdenticacaoPaf.cs" />
     <Compile Include="AAC\Classes\InfoPaf.cs" />
     <Compile Include="AAC\Classes\ArquivoListaAutenticados.cs" />
-    <Compile Include="AAC\Eventos\OnCryptArgs.cs" />
-    <Compile Include="AAC\Eventos\OnDeCryptArgs.cs" />
-    <Compile Include="AAC\Eventos\VerificarRecomporNumSerieArgs.cs" />
-    <Compile Include="AAC\Eventos\VerificarRecomporValorGTArgs.cs" />
+    <Compile Include="AAC\Eventos\AntesArquivoArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AAC\Eventos\OnCryptArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AAC\Eventos\OnDeCryptArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AAC\Eventos\VerificarRecomporNumSerieArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AAC\Eventos\VerificarRecomporValorGTArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ACBrClassInterop.cs" />
     <Compile Include="ACBrEventHandler.cs" />
     <Compile Include="ACBrInteropEventHandlerBase.cs" />
-    <Compile Include="AAC\Eventos\AntesArquivoArgs.cs" />
     <Compile Include="CEP\Classes\CEPWebService.cs" />
     <Compile Include="CEP\Classes\Endereco.cs" />
     <Compile Include="CEP\Classes\Enderecos.cs" />

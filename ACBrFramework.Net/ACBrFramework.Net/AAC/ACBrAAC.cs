@@ -5,53 +5,263 @@ using System.Runtime.InteropServices;
 
 namespace ACBrFramework.AAC
 {
+	#region COM Interop
+
+	/* NOTAS para COM INTEROP
+	 * Há um modo de compilação com a diretiva COM_INTEROP que inseri atributos e código específico
+	 * para a DLL ser exportada para COM (ActiveX)
+	 *
+	 * O modelo COM possui alguma limitações/diferenças em relação ao modelo .NET
+	 * Inserir os #if COM_INTEROP para prover implementações distintas nas modificações necessárias para COM:
+	 *
+	 * - Inserir atributos ComVisible(true), Guid("xxx") e ClassInterface(ClassInterfaceType.AutoDual) em todas as classes envolvidas
+	 *
+	 * - Propriedades/métodos que usam "Decimal" devem incluir o atributo MarshalAs(UnmanagedType.Currency)
+	 *   usar [return: ...] para retornos de métodos e propriedades ou [param: ...] para o set de propriedades
+	 *
+	 * - Métodos que recebem array como parâmetros devem fazer como "ref".
+	 *   Propriedades só podem retornar arrays, nunca receber.
+	 *
+	 * - Overload não é permitido. Métodos com mesmos nomes devem ser renomeados.
+	 *   É possível usar parâmetros default, simplificando a necessidade de Overload
+	 *
+	 * - Generic não deve ser usado. Todas as classes Generic devem ser re-escritas como classes específicas
+	 *
+	 * - Eventos precisam de uma Interface com as declarações dos métodos (eventos) com o atributo [InterfaceType(ComInterfaceType.InterfaceIsIDispatch)]
+	 *   A classe que declara os eventos precisa do atributo [ComSourceInterfaces(typeof(INomeDaInterface))]
+	 *   Nenhum delegate deverá ser Generic, precisam ser re-escritos.
+	 *
+	 *   OBS: Por padrão o modelo .Net recebe os eventos com a assinatura void(object sender, EventArgs e)
+	 *   O modelo COM não precisa desses parâmetros. Assim o delegate EventHandler foi redefinido para uma assinatura void()
+	 *   Outros EventArgs devem seguir a assitarua COM void(MyEventArg e) ao invés da assinatura .NET void(object sender, MyEventArgs e)
+	 * */
+
+#if COM_INTEROP
+
+	#region IDispatch Interface
+
+	#region Documentation
+
+	/// <summary>
+	/// Interface contendo os eventos publicados pelo componente COM
+	/// </summary>
+
+	#endregion Documentation
+
+	[ComVisible(true)]
+	[Guid("C895D1F5-DCC6-48FE-8F86-427EDC0962F2")]
+	[InterfaceType(ComInterfaceType.InterfaceIsIDispatch)]
+	public interface IACBrAACEvents
+	{
+		[DispId(1)]
+		void OnAntesAbrirArquivo(AntesArquivoEventArgs e);
+
+		/*
+		[DispId(2)]
+		void OnAntesGravarArquivo(AntesArquivoEventArgs e);
+		*/
+
+		[DispId(3)]
+		void OnCrypt(CryptEventArgs e);
+
+		[DispId(4)]
+		void OnDeCrypt(DecryptEventArgs e);
+
+		[DispId(5)]
+		void OnDepoisAbrirArquivo();
+
+		[DispId(6)]
+		void OnDepoisGravarArquivo();
+
+		[DispId(7)]
+		void OnGetChave(ChaveEventArgs e);
+
+		[DispId(8)]
+		void VerificarRecomporNumSerie(VerificarRecomporNumSerieEventArgs e);
+
+		/*
+		[DispId(9)]
+		void VerificarRecomporValorGT(VerificarRecomporValorGTEventArgs e);
+		 * */
+	}
+
+	#endregion IDispatch Interface
+
+	#region Delegates
+
+	#region Comments
+
+	///os componentes COM não suportam Generics
+	///Estas são implementações específicas de delegates que no .Net são representados como EventHandler<T>
+
+	#endregion Comments
+
+	public delegate void AntesArquivoEventHandler(AntesArquivoEventArgs e);
+
+	public delegate void CryptEventHandler(CryptEventArgs e);
+
+	public delegate void DecryptEventHandler(DecryptEventArgs e);
+
+	public delegate void ChaveEventHandler(ChaveEventArgs e);
+
+	public delegate void VerificarRecomporNumSerieEventHandler(VerificarRecomporNumSerieEventArgs e);
+
+	public delegate void VerificarRecomporValorGTEventHandler(VerificarRecomporValorGTEventArgs e);
+
+	#endregion Delegates
+
+#endif
+
+	#endregion COM Interop
+
+	#region COM Interop Attributes
+
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("D34A09C2-3058-4EEC-BB5E-976F48928B5B")]
+	[ComSourceInterfaces(typeof(IACBrAACEvents))]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+	#endregion COM Interop Attributes
+
 	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.AAC.ico.bmp")]
 	public class ACBrAAC : ACBrComponent, IDisposable
 	{
 		#region EventHandlers
 
-		public event EventHandler<AntesArquivoArgs> OnAntesAbrirArquivo
+#if COM_INTEROP
+
+		public event AntesArquivoEventHandler OnAntesAbrirArquivo
+#else
+
+		public event EventHandler<AntesArquivoEventArgs> OnAntesAbrirArquivo
+#endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesAbrirArquivo.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesAbrirArquivo.Remove(value);
 			}
 		}
 
-		public event EventHandler<AntesArquivoArgs> OnAntesGravarArquivo
+#if COM_INTEROP
+
+		public event AntesArquivoEventHandler OnAntesGravarArquivo
+#else
+		public event EventHandler<AntesArquivoEventArgs> OnAntesGravarArquivo
+#endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onAntesGravarArquivo.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onAntesGravarArquivo.Remove(value);
 			}
 		}
 
-		public event EventHandler<OnCryptArgs> OnCrypt
+#if COM_INTEROP
+
+		public event CryptEventHandler OnCrypt
+#else
+		public event EventHandler<CryptEventArgs> OnCrypt
+#endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onCrypt.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onCrypt.Remove(value);
 			}
 		}
 
-		public event EventHandler<OnDeCryptArgs> OnDeCrypt
+#if COM_INTEROP
+
+		public event DecryptEventHandler OnDecrypt
+#else
+		public event EventHandler<DecryptEventArgs> OnDecrypt
+#endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDeCrypt.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDeCrypt.Remove(value);
@@ -60,10 +270,27 @@ namespace ACBrFramework.AAC
 
 		public event EventHandler OnDepoisAbrirArquivo
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisAbrirArquivo.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisAbrirArquivo.Remove(value);
@@ -72,46 +299,130 @@ namespace ACBrFramework.AAC
 
 		public event EventHandler OnDepoisGravarArquivo
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onDepoisGravarArquivo.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onDepoisGravarArquivo.Remove(value);
 			}
 		}
 
+#if COM_INTEROP
+
+		public event ChaveEventHandler OnGetChave
+#else
+
 		public event EventHandler<ChaveEventArgs> OnGetChave
+#endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onGetChave.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onGetChave.Remove(value);
 			}
 		}
 
-		public event EventHandler<VerificarRecomporNumSerieArgs> VerificarRecomporNumSerie
+#if COM_INTEROP
+
+		public event VerificarRecomporNumSerieEventHandler VerificarRecomporNumSerie
+#else
+		public event EventHandler<VerificarRecomporNumSerieEventArgs> VerificarRecomporNumSerie
+#endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onVerificarRecomporNumSerie.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onVerificarRecomporNumSerie.Remove(value);
 			}
 		}
 
-		public event EventHandler<VerificarRecomporValorGTArgs> VerificarRecomporValorGT
+#if COM_INTEROP
+
+		public event VerificarRecomporValorGTEventHandler VerificarRecomporValorGT
+#else
+		public event EventHandler<VerificarRecomporValorGTEventArgs> VerificarRecomporValorGT
+#endif
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			add
 			{
 				onVerificarRecomporValorGT.Add(value);
 			}
+
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[ComVisible(false)]
+#endif
+
+			#endregion COM_INTEROP
+
 			remove
 			{
 				onVerificarRecomporValorGT.Remove(value);
@@ -122,15 +433,15 @@ namespace ACBrFramework.AAC
 
 		#region Fields
 
-		private readonly ACBrEventHandler<AntesArquivoArgs, ACBrAACInterop.AntesArquivoCallback> onAntesAbrirArquivo;
-		private readonly ACBrEventHandler<AntesArquivoArgs, ACBrAACInterop.AntesArquivoCallback> onAntesGravarArquivo;
-		private readonly ACBrEventHandler<OnCryptArgs, ACBrAACInterop.CryptCallback> onCrypt;
-		private readonly ACBrEventHandler<OnDeCryptArgs, ACBrAACInterop.CryptCallback> onDeCrypt;
+		private readonly ACBrEventHandler<AntesArquivoEventArgs, ACBrAACInterop.AntesArquivoCallback> onAntesAbrirArquivo;
+		private readonly ACBrEventHandler<AntesArquivoEventArgs, ACBrAACInterop.AntesArquivoCallback> onAntesGravarArquivo;
+		private readonly ACBrEventHandler<CryptEventArgs, ACBrAACInterop.CryptCallback> onCrypt;
+		private readonly ACBrEventHandler<DecryptEventArgs, ACBrAACInterop.CryptCallback> onDeCrypt;
 		private readonly ACBrEventHandler<ACBrAACInterop.NoArgumentsCallback> onDepoisAbrirArquivo;
 		private readonly ACBrEventHandler<ACBrAACInterop.NoArgumentsCallback> onDepoisGravarArquivo;
 		private readonly ACBrEventHandler<ChaveEventArgs, ACBrAACInterop.OnGetChaveCallback> onGetChave;
-		private readonly ACBrEventHandler<VerificarRecomporNumSerieArgs, ACBrAACInterop.VerificarRecomporNumSerieCallback> onVerificarRecomporNumSerie;
-		private readonly ACBrEventHandler<VerificarRecomporValorGTArgs, ACBrAACInterop.VerificarRecomporValorGTCallback> onVerificarRecomporValorGT;
+		private readonly ACBrEventHandler<VerificarRecomporNumSerieEventArgs, ACBrAACInterop.VerificarRecomporNumSerieCallback> onVerificarRecomporNumSerie;
+		private readonly ACBrEventHandler<VerificarRecomporValorGTEventArgs, ACBrAACInterop.VerificarRecomporValorGTCallback> onVerificarRecomporValorGT;
 
 		#endregion Fields
 
@@ -138,15 +449,15 @@ namespace ACBrFramework.AAC
 
 		public ACBrAAC()
 		{
-			onAntesAbrirArquivo = new ACBrEventHandler<AntesArquivoArgs, ACBrAACInterop.AntesArquivoCallback>(this, OnAntesAbrirArquivoCallBack, ACBrAACInterop.AAC_SetOnAntesAbrirArquivo);
-			onAntesGravarArquivo = new ACBrEventHandler<AntesArquivoArgs, ACBrAACInterop.AntesArquivoCallback>(this, OnAntesGravarArquivoCallBack, ACBrAACInterop.AAC_SetAntesGravarArquivo);
-			onCrypt = new ACBrEventHandler<OnCryptArgs, ACBrAACInterop.CryptCallback>(this, OnCryptCallBack, ACBrAACInterop.AAC_SetOnCrypt);
-			onDeCrypt = new ACBrEventHandler<OnDeCryptArgs, ACBrAACInterop.CryptCallback>(this, OnDeCryptCallBack, ACBrAACInterop.AAC_SetOnDeCrypt);
-			onDepoisAbrirArquivo = new ACBrEventHandler<ACBrAACInterop.NoArgumentsCallback>(this, OnDepoisAbrirArquivoCallBack,ACBrAACInterop.AAC_SetOnDepoisAbrirArquivo);
+			onAntesAbrirArquivo = new ACBrEventHandler<AntesArquivoEventArgs, ACBrAACInterop.AntesArquivoCallback>(this, OnAntesAbrirArquivoCallBack, ACBrAACInterop.AAC_SetOnAntesAbrirArquivo);
+			onAntesGravarArquivo = new ACBrEventHandler<AntesArquivoEventArgs, ACBrAACInterop.AntesArquivoCallback>(this, OnAntesGravarArquivoCallBack, ACBrAACInterop.AAC_SetAntesGravarArquivo);
+			onCrypt = new ACBrEventHandler<CryptEventArgs, ACBrAACInterop.CryptCallback>(this, OnCryptCallBack, ACBrAACInterop.AAC_SetOnCrypt);
+			onDeCrypt = new ACBrEventHandler<DecryptEventArgs, ACBrAACInterop.CryptCallback>(this, OnDeCryptCallBack, ACBrAACInterop.AAC_SetOnDeCrypt);
+			onDepoisAbrirArquivo = new ACBrEventHandler<ACBrAACInterop.NoArgumentsCallback>(this, OnDepoisAbrirArquivoCallBack, ACBrAACInterop.AAC_SetOnDepoisAbrirArquivo);
 			onDepoisGravarArquivo = new ACBrEventHandler<ACBrAACInterop.NoArgumentsCallback>(this, OnDepoisGravarArquivoCallBack, ACBrAACInterop.AAC_SetOnDepoisGravarArquivo);
 			onGetChave = new ACBrEventHandler<ChaveEventArgs, ACBrAACInterop.OnGetChaveCallback>(this, OnGetChaveCallBack, ACBrAACInterop.AAC_SetOnGetChave);
-			onVerificarRecomporNumSerie = new ACBrEventHandler<VerificarRecomporNumSerieArgs, ACBrAACInterop.VerificarRecomporNumSerieCallback>(this, OnVerificarRecomporNumSerieCallBack, ACBrAACInterop.AAC_SetVerificarRecomporNumSerie);
-			onVerificarRecomporValorGT = new ACBrEventHandler<VerificarRecomporValorGTArgs, ACBrAACInterop.VerificarRecomporValorGTCallback>(this, OnVerificarRecomporValorGTCallBack, ACBrAACInterop.AAC_SetVerificarRecomporValor);
+			onVerificarRecomporNumSerie = new ACBrEventHandler<VerificarRecomporNumSerieEventArgs, ACBrAACInterop.VerificarRecomporNumSerieCallback>(this, OnVerificarRecomporNumSerieCallBack, ACBrAACInterop.AAC_SetVerificarRecomporNumSerie);
+			onVerificarRecomporValorGT = new ACBrEventHandler<VerificarRecomporValorGTEventArgs, ACBrAACInterop.VerificarRecomporValorGTCallback>(this, OnVerificarRecomporValorGTCallBack, ACBrAACInterop.AAC_SetVerificarRecomporValor);
 		}
 
 		#endregion Constructor
@@ -396,7 +707,7 @@ namespace ACBrFramework.AAC
 		[AllowReversePInvokeCalls]
 		private bool OnAntesAbrirArquivoCallBack()
 		{
-			AntesArquivoArgs e = new AntesArquivoArgs();
+			AntesArquivoEventArgs e = new AntesArquivoEventArgs();
 
 			if (onAntesAbrirArquivo.IsAssigned)
 				onAntesAbrirArquivo.Raise(e);
@@ -407,7 +718,7 @@ namespace ACBrFramework.AAC
 		[AllowReversePInvokeCalls]
 		private bool OnAntesGravarArquivoCallBack()
 		{
-			AntesArquivoArgs e = new AntesArquivoArgs();
+			AntesArquivoEventArgs e = new AntesArquivoEventArgs();
 
 			if (onAntesAbrirArquivo.IsAssigned)
 				onAntesAbrirArquivo.Raise(e);
@@ -418,7 +729,7 @@ namespace ACBrFramework.AAC
 		[AllowReversePInvokeCalls]
 		private string OnCryptCallBack(string value)
 		{
-			OnCryptArgs e = new OnCryptArgs(value);
+			CryptEventArgs e = new CryptEventArgs(value);
 
 			if (onCrypt.IsAssigned)
 				onCrypt.Raise(e);
@@ -429,7 +740,7 @@ namespace ACBrFramework.AAC
 		[AllowReversePInvokeCalls]
 		private string OnDeCryptCallBack(string value)
 		{
-			OnDeCryptArgs e = new OnDeCryptArgs(value);
+			DecryptEventArgs e = new DecryptEventArgs(value);
 
 			if (onDeCrypt.IsAssigned)
 				onDeCrypt.Raise(e);
@@ -440,7 +751,6 @@ namespace ACBrFramework.AAC
 		[AllowReversePInvokeCalls]
 		private void OnDepoisAbrirArquivoCallBack()
 		{
-
 			if (onDepoisAbrirArquivo.IsAssigned)
 				onDepoisAbrirArquivo.Raise();
 		}
@@ -448,7 +758,6 @@ namespace ACBrFramework.AAC
 		[AllowReversePInvokeCalls]
 		private void OnDepoisGravarArquivoCallBack()
 		{
-
 			if (onDepoisGravarArquivo.IsAssigned)
 				onDepoisGravarArquivo.Raise();
 		}
@@ -467,10 +776,12 @@ namespace ACBrFramework.AAC
 		[AllowReversePInvokeCalls]
 		private void OnVerificarRecomporNumSerieCallBack(string NumSerie, double ValorGT, ref int CRO, ref int CNI)
 		{
-			VerificarRecomporNumSerieArgs e = new VerificarRecomporNumSerieArgs(NumSerie, ValorGT);
-	
+			VerificarRecomporNumSerieEventArgs e = new VerificarRecomporNumSerieEventArgs(NumSerie, Convert.ToDecimal(ValorGT));
+
 			if (onVerificarRecomporNumSerie.IsAssigned)
+			{
 				onVerificarRecomporNumSerie.Raise(e);
+			}
 
 			CRO = e.CRO;
 			CNI = e.CNI;
@@ -479,12 +790,12 @@ namespace ACBrFramework.AAC
 		[AllowReversePInvokeCalls]
 		private double OnVerificarRecomporValorGTCallBack(string NumSerie)
 		{
-			VerificarRecomporValorGTArgs e = new VerificarRecomporValorGTArgs(NumSerie);
+			VerificarRecomporValorGTEventArgs e = new VerificarRecomporValorGTEventArgs(NumSerie);
 
 			if (onVerificarRecomporValorGT.IsAssigned)
 				onVerificarRecomporValorGT.Raise(e);
 
-			return e.ValorGT;
+			return Convert.ToDouble(e.ValorGT);
 		}
 
 		#endregion EventHandlers

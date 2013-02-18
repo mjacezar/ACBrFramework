@@ -2,8 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
+#region COM_INTEROP
+
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+
+#endregion COM_INTEROP
+
 namespace ACBrFramework.AAC
 {
+	#region COM_INTEROP
+
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("E2B492E7-B180-41AB-A922-484DE27A5281")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+	#endregion COM_INTEROP
+
 	public sealed class Arquivos : ACBrComposedComponent, IEnumerable<Arquivo>
 	{
 		#region Constructor

@@ -48,12 +48,11 @@ Begin VB.Form MainFrm
       _Version        =   393216
       Style           =   1
       Tabs            =   7
-      Tab             =   2
       TabsPerRow      =   7
       TabHeight       =   520
       TabCaption(0)   =   "ECF"
       TabPicture(0)   =   "Main.frx":0000
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "Label(0)"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Label(1)"
@@ -118,57 +117,51 @@ Begin VB.Form MainFrm
       TabCaption(1)   =   "Cmd/Resp"
       TabPicture(1)   =   "Main.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label(9)"
-      Tab(1).Control(1)=   "Label(10)"
-      Tab(1).Control(2)=   "txtEnviado"
-      Tab(1).Control(3)=   "txtResp"
+      Tab(1).Control(0)=   "txtResp"
+      Tab(1).Control(1)=   "txtEnviado"
+      Tab(1).Control(2)=   "Label(10)"
+      Tab(1).Control(3)=   "Label(9)"
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Cupom"
       TabPicture(2)   =   "Main.frx":0038
-      Tab(2).ControlEnabled=   -1  'True
+      Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "btnBobinaLimpar"
-      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "btnBobinaParams"
-      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "txtBobina"
-      Tab(2).Control(2).Enabled=   0   'False
       Tab(2).ControlCount=   3
       TabCaption(3)   =   "RFD"
       TabPicture(3)   =   "Main.frx":0054
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "Label(11)"
-      Tab(3).Control(1)=   "chkRFD"
+      Tab(3).Control(0)=   "SSTab2"
+      Tab(3).Control(1)=   "Command6"
       Tab(3).Control(2)=   "txtDirRFD"
-      Tab(3).Control(3)=   "Command6"
-      Tab(3).Control(4)=   "SSTab2"
+      Tab(3).Control(3)=   "chkRFD"
+      Tab(3).Control(4)=   "Label(11)"
       Tab(3).ControlCount=   5
       TabCaption(4)   =   "Código de Barras"
       TabPicture(4)   =   "Main.frx":0070
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "Label(22)"
-      Tab(4).Control(1)=   "Label(23)"
-      Tab(4).Control(2)=   "Label(24)"
-      Tab(4).Control(3)=   "UpDown(4)"
-      Tab(4).Control(4)=   "UpDown(3)"
-      Tab(4).Control(5)=   "Frame1"
-      Tab(4).Control(6)=   "txtLarguraBarra"
-      Tab(4).Control(7)=   "txtAlturaBarra"
-      Tab(4).Control(8)=   "txtCodBarras"
-      Tab(4).Control(9)=   "txtTextoBarras"
-      Tab(4).Control(10)=   "chkImpTextoAbaixoBarras"
-      Tab(4).Control(11)=   "chkImpTextoVertical"
-      Tab(4).Control(12)=   "Command9"
-      Tab(4).Control(13)=   "Command10"
+      Tab(4).Control(0)=   "Command10"
+      Tab(4).Control(1)=   "Command9"
+      Tab(4).Control(2)=   "chkImpTextoVertical"
+      Tab(4).Control(3)=   "chkImpTextoAbaixoBarras"
+      Tab(4).Control(4)=   "txtTextoBarras"
+      Tab(4).Control(5)=   "txtCodBarras"
+      Tab(4).Control(6)=   "txtAlturaBarra"
+      Tab(4).Control(7)=   "txtLarguraBarra"
+      Tab(4).Control(8)=   "Frame1"
+      Tab(4).Control(9)=   "UpDown(3)"
+      Tab(4).Control(10)=   "UpDown(4)"
+      Tab(4).Control(11)=   "Label(24)"
+      Tab(4).Control(12)=   "Label(23)"
+      Tab(4).Control(13)=   "Label(22)"
       Tab(4).ControlCount=   14
       TabCaption(5)   =   "Dados RZ"
       TabPicture(5)   =   "Main.frx":008C
       Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "Label(25)"
-      Tab(5).Control(0).Enabled=   0   'False
+      Tab(5).Control(0)=   "btnLerDadosReducaoZ"
       Tab(5).Control(1)=   "txtDadosRZ"
-      Tab(5).Control(1).Enabled=   0   'False
-      Tab(5).Control(2)=   "btnLerDadosReducaoZ"
-      Tab(5).Control(2).Enabled=   0   'False
+      Tab(5).Control(2)=   "Label(25)"
       Tab(5).ControlCount=   3
       TabCaption(6)   =   "Menu Fiscal"
       TabPicture(6)   =   "Main.frx":00A8
@@ -201,10 +194,10 @@ Begin VB.Form MainFrm
          TabCaption(0)   =   "Emissão por intervalo de data"
          TabPicture(0)   =   "Main.frx":00C4
          Tab(0).ControlEnabled=   0   'False
-         Tab(0).Control(0)=   "dtpData(0)"
-         Tab(0).Control(1)=   "dtpData(1)"
-         Tab(0).Control(2)=   "Label(27)"
-         Tab(0).Control(3)=   "Label(26)"
+         Tab(0).Control(0)=   "Label(26)"
+         Tab(0).Control(1)=   "Label(27)"
+         Tab(0).Control(2)=   "dtpData(1)"
+         Tab(0).Control(3)=   "dtpData(0)"
          Tab(0).ControlCount=   4
          TabCaption(1)   =   "Emissão por intervalo de COO"
          TabPicture(1)   =   "Main.frx":00E0
@@ -244,7 +237,7 @@ Begin VB.Form MainFrm
             _ExtentX        =   3413
             _ExtentY        =   661
             _Version        =   393216
-            Format          =   68026369
+            Format          =   183369729
             CurrentDate     =   40758
          End
          Begin MSComCtl2.DTPicker dtpData 
@@ -257,7 +250,7 @@ Begin VB.Form MainFrm
             _ExtentX        =   3413
             _ExtentY        =   661
             _Version        =   393216
-            Format          =   68026369
+            Format          =   183369729
             CurrentDate     =   40758
          End
          Begin VB.Label Label 
@@ -651,9 +644,9 @@ Begin VB.Form MainFrm
          TabCaption(1)   =   "ACBrRFD.ini"
          TabPicture(1)   =   "Main.frx":0159
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Command8"
+         Tab(1).Control(0)=   "txtRFDParam"
          Tab(1).Control(1)=   "Command7"
-         Tab(1).Control(2)=   "txtRFDParam"
+         Tab(1).Control(2)=   "Command8"
          Tab(1).ControlCount=   3
          Begin VB.CommandButton Command8 
             Caption         =   "Salvar"
@@ -904,7 +897,7 @@ Begin VB.Form MainFrm
             Strikethrough   =   0   'False
          EndProperty
          Height          =   3975
-         Left            =   120
+         Left            =   -74880
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
          TabIndex        =   38
@@ -914,7 +907,7 @@ Begin VB.Form MainFrm
       Begin VB.CommandButton btnBobinaParams 
          Caption         =   "Parâmetros"
          Height          =   375
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   37
          Top             =   480
          Width           =   1455
@@ -922,7 +915,7 @@ Begin VB.Form MainFrm
       Begin VB.CommandButton btnBobinaLimpar 
          Caption         =   "Limpar"
          Height          =   375
-         Left            =   1680
+         Left            =   -73320
          TabIndex        =   36
          Top             =   480
          Width           =   1455
@@ -966,7 +959,7 @@ Begin VB.Form MainFrm
       Begin VB.CommandButton btnSerial 
          Caption         =   "Serial"
          Height          =   375
-         Left            =   -68040
+         Left            =   6960
          TabIndex        =   31
          Top             =   4560
          Width           =   1455
@@ -974,7 +967,7 @@ Begin VB.Form MainFrm
       Begin VB.CommandButton btnIdentificaPAF 
          Caption         =   "Identifica PAF-ECF"
          Height          =   375
-         Left            =   -69960
+         Left            =   5040
          TabIndex        =   30
          Top             =   4560
          Width           =   1815
@@ -982,21 +975,21 @@ Begin VB.Form MainFrm
       Begin VB.CommandButton btnFontesECF 
          Caption         =   "Fontes do ECF"
          Height          =   375
-         Left            =   -71880
+         Left            =   3120
          TabIndex        =   29
          Top             =   4560
          Width           =   1815
       End
       Begin VB.TextBox txtOperador 
          Height          =   285
-         Left            =   -73800
+         Left            =   1200
          TabIndex        =   28
          Top             =   4560
          Width           =   1695
       End
       Begin VB.TextBox txtArqLog 
          Height          =   285
-         Left            =   -73800
+         Left            =   1200
          TabIndex        =   26
          Text            =   "c:\temp\LogACBrX.txt"
          Top             =   4200
@@ -1004,7 +997,7 @@ Begin VB.Form MainFrm
       End
       Begin VB.TextBox txtMensagemTrabalho 
          Height          =   285
-         Left            =   -69360
+         Left            =   5640
          TabIndex        =   24
          Text            =   "Impressora está trabalhando"
          Top             =   3120
@@ -1012,7 +1005,7 @@ Begin VB.Form MainFrm
       End
       Begin VB.TextBox txtMensagemAguarde 
          Height          =   855
-         Left            =   -74760
+         Left            =   240
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
          TabIndex        =   22
@@ -1022,7 +1015,7 @@ Begin VB.Form MainFrm
       Begin VB.CheckBox chkDescricaoGrande 
          Caption         =   "Descrição Grande"
          Height          =   255
-         Left            =   -71400
+         Left            =   3600
          TabIndex        =   20
          Top             =   2280
          Value           =   1  'Checked
@@ -1031,7 +1024,7 @@ Begin VB.Form MainFrm
       Begin VB.CheckBox chkGavetaSinalInvertido 
          Caption         =   "Gaveta Sinal Invertido"
          Height          =   255
-         Left            =   -71400
+         Left            =   3600
          TabIndex        =   19
          Top             =   1920
          Width           =   2415
@@ -1039,7 +1032,7 @@ Begin VB.Form MainFrm
       Begin VB.CheckBox chkArredondaPorQtd 
          Caption         =   "Arredondamento por Quantidade"
          Height          =   255
-         Left            =   -71400
+         Left            =   3600
          TabIndex        =   18
          Top             =   1560
          Width           =   3255
@@ -1047,7 +1040,7 @@ Begin VB.Form MainFrm
       Begin VB.CheckBox chkExibeMsgAguarde 
          Caption         =   "Exibe Msg. Aguarde..."
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   17
          Top             =   2280
          Value           =   1  'Checked
@@ -1056,7 +1049,7 @@ Begin VB.Form MainFrm
       Begin VB.CheckBox chkBloqueiaMouseTeclado 
          Caption         =   "Bloqueia Mouse Teclado"
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   16
          Top             =   1920
          Value           =   1  'Checked
@@ -1065,14 +1058,14 @@ Begin VB.Form MainFrm
       Begin VB.CheckBox chkTentarNovamente 
          Caption         =   "Tentar Novamente"
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   15
          Top             =   1560
          Width           =   1935
       End
       Begin VB.TextBox txtLinhasBuffer 
          Height          =   285
-         Left            =   -68280
+         Left            =   6720
          TabIndex        =   12
          Text            =   "3"
          Top             =   840
@@ -1080,7 +1073,7 @@ Begin VB.Form MainFrm
       End
       Begin VB.TextBox txtIntervalo 
          Height          =   285
-         Left            =   -69360
+         Left            =   5640
          TabIndex        =   9
          Text            =   "100"
          Top             =   840
@@ -1088,7 +1081,7 @@ Begin VB.Form MainFrm
       End
       Begin VB.TextBox txtTimeOut 
          Height          =   285
-         Left            =   -70440
+         Left            =   4560
          TabIndex        =   8
          Text            =   "3"
          Top             =   840
@@ -1097,7 +1090,7 @@ Begin VB.Form MainFrm
       Begin MSComCtl2.UpDown UpDown 
          Height          =   285
          Index           =   0
-         Left            =   -69960
+         Left            =   5040
          TabIndex        =   7
          TabStop         =   0   'False
          Top             =   840
@@ -1119,7 +1112,7 @@ Begin VB.Form MainFrm
       Begin VB.ComboBox cbPorta 
          Height          =   315
          ItemData        =   "Main.frx":0175
-         Left            =   -72600
+         Left            =   2400
          List            =   "Main.frx":01A9
          TabIndex        =   5
          Top             =   840
@@ -1128,7 +1121,7 @@ Begin VB.Form MainFrm
       Begin VB.ComboBox cbModelo 
          Height          =   315
          ItemData        =   "Main.frx":0240
-         Left            =   -74760
+         Left            =   240
          List            =   "Main.frx":0274
          TabIndex        =   3
          Top             =   840
@@ -1137,7 +1130,7 @@ Begin VB.Form MainFrm
       Begin MSComCtl2.UpDown UpDown 
          Height          =   285
          Index           =   1
-         Left            =   -68880
+         Left            =   6120
          TabIndex        =   10
          TabStop         =   0   'False
          Top             =   840
@@ -1159,7 +1152,7 @@ Begin VB.Form MainFrm
       Begin MSComCtl2.UpDown UpDown 
          Height          =   285
          Index           =   2
-         Left            =   -67800
+         Left            =   7200
          TabIndex        =   13
          TabStop         =   0   'False
          Top             =   840
@@ -1297,7 +1290,7 @@ Begin VB.Form MainFrm
          Caption         =   "Operador"
          Height          =   195
          Index           =   8
-         Left            =   -74750
+         Left            =   250
          TabIndex        =   27
          Top             =   4560
          Width           =   810
@@ -1307,7 +1300,7 @@ Begin VB.Form MainFrm
          Caption         =   "Arq. Log"
          Height          =   195
          Index           =   7
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   25
          Top             =   4200
          Width           =   720
@@ -1317,7 +1310,7 @@ Begin VB.Form MainFrm
          Caption         =   "Mensagem Trabalhando"
          Height          =   195
          Index           =   6
-         Left            =   -69360
+         Left            =   5640
          TabIndex        =   23
          Top             =   2880
          Width           =   2040
@@ -1327,7 +1320,7 @@ Begin VB.Form MainFrm
          Caption         =   "Mensagem Aguarde..."
          Height          =   195
          Index           =   5
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   21
          Top             =   2880
          Width           =   1875
@@ -1337,7 +1330,7 @@ Begin VB.Form MainFrm
          Caption         =   "Linhas Buffer"
          Height          =   195
          Index           =   4
-         Left            =   -68280
+         Left            =   6720
          TabIndex        =   14
          Top             =   600
          Width           =   1125
@@ -1347,7 +1340,7 @@ Begin VB.Form MainFrm
          Caption         =   "Intervalo"
          Height          =   195
          Index           =   3
-         Left            =   -69360
+         Left            =   5640
          TabIndex        =   11
          Top             =   600
          Width           =   780
@@ -1357,7 +1350,7 @@ Begin VB.Form MainFrm
          Caption         =   "TimeOut"
          Height          =   195
          Index           =   2
-         Left            =   -70440
+         Left            =   4560
          TabIndex        =   6
          Top             =   600
          Width           =   720
@@ -1367,7 +1360,7 @@ Begin VB.Form MainFrm
          Caption         =   "Porta"
          Height          =   195
          Index           =   1
-         Left            =   -72600
+         Left            =   2400
          TabIndex        =   4
          Top             =   600
          Width           =   450
@@ -1377,7 +1370,7 @@ Begin VB.Form MainFrm
          Caption         =   "Modelo"
          Height          =   195
          Index           =   0
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   2
          Top             =   600
          Width           =   600
@@ -1984,8 +1977,12 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Public WithEvents ACBrECF As ACBrECF
+Public WithEvents ACBrECF As ACBrFramework_Net.ACBrECF
 Attribute ACBrECF.VB_VarHelpID = -1
+Public WithEvents ACBrAAC As ACBrFramework_Net.ACBrAAC
+Attribute ACBrAAC.VB_VarHelpID = -1
+Public WithEvents ACBrEAD As ACBrFramework_Net.ACBrEAD
+Attribute ACBrEAD.VB_VarHelpID = -1
 
 Dim Estados() As Variant
 Const PARAMETROS As String = "Parâmetros"
@@ -1993,6 +1990,15 @@ Const SALVAR As String = "Salvar"
 
 Private Sub CarregarACBrECF()
     Set ACBrECF = New ACBrECF
+    
+    'Utilizar o AAC
+    'Set ACBrAAC = New ACBrAAC
+    'ACBrAAC.NomeArquivoAuxiliar = "C:\teste.txt"
+    'Set ACBrECF.AAC = ACBrAAC
+    
+    'Utilizar o EAD
+    'Set ACBrEAD = New ACBrEAD
+    'Set ACBrECF.EAD = ACBrEAD
         
     ReDim Estados(10)
     Estados = Array("Não Inicializada", "Desconhecido", _
@@ -2149,6 +2155,8 @@ Private Function EstadoECF(e As EstadoECF) As String
     EstadoECF = Estados(e)
 End Function
 
+
+
 Private Sub ACBrECF_OnAguardandoRespostaChange()
     If ACBrECF.AguardandoResposta Then
         StatusBar.Panels(1).Text = "Processando..."
@@ -2163,7 +2171,7 @@ Private Sub ACBrECF_OnBobinaAdicionaLinhas(ByVal e As ACBrFramework_Net.BobinaEv
     txtBobina.SelStart = Len(txtBobina.Text)
 End Sub
 
-Private Sub ACBrECF_OnMsgAguarde(ByVal e As ACBrFramework_Net.OnMsgEventArgs)
+Private Sub ACBrECF_OnMsgAguarde(ByVal e As ACBrFramework_Net.MsgEventArgs)
   StatusBar.Panels(2).Text = Replace(e.Mensagem, vbLf, " ")
 End Sub
 
@@ -3552,7 +3560,7 @@ Private Sub mniGavetaAberta_Click()
 End Sub
 
 Private Sub mniGrandeTotal_Click()
-    Call AdicionarResposta("GrandeTotal: (" & ACBrECF.GrandeTotal & ")")
+    Call AdicionarResposta("GrandeTotal: (" & ACBrECF.grandeTotal & ")")
     Call AtualizarMemos
 End Sub
 
@@ -3632,8 +3640,8 @@ Dim Banco, Favorecido, Cidade As String
         End If
     Loop
     
-    Call ACBrECF.ImprimeCheque_2(Banco, Valor, Favorecido, Cidade, Now, _
-        "TESTE DE IMPRESSAO DE CHEQUE")
+    Call ACBrECF.ImprimeCheque(Banco, Valor, Favorecido, Cidade, Now, _
+        "TSESTE DE IMPRESSAO DE CHEQUE")
     
     Call AdicionarResposta("ImprimeCheque Banco:" & Banco & _
         " Valor:" & Valor & _
@@ -3888,7 +3896,7 @@ Private Sub mniNumLoja_Click()
 End Sub
 
 Private Sub mniNumSerie_Click()
-    Call AdicionarResposta("Nº Série: (" & ACBrECF.NumSerie & ")")
+    Call AdicionarResposta("Nº Série: (" & ACBrECF.numSerie & ")")
     Call AtualizarMemos
 End Sub
 
@@ -4133,7 +4141,7 @@ Dim tipo As String
         Exit Sub
     End If
     
-    Call ACBrECF.ProgramaComprovanteNaoFiscal_2(Descricao, tipo, "")
+    Call ACBrECF.ProgramaComprovanteNaoFiscal(Descricao, tipo, "")
     Call mniCarregaComprovantesNaoFiscais_Click
 End Sub
 
@@ -4237,7 +4245,7 @@ Dim Resp As VbMsgBoxResult
     Resp = MsgBox("Envia hora atual ?", vbYesNoCancel + vbQuestion)
     
     If Resp = vbYes Then
-        ACBrECF.ReducaoZ_2 (Now)
+        ACBrECF.reducaoZ (Now)
     ElseIf Resp = vbNo Then
         ACBrECF.reducaoZ
     Else

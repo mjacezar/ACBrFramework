@@ -10,7 +10,7 @@ namespace ACBrFramework.PAF
 	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.PAF.ico.bmp")]
 	public class ACBrPAF : ACBrComponent, IDisposable
 	{
-		#region EventHandlers
+		#region Events
 
 		public event EventHandler<ChaveEventArgs> OnPAFGetKeyRSA
 		{
@@ -24,7 +24,7 @@ namespace ACBrFramework.PAF
 			}
 		}
 
-		#endregion EventHandlers
+		#endregion Events
 
 		#region Fields
 

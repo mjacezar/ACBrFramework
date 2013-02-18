@@ -70,10 +70,11 @@
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="7780"/>
+        <TopLine Value="3329"/>
+        <CursorPos X="20" Y="3344"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <WindowIndex Value="0"/>
@@ -242,7 +243,6 @@
         <WindowIndex Value="0"/>
         <TopLine Value="804"/>
         <CursorPos X="12" Y="834"/>
-        <FoldState Value=" TJG2{%1 pm5pb2B TCqTQT4{"/>
         <UsageCount Value="211"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -251,11 +251,10 @@
         <Filename Value="ACBrSpedFiscalDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrSpedFiscaldll"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="3680"/>
-        <CursorPos X="19" Y="3688"/>
+        <CursorPos X="52" Y="3688"/>
         <FoldState Value=" TJr33{5012k"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
@@ -536,7 +535,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit49>
     </Units>
-    <JumpHistory Count="21" HistoryIndex="20">
+    <JumpHistory Count="22" HistoryIndex="21">
       <Position1>
         <Filename Value="ACBrSMSDll.pas"/>
         <Caret Line="731" Column="41" TopLine="674"/>
@@ -621,6 +620,10 @@
         <Filename Value="ACBrSpedFiscalDll.pas"/>
         <Caret Line="532" Column="41" TopLine="522"/>
       </Position21>
+      <Position22>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="11" Column="54" TopLine="1"/>
+      </Position22>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
