@@ -160,21 +160,11 @@
     <Compile Include="AAC\Classes\IdenticacaoPaf.cs" />
     <Compile Include="AAC\Classes\InfoPaf.cs" />
     <Compile Include="AAC\Classes\ArquivoListaAutenticados.cs" />
-    <Compile Include="AAC\Eventos\AntesArquivoArgs.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AAC\Eventos\OnCryptArgs.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AAC\Eventos\OnDeCryptArgs.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AAC\Eventos\VerificarRecomporNumSerieArgs.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AAC\Eventos\VerificarRecomporValorGTArgs.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="AAC\Eventos\AntesArquivoEventArgs.cs" />
+    <Compile Include="AAC\Eventos\CryptEventArgs.cs" />
+    <Compile Include="AAC\Eventos\DecryptEventArgs.cs" />
+    <Compile Include="AAC\Eventos\VerificarRecomporNumSerieEventArgs.cs" />
+    <Compile Include="AAC\Eventos\VerificarRecomporValorGTEventArgs.cs" />
     <Compile Include="ACBrClassInterop.cs" />
     <Compile Include="ACBrEventHandler.cs" />
     <Compile Include="ACBrInteropEventHandlerBase.cs" />
