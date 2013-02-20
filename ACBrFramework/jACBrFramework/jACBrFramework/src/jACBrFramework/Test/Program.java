@@ -58,8 +58,6 @@ public class Program
 
 			System.out.println("SetPorta\n");
 			ecf.getDevice().setPorta(porta);
-			ecf.getDevice().setBaud(115200);
-			
 
 			System.out.print("GetPorta");
 			System.out.println(": " + ecf.getDevice().getPorta() + "\n");
