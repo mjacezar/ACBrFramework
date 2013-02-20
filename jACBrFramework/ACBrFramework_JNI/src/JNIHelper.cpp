@@ -7,16 +7,18 @@
 
 INTPTR GetACBrHandle(JNIEnv *env, jobject obj)
 {
-	jclass clazz = env->GetObjectClass(obj);
-	jfieldID field = env->GetFieldID(clazz, "handle", "I");
-	return (INTPTR)env->GetIntField(obj, field);
+	jclass clazz = env->FindClass("jACBrFramework/ACBrInteropBase");
+	jmethodID method = env->GetMethodID(clazz, "getHandle", "()I");
+
+	INTPTR handle = (INTPTR)env->CallIntMethod(obj, method);
+	return handle;
 }
 
 void SetACBrHandle(JNIEnv *env, jobject obj, INTPTR handle)
 {
-	jclass clazz = env->GetObjectClass(obj);
-	jfieldID field = env->GetFieldID(clazz, "handle", "I");
-	env->SetIntField(obj, field, (jint)handle);
+	jclass clazz = env->FindClass("jACBrFramework/ACBrClass");
+	jmethodID method = env->GetMethodID(clazz, "setHandle", "(I)V");
+	env->CallVoidMethod(obj, method, (jint)handle);
 }
 
 jstring GetString(GetStringEntryPoint function, JNIEnv *env, jobject obj)

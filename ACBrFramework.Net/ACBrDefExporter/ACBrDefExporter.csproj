@@ -101,12 +101,6 @@
     <Content Include="LeiaMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ACBrFramework.Net\ACBrFramework.Net.csproj">
-      <Project>{C66AC69F-8537-46AD-A6DB-576A61670FA4}</Project>
-      <Name>ACBrFramework.Net</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
@@ -127,6 +121,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ACBrFramework.Net\ACBrFramework.Net.csproj">
+      <Project>{c66ac69f-8537-46ad-a6db-576a61670fa4}</Project>
+      <Name>ACBrFramework.Net</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -22,11 +22,12 @@
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <UseOfMfc>Static</UseOfMfc>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -83,7 +84,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\include;C:\Program Files (x86)\Java\jdk1.6.0_31\include;C:\Program Files (x86)\Java\jdk1.6.0_31\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;C:\Program Files (x86)\Java\jdk1.7.0_11\include;C:\Program Files (x86)\Java\jdk1.7.0_11\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -94,7 +95,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>..\lib\x86\ACBrFramework32.lib;C:\Program Files (x86)\Java\jdk1.6.0_31\lib\jvm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\lib\x86\ACBrFramework32.lib;C:\Program Files (x86)\Java\jdk1.7.0_11\lib\jvm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -103,17 +104,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="JACBrDevice.cpp" />
     <ClCompile Include="JACBrECF.cpp" />
     <ClCompile Include="JNIHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\ACBrAAC.h" />
     <ClInclude Include="..\include\ACBrBAL.h" />
+    <ClInclude Include="..\include\ACBrDevice.h" />
     <ClInclude Include="..\include\ACBrEAD.h" />
     <ClInclude Include="..\include\ACBrECF.h" />
     <ClInclude Include="..\include\ACBrLCB.h" />
     <ClInclude Include="..\include\ACBrPAF.h" />
     <ClInclude Include="..\include\ACBrSintegra.h" />
+    <ClInclude Include="..\include\ACBrTEF.h" />
+    <ClInclude Include="JACBrDevice.h" />
     <ClInclude Include="JACBrECF.h" />
     <ClInclude Include="JNIHelper.h" />
   </ItemGroup>
