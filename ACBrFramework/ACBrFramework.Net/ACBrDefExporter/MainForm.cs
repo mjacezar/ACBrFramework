@@ -9,6 +9,7 @@ using ACBrFramework.LCB;
 using ACBrFramework.PAF;
 using ACBrFramework.Sintegra;
 using ACBrFramework.TEFD;
+using ACBrFramework;
 
 namespace ACBrDefExporter
 {
@@ -105,6 +106,7 @@ namespace ACBrDefExporter
 				defExporter.Export(typeof(ACBrPAFInterop));
 				defExporter.Export(typeof(ACBrBALInterop));
 				defExporter.Export(typeof(ACBrECFInterop));
+				defExporter.Export(typeof(ACBrDeviceInterop));
 				defExporter.Export(typeof(ACBrLCBInterop));
 				defExporter.Export(typeof(ACBrSintegraInterop));
 				defExporter.Export(typeof(ACBrTEFInterop));

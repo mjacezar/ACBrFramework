@@ -34,7 +34,7 @@ typedef struct
 	char RazaoSocial[36];
 	char Cidade[31];
 	char Estado[3];
-	char Telefone[11];
+	char Telefone[13];
 	double DataInicial;
 	double DataFinal;
 	int CodigoConvenio;
@@ -45,7 +45,7 @@ typedef struct
 typedef struct
 {
 	char Responsavel[29];
-	char Bairro[14];
+	char Bairro[16];
 	char Cep[9];
 	char Numero[6];
 	char Complemento[23];
@@ -394,7 +394,13 @@ DllImport int SIN_Destroy(INTPTR* sinHandle);
 DllImport int SIN_GeraArquivo(const INTPTR sinHandle);
 DllImport int SIN_GetAtivo(const INTPTR sinHandle);
 DllImport int SIN_GetFileName(const INTPTR sinHandle, PCHAR buffer, const int bufferLen);
+DllImport int SIN_GetInforma88C(const INTPTR sinHandle);
+DllImport int SIN_GetInforma88EAN(const INTPTR sinHandle);
+DllImport int SIN_GetInforma88SME(const INTPTR sinHandle);
+DllImport int SIN_GetInforma88SMS(const INTPTR sinHandle);
+DllImport int SIN_GetInformaSapiMG(const INTPTR sinHandle);
 DllImport int SIN_GetUltimoErro(const INTPTR sinHandle, PCHAR buffer, const int bufferLen);
+DllImport int SIN_GetVersao(const INTPTR sinHandle, PCHAR buffer, const int bufferLen);
 DllImport int SIN_GetVersaoValidador(const INTPTR sinHandle);
 DllImport int SIN_LimparRegistros(const INTPTR sinHandle);
 DllImport int SIN_Registro10(const INTPTR sinHandle, const Registro10Rec registro10);
@@ -420,7 +426,13 @@ DllImport int SIN_Registro76(const INTPTR sinHandle, const Registro76Rec registr
 DllImport int SIN_Registro77(const INTPTR sinHandle, const Registro77Rec registro77[], const int count);
 DllImport int SIN_Registro85(const INTPTR sinHandle, const Registro85Rec registro85[], const int count);
 DllImport int SIN_Registro86(const INTPTR sinHandle, const Registro86Rec registr86[], const int count);
+DllImport int SIN_SetAtivo(const INTPTR sinHandle, const BOOL value);
 DllImport int SIN_SetFileName(const INTPTR sinHandle, const PCHAR filename);
+DllImport int SIN_SetInforma88C(const INTPTR sinHandle, const BOOL value);
+DllImport int SIN_SetInforma88EAN(const INTPTR sinHandle, const BOOL value);
+DllImport int SIN_SetInforma88SME(const INTPTR sinHandle, const BOOL value);
+DllImport int SIN_SetInforma88SMS(const INTPTR sinHandle, const BOOL value);
+DllImport int SIN_SetInformaSapiMG(const INTPTR sinHandle, const BOOL value);
 DllImport int SIN_SetVersaoValidador(const INTPTR sinHandle, const int Versao);
 
 

@@ -2,6 +2,7 @@ package jACBrFramework;
 
 public interface ModeloECF
 {
+
 	public final int NENHUM = 0;
 	public final int NAO_FISCAL = 1;
 	public final int BEMATECH = 2;

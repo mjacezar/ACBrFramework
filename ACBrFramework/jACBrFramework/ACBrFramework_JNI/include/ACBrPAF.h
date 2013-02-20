@@ -180,7 +180,6 @@ typedef struct
 
 typedef struct
 {
-	int QTD_N3;
 	char LAUDO[11];
 	char NOME[51];
 	char VERSAO[11];
@@ -210,7 +209,7 @@ typedef struct
 	char NUM_FAB[21];
 	char MF_ADICIONAL[2];
 	char TIPO_ECF[8];
-	char MARCA_ECF[16];
+	char MARCA_ECF[21];
 	char MODELO_ECF[21];
 	char VERSAO_SB[11];
 	double DT_INST_SB;
@@ -244,7 +243,6 @@ typedef struct
 	double HR_EMI;
 	double VL_VBD;
 	char PAR_ECF[2];
-	double DT_FIN;
 	BOOL RegistroValido;
 } RegistroR2Rec;
 
@@ -361,11 +359,11 @@ DllImport int PAF_SaveFileTXT_C(const INTPTR pafHandle, const RegistroHD1Rec Reg
 DllImport int PAF_SaveFileTXT_D(const INTPTR pafHandle, const RegistroHD1Rec RegistroD1, const RegistroD2Rec RegistroD2[], const int CountD2, const RegistroD3Rec RegistroD3[], const PCHAR Arquivo);
 DllImport int PAF_SaveFileTXT_E(const INTPTR pafHandle, const RegistroHD2Rec RegistroE1, const RegistroE2Rec RegistroE2[], const int CountE2, const PCHAR Arquivo);
 DllImport int PAF_SaveFileTXT_H(const INTPTR pafHandle, const RegistroHD2Rec RegistroH1, const RegistroH2Rec RegistroH2[], const int CountH2, const PCHAR Arquivo);
-DllImport int PAF_SaveFileTXT_N(const INTPTR pafHandle, const RegistroHD1Rec RegistroN1, const RegistroN2Rec RegistroN2, const RegistroN3Rec RegistroN3[], const PCHAR Arquivo);
+DllImport int PAF_SaveFileTXT_N(const INTPTR pafHandle, const RegistroHD1Rec RegistroN1, const RegistroN2Rec RegistroN2, const RegistroN3Rec RegistroN3[], const int CountN3, const PCHAR Arquivo);
 DllImport int PAF_SaveFileTXT_P(const INTPTR pafHandle, const RegistroHD1Rec RegistroP1, const RegistroP2Rec RegistroP2[], const int CountP2, const PCHAR Arquivo);
 DllImport int PAF_SaveFileTXT_R(const INTPTR pafHandle, const RegistroR1Rec RegistroR1, const RegistroR2Rec RegistroR2[], const int CountR2, const RegistroR3Rec RegistroR3[], const RegistroR4Rec RegistroR4[], const int CountR4, const RegistroR5Rec RegistroP5[], const RegistroR6Rec RegistroR6[], const int CountR6, const RegistroR7Rec RegistroR7[], const PCHAR Arquivo);
 DllImport int PAF_SaveFileTXT_T(const INTPTR pafHandle, const RegistroHD1Rec RegistroT1, const RegistroT2Rec RegistroT2[], const int CountT2, const PCHAR Arquivo);
-DllImport int PAF_SaveFileTXT_TITP(const INTPTR pafHandle, const RegistroMercadoriasRec RegistroMercadorias[], const int Count, const RegistroInsumosRec RegistroInsumos[], const PCHAR Arquivo);
+DllImport int PAF_SaveFileTXT_TITP(const INTPTR pafHandle, const RegistroMercadoriasRec RegistroMercadorias[], const int Count, const RegistroInsumosRec RegistroInsumos[], const PCHAR Arquivo, const PCHAR titulo, const double data);
 DllImport int PAF_SetAAC(const INTPTR pafHandle, const INTPTR aacHandle);
 DllImport int PAF_SetAssinarArquivo(const INTPTR pafHandle, const BOOL Assinar);
 DllImport int PAF_SetCurMascara(const INTPTR pafHandle, const PCHAR CurMascara);

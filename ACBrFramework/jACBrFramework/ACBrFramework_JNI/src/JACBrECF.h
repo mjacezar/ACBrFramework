@@ -96,9 +96,9 @@ JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_setDecimaisPreco(JNIEnv *env,
 JNIEXPORT jint JNICALL Java_jACBrFramework_ACBrECF_getDecimaisQtd(JNIEnv *env, jobject obj);
 JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_setDecimaisQtd(JNIEnv *env, jobject obj, jint decimaisQtd);
 JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_identificaConsumidor(JNIEnv *env, jobject obj, jstring cpfCnpj, jstring nome, jstring endereco);
-JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_abreCupom(JNIEnv *env, jobject obj, jstring cpfCnpj, jstring nome, jstring endereco);
+JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_abreCupom(JNIEnv *env, jobject obj, jstring cpfCnpj, jstring nome, jstring endereco, jboolean modoPreVenda);
 JNIEXPORT jboolean JNICALL Java_jACBrFramework_ACBrECF_legendaInmetroProximoItem(JNIEnv *env, jobject obj);
-JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_vendeItem(JNIEnv *env, jobject obj, jstring codigo, jstring descricao, jstring aliquotaICMS, jdouble qtd, jdouble valorUnitario, jdouble descontoPorc, jstring unidade, jstring tipoDescontoAcrescimo, jstring descontoAcrescimo);
+JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_vendeItem(JNIEnv *env, jobject obj, jstring codigo, jstring descricao, jstring aliquotaICMS, jdouble qtd, jdouble valorUnitario, jdouble descontoPorc, jstring unidade, jstring tipoDescontoAcrescimo, jstring descontoAcrescimo, jint codDepartamento);
 JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_descontoAcrescimoItemAnterior(JNIEnv *env, jobject obj, jdouble valorDescontoAcrescimo, jstring descontoAcrescimo);
 JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_subtotalizaCupom(JNIEnv *env, jobject obj, jdouble descontoAcrescimo, jstring mensagemRodape);
 JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_efetuaPagamento(JNIEnv *env, jobject obj, jstring codFormaPagto, jdouble valor, jstring observacao, jboolean imprimeVinculado);
@@ -132,8 +132,8 @@ JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_getComprovanteNaoFiscalN(JNIE
 JNIEXPORT jint JNICALL Java_jACBrFramework_ACBrECF_carregaComprovantesNaoFiscaisN(JNIEnv *env, jobject obj);
 JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_programaComprovanteNaoFiscal(JNIEnv *env, jobject obj, jstring descricao, jstring tipo, jstring posicao);
 
-JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_sangria(JNIEnv *env, jobject obj, jdouble valor, jstring obs);
-JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_suprimento(JNIEnv *env, jobject obj, jdouble valor, jstring obs);
+JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_sangria(JNIEnv *env, jobject obj, jdouble valor, jstring obs, jstring descricaoCNF, jstring descricaoFPG, jint indiceBmp);
+JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_suprimento(JNIEnv *env, jobject obj, jdouble valor, jstring obs, jstring descricaoCNF, jstring descricaoFPG, jint indiceBmp);
 JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_abreGaveta(JNIEnv *env, jobject obj);
 
 #ifdef __cplusplus

@@ -48,16 +48,6 @@ JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_setModelo(JNIEnv *env, jobjec
 	SetInt(&ECF_SetModelo, env, obj, modelo);
 }
 
-JNIEXPORT jstring JNICALL Java_jACBrFramework_ACBrECF_getPorta(JNIEnv *env, jobject obj)
-{
-	return GetString(&ECF_GetPorta, env, obj);
-}
-
-JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_setPorta(JNIEnv *env, jobject obj, jstring porta)
-{
-	SetString(&ECF_SetPorta, env, obj, porta);
-}
-
 JNIEXPORT jboolean JNICALL Java_jACBrFramework_ACBrECF_getAtivo(JNIEnv *env, jobject obj)
 {
 	return GetBool(&ECF_GetAtivo, env, obj);
@@ -66,16 +56,6 @@ JNIEXPORT jboolean JNICALL Java_jACBrFramework_ACBrECF_getAtivo(JNIEnv *env, job
 JNIEXPORT jint JNICALL Java_jACBrFramework_ACBrECF_getColunas(JNIEnv *env, jobject obj)
 {
 	return GetInt(&ECF_GetColunas, env, obj);
-}
-
-JNIEXPORT jint JNICALL Java_jACBrFramework_ACBrECF_getTimeOut(JNIEnv *env, jobject obj)
-{
-	return GetInt(&ECF_GetTimeOut, env, obj);
-}
-
-JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_setTimeOut(JNIEnv *env, jobject obj, jint timeout)
-{
-	return SetInt(&ECF_SetTimeOut, env, obj, timeout);
 }
 
 JNIEXPORT jboolean JNICALL Java_jACBrFramework_ACBrECF_getAguardandoResposta(JNIEnv *env, jobject obj)
@@ -476,7 +456,7 @@ JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_identificaConsumidor(JNIEnv *
 	CheckResult(env, handle, ret);
 }
 
-JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_abreCupom(JNIEnv *env, jobject obj, jstring cpfCnpj, jstring nome, jstring endereco)
+JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_abreCupom(JNIEnv *env, jobject obj, jstring cpfCnpj, jstring nome, jstring endereco, jboolean modoPreVenda)
 {
 	INTPTR handle = GetACBrHandle(env, obj);
 	
@@ -486,7 +466,7 @@ JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_abreCupom(JNIEnv *env, jobjec
 	const char* nNome = env->GetStringUTFChars(nome, &isCopy);
 	const char* nEndereco = env->GetStringUTFChars(endereco, &isCopy);
 
-	int ret = ECF_AbreCupom(handle, (PCHAR)nCpfCnpj, (PCHAR)nNome, (PCHAR)nEndereco);
+	int ret = ECF_AbreCupom(handle, (PCHAR)nCpfCnpj, (PCHAR)nNome, (PCHAR)nEndereco, (BOOL)modoPreVenda);
 
 	env->ReleaseStringUTFChars(cpfCnpj, nCpfCnpj);
 	env->ReleaseStringUTFChars(nome, nNome);
@@ -500,7 +480,7 @@ JNIEXPORT jboolean JNICALL Java_jACBrFramework_ACBrECF_legendaInmetroProximoItem
 	return GetBool(&ECF_LegendaInmetroProximoItem, env, obj);
 }
 
-JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_vendeItem(JNIEnv *env, jobject obj, jstring codigo, jstring descricao, jstring aliquotaICMS, jdouble qtd, jdouble valorUnitario, jdouble descontoPorc, jstring unidade, jstring tipoDescontoAcrescimo, jstring descontoAcrescimo)
+JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_vendeItem(JNIEnv *env, jobject obj, jstring codigo, jstring descricao, jstring aliquotaICMS, jdouble qtd, jdouble valorUnitario, jdouble descontoPorc, jstring unidade, jstring tipoDescontoAcrescimo, jstring descontoAcrescimo, jint codDepartamento)
 {
 	INTPTR handle = GetACBrHandle(env, obj);
 	
@@ -521,7 +501,7 @@ JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_vendeItem(JNIEnv *env, jobjec
 	__DescontoAcrescimo[0] = nDescontoAcrescimo[0];
 	__DescontoAcrescimo[1] = 0;
 
-	int ret = ECF_VendeItem(handle, (PCHAR)nCodigo, (PCHAR)nDescricao, (PCHAR)nAliquotaICMS, (double)qtd, (double)valorUnitario, (double)descontoPorc, (PCHAR)nUnidade, (PCHAR)__TipoDescontoAcrescimo, (PCHAR)__DescontoAcrescimo);
+	int ret = ECF_VendeItem(handle, (PCHAR)nCodigo, (PCHAR)nDescricao, (PCHAR)nAliquotaICMS, (double)qtd, (double)valorUnitario, (double)descontoPorc, (PCHAR)nUnidade, (PCHAR)__TipoDescontoAcrescimo, (PCHAR)__DescontoAcrescimo, (int)codDepartamento);
 
 	env->ReleaseStringUTFChars(codigo, nCodigo);
 	env->ReleaseStringUTFChars(descricao, nDescricao);
@@ -533,16 +513,22 @@ JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_vendeItem(JNIEnv *env, jobjec
 	CheckResult(env, handle, ret);
 }
 
-JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_descontoAcrescimoItemAnterior(JNIEnv *env, jobject obj, jdouble valorDescontoAcrescimo, jstring descontoAcrescimo)
+JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_descontoAcrescimoItemAnterior(JNIEnv *env, jobject obj, jdouble valorDescontoAcrescimo, jstring descontoAcrescimo, jstring tipoDescontoAcrescimo, jint item)
 {
 	INTPTR handle = GetACBrHandle(env, obj);
 
 	jboolean isCopy = (jboolean)false;
 	const char* nDescontoAcrescimo = env->GetStringUTFChars(descontoAcrescimo, &isCopy);
+	const char* nTipoDescontoAcrescimo = env->GetStringUTFChars(tipoDescontoAcrescimo, &isCopy);
 
-	int ret = ECF_DescontoAcrescimoItemAnterior(handle, (double)valorDescontoAcrescimo, (PCHAR)nDescontoAcrescimo);
+	char __TipoDescontoAcrescimo[2];
+	__TipoDescontoAcrescimo[0] = nTipoDescontoAcrescimo[0];
+	__TipoDescontoAcrescimo[1] = 0;
+
+	int ret = ECF_DescontoAcrescimoItemAnterior(handle, (double)valorDescontoAcrescimo, (PCHAR)nDescontoAcrescimo, (PCHAR)__TipoDescontoAcrescimo, (int)item);
 
 	env->ReleaseStringUTFChars(descontoAcrescimo, nDescontoAcrescimo);
+	env->ReleaseStringUTFChars(descontoAcrescimo, nTipoDescontoAcrescimo);
 
 	CheckResult(env, handle, ret);
 }
@@ -654,7 +640,8 @@ JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_leituraX(JNIEnv *env, jobject
 JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_reducaoZ(JNIEnv *env, jobject obj)
 {
 	INTPTR handle = GetACBrHandle(env, obj);
-	int ret = ECF_ReducaoZ(handle);
+	
+	int ret = ECF_ReducaoZ(handle, 0);
 	CheckResult(env, handle, ret);
 }
 
@@ -892,30 +879,38 @@ JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_programaComprovanteNaoFiscal(
 	CheckResult(env, handle, ret);
 }
 
-JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_sangria(JNIEnv *env, jobject obj, jdouble valor, jstring obs)
+JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_sangria(JNIEnv *env, jobject obj, jdouble valor, jstring obs, jstring descricaoCNF, jstring descricaoFPG, jint indiceBmp)
 {
 	INTPTR handle = GetACBrHandle(env, obj);	
 
 	jboolean isCopy = (jboolean)false;
 	const char* nObs = env->GetStringUTFChars(obs, &isCopy);
+	const char* nDescricaoCNF = env->GetStringUTFChars(descricaoCNF, &isCopy);
+	const char* nDescricaoFPG = env->GetStringUTFChars(descricaoFPG, &isCopy);
 
-	int ret = ECF_Sangria(handle, (double)valor, (PCHAR)nObs);
+	int ret = ECF_Sangria(handle, (double)valor, (PCHAR)nObs, (PCHAR)nDescricaoCNF, (PCHAR)nDescricaoFPG, (int)indiceBmp);
 
 	env->ReleaseStringUTFChars(obs, nObs);
+	env->ReleaseStringUTFChars(obs, nDescricaoCNF);
+	env->ReleaseStringUTFChars(obs, nDescricaoFPG);
 	
 	CheckResult(env, handle, ret);
 }
 
-JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_suprimento(JNIEnv *env, jobject obj, jdouble valor, jstring obs)
+JNIEXPORT void JNICALL Java_jACBrFramework_ACBrECF_suprimento(JNIEnv *env, jobject obj, jdouble valor, jstring obs, jstring descricaoCNF, jstring descricaoFPG, jint indiceBmp)
 {
 	INTPTR handle = GetACBrHandle(env, obj);	
 
 	jboolean isCopy = (jboolean)false;
 	const char* nObs = env->GetStringUTFChars(obs, &isCopy);
+	const char* nDescricaoCNF = env->GetStringUTFChars(descricaoCNF, &isCopy);
+	const char* nDescricaoFPG = env->GetStringUTFChars(descricaoFPG, &isCopy);
 
-	int ret = ECF_Suprimento(handle, (double)valor, (PCHAR)nObs);
+	int ret = ECF_Suprimento(handle, (double)valor, (PCHAR)nObs, (PCHAR)nDescricaoCNF, (PCHAR)nDescricaoFPG, (int)indiceBmp);
 
 	env->ReleaseStringUTFChars(obs, nObs);
+	env->ReleaseStringUTFChars(obs, nDescricaoCNF);
+	env->ReleaseStringUTFChars(obs, nDescricaoFPG);
 	
 	CheckResult(env, handle, ret);
 }

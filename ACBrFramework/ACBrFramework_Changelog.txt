@@ -41,6 +41,19 @@ Símbolo : Significado
 
 Changelog
 
+19/02/2013
+-- jACBrFramework --
+[*] Refactory das classes bases do projeto (criação de ACBrInteropBase, ACBrClass e ACBrComposedClass) - Rafael Batiati
+[*] Criação da classe Device e inclusão da propriedade Device no ACBrECF - Rafael Batiati
+[+] Criação do projeto no NetBeans (descontinuado o projeto no Eclipse) - Rafael Batiati
+
+-- jACBrFramework_JNI --
+[*] Atualização das libs e dos headers do ACBrFramework - Rafael Batiati
+[*] Suporte as novas classes bases ACBrClass e ACBrComposedClass - Rafael Batiati
+
+-- ACBrFramework.Net 0.9.2.7 --
+[*] Inclusão do ACBrDevice no DefExporter - Rafael Batiati
+
 17/02/2013
 
 -- ACBrFramework.Net 0.9.2.7 --
