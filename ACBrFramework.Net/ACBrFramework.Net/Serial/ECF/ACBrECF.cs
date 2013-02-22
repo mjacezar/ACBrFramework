@@ -2850,8 +2850,8 @@ namespace ACBrFramework.ECF
 			onErrorVendeItem = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorVendeItemCallback, ACBrECFInterop.ECF_SetOnErrorVendeItem);
 			onMsgAguarde = new ACBrEventHandler<MsgEventArgs, ACBrECFInterop.StringCallback>(this, OnMsgAguardeCallback, ACBrECFInterop.ECF_SetOnMsgAguarde);
 			onMsgRetentar = new ACBrEventHandler<MsgRetentarEventArgs, ACBrECFInterop.OnMsgRetentarCallback>(this, OnMsgRetentarCallback, ACBrECFInterop.ECF_SetOnMsgRetentar);
-			onPAFCalcEAD = new ACBrEventHandler<PAFCalcEADEventArgs, ACBrECFInterop.StringCallback>(this, OnPAFCalcEADCallback, ACBrECFInterop.ECF_SetPAFCalcEAD);
-			onPAFGetKeyRSA = new ACBrEventHandler<ChaveEventArgs, ACBrECFInterop.GetKeyCallback>(this, OnPAFGetKeyRSACallback, ACBrECFInterop.ECF_SetPAFGetKeyRSA);
+			onPAFCalcEAD = new ACBrEventHandler<PAFCalcEADEventArgs, ACBrECFInterop.StringCallback>(this, OnPAFCalcEADCallback, ACBrECFInterop.ECF_SetOnPAFCalcEAD);
+			onPAFGetKeyRSA = new ACBrEventHandler<ChaveEventArgs, ACBrECFInterop.GetKeyCallback>(this, OnPAFGetKeyRSACallback, ACBrECFInterop.ECF_SetOnPAFGetKeyRSA);
 		}
 
 		#endregion Constructor

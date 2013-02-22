@@ -1381,10 +1381,10 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_SetOnMsgRetentar(IntPtr ecfHandle, OnMsgRetentarCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetPAFCalcEAD(IntPtr ecfHandle, StringCallback method);
+		public static extern int ECF_SetOnPAFCalcEAD(IntPtr ecfHandle, StringCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetPAFGetKeyRSA(IntPtr ecfHandle, GetKeyCallback method);
+		public static extern int ECF_SetOnPAFGetKeyRSA(IntPtr ecfHandle, GetKeyCallback method);
 
 
 		#endregion Eventos

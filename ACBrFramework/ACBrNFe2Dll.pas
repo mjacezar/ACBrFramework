@@ -1,4 +1,4 @@
-unit ACBrNFeDll;
+unit ACBrNFe2Dll;
 
 {$mode delphi}
 
@@ -14,6 +14,8 @@ uses
 type TEventHandlersNFE = class
 end;
 
+{%region Handler}
+
 {Handle para o componente TACBrNFE}
 type TNFEHandle = record
   UltimoErro : String;
@@ -24,12 +26,13 @@ end;
 type TNFHandle = record
   UltimoErro : String;
   NF : NotaFiscal;
-  NFEHandle : ^TNFEHandle;
 end;
 
 {Ponteiro para o Handle }
 type PNFEHandle = ^TNFEHandle;
 type PNFHandle = ^TNFHandle;
+
+{%endregion}
 
 implementation
 
@@ -1700,9 +1703,8 @@ begin
   end;
 
   try
-     nfeHandle^.NFE.NotasFiscais.Add(nfHandle^.NF);
-     nfHandle^.NF := nfeHandle^.NFE.NotasFiscais[nfHandle^.NF := nfeHandle^.NFE.NotasFiscais.Count - 1];
-     nfHandle^.NFEHandle := nfeHandle;
+     nfHandle^.NF.Destroy;
+     nfHandle^.NF := nfeHandle^.NFE.NotasFiscais.Add;
      Result := 0;
   except
      on exception : Exception do
@@ -1817,6 +1819,29 @@ begin
   end;
 end;
 
+Function NFE_NotasFiscais_ValidaAssinatura(const nfeHandle: PNFEHandle; var value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if nfeHandle^.NFE.NotasFiscais.ValidaAssinatura(value) then
+        Result := 1
+     else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 Function NFE_NotasFiscais_Imprimir(const nfeHandle: PNFEHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -1882,7 +1907,7 @@ begin
   end;
 end;
 
-Function NFE_NotasFiscais_LoadFromFile(const nfeHandle: PNFEHandle; const arquivo : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NotasFiscais_LoadFromFile(const nfeHandle: PNFEHandle; const nfHandle : PNFHandle; const arquivo : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -1893,7 +1918,11 @@ begin
 
   try
      if nfeHandle^.NFE.NotasFiscais.LoadFromFile(arquivo) then
-       Result := 1
+     begin
+       nfHandle^.NF.Destroy;
+       nfHandle^.NF := nfeHandle^.NFE.NotasFiscais[nfeHandle^.NFE.NotasFiscais.Count -1];
+       Result := 1;
+     end
      else
        Result := 0;
   except
@@ -1905,7 +1934,7 @@ begin
   end;
 end;
 
-Function NFE_NotasFiscais_LoadFromString(const nfeHandle: PNFEHandle; const xml : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NotasFiscais_LoadFromString(const nfeHandle: PNFEHandle; const nfHandle : PNFHandle; const xml : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -1916,7 +1945,11 @@ begin
 
   try
      if nfeHandle^.NFE.NotasFiscais.LoadFromString(xml) then
-       Result := 1
+     begin
+       nfHandle^.NF.Destroy;
+       nfHandle^.NF := nfeHandle^.NFE.NotasFiscais[nfeHandle^.NFE.NotasFiscais.Count -1];
+       Result := 1;
+     end
      else
        Result := 0;
   except
