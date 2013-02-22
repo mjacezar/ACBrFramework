@@ -1,15 +1,10 @@
 package jACBrFramework;
 
-import java.lang.String;
-import java.util.Date;
+import com.sun.jna.Pointer;
 
 public abstract class ACBrComposedClass extends ACBrInteropBase
 {
 
-	/**
-	 * Handle para o componente nativo criado pelo ACBrFramework Este campo
-	 * é utilizado apenas pela interface JNI.
-	 */
 	private int composedHandle;
 	private ACBrClass parent;
 
@@ -31,8 +26,18 @@ public abstract class ACBrComposedClass extends ACBrInteropBase
 		return this.parent.getHandle();
 	}
 
+	public int getComposedHandler()
+	{
+		return this.composedHandle;
+	}
+
 	public ACBrClass getParent()
 	{
 		return this.parent;
+	}
+
+	protected void checkResult(int result) throws ACBrException
+	{
+		parent.checkResult(result);
 	}
 }

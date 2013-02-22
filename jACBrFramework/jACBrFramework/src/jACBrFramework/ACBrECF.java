@@ -1,6 +1,10 @@
 package jACBrFramework;
 
-import java.lang.String;
+import com.sun.jna.Pointer;
+import com.sun.jna.ptr.IntByReference;
+import com.sun.jna.ptr.PointerByReference;
+import jACBrFramework.interop.ECFInterop;
+import java.nio.ByteBuffer;
 import java.util.Date;
 
 /**
@@ -18,14 +22,19 @@ public final class ACBrECF extends ACBrClass
 	private FormaPagamento[] formasPagamento;
 	private ComprovanteNaoFiscal[] comprovantesNaoFiscais;
 
-	public ACBrECF() throws ACBrException 
+	public ACBrECF() throws ACBrException
 	{
 	}
 
 	@Override
 	protected void onInitialize() throws ACBrException
 	{
-		this.create();
+		IntByReference handle = new IntByReference();
+		int ret = ECFInterop.INSTANCE.ECF_Create(handle);
+		checkResult(ret);
+
+		setHandle(handle.getValue());
+
 		this.device = new ACBrDevice(this);
 	}
 
@@ -33,6 +42,26 @@ public final class ACBrECF extends ACBrClass
 	protected void onFinalize() throws ACBrException
 	{
 		this.destroy();
+	}
+
+	@Override
+	protected void checkResult(int result) throws ACBrException
+	{
+		switch (result) {
+			case -1:
+				String message;
+
+				int LEN = 1024;
+				ByteBuffer buffer = ByteBuffer.allocateDirect(LEN);
+				int ret = ECFInterop.INSTANCE.ECF_GetUltimoErro(getHandle(), buffer, LEN);
+				
+				message = new String(buffer.array(), 0, ret, UTF8);
+				throw new ACBrException(message);
+
+
+			case -2:
+				throw new ACBrException("ACBr ECF não inicializado.");
+		}
 	}
 
 	public ACBrDevice getDevice()
@@ -45,26 +74,40 @@ public final class ACBrECF extends ACBrClass
 	 * objeto criado para o campo "handle" da classe. Método chamado apenas
 	 * pelo construtor da classe.
 	 */
-	private native void create() throws ACBrException;
-
+	//private native void create() throws ACBrException;
 	/**
 	 * Libera a memória utilizada pelo componente nativo do ACBr.
 	 */
-	private native void destroy() throws ACBrException;
+	private void destroy() throws ACBrException
+	{
+		int ret = ECFInterop.INSTANCE.ECF_Destroy(getHandle());
+		checkResult(ret);
+
+		setHandle(0);
+	}
 
 	/**
 	 * Ativa o componente, abrindo a porta de comunicação com o ECF.
 	 *
 	 * @throws ACBrException
 	 */
-	public native void ativar() throws ACBrException;
+	//public native void ativar() throws ACBrException;
+	public void ativar() throws ACBrException
+	{
+		int ret = jACBrFramework.interop.ECFInterop.INSTANCE.ECF_Ativar(getHandle());
+		checkResult(ret);
+	}
 
 	/**
 	 * Desativa o componente, fechando a porta de comunicação com o ECF.
 	 *
 	 * @throws ACBrException
 	 */
-	public native void desativar() throws ACBrException;
+	public void desativar() throws ACBrException
+	{
+		int ret = ECFInterop.INSTANCE.ECF_Desativar(getHandle());
+		checkResult(ret);
+	}
 
 	/**
 	 * Retorna o modelo do ECF.
@@ -73,7 +116,13 @@ public final class ACBrECF extends ACBrClass
 	 * @return Modelo do ECF
 	 * @throws ACBrException
 	 */
-	public native int getModelo() throws ACBrException;
+	public int getModelo() throws ACBrException
+	{
+		int ret = ECFInterop.INSTANCE.ECF_GetModelo(getHandle());
+		checkResult(ret);
+
+		return ret;
+	}
 
 	/**
 	 * Define o modelo do ECF.
@@ -82,7 +131,11 @@ public final class ACBrECF extends ACBrClass
 	 * @param modelo
 	 * @throws ACBrException
 	 */
-	public native void setModelo(int modelo) throws ACBrException;
+	public void setModelo(int modelo) throws ACBrException
+	{
+		int ret = ECFInterop.INSTANCE.ECF_SetModelo(getHandle(), modelo);
+		checkResult(ret);
+	}
 
 	/**
 	 * Verifica se o componente está ativo.
@@ -91,7 +144,13 @@ public final class ACBrECF extends ACBrClass
 	 * @return True caso o componente esteja ativo; False caso contrátio.
 	 * @throws ACBrException
 	 */
-	public native boolean getAtivo() throws ACBrException;
+	public boolean getAtivo() throws ACBrException
+	{
+		int ret = ECFInterop.INSTANCE.ECF_GetAtivo(getHandle());
+		checkResult(ret);
+
+		return ret == 1;
+	}
 
 	/**
 	 * Retorna o número de colunas do ECF.
@@ -99,23 +158,13 @@ public final class ACBrECF extends ACBrClass
 	 * @return Número de colunas do ECF.
 	 * @throws ACBrException
 	 */
-	public native int getColunas() throws ACBrException;
+	public int getColunas() throws ACBrException
+	{
+		int ret = ECFInterop.INSTANCE.ECF_GetColunas(getHandle());
+		checkResult(ret);
 
-	/**
-	 * Retorna o timeout de comunicação com o ECF.
-	 *
-	 * @return Tempo de timeout em milissegundos.
-	 * @throws ACBrException
-	 */
-	public native int getTimeOut() throws ACBrException;
-
-	/**
-	 * Define o timeout de comunicação com o ECF.
-	 *
-	 * @param timeout Tempo de timeout em milissegundos.
-	 * @throws ACBrException
-	 */
-	public native void setTimeOut(int timeout) throws ACBrException;
+		return ret;
+	}
 
 	/**
 	 * Verifica se o componente está aguardando resposta do ECF.
@@ -123,7 +172,13 @@ public final class ACBrECF extends ACBrClass
 	 * @return True caso esteja aguardando resposta; False caso contrário.
 	 * @throws ACBrException
 	 */
-	public native boolean getAguardandoResposta() throws ACBrException;
+	public boolean getAguardandoResposta() throws ACBrException
+	{
+		int ret = ECFInterop.INSTANCE.ECF_GetAguardandoResposta(getHandle());
+		checkResult(ret);
+
+		return ret == 1;
+	}
 
 	/**
 	 * Retorna último comando enviado ao ECF.
@@ -182,7 +237,15 @@ public final class ACBrECF extends ACBrClass
 	 * @return String com o nome do modelo do ECF.
 	 * @throws ACBrException
 	 */
-	public native String getModeloStr() throws ACBrException;
+	public String getModeloStr() throws ACBrException
+	{
+		int LEN = 256;
+		ByteBuffer buffer = ByteBuffer.allocate(LEN);
+		int ret = ECFInterop.INSTANCE.ECF_GetModeloStr(getHandle(), buffer, LEN);
+		checkResult(ret);
+		
+		return new String(buffer.array(), 0, ret, UTF8);
+	}
 
 	/**
 	 * Retorna o RFDID

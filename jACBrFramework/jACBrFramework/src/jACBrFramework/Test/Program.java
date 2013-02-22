@@ -14,7 +14,6 @@ public class Program
 	 */
 	public static void main(String[] args) throws Throwable
 	{
-
 		ACBrECF ecf = null;
 
 		try {
@@ -72,6 +71,9 @@ public class Program
 			System.out.println(": " + ecf.getAtivo());
 
 
+			//MUDANÇA DAS CHAMADAS DE JNI PARA JNA
+			//TRECHO ABAIXO AINDA NAO IMPLEMENTADO
+			/*
 
 			System.out.println("\nLeituraX\n");
 			ecf.leituraX();
@@ -106,6 +108,7 @@ public class Program
 			System.out.println("Fecha cupom\n");
 			ecf.fechaCupom("MENSAGEM FECHAMENTO");
 
+* */
 			System.out.println("Finalizado\n");
 			ecf.desativar();
 			ecf = null;
