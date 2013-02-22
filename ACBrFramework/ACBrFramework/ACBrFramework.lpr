@@ -10,7 +10,7 @@ uses
   ACBrSintegraDll, ACBrBALDll, ACBrLCBDll, ACBrAACDLL,
   ACBrTEFDll, ACBrCNIEEDll, ACBrSpedDll, ACBrSpedFiscalDll,
   ACBrSMSDll, ACBrIBGEDll, ACBrValidadorDll, ACBrRFDDll,
-  ACBrCEPDll{, ACBrNFeDll};
+  ACBrCEPDll, ACBrNFe2Dll;
 
 {$R *.res}
 begin
