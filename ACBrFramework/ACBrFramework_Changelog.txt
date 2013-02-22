@@ -41,6 +41,11 @@ Símbolo : Significado
 
 Changelog
 
+21/02/2013
+-- jACBrFramework --
+[+] Mudança inicial do jACBrFramework de JNI para JNA - Rafael Batiati
+[+] Criação das classes JNA para interop - Rafael Batiati
+
 19/02/2013
 -- jACBrFramework --
 [*] Refactory das classes bases do projeto (criação de ACBrInteropBase, ACBrClass e ACBrComposedClass) - Rafael Batiati

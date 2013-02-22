@@ -1,16 +1,15 @@
 package jACBrFramework;
 
-import java.lang.String;
-import java.util.Date;
+import com.sun.jna.Pointer;
+import java.nio.charset.Charset;
 
 public abstract class ACBrInteropBase
 {
 
-	static 
-	{
-		//Carrega a biblioteca de chamadas nativas JNI
-		System.loadLibrary("ACBrFramework32");
-		System.loadLibrary("ACBrFramework_JNI");
+	protected final static Charset UTF8;
+
+	static {
+		UTF8 = Charset.forName("UTF-8");
 	}
 
 	protected ACBrInteropBase()
