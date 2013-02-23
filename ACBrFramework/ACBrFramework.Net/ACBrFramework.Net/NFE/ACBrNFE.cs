@@ -29,6 +29,9 @@ namespace ACBrFramework.NFE
 
 		[Browsable(true)]
 		public NFEConfiguracoes Configuracoes { get; private set; }
+
+		[Browsable(false)]
+		public NotasFiscais NotasFiscais { get; private set; }
 			
 		#endregion Properties
 
@@ -36,11 +39,11 @@ namespace ACBrFramework.NFE
 
 		#region Funções
 
-			#endregion Funções
+		#endregion Funções
 
 		#region EventHandlers
 
-			#endregion EventHandlers
+		#endregion EventHandlers
 
 		#region Override Methods
 
@@ -48,6 +51,7 @@ namespace ACBrFramework.NFE
 		{
 			CallCreate(ACBrNFEInterop.NFE_Create);
 			this.Configuracoes = new NFEConfiguracoes(this);
+			this.NotasFiscais = new NotasFiscais(this);
 		}
 
 		protected internal override void CheckResult(int ret)

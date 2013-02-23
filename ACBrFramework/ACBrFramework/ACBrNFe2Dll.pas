@@ -23,14 +23,8 @@ type TNFEHandle = record
   EventHandlers : TEventHandlersNFE;
 end;
 
-type TNFHandle = record
-  UltimoErro : String;
-  NF : NotaFiscal;
-end;
-
 {Ponteiro para o Handle }
 type PNFEHandle = ^TNFEHandle;
-type PNFHandle = ^TNFHandle;
 
 {%endregion}
 
@@ -1691,9 +1685,13 @@ end;
 
 {%endregion}
 
+{%region WebServices}
+
+{%endregion}
+
 {%region NotasFiscais }
 
-Function NFE_NotasFiscais_Add(const nfeHandle: PNFEHandle; const nfHandle : PNFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NotasFiscais_Add(const nfeHandle: PNFEHandle; var nfHandle : NotaFiscal) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -1703,8 +1701,28 @@ begin
   end;
 
   try
-     nfHandle^.NF.Destroy;
-     nfHandle^.NF := nfeHandle^.NFE.NotasFiscais.Add;
+     nfHandle := nfeHandle^.NFE.NotasFiscais.Add;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NotasFiscais_Insert(const nfeHandle: PNFEHandle; var nfHandle : NotaFiscal; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfHandle := nfeHandle^.NFE.NotasFiscais.Insert(idx);
      Result := 0;
   except
      on exception : Exception do
@@ -1819,7 +1837,9 @@ begin
   end;
 end;
 
-Function NFE_NotasFiscais_ValidaAssinatura(const nfeHandle: PNFEHandle; var value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NotasFiscais_ValidaAssinatura(const nfeHandle: PNFEHandle;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  MSG : String;
 begin
 
   if (nfeHandle = nil) then
@@ -1829,8 +1849,11 @@ begin
   end;
 
   try
-     if nfeHandle^.NFE.NotasFiscais.ValidaAssinatura(value) then
-        Result := 1
+     if nfeHandle^.NFE.NotasFiscais.ValidaAssinatura(MSG) then
+     begin
+        StrPLCopy(Buffer, MSG, BufferLen);
+        Result := 1;
+     end
      else
         Result := 0;
   except
@@ -1907,7 +1930,7 @@ begin
   end;
 end;
 
-Function NFE_NotasFiscais_LoadFromFile(const nfeHandle: PNFEHandle; const nfHandle : PNFHandle; const arquivo : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NotasFiscais_LoadFromFile(const nfeHandle: PNFEHandle; const arquivo : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -1918,11 +1941,7 @@ begin
 
   try
      if nfeHandle^.NFE.NotasFiscais.LoadFromFile(arquivo) then
-     begin
-       nfHandle^.NF.Destroy;
-       nfHandle^.NF := nfeHandle^.NFE.NotasFiscais[nfeHandle^.NFE.NotasFiscais.Count -1];
-       Result := 1;
-     end
+       Result := 1
      else
        Result := 0;
   except
@@ -1934,7 +1953,7 @@ begin
   end;
 end;
 
-Function NFE_NotasFiscais_LoadFromString(const nfeHandle: PNFEHandle; const nfHandle : PNFHandle; const xml : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NotasFiscais_LoadFromString(const nfeHandle: PNFEHandle; const xml : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -1945,11 +1964,7 @@ begin
 
   try
      if nfeHandle^.NFE.NotasFiscais.LoadFromString(xml) then
-     begin
-       nfHandle^.NF.Destroy;
-       nfHandle^.NF := nfeHandle^.NFE.NotasFiscais[nfeHandle^.NFE.NotasFiscais.Count -1];
-       Result := 1;
-     end
+       Result := 1
      else
        Result := 0;
   except
@@ -1998,6 +2013,52 @@ begin
        Result := 1
      else
        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%region Nota Fical }
+
+Function NFE_NF_GetAlertas(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfHandle.Alertas, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_SetAlertas(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfHandle.Alertas := value;
+     Result := 0;
   except
      on exception : Exception do
      begin
@@ -2060,9 +2121,21 @@ NFE_CFG_WebServices_GetProxyPass, NFE_CFG_WebServices_SetProxyPass,
 NFE_CFG_WebServices_GetAguardarConsultaRet, NFE_CFG_WebServices_SetAguardarConsultaRet,
 NFE_CFG_WebServices_GetTentativas, NFE_CFG_WebServices_SetTentativas,
 NFE_CFG_WebServices_GetIntervaloTentativas, NFE_CFG_WebServices_SetIntervaloTentativas,
-NFE_CFG_WebServices_GetAjustaAguardaConsultaRet, NFE_CFG_WebServices_SetAjustaAguardaConsultaRet;
+NFE_CFG_WebServices_GetAjustaAguardaConsultaRet, NFE_CFG_WebServices_SetAjustaAguardaConsultaRet,
 
 {%endregion}
+
+{ NotasFiscais }
+NFE_NotasFiscais_Add, NFE_NotasFiscais_Insert,
+NFE_NotasFiscais_Clear, NFE_NotasFiscais_Count, NFE_NotasFiscais_Assinar,
+NFE_NotasFiscais_GerarNFe, NFE_NotasFiscais_Valida,
+NFE_NotasFiscais_ValidaAssinatura, NFE_NotasFiscais_Imprimir,
+NFE_NotasFiscais_ImprimirPDF, NFE_NotasFiscais_GetNamePath,
+NFE_NotasFiscais_LoadFromFile, NFE_NotasFiscais_LoadFromString,
+NFE_NotasFiscais_SaveToFile, NFE_NotasFiscais_SaveToTXT,
+
+{ Nota Fical }
+NFE_NF_GetAlertas, NFE_NF_SetAlertas;
 
 
 end.
