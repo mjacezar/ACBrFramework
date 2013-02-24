@@ -292,6 +292,9 @@ namespace ACBrFramework.NFE
 		public static extern int NFE_NotasFiscais_Insert(IntPtr nfeHandle, ref IntPtr nfHandle, int idx);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NotasFiscais_SetItem(IntPtr nfeHandle, IntPtr nfHandle, int idx);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_NotasFiscais_Clear(IntPtr nfeHandle);		
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
@@ -313,10 +316,10 @@ namespace ACBrFramework.NFE
 		public static extern int NFE_NotasFiscais_ImprimirPDF(IntPtr nfeHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NotasFiscais_LoadFromFile(IntPtr nfeHandle, string arquivo);
+		public static extern int NFE_NotasFiscais_LoadFromFile(IntPtr nfeHandle, string arquivo, ref IntPtr nfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NotasFiscais_LoadFromString(IntPtr nfeHandle, string arquivo);
+		public static extern int NFE_NotasFiscais_LoadFromString(IntPtr nfeHandle, string arquivo, ref IntPtr nfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_NotasFiscais_SaveToFile(IntPtr nfeHandle, string arquivo, bool txt);

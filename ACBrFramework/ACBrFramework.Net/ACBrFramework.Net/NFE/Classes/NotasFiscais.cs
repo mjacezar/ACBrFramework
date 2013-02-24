@@ -7,6 +7,9 @@ namespace ACBrFramework.NFE
 	public class NotasFiscais : ACBrComposedComponent
 	{
 		#region Fields
+
+		private List<NotaFiscal> Item { get; private set; }
+
 		#endregion Fields
 
 		#region Constructor
@@ -14,6 +17,7 @@ namespace ACBrFramework.NFE
 		internal NotasFiscais(ACBrNFE parent)
 			: base(parent)
 		{
+			this.Item = new List<NotaFiscal>();
 		}
 
 		#endregion Constructor
@@ -48,6 +52,21 @@ namespace ACBrFramework.NFE
 
 		#region Methods
 
+		public NotaFiscal this[int idx]
+		{
+			get
+			{
+				return Item[idx];
+			}
+			set
+			{
+				int ret = ACBrNFEInterop.NFE_NotasFiscais_SetItem(this.Parent.Handle, ((NotaFiscal)value).ComposedHandle, idx);
+				CheckResult(ret);
+
+				Item[idx] = value;
+			}
+		}
+
 		public NotaFiscal Add()
 		{
 			IntPtr nfHandle = new IntPtr();
@@ -56,6 +75,7 @@ namespace ACBrFramework.NFE
 			CheckResult(ret);
 
 			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
+			Item.Add(nf);
 
 			return nf;
 		}
@@ -68,6 +88,7 @@ namespace ACBrFramework.NFE
 			CheckResult(ret);
 
 			NotaFiscal nf = new NotaFiscal(Parent, nfHandle);
+			Item.Insert(idx, nf);			
 
 			return nf;
 		}
@@ -76,6 +97,8 @@ namespace ACBrFramework.NFE
 		{
 			int ret = ACBrNFEInterop.NFE_NotasFiscais_Clear(Parent.Handle);
 			CheckResult(ret);
+
+			Item.Clear();
 		}
 
 		public void Assinar()
@@ -121,14 +144,24 @@ namespace ACBrFramework.NFE
 
 		public void LoadFromFile(string arquivo)
 		{
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_LoadFromFile(Parent.Handle, arquivo);
+			IntPtr nfHandle = new IntPtr();
+
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_LoadFromFile(Parent.Handle, arquivo, ref nfHandle);
 			CheckResult(ret);
+
+			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
+			Item.Add(nf);
 		}
 
 		public void LoadFromString(string arquivo)
 		{
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_LoadFromString(Parent.Handle, arquivo);
+			IntPtr nfHandle = new IntPtr();
+
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_LoadFromString(Parent.Handle, arquivo, ref nfHandle);
 			CheckResult(ret);
+
+			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
+			Item.Add(nf);
 		}
 
 		public void SaveToFile(string arquivo, bool txt = false)

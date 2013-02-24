@@ -13,8 +13,7 @@ namespace ACBrFramework.NFE
 		internal NotaFiscal(ACBrNFE parent, IntPtr composedHandle)
 			: base(parent, composedHandle)
 		{
-			infNFe = new infNFe();
-			Ide = new Ide();
+			
 		}
 
 		#endregion Constructor
@@ -28,10 +27,6 @@ namespace ACBrFramework.NFE
 				return (ACBrNFE)base.Parent;
 			}
 		}
-
-		public Schema Schema { get; set; }
-		public infNFe infNFe { get; private set; }
-		public Ide Ide { get; private set; }
 
 		#endregion Properties
 
