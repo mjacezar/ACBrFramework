@@ -8,6 +8,7 @@ uses
   Classes,
   ACBrNFe,
   pcnConversao,
+  pcnNFe,
   ACBrNFeNotasFiscais,
   SysUtils;
 
@@ -1733,6 +1734,27 @@ begin
   end;
 end;
 
+Function NFE_NotasFiscais_SetItem(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeHandle^.NFE.NotasFiscais.Items[idx] := nfHandle;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 Function NFE_NotasFiscais_Clear(const nfeHandle: PNFEHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -1930,7 +1952,7 @@ begin
   end;
 end;
 
-Function NFE_NotasFiscais_LoadFromFile(const nfeHandle: PNFEHandle; const arquivo : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NotasFiscais_LoadFromFile(const nfeHandle: PNFEHandle; const arquivo : pChar; var nfHandle : NotaFiscal) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -1941,7 +1963,10 @@ begin
 
   try
      if nfeHandle^.NFE.NotasFiscais.LoadFromFile(arquivo) then
-       Result := 1
+     begin
+       nfHandle := nfeHandle^.NFE.NotasFiscais.Items[nfeHandle^.NFE.NotasFiscais.Count - 1];
+       Result := 1;
+     end
      else
        Result := 0;
   except
@@ -1953,7 +1978,7 @@ begin
   end;
 end;
 
-Function NFE_NotasFiscais_LoadFromString(const nfeHandle: PNFEHandle; const xml : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NotasFiscais_LoadFromString(const nfeHandle: PNFEHandle; const xml : pChar; var nfHandle : NotaFiscal) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -1964,7 +1989,10 @@ begin
 
   try
      if nfeHandle^.NFE.NotasFiscais.LoadFromString(xml) then
-       Result := 1
+     begin
+       nfHandle := nfeHandle^.NFE.NotasFiscais.Items[nfeHandle^.NFE.NotasFiscais.Count - 1];
+       Result := 1;
+     end
      else
        Result := 0;
   except
@@ -2026,6 +2054,27 @@ end;
 
 {%region Nota Fical }
 
+Function NFE_NF_GetNFe(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal; var nfeeHandle : TNFe) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle := nfHandle.NFe;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 Function NFE_NF_GetAlertas(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -2058,6 +2107,292 @@ begin
 
   try
      nfHandle.Alertas := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_GetXML(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfHandle.XML, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_SetXML(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfHandle.XML := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_GetMsg(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfHandle.Msg, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_SetMsg(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfHandle.Msg := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_GetNomeArq(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfHandle.NomeArq, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_SetNomeArq(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfHandle.NomeArq := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_GetConfirmada(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if nfHandle.Confirmada then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_SetConfirmada(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal; const value : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfHandle.Confirmada := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_Imprimir(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfHandle.Imprimir;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_ImprimirPDF(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfHandle.ImprimirPDF;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_SaveToFile(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal; const CaminhoArquivo: pChar; const SalvaTXT : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfHandle.SaveToFile(CaminhoArquivo, SalvaTXT);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NF_EnviarEmail(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal; const sSmtpHost, sSmtpPort, sSmtpUser, sSmtpPasswd, sFrom,
+                                sTo, sAssunto: pChar; sMensagem : array of pChar; szMensagem: Integer;
+                                SSL, EnviaPDF: Boolean; sCC: array of pChar; szCC : Integer;
+                                sAnexos: array of pChar; szAnexos : Integer;
+                                PedeConfirma, AguardarEnvio: Boolean; NomeRemetente: pChar;
+                                TLS, UsarThread: Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  MSG : TStrings;
+  CC : TStrings;
+  Anexos : TStrings;
+  i : Integer;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+
+     MSG := TStrings.Create;
+     for i := 0  to szMensagem - 1 do
+     begin
+       MSG.Add(sMensagem[i]);
+     end;
+
+     CC := TStrings.Create;
+     for i := 0  to szCC - 1 do
+     begin
+       CC.Add(sCC[i]);
+     end;
+
+     Anexos := TStrings.Create;
+     for i := 0  to szAnexos - 1 do
+     begin
+       Anexos.Add(sAnexos[i]);
+     end;
+
+     nfHandle.EnviarEmail(sSmtpHost, sSmtpPort, sSmtpUser, sSmtpPasswd, sFrom,
+                          sTo, sAssunto, MSG, SSL, EnviaPDF, CC, Anexos,
+                          PedeConfirma, AguardarEnvio, NomeRemetente,
+                          TLS, UsarThread);
      Result := 0;
   except
      on exception : Exception do
@@ -2126,7 +2461,7 @@ NFE_CFG_WebServices_GetAjustaAguardaConsultaRet, NFE_CFG_WebServices_SetAjustaAg
 {%endregion}
 
 { NotasFiscais }
-NFE_NotasFiscais_Add, NFE_NotasFiscais_Insert,
+NFE_NotasFiscais_Add, NFE_NotasFiscais_Insert, NFE_NotasFiscais_SetItem,
 NFE_NotasFiscais_Clear, NFE_NotasFiscais_Count, NFE_NotasFiscais_Assinar,
 NFE_NotasFiscais_GerarNFe, NFE_NotasFiscais_Valida,
 NFE_NotasFiscais_ValidaAssinatura, NFE_NotasFiscais_Imprimir,
@@ -2135,7 +2470,14 @@ NFE_NotasFiscais_LoadFromFile, NFE_NotasFiscais_LoadFromString,
 NFE_NotasFiscais_SaveToFile, NFE_NotasFiscais_SaveToTXT,
 
 { Nota Fical }
-NFE_NF_GetAlertas, NFE_NF_SetAlertas;
+NFE_NF_GetNFe,
+NFE_NF_GetAlertas, NFE_NF_SetAlertas,
+NFE_NF_GetXML, NFE_NF_SetXML,
+NFE_NF_GetMsg, NFE_NF_SetMsg,
+NFE_NF_GetNomeArq, NFE_NF_SetNomeArq,
+NFE_NF_GetConfirmada, NFE_NF_SetConfirmada,
+NFE_NF_Imprimir, NFE_NF_ImprimirPDF,
+NFE_NF_SaveToFile, NFE_NF_EnviarEmail;
 
 
 end.
