@@ -242,7 +242,7 @@ namespace ACBrFramework.NFE
 		public static extern int NFE_Create(ref IntPtr nfeHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_Destroy(ref IntPtr nfeHandle);
+		public static extern int NFE_Destroy(IntPtr nfeHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_GetUltimoErro(IntPtr nfeHandle, StringBuilder buffer, int bufferLen);
@@ -286,10 +286,10 @@ namespace ACBrFramework.NFE
 		#region NotasFiscais
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NotasFiscais_Add(IntPtr nfeHandle, ref IntPtr nfHandle);
+		public static extern int NFE_NotasFiscais_Add(IntPtr nfeHandle, out IntPtr nfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NotasFiscais_Insert(IntPtr nfeHandle, ref IntPtr nfHandle, int idx);
+		public static extern int NFE_NotasFiscais_Insert(IntPtr nfeHandle, out IntPtr nfHandle, int idx);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_NotasFiscais_SetItem(IntPtr nfeHandle, IntPtr nfHandle, int idx);
@@ -316,10 +316,10 @@ namespace ACBrFramework.NFE
 		public static extern int NFE_NotasFiscais_ImprimirPDF(IntPtr nfeHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NotasFiscais_LoadFromFile(IntPtr nfeHandle, string arquivo, ref IntPtr nfHandle);
+		public static extern int NFE_NotasFiscais_LoadFromFile(IntPtr nfeHandle, string arquivo, out IntPtr nfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NotasFiscais_LoadFromString(IntPtr nfeHandle, string arquivo, ref IntPtr nfHandle);
+		public static extern int NFE_NotasFiscais_LoadFromString(IntPtr nfeHandle, string arquivo, out IntPtr nfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_NotasFiscais_SaveToFile(IntPtr nfeHandle, string arquivo, bool txt);

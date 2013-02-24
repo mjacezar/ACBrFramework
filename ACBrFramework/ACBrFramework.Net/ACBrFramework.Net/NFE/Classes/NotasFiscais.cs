@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 namespace ACBrFramework.NFE
 {
-	public class NotasFiscais : ACBrComposedComponent
+	public class NotasFiscais : ACBrComposedComponent, IEnumerable<NotaFiscal>
 	{
 		#region Fields
 
-		private List<NotaFiscal> Item { get; private set; }
+		//private List<NotaFiscal> Item { get; private set; }
+		private List<NotaFiscal> list;
 
 		#endregion Fields
 
@@ -17,7 +18,7 @@ namespace ACBrFramework.NFE
 		internal NotasFiscais(ACBrNFE parent)
 			: base(parent)
 		{
-			this.Item = new List<NotaFiscal>();
+			this.list = new List<NotaFiscal>();
 		}
 
 		#endregion Constructor
@@ -56,39 +57,43 @@ namespace ACBrFramework.NFE
 		{
 			get
 			{
-				return Item[idx];
+				return list[idx];
 			}
 			set
 			{
-				int ret = ACBrNFEInterop.NFE_NotasFiscais_SetItem(this.Parent.Handle, ((NotaFiscal)value).ComposedHandle, idx);
+				
+				//int ret = ACBrNFEInterop.NFE_NotasFiscais_SetItem(this.Parent.Handle, ((NotaFiscal)value).ComposedHandle, idx);
+				int ret = ACBrNFEInterop.NFE_NotasFiscais_SetItem(this.Handle, value.ComposedHandle, idx);
 				CheckResult(ret);
 
-				Item[idx] = value;
+				list[idx] = value;
 			}
 		}
 
 		public NotaFiscal Add()
 		{
-			IntPtr nfHandle = new IntPtr();
+			IntPtr nfHandle; // = new IntPtr();
 
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_Add(Parent.Handle, ref nfHandle);
+			//int ret = ACBrNFEInterop.NFE_NotasFiscais_Add(Parent.Handle, ref nfHandle);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_Add(this.Handle, out nfHandle);
 			CheckResult(ret);
 
 			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
-			Item.Add(nf);
+			list.Add(nf);
 
 			return nf;
 		}
 
 		public NotaFiscal Insert(int idx)
 		{
-			IntPtr nfHandle = new IntPtr();
+			IntPtr nfHandle; // = new IntPtr();
 
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_Insert(Parent.Handle, ref nfHandle, idx);
+			//int ret = ACBrNFEInterop.NFE_NotasFiscais_Insert(Parent.Handle, ref nfHandle, idx);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_Insert(this.Handle, out nfHandle, idx);
 			CheckResult(ret);
 
 			NotaFiscal nf = new NotaFiscal(Parent, nfHandle);
-			Item.Insert(idx, nf);			
+			list.Insert(idx, nf);			
 
 			return nf;
 		}
@@ -98,7 +103,7 @@ namespace ACBrFramework.NFE
 			int ret = ACBrNFEInterop.NFE_NotasFiscais_Clear(Parent.Handle);
 			CheckResult(ret);
 
-			Item.Clear();
+			list.Clear();
 		}
 
 		public void Assinar()
@@ -121,6 +126,9 @@ namespace ACBrFramework.NFE
 
 		public void ValidaAssinatura(out string MSG)
 		{
+			MSG = GetString(ACBrNFEInterop.NFE_NotasFiscais_ValidaAssinatura, 256);
+
+			/*
 			const int buffelen = 256;
 			StringBuilder buffer = new StringBuilder(buffelen);
 
@@ -128,6 +136,7 @@ namespace ACBrFramework.NFE
 			CheckResult(ret);
 
 			MSG = FromUTF8(buffer.ToString());
+			 * */
 		}
 
 		public void Imprimir()
@@ -144,24 +153,24 @@ namespace ACBrFramework.NFE
 
 		public void LoadFromFile(string arquivo)
 		{
-			IntPtr nfHandle = new IntPtr();
+			IntPtr nfHandle; // = new IntPtr();
 
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_LoadFromFile(Parent.Handle, arquivo, ref nfHandle);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_LoadFromFile(Parent.Handle, arquivo, out nfHandle);
 			CheckResult(ret);
 
 			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
-			Item.Add(nf);
+			list.Add(nf);
 		}
 
 		public void LoadFromString(string arquivo)
 		{
-			IntPtr nfHandle = new IntPtr();
+			IntPtr nfHandle; // = new IntPtr();
 
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_LoadFromString(Parent.Handle, arquivo, ref nfHandle);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_LoadFromString(Parent.Handle, arquivo, out nfHandle);
 			CheckResult(ret);
 
 			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
-			Item.Add(nf);
+			list.Add(nf);
 		}
 
 		public void SaveToFile(string arquivo, bool txt = false)
@@ -177,5 +186,19 @@ namespace ACBrFramework.NFE
 		}
 
 		#endregion Methods
+
+		#region IEnumerable<NotaFiscal>
+
+		public IEnumerator<NotaFiscal> GetEnumerator()
+		{
+			return this.list.GetEnumerator();
+		}
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+		{
+			return this.list.GetEnumerator();
+		}
+
+		#endregion
 	}
 }
