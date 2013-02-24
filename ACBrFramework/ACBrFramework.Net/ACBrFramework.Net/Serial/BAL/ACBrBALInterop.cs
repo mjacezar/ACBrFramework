@@ -31,7 +31,7 @@ namespace ACBrFramework.BAL
 		public static extern int BAL_Create(ref IntPtr balHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int BAL_Destroy(ref IntPtr balHandle);
+		public static extern int BAL_Destroy(IntPtr balHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int BAL_GetUltimoErro(IntPtr balHandle, StringBuilder buffer, int bufferLen);

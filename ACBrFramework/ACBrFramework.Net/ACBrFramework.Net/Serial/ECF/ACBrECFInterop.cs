@@ -182,7 +182,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_Create(ref IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_Destroy(ref IntPtr ecfHandle);
+		public static extern int ECF_Destroy(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetUltimoErro(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);

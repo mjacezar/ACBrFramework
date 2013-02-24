@@ -9,7 +9,7 @@ namespace ACBrFramework.NFE
 		#region Fields
 
 		//private List<NotaFiscal> Item { get; private set; }
-		private List<NotaFiscal> list;
+		//private List<NotaFiscal> list;
 
 		#endregion Fields
 
@@ -18,7 +18,7 @@ namespace ACBrFramework.NFE
 		internal NotasFiscais(ACBrNFE parent)
 			: base(parent)
 		{
-			this.list = new List<NotaFiscal>();
+			//this.list = new List<NotaFiscal>();
 		}
 
 		#endregion Constructor
@@ -57,7 +57,13 @@ namespace ACBrFramework.NFE
 		{
 			get
 			{
-				return list[idx];
+				//return list[idx];
+
+				IntPtr nfHandle;
+				int ret = ACBrNFEInterop.NFE_NotasFiscais_GetItem(this.Handle, out nfHandle, idx);
+				CheckResult(ret);
+
+				return new NotaFiscal(this.Parent, nfHandle);
 			}
 			set
 			{
@@ -66,7 +72,7 @@ namespace ACBrFramework.NFE
 				int ret = ACBrNFEInterop.NFE_NotasFiscais_SetItem(this.Handle, value.ComposedHandle, idx);
 				CheckResult(ret);
 
-				list[idx] = value;
+				//list[idx] = value;
 			}
 		}
 
@@ -79,7 +85,7 @@ namespace ACBrFramework.NFE
 			CheckResult(ret);
 
 			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
-			list.Add(nf);
+			//list.Add(nf);
 
 			return nf;
 		}
@@ -93,7 +99,7 @@ namespace ACBrFramework.NFE
 			CheckResult(ret);
 
 			NotaFiscal nf = new NotaFiscal(Parent, nfHandle);
-			list.Insert(idx, nf);			
+			//list.Insert(idx, nf);			
 
 			return nf;
 		}
@@ -103,7 +109,7 @@ namespace ACBrFramework.NFE
 			int ret = ACBrNFEInterop.NFE_NotasFiscais_Clear(Parent.Handle);
 			CheckResult(ret);
 
-			list.Clear();
+			//list.Clear();
 		}
 
 		public void Assinar()
@@ -159,7 +165,7 @@ namespace ACBrFramework.NFE
 			CheckResult(ret);
 
 			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
-			list.Add(nf);
+			//list.Add(nf);
 		}
 
 		public void LoadFromString(string arquivo)
@@ -170,7 +176,7 @@ namespace ACBrFramework.NFE
 			CheckResult(ret);
 
 			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
-			list.Add(nf);
+			//list.Add(nf);
 		}
 
 		public void SaveToFile(string arquivo, bool txt = false)
@@ -191,12 +197,15 @@ namespace ACBrFramework.NFE
 
 		public IEnumerator<NotaFiscal> GetEnumerator()
 		{
-			return this.list.GetEnumerator();
+			for (int idx = 0; idx < Count; idx++)
+			{
+				yield return this[idx];
+			}
 		}
 
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
 		{
-			return this.list.GetEnumerator();
+			return this.GetEnumerator();
 		}
 
 		#endregion

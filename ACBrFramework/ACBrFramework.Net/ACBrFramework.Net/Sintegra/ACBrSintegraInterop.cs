@@ -976,7 +976,7 @@ namespace ACBrFramework.Sintegra
 		public static extern int SIN_Create(ref IntPtr sinHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int SIN_Destroy(ref IntPtr sinHandle);
+		public static extern int SIN_Destroy(IntPtr sinHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SIN_GetUltimoErro(IntPtr sinHandle, StringBuilder buffer, int bufferLen);

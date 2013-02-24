@@ -3631,7 +3631,7 @@ namespace ACBrFramework.Sped
 		public static extern int SPDF_Create(ref IntPtr spdfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int SPDF_Destroy(ref IntPtr spdfHandle);
+		public static extern int SPDF_Destroy(IntPtr spdfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SPDF_GetUltimoErro(IntPtr spdfHandle, StringBuilder buffer, int bufferLen);

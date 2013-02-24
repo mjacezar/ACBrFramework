@@ -44,7 +44,7 @@ namespace ACBrFramework.EAD
 		public static extern int EAD_Create(ref IntPtr eadHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int EAD_Destroy(ref IntPtr eadHandle);
+		public static extern int EAD_Destroy(IntPtr eadHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int EAD_GetUltimoErro(IntPtr eadHandle, StringBuilder buffer, int bufferLen);

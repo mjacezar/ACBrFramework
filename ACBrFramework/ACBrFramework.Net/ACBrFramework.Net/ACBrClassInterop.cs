@@ -22,7 +22,7 @@ namespace ACBrFramework
 
 		protected delegate int CreateEntryPointDelegate(ref IntPtr handle);
 
-		protected delegate int DestroyEntryPointDelegate(ref IntPtr handle);
+		protected delegate int DestroyEntryPointDelegate(IntPtr handle);
 
 		#endregion Inner Types
 
@@ -114,8 +114,10 @@ namespace ACBrFramework
 
 			try
 			{
-				var ret = entryPoint(ref this.handle);
+				var ret = entryPoint(this.handle);
 				CheckResult(ret);
+
+				this.handle = IntPtr.Zero;
 			}
 			catch (AccessViolationException)
 			{

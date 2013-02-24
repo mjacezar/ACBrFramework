@@ -217,7 +217,7 @@ namespace ACBrFramework.RFD
 		public static extern int RFD_Create(ref IntPtr rfdHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int RFD_Destroy(ref IntPtr rfdHandle);
+		public static extern int RFD_Destroy(IntPtr rfdHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int RFD_GetUltimoErro(IntPtr rfdHandle, StringBuilder buffer, int bufferLen);

@@ -802,7 +802,7 @@ namespace ACBrFramework.PAF
 		public static extern int PAF_Create(ref IntPtr pafHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_Destroy(ref IntPtr pafHandle);
+		public static extern int PAF_Destroy(IntPtr pafHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int PAF_GetUltimoErro(IntPtr pafHandle, StringBuilder buffer, int bufferLen);
