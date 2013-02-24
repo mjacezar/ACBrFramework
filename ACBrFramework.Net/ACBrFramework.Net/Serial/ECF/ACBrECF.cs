@@ -5154,19 +5154,18 @@ namespace ACBrFramework.ECF
 		{
 			if (this.Handle != IntPtr.Zero)
 			{
+				if (this.Ativo) this.Desativar();
+
 				if (rfd != null)
 				{
-					if (this.Ativo)
-						Desativar();
-
-					if (rfd.Ativo)
-						rfd.Desativar();
+					if (rfd.Ativo) rfd.Desativar();
 
 					var orfd = rfd;
 					rfd = null;
-					if (orfd.ECF != null)
-						orfd.ECF = null;
+
+					if (orfd.ECF != null) orfd.ECF = null;
 				}
+
 				CallDestroy(ACBrECFInterop.ECF_Destroy);
 			}
 		}

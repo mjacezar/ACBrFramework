@@ -95,7 +95,7 @@ DESTRÓI o objeto TACBrLCB e libera a memória utilizada.
 Esta função deve SEMPRE ser chamada pela aplicação que utiliza a DLL
 quando o componente não mais for utilizado.
 }
-Function LCB_Destroy(var lcbHandle: PLCBHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function LCB_Destroy(lcbHandle: PLCBHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   try

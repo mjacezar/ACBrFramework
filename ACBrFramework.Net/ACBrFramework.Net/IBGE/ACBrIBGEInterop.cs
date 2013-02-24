@@ -50,7 +50,7 @@ namespace ACBrFramework.IBGE
 		public static extern int IBGE_Create(ref IntPtr ibgeHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int IBGE_Destroy(ref IntPtr ibgeHandle);
+		public static extern int IBGE_Destroy(IntPtr ibgeHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int IBGE_GetUltimoErro(IntPtr ibgeHandle, StringBuilder buffer, int bufferLen);

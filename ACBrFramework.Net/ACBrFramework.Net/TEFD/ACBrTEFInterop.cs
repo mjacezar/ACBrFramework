@@ -82,7 +82,7 @@ namespace ACBrFramework.TEFD
 		public static extern int TEF_Create(ref IntPtr tefHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int TEF_Destroy(ref IntPtr tefHandle);
+		public static extern int TEF_Destroy(IntPtr tefHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_GetUltimoErro(IntPtr tefHandle, StringBuilder buffer, int bufferLen);

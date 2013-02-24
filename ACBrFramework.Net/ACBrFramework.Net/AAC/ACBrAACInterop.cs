@@ -76,7 +76,7 @@ namespace ACBrFramework.AAC
 		public static extern int AAC_Create(ref IntPtr aacHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int AAC_Destroy(ref IntPtr aacHandle);
+		public static extern int AAC_Destroy(IntPtr aacHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int AAC_GetUltimoErro(IntPtr aacHandle, StringBuilder buffer, int bufferLen);

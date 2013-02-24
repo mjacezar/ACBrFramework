@@ -41,7 +41,7 @@ namespace ACBrFramework.SMS
 		public static extern int SMS_Create(ref IntPtr smsHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int SMS_Destroy(ref IntPtr smsHandle);
+		public static extern int SMS_Destroy(IntPtr smsHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SMS_GetUltimoErro(IntPtr smsHandle, StringBuilder buffer, int bufferLen);
@@ -172,7 +172,7 @@ namespace ACBrFramework.SMS
 		public static extern int SMS_MSG_Create(ref IntPtr msgHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int SMS_MSG_Destroy(ref IntPtr msgHandle);
+		public static extern int SMS_MSG_Destroy(IntPtr msgHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SMS_MSG_GetUltimoErro(IntPtr msgHandle, StringBuilder buffer, int bufferLen);
@@ -197,7 +197,7 @@ namespace ACBrFramework.SMS
 		public static extern int SMS_MSGC_Create(ref IntPtr msgcHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int SMS_MSGC_Destroy(ref IntPtr msgcHandle);
+		public static extern int SMS_MSGC_Destroy(IntPtr msgcHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SMS_MSGC_GetUltimoErro(IntPtr msgcHandle, StringBuilder buffer, int bufferLen);

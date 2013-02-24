@@ -104,7 +104,7 @@ DESTRÓI o objeto TACBrECF e libera a memória utilizada.
 Esta função deve SEMPRE ser chamada pela aplicação que utiliza a DLL
 quando o componente não mais for utilizado.
 }
-Function SMS_Destroy(var smsHandle: PSMSHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function SMS_Destroy(smsHandle: PSMSHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (smsHandle = nil) then

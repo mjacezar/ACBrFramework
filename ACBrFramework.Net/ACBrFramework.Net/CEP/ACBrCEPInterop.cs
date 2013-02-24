@@ -161,7 +161,7 @@ namespace ACBrFramework.CEP
 		public static extern int CEP_Create(ref IntPtr cepHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int CEP_Destroy(ref IntPtr cepHandle);
+		public static extern int CEP_Destroy(IntPtr cepHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int CEP_GetUltimoErro(IntPtr cepHandle, StringBuilder buffer, int bufferLen);

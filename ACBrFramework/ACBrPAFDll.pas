@@ -384,7 +384,7 @@ DESTRÓI o objeto TACBrPAF e libera a memória utilizada.
 Esta função deve SEMPRE ser chamada pela aplicação que utiliza a DLL
 quando o componente não mais for utilizado.
 }
-Function PAF_Destroy(var pafHandle: PPAFHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function PAF_Destroy(pafHandle: PPAFHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (pafHandle = nil) then

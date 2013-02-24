@@ -91,7 +91,7 @@ DESTRÓI o objeto TACBrCEP e libera a memória utilizada.
 Esta função deve SEMPRE ser chamada pela aplicação que utiliza a DLL
 quando o componente não mais for utilizado.
 }
-Function CEP_Destroy(var cepHandle: PCEPHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function CEP_Destroy(cepHandle: PCEPHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (cepHandle = nil) then

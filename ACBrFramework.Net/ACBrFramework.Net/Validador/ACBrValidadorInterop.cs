@@ -145,7 +145,7 @@ namespace ACBrFramework.Validador
 		public static extern int VAL_Create(ref IntPtr valHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int VAL_Destroy(ref IntPtr valHandle);
+		public static extern int VAL_Destroy(IntPtr valHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int VAL_GetUltimoErro(IntPtr valHandle, StringBuilder buffer, int bufferLen);

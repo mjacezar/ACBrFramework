@@ -292,6 +292,9 @@ namespace ACBrFramework.NFE
 		public static extern int NFE_NotasFiscais_Insert(IntPtr nfeHandle, out IntPtr nfHandle, int idx);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NotasFiscais_GetItem(IntPtr nfeHandle, out IntPtr nfHandle, int idx);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_NotasFiscais_SetItem(IntPtr nfeHandle, IntPtr nfHandle, int idx);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]

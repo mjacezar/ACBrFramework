@@ -123,7 +123,7 @@ namespace ACBrFramework.CNIEE
 		public static extern int CNIEE_Create(ref IntPtr cnieeHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int CNIEE_Destroy(ref IntPtr cnieeHandle);
+		public static extern int CNIEE_Destroy(IntPtr cnieeHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int CNIEE_GetUltimoErro(IntPtr cnieeHandle, StringBuilder buffer, int bufferLen);

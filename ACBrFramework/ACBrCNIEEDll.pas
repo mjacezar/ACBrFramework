@@ -95,7 +95,7 @@ DESTRÓI o objeto TACBrSPEDFiscal e libera a memória utilizada.
 Esta função deve SEMPRE ser chamada pela aplicação que utiliza a DLL
 quando o componente não mais for utilizado.
 }
-Function CNIEE_Destroy(var cnieeHandle: PCNIEEHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function CNIEE_Destroy(cnieeHandle: PCNIEEHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (cnieeHandle = nil) then

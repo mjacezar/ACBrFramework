@@ -1734,6 +1734,28 @@ begin
   end;
 end;
 
+Function NFE_NotasFiscais_GetItem(const nfeHandle: PNFEHandle; var nfHandle : NotaFiscal; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfHandle := nfeHandle^.NFE.NotasFiscais.Items[idx];
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+
 Function NFE_NotasFiscais_SetItem(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -2461,7 +2483,7 @@ NFE_CFG_WebServices_GetAjustaAguardaConsultaRet, NFE_CFG_WebServices_SetAjustaAg
 {%endregion}
 
 { NotasFiscais }
-NFE_NotasFiscais_Add, NFE_NotasFiscais_Insert, NFE_NotasFiscais_SetItem,
+NFE_NotasFiscais_Add, NFE_NotasFiscais_Insert, NFE_NotasFiscais_GetItem, NFE_NotasFiscais_SetItem,
 NFE_NotasFiscais_Clear, NFE_NotasFiscais_Count, NFE_NotasFiscais_Assinar,
 NFE_NotasFiscais_GerarNFe, NFE_NotasFiscais_Valida,
 NFE_NotasFiscais_ValidaAssinatura, NFE_NotasFiscais_Imprimir,

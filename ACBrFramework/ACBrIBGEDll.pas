@@ -98,7 +98,7 @@ DESTRÓI o objeto TACBrIBGE e libera a memória utilizada.
 Esta função deve SEMPRE ser chamada pela aplicação que utiliza a DLL
 quando o componente não mais for utilizado.
 }
-Function IBGE_Destroy(var ibgeHandle: PibgeHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function IBGE_Destroy(ibgeHandle: PibgeHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (ibgeHandle = nil) then

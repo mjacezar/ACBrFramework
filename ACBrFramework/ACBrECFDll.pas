@@ -12,8 +12,7 @@ uses
   ACBrAACDLL,
   ACBrEADDll,
   ACBrRFDDll,
-  ACBrPAFClass
-  ;
+  ACBrPAFClass;
 
 {%region Ponteiros de função para uso nos eventos}
 
@@ -321,7 +320,7 @@ DESTRÓI o objeto TACBrECF e libera a memória utilizada.
 Esta função deve SEMPRE ser chamada pela aplicação que utiliza a DLL
 quando o componente não mais for utilizado.
 }
-Function ECF_Destroy(var ecfHandle: PECFHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function ECF_Destroy(ecfHandle: PECFHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (ecfHandle = nil) then
@@ -334,7 +333,6 @@ begin
 
     ecfHandle^.ECF.Destroy();
     ecfHandle^.ECF := nil;
-
     Dispose(ecfHandle);
     ecfHandle := nil;
     Result := 0;
@@ -346,7 +344,6 @@ begin
         ecfHandle^.UltimoErro := exception.Message;
      end
   end;
-
 end;
 
 Function ECF_GetUltimoErro(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -3736,7 +3733,6 @@ begin
         Result := -1;
      end
   end;
-
 end;
 
 Function ECF_PreparaTEF(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;

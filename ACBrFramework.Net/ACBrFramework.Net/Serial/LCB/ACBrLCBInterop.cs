@@ -31,7 +31,7 @@ namespace ACBrFramework.LCB
 		public static extern int LCB_Create(ref IntPtr lcbHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int LCB_Destroy(ref IntPtr lcbHandle);
+		public static extern int LCB_Destroy(IntPtr lcbHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int LCB_GetUltimoErro(IntPtr lcbHandle, StringBuilder buffer, int bufferLen);
