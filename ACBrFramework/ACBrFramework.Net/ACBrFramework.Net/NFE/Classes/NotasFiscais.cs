@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ACBrFramework.NFE
 {
-	public class NotasFiscais : ACBrComposedComponent
+	public class NotasFiscais : ACBrComposedComponent, IEnumerable<NotaFiscal>
 	{
 		#region Fields
 
@@ -75,9 +75,7 @@ namespace ACBrFramework.NFE
 			int ret = ACBrNFEInterop.NFE_NotasFiscais_Add(this.Handle, out nfHandle);
 			CheckResult(ret);
 
-			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
-
-			return nf;
+			return new NotaFiscal(this.Parent, nfHandle);
 		}
 
 		public NotaFiscal Insert(int idx)
@@ -87,17 +85,13 @@ namespace ACBrFramework.NFE
 			int ret = ACBrNFEInterop.NFE_NotasFiscais_Insert(this.Handle, out nfHandle, idx);
 			CheckResult(ret);
 
-			NotaFiscal nf = new NotaFiscal(Parent, nfHandle);	
-
-			return nf;
+			return new NotaFiscal(Parent, nfHandle);
 		}
 
 		public void Clear()
 		{
 			int ret = ACBrNFEInterop.NFE_NotasFiscais_Clear(this.Handle);
 			CheckResult(ret);
-
-			list.Clear();
 		}
 
 		public void Assinar()
@@ -168,5 +162,23 @@ namespace ACBrFramework.NFE
 		}
 
 		#endregion Methods
+
+		#region IEnumerable<NotasFiscais>
+
+		public IEnumerator<NotaFiscal> GetEnumerator()
+		{
+			int count = Count;
+			for (int i = 0; i < count; i++)
+			{
+				yield return this[i];
+			}
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return this.GetEnumerator();
+		}
+
+		#endregion IEnumerable<NotasFiscais>
 	}
 }

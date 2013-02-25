@@ -6,9 +6,6 @@ namespace ACBrFramework.NFE
 	public sealed class NotaFiscal : ACBrComposedComponent
 	{
 		#region Fields
-
-		NFE nfe;
-
 		#endregion Fields
 
 		#region Constructor
@@ -39,7 +36,7 @@ namespace ACBrFramework.NFE
 				int ret = ACBrNFEInterop.NFE_NF_GetNFe(this.Handle, ComposedHandle, out nfeHandle);
 				CheckResult(ret);
 
-				return nfe = new NFE(this.Parent, nfeHandle);
+				return new NFE(this.Parent, nfeHandle);
 			}
 		}
 
