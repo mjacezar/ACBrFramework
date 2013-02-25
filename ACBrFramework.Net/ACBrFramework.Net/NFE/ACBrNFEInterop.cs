@@ -243,7 +243,7 @@ namespace ACBrFramework.NFE
 		#region Nota Fiscal
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NF_GetNFe(IntPtr nfeHandle, IntPtr nfHandle, out IntPtr nfeHandle);
+		public static extern int NFE_NF_GetNFe(IntPtr nfeHandle, IntPtr nfHandle, out IntPtr nfeeHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_NF_GetAlertas(IntPtr nfeHandle, IntPtr nfHandle , StringBuilder buffer, int bufferlen);
