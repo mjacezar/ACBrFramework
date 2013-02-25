@@ -2007,7 +2007,7 @@ begin
 
   try
      if nfeHandle^.NFE.NotasFiscais.LoadFromString(xml) then
-       Result := 1;
+       Result := 1
      else
        Result := 0;
   except

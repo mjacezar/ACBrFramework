@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ACBrFramework.NFE
 {
-	public class NotasFiscais : ACBrComposedComponent, IEnumerable<NotaFiscal>
+	public sealed class NotasFiscais : ACBrComposedComponent, IEnumerable<NotaFiscal>
 	{
 		#region Fields
 
