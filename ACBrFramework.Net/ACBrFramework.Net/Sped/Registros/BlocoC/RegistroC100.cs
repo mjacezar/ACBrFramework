@@ -9,16 +9,16 @@ namespace ACBrFramework.Sped
 
 		public RegistroC100()
 		{
-			RegistroC105 = new List<RegistroC105>();
-			RegistroC110 = new List<RegistroC110>();
-			RegistroC120 = new List<RegistroC120>();
-			RegistroC130 = new List<RegistroC130>();
-			RegistroC140 = new List<RegistroC140>();
-			RegistroC160 = new List<RegistroC160>();
-			RegistroC165 = new List<RegistroC165>();
-			RegistroC170 = new List<RegistroC170>();
-			RegistroC190 = new List<RegistroC190>();
-			RegistroC195 = new List<RegistroC195>();
+			RegistroC105 = new RegistroList<RegistroC105>();
+			RegistroC110 = new RegistroList<RegistroC110>();
+			RegistroC120 = new RegistroList<RegistroC120>();
+			RegistroC130 = new RegistroList<RegistroC130>();
+			RegistroC140 = new RegistroList<RegistroC140>();
+			RegistroC160 = new RegistroList<RegistroC160>();
+			RegistroC165 = new RegistroList<RegistroC165>();
+			RegistroC170 = new RegistroList<RegistroC170>();
+			RegistroC190 = new RegistroList<RegistroC190>();
+			RegistroC195 = new RegistroList<RegistroC195>();
 		}
 
 		#endregion Constructor
@@ -81,25 +81,25 @@ namespace ACBrFramework.Sped
 
 		public decimal VL_COFINS_ST { get; set; }
 
-		public List<RegistroC105> RegistroC105 { get; private set; }
+		public RegistroList<RegistroC105> RegistroC105 { get; private set; }
 
-		public List<RegistroC110> RegistroC110 { get; private set; }
+		public RegistroList<RegistroC110> RegistroC110 { get; private set; }
 
-		public List<RegistroC120> RegistroC120 { get; private set; }
+		public RegistroList<RegistroC120> RegistroC120 { get; private set; }
 
-		public List<RegistroC130> RegistroC130 { get; private set; }
+		public RegistroList<RegistroC130> RegistroC130 { get; private set; }
 
-		public List<RegistroC140> RegistroC140 { get; private set; }
+		public RegistroList<RegistroC140> RegistroC140 { get; private set; }
 
-		public List<RegistroC160> RegistroC160 { get; private set; }
+		public RegistroList<RegistroC160> RegistroC160 { get; private set; }
 
-		public List<RegistroC165> RegistroC165 { get; private set; }
+		public RegistroList<RegistroC165> RegistroC165 { get; private set; }
 
-		public List<RegistroC170> RegistroC170 { get; private set; }
+		public RegistroList<RegistroC170> RegistroC170 { get; private set; }
 
-		public List<RegistroC190> RegistroC190 { get; private set; }
+		public RegistroList<RegistroC190> RegistroC190 { get; private set; }
 
-		public List<RegistroC195> RegistroC195 { get; private set; }
+		public RegistroList<RegistroC195> RegistroC195 { get; private set; }
 
 		#endregion Properties
 	}
