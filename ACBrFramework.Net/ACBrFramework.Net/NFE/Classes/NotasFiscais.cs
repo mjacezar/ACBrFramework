@@ -15,7 +15,6 @@ namespace ACBrFramework.NFE
 		internal NotasFiscais(ACBrNFE parent)
 			: base(parent)
 		{
-			this.list = new List<NotaFiscal>();
 		}
 
 		#endregion Constructor
