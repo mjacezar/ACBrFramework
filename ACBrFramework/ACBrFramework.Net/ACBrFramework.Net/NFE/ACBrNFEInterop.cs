@@ -227,12 +227,55 @@ namespace ACBrFramework.NFE
 		#region NotasFiscais
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NotasFiscais_GetItem(IntPtr nfeHandle, out IntPtr nfsHandle, int idx);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NotasFiscais_SetItem(IntPtr nfeHandle, IntPtr nfsHandle, int idx);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_NotasFiscais_Count(IntPtr nfeHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_NotasFiscais_GetNamePath(IntPtr nfeHandle, StringBuilder buffer, int buferlen);
 
 		#endregion NotasFiscais
+
+		#region Nota Fiscal
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_GetNFe(IntPtr nfeHandle, IntPtr nfHandle, out IntPtr nfeHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_GetAlertas(IntPtr nfeHandle, IntPtr nfHandle , StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_SetAlertas(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_GetXML(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_SetXML(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_GetMsg(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_SetMsg(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_GetNomeArq(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_SetNomeArq(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_GetConfirmada(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_SetConfirmada(IntPtr nfeHandle, IntPtr nfHandle, bool value);
+
+		#endregion Nota Fiscal
 
 		#endregion Propriedades do Componente
 
@@ -286,16 +329,10 @@ namespace ACBrFramework.NFE
 		#region NotasFiscais
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NotasFiscais_Add(IntPtr nfeHandle, out IntPtr nfHandle);
+		public static extern int NFE_NotasFiscais_Add(IntPtr nfeHandle, out IntPtr nfsHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NotasFiscais_Insert(IntPtr nfeHandle, out IntPtr nfHandle, int idx);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NotasFiscais_GetItem(IntPtr nfeHandle, out IntPtr nfHandle, int idx);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NotasFiscais_SetItem(IntPtr nfeHandle, IntPtr nfHandle, int idx);
+		public static extern int NFE_NotasFiscais_Insert(IntPtr nfeHandle, out IntPtr nfsHandle, int idx);		
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_NotasFiscais_Clear(IntPtr nfeHandle);		
@@ -319,10 +356,10 @@ namespace ACBrFramework.NFE
 		public static extern int NFE_NotasFiscais_ImprimirPDF(IntPtr nfeHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NotasFiscais_LoadFromFile(IntPtr nfeHandle, string arquivo, out IntPtr nfHandle);
+		public static extern int NFE_NotasFiscais_LoadFromFile(IntPtr nfeHandle, string arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NotasFiscais_LoadFromString(IntPtr nfeHandle, string arquivo, out IntPtr nfHandle);
+		public static extern int NFE_NotasFiscais_LoadFromString(IntPtr nfeHandle, string arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_NotasFiscais_SaveToFile(IntPtr nfeHandle, string arquivo, bool txt);
@@ -331,6 +368,27 @@ namespace ACBrFramework.NFE
 		public static extern int NFE_NotasFiscais_SaveToTXT(IntPtr nfeHandle, string arquivo);
 
 		#endregion NotasFiscais
+
+		#region Nota Fiscal
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_Imprimir(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_ImprimirPDF(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_SaveToFile(IntPtr nfeHandle, IntPtr nfHandle, string arquivo , bool value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NF_EnviarEmail(IntPtr nfeHandle, IntPtr nfHandle, string sSmtpHost,
+			                    string sSmtpPort, string sSmtpUser, string sSmtpPasswd, string sFrom, string sTo,
+								string sAssunto, string[] sMensagem, int szMensagem, bool SSL,
+								bool EnviaPDF, string[] sCC, int szCC, string[] sAnexos, int szAnexos,
+                                bool PedeConfirma, bool AguardarEnvio, string NomeRemetente, bool TLS,
+								bool UsarThread);
+
+		#endregion Nota Fiscal
 
 		#endregion Methods
 

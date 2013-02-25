@@ -1,15 +1,12 @@
 using System;
-using System.Text;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ACBrFramework.NFE
 {
-	public class NotasFiscais : ACBrComposedComponent, IEnumerable<NotaFiscal>
+	public class NotasFiscais : ACBrComposedComponent
 	{
 		#region Fields
-
-		//private List<NotaFiscal> Item { get; private set; }
-		//private List<NotaFiscal> list;
 
 		#endregion Fields
 
@@ -18,7 +15,7 @@ namespace ACBrFramework.NFE
 		internal NotasFiscais(ACBrNFE parent)
 			: base(parent)
 		{
-			//this.list = new List<NotaFiscal>();
+			this.list = new List<NotaFiscal>();
 		}
 
 		#endregion Constructor
@@ -57,8 +54,8 @@ namespace ACBrFramework.NFE
 		{
 			get
 			{
-				//return list[idx];
-
+				if (idx >= Count) throw new IndexOutOfRangeException();
+				
 				IntPtr nfHandle;
 				int ret = ACBrNFEInterop.NFE_NotasFiscais_GetItem(this.Handle, out nfHandle, idx);
 				CheckResult(ret);
@@ -67,147 +64,109 @@ namespace ACBrFramework.NFE
 			}
 			set
 			{
-				
-				//int ret = ACBrNFEInterop.NFE_NotasFiscais_SetItem(this.Parent.Handle, ((NotaFiscal)value).ComposedHandle, idx);
 				int ret = ACBrNFEInterop.NFE_NotasFiscais_SetItem(this.Handle, value.ComposedHandle, idx);
 				CheckResult(ret);
-
-				//list[idx] = value;
 			}
 		}
 
 		public NotaFiscal Add()
 		{
-			IntPtr nfHandle; // = new IntPtr();
-
-			//int ret = ACBrNFEInterop.NFE_NotasFiscais_Add(Parent.Handle, ref nfHandle);
+			IntPtr nfHandle;
 			int ret = ACBrNFEInterop.NFE_NotasFiscais_Add(this.Handle, out nfHandle);
 			CheckResult(ret);
 
 			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
-			//list.Add(nf);
 
 			return nf;
 		}
 
 		public NotaFiscal Insert(int idx)
 		{
-			IntPtr nfHandle; // = new IntPtr();
+			IntPtr nfHandle;
 
-			//int ret = ACBrNFEInterop.NFE_NotasFiscais_Insert(Parent.Handle, ref nfHandle, idx);
 			int ret = ACBrNFEInterop.NFE_NotasFiscais_Insert(this.Handle, out nfHandle, idx);
 			CheckResult(ret);
 
-			NotaFiscal nf = new NotaFiscal(Parent, nfHandle);
-			//list.Insert(idx, nf);			
+			NotaFiscal nf = new NotaFiscal(Parent, nfHandle);	
 
 			return nf;
 		}
 
 		public void Clear()
 		{
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_Clear(Parent.Handle);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_Clear(this.Handle);
 			CheckResult(ret);
 
-			//list.Clear();
+			list.Clear();
 		}
 
 		public void Assinar()
 		{
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_Assinar(Parent.Handle);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_Assinar(this.Handle);
 			CheckResult(ret);
 		}
 
 		public void Valida()
 		{
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_Valida(Parent.Handle);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_Valida(this.Handle);
 			CheckResult(ret);
 		}
 
 		public void GerarNFe()
 		{
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_GerarNFe(Parent.Handle);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_GerarNFe(this.Handle);
 			CheckResult(ret);
 		}
 
 		public void ValidaAssinatura(out string MSG)
 		{
-			MSG = GetString(ACBrNFEInterop.NFE_NotasFiscais_ValidaAssinatura, 256);
-
-			/*
-			const int buffelen = 256;
-			StringBuilder buffer = new StringBuilder(buffelen);
-
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_ValidaAssinatura(Parent.Handle, buffer, buffelen);
-			CheckResult(ret);
-
-			MSG = FromUTF8(buffer.ToString());
-			 * */
+			MSG = FromUTF8(GetString(ACBrNFEInterop.NFE_NotasFiscais_ValidaAssinatura, 256));
 		}
 
 		public void Imprimir()
 		{
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_Imprimir(Parent.Handle);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_Imprimir(this.Handle);
 			CheckResult(ret);
 		}
 
 		public void ImprimirPDF()
 		{
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_ImprimirPDF(Parent.Handle);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_ImprimirPDF(this.Handle);
 			CheckResult(ret);
 		}
 
-		public void LoadFromFile(string arquivo)
+		public bool LoadFromFile(string arquivo)
 		{
-			IntPtr nfHandle; // = new IntPtr();
-
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_LoadFromFile(Parent.Handle, arquivo, out nfHandle);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_LoadFromFile(this.Handle, ToUTF8(arquivo));
 			CheckResult(ret);
 
-			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
-			//list.Add(nf);
+			return Convert.ToBoolean(ret);
 		}
 
-		public void LoadFromString(string arquivo)
+		public bool LoadFromString(string xml)
 		{
-			IntPtr nfHandle; // = new IntPtr();
-
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_LoadFromString(Parent.Handle, arquivo, out nfHandle);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_LoadFromString(this.Handle, ToUTF8(xml));
 			CheckResult(ret);
 
-			NotaFiscal nf = new NotaFiscal(this.Parent, nfHandle);
-			//list.Add(nf);
+			return Convert.ToBoolean(ret);
 		}
 
-		public void SaveToFile(string arquivo, bool txt = false)
+		public bool SaveToFile(string arquivo, bool txt = false)
 		{
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_SaveToFile(Parent.Handle, arquivo, txt);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_SaveToFile(this.Handle, ToUTF8(arquivo), txt);
 			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
 		}
 
-		public void SaveToTXT(string arquivo)
+		public bool SaveToTXT(string arquivo)
 		{
-			int ret = ACBrNFEInterop.NFE_NotasFiscais_SaveToTXT(Parent.Handle, arquivo);
+			int ret = ACBrNFEInterop.NFE_NotasFiscais_SaveToTXT(this.Handle, ToUTF8(arquivo));
 			CheckResult(ret);
+
+			return Convert.ToBoolean(ret);
 		}
 
 		#endregion Methods
-
-		#region IEnumerable<NotaFiscal>
-
-		public IEnumerator<NotaFiscal> GetEnumerator()
-		{
-			for (int idx = 0; idx < Count; idx++)
-			{
-				yield return this[idx];
-			}
-		}
-
-		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-		{
-			return this.GetEnumerator();
-		}
-
-		#endregion
 	}
 }

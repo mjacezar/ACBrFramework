@@ -195,6 +195,7 @@
     <Compile Include="IBGE\ACBrIBGEInterop.cs" />
     <Compile Include="IBGE\Classes\Cidade.cs" />
     <Compile Include="NFE\Classes\Ide.cs" />
+    <Compile Include="NFE\Classes\NFE.cs" />
     <Compile Include="NFE\Classes\NFrefCollectionItem.cs" />
     <Compile Include="NFE\Classes\NotasFiscais.cs" />
     <Compile Include="NFE\Classes\RefECF.cs" />

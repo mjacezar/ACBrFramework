@@ -1755,7 +1755,6 @@ begin
   end;
 end;
 
-
 Function NFE_NotasFiscais_SetItem(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -1974,7 +1973,7 @@ begin
   end;
 end;
 
-Function NFE_NotasFiscais_LoadFromFile(const nfeHandle: PNFEHandle; const arquivo : pChar; var nfHandle : NotaFiscal) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NotasFiscais_LoadFromFile(const nfeHandle: PNFEHandle; const arquivo : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -1985,10 +1984,7 @@ begin
 
   try
      if nfeHandle^.NFE.NotasFiscais.LoadFromFile(arquivo) then
-     begin
-       nfHandle := nfeHandle^.NFE.NotasFiscais.Items[nfeHandle^.NFE.NotasFiscais.Count - 1];
-       Result := 1;
-     end
+       Result := 1
      else
        Result := 0;
   except
@@ -2000,7 +1996,7 @@ begin
   end;
 end;
 
-Function NFE_NotasFiscais_LoadFromString(const nfeHandle: PNFEHandle; const xml : pChar; var nfHandle : NotaFiscal) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NotasFiscais_LoadFromString(const nfeHandle: PNFEHandle; const xml : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -2011,10 +2007,7 @@ begin
 
   try
      if nfeHandle^.NFE.NotasFiscais.LoadFromString(xml) then
-     begin
-       nfHandle := nfeHandle^.NFE.NotasFiscais.Items[nfeHandle^.NFE.NotasFiscais.Count - 1];
        Result := 1;
-     end
      else
        Result := 0;
   except
@@ -2074,7 +2067,7 @@ end;
 
 {%endregion}
 
-{%region Nota Fical }
+{%region Nota Fiscal }
 
 Function NFE_NF_GetNFe(const nfeHandle: PNFEHandle; const nfHandle : NotaFiscal; var nfeeHandle : TNFe) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -2361,8 +2354,10 @@ begin
   end;
 
   try
-     nfHandle.SaveToFile(CaminhoArquivo, SalvaTXT);
-     Result := 0;
+     if nfHandle.SaveToFile(CaminhoArquivo, SalvaTXT) then
+       Result := 1
+     else
+       Result := 0;
   except
      on exception : Exception do
      begin
@@ -2483,7 +2478,8 @@ NFE_CFG_WebServices_GetAjustaAguardaConsultaRet, NFE_CFG_WebServices_SetAjustaAg
 {%endregion}
 
 { NotasFiscais }
-NFE_NotasFiscais_Add, NFE_NotasFiscais_Insert, NFE_NotasFiscais_GetItem, NFE_NotasFiscais_SetItem,
+NFE_NotasFiscais_Add, NFE_NotasFiscais_Insert,
+NFE_NotasFiscais_GetItem, NFE_NotasFiscais_SetItem,
 NFE_NotasFiscais_Clear, NFE_NotasFiscais_Count, NFE_NotasFiscais_Assinar,
 NFE_NotasFiscais_GerarNFe, NFE_NotasFiscais_Valida,
 NFE_NotasFiscais_ValidaAssinatura, NFE_NotasFiscais_Imprimir,
