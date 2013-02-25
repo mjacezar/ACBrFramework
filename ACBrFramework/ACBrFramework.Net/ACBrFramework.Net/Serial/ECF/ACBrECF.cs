@@ -4745,7 +4745,7 @@ namespace ACBrFramework.ECF
 
 		public void ProgramaRelatoriosGerenciais(string descricao, string posicao = "")
 		{
-			int ret = ACBrECFInterop.ECF_ProgramaRelatoriosGerenciais(this.Handle, ToUTF8(descricao), posicao);
+			int ret = ACBrECFInterop.ECF_ProgramaRelatoriosGerenciais(this.Handle, ToUTF8(descricao), ToUTF8(posicao));
 			CheckResult(ret);
 		}
 
@@ -4816,7 +4816,7 @@ namespace ACBrFramework.ECF
 
 		public void RelatorioGerencial(string[] relatorio, int vias = 1, int indice = 0)
 		{
-			int ret = ACBrECFInterop.ECF_RelatorioGerencial(this.Handle, relatorio, relatorio.Length, vias, indice);
+			int ret = ACBrECFInterop.ECF_RelatorioGerencial(this.Handle, ToUTF8(relatorio), relatorio.Length, vias, indice);
 			CheckResult(ret);
 		}
 
