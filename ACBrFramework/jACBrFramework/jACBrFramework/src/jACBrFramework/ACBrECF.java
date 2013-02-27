@@ -1,6 +1,7 @@
 package jACBrFramework;
 
 import com.sun.jna.Pointer;
+import com.sun.jna.ptr.DoubleByReference;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.PointerByReference;
 import jACBrFramework.interop.ECFInterop;
@@ -118,10 +119,14 @@ public final class ACBrECF extends ACBrClass
 	 */
 	public int getModelo() throws ACBrException
 	{
-		int ret = ECFInterop.INSTANCE.ECF_GetModelo(getHandle());
-		checkResult(ret);
+		return getInt(new GetIntEntryPoint() {
 
-		return ret;
+			@Override
+			public int invoke(int handle)
+			{
+				return ECFInterop.INSTANCE.ECF_GetModelo(handle);
+			}
+		});
 	}
 
 	/**
@@ -160,10 +165,14 @@ public final class ACBrECF extends ACBrClass
 	 */
 	public int getColunas() throws ACBrException
 	{
-		int ret = ECFInterop.INSTANCE.ECF_GetColunas(getHandle());
-		checkResult(ret);
+		return getInt(new GetIntEntryPoint() {
 
-		return ret;
+			@Override
+			public int invoke(int handle)
+			{
+				return ECFInterop.INSTANCE.ECF_GetColunas(handle);
+			}
+		});		
 	}
 
 	/**
@@ -174,10 +183,14 @@ public final class ACBrECF extends ACBrClass
 	 */
 	public boolean getAguardandoResposta() throws ACBrException
 	{
-		int ret = ECFInterop.INSTANCE.ECF_GetAguardandoResposta(getHandle());
-		checkResult(ret);
+		return getBoolean(new GetBooleanEntryPoint() {
 
-		return ret == 1;
+			@Override
+			public int invoke(int handle)
+			{
+				return ECFInterop.INSTANCE.ECF_GetAguardandoResposta(handle);
+			}
+		});
 	}
 
 	/**
@@ -239,12 +252,14 @@ public final class ACBrECF extends ACBrClass
 	 */
 	public String getModeloStr() throws ACBrException
 	{
-		int LEN = 256;
-		ByteBuffer buffer = ByteBuffer.allocate(LEN);
-		int ret = ECFInterop.INSTANCE.ECF_GetModeloStr(getHandle(), buffer, LEN);
-		checkResult(ret);
-		
-		return new String(buffer.array(), 0, ret, UTF8);
+		return getString(new GetStringEntryPoint() {
+
+			@Override
+			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
+			{
+				return ECFInterop.INSTANCE.ECF_GetModeloStr(handle, buffer, bufferLen);
+			}
+		});
 	}
 
 	/**
@@ -261,7 +276,17 @@ public final class ACBrECF extends ACBrClass
 	 * @return Data/Hora atual do ECF.
 	 * @throws ACBrException
 	 */
-	public native Date getDataHora() throws ACBrException;
+	public Date getDataHora() throws ACBrException
+	{
+		return getDate(new GetDoubleEntryPoint() {
+
+			@Override
+			public int invoke(int handle, DoubleByReference value)
+			{
+				return ECFInterop.INSTANCE.ECF_GetDataHora(handle, value);
+			}
+		});
+	}
 
 	/**
 	 * Retorna o número do cupom atual.
