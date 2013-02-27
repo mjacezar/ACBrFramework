@@ -1023,37 +1023,20 @@ public interface ECFInterop extends InteropLib {
 	 * <i>native declaration : line 244</i><br>
 	 * @deprecated use the safer methods {@link #ECF_GetDataHora(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ECF_GetDataHora(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
-	@Deprecated 
 	int ECF_GetDataHora(int ecfHandle, DoubleByReference value);
-	/**
-	 * Original signature : <code>int ECF_GetDataHora(const INTPTR, double*)</code><br>
-	 * <i>native declaration : line 244</i>
-	 */
-	int ECF_GetDataHora(int ecfHandle, DoubleBuffer value);
+
 	/**
 	 * Original signature : <code>int ECF_GetDataHoraSB(const INTPTR, double*)</code><br>
 	 * <i>native declaration : line 245</i><br>
 	 * @deprecated use the safer methods {@link #ECF_GetDataHoraSB(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ECF_GetDataHoraSB(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
-	@Deprecated 
 	int ECF_GetDataHoraSB(int ecfHandle, DoubleByReference value);
-	/**
-	 * Original signature : <code>int ECF_GetDataHoraSB(const INTPTR, double*)</code><br>
-	 * <i>native declaration : line 245</i>
-	 */
-	int ECF_GetDataHoraSB(int ecfHandle, DoubleBuffer value);
 	/**
 	 * Original signature : <code>int ECF_GetDataMovimento(const INTPTR, double*)</code><br>
 	 * <i>native declaration : line 246</i><br>
 	 * @deprecated use the safer methods {@link #ECF_GetDataMovimento(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ECF_GetDataMovimento(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
-	@Deprecated 
 	int ECF_GetDataMovimento(int ecfHandle, DoubleByReference value);
-	/**
-	 * Original signature : <code>int ECF_GetDataMovimento(const INTPTR, double*)</code><br>
-	 * <i>native declaration : line 246</i>
-	 */
-	int ECF_GetDataMovimento(int ecfHandle, DoubleBuffer value);
 	/**
 	 * Original signature : <code>int ECF_GetDecimaisPreco(const INTPTR)</code><br>
 	 * <i>native declaration : line 247</i>

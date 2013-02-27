@@ -70,6 +70,9 @@ public class Program
 			System.out.print("GetAtivo");
 			System.out.println(": " + ecf.getAtivo());
 
+			
+			System.out.print("GetDataHora");
+			System.out.println(": " + ecf.getDataHora().toString());
 
 			//MUDANÇA DAS CHAMADAS DE JNI PARA JNA
 			//TRECHO ABAIXO AINDA NAO IMPLEMENTADO
