@@ -850,6 +850,9 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_LinhaCupomVinculado(IntPtr ecfHandle, string linha);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ReimpressaoVinculado(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_FechaRelatorio(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]

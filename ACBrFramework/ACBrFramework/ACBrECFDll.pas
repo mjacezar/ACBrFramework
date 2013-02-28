@@ -4468,6 +4468,27 @@ begin
   end;
 end;
 
+Function ECF_ReimpressaoVinculado(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.ReimpressaoVinculado;
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 {%endregion}
 
 {%region Alíquotas}
@@ -10464,7 +10485,7 @@ ECF_DescontoAcrescimoItemAnterior,  ECF_SubtotalizaCupom,
 ECF_EfetuaPagamento, ECF_EstornaPagamento, ECF_FechaCupom, ECF_CancelaCupom,
 ECF_CancelaItemVendido, ECF_CancelaItemVendidoParcial,
 ECF_CancelaDescontoAcrescimoItem, ECF_CancelaDescontoAcrescimoSubTotal,
-ECF_LeituraX, ECF_LinhaCupomVinculado, ECF_PreparaTEF,
+ECF_LeituraX, ECF_LinhaCupomVinculado, ECF_ReimpressaoVinculado, ECF_PreparaTEF,
 ECF_FechaRelatorio, ECF_PulaLinhas, ECF_CortaPapel,
 ECF_AbreCupomVinculado, ECF_AbreCupomVinculadoCNF,
 

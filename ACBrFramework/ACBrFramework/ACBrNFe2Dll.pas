@@ -2422,6 +2422,962 @@ end;
 
 {%endregion}
 
+{%region NFe }
+
+Function NFE_NFe_Getschema(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(nfeeHandle.schema);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Setschema(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.schema := Tpcnschema(value);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%region infNFe }
+
+Function NFE_NFe_infNFe_GetID(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.infNFe.ID, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_infNFe_SetID(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.infNFe.ID := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_infNFe_GetVersao(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     value := Double(nfeeHandle.infNFe.Versao);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_infNFe_SetVersao(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.infNFe.Versao := Real(value);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_infNFe_GetVersaoStr(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.infNFe.VersaoStr, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%region NFe Emit }
+
+Function NFE_NFe_Emit_GetCNAE(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.CNAE, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_SetCNAE(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.CNAE := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_GetCNPJCPF(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.CNPJCPF, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_SetCNPJCPF(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.CNPJCPF := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_GetIE(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.IE, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_SetIE(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.IE := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_GetIEST(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.IEST, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_SetIEST(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.IEST := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_GetIM(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.IM, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_SetIM(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.IM := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_GetxFant(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.xFant, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_SetxFant(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.xFant := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_GetxNome(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.xNome, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_SetxNome(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.xNome := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_GetCRT(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(nfeeHandle.Emit.CRT);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_SetCRT(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.CRT := TpcnCRT(value);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%region NFe Emit EnderEmit }
+
+Function NFE_NFe_Emit_EnderEmit_GetCEP(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := nfeeHandle.Emit.EnderEmit.CEP;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_SetCEP(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.EnderEmit.CEP := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_GetcMun(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := nfeeHandle.Emit.EnderEmit.cMun;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_SetcMun(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.EnderEmit.cMun := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_GetcPais(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := nfeeHandle.Emit.EnderEmit.cPais;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_SetcPais(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.EnderEmit.cPais := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_Getfone(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.EnderEmit.fone, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_Setfone(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.EnderEmit.fone := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_Getnro(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.EnderEmit.nro, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_Setnro(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.EnderEmit.nro := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_GetUF(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.EnderEmit.UF, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_SetUF(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.EnderEmit.UF := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_GetxBairro(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.EnderEmit.xBairro, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_SetxBairro(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.EnderEmit.xBairro := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_GetxCpl(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.EnderEmit.xCpl, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_SetxCpl(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.EnderEmit.xCpl := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_GetxLgr(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.EnderEmit.xLgr, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_SetxLgr(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.EnderEmit.xLgr := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_GetxMun(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.EnderEmit.xMun, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_SetxMun(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.EnderEmit.xMun := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_GetxPais(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Emit.EnderEmit.xPais, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Emit_EnderEmit_SetxPais(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Emit.EnderEmit.xPais := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%endregion}
+
 exports
 
 { Constructor/Destructor/Erro }
@@ -2477,7 +3433,7 @@ NFE_CFG_WebServices_GetAjustaAguardaConsultaRet, NFE_CFG_WebServices_SetAjustaAg
 
 {%endregion}
 
-{ NotasFiscais }
+{%region NotasFiscais }
 NFE_NotasFiscais_Add, NFE_NotasFiscais_Insert,
 NFE_NotasFiscais_GetItem, NFE_NotasFiscais_SetItem,
 NFE_NotasFiscais_Clear, NFE_NotasFiscais_Count, NFE_NotasFiscais_Assinar,
@@ -2487,7 +3443,10 @@ NFE_NotasFiscais_ImprimirPDF, NFE_NotasFiscais_GetNamePath,
 NFE_NotasFiscais_LoadFromFile, NFE_NotasFiscais_LoadFromString,
 NFE_NotasFiscais_SaveToFile, NFE_NotasFiscais_SaveToTXT,
 
-{ Nota Fical }
+{%endregion}
+
+{%region Nota Fical }
+
 NFE_NF_GetNFe,
 NFE_NF_GetAlertas, NFE_NF_SetAlertas,
 NFE_NF_GetXML, NFE_NF_SetXML,
@@ -2495,7 +3454,40 @@ NFE_NF_GetMsg, NFE_NF_SetMsg,
 NFE_NF_GetNomeArq, NFE_NF_SetNomeArq,
 NFE_NF_GetConfirmada, NFE_NF_SetConfirmada,
 NFE_NF_Imprimir, NFE_NF_ImprimirPDF,
-NFE_NF_SaveToFile, NFE_NF_EnviarEmail;
+NFE_NF_SaveToFile, NFE_NF_EnviarEmail,
+
+{%endregion}
+
+{%region NFe }
+
+NFE_NFe_Getschema, NFE_NFe_Setschema,
+
+NFE_NFe_infNFe_GetID, NFE_NFe_infNFe_SetID,
+NFE_NFe_infNFe_GetVersao, NFE_NFe_infNFe_SetVersao,
+NFE_NFe_infNFe_GetVersaoStr,
+
+NFE_NFe_Emit_GetCNAE, NFE_NFe_Emit_SetCNAE,
+NFE_NFe_Emit_GetCNPJCPF, NFE_NFe_Emit_SetCNPJCPF,
+NFE_NFe_Emit_GetIE, NFE_NFe_Emit_SetIE,
+NFE_NFe_Emit_GetIEST, NFE_NFe_Emit_SetIEST,
+NFE_NFe_Emit_GetIM, NFE_NFe_Emit_SetIM,
+NFE_NFe_Emit_GetxFant, NFE_NFe_Emit_SetxFant,
+NFE_NFe_Emit_GetxNome, NFE_NFe_Emit_SetxNome,
+NFE_NFe_Emit_GetCRT, NFE_NFe_Emit_SetCRT,
+NFE_NFe_Emit_EnderEmit_GetCEP, NFE_NFe_Emit_EnderEmit_SetCEP,
+NFE_NFe_Emit_EnderEmit_GetcMun, NFE_NFe_Emit_EnderEmit_SetcMun,
+NFE_NFe_Emit_EnderEmit_GetcPais, NFE_NFe_Emit_EnderEmit_SetcPais,
+NFE_NFe_Emit_EnderEmit_Getfone, NFE_NFe_Emit_EnderEmit_Setfone,
+NFE_NFe_Emit_EnderEmit_Getnro, NFE_NFe_Emit_EnderEmit_Setnro,
+NFE_NFe_Emit_EnderEmit_GetUF, NFE_NFe_Emit_EnderEmit_SetUF,
+NFE_NFe_Emit_EnderEmit_GetxBairro, NFE_NFe_Emit_EnderEmit_SetxBairro,
+NFE_NFe_Emit_EnderEmit_GetxCpl, NFE_NFe_Emit_EnderEmit_SetxCpl,
+NFE_NFe_Emit_EnderEmit_GetxLgr, NFE_NFe_Emit_EnderEmit_SetxLgr,
+NFE_NFe_Emit_EnderEmit_GetxMun, NFE_NFe_Emit_EnderEmit_SetxMun,
+NFE_NFe_Emit_EnderEmit_GetxPais, NFE_NFe_Emit_EnderEmit_SetxPais;
+
+
+{%endregion}
 
 
 end.
