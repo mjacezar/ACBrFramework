@@ -4649,6 +4649,12 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+		public void ReimpressaoVinculado()
+		{
+			int ret = ACBrECFInterop.ECF_ReimpressaoVinculado(this.Handle);
+			CheckResult(ret);
+		}
+
 		#endregion Cupom Vinculado
 
 		#region Leitura X / Redução Z

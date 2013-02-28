@@ -1,12 +1,53 @@
 using System;
-using System.ComponentModel;
 
 namespace ACBrFramework.NFE
 {
-	public class infNFe
+	public sealed class infNFe : ACBrComposedComponent
 	{
-		public string ID { get; set; }
-		public decimal Versao { get; set; }
-		public string VersaoStr { get; set; }
+		#region Constructor
+
+		internal infNFe(ACBrNFE parent, IntPtr composedHandle)
+			: base(parent, composedHandle)
+		{
+
+		}
+
+		#endregion Constructor
+
+		#region Properties
+
+		public string ID 
+		{
+			get
+			{
+				return GetString(ACBrNFEInterop.NFE_NFe_infNFe_GetID);
+			}
+			set
+			{
+				SetString(ACBrNFEInterop.NFE_NFe_infNFe_SetID, value);
+			}
+		}
+
+		public decimal Versao 
+		{
+			get
+			{
+				return GetDecimal(ACBrNFEInterop.NFE_NFe_infNFe_GetVersao);
+			}
+			set
+			{
+				SetDecimal(ACBrNFEInterop.NFE_NFe_infNFe_SetVersao, value);
+			}
+		}
+
+		public string VersaoStr
+		{
+			get
+			{
+				return GetString(ACBrNFEInterop.NFE_NFe_infNFe_GetVersaoStr);
+			}
+		}
+
+		#endregion Properties
 	}
 }

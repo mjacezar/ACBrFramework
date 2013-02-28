@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ACBrFramework.NFE
 {
-	public class Ide
+	public sealed class Ide
 	{
 		public Ide()
 		{

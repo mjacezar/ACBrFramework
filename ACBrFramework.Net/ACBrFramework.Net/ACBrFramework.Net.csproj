@@ -194,6 +194,8 @@
     <Compile Include="IBGE\ACBrIBGE.cs" />
     <Compile Include="IBGE\ACBrIBGEInterop.cs" />
     <Compile Include="IBGE\Classes\Cidade.cs" />
+    <Compile Include="NFE\Classes\Emit.cs" />
+    <Compile Include="NFE\Classes\EnderEmit.cs" />
     <Compile Include="NFE\Classes\Ide.cs" />
     <Compile Include="NFE\Classes\NFE.cs" />
     <Compile Include="NFE\Classes\NFrefCollectionItem.cs" />
@@ -201,6 +203,7 @@
     <Compile Include="NFE\Classes\RefECF.cs" />
     <Compile Include="NFE\Classes\RefNF.cs" />
     <Compile Include="NFE\Classes\RefNFP.cs" />
+    <Compile Include="NFE\Enums\CRT.cs" />
     <Compile Include="NFE\Enums\ECFModRef.cs" />
     <Compile Include="NFE\Enums\FinalidadeNFe.cs" />
     <Compile Include="NFE\Enums\IndicadorPagamento.cs" />
