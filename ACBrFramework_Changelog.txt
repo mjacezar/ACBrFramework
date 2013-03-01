@@ -45,9 +45,11 @@ Changelog
 
 -- ACBrFramework.Net 0.9.2.8 --
 [-] Correção do evento VerificarRecomporValorGT - ACBrAAC - Rafael Batiati.
+[+] Adicionado método IdentificaOperador - ACBrECF - Rafael Batiati
 
 -- ACBrFramework 0.9.2.8 --
 [-] Correção do evento VerificarRecomporValorGT - ACBrAAC - Rafael Batiati.
+[+] Adicionado método IdentificaOperador - ACBrECF - Rafael Batiati
 
 28/02/2013
 
@@ -55,7 +57,6 @@ Changelog
 [-] Correção do evento VerificarRecomporValorGT - ACBrAAC - Rafael Batiati.
 [-] Correção da Propriedade ValorVendaBruta da classe DadosReducaoZClass - ACBrECF - Rafael Batiati.
 [*] Alterado Registro R5 com as novas modificações do ACBr - ACBrPAF - Rafael Dias.
-
 
 
 23/02/2013

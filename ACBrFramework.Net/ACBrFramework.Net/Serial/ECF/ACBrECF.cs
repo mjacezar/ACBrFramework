@@ -4097,6 +4097,12 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+		public void IdentificaOperador(string nome)
+		{
+			int ret = ACBrECFInterop.ECF_IdentificaOperador(this.Handle, ToUTF8(nome));
+			CheckResult(ret);
+		}
+
 		public void AbreCupom(string cpfCnpj = "", string nome = "", string endereco = "", bool ModoPreVenda = false)
 		{
 			int ret = ACBrECFInterop.ECF_AbreCupom(this.Handle, ToUTF8(cpfCnpj), ToUTF8(nome), ToUTF8(endereco), ModoPreVenda);

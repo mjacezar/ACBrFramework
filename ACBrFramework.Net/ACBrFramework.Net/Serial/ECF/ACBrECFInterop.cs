@@ -864,6 +864,9 @@ namespace ACBrFramework.ECF
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_IdentificaPAF(IntPtr ecfHandle, string nomeVersao, string md5);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_IdentificaOperador(IntPtr ecfHandle, string nome);
+
 		#endregion Relatórios
 
 		#region Cupom Não Fiscal

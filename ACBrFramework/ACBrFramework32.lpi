@@ -70,10 +70,11 @@
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="40" Y="10488"/>
+        <TopLine Value="7857"/>
+        <CursorPos X="20" Y="7877"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <WindowIndex Value="0"/>
@@ -569,7 +570,6 @@
         <WindowIndex Value="0"/>
         <TopLine Value="3372"/>
         <CursorPos X="29" Y="3530"/>
-        <FoldState Value=" TJV2{P1 TLW0O2 T3}F0J4 piXjJ0I[94ejP[I6d]9L[94ZjR[aAJ[I6L0L335Y"/>
         <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -597,11 +597,10 @@
       <Unit58>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFe.pas"/>
         <UnitName Value="pcnNFe"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="247"/>
-        <CursorPos X="57" Y="257"/>
+        <CursorPos X="45" Y="256"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -636,7 +635,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit61>
     </Units>
-    <JumpHistory Count="20" HistoryIndex="19">
+    <JumpHistory Count="21" HistoryIndex="20">
       <Position1>
         <Filename Value="ACBrNFe2Dll.pas"/>
         <Caret Line="2010" Column="19" TopLine="2007"/>
@@ -717,6 +716,10 @@
         <Filename Value="ACBrNFe2Dll.pas"/>
         <Caret Line="3509" Column="10" TopLine="3488"/>
       </Position20>
+      <Position21>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="29" Column="43" TopLine="13"/>
+      </Position21>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
