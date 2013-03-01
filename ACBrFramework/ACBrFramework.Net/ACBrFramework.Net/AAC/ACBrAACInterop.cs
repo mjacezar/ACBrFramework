@@ -615,7 +615,7 @@ namespace ACBrFramework.AAC
 		public static extern int AAC_SetVerificarRecomporNumSerie(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] VerificarRecomporNumSerieCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int AAC_SetVerificarRecomporValor(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] VerificarRecomporValorGTCallback method);
+		public static extern int AAC_SetVerificarRecomporValorGT(IntPtr aacHandle, [MarshalAs(UnmanagedType.FunctionPtr)] VerificarRecomporValorGTCallback method);
 
 
 		#endregion Events

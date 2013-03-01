@@ -109,8 +109,10 @@ namespace ACBrFramework.ECF
 
 			#endregion COM_INTEROP
 
-			get;
-			internal set;
+			get
+			{
+				return GetDecimal(ACBrECFInterop.ECF_DadosReducaoZClass_GetValorVendaBruta);
+			}
 		}
 
 		public ComprovanteNaoFiscal[] TotalizadoresNaoFiscais
