@@ -283,7 +283,150 @@ namespace ACBrFramework.NFE
 		public static extern int NFE_NFe_Getschema(IntPtr nfeHandle, IntPtr nfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int NFE_NFe_Setschema(IntPtr nfeHandle, IntPtr nfHandle, int value);
+		public static extern int NFE_NFe_Setschema(IntPtr nfeHandle, IntPtr nfHandle, int value);		
+
+		#region NFe Ide
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetcUF(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetcUF(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetcNF(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetcNF(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetnatOp(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetnatOp(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetindPag(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetindPag(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_Getmodelo(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_Setmodelo(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_Getserie(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_Setserie(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetnNF(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetnNF(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetdEmi(IntPtr nfeHandle, IntPtr nfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetdEmi(IntPtr nfeHandle, IntPtr nfHandle, double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetdSaiEnt(IntPtr nfeHandle, IntPtr nfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetdSaiEnt(IntPtr nfeHandle, IntPtr nfHandle, double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GethSaiEnt(IntPtr nfeHandle, IntPtr nfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SethSaiEnt(IntPtr nfeHandle, IntPtr nfHandle, double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GettpNF(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SettpNF(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetcMunFG(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetcMunFG(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GettpImp(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SettpImp(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GettpEmis(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SettpEmis(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetcDV(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetcDV(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GettpAmb(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SettpAmb(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetfinNFe(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetfinNFe(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetprocEmi(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetprocEmi(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetverProc(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetverProc(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetdhCont(IntPtr nfeHandle, IntPtr nfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetdhCont(IntPtr nfeHandle, IntPtr nfHandle, double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_GetxJust(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_SetxJust(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		#region NFe Ide NFref
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_GetItem(IntPtr nfeHandle, IntPtr nfeeHandle, out IntPtr nrefHandle, int idx);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_SetItem(IntPtr nfeHandle, IntPtr nfeeHandle, IntPtr nrefHandle, int idx);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Count(IntPtr nfeHandle, IntPtr nfeeHandle);
+
+		#endregion NFe Ide NFref
+
+		#endregion NFe Ide
 
 		#region NFe infNFe
 
@@ -540,6 +683,16 @@ namespace ACBrFramework.NFE
 								bool UsarThread);
 
 		#endregion Nota Fiscal
+
+		#region NFe Ide NFref
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Add(IntPtr nfeHandle, IntPtr nfeeHandle, out IntPtr nfsHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Clear(IntPtr nfeHandle, IntPtr nfeeHandle);
+
+		#endregion NFe Ide NFref
 
 		#endregion Methods
 

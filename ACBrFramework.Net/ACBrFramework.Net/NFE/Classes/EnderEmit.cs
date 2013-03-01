@@ -37,7 +37,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public int cMun
+		public int CMun
 		{
 			get
 			{
@@ -49,7 +49,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public int cPais
+		public int CPais
 		{
 			get
 			{
@@ -61,7 +61,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public string fone
+		public string Fone
 		{
 			get
 			{
@@ -73,7 +73,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public string nro
+		public string Nro
 		{
 			get
 			{
@@ -97,7 +97,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public string xBairro
+		public string XBairro
 		{
 			get
 			{
@@ -109,7 +109,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public string xCpl
+		public string XCpl
 		{
 			get
 			{
@@ -121,7 +121,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public string xLgr
+		public string XLgr
 		{
 			get
 			{
@@ -133,7 +133,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public string xMun
+		public string XMun
 		{
 			get
 			{
@@ -145,7 +145,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public string xPais
+		public string XPais
 		{
 			get
 			{

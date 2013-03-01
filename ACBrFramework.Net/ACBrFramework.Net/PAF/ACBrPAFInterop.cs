@@ -570,6 +570,9 @@ namespace ACBrFramework.PAF
 		public struct RegistroR5Rec
 		{
 			[MarshalAs(UnmanagedType.I4)]
+			public int NUM_CONT;
+
+			[MarshalAs(UnmanagedType.I4)]
 			public int NUM_ITEM;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
@@ -624,7 +627,7 @@ namespace ACBrFramework.PAF
 			public int VL_DECIMAL;
 
 			[MarshalAs(UnmanagedType.U1)]
-			public bool RegistroValido;
+			public bool RegistroValido;			
 		}
 
 		[StructLayout(LayoutKind.Sequential)]

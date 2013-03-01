@@ -4,6 +4,8 @@ namespace ACBrFramework.PAF
 	{
 		#region Properties
 
+		public int NUM_CONT { get; set; }
+
 		public int NUM_ITEM { get; set; }
 
 		public string COD_ITEM { get; set; }

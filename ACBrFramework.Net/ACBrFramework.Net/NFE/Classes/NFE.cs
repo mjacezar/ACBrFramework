@@ -14,7 +14,7 @@ namespace ACBrFramework.NFE
 			: base(parent, composedHandle)
 		{
 			this.Emit = new Emit(parent, composedHandle);
-			this.infNFE = new infNFe(parent, composedHandle);
+			this.InfNFE = new InfNFe(parent, composedHandle);
 		}
 
 		#endregion Constructor
@@ -29,7 +29,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public Schema schema
+		public Schema Schema
 		{
 			get
 			{
@@ -41,7 +41,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public infNFe infNFE { get; private set; }
+		public InfNFe InfNFE { get; private set; }
 
 		public Emit Emit { get; private set; }
 

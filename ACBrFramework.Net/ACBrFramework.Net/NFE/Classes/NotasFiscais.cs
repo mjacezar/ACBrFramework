@@ -45,16 +45,12 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		#endregion Properties
-
-		#region Methods
-
 		public NotaFiscal this[int idx]
 		{
 			get
 			{
 				if (idx >= Count) throw new IndexOutOfRangeException();
-				
+
 				IntPtr nfHandle;
 				int ret = ACBrNFEInterop.NFE_NotasFiscais_GetItem(this.Handle, out nfHandle, idx);
 				CheckResult(ret);
@@ -67,6 +63,10 @@ namespace ACBrFramework.NFE
 				CheckResult(ret);
 			}
 		}
+
+		#endregion Properties
+
+		#region Methods		
 
 		public NotaFiscal Add()
 		{

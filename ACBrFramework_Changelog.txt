@@ -44,16 +44,17 @@ Changelog
 28/02/2013
 
 -- ACBrFramework.Net 0.9.2.7 --
-[-] Correção do evento VerificarRecomporValorGT do componente ACBrAAC - Rafael Batiati
-[-] Correção da Propriedade ValorVendaBruta da classe DadosReducaoZClass - Rafael Batiati
+[-] Correção do evento VerificarRecomporValorGT - ACBrAAC - Rafael Batiati.
+[-] Correção da Propriedade ValorVendaBruta da classe DadosReducaoZClass - ACBrECF - Rafael Batiati.
+[*] Alterado Registro R5 com as novas modificações do ACBr - ACBrPAF - Rafael Dias.
 
 23/02/2013
 
 -- ACBrFramework 0.9.2.7 --
-[*] Alteração nos métodos _Destroy - Rafael Batiati
+[*] Alteração nos métodos _Destroy - Rafael Batiati.
 
 -- ACBrFramework.Net 0.9.2.7 --
-[*] Alteração nos métodos _Destroy resolvendo o problema de AccessViolationException quando executa dentro do Visual Studio - Rafael Batiati
+[*] Alteração nos métodos _Destroy resolvendo o problema de AccessViolationException quando executa dentro do Visual Studio - Rafael Batiati.
 
 22/02/2013
 
