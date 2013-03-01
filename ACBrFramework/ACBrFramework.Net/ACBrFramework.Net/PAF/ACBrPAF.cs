@@ -585,6 +585,7 @@ namespace ACBrFramework.PAF
 
 				foreach (ACBrPAFRegistroR5 RegistroR5 in PAF_R.RegistroR4[i].RegistroR5)
 				{
+					RegistroR5Rec[ItemR5].NUM_CONT = RegistroR5.NUM_CONT;
 					RegistroR5Rec[ItemR5].NUM_ITEM = RegistroR5.NUM_ITEM;
 					RegistroR5Rec[ItemR5].COD_ITEM = ToUTF8(RegistroR5.COD_ITEM);
 					RegistroR5Rec[ItemR5].DESC_ITEM = ToUTF8(RegistroR5.DESC_ITEM);

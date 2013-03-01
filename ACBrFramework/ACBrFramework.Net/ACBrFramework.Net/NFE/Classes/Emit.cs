@@ -85,7 +85,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public string xFant
+		public string XFant
 		{
 			get
 			{
@@ -97,7 +97,7 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public string xNome
+		public string XNome
 		{
 			get
 			{

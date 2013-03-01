@@ -239,6 +239,7 @@ type TRegistroR4Rec = record
 end;
 
 type TRegistroR5Rec = record
+    NUM_CONT       : integer;
     NUM_ITEM       : integer;
     COD_ITEM       : array[0..14] of char;
     DESC_ITEM      : array[0..100] of char;
@@ -1321,6 +1322,7 @@ begin
    begin
    with RegistroR05.New do
    begin
+   NUM_CONT       := RegistroR5Rec[IndexR5].NUM_CONT;
    NUM_ITEM       := RegistroR5Rec[IndexR5].NUM_ITEM;
    COD_ITEM       := RegistroR5Rec[IndexR5].COD_ITEM;
    DESC_ITEM      := RegistroR5Rec[IndexR5].DESC_ITEM;

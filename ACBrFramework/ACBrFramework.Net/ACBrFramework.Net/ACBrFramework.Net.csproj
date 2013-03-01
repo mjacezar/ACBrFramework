@@ -198,6 +198,7 @@
     <Compile Include="NFE\Classes\EnderEmit.cs" />
     <Compile Include="NFE\Classes\Ide.cs" />
     <Compile Include="NFE\Classes\NFE.cs" />
+    <Compile Include="NFE\Classes\NFref.cs" />
     <Compile Include="NFE\Classes\NFrefCollectionItem.cs" />
     <Compile Include="NFE\Classes\NotasFiscais.cs" />
     <Compile Include="NFE\Classes\RefECF.cs" />
@@ -207,7 +208,7 @@
     <Compile Include="NFE\Enums\ECFModRef.cs" />
     <Compile Include="NFE\Enums\FinalidadeNFe.cs" />
     <Compile Include="NFE\Enums\IndicadorPagamento.cs" />
-    <Compile Include="NFE\Classes\infNFe.cs" />
+    <Compile Include="NFE\Classes\InfNFe.cs" />
     <Compile Include="NFE\Classes\NotaFiscal.cs" />
     <Compile Include="NFE\Classes\NFECFGArquivos.cs" />
     <Compile Include="NFE\Classes\NFECFGCertificados.cs" />
