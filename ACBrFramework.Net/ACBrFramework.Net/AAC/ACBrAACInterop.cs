@@ -36,7 +36,7 @@ namespace ACBrFramework.AAC
 		public delegate void VerificarRecomporNumSerieCallback(string NumSerie, double ValorGT, ref int CRO, ref int CNI);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate double VerificarRecomporValorGTCallback(string NumSerie);
+		public delegate void VerificarRecomporValorGTCallback(string NumSerie, ref double ValorGT);
 
 
 		[StructLayout(LayoutKind.Sequential)]

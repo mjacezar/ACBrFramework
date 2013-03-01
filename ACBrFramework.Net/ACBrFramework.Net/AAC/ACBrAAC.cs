@@ -777,6 +777,8 @@ namespace ACBrFramework.AAC
 		private void OnVerificarRecomporNumSerieCallBack(string NumSerie, double ValorGT, ref int CRO, ref int CNI)
 		{
 			VerificarRecomporNumSerieEventArgs e = new VerificarRecomporNumSerieEventArgs(NumSerie, Convert.ToDecimal(ValorGT));
+			e.CRO = CRO;
+			e.CNI = CNI;
 
 			if (onVerificarRecomporNumSerie.IsAssigned)
 			{
@@ -788,14 +790,17 @@ namespace ACBrFramework.AAC
 		}
 
 		[AllowReversePInvokeCalls]
-		private double OnVerificarRecomporValorGTCallBack(string NumSerie)
+		private void OnVerificarRecomporValorGTCallBack(string NumSerie, ref double gt)
 		{
 			VerificarRecomporValorGTEventArgs e = new VerificarRecomporValorGTEventArgs(NumSerie);
+			e.ValorGT = Convert.ToDecimal(gt);
 
 			if (onVerificarRecomporValorGT.IsAssigned)
+			{
 				onVerificarRecomporValorGT.Raise(e);
+			}
 
-			return Convert.ToDouble(e.ValorGT);
+			gt = Convert.ToDouble(e.ValorGT);
 		}
 
 		#endregion EventHandlers
