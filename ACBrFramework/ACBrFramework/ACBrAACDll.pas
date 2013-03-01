@@ -15,7 +15,7 @@ type TNoArgumentsCallback = procedure(); cdecl;
 type TCryptCallback = function(value : PChar) : PChar; cdecl;
 type TGetChaveCallback = function () : PChar; cdecl;
 type TVerificarRecomporNumSerieCallback = procedure(const NumSerie: String; const ValorGT: Double; var CRO, CNI: Integer); cdecl;
-type TVerificarRecomporValorGTCallback = function(value : PChar) : Double; cdecl;
+type TVerificarRecomporValorGTCallback = procedure(const NumSerie : PChar; var gt : Double); cdecl;
 
 {Classe para armazenar EventHandlers do componente }
 type TEventHandlers = class
@@ -3647,17 +3647,13 @@ begin
 end;
 
 procedure TEventHandlers.VerificarRecomporNumSerie(const NumSerie: String; const ValorGT: Double; var CRO: Integer; var CNI: Integer);
-var
-  retCRO, retCNI : Integer;
 begin
-  VerificarRecomporNumSerieCallback(pChar(NumSerie), ValorGT, retCRO, retCNI);
-  CRO := retCRO;
-  CNI := retCNI;
+  VerificarRecomporNumSerieCallback(pChar(NumSerie), ValorGT, CRO, CNI);
 end;
 
 procedure TEventHandlers.VerificarRecomporValorGT(const NumSerie: String; var ValorGT: Double);
 begin
-  ValorGT := VerificarRecomporValorGTCallback(pChar(NumSerie));
+  VerificarRecomporValorGTCallback(pChar(NumSerie), ValorGT);
 end;
 
 {%endregion}
