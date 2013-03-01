@@ -43,11 +43,11 @@ Changelog
 
 01/03/2013
 
--- ACBrFramework.Net 0.9.2.7 --
-[-] Correção do evento VerificarRecomporValorGT do componente ACBrAAC - Rafael Batiati
+-- ACBrFramework.Net 0.9.2.8 --
+[-] Correção do evento VerificarRecomporValorGT - ACBrAAC - Rafael Batiati.
 
--- ACBrFramework 0.9.2.7 --
-[-] Correção do evento VerificarRecomporValorGT do componente ACBrAAC - Rafael Batiati
+-- ACBrFramework 0.9.2.8 --
+[-] Correção do evento VerificarRecomporValorGT - ACBrAAC - Rafael Batiati.
 
 28/02/2013
 
