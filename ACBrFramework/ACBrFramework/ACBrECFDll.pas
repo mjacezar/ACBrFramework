@@ -7862,6 +7862,30 @@ begin
   end;
 end;
 
+Function ECF_IdentificaOperador(const ecfHandle: PECFHandle; const Nome : PChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+   strTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.IdentificaOperador(Nome);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result  := -1;
+     end
+  end;
+end;
+
+
 {%endregion}
 
 {%region Comando}
@@ -10592,7 +10616,7 @@ ECF_DadosReducaoZClass_GetFPGCount, ECF_DadosReducaoZClass_GetFPG,
 
 ECF_DadosReducaoZClass_CalculaValoresVirtuais,
 ECF_DadosReducaoZClass_MontaDadosReducaoZ,
-
+ECF_IdentificaOperador,
 
 { Componentes ACBr }
 
