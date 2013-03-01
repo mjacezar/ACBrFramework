@@ -457,7 +457,7 @@ namespace ACBrFramework.AAC
 			onDepoisGravarArquivo = new ACBrEventHandler<ACBrAACInterop.NoArgumentsCallback>(this, OnDepoisGravarArquivoCallBack, ACBrAACInterop.AAC_SetOnDepoisGravarArquivo);
 			onGetChave = new ACBrEventHandler<ChaveEventArgs, ACBrAACInterop.OnGetChaveCallback>(this, OnGetChaveCallBack, ACBrAACInterop.AAC_SetOnGetChave);
 			onVerificarRecomporNumSerie = new ACBrEventHandler<VerificarRecomporNumSerieEventArgs, ACBrAACInterop.VerificarRecomporNumSerieCallback>(this, OnVerificarRecomporNumSerieCallBack, ACBrAACInterop.AAC_SetVerificarRecomporNumSerie);
-			onVerificarRecomporValorGT = new ACBrEventHandler<VerificarRecomporValorGTEventArgs, ACBrAACInterop.VerificarRecomporValorGTCallback>(this, OnVerificarRecomporValorGTCallBack, ACBrAACInterop.AAC_SetVerificarRecomporValor);
+			onVerificarRecomporValorGT = new ACBrEventHandler<VerificarRecomporValorGTEventArgs, ACBrAACInterop.VerificarRecomporValorGTCallback>(this, OnVerificarRecomporValorGTCallBack, ACBrAACInterop.AAC_SetVerificarRecomporValorGT);
 		}
 
 		#endregion Constructor
