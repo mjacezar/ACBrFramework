@@ -22,7 +22,7 @@
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="7"/>
+      <BuildNr Value="8"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -145,9 +145,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrAACDLL"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="93"/>
+        <TopLine Value="3626"/>
         <CursorPos X="1" Y="175"/>
-        <FoldState Value=" TJl22#i91 plLwT2{Z]AjGm72{F[A4AlO2~7]Ak3q92~)]An2ua2#[K4t3:92s T3l40N4 pifjV0K[94bjO0L[94djR[I6gjT0I[a6U0K3Q"/>
+        <FoldState Value=" TJiT2{J1 ps4uM2}Q]AjUoC2{L[A4AlU2{F]An2pG2~o2 pl6sE2~)[K5ua2#i71 T3l40N4 pifjV0K[94bjO0L[94djR[I6gjT0I[a6U0K3R"/>
         <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit9>
@@ -565,12 +565,11 @@
         <Filename Value="ACBrNFe2Dll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrNFe2Dll"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="3381"/>
+        <TopLine Value="3372"/>
         <CursorPos X="29" Y="3530"/>
-        <FoldState Value=" TJV2{P1 p0{P2_a[94z12{Q]8@E2#pV0[J5b2k2 TLW0O]73}F0J4 piXjJ0I[94ejP[I6d]9L[94ZjR[aAJ[I6L0L335 pj7nZ0J[95jc[99[{2B[I6b[96[998[a4[96f0J3n"/>
+        <FoldState Value=" TJV2{P1 TLW0O2 T3}F0J4 piXjJ0I[94ejP[I6d]9L[94ZjR[aAJ[I6L0L335Y"/>
         <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -598,6 +597,7 @@
       <Unit58>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFe.pas"/>
         <UnitName Value="pcnNFe"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="247"/>
