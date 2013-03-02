@@ -97,12 +97,12 @@ namespace ACBrDefExporter
 			{
 				case Language.C: return string.Format("{0}.h", componentName);
 				case Language.VB6: return string.Format("{0}.bas", componentName);
-				case Language.xBase: return string.Format("{0}.prg", componentName);
+				case Language.Java: return string.Format("{0}Interop.java", componentName);
 				default: throw new NotImplementedException();
 			}
 		}
 
-		protected Type GetUnmanagedType(UnmanagedType type)
+		public static Type GetUnmanagedType(UnmanagedType type)
 		{
 			switch (type)
 			{
@@ -113,6 +113,7 @@ namespace ACBrDefExporter
 				case UnmanagedType.I8: return typeof(long);
 				case UnmanagedType.R4: return typeof(float);
 				case UnmanagedType.R8: return typeof(double);
+				case UnmanagedType.Currency: return typeof(double);
 				case UnmanagedType.ByValTStr: return typeof(char);
 				default: throw new NotImplementedException();
 			}

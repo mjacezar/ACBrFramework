@@ -1,4 +1,4 @@
-package jACBrFramework;
+package jACBrFramework.serial.ecf;
 
 public class Aliquota
 {

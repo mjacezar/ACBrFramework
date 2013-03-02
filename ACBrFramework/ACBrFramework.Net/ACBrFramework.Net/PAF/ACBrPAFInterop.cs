@@ -21,7 +21,7 @@ namespace ACBrFramework.PAF
 		#region Interop Types
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate string OnPAFGetKeyRSACallback();
+		public delegate string PAFGetKeyRSACallback();
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct RegistroHD1Rec
@@ -898,7 +898,7 @@ namespace ACBrFramework.PAF
 		#region Eventos
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SetOnPAFGetKeyRSA(IntPtr eadHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+		public static extern int PAF_SetOnPAFGetKeyRSA(IntPtr eadHandle, PAFGetKeyRSACallback method);
 
 		#endregion Eventos
 

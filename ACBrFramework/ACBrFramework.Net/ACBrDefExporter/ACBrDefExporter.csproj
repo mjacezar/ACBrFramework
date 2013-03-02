@@ -64,6 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CDefExporter.cs" />
+    <Compile Include="JavaConverter\JavaHelper.cs" />
+    <Compile Include="JavaConverter\StubGenerator.cs" />
+    <Compile Include="JavaDefExporter.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

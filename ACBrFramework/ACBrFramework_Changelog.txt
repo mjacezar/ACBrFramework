@@ -41,6 +41,17 @@ Símbolo : Significado
 
 Changelog
 
+03/03/2013
+
+-- jACBrFramework --
+[*] Finalização das mudanças para suporte a JNA - Rafael Batiati.
+[*] Projeto JNI (em C++) descontinuado - Rafael Batiati.
+[+] Refactoring nos packages e classes bases para adequação ao JNA - Rafael Batiati.
+[*] Implementada classe ACBrECF com todos os métodos e propriedades (Exceto métodos que envolvem tipos complexos) - Rafael Batiati
+
+-- DefExporter --
+[+] Adicionado suporte a gerar as chamadas JNA para Java
+
 01/03/2013
 
 -- ACBrFramework.Net 0.9.2.8 --

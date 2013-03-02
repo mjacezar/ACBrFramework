@@ -21,10 +21,10 @@ namespace ACBrFramework.EAD
 		#region Interop Types
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate string OnGetChavePublicaCallback();
+		public delegate string GetChavePublicaCallback();
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate string OnGetChavePrivadaCallback();
+		public delegate string GetChavePrivadaCallback();
 
 		#endregion Interop Types
 
@@ -93,10 +93,10 @@ namespace ACBrFramework.EAD
 		public static extern int EAD_RemoveEADArquivo(IntPtr eadHandle, String Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int EAD_SetOnGetChavePublica(IntPtr eadHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+		public static extern int EAD_SetOnGetChavePublica(IntPtr eadHandle, GetChavePublicaCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int EAD_SetOnGetChavePrivada(IntPtr eadHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+		public static extern int EAD_SetOnGetChavePrivada(IntPtr eadHandle, GetChavePrivadaCallback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int EAD_MD5FromFile(IntPtr eadHandle, String Arquivo, StringBuilder MD5, int bufferLen);

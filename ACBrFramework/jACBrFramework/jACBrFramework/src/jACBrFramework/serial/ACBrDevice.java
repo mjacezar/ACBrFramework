@@ -1,13 +1,16 @@
-package jACBrFramework;
+package jACBrFramework.serial;
 
-import jACBrFramework.interop.DeviceInterop;
+import com.sun.jna.ptr.DoubleByReference;
+import jACBrFramework.ACBrClass;
+import jACBrFramework.ACBrComposedClass;
+import jACBrFramework.ACBrException;
+import jACBrFramework.interop.ACBrDeviceInterop;
 import java.lang.String;
 import java.nio.ByteBuffer;
 
 public final class ACBrDevice extends ACBrComposedClass
 {
-
-	ACBrDevice(ACBrClass parent) throws ACBrException
+	public ACBrDevice(ACBrClass parent) throws ACBrException
 	{
 		super(parent);
 	}
@@ -19,7 +22,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle)
 			{
-				return DeviceInterop.INSTANCE.DEV_GetBaud(handle);
+				return ACBrDeviceInterop.INSTANCE.DEV_GetBaud(handle);
 			}
 		});
 	}
@@ -31,7 +34,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle, int value)
 			{
-				return DeviceInterop.INSTANCE.DEV_SetBaud(handle, value);
+				return ACBrDeviceInterop.INSTANCE.DEV_SetBaud(handle, value);
 			}
 		});
 
@@ -44,7 +47,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle)
 			{
-				return DeviceInterop.INSTANCE.DEV_GetDataBits(handle);
+				return ACBrDeviceInterop.INSTANCE.DEV_GetDataBits(handle);
 			}
 		});
 	}
@@ -56,7 +59,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle, int value)
 			{
-				return DeviceInterop.INSTANCE.DEV_SetDataBits(handle, value);
+				return ACBrDeviceInterop.INSTANCE.DEV_SetDataBits(handle, value);
 			}
 		});
 	}
@@ -68,7 +71,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle)
 			{
-				return DeviceInterop.INSTANCE.DEV_GetHandShake(handle);
+				return ACBrDeviceInterop.INSTANCE.DEV_GetHandShake(handle);
 			}
 		});
 	}
@@ -80,7 +83,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle, int value)
 			{
-				return DeviceInterop.INSTANCE.DEV_SetHandShake(handle, value);
+				return ACBrDeviceInterop.INSTANCE.DEV_SetHandShake(handle, value);
 			}
 		});
 	}
@@ -92,7 +95,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle)
 			{
-				return DeviceInterop.INSTANCE.DEV_GetHardFlow(handle);
+				return ACBrDeviceInterop.INSTANCE.DEV_GetHardFlow(handle);
 			}
 		});
 	}
@@ -104,7 +107,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle, boolean value)
 			{
-				return DeviceInterop.INSTANCE.DEV_SetHardFlow(handle, value);
+				return ACBrDeviceInterop.INSTANCE.DEV_SetHardFlow(handle, value);
 			}
 		});
 	}
@@ -116,7 +119,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle)
 			{
-				return DeviceInterop.INSTANCE.DEV_GetMaxBandwidth(handle);
+				return ACBrDeviceInterop.INSTANCE.DEV_GetMaxBandwidth(handle);
 			}
 		});
 	}
@@ -128,7 +131,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle, int value)
 			{
-				return DeviceInterop.INSTANCE.DEV_SetMaxBandwidth(handle, value);
+				return ACBrDeviceInterop.INSTANCE.DEV_SetMaxBandwidth(handle, value);
 			}
 		});		
 	}
@@ -140,7 +143,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle)
 			{
-				return DeviceInterop.INSTANCE.DEV_GetParity(handle);
+				return ACBrDeviceInterop.INSTANCE.DEV_GetParity(handle);
 			}
 		});		
 	}
@@ -152,7 +155,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle, int value)
 			{
-				return DeviceInterop.INSTANCE.DEV_SetParity(handle, value);
+				return ACBrDeviceInterop.INSTANCE.DEV_SetParity(handle, value);
 			}
 		});			
 	}
@@ -164,7 +167,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
 			{
-				return DeviceInterop.INSTANCE.DEV_GetPorta(handle, buffer, bufferLen);
+				return ACBrDeviceInterop.INSTANCE.DEV_GetPorta(handle, buffer, bufferLen);
 			}
 		});		
 	}
@@ -174,9 +177,9 @@ public final class ACBrDevice extends ACBrComposedClass
 		setString(value, new SetStringEntryPoint() {
 
 			@Override
-			public int invoke(int handle, ByteBuffer buffer)
+			public int invoke(int handle, String value)
 			{
-				return DeviceInterop.INSTANCE.DEV_SetPorta(handle, buffer);
+				return ACBrDeviceInterop.INSTANCE.DEV_SetPorta(handle, value);
 			}
 		});
 	}
@@ -188,7 +191,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle)
 			{
-				return DeviceInterop.INSTANCE.DEV_GetProcessMessages(handle);
+				return ACBrDeviceInterop.INSTANCE.DEV_GetProcessMessages(handle);
 			}
 		});		
 	}
@@ -200,7 +203,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle, boolean value)
 			{
-				return DeviceInterop.INSTANCE.DEV_SetProcessMessages(handle, value);
+				return ACBrDeviceInterop.INSTANCE.DEV_SetProcessMessages(handle, value);
 			}
 		});		
 
@@ -213,7 +216,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle)
 			{
-				return DeviceInterop.INSTANCE.DEV_GetSoftFlow(handle);
+				return ACBrDeviceInterop.INSTANCE.DEV_GetSoftFlow(handle);
 			}
 		});		
 	}
@@ -225,7 +228,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle, boolean value)
 			{
-				return DeviceInterop.INSTANCE.DEV_SetSoftFlow(handle, value);
+				return ACBrDeviceInterop.INSTANCE.DEV_SetSoftFlow(handle, value);
 			}
 		});		
 	}
@@ -237,7 +240,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle)
 			{
-				return DeviceInterop.INSTANCE.DEV_GetStopBits(handle);
+				return ACBrDeviceInterop.INSTANCE.DEV_GetStopBits(handle);
 			}
 		});			
 	}
@@ -249,7 +252,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle, int value)
 			{
-				return DeviceInterop.INSTANCE.DEV_SetStopBits(handle, value);
+				return ACBrDeviceInterop.INSTANCE.DEV_SetStopBits(handle, value);
 			}
 		});					
 	}
@@ -261,7 +264,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle)
 			{
-				return DeviceInterop.INSTANCE.DEV_GetTimeOut(handle);
+				return ACBrDeviceInterop.INSTANCE.DEV_GetTimeOut(handle);
 			}
 		});		
 	}
@@ -273,7 +276,7 @@ public final class ACBrDevice extends ACBrComposedClass
 			@Override
 			public int invoke(int handle, int value)
 			{
-				return DeviceInterop.INSTANCE.DEV_SetTimeOut(handle, value);
+				return ACBrDeviceInterop.INSTANCE.DEV_SetTimeOut(handle, value);
 			}
 		});			
 	}

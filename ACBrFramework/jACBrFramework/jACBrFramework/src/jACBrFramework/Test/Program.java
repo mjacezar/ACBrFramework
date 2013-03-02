@@ -3,8 +3,8 @@ package jACBrFramework.Test;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import jACBrFramework.ACBrECF;
-import jACBrFramework.FormaPagamento;
+import jACBrFramework.serial.ecf.ACBrECF;
+import jACBrFramework.serial.ecf.FormaPagamento;
 
 public class Program
 {
@@ -74,11 +74,9 @@ public class Program
 			System.out.print("GetDataHora");
 			System.out.println(": " + ecf.getDataHora().toString());
 
-			//MUDANÇA DAS CHAMADAS DE JNI PARA JNA
-			//TRECHO ABAIXO AINDA NAO IMPLEMENTADO
-			/*
 
 			System.out.println("\nLeituraX\n");
+			ecf.corrigeEstadoErro(true);
 			ecf.leituraX();
 
 			System.out.println("\nCarrega Formas de Pagamento\n");
@@ -86,11 +84,11 @@ public class Program
 
 			System.out.println("Formas de pagamento\n");
 
-			for (int i = 0; i < ecf.getFormasPagamento().length; i++) {
+			for (int i = 0; i < ecf.getFormasPagamento().length; i++) 
+			{
 				FormaPagamento formaPagto = ecf.getFormasPagamento()[i];
 				System.out.println(" - " + formaPagto.getIndice() + " " + formaPagto.getDescricao());
 			}
-
 
 			System.out.println("\nTesta cupom fiscal\n");
 			ecf.abreCupom();
@@ -107,11 +105,12 @@ public class Program
 			System.out.println("Efetua Pagamento\n");
 			FormaPagamento formaPagto = ecf.getFormasPagamento()[0];
 			ecf.efetuaPagamento(formaPagto.getIndice(), 50, "MENSAGEM FORMA DE PAGTO", false);
+			//ecf.efetuaPagamento("01", 50, "MENSAGEM FORMA DE PAGTO", false);
 
 			System.out.println("Fecha cupom\n");
 			ecf.fechaCupom("MENSAGEM FECHAMENTO");
 
-* */
+
 			System.out.println("Finalizado\n");
 			ecf.desativar();
 			ecf = null;

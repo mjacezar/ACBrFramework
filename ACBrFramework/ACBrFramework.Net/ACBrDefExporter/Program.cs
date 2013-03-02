@@ -8,6 +8,10 @@ namespace ACBrDefExporter
 		[STAThread]
 		private static void Main()
 		{
+			string path = @"c:\multivendas\arquivos";
+			StubGenerator stub = new StubGenerator(typeof(ACBrFramework.ECF.ACBrECF), "ECF", path);
+			stub.Generate();
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainForm());

@@ -28,7 +28,7 @@ namespace ACBrFramework.PAF
 
 		#region Fields
 
-		private readonly ACBrEventHandler<ChaveEventArgs, ACBrPAFInterop.OnPAFGetKeyRSACallback> onPAFGetKeyRSA;
+		private readonly ACBrEventHandler<ChaveEventArgs, ACBrPAFInterop.PAFGetKeyRSACallback> onPAFGetKeyRSA;
 
 		private ACBrAAC aac;
 		private ACBrEAD ead;
@@ -39,7 +39,7 @@ namespace ACBrFramework.PAF
 
 		public ACBrPAF()
 		{
-			onPAFGetKeyRSA = new ACBrEventHandler<ChaveEventArgs, ACBrPAFInterop.OnPAFGetKeyRSACallback>(this, OnPAFGetKeyRSACallBack, ACBrPAFInterop.PAF_SetOnPAFGetKeyRSA);
+			onPAFGetKeyRSA = new ACBrEventHandler<ChaveEventArgs, ACBrPAFInterop.PAFGetKeyRSACallback>(this, OnPAFGetKeyRSACallBack, ACBrPAFInterop.PAF_SetOnPAFGetKeyRSA);
 		}
 
 		#endregion Constructor
