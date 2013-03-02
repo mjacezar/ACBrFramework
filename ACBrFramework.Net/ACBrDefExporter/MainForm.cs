@@ -88,6 +88,10 @@ namespace ACBrDefExporter
 					defExporter = new VBDefExporter(pathTextBox.Text);
 					break;
 
+				case Language.Java:
+					defExporter = new JavaDefExporter(pathTextBox.Text);
+					break;
+
 				default:
 					defExporter = null;
 					break;
@@ -122,5 +126,10 @@ namespace ACBrDefExporter
 		}
 
 		#endregion Methods
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

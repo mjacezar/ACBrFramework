@@ -1,5 +1,6 @@
-package jACBrFramework.interop;
+package jACBrFramework;
 
+import jACBrFramework.interop.*;
 import com.sun.jna.Library;
 import com.sun.jna.NativeLibrary;
 

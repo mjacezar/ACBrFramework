@@ -172,8 +172,8 @@ namespace ACBrFramework.EAD
 
 		#region Fields
 
-		private readonly ACBrEventHandler<ChaveEventArgs, ACBrEADInterop.OnGetChavePublicaCallback> onGetChavePublica;
-		private readonly ACBrEventHandler<ChaveEventArgs, ACBrEADInterop.OnGetChavePrivadaCallback> onGetChavePrivada;
+		private readonly ACBrEventHandler<ChaveEventArgs, ACBrEADInterop.GetChavePublicaCallback> onGetChavePublica;
+		private readonly ACBrEventHandler<ChaveEventArgs, ACBrEADInterop.GetChavePrivadaCallback> onGetChavePrivada;
 
 		#endregion Fields
 
@@ -181,8 +181,8 @@ namespace ACBrFramework.EAD
 
 		public ACBrEAD()
 		{
-			onGetChavePrivada = new ACBrEventHandler<ChaveEventArgs, ACBrEADInterop.OnGetChavePrivadaCallback>(this, OnGetChavePrivadaCallBack, ACBrEADInterop.EAD_SetOnGetChavePrivada);
-			onGetChavePublica = new ACBrEventHandler<ChaveEventArgs, ACBrEADInterop.OnGetChavePublicaCallback>(this, OnGetChavePublicaCallBack, ACBrEADInterop.EAD_SetOnGetChavePublica);
+			onGetChavePrivada = new ACBrEventHandler<ChaveEventArgs, ACBrEADInterop.GetChavePrivadaCallback>(this, OnGetChavePrivadaCallBack, ACBrEADInterop.EAD_SetOnGetChavePrivada);
+			onGetChavePublica = new ACBrEventHandler<ChaveEventArgs, ACBrEADInterop.GetChavePublicaCallback>(this, OnGetChavePublicaCallBack, ACBrEADInterop.EAD_SetOnGetChavePublica);
 		}
 
 		#endregion Constructor

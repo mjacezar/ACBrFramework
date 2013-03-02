@@ -24,7 +24,7 @@ package jACBrFramework;
 import java.util.Date;
 
 @SuppressWarnings({"unused", "deprecation"})
-class OleDate extends Date
+public class OleDate extends Date
 {
 
 	public OleDate(Date date)
@@ -40,6 +40,19 @@ class OleDate extends Date
 	// Half a second, expressed in days
 	private static double HALF_SECOND = (1.0 / 172800.0);
 
+	public static double toOADate(Date date)
+	{
+		OleDate oleDate = new OleDate(date);
+		return oleDate.toDouble();
+	}
+	
+	public static Date fromOADate(double value)
+	{
+		OleDate oleDate = new OleDate(value);
+		return oleDate.toDate();
+	}
+	
+	
 	private void setDate(double dtSrc)
 	{
 

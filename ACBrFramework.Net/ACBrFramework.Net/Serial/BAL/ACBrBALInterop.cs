@@ -88,7 +88,7 @@ namespace ACBrFramework.BAL
 		#region Eventos
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int BAL_SetOnLePeso(IntPtr balHandle, [MarshalAs(UnmanagedType.FunctionPtr)] Delegate method);
+		public static extern int BAL_SetOnLePeso(IntPtr balHandle, LePesoCallback method);
 
 		#endregion Eventos
 
