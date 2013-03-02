@@ -3485,7 +3485,7 @@ begin
   end;
 end;
 
-Function NFE_NFe_Ide_NFref_Add(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe; var value: TNFrefCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NFe_Ide_NFref_Add(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe; var nfrefHandle: TNFrefCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -3495,7 +3495,7 @@ begin
   end;
 
   try
-     value := nfeeHandle.Ide.NFref.Add;
+     nfrefHandle := nfeeHandle.Ide.NFref.Add;
      Result := 0;
   except
      on exception : Exception do
@@ -3506,7 +3506,7 @@ begin
   end;
 end;
 
-Function NFE_NFe_Ide_NFref_GetItem(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe; var value: TNFrefCollectionItem; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NFe_Ide_NFref_GetItem(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe; var nfrefHandle: TNFrefCollectionItem; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -3516,7 +3516,7 @@ begin
   end;
 
   try
-     value := nfeeHandle.Ide.NFref.Items[idx];
+     nfrefHandle := nfeeHandle.Ide.NFref.Items[idx];
      Result := 0;
   except
      on exception : Exception do
@@ -3527,7 +3527,7 @@ begin
   end;
 end;
 
-Function NFE_NFe_Ide_NFref_SetItem(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe; const value: TNFrefCollectionItem; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NFe_Ide_NFref_SetItem(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe; const nfrefHandle: TNFrefCollectionItem; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -3537,7 +3537,7 @@ begin
   end;
 
   try
-     nfeeHandle.Ide.NFref.Items[idx] := value;
+     nfeeHandle.Ide.NFref.Items[idx] := nfrefHandle;
      Result := 0;
   except
      on exception : Exception do
@@ -3547,6 +3547,769 @@ begin
      end
   end;
 end;
+
+{%endregion}
+
+{%region NFref Item }
+
+Function NFE_NFe_Ide_NFref_Item_GetrefCTe(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfrefHandle.refCTe, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_SetrefCTe(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.refCTe := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_GetrefNFe(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfrefHandle.refNFe, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_SetrefNFe(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.refNFe := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%region NFref Item RefNF }
+
+Function NFE_NFe_Ide_NFref_Item_RefNF_GetAAMM(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfrefHandle.RefNF.AAMM, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNF_SetAAMM(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNF.AAMM := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNF_GetCNPJ(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfrefHandle.RefNF.CNPJ, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNF_SetCNPJ(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNF.CNPJ := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNF_GetcUF(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := nfrefHandle.RefNF.cUF;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNF_SetcUF(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNF.cUF := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNF_Getmodelo(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := nfrefHandle.RefNF.modelo;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNF_Setmodelo(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNF.modelo := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNF_Getserie(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := nfrefHandle.RefNF.serie;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNF_Setserie(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNF.serie := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNF_GetnNF(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := nfrefHandle.RefNF.nNF;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNF_SetnNF(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNF.nNF := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%region NFref Item RefNFP }
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_GetAAMM(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfrefHandle.RefNFP.AAMM, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_SetAAMM(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNFP.AAMM := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_GetIE(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfrefHandle.RefNFP.IE, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_SetIE(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNFP.IE := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_GetCNPJCPF(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfrefHandle.RefNFP.CNPJCPF, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_SetCNPJCPF(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNFP.CNPJCPF := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_GetcUF(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := nfrefHandle.RefNFP.cUF;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_SetcUF(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNFP.cUF := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_Getmodelo(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := nfrefHandle.RefNFP.modelo;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_Setmodelo(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNFP.modelo := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_Getserie(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := nfrefHandle.RefNFP.serie;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_Setserie(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNFP.serie := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_GetnNF(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := nfrefHandle.RefNFP.nNF;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefNFP_SetnNF(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefNFP.nNF := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%region NFref Item RefECF }
+
+Function NFE_NFe_Ide_NFref_Item_RefECF_Getmodelo(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(nfrefHandle.RefECF.modelo);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefECF_Setmodelo(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefECF.nNF := TpcnECFModRef(value);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefECF_GetnCOO(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfrefHandle.RefECF.nCOO, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefECF_SetnCOO(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefECF.nCOO := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefECF_GetnECF(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfrefHandle.RefECF.nECF, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Ide_NFref_Item_RefECF_SetnECF(const nfeHandle: PNFEHandle; const nfrefHandle: TNFrefCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfrefHandle.RefECF.nECF := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
 
 {%endregion}
 
@@ -4469,6 +5232,28 @@ NFE_NFe_Ide_GetxJust, NFE_NFe_Ide_SetxJust,
 NFE_NFe_Ide_NFref_Count, NFE_NFe_Ide_NFref_Clear,
 NFE_NFe_Ide_NFref_Add, NFE_NFe_Ide_NFref_GetItem,
 NFE_NFe_Ide_NFref_SetItem,
+
+NFE_NFe_Ide_NFref_Item_GetrefCTe, NFE_NFe_Ide_NFref_Item_SetrefCTe,
+NFE_NFe_Ide_NFref_Item_GetrefNFe, NFE_NFe_Ide_NFref_Item_SetrefNFe,
+
+NFE_NFe_Ide_NFref_Item_RefNF_GetAAMM, NFE_NFe_Ide_NFref_Item_RefNF_SetAAMM,
+NFE_NFe_Ide_NFref_Item_RefNF_GetCNPJ, NFE_NFe_Ide_NFref_Item_RefNF_SetCNPJ,
+NFE_NFe_Ide_NFref_Item_RefNF_GetcUF, NFE_NFe_Ide_NFref_Item_RefNF_SetcUF,
+NFE_NFe_Ide_NFref_Item_RefNF_Getmodelo, NFE_NFe_Ide_NFref_Item_RefNF_Setmodelo,
+NFE_NFe_Ide_NFref_Item_RefNF_Getserie, NFE_NFe_Ide_NFref_Item_RefNF_Setserie,
+NFE_NFe_Ide_NFref_Item_RefNF_GetnNF, NFE_NFe_Ide_NFref_Item_RefNF_GetnNF,
+
+NFE_NFe_Ide_NFref_Item_RefNFP_GetAAMM, NFE_NFe_Ide_NFref_Item_RefNFP_SetAAMM,
+NFE_NFe_Ide_NFref_Item_RefNFP_GetCNPJCPF, NFE_NFe_Ide_NFref_Item_RefNFP_SetCNPJCPF,
+NFE_NFe_Ide_NFref_Item_RefNFP_GetIE, NFE_NFe_Ide_NFref_Item_RefNFP_SetIE,
+NFE_NFe_Ide_NFref_Item_RefNFP_GetcUF, NFE_NFe_Ide_NFref_Item_RefNFP_SetcUF,
+NFE_NFe_Ide_NFref_Item_RefNFP_Getmodelo, NFE_NFe_Ide_NFref_Item_RefNFP_Setmodelo,
+NFE_NFe_Ide_NFref_Item_RefNFP_Getserie, NFE_NFe_Ide_NFref_Item_RefNFP_Setserie,
+NFE_NFe_Ide_NFref_Item_RefNFP_GetnNF, NFE_NFe_Ide_NFref_Item_RefNFP_GetnNF,
+
+NFE_NFe_Ide_NFref_Item_RefECF_Getmodelo, NFE_NFe_Ide_NFref_Item_RefECF_Setmodelo,
+NFE_NFe_Ide_NFref_Item_RefECF_GetnCOO, NFE_NFe_Ide_NFref_Item_RefECF_SetnCOO,
+NFE_NFe_Ide_NFref_Item_RefECF_GetnECF, NFE_NFe_Ide_NFref_Item_RefECF_SetnECF,
 
 NFE_NFe_Emit_GetCNAE, NFE_NFe_Emit_SetCNAE,
 NFE_NFe_Emit_GetCNPJCPF, NFE_NFe_Emit_SetCNPJCPF,

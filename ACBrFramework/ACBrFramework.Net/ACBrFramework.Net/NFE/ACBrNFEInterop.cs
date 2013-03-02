@@ -424,6 +424,130 @@ namespace ACBrFramework.NFE
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_NFe_Ide_NFref_Count(IntPtr nfeHandle, IntPtr nfeeHandle);
 
+		#region NFe Ide NFref Item
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_GetrefCTe(IntPtr nfeHandle, IntPtr nrefHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_SetrefCTe(IntPtr nfeHandle, IntPtr nrefHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_GetrefNFe(IntPtr nfeHandle, IntPtr nrefHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_SetrefNFe(IntPtr nfeHandle, IntPtr nrefHandle, string value);
+
+		#region NFe Ide NFref Item RefNF
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNF_GetAAMM(IntPtr nfeHandle, IntPtr nrefHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNF_SetAAMM(IntPtr nfeHandle, IntPtr nrefHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNF_GetCNPJ(IntPtr nfeHandle, IntPtr nrefHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNF_SetCNPJ(IntPtr nfeHandle, IntPtr nrefHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNF_GetcUF(IntPtr nfeHandle, IntPtr nrefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNF_SetcUF(IntPtr nfeHandle, IntPtr nrefHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNF_Getmodelo(IntPtr nfeHandle, IntPtr nrefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNF_Setmodelo(IntPtr nfeHandle, IntPtr nrefHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNF_Getserie(IntPtr nfeHandle, IntPtr nrefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNF_Setserie(IntPtr nfeHandle, IntPtr nrefHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNF_GetnNF(IntPtr nfeHandle, IntPtr nrefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNF_SetnNF(IntPtr nfeHandle, IntPtr nrefHandle, int value);
+
+		#endregion NFe Ide NFref Item RefNF
+
+		#region NFe Ide NFref Item RefNFP
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_GetAAMM(IntPtr nfeHandle, IntPtr nrefHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_SetAAMM(IntPtr nfeHandle, IntPtr nrefHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_GetIE(IntPtr nfeHandle, IntPtr nrefHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_SetIE(IntPtr nfeHandle, IntPtr nrefHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_GetCNPJCPF(IntPtr nfeHandle, IntPtr nrefHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_SetCNPJCPF(IntPtr nfeHandle, IntPtr nrefHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_GetcUF(IntPtr nfeHandle, IntPtr nrefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_SetcUF(IntPtr nfeHandle, IntPtr nrefHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_Getmodelo(IntPtr nfeHandle, IntPtr nrefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_Setmodelo(IntPtr nfeHandle, IntPtr nrefHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_Getserie(IntPtr nfeHandle, IntPtr nrefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_Setserie(IntPtr nfeHandle, IntPtr nrefHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_GetnNF(IntPtr nfeHandle, IntPtr nrefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefNFP_SetnNF(IntPtr nfeHandle, IntPtr nrefHandle, int value);
+
+		#endregion NFe Ide NFref Item RefNF
+
+		#region NFe Ide NFref Item RefECF
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefECF_Getmodelo(IntPtr nfeHandle, IntPtr nrefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefECF_Setmodelo(IntPtr nfeHandle, IntPtr nrefHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefECF_GetnCOO(IntPtr nfeHandle, IntPtr nrefHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefECF_SetnCOO(IntPtr nfeHandle, IntPtr nrefHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefECF_GetnECF(IntPtr nfeHandle, IntPtr nrefHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Ide_NFref_Item_RefECF_SetnECF(IntPtr nfeHandle, IntPtr nrefHandle, string value);
+
+		#endregion NFe Ide NFref Item RefECF
+
+		#endregion NFe Ide NFref Item
+
 		#endregion NFe Ide NFref
 
 		#endregion NFe Ide
