@@ -4315,7 +4315,7 @@ end;
 
 {%endregion}
 
-{%region NFe Emit }
+{%region Emit }
 
 Function NFE_NFe_Emit_GetCNAE(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -5117,6 +5117,476 @@ end;
 
 {%endregion}
 
+{%region Avulsa }
+
+Function NFE_NFe_Avulsa_GetCNPJ(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Avulsa.CNPJ, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_SetCNPJ(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Avulsa.CNPJ := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_GetFone(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Avulsa.fone, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_SetFone(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Avulsa.fone := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_GetMatr(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Avulsa.matr, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_SetMatr(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Avulsa.matr := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_GetNDAR(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Avulsa.nDAR, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_SetNDAR(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Avulsa.nDAR := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_GetRepEmi(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Avulsa.repEmi, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_SetRepEmi(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Avulsa.repEmi := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_GetUF(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Avulsa.UF, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_SetUF(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Avulsa.UF := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_GetVDAR(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Avulsa.vDAR, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_SetVDAR(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Avulsa.vDAR := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_GetXAgente(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Avulsa.xAgente, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_SetXAgente(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Avulsa.xAgente := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_GetXOrgao(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, nfeeHandle.Avulsa.xOrgao, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_SetXOrgao(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Avulsa.xOrgao := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_GetDEmi(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe; var  value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     value := nfeeHandle.Avulsa.dEmi;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_SetDEmi(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Avulsa.dEmi := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_GetDPag(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe; var  value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     value := nfeeHandle.Avulsa.dPag;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Avulsa_SetDPag(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     nfeeHandle.Avulsa.dPag := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%region Avulsa }
+
+{%endregion}
+
 {%endregion}
 
 exports
@@ -5204,9 +5674,15 @@ NFE_NF_SaveToFile, NFE_NF_EnviarEmail,
 
 NFE_NFe_Getschema, NFE_NFe_Setschema,
 
+{%region infNFe }
+
 NFE_NFe_infNFe_GetID, NFE_NFe_infNFe_SetID,
 NFE_NFe_infNFe_GetVersao, NFE_NFe_infNFe_SetVersao,
 NFE_NFe_infNFe_GetVersaoStr,
+
+{%endregion}
+
+{%region Ide }
 
 NFE_NFe_Ide_GetcUF, NFE_NFe_Ide_SetcUF,
 NFE_NFe_Ide_GetcNF, NFE_NFe_Ide_SetcNF,
@@ -5255,6 +5731,10 @@ NFE_NFe_Ide_NFref_Item_RefECF_Getmodelo, NFE_NFe_Ide_NFref_Item_RefECF_Setmodelo
 NFE_NFe_Ide_NFref_Item_RefECF_GetnCOO, NFE_NFe_Ide_NFref_Item_RefECF_SetnCOO,
 NFE_NFe_Ide_NFref_Item_RefECF_GetnECF, NFE_NFe_Ide_NFref_Item_RefECF_SetnECF,
 
+{%endregion}
+
+{%region Emit }
+
 NFE_NFe_Emit_GetCNAE, NFE_NFe_Emit_SetCNAE,
 NFE_NFe_Emit_GetCNPJCPF, NFE_NFe_Emit_SetCNPJCPF,
 NFE_NFe_Emit_GetIE, NFE_NFe_Emit_SetIE,
@@ -5263,6 +5743,7 @@ NFE_NFe_Emit_GetIM, NFE_NFe_Emit_SetIM,
 NFE_NFe_Emit_GetxFant, NFE_NFe_Emit_SetxFant,
 NFE_NFe_Emit_GetxNome, NFE_NFe_Emit_SetxNome,
 NFE_NFe_Emit_GetCRT, NFE_NFe_Emit_SetCRT,
+
 NFE_NFe_Emit_EnderEmit_GetCEP, NFE_NFe_Emit_EnderEmit_SetCEP,
 NFE_NFe_Emit_EnderEmit_GetcMun, NFE_NFe_Emit_EnderEmit_SetcMun,
 NFE_NFe_Emit_EnderEmit_GetcPais, NFE_NFe_Emit_EnderEmit_SetcPais,
@@ -5273,7 +5754,23 @@ NFE_NFe_Emit_EnderEmit_GetxBairro, NFE_NFe_Emit_EnderEmit_SetxBairro,
 NFE_NFe_Emit_EnderEmit_GetxCpl, NFE_NFe_Emit_EnderEmit_SetxCpl,
 NFE_NFe_Emit_EnderEmit_GetxLgr, NFE_NFe_Emit_EnderEmit_SetxLgr,
 NFE_NFe_Emit_EnderEmit_GetxMun, NFE_NFe_Emit_EnderEmit_SetxMun,
-NFE_NFe_Emit_EnderEmit_GetxPais, NFE_NFe_Emit_EnderEmit_SetxPais;
+NFE_NFe_Emit_EnderEmit_GetxPais, NFE_NFe_Emit_EnderEmit_SetxPais,
+
+{%endregion}
+
+{%region Avulsa }
+
+NFE_NFe_Avulsa_GetCNPJ, NFE_NFe_Avulsa_SetCNPJ,
+NFE_NFe_Avulsa_GetFone, NFE_NFe_Avulsa_SetFone,
+NFE_NFe_Avulsa_GetMatr, NFE_NFe_Avulsa_SetMatr,
+NFE_NFe_Avulsa_GetNDAR, NFE_NFe_Avulsa_SetNDAR,
+NFE_NFe_Avulsa_GetRepEmi, NFE_NFe_Avulsa_SetRepEmi,
+NFE_NFe_Avulsa_GetUF, NFE_NFe_Avulsa_SetUF,
+NFE_NFe_Avulsa_GetVDAR, NFE_NFe_Avulsa_SetVDAR,
+NFE_NFe_Avulsa_GetXAgente, NFE_NFe_Avulsa_SetXAgente,
+NFE_NFe_Avulsa_GetXOrgao, NFE_NFe_Avulsa_SetXOrgao,
+NFE_NFe_Avulsa_GetDEmi, NFE_NFe_Avulsa_SetDEmi,
+NFE_NFe_Avulsa_GetDPag, NFE_NFe_Avulsa_SetDPag;
 
 {%endregion}
 

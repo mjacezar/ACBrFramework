@@ -15,6 +15,7 @@ namespace ACBrFramework.NFE
 		{
 			this.Emit = new Emit(parent, composedHandle);
 			this.InfNFE = new InfNFe(parent, composedHandle);
+			this.Avulsa = new Avulsa(parent, composedHandle);
 		}
 
 		#endregion Constructor
@@ -44,6 +45,8 @@ namespace ACBrFramework.NFE
 		public InfNFe InfNFE { get; private set; }
 
 		public Emit Emit { get; private set; }
+
+		public Avulsa Avulsa { get; private set; }
 
 		#endregion Properties
 
