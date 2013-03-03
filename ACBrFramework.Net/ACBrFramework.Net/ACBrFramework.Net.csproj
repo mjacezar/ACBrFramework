@@ -194,6 +194,7 @@
     <Compile Include="IBGE\ACBrIBGE.cs" />
     <Compile Include="IBGE\ACBrIBGEInterop.cs" />
     <Compile Include="IBGE\Classes\Cidade.cs" />
+    <Compile Include="NFE\Classes\Avulsa.cs" />
     <Compile Include="NFE\Classes\Emit.cs" />
     <Compile Include="NFE\Classes\EnderEmit.cs" />
     <Compile Include="NFE\Classes\Ide.cs" />
