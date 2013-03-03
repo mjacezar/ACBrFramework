@@ -1,14 +1,18 @@
 package jACBrFramework.serial.ecf;
 
-import jACBrFramework.serial.ACBrDevice;
-import jACBrFramework.OleDate;
 import com.sun.jna.ptr.DoubleByReference;
 import com.sun.jna.ptr.IntByReference;
 import jACBrFramework.ACBrClass;
+import jACBrFramework.ACBrEventListener;
 import jACBrFramework.ACBrException;
+import jACBrFramework.OleDate;
 import jACBrFramework.interop.ACBrECFInterop;
+import jACBrFramework.serial.ACBrDevice;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+
 
 public final class ACBrECF extends ACBrClass
 {
@@ -19,61 +23,148 @@ public final class ACBrECF extends ACBrClass
 	private FormaPagamento[] formasPagamento;
 	private ComprovanteNaoFiscal[] comprovantesNaoFiscais;
 
-	// </editor-fold>
+	private ArrayList<ACBrEventListener<AbreCupomEventObject>> onAntesAbrirCupomListeners = new ArrayList<ACBrEventListener<AbreCupomEventObject>>();
+	private ArrayList<ACBrEventListener<BobinaEventObject>> onBobinaAdicionaLinhasListeners = new ArrayList<ACBrEventListener<BobinaEventObject>>();
+	private ArrayList<ACBrEventListener<CancelaItemEventObject>> onAntesCancelaItemVendidoListeners = new ArrayList<ACBrEventListener<CancelaItemEventObject>>();
 	
+	// </editor-fold>
+			
 	//<editor-fold defaultstate="collapsed" desc="Constructor">
+	
 	public ACBrECF() throws ACBrException
 	{
 	}
 
 	//</editor-fold>
 	
-	//<editor-fold defaultstate="collapsed" desc="Methods">
+	//<editor-fold defaultstate="collapsed" desc="Events">
 	
-	//<editor-fold defaultstate="collapsed" desc="Override Methods">
-	@Override
-	protected void onInitialize() throws ACBrException
+	//<editor-fold defaultstate="collapsed" desc="OnAntesAbrirCupom">
+	
+	public void addOnAntesAbrirCupom(ACBrEventListener<AbreCupomEventObject> listener)
 	{
-		IntByReference handle = new IntByReference();
-		int ret = ACBrECFInterop.INSTANCE.ECF_Create(handle);
-		checkResult(ret);
+		if (onAntesAbrirCupomListeners.isEmpty())
+		{
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreCupom(getHandle(), new ACBrECFInterop.AbreCupomCallback() {
 
-		setHandle(handle.getValue());
-
-		this.device = new ACBrDevice(this);
+				@Override
+				public void invoke(String CPF_CNPJ, String Nome, String Endereco)
+				{
+					onAntesAbrirCupom(CPF_CNPJ, Nome, Endereco);
+				}
+			});
+		}
+		
+		onAntesAbrirCupomListeners.add(listener);
 	}
-
-	@Override
-	protected void onFinalize() throws ACBrException
+	
+	public void removeOnAntesAbrirCupom(ACBrEventListener<AbreCupomEventObject> listener)
 	{
-		int ret = ACBrECFInterop.INSTANCE.ECF_Destroy(getHandle());
-		checkResult(ret);
-
-		setHandle(0);
-	}
-
-	@Override
-	protected void checkResult(int result) throws ACBrException
-	{
-		switch (result) {
-			case -1:
-				String message;
-
-				int LEN = 1024;
-				ByteBuffer buffer = ByteBuffer.allocateDirect(LEN);
-				int ret = ACBrECFInterop.INSTANCE.ECF_GetUltimoErro(getHandle(), buffer, LEN);
-
-				message = new String(buffer.array(), 0, ret, UTF8);
-				throw new ACBrException(message);
-
-
-			case -2:
-				throw new ACBrException("ACBr ECF não inicializado.");
+		onAntesAbrirCupomListeners.remove(listener);
+		
+		if (onAntesAbrirCupomListeners.isEmpty())
+		{
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreCupom(getHandle(), null);
 		}
 	}
-
+	
+	private void onAntesAbrirCupom(String CPF_CNPJ, String Nome, String Endereco)
+	{
+		AbreCupomEventObject e = new AbreCupomEventObject(this, fromUTF8(CPF_CNPJ), fromUTF8(Nome), fromUTF8(Endereco));
+		
+		Iterator<ACBrEventListener<AbreCupomEventObject>> iterator = onAntesAbrirCupomListeners.iterator();
+		while(iterator.hasNext())
+		{
+			iterator.next().notification(e);
+		}
+	}
+	//</editor-fold>	
+	
+	//<editor-fold defaultstate="collapsed" desc="OnBobinaAdicionaLinhas">
+	
+	public void addOnBobinaAdicionaLinhas(ACBrEventListener<BobinaEventObject> listener)
+	{
+		if (onBobinaAdicionaLinhasListeners.isEmpty())
+		{
+			ACBrECFInterop.INSTANCE.ECF_SetOnBobinaAdicionaLinhas(getHandle(), new ACBrECFInterop.BobinaAdicionaLinhasCallback() {
+				
+				@Override
+				public void invoke(String linhas, String operacao)
+				{
+					onBobinaAdicionaLinha(linhas, operacao);
+				}
+			});
+		}
+		
+		onBobinaAdicionaLinhasListeners.add(listener);
+	}
+	
+	public void removeOnBobinaAdicionaLinhas(ACBrEventListener<BobinaEventObject> listener)
+	{
+		onBobinaAdicionaLinhasListeners.remove(listener);
+		
+		if (onBobinaAdicionaLinhasListeners.isEmpty())
+		{
+			ACBrECFInterop.INSTANCE.ECF_SetOnBobinaAdicionaLinhas(getHandle(), null);
+		}
+	}
+	
+	private void onBobinaAdicionaLinha(String linhas, String operacao)
+	{
+		BobinaEventObject e = new BobinaEventObject(this, fromUTF8(linhas), fromUTF8(operacao));
+		
+		Iterator<ACBrEventListener<BobinaEventObject>> iterator = onBobinaAdicionaLinhasListeners.iterator();
+		while(iterator.hasNext())
+		{
+			iterator.next().notification(e);
+		}
+	}
 	//</editor-fold>
 	
+	//<editor-fold defaultstate="collapsed" desc="OnAntesCancelaItemVendido">
+	
+	public void addOnAntesCancelaItemVendido(ACBrEventListener<CancelaItemEventObject> listener)
+	{
+		if (onAntesCancelaItemVendidoListeners.isEmpty())
+		{
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaItemVendido(getHandle(), new ACBrECFInterop.IntArgumentCallback() {
+
+				@Override
+				public void invoke(int value)
+				{
+					onAntesCancelaItemVendido(value);
+				}
+			} );
+		}
+		
+		onAntesCancelaItemVendidoListeners.add(listener);
+	}
+	
+	public void removeOnAntesCancelaItemVendido(ACBrEventListener<CancelaItemEventObject> listener)
+	{
+		onAntesCancelaItemVendidoListeners.remove(listener);
+		
+		if (onAntesCancelaItemVendidoListeners.isEmpty())
+		{
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaItemVendido(getHandle(), null);
+		}
+	}
+	
+	private void onAntesCancelaItemVendido(int numItem)
+	{
+		CancelaItemEventObject e = new CancelaItemEventObject(this, numItem);
+		
+		Iterator<ACBrEventListener<CancelaItemEventObject>> iterator = onAntesCancelaItemVendidoListeners.iterator();
+		while(iterator.hasNext())
+		{
+			iterator.next().notification(e);
+		}
+	}
+	
+	//</editor-fold>		
+	
+	//</editor-fold>
+		
 	//<editor-fold defaultstate="collapsed" desc="Properties">
 	public ACBrDevice getDevice()
 	{
@@ -1527,6 +1618,53 @@ public final class ACBrECF extends ACBrClass
 	 * }*/
 	//</editor-fold>
 	
+	//<editor-fold defaultstate="collapsed" desc="Methods">
+	
+	//<editor-fold defaultstate="collapsed" desc="Override Methods">
+	
+	@Override
+	protected void onInitialize() throws ACBrException
+	{
+		IntByReference handle = new IntByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_Create(handle);
+		checkResult(ret);
+
+		setHandle(handle.getValue());
+
+		this.device = new ACBrDevice(this);
+	}
+
+	@Override
+	protected void onFinalize() throws ACBrException
+	{
+		int ret = ACBrECFInterop.INSTANCE.ECF_Destroy(getHandle());
+		checkResult(ret);
+
+		setHandle(0);
+	}
+
+	@Override
+	protected void checkResult(int result) throws ACBrException
+	{
+		switch (result) {
+			case -1:
+				String message;
+
+				int LEN = 1024;
+				ByteBuffer buffer = ByteBuffer.allocate(LEN);
+				int ret = ACBrECFInterop.INSTANCE.ECF_GetUltimoErro(getHandle(), buffer, LEN);
+
+				message = fromUTF8(buffer, ret);
+				throw new ACBrException(message);
+
+
+			case -2:
+				throw new ACBrException("ACBr ECF não inicializado.");
+		}
+	}
+
+	//</editor-fold>
+
 	//<editor-fold defaultstate="collapsed" desc="Component Methods">
 	
 	public String leituraMemoriaFiscalSerial(Date dataInicial, Date dataFinal, boolean simplificada) throws ACBrException
@@ -2501,7 +2639,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-	//<editor-fold defaultstate="collapsed" desc="Methods">
-	//</editor-fold>
+	
 	//</editor-fold>
 }

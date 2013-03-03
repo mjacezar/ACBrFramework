@@ -1,0 +1,5 @@
+jACBrFramework
+
+Até o momento a DLL nativa ACBrFramework só é distribuída compilada para Win32.
+Para executar o projeto, o arquivo ACBrFramework32.dll precisa estar em C:\Windows\System32
+Para máquinas 64bits, o ACBrFramework32.dll precisa estar em C:\Windows\SysWOW64 e o aplicativo deve ser executado num JRE de 32 bits.
