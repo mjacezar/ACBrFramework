@@ -2,7 +2,6 @@ package jACBrFramework.serial.ecf;
 
 public class FormaPagamento
 {
-
 	//<editor-fold defaultstate="collapsed" desc="Fields">
 	
 	private String indice;

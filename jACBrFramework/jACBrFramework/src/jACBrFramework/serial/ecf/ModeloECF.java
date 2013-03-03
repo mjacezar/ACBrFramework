@@ -2,7 +2,6 @@ package jACBrFramework.serial.ecf;
 
 public interface ModeloECF
 {
-
 	public static final int NENHUM = 0;
 	public static final int NAO_FISCAL = 1;
 	public static final int BEMATECH = 2;
