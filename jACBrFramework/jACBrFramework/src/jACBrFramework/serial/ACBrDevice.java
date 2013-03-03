@@ -10,274 +10,232 @@ import java.nio.ByteBuffer;
 
 public final class ACBrDevice extends ACBrComposedClass
 {
+
 	public ACBrDevice(ACBrClass parent) throws ACBrException
 	{
 		super(parent);
 	}
 
+	//<editor-fold defaultstate="collapsed" desc="Properties">
+	
+	public String getPorta() throws ACBrException
+	{
+
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_GetPorta(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
+
+		return fromUTF8(returnBuffer, ret);
+	}
+
+	public void setPorta(String value) throws ACBrException
+	{
+
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_SetPorta(getHandle(), toUTF8(value));
+		checkResult(ret);
+
+
+	}
+
 	public int getBaud() throws ACBrException
 	{
-		return getInt(new GetIntEntryPoint() {
 
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_GetBaud(handle);
-			}
-		});
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_GetBaud(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public void setBaud(int value) throws ACBrException
 	{
-		setInt(value, new SetIntEntryPoint() {
 
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_SetBaud(handle, value);
-			}
-		});
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_SetBaud(getHandle(), value);
+		checkResult(ret);
+
 
 	}
 
 	public int getDataBits() throws ACBrException
 	{
-		return getInt(new GetIntEntryPoint() {
 
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_GetDataBits(handle);
-			}
-		});
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_GetDataBits(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public void setDataBits(int value) throws ACBrException
 	{
-		setInt(value, new SetIntEntryPoint() {
 
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_SetDataBits(handle, value);
-			}
-		});
-	}
 
-	public int getHandShake() throws ACBrException
-	{
-		return getInt(new GetIntEntryPoint() {
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_SetDataBits(getHandle(), value);
+		checkResult(ret);
 
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_GetHandShake(handle);
-			}
-		});
-	}
 
-	public void setHandShake(int value) throws ACBrException
-	{
-		setInt(value, new SetIntEntryPoint() {
-
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_SetHandShake(handle, value);
-			}
-		});
-	}
-
-	public boolean getHardFlow() throws ACBrException
-	{
-		return getBoolean(new GetBooleanEntryPoint() {
-
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_GetHardFlow(handle);
-			}
-		});
-	}
-
-	public void setHardFlow(boolean value) throws ACBrException
-	{
-		setBoolean(value, new SetBooleanEntryPoint() {
-
-			@Override
-			public int invoke(int handle, boolean value)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_SetHardFlow(handle, value);
-			}
-		});
-	}
-
-	public int getMaxBandwidth() throws ACBrException
-	{
-		return getInt(new GetIntEntryPoint() {
-
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_GetMaxBandwidth(handle);
-			}
-		});
-	}
-
-	public void setMaxBandwidth(int value) throws ACBrException
-	{
-		setInt(value, new SetIntEntryPoint() {
-
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_SetMaxBandwidth(handle, value);
-			}
-		});		
 	}
 
 	public int getParity() throws ACBrException
 	{
-		return getInt(new GetIntEntryPoint() {
 
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_GetParity(handle);
-			}
-		});		
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_GetParity(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public void setParity(int value) throws ACBrException
 	{
-		setInt(value, new SetIntEntryPoint() {
 
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_SetParity(handle, value);
-			}
-		});			
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_SetParity(getHandle(), value);
+		checkResult(ret);
+
+
 	}
 
-	public String getPorta() throws ACBrException
+	public int getStopBits() throws ACBrException
 	{
-		return getString(new GetStringEntryPoint() {
 
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_GetPorta(handle, buffer, bufferLen);
-			}
-		});		
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_GetStopBits(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
-	public void setPorta(String value) throws ACBrException
+	public void setStopBits(int value) throws ACBrException
 	{
-		setString(value, new SetStringEntryPoint() {
 
-			@Override
-			public int invoke(int handle, String value)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_SetPorta(handle, value);
-			}
-		});
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_SetStopBits(getHandle(), value);
+		checkResult(ret);
+
+
 	}
 
-	public boolean getProcessMessages() throws ACBrException
+	public int getHandShake() throws ACBrException
 	{
-		return getBoolean(new GetBooleanEntryPoint() {
 
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_GetProcessMessages(handle);
-			}
-		});		
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_GetHandShake(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
-	public void setProcessMessages(boolean value) throws ACBrException
+	public void setHandShake(int value) throws ACBrException
 	{
-		setBoolean(value, new SetBooleanEntryPoint() {
 
-			@Override
-			public int invoke(int handle, boolean value)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_SetProcessMessages(handle, value);
-			}
-		});		
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_SetHandShake(getHandle(), value);
+		checkResult(ret);
+
+
+	}
+
+	public boolean getHardFlow() throws ACBrException
+	{
+
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_GetHardFlow(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
+	}
+
+	public void setHardFlow(boolean value) throws ACBrException
+	{
+
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_SetHardFlow(getHandle(), value);
+		checkResult(ret);
+
 
 	}
 
 	public boolean getSoftFlow() throws ACBrException
 	{
-		return getBoolean(new GetBooleanEntryPoint() {
 
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_GetSoftFlow(handle);
-			}
-		});		
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_GetSoftFlow(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public void setSoftFlow(boolean value) throws ACBrException
 	{
-		setBoolean(value, new SetBooleanEntryPoint() {
 
-			@Override
-			public int invoke(int handle, boolean value)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_SetSoftFlow(handle, value);
-			}
-		});		
-	}
 
-	public int getStopBits() throws ACBrException
-	{
-		return getInt(new GetIntEntryPoint() {
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_SetSoftFlow(getHandle(), value);
+		checkResult(ret);
 
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_GetStopBits(handle);
-			}
-		});			
-	}
 
-	public void setStopBits(int value) throws ACBrException
-	{
-		setInt(value, new SetIntEntryPoint() {
-
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_SetStopBits(handle, value);
-			}
-		});					
 	}
 
 	public int getTimeOut() throws ACBrException
 	{
-		return getInt(new GetIntEntryPoint() {
 
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_GetTimeOut(handle);
-			}
-		});		
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_GetTimeOut(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public void setTimeOut(int value) throws ACBrException
 	{
-		setInt(value, new SetIntEntryPoint() {
 
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrDeviceInterop.INSTANCE.DEV_SetTimeOut(handle, value);
-			}
-		});			
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_SetTimeOut(getHandle(), value);
+		checkResult(ret);
+
+
 	}
+
+	public int getMaxBandwidth() throws ACBrException
+	{
+
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_GetMaxBandwidth(getHandle());
+		checkResult(ret);
+
+		return ret;
+	}
+
+	public void setMaxBandwidth(int value) throws ACBrException
+	{
+
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_SetMaxBandwidth(getHandle(), value);
+		checkResult(ret);
+
+
+	}
+
+	public boolean getProcessMessages() throws ACBrException
+	{
+
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_GetProcessMessages(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
+	}
+
+	public void setProcessMessages(boolean value) throws ACBrException
+	{
+
+
+		int ret = ACBrDeviceInterop.INSTANCE.DEV_SetProcessMessages(getHandle(), value);
+		checkResult(ret);
+
+
+	}
+	//</editor-fold>
 }

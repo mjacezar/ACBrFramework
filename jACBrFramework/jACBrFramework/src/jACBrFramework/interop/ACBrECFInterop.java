@@ -348,7 +348,7 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_GetCNPJ(int ecfHandle, ByteBuffer buffer, int bufferLen);
 	int ECF_GetColunas(int ecfHandle);
 	int ECF_GetComandoEnviado(int ecfHandle, ByteBuffer buffer, int bufferLen);
-	int ECF_GetComandoLOG(int ecfHandle, ByteBuffer buffer, int bufferLen);
+	int ECF_GetComandoLog(int ecfHandle, ByteBuffer buffer, int bufferLen);
 	int ECF_GetComprovanteNaoFiscal(int ecfHandle, ACBrECFInterop.ComprovanteNaoFiscalRec comprovanteNaoFiscal, int index);
 	int ECF_GetDadosReducaoZ(int ecfHandle, ByteBuffer buffer, int bufferLen);
 	int ECF_GetDadosUltimaReducaoZ(int ecfHandle, ByteBuffer buffer, int bufferLen);
@@ -374,7 +374,7 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_GetLinhasEntreCupons(int ecfHandle);
 	int ECF_GetMaxLinhasBuffer(int ecfHandle);
 	int ECF_GetMemoParams(int ecfHandle, ByteBuffer linha, int bufferLen, int index);
-	int ECF_GetMemoParamsLineCount(int ecfHandle);
+	int ECF_GetMemoParamsCount(int ecfHandle);
 	int ECF_GetMFAdicional(int ecfHandle, ByteBuffer buffer, int bufferLen);
 	int ECF_GetMFD(int ecfHandle);
 	int ECF_GetModelo(int ecfHandle);
@@ -503,7 +503,7 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_SetArqLOG(int ecfHandle, String arqLog);
 	int ECF_SetArredondaItemMFD(int ecfHandle, boolean arredonda);
 	int ECF_SetArredondaPorQtd(int ecfHandle, boolean arredonda);
-	int ECF_SetComandoLOG(int ecfHandle, String comandoLog);
+	int ECF_SetComandoLog(int ecfHandle, String comandoLog);
 	int ECF_SetDecimaisPreco(int ecfHandle, int decimaisPreco);
 	int ECF_SetDecimaisQtd(int ecfHandle, int decimaisQtd);
 	int ECF_SetDescricaoGrande(int ecfHandle, boolean descricaoGrande);
