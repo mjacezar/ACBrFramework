@@ -2029,7 +2029,7 @@ begin
   end;
 end;
 
-Function ECF_GetComandoLOG(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_GetComandoLog(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   StrTmp : String;
 begin
@@ -2054,7 +2054,7 @@ begin
 
 end;
 
-Function ECF_SetComandoLOG(const ecfHandle: PECFHandle; const ComandoLog : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetComandoLog(const ecfHandle: PECFHandle; const ComandoLog : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -4059,12 +4059,9 @@ begin
   end;
 
   try
-  if (index >= 0) and (index < ecfHandle^.ECF.MemoParams.Count ) then
-  begin
      strTmp := ecfHandle^.ECF.MemoParams[index];
      StrPLCopy(linha, strTmp, BufferLen);
-  end;
-  Result := 0 ;
+     Result := length(StrTmp);
   except
      on exception : Exception do
      begin
@@ -4074,7 +4071,7 @@ begin
   end;
 end;
 
-Function ECF_GetMemoParamsLineCount(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_GetMemoParamsCount(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -10478,7 +10475,7 @@ ECF_GetAtivo,
 ECF_GetAbout, ECF_GetArqLOG, ECF_SetArqLOG,
 ECF_GetModelo, ECF_SetModelo, ECF_GetMaxLinhasBuffer, ECF_SetMaxLinhasBuffer,
 ECF_GetColunas, ECF_GetAguardandoResposta, ECF_GetComandoEnviado, ECF_GetRespostaComando,
-ECF_GetComandoLOG, ECF_SetComandoLOG, ECF_GetAguardaImpressao, ECF_SetAguardaImpressao,
+ECF_GetComandoLog, ECF_SetComandoLog, ECF_GetAguardaImpressao, ECF_SetAguardaImpressao,
 ECF_GetModeloStr, ECF_GetRFDID, ECF_GetDataHora, ECF_GetDataHoraStr,
 ECF_GetNumCupom, ECF_GetNumCOO, ECF_GetNumLoja, ECF_GetNumECF, ECF_GetNumSerie, ECF_GetNumSerieMFD, ECF_GetNumVersao,
 ECF_GetDataMovimento, ECF_GetDataMovimentoStr, ECF_GetDataHoraSB, ECF_GetDataHoraSBStr,
@@ -10671,7 +10668,7 @@ ECF_PafMF_RelParametrosConfiguracao,
 { Bobina }
 
 ECF_SetMemoParams, ECF_GetMemoParams,
-ECF_GetMemoParamsLineCount, ECF_MemoLeParams,
+ECF_GetMemoParamsCount, ECF_MemoLeParams,
 
 {Eventos}
 

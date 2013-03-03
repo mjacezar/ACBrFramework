@@ -27,9 +27,9 @@ namespace ACBrFramework.ECF
 	{
 		#region Properties
 
-		public string Linhas { get; set; }
+		public string Linhas { get; internal set; }
 
-		public string Operacao { get; set; }
+		public string Operacao { get; internal set; }
 
 		#endregion Properties
 	}

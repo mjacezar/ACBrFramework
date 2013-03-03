@@ -75,7 +75,8 @@ public class Program
 
 			System.out.print("GetAtivo");
 			System.out.println(": " + ecf.getAtivo());
-
+			
+			
 			System.out.println("Ativar\n");
 			ecf.ativar();
 

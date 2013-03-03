@@ -275,10 +275,10 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_GetRespostaComando(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_GetComandoLOG(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+		public static extern int ECF_GetComandoLog(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetComandoLOG(IntPtr ecfHandle, string comandoLog);
+		public static extern int ECF_SetComandoLog(IntPtr ecfHandle, string comandoLog);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetAguardaImpressao(IntPtr ecfHandle);
@@ -512,7 +512,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_GetMemoParams(IntPtr ecfHandle, StringBuilder linha, int bufferLen, int index);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_GetMemoParamsLineCount(IntPtr ecfHandle);
+		public static extern int ECF_GetMemoParamsCount(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetLinhasEntreCupons(IntPtr ecfHandle);

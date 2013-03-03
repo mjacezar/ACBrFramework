@@ -3020,7 +3020,7 @@ namespace ACBrFramework.ECF
 		{
 			get
 			{
-				return GetStringArray(ACBrECFInterop.ECF_GetMemoParams, ACBrECFInterop.ECF_GetMemoParamsLineCount);
+				return GetStringArray(ACBrECFInterop.ECF_GetMemoParams, ACBrECFInterop.ECF_GetMemoParamsCount);
 			}
 			set
 			{
@@ -3210,11 +3210,11 @@ namespace ACBrFramework.ECF
 		{
 			get
 			{
-				return GetString(ACBrECFInterop.ECF_GetComandoLOG);
+				return GetString(ACBrECFInterop.ECF_GetComandoLog);
 			}
 			set
 			{
-				SetString(ACBrECFInterop.ECF_SetComandoLOG, value);
+				SetString(ACBrECFInterop.ECF_SetComandoLog, value);
 			}
 		}
 

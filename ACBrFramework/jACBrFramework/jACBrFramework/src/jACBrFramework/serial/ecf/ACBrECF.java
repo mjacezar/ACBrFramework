@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-
 public final class ACBrECF extends ACBrClass
 {
 	// <editor-fold defaultstate="collapsed" desc="Fields">
@@ -22,15 +21,13 @@ public final class ACBrECF extends ACBrClass
 	private Aliquota[] aliquotas;
 	private FormaPagamento[] formasPagamento;
 	private ComprovanteNaoFiscal[] comprovantesNaoFiscais;
-
 	private ArrayList<ACBrEventListener<AbreCupomEventObject>> onAntesAbrirCupomListeners = new ArrayList<ACBrEventListener<AbreCupomEventObject>>();
 	private ArrayList<ACBrEventListener<BobinaEventObject>> onBobinaAdicionaLinhasListeners = new ArrayList<ACBrEventListener<BobinaEventObject>>();
 	private ArrayList<ACBrEventListener<CancelaItemEventObject>> onAntesCancelaItemVendidoListeners = new ArrayList<ACBrEventListener<CancelaItemEventObject>>();
-	
+
 	// </editor-fold>
-			
-	//<editor-fold defaultstate="collapsed" desc="Constructor">
 	
+	//<editor-fold defaultstate="collapsed" desc="Constructor">
 	public ACBrECF() throws ACBrException
 	{
 	}
@@ -38,15 +35,12 @@ public final class ACBrECF extends ACBrClass
 	//</editor-fold>
 	
 	//<editor-fold defaultstate="collapsed" desc="Events">
-	
 	//<editor-fold defaultstate="collapsed" desc="OnAntesAbrirCupom">
-	
 	public void addOnAntesAbrirCupom(ACBrEventListener<AbreCupomEventObject> listener)
 	{
-		if (onAntesAbrirCupomListeners.isEmpty())
-		{
-			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreCupom(getHandle(), new ACBrECFInterop.AbreCupomCallback() {
-
+		if (onAntesAbrirCupomListeners.isEmpty()) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreCupom(getHandle(), new ACBrECFInterop.AbreCupomCallback()
+			{
 				@Override
 				public void invoke(String CPF_CNPJ, String Nome, String Endereco)
 				{
@@ -54,40 +48,36 @@ public final class ACBrECF extends ACBrClass
 				}
 			});
 		}
-		
+
 		onAntesAbrirCupomListeners.add(listener);
 	}
-	
+
 	public void removeOnAntesAbrirCupom(ACBrEventListener<AbreCupomEventObject> listener)
 	{
 		onAntesAbrirCupomListeners.remove(listener);
-		
-		if (onAntesAbrirCupomListeners.isEmpty())
-		{
+
+		if (onAntesAbrirCupomListeners.isEmpty()) {
 			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreCupom(getHandle(), null);
 		}
 	}
-	
+
 	private void onAntesAbrirCupom(String CPF_CNPJ, String Nome, String Endereco)
 	{
 		AbreCupomEventObject e = new AbreCupomEventObject(this, fromUTF8(CPF_CNPJ), fromUTF8(Nome), fromUTF8(Endereco));
-		
+
 		Iterator<ACBrEventListener<AbreCupomEventObject>> iterator = onAntesAbrirCupomListeners.iterator();
-		while(iterator.hasNext())
-		{
+		while (iterator.hasNext()) {
 			iterator.next().notification(e);
 		}
 	}
 	//</editor-fold>	
-	
+
 	//<editor-fold defaultstate="collapsed" desc="OnBobinaAdicionaLinhas">
-	
 	public void addOnBobinaAdicionaLinhas(ACBrEventListener<BobinaEventObject> listener)
 	{
-		if (onBobinaAdicionaLinhasListeners.isEmpty())
-		{
-			ACBrECFInterop.INSTANCE.ECF_SetOnBobinaAdicionaLinhas(getHandle(), new ACBrECFInterop.BobinaAdicionaLinhasCallback() {
-				
+		if (onBobinaAdicionaLinhasListeners.isEmpty()) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnBobinaAdicionaLinhas(getHandle(), new ACBrECFInterop.BobinaAdicionaLinhasCallback()
+			{
 				@Override
 				public void invoke(String linhas, String operacao)
 				{
@@ -95,1533 +85,1164 @@ public final class ACBrECF extends ACBrClass
 				}
 			});
 		}
-		
+
 		onBobinaAdicionaLinhasListeners.add(listener);
 	}
-	
+
 	public void removeOnBobinaAdicionaLinhas(ACBrEventListener<BobinaEventObject> listener)
 	{
 		onBobinaAdicionaLinhasListeners.remove(listener);
-		
-		if (onBobinaAdicionaLinhasListeners.isEmpty())
-		{
+
+		if (onBobinaAdicionaLinhasListeners.isEmpty()) {
 			ACBrECFInterop.INSTANCE.ECF_SetOnBobinaAdicionaLinhas(getHandle(), null);
 		}
 	}
-	
+
 	private void onBobinaAdicionaLinha(String linhas, String operacao)
 	{
 		BobinaEventObject e = new BobinaEventObject(this, fromUTF8(linhas), fromUTF8(operacao));
-		
+
 		Iterator<ACBrEventListener<BobinaEventObject>> iterator = onBobinaAdicionaLinhasListeners.iterator();
-		while(iterator.hasNext())
-		{
+		while (iterator.hasNext()) {
 			iterator.next().notification(e);
 		}
 	}
 	//</editor-fold>
-	
+
 	//<editor-fold defaultstate="collapsed" desc="OnAntesCancelaItemVendido">
-	
 	public void addOnAntesCancelaItemVendido(ACBrEventListener<CancelaItemEventObject> listener)
 	{
-		if (onAntesCancelaItemVendidoListeners.isEmpty())
-		{
-			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaItemVendido(getHandle(), new ACBrECFInterop.IntArgumentCallback() {
-
+		if (onAntesCancelaItemVendidoListeners.isEmpty()) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaItemVendido(getHandle(), new ACBrECFInterop.IntArgumentCallback()
+			{
 				@Override
 				public void invoke(int value)
 				{
 					onAntesCancelaItemVendido(value);
 				}
-			} );
+			});
 		}
-		
+
 		onAntesCancelaItemVendidoListeners.add(listener);
 	}
-	
+
 	public void removeOnAntesCancelaItemVendido(ACBrEventListener<CancelaItemEventObject> listener)
 	{
 		onAntesCancelaItemVendidoListeners.remove(listener);
-		
-		if (onAntesCancelaItemVendidoListeners.isEmpty())
-		{
+
+		if (onAntesCancelaItemVendidoListeners.isEmpty()) {
 			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaItemVendido(getHandle(), null);
 		}
 	}
-	
+
 	private void onAntesCancelaItemVendido(int numItem)
 	{
 		CancelaItemEventObject e = new CancelaItemEventObject(this, numItem);
-		
+
 		Iterator<ACBrEventListener<CancelaItemEventObject>> iterator = onAntesCancelaItemVendidoListeners.iterator();
-		while(iterator.hasNext())
-		{
+		while (iterator.hasNext()) {
 			iterator.next().notification(e);
 		}
 	}
-	
+
 	//</editor-fold>		
-	
 	//</editor-fold>
-		
-	//<editor-fold defaultstate="collapsed" desc="Properties">
+	
+	//<editor-fold defaultstate="collapsed" desc="Component Properties">
+	
 	public ACBrDevice getDevice()
 	{
 		return this.device;
 	}
+	
+	public FormaPagamento[] getFormasPagamento() throws ACBrException
+	{
+		return formasPagamento;
+	}
+	
+	public void carregaFormasPagamento() throws ACBrException
+	{
+		
+		
+		int ret = ACBrECFInterop.INSTANCE.ECF_CarregaFormasPagamento(getHandle());
+		checkResult(ret);
+		
+		carregaFormasPagamento(ret);
+		
+	}
+	
+	public void lerTotaisFormaPagamento() throws ACBrException
+	{
+		
+		
+		int ret = ACBrECFInterop.INSTANCE.ECF_LerTotaisFormaPagamento(getHandle());
+		checkResult(ret);
+		
+		carregaFormasPagamento(ret);
+		
+	}
 
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="Properties">
+	
 	public int getModelo() throws ACBrException
 	{
 
-		return getInt(new GetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetModelo(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetModelo(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public void setModelo(int value) throws ACBrException
 	{
 
-		setInt(value, new SetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetModelo(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetModelo(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	public int getMaxLinhasBuffer() throws ACBrException
 	{
 
-		return getInt(new GetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetMaxLinhasBuffer(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetMaxLinhasBuffer(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public void setMaxLinhasBuffer(int value) throws ACBrException
 	{
 
-		setInt(value, new SetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetMaxLinhasBuffer(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetMaxLinhasBuffer(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	public boolean getDescricaoGrande() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetDescricaoGrande(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetDescricaoGrande(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public void setDescricaoGrande(boolean value) throws ACBrException
 	{
 
-		setBoolean(value, new SetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, boolean value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetDescricaoGrande(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetDescricaoGrande(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	public boolean getGavetaSinalInvertido() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetGavetaSinalInvertido(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetGavetaSinalInvertido(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public void setGavetaSinalInvertido(boolean value) throws ACBrException
 	{
 
-		setBoolean(value, new SetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, boolean value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetGavetaSinalInvertido(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetGavetaSinalInvertido(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	public boolean getArredondaPorQtd() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetArredondaPorQtd(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetArredondaPorQtd(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public void setArredondaPorQtd(boolean value) throws ACBrException
 	{
 
-		setBoolean(value, new SetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, boolean value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetArredondaPorQtd(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetArredondaPorQtd(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	public boolean getArredondaItemMFD() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetArredondaItemMFD(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetArredondaItemMFD(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public void setArredondaItemMFD(boolean value) throws ACBrException
 	{
 
-		setBoolean(value, new SetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, boolean value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetArredondaItemMFD(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetArredondaItemMFD(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	public boolean getIgnorarTagsFormatacao() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetIgnorarTagsFormatacao(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetIgnorarTagsFormatacao(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public void setIgnorarTagsFormatacao(boolean value) throws ACBrException
 	{
 
-		setBoolean(value, new SetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, boolean value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetIgnorarTagsFormatacao(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetIgnorarTagsFormatacao(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	public int getPausaRelatorio() throws ACBrException
 	{
 
-		return getInt(new GetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetPausaRelatorio(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetPausaRelatorio(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public void setPausaRelatorio(int value) throws ACBrException
 	{
 
-		setInt(value, new SetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetPausaRelatorio(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetPausaRelatorio(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	public int getPaginaDeCodigo() throws ACBrException
 	{
 
-		return getInt(new GetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetPaginaDeCodigo(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetPaginaDeCodigo(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public void setPaginaDeCodigo(int value) throws ACBrException
 	{
 
-		setInt(value, new SetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetPaginaDeCodigo(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetPaginaDeCodigo(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	public String getAbout() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetAbout(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetAbout(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getArqLOG() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetArqLOG(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetArqLOG(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public void setArqLOG(String value) throws ACBrException
 	{
 
-		setString(value, new SetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, String value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetArqLOG(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetArqLOG(getHandle(), toUTF8(value));
+		checkResult(ret);
 
 	}
 
 	public String getOperador() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetOperador(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetOperador(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public void setOperador(String value) throws ACBrException
 	{
 
-		setString(value, new SetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, String value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetOperador(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetOperador(getHandle(), toUTF8(value));
+		checkResult(ret);
 
 	}
 
 	public String[] getMemoParams() throws ACBrException
 	{
-		return getStringArray(
-			new GetStringArrayEntryPoint()
-			{
-				@Override
-				public int invoke(int handle, ByteBuffer buffer, int bufferLen, int index)
-				{
-					return ACBrECFInterop.INSTANCE.ECF_GetMemoParams(handle, buffer, bufferLen, index);
-				}
-			},
-			new GetIntEntryPoint()
-			{
-				@Override
-				public int invoke(int handle)
-				{
-					return ACBrECFInterop.INSTANCE.ECF_GetMemoParamsLineCount(handle);
-				}
-			});
+
+		int count = ACBrECFInterop.INSTANCE.ECF_GetMemoParamsCount(getHandle());
+		checkResult(count);
+
+		String[] array = new String[count];
+		for (int i = 0; i < array.length; i++) {
+			ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+			int ret = ACBrECFInterop.INSTANCE.ECF_GetMemoParams(getHandle(), returnBuffer, STR_BUFFER_LEN, i);
+			checkResult(ret);
+
+			array[i] = fromUTF8(returnBuffer, ret);
+		}
+
+		return array;
 	}
 
 	public void setMemoParams(String[] value) throws ACBrException
 	{
-		//NÃO IMPLEMENTADO
+
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetMemoParams(getHandle(), toUTF8(value), value.length);
+		checkResult(ret);
+
 	}
 
 	public int getLinhasEntreCupons() throws ACBrException
 	{
 
-		return getInt(new GetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetLinhasEntreCupons(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetLinhasEntreCupons(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public void setLinhasEntreCupons(int value) throws ACBrException
 	{
 
-		setInt(value, new SetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetLinhasEntreCupons(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetLinhasEntreCupons(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	public int getDecimaisPreco() throws ACBrException
 	{
 
-		return getInt(new GetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetDecimaisPreco(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetDecimaisPreco(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public void setDecimaisPreco(int value) throws ACBrException
 	{
 
-		setInt(value, new SetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetDecimaisPreco(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetDecimaisPreco(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	public int getDecimaisQtd() throws ACBrException
 	{
 
-		return getInt(new GetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetDecimaisQtd(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetDecimaisQtd(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public void setDecimaisQtd(int value) throws ACBrException
 	{
 
-		setInt(value, new SetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetDecimaisQtd(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetDecimaisQtd(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	/*public Rodape getInfoRodapeCupom() throws ACBrException
 	 * {
-	 * //Nao implementado
+	 * //NotImplemented
 	 * }
 	 * 
 	 * public ConfigBarras getConfigBarras() throws ACBrException
 	 * {
-	 * //Nao implementado
+	 * //NotImplemented
 	 * }
 	 * 
 	 * public ACBrAAC getAAC() throws ACBrException
 	 * {
-	 * //Nao implementado
+	 * //NotImplemented
 	 * }
 	 * 
 	 * public void setAAC(ACBrAAC value) throws ACBrException
 	 * {
-	 * //Nao implementado
+	 * 
+	 * 
+	 * int ret = ACBrECFInterop.INSTANCE.ECF_SetAAC(getHandle(), value);
+	 * checkResult(ret);
+	 * 
 	 * }
 	 * 
 	 * public ACBrEAD getEAD() throws ACBrException
 	 * {
-	 * //Nao implementado
+	 * //NotImplemented
 	 * }
 	 * 
 	 * public void setEAD(ACBrEAD value) throws ACBrException
 	 * {
-	 * //Nao implementado
+	 * 
+	 * 
+	 * int ret = ACBrECFInterop.INSTANCE.ECF_SetEAD(getHandle(), value);
+	 * checkResult(ret);
+	 * 
 	 * }
 	 * 
 	 * public ACBrRFD getRFD() throws ACBrException
 	 * {
-	 * //Nao implementado
+	 * //NotImplemented
 	 * }
 	 * 
 	 * public void setRFD(ACBrRFD value) throws ACBrException
 	 * {
-	 * //Nao implementado
+	 * 
+	 * 
+	 * int ret = ACBrECFInterop.INSTANCE.ECF_SetRFD(getHandle(), value);
+	 * checkResult(ret);
+	 * 
 	 * }*/
+
 	public boolean getAtivo() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetAtivo(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetAtivo(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public int getColunas() throws ACBrException
 	{
 
-		return getInt(new GetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetColunas(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetColunas(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public boolean getAguardandoResposta() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetAguardandoResposta(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetAguardandoResposta(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public String getComandoLog() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetComandoLOG(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetComandoLog(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public void setComandoLog(String value) throws ACBrException
 	{
 
-		setString(value, new SetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, String value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetComandoLOG(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetComandoLog(getHandle(), toUTF8(value));
+		checkResult(ret);
 
 	}
 
 	public boolean getAguardaImpressao() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetAguardaImpressao(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetAguardaImpressao(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public void setAguardaImpressao(boolean value) throws ACBrException
 	{
 
-		setBoolean(value, new SetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, boolean value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetAguardaImpressao(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetAguardaImpressao(getHandle(), value);
+		checkResult(ret);
 
 	}
 
 	public String getModeloStr() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetModeloStr(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetModeloStr(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getRFDID() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetRFDID(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetRFDID(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public Date getDataHora() throws ACBrException
 	{
 
-		return getDate(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetDataHora(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetDataHora(getHandle(), returnValue);
+		checkResult(ret);
 
+		return OleDate.fromOADate(returnValue.getValue());
 	}
 
 	public String getNumCupom() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumCupom(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumCupom(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumCOO() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumCOO(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumCOO(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumLoja() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumLoja(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumLoja(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumECF() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumECF(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumECF(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumSerie() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumSerie(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumSerie(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumSerieMFD() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumSerieMFD(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumSerieMFD(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumVersao() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumVersao(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumVersao(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public Date getDataMovimento() throws ACBrException
 	{
 
-		return getDate(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetDataMovimento(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetDataMovimento(getHandle(), returnValue);
+		checkResult(ret);
 
+		return OleDate.fromOADate(returnValue.getValue());
 	}
 
 	public Date getDataHoraSB() throws ACBrException
 	{
 
-		return getDate(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetDataHoraSB(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetDataHoraSB(getHandle(), returnValue);
+		checkResult(ret);
 
+		return OleDate.fromOADate(returnValue.getValue());
 	}
 
 	public String getCNPJ() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetCNPJ(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetCNPJ(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getIE() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetIE(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetIE(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getIM() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetIM(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetIM(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getCliche() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetCliche(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetCliche(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getUsuarioAtual() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetUsuarioAtual(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetUsuarioAtual(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getSubModeloECF() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetSubModeloECF(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetSubModeloECF(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getPAF() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetPAF(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetPAF(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumCRZ() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumCRZ(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumCRZ(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumCRO() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumCRO(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumCRO(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumCCF() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumCCF(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumCCF(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumGNF() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumGNF(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumGNF(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumGRG() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumGRG(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumGRG(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumCDC() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumCDC(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumCDC(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getNumCOOInicial() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumCOOInicial(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumCOOInicial(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getComandoEnviado() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetComandoEnviado(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetComandoEnviado(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public String getRespostaComando() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetRespostaComando(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetRespostaComando(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public double getVendaBruta() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetVendaBruta(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetVendaBruta(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getGrandeTotal() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetGrandeTotal(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetGrandeTotal(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalCancelamentos() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalCancelamentos(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalCancelamentos(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalDescontos() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalDescontos(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalDescontos(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalAcrescimos() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalAcrescimos(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalAcrescimos(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalTroco() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalTroco(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalTroco(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalSubstituicaoTributaria() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalSubstituicaoTributaria(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalSubstituicaoTributaria(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalNaoTributado() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalNaoTributado(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalNaoTributado(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalIsencao() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalIsencao(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalIsencao(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalCancelamentosISSQN() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalCancelamentosISSQN(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalCancelamentosISSQN(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalDescontosISSQN() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalDescontosISSQN(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalDescontosISSQN(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalAcrescimosISSQN() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalAcrescimosISSQN(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalAcrescimosISSQN(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalSubstituicaoTributariaISSQN() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalSubstituicaoTributariaISSQN(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalSubstituicaoTributariaISSQN(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalNaoTributadoISSQN() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalNaoTributadoISSQN(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalNaoTributadoISSQN(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalIsencaoISSQN() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalIsencaoISSQN(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalIsencaoISSQN(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalNaoFiscal() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalNaoFiscal(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalNaoFiscal(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public int getNumUltItem() throws ACBrException
 	{
 
-		return getInt(new GetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetNumUltItem(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetNumUltItem(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public boolean getPoucoPapel() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetPoucoPapel(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetPoucoPapel(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public int getEstado() throws ACBrException
 	{
 
-		return getInt(new GetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetEstado(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetEstado(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public boolean getHorarioVerao() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetHorarioVerao(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetHorarioVerao(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public boolean getArredonda() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetArredonda(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetArredonda(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public boolean getTermica() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTermica(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTermica(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public boolean getMFD() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetMFD(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetMFD(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public String getMFAdicional() throws ACBrException
 	{
 
-		return getString(new GetStringEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, ByteBuffer buffer, int bufferLen)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetMFAdicional(handle, buffer, bufferLen);
-			}
-		});
+		ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetMFAdicional(getHandle(), returnBuffer, STR_BUFFER_LEN);
+		checkResult(ret);
 
+		return fromUTF8(returnBuffer, ret);
 	}
 
 	public boolean getIdentificaConsumidorRodape() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetIdentificaConsumidorRodape(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetIdentificaConsumidorRodape(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public boolean getParamDescontoISSQN() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetParamDescontoISSQN(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetParamDescontoISSQN(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public double getSubTotal() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetSubTotal(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetSubTotal(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public double getTotalPago() throws ACBrException
 	{
 
-		return getDouble(new GetDoubleEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, DoubleByReference value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetTotalPago(handle, value);
-			}
-		});
+		DoubleByReference returnValue = new DoubleByReference();
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetTotalPago(getHandle(), returnValue);
+		checkResult(ret);
 
+		return returnValue.getValue();
 	}
 
 	public boolean getGavetaAberta() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetGavetaAberta(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetGavetaAberta(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public boolean getChequePronto() throws ACBrException
 	{
 
-		return getBoolean(new GetBooleanEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetChequePronto(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetChequePronto(getHandle());
+		checkResult(ret);
+
+		return ret != 0;
 	}
 
 	public int getIntervaloAposComando() throws ACBrException
 	{
 
-		return getInt(new GetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_GetIntervaloAposComando(handle);
-			}
-		});
 
+		int ret = ACBrECFInterop.INSTANCE.ECF_GetIntervaloAposComando(getHandle());
+		checkResult(ret);
+
+		return ret;
 	}
 
 	public void setIntervaloAposComando(int value) throws ACBrException
 	{
 
-		setInt(value, new SetIntEntryPoint()
-		{
-			@Override
-			public int invoke(int handle, int value)
-			{
-				return ACBrECFInterop.INSTANCE.ECF_SetIntervaloAposComando(handle, value);
-			}
-		});
+
+		int ret = ACBrECFInterop.INSTANCE.ECF_SetIntervaloAposComando(getHandle(), value);
+		checkResult(ret);
 
 	}
 
-	public FormaPagamento[] getFormasPagamento() throws ACBrException
-	{
-		return formasPagamento;
-	}
-	
 	/*public Aliquota[] getAliquotas() throws ACBrException
 	 * {
-	 * //Nao implementado
+	 * //NotImplemented
 	 * }
 	 * 
-
+	 * public FormaPagamento[] getFormasPagamento() throws ACBrException
+	 * {
+	 * //NotImplemented
+	 * }
 	 * 
 	 * public RelatorioGerencial[] getRelatoriosGerenciais() throws ACBrException
 	 * {
-	 * //Nao implementado
+	 * //NotImplemented
 	 * }
 	 * 
 	 * public ComprovanteNaoFiscal[] getComprovantesNaoFiscais() throws ACBrException
 	 * {
-	 * //Nao implementado
+	 * //NotImplemented
 	 * }
 	 * 
 	 * public Consumidor getConsumidor() throws ACBrException
 	 * {
-	 * //Nao implementado
+	 * //NotImplemented
 	 * }
 	 * 
 	 * public DadosReducaoZClass getDadosReducaoZClass() throws ACBrException
 	 * {
-	 * //Nao implementado
-	 * }
-	 * 
-	 * public IntPtr getHandle() throws ACBrException
-	 * {
-	 * //Nao implementado
+	 * //NotImplemented
 	 * }*/
-	//</editor-fold>
+
+	//</editor-fold>	
 	
 	//<editor-fold defaultstate="collapsed" desc="Methods">
 	
 	//<editor-fold defaultstate="collapsed" desc="Override Methods">
-	
 	@Override
 	protected void onInitialize() throws ACBrException
 	{
@@ -1664,7 +1285,7 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
+	
 	//<editor-fold defaultstate="collapsed" desc="Component Methods">
 	
 	public String leituraMemoriaFiscalSerial(Date dataInicial, Date dataFinal, boolean simplificada) throws ACBrException
@@ -1712,8 +1333,7 @@ public final class ACBrECF extends ACBrClass
 
 	public void linhaCupomVinculado(String linhas[]) throws ACBrException
 	{
-		for(int i=0; i<linhas.length; i++ )
-		{
+		for (int i = 0; i < linhas.length; i++) {
 			linhaCupomVinculado(linhas[i]);
 		}
 	}
@@ -1799,8 +1419,7 @@ public final class ACBrECF extends ACBrClass
 
 	public void linhaRelatorioGerencial(String linhas[], int indiceBMP) throws ACBrException
 	{
-		for(int i=0; i<linhas.length; i++ )
-		{
+		for (int i = 0; i < linhas.length; i++) {
 			linhaRelatorioGerencial(linhas[i], indiceBMP);
 		}
 	}
@@ -1879,31 +1498,9 @@ public final class ACBrECF extends ACBrClass
 	{
 
 
-		int ret = ACBrECFInterop.INSTANCE.ECF_ProgramaAliquota(getHandle(), aliquota, tipo.charAt(0) , toUTF8(posicao));
+		int ret = ACBrECFInterop.INSTANCE.ECF_ProgramaAliquota(getHandle(), aliquota, tipo.charAt(0), toUTF8(posicao));
 		checkResult(ret);
 
-
-	}
-
-	public void carregaFormasPagamento() throws ACBrException
-	{
-
-
-		int ret = ACBrECFInterop.INSTANCE.ECF_CarregaFormasPagamento(getHandle());
-		checkResult(ret);
-
-		carregaFormasPagamento(ret);
-
-	}
-
-	public void lerTotaisFormaPagamento() throws ACBrException
-	{
-
-
-		int ret = ACBrECFInterop.INSTANCE.ECF_LerTotaisFormaPagamento(getHandle());
-		checkResult(ret);
-
-		carregaFormasPagamento(ret);
 
 	}
 
@@ -1911,19 +1508,18 @@ public final class ACBrECF extends ACBrClass
 	{
 
 		FormaPagamento[] array = new FormaPagamento[count];
-		for (int i=0; i<count; i++)
-		{
+		for (int i = 0; i < count; i++) {
 			ACBrECFInterop.FormaPagamentoRec record = new ACBrECFInterop.FormaPagamentoRec();
 			int ret = ACBrECFInterop.INSTANCE.ECF_GetFormaPagamento(getHandle(), record, i);
 			checkResult(ret);
-			
+
 			FormaPagamento item = new FormaPagamento(fromUTF8(record.Indice), fromUTF8(record.Descricao), record.PermiteVinculado, record.Total);
 			array[i] = item;
 		}
-		
-		this.formasPagamento = array;		
+
+		this.formasPagamento = array;
 	}
-	
+
 	public void programaFormaPagamento(String descricao, boolean permiteVinculado, String posicao) throws ACBrException
 	{
 
@@ -2241,7 +1837,7 @@ public final class ACBrECF extends ACBrClass
 
 
 	}
-	
+
 	public void abreCupom() throws ACBrException
 	{
 		abreCupom("", "", "", false);
@@ -2371,7 +1967,7 @@ public final class ACBrECF extends ACBrClass
 	{
 
 
-		int ret = ACBrECFInterop.INSTANCE.ECF_CancelaDescontoAcrescimoSubTotal(getHandle(), tipoAcrescimoDesconto.charAt(0) );
+		int ret = ACBrECFInterop.INSTANCE.ECF_CancelaDescontoAcrescimoSubTotal(getHandle(), tipoAcrescimoDesconto.charAt(0));
 		checkResult(ret);
 
 
@@ -2406,7 +2002,6 @@ public final class ACBrECF extends ACBrClass
 
 
 	}
-
 
 	public void pafMF_GerarCAT52(Date DataInicial, Date DataFinal, String CaminhoArquivo) throws ACBrException
 	{
@@ -2637,7 +2232,6 @@ public final class ACBrECF extends ACBrClass
 
 		return fromUTF8(returnBuffer, ret);
 	}
-
 	//</editor-fold>
 	
 	//</editor-fold>
