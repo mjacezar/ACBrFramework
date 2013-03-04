@@ -13,7 +13,7 @@ public class FormaPagamento
 	
 	//<editor-fold defaultstate="collapsed" desc="Constructor">
 	
-	FormaPagamento(String indice, String descricao, boolean permiteVinculado, double total)
+	public FormaPagamento(String indice, String descricao, boolean permiteVinculado, double total)
 	{
 		this.indice = indice;
 		this.descricao = descricao;

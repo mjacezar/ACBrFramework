@@ -321,7 +321,7 @@
     <Compile Include="Serial\ECF\Classes\RodapeNotaLegalDF.cs" />
     <Compile Include="Serial\ECF\Eventos\AbreCupomEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\RelatorioGerencialEventArgs.cs" />
-    <Compile Include="Serial\ECF\Eventos\BobinaEventArgs.cs" />
+    <Compile Include="Serial\ECF\Eventos\BobinaAdicionaLinhasEventArgs.cs" />
     <Compile Include="Serial\ECF\Classes\Aliquota.cs" />
     <Compile Include="Serial\ECF\Classes\ComprovanteNaoFiscal.cs" />
     <Compile Include="Serial\ECF\Classes\DadosReducaoZClass.cs" />

@@ -2,26 +2,26 @@ package jACBrFramework.serial.ecf;
 
 import java.util.EventObject;
 
-public final class CancelaItemEventObject extends EventObject
+public final class RelatorioGerencialEventObject extends EventObject
 {
 	//<editor-fold defaultstate="collapsed" desc="Fields">
-	private int numItem;
+	private int indice;
 
 //</editor-fold>
 
 	//<editor-fold defaultstate="collapsed" desc="Constructor">
-	public CancelaItemEventObject(Object source, int numItem)
+	public RelatorioGerencialEventObject(Object source, int indice)
 	{
 		super(source);
-		this.numItem = numItem;
+		this.indice = indice;
 	}
 
 //</editor-fold>
 
 	//<editor-fold defaultstate="collapsed" desc="Properties">
-	public int getNumItem()
+	public int getIndice()
 	{
-		return this.numItem;
+		return this.indice;
 	}
 //</editor-fold>
 }

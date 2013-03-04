@@ -2,37 +2,33 @@ package jACBrFramework.serial.ecf;
 
 import java.util.EventObject;
 
-public class BobinaEventObject extends EventObject
+public final class BobinaAdicionaLinhasEventObject extends EventObject
 {
 	//<editor-fold defaultstate="collapsed" desc="Fields">
-	
 	private String linhas;
 	private String operacao;
-	
-	//</editor-fold>
+
+//</editor-fold>
 
 	//<editor-fold defaultstate="collapsed" desc="Constructor">
-	
-	public BobinaEventObject(Object source, String linhas, String operacao)
+	public BobinaAdicionaLinhasEventObject(Object source, String linhas, String operacao)
 	{
 		super(source);
 		this.linhas = linhas;
 		this.operacao = operacao;
 	}
-	
-	//</editor-fold>
-	
-	//<editor-fold defaultstate="collapsed" desc="Fields">
-	
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="Properties">
 	public String getLinhas()
 	{
-		return linhas;
+		return this.linhas;
 	}
-	
-	public String Operacao()
+
+	public String getOperacao()
 	{
-		return operacao;
+		return this.operacao;
 	}
-	
-	//</editor-fold>
+//</editor-fold>
 }

@@ -6,8 +6,9 @@ import java.io.InputStreamReader;
 
 import jACBrFramework.serial.ecf.ACBrECF;
 import jACBrFramework.serial.ecf.AbreCupomEventObject;
-import jACBrFramework.serial.ecf.BobinaEventObject;
 import jACBrFramework.serial.ecf.FormaPagamento;
+import jACBrFramework.serial.ecf.VendeItemEventObject;
+import java.util.EventObject;
 
 public class Program
 {
@@ -51,15 +52,37 @@ public class Program
 			System.out.println("\nCriando componente ...\n");
 			ecf = new ACBrECF();
 
-			ecf.addOnAntesAbrirCupom(new ACBrEventListener<AbreCupomEventObject>() {
+			
+			System.out.println("\nExemplo de eventos do ECF ...\n");
+			ecf.addOnAntesAbreCupom(new ACBrEventListener<AbreCupomEventObject>() {
 
 				@Override
 				public void notification(AbreCupomEventObject e)
 				{
-					System.out.println(">> Evento OnAntesAbrirCupom <<");
+					System.out.println(">> Evento OnAntesAbreCupom <<");
 				}
 			} );
 			
+			ecf.addOnDepoisVendeItem(new ACBrEventListener<VendeItemEventObject>() {
+
+				@Override
+				public void notification(VendeItemEventObject e)
+				{
+					System.out.println(">> Evento OnDepoisVendeItem <<");
+					System.out.println(e.getCodigo() + " " + e.getDescricao());
+				}
+			});
+
+			ecf.addOnMsgPoucoPapel(new ACBrEventListener<EventObject>() {
+
+				@Override
+				public void notification(EventObject e)
+				{
+					System.out.println(">> Evento OnMsgPoucoPapel <<");
+				}
+			});
+			
+
 			System.out.println("SetModelo\n");
 			ecf.setModelo(modelo);
 

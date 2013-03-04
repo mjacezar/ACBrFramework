@@ -1,27 +1,32 @@
-package jACBrFramework.serial.ecf;
+package jACBrFramework;
 
 import java.util.EventObject;
 
-public final class CancelaItemEventObject extends EventObject
+public final class ChaveEventObject extends EventObject
 {
 	//<editor-fold defaultstate="collapsed" desc="Fields">
-	private int numItem;
+	private String chave;
 
 //</editor-fold>
 
 	//<editor-fold defaultstate="collapsed" desc="Constructor">
-	public CancelaItemEventObject(Object source, int numItem)
+	public ChaveEventObject(Object source, String chave)
 	{
 		super(source);
-		this.numItem = numItem;
+		this.chave = chave;
 	}
 
 //</editor-fold>
 
 	//<editor-fold defaultstate="collapsed" desc="Properties">
-	public int getNumItem()
+	public String getChave()
 	{
-		return this.numItem;
+		return this.chave;
+	}
+
+	public void setChave(String value)
+	{
+		this.chave = value;
 	}
 //</editor-fold>
 }

@@ -2,26 +2,31 @@ package jACBrFramework.serial.ecf;
 
 import java.util.EventObject;
 
-public final class CancelaItemEventObject extends EventObject
+public final class ErrorEventObject extends EventObject
 {
 	//<editor-fold defaultstate="collapsed" desc="Fields">
-	private int numItem;
+	private boolean tratado;
 
 //</editor-fold>
 
 	//<editor-fold defaultstate="collapsed" desc="Constructor">
-	public CancelaItemEventObject(Object source, int numItem)
+	public ErrorEventObject(Object source, boolean tratado)
 	{
 		super(source);
-		this.numItem = numItem;
+		this.tratado = tratado;
 	}
 
 //</editor-fold>
 
 	//<editor-fold defaultstate="collapsed" desc="Properties">
-	public int getNumItem()
+	public boolean getTratado()
 	{
-		return this.numItem;
+		return this.tratado;
+	}
+
+	public void setTratado(boolean value)
+	{
+		this.tratado = value;
 	}
 //</editor-fold>
 }

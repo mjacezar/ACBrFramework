@@ -16,9 +16,10 @@ uses
 
 {%region Ponteiros de função para uso nos eventos}
 
-type TNoArgumentsCallback = procedure(); cdecl;
+type TCallback = procedure(); cdecl;
 type TAbreCupomCallback = procedure(const CPF_CNPJ, Nome, Endereco : PChar); cdecl;
-type TIntArgumentCallback = procedure(const Indice: Integer); cdecl;
+type TRelatorioGerencialCallback = procedure(const Indice: Integer); cdecl;
+type TCancelaItemCallback = procedure(const Indice: Integer); cdecl;
 type TEfetuaPagamentoCallback = procedure(const CodFormaPagto: pChar; const Valor: Double; const Observacao: pChar; const ImprimeVinculado: Boolean); cdecl;
 type TFechaCupomCallback = procedure(const Observacao: pChar; const IndiceBMP: Integer); cdecl;
 type TSangriaSuprimentoCallback = procedure(const Valor: Double; const Obs, DescricaoCNF, DescricaoFPG : pChar); cdecl;
@@ -27,10 +28,11 @@ type TVendeItemCallback = procedure(const Codigo, Descricao, AliquotaICMS: pChar
 type TBobinaProcedureCallback = procedure(const Linhas : PChar; const Operacao : PChar); cdecl;
 type TChangeEstadoCallback = procedure(const EstadoAnterior, EstadoAtual: Integer); cdecl;
 type TChequeEstadoCallback = function(const EstadoAtual: Integer) : Boolean; cdecl;
-type TOnErrorCallback = function() : Boolean; cdecl;
-type TOnErrorRelatorioCallback = function(const Indice: Integer) : Boolean; cdecl;
-type TStringCallback = procedure(Mensagem : pChar); cdecl;
-type TOnMsgRetentarCallback = function(const Mensagem, Situacao: pChar) : Boolean; cdecl;
+type TErrorCallback = function() : Boolean; cdecl;
+type TErrorRelatorioCallback = function(const Indice: Integer) : Boolean; cdecl;
+type TMsgCallback = procedure(Mensagem : pChar); cdecl;
+type TPAFCalcEADCallback = procedure(Mensagem : pChar); cdecl;
+type TMsgRetentarCallback = function(const Mensagem, Situacao: pChar) : Boolean; cdecl;
 
 
 {%endregion}
@@ -39,24 +41,24 @@ type TOnMsgRetentarCallback = function(const Mensagem, Situacao: pChar) : Boolea
 
 type TEventHandlersECF = class
 
-    OnPoucoPapelCallback : TNoArgumentsCallback;
-    OnAguardandoRespostaChangeCallback :  TNoArgumentsCallback;
+    OnMsgPoucoPapelCallback : TCallback;
+    OnAguardandoRespostaChangeCallback :  TCallback;
 
     OnAntesAbreCupomCallback : TAbreCupomCallback;
-    OnAntesAbreCupomVinculadoCallback : TNoArgumentsCallback;
+    OnAntesAbreCupomVinculadoCallback : TCallback;
     OnAntesAbreNaoFiscalCallback : TAbreCupomCallback;
-    OnAntesAbreRelatorioGerencialCallback : TIntArgumentCallback;
-    OnAntesCancelaCupomCallback : TNoArgumentsCallback;
-    OnAntesCancelaItemNaoFiscalCallback : TIntArgumentCallback;
-    OnAntesCancelaItemVendidoCallback : TIntArgumentCallback;
-    OnAntesCancelaNaoFiscalCallback : TNoArgumentsCallback;
+    OnAntesAbreRelatorioGerencialCallback : TRelatorioGerencialCallback;
+    OnAntesCancelaCupomCallback : TCallback;
+    OnAntesCancelaItemNaoFiscalCallback : TCancelaItemCallback;
+    OnAntesCancelaItemVendidoCallback : TCancelaItemCallback;
+    OnAntesCancelaNaoFiscalCallback : TCallback;
     OnAntesEfetuaPagamentoCallback : TEfetuaPagamentoCallback;
     OnAntesEfetuaPagamentoNaoFiscalCallback : TEfetuaPagamentoCallback;
     OnAntesFechaCupomCallback : TFechaCupomCallback;
     OnAntesFechaNaoFiscalCallback : TFechaCupomCallback;
-    OnAntesFechaRelatorioCallback : TNoArgumentsCallback;
-    OnAntesLeituraXCallback : TNoArgumentsCallback;
-    OnAntesReducaoZCallback : TNoArgumentsCallback;
+    OnAntesFechaRelatorioCallback : TCallback;
+    OnAntesLeituraXCallback : TCallback;
+    OnAntesReducaoZCallback : TCallback;
     OnAntesSangriaCallback : TSangriaSuprimentoCallback;
     OnAntesSubtotalizaCupomCallback : TSubtotalizaCupomCallback;
     OnAntesSubtotalizaNaoFiscalCallback : TSubtotalizaCupomCallback;
@@ -68,52 +70,52 @@ type TEventHandlersECF = class
     OnChequeEstadoCallback : TChequeEstadoCallback;
 
     OnDepoisAbreCupomCallback : TAbreCupomCallback;
-    OnDepoisAbreCupomVinculadoCallback : TNoArgumentsCallback;
+    OnDepoisAbreCupomVinculadoCallback : TCallback;
     OnDepoisAbreNaoFiscalCallback : TAbreCupomCallback;
-    OnDepoisAbreRelatorioGerencialCallback : TIntArgumentCallback;
-    OnDepoisCancelaCupomCallback : TNoArgumentsCallback;
-    OnDepoisCancelaItemNaoFiscalCallback : TIntArgumentCallback;
-    OnDepoisCancelaItemVendidoCallback : TIntArgumentCallback;
-    OnDepoisCancelaNaoFiscalCallback : TNoArgumentsCallback;
+    OnDepoisAbreRelatorioGerencialCallback : TRelatorioGerencialCallback;
+    OnDepoisCancelaCupomCallback : TCallback;
+    OnDepoisCancelaItemNaoFiscalCallback : TCancelaItemCallback;
+    OnDepoisCancelaItemVendidoCallback : TCancelaItemCallback;
+    OnDepoisCancelaNaoFiscalCallback : TCallback;
     OnDepoisEfetuaPagamentoCallback : TEfetuaPagamentoCallback;
     OnDepoisEfetuaPagamentoNaoFiscalCallback : TEfetuaPagamentoCallback;
     OnDepoisFechaCupomCallback : TFechaCupomCallback;
     OnDepoisFechaNaoFiscalCallback : TFechaCupomCallback;
-    OnDepoisFechaRelatorioCallback : TNoArgumentsCallback;
-    OnDepoisLeituraXCallback : TNoArgumentsCallback;
-    OnDepoisReducaoZCallback : TNoArgumentsCallback;
+    OnDepoisFechaRelatorioCallback : TCallback;
+    OnDepoisLeituraXCallback : TCallback;
+    OnDepoisReducaoZCallback : TCallback;
     OnDepoisSangriaCallback : TSangriaSuprimentoCallback;
     OnDepoisSubtotalizaCupomCallback : TSubtotalizaCupomCallback;
     OnDepoisSubtotalizaNaoFiscalCallback : TSubtotalizaCupomCallback;
     OnDepoisSuprimentoCallback : TSangriaSuprimentoCallback;
     OnDepoisVendeItemCallback : TVendeItemCallback;
 
-    OnErrorAbreCupomCallback : TOnErrorCallback;
-    OnErrorAbreCupomVinculadoCallback : TOnErrorCallback;
-    OnErrorAbreNaoFiscalCallback : TOnErrorCallback;
-    OnErrorAbreRelatorioGerencialCallback : TOnErrorRelatorioCallback;
-    OnErrorCancelaCupomCallback : TOnErrorCallback;
-    OnErrorCancelaItemNaoFiscalCallback : TOnErrorCallback;
-    OnErrorCancelaItemVendidoCallback : TOnErrorCallback;
-    OnErrorCancelaNaoFiscalCallback : TOnErrorCallback;
-    OnErrorEfetuaPagamentoCallback : TOnErrorCallback;
-    OnErrorEfetuaPagamentoNaoFiscalCallback : TOnErrorCallback;
-    OnErrorFechaCupomCallback : TOnErrorCallback;
-    OnErrorFechaNaoFiscalCallback : TOnErrorCallback;
-    OnErrorFechaRelatorioCallback : TOnErrorCallback;
-    OnErrorLeituraXCallback : TOnErrorCallback;
-    OnErrorReducaoZCallback : TOnErrorCallback;
-    OnErrorSangriaCallback : TOnErrorCallback;
-    OnErrorSemPapelCallback : TNoArgumentsCallback;
-    OnErrorSubtotalizaCupomCallback : TOnErrorCallback;
-    OnErrorSubtotalizaNaoFiscalCallback : TOnErrorCallback;
-    OnErrorSuprimentoCallback : TOnErrorCallback;
-    OnErrorVendeItemCallback : TOnErrorCallback;
+    OnErrorAbreCupomCallback : TErrorCallback;
+    OnErrorAbreCupomVinculadoCallback : TErrorCallback;
+    OnErrorAbreNaoFiscalCallback : TErrorCallback;
+    OnErrorAbreRelatorioGerencialCallback : TErrorRelatorioCallback;
+    OnErrorCancelaCupomCallback : TErrorCallback;
+    OnErrorCancelaItemNaoFiscalCallback : TErrorCallback;
+    OnErrorCancelaItemVendidoCallback : TErrorCallback;
+    OnErrorCancelaNaoFiscalCallback : TErrorCallback;
+    OnErrorEfetuaPagamentoCallback : TErrorCallback;
+    OnErrorEfetuaPagamentoNaoFiscalCallback : TErrorCallback;
+    OnErrorFechaCupomCallback : TErrorCallback;
+    OnErrorFechaNaoFiscalCallback : TErrorCallback;
+    OnErrorFechaRelatorioCallback : TErrorCallback;
+    OnErrorLeituraXCallback : TErrorCallback;
+    OnErrorReducaoZCallback : TErrorCallback;
+    OnErrorSangriaCallback : TErrorCallback;
+    OnErrorSemPapelCallback : TCallback;
+    OnErrorSubtotalizaCupomCallback : TErrorCallback;
+    OnErrorSubtotalizaNaoFiscalCallback : TErrorCallback;
+    OnErrorSuprimentoCallback : TErrorCallback;
+    OnErrorVendeItemCallback : TErrorCallback;
 
-    OnMsgAguardeCallback : TStringCallback;
-    OnMsgRetentarCallback : TOnMsgRetentarCallback;
-    OnPAFCalcEADCallback : TStringCallback;
-    OnPAFGetKeyRSACallback : TGetKeyCallback ;
+    OnMsgAguardeCallback : TMSgCallback;
+    OnMsgRetentarCallback : TMsgRetentarCallback;
+    OnPAFCalcEADCallback : TPAFCalcEADCallback;
+    OnPAFGetKeyRSACallback : TChaveCallback ;
 
     procedure OnMsgPoucoPapel(Sender: TObject);
     procedure OnAguardandoRespostaChange(Sender: TObject);
@@ -7920,7 +7922,7 @@ end;
 
 procedure TEventHandlersECF.OnMsgPoucoPapel(Sender: TObject);
 begin
-     OnPoucoPapelCallback();
+     OnMsgPoucoPapelCallback();
 end;
 
 procedure TEventHandlersECF.OnAguardandoRespostaChange(Sender: TObject);
@@ -8286,7 +8288,7 @@ end;
 
 {%region Set Eventos }
 
-Function ECF_SetOnPoucoPapel(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnMsgPoucoPapel(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -8299,13 +8301,13 @@ begin
   if Assigned(method) then
   begin
         ecfHandle^.ECF.OnMsgPoucoPapel := ecfHandle^.EventHandlers.OnMsgPoucoPapel;
-        ecfHandle^.EventHandlers.OnPoucoPapelCallback := method;
+        ecfHandle^.EventHandlers.OnMsgPoucoPapelCallback := method;
         Result := 0;
   end
   else
   begin
         ecfHandle^.ECF.OnMsgPoucoPapel := nil;
-        ecfHandle^.EventHandlers.OnPoucoPapelCallback := nil;
+        ecfHandle^.EventHandlers.OnMsgPoucoPapelCallback := nil;
         Result := 0;
   end;
   except
@@ -8317,7 +8319,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnAguardandoRespostaChange(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnAguardandoRespostaChange(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -8379,7 +8381,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnAntesAbreCupomVinculado(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnAntesAbreCupomVinculado(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -8441,7 +8443,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnAntesAbreRelatorioGerencial(const ecfHandle: PECFHandle; const method : TIntArgumentCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnAntesAbreRelatorioGerencial(const ecfHandle: PECFHandle; const method : TRelatorioGerencialCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -8472,7 +8474,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnAntesCancelaCupom(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnAntesCancelaCupom(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -8503,7 +8505,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnAntesCancelaItemNaoFiscal(const ecfHandle: PECFHandle; const method : TIntArgumentCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnAntesCancelaItemNaoFiscal(const ecfHandle: PECFHandle; const method : TCancelaItemCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -8534,7 +8536,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnAntesCancelaItemVendido(const ecfHandle: PECFHandle; const method : TIntArgumentCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnAntesCancelaItemVendido(const ecfHandle: PECFHandle; const method : TCancelaItemCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -8565,7 +8567,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnAntesCancelaNaoFiscal(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnAntesCancelaNaoFiscal(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -8720,7 +8722,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnAntesFechaRelatorio(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnAntesFechaRelatorio(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -8751,7 +8753,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnAntesLeituraX(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnAntesLeituraX(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -8782,7 +8784,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnAntesReducaoZ(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnAntesReducaoZ(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -9092,7 +9094,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnDepoisAbreCupomVinculado(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnDepoisAbreCupomVinculado(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -9154,7 +9156,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnDepoisAbreRelatorioGerencial(const ecfHandle: PECFHandle; const method : TIntArgumentCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnDepoisAbreRelatorioGerencial(const ecfHandle: PECFHandle; const method : TRelatorioGerencialCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -9185,7 +9187,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnDepoisCancelaCupom(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnDepoisCancelaCupom(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -9216,7 +9218,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnDepoisCancelaItemNaoFiscal(const ecfHandle: PECFHandle; const method : TIntArgumentCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnDepoisCancelaItemNaoFiscal(const ecfHandle: PECFHandle; const method : TCancelaItemCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -9247,7 +9249,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnDepoisCancelaItemVendido(const ecfHandle: PECFHandle; const method : TIntArgumentCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnDepoisCancelaItemVendido(const ecfHandle: PECFHandle; const method : TCancelaItemCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -9278,7 +9280,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnDepoisCancelaNaoFiscal(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnDepoisCancelaNaoFiscal(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -9433,7 +9435,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnDepoisFechaRelatorio(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnDepoisFechaRelatorio(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -9464,7 +9466,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnDepoisLeituraX(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnDepoisLeituraX(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -9495,7 +9497,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnDepoisReducaoZ(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnDepoisReducaoZ(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -9681,7 +9683,7 @@ begin
   end;
 end;
 
-Function ECF_SetOnErrorAbreCupom(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorAbreCupom(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -9712,7 +9714,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorAbreCupomVinculado(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorAbreCupomVinculado(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -9743,7 +9745,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorAbreNaoFiscal(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorAbreNaoFiscal(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -9774,7 +9776,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorAbreRelatorioGerencial(const ecfHandle: PECFHandle; const method : TOnErrorRelatorioCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorAbreRelatorioGerencial(const ecfHandle: PECFHandle; const method : TErrorRelatorioCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -9805,7 +9807,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorCancelaCupom(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorCancelaCupom(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -9836,7 +9838,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorCancelaItemNaoFiscal(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorCancelaItemNaoFiscal(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -9867,7 +9869,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorCancelaItemVendido(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorCancelaItemVendido(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -9898,7 +9900,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorCancelaNaoFiscal(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorCancelaNaoFiscal(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -9929,7 +9931,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorEfetuaPagamento(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorEfetuaPagamento(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -9960,7 +9962,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorEfetuaPagamentoNaoFiscal(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorEfetuaPagamentoNaoFiscal(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -9991,7 +9993,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorFechaCupom(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorFechaCupom(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10022,7 +10024,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorFechaNaoFiscal(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorFechaNaoFiscal(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10053,7 +10055,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorFechaRelatorio(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorFechaRelatorio(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10084,7 +10086,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorLeituraX(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorLeituraX(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10115,7 +10117,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorReducaoZ(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorReducaoZ(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10146,7 +10148,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorSangria(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorSangria(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10177,7 +10179,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorSemPapel(const ecfHandle: PECFHandle; const method : TNoArgumentsCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorSemPapel(const ecfHandle: PECFHandle; const method : TCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10208,7 +10210,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorSubtotalizaCupom(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorSubtotalizaCupom(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10239,7 +10241,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorSubtotalizaNaoFiscal(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorSubtotalizaNaoFiscal(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10270,7 +10272,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorSuprimento(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorSuprimento(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10301,7 +10303,7 @@ except
 end;
 end;
 
-Function ECF_SetOnErrorVendeItem(const ecfHandle: PECFHandle; const method : TOnErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnErrorVendeItem(const ecfHandle: PECFHandle; const method : TErrorCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10332,7 +10334,7 @@ except
 end;
 end;
 
-Function ECF_SetOnMsgAguarde(const ecfHandle: PECFHandle; const method : TStringCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnMsgAguarde(const ecfHandle: PECFHandle; const method : TMsgCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10363,7 +10365,7 @@ except
 end;
 end;
 
-Function ECF_SetOnMsgRetentar(const ecfHandle: PECFHandle; const method : TOnMsgRetentarCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnMsgRetentar(const ecfHandle: PECFHandle; const method : TMsgRetentarCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10394,7 +10396,7 @@ except
 end;
 end;
 
-Function ECF_SetOnPAFCalcEAD(const ecfHandle: PECFHandle; const method : TStringCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnPAFCalcEAD(const ecfHandle: PECFHandle; const method : TPAFCalcEADCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10425,7 +10427,7 @@ except
 end;
 end;
 
-Function ECF_SetOnPAFGetKeyRSA(const ecfHandle: PECFHandle; const method : TGetKeyCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_SetOnPAFGetKeyRSA(const ecfHandle: PECFHandle; const method : TChaveCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
 if (ecfHandle = nil) then
@@ -10672,7 +10674,7 @@ ECF_GetMemoParamsCount, ECF_MemoLeParams,
 
 {Eventos}
 
-ECF_SetOnPoucoPapel, ECF_SetOnAguardandoRespostaChange, ECF_SetOnAntesAbreCupom,
+ECF_SetOnMsgPoucoPapel, ECF_SetOnAguardandoRespostaChange, ECF_SetOnAntesAbreCupom,
 ECF_SetOnAntesAbreCupomVinculado, ECF_SetOnAntesAbreNaoFiscal, ECF_SetOnAntesAbreRelatorioGerencial,
 ECF_SetOnAntesCancelaCupom, ECF_SetOnAntesCancelaItemNaoFiscal, ECF_SetOnAntesCancelaItemVendido,
 ECF_SetOnAntesCancelaNaoFiscal,ECF_SetOnAntesEfetuaPagamento, ECF_SetOnAntesEfetuaPagamentoNaoFiscal,
