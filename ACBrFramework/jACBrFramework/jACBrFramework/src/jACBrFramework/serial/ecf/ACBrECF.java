@@ -5,13 +5,13 @@ import com.sun.jna.ptr.IntByReference;
 import jACBrFramework.ACBrClass;
 import jACBrFramework.ACBrEventListener;
 import jACBrFramework.ACBrException;
+import jACBrFramework.ChaveEventObject;
 import jACBrFramework.OleDate;
 import jACBrFramework.interop.ACBrECFInterop;
 import jACBrFramework.serial.ACBrDevice;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
+import java.util.EventObject;
 
 public final class ACBrECF extends ACBrClass
 {
@@ -21,13 +21,11 @@ public final class ACBrECF extends ACBrClass
 	private Aliquota[] aliquotas;
 	private FormaPagamento[] formasPagamento;
 	private ComprovanteNaoFiscal[] comprovantesNaoFiscais;
-	private ArrayList<ACBrEventListener<AbreCupomEventObject>> onAntesAbrirCupomListeners = new ArrayList<ACBrEventListener<AbreCupomEventObject>>();
-	private ArrayList<ACBrEventListener<BobinaEventObject>> onBobinaAdicionaLinhasListeners = new ArrayList<ACBrEventListener<BobinaEventObject>>();
-	private ArrayList<ACBrEventListener<CancelaItemEventObject>> onAntesCancelaItemVendidoListeners = new ArrayList<ACBrEventListener<CancelaItemEventObject>>();
 
 	// </editor-fold>
 	
 	//<editor-fold defaultstate="collapsed" desc="Constructor">
+	
 	public ACBrECF() throws ACBrException
 	{
 	}
@@ -35,85 +33,286 @@ public final class ACBrECF extends ACBrClass
 	//</editor-fold>
 	
 	//<editor-fold defaultstate="collapsed" desc="Events">
-	//<editor-fold defaultstate="collapsed" desc="OnAntesAbrirCupom">
-	public void addOnAntesAbrirCupom(ACBrEventListener<AbreCupomEventObject> listener)
+	
+	//<editor-fold defaultstate="collapsed" desc="onMsgPoucoPapel">
+	public void addOnMsgPoucoPapel(ACBrEventListener<EventObject> listener)
 	{
-		if (onAntesAbrirCupomListeners.isEmpty()) {
+		if (!hasListeners("onMsgPoucoPapel")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnMsgPoucoPapel(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onMsgPoucoPapel();
+				}
+			});
+		}
+
+		addListener("onMsgPoucoPapel", listener);
+	}
+
+	public void removeOnMsgPoucoPapel(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onMsgPoucoPapel", listener);
+
+		if (!hasListeners("onMsgPoucoPapel")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnMsgPoucoPapel(getHandle(), null);
+		}
+	}
+
+	private void onMsgPoucoPapel()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onMsgPoucoPapel", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAguardandoRespostaChange">
+	public void addOnAguardandoRespostaChange(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onAguardandoRespostaChange")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAguardandoRespostaChange(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onAguardandoRespostaChange();
+				}
+			});
+		}
+
+		addListener("onAguardandoRespostaChange", listener);
+	}
+
+	public void removeOnAguardandoRespostaChange(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onAguardandoRespostaChange", listener);
+
+		if (!hasListeners("onAguardandoRespostaChange")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAguardandoRespostaChange(getHandle(), null);
+		}
+	}
+
+	private void onAguardandoRespostaChange()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onAguardandoRespostaChange", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesAbreCupom">
+	public void addOnAntesAbreCupom(ACBrEventListener<AbreCupomEventObject> listener)
+	{
+		if (!hasListeners("onAntesAbreCupom")) {
 			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreCupom(getHandle(), new ACBrECFInterop.AbreCupomCallback()
 			{
 				@Override
 				public void invoke(String CPF_CNPJ, String Nome, String Endereco)
 				{
-					onAntesAbrirCupom(CPF_CNPJ, Nome, Endereco);
+					onAntesAbreCupom(toUTF8(CPF_CNPJ), toUTF8(Nome), toUTF8(Endereco));
 				}
 			});
 		}
 
-		onAntesAbrirCupomListeners.add(listener);
+		addListener("onAntesAbreCupom", listener);
 	}
 
-	public void removeOnAntesAbrirCupom(ACBrEventListener<AbreCupomEventObject> listener)
+	public void removeOnAntesAbreCupom(ACBrEventListener<AbreCupomEventObject> listener)
 	{
-		onAntesAbrirCupomListeners.remove(listener);
+		removeListener("onAntesAbreCupom", listener);
 
-		if (onAntesAbrirCupomListeners.isEmpty()) {
+		if (!hasListeners("onAntesAbreCupom")) {
 			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreCupom(getHandle(), null);
 		}
 	}
 
-	private void onAntesAbrirCupom(String CPF_CNPJ, String Nome, String Endereco)
+	private void onAntesAbreCupom(String CPF_CNPJ, String Nome, String Endereco)
 	{
-		AbreCupomEventObject e = new AbreCupomEventObject(this, fromUTF8(CPF_CNPJ), fromUTF8(Nome), fromUTF8(Endereco));
-
-		Iterator<ACBrEventListener<AbreCupomEventObject>> iterator = onAntesAbrirCupomListeners.iterator();
-		while (iterator.hasNext()) {
-			iterator.next().notification(e);
-		}
+		AbreCupomEventObject e = new AbreCupomEventObject(this, CPF_CNPJ, Nome, Endereco);
+		notifyListeners("onAntesAbreCupom", e);
 	}
-	//</editor-fold>	
 
-	//<editor-fold defaultstate="collapsed" desc="OnBobinaAdicionaLinhas">
-	public void addOnBobinaAdicionaLinhas(ACBrEventListener<BobinaEventObject> listener)
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesAbreCupomVinculado">
+	
+	public void addOnAntesAbreCupomVinculado(ACBrEventListener<EventObject> listener)
 	{
-		if (onBobinaAdicionaLinhasListeners.isEmpty()) {
-			ACBrECFInterop.INSTANCE.ECF_SetOnBobinaAdicionaLinhas(getHandle(), new ACBrECFInterop.BobinaAdicionaLinhasCallback()
+		if (!hasListeners("onAntesAbreCupomVinculado")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreCupomVinculado(getHandle(), new ACBrECFInterop.Callback()
 			{
 				@Override
-				public void invoke(String linhas, String operacao)
+				public void invoke()
 				{
-					onBobinaAdicionaLinha(linhas, operacao);
+					onAntesAbreCupomVinculado();
 				}
 			});
 		}
 
-		onBobinaAdicionaLinhasListeners.add(listener);
+		addListener("onAntesAbreCupomVinculado", listener);
 	}
 
-	public void removeOnBobinaAdicionaLinhas(ACBrEventListener<BobinaEventObject> listener)
+	public void removeOnAntesAbreCupomVinculado(ACBrEventListener<EventObject> listener)
 	{
-		onBobinaAdicionaLinhasListeners.remove(listener);
+		removeListener("onAntesAbreCupomVinculado", listener);
 
-		if (onBobinaAdicionaLinhasListeners.isEmpty()) {
-			ACBrECFInterop.INSTANCE.ECF_SetOnBobinaAdicionaLinhas(getHandle(), null);
+		if (!hasListeners("onAntesAbreCupomVinculado")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreCupomVinculado(getHandle(), null);
 		}
 	}
 
-	private void onBobinaAdicionaLinha(String linhas, String operacao)
+	private void onAntesAbreCupomVinculado()
 	{
-		BobinaEventObject e = new BobinaEventObject(this, fromUTF8(linhas), fromUTF8(operacao));
-
-		Iterator<ACBrEventListener<BobinaEventObject>> iterator = onBobinaAdicionaLinhasListeners.iterator();
-		while (iterator.hasNext()) {
-			iterator.next().notification(e);
-		}
+		EventObject e = new EventObject(this);
+		notifyListeners("onAntesAbreCupomVinculado", e);
 	}
+
 	//</editor-fold>
 
-	//<editor-fold defaultstate="collapsed" desc="OnAntesCancelaItemVendido">
+	//<editor-fold defaultstate="collapsed" desc="onAntesAbreNaoFiscal">
+	
+	public void addOnAntesAbreNaoFiscal(ACBrEventListener<AbreCupomEventObject> listener)
+	{
+		if (!hasListeners("onAntesAbreNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreNaoFiscal(getHandle(), new ACBrECFInterop.AbreCupomCallback()
+			{
+				@Override
+				public void invoke(String CPF_CNPJ, String Nome, String Endereco)
+				{
+					onAntesAbreNaoFiscal(toUTF8(CPF_CNPJ), toUTF8(Nome), toUTF8(Endereco));
+				}
+			});
+		}
+
+		addListener("onAntesAbreNaoFiscal", listener);
+	}
+
+	public void removeOnAntesAbreNaoFiscal(ACBrEventListener<AbreCupomEventObject> listener)
+	{
+		removeListener("onAntesAbreNaoFiscal", listener);
+
+		if (!hasListeners("onAntesAbreNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private void onAntesAbreNaoFiscal(String CPF_CNPJ, String Nome, String Endereco)
+	{
+		AbreCupomEventObject e = new AbreCupomEventObject(this, CPF_CNPJ, Nome, Endereco);
+		notifyListeners("onAntesAbreNaoFiscal", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesAbreRelatorioGerencial">
+	public void addOnAntesAbreRelatorioGerencial(ACBrEventListener<RelatorioGerencialEventObject> listener)
+	{
+		if (!hasListeners("onAntesAbreRelatorioGerencial")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreRelatorioGerencial(getHandle(), new ACBrECFInterop.RelatorioGerencialCallback()
+			{
+				@Override
+				public void invoke(int value)
+				{
+					onAntesAbreRelatorioGerencial(value);
+				}
+			});
+		}
+
+		addListener("onAntesAbreRelatorioGerencial", listener);
+	}
+
+	public void removeOnAntesAbreRelatorioGerencial(ACBrEventListener<RelatorioGerencialEventObject> listener)
+	{
+		removeListener("onAntesAbreRelatorioGerencial", listener);
+
+		if (!hasListeners("onAntesAbreRelatorioGerencial")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesAbreRelatorioGerencial(getHandle(), null);
+		}
+	}
+
+	private void onAntesAbreRelatorioGerencial(int value)
+	{
+		RelatorioGerencialEventObject e = new RelatorioGerencialEventObject(this, value);
+		notifyListeners("onAntesAbreRelatorioGerencial", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesCancelaCupom">
+	public void addOnAntesCancelaCupom(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onAntesCancelaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaCupom(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onAntesCancelaCupom();
+				}
+			});
+		}
+
+		addListener("onAntesCancelaCupom", listener);
+	}
+
+	public void removeOnAntesCancelaCupom(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onAntesCancelaCupom", listener);
+
+		if (!hasListeners("onAntesCancelaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaCupom(getHandle(), null);
+		}
+	}
+
+	private void onAntesCancelaCupom()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onAntesCancelaCupom", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesCancelaItemNaoFiscal">
+	public void addOnAntesCancelaItemNaoFiscal(ACBrEventListener<CancelaItemEventObject> listener)
+	{
+		if (!hasListeners("onAntesCancelaItemNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaItemNaoFiscal(getHandle(), new ACBrECFInterop.CancelaItemCallback()
+			{
+				@Override
+				public void invoke(int value)
+				{
+					onAntesCancelaItemNaoFiscal(value);
+				}
+			});
+		}
+
+		addListener("onAntesCancelaItemNaoFiscal", listener);
+	}
+
+	public void removeOnAntesCancelaItemNaoFiscal(ACBrEventListener<CancelaItemEventObject> listener)
+	{
+		removeListener("onAntesCancelaItemNaoFiscal", listener);
+
+		if (!hasListeners("onAntesCancelaItemNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaItemNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private void onAntesCancelaItemNaoFiscal(int value)
+	{
+		CancelaItemEventObject e = new CancelaItemEventObject(this, value);
+		notifyListeners("onAntesCancelaItemNaoFiscal", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesCancelaItemVendido">
 	public void addOnAntesCancelaItemVendido(ACBrEventListener<CancelaItemEventObject> listener)
 	{
-		if (onAntesCancelaItemVendidoListeners.isEmpty()) {
-			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaItemVendido(getHandle(), new ACBrECFInterop.IntArgumentCallback()
+		if (!hasListeners("onAntesCancelaItemVendido")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaItemVendido(getHandle(), new ACBrECFInterop.CancelaItemCallback()
 			{
 				@Override
 				public void invoke(int value)
@@ -123,69 +322,2191 @@ public final class ACBrECF extends ACBrClass
 			});
 		}
 
-		onAntesCancelaItemVendidoListeners.add(listener);
+		addListener("onAntesCancelaItemVendido", listener);
 	}
 
 	public void removeOnAntesCancelaItemVendido(ACBrEventListener<CancelaItemEventObject> listener)
 	{
-		onAntesCancelaItemVendidoListeners.remove(listener);
+		removeListener("onAntesCancelaItemVendido", listener);
 
-		if (onAntesCancelaItemVendidoListeners.isEmpty()) {
+		if (!hasListeners("onAntesCancelaItemVendido")) {
 			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaItemVendido(getHandle(), null);
 		}
 	}
 
-	private void onAntesCancelaItemVendido(int numItem)
+	private void onAntesCancelaItemVendido(int value)
 	{
-		CancelaItemEventObject e = new CancelaItemEventObject(this, numItem);
+		CancelaItemEventObject e = new CancelaItemEventObject(this, value);
+		notifyListeners("onAntesCancelaItemVendido", e);
+	}
 
-		Iterator<ACBrEventListener<CancelaItemEventObject>> iterator = onAntesCancelaItemVendidoListeners.iterator();
-		while (iterator.hasNext()) {
-			iterator.next().notification(e);
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesCancelaNaoFiscal">
+	
+	public void addOnAntesCancelaNaoFiscal(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onAntesCancelaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaNaoFiscal(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onAntesCancelaNaoFiscal();
+				}
+			});
+		}
+
+		addListener("onAntesCancelaNaoFiscal", listener);
+	}
+
+	public void removeOnAntesCancelaNaoFiscal(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onAntesCancelaNaoFiscal", listener);
+
+		if (!hasListeners("onAntesCancelaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesCancelaNaoFiscal(getHandle(), null);
 		}
 	}
 
-	//</editor-fold>		
+	private void onAntesCancelaNaoFiscal()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onAntesCancelaNaoFiscal", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesEfetuaPagamento">
+	
+	public void addOnAntesEfetuaPagamento(ACBrEventListener<EfetuaPagamentoEventObject> listener)
+	{
+		if (!hasListeners("onAntesEfetuaPagamento")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesEfetuaPagamento(getHandle(), new ACBrECFInterop.EfetuaPagamentoCallback()
+			{
+				@Override
+				public void invoke(String CodFormaPagto, double Valor, String Observacao, boolean ImprimeVinculado)
+				{
+					onAntesEfetuaPagamento(toUTF8(CodFormaPagto), Valor, toUTF8(Observacao), ImprimeVinculado);
+				}
+			});
+		}
+
+		addListener("onAntesEfetuaPagamento", listener);
+	}
+
+	public void removeOnAntesEfetuaPagamento(ACBrEventListener<EfetuaPagamentoEventObject> listener)
+	{
+		removeListener("onAntesEfetuaPagamento", listener);
+
+		if (!hasListeners("onAntesEfetuaPagamento")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesEfetuaPagamento(getHandle(), null);
+		}
+	}
+
+	private void onAntesEfetuaPagamento(String CodFormaPagto, double Valor, String Observacao, boolean ImprimeVinculado)
+	{
+		EfetuaPagamentoEventObject e = new EfetuaPagamentoEventObject(this, CodFormaPagto, Valor, Observacao, ImprimeVinculado);
+		notifyListeners("onAntesEfetuaPagamento", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesEfetuaPagamentoNaoFiscal">
+	public void addOnAntesEfetuaPagamentoNaoFiscal(ACBrEventListener<EfetuaPagamentoEventObject> listener)
+	{
+		if (!hasListeners("onAntesEfetuaPagamentoNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesEfetuaPagamentoNaoFiscal(getHandle(), new ACBrECFInterop.EfetuaPagamentoCallback()
+			{
+				@Override
+				public void invoke(String CodFormaPagto, double Valor, String Observacao, boolean ImprimeVinculado)
+				{
+					onAntesEfetuaPagamentoNaoFiscal(toUTF8(CodFormaPagto), Valor, toUTF8(Observacao), ImprimeVinculado);
+				}
+			});
+		}
+
+		addListener("onAntesEfetuaPagamentoNaoFiscal", listener);
+	}
+
+	public void removeOnAntesEfetuaPagamentoNaoFiscal(ACBrEventListener<EfetuaPagamentoEventObject> listener)
+	{
+		removeListener("onAntesEfetuaPagamentoNaoFiscal", listener);
+
+		if (!hasListeners("onAntesEfetuaPagamentoNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesEfetuaPagamentoNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private void onAntesEfetuaPagamentoNaoFiscal(String CodFormaPagto, double Valor, String Observacao, boolean ImprimeVinculado)
+	{
+		EfetuaPagamentoEventObject e = new EfetuaPagamentoEventObject(this, CodFormaPagto, Valor, Observacao, ImprimeVinculado);
+		notifyListeners("onAntesEfetuaPagamentoNaoFiscal", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesFechaCupom">
+	public void addOnAntesFechaCupom(ACBrEventListener<FechaCupomEventObject> listener)
+	{
+		if (!hasListeners("onAntesFechaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesFechaCupom(getHandle(), new ACBrECFInterop.FechaCupomCallback()
+			{
+				@Override
+				public void invoke(String Observacao, int IndiceBMP)
+				{
+					onAntesFechaCupom(toUTF8(Observacao), IndiceBMP);
+				}
+			});
+		}
+
+		addListener("onAntesFechaCupom", listener);
+	}
+
+	public void removeOnAntesFechaCupom(ACBrEventListener<FechaCupomEventObject> listener)
+	{
+		removeListener("onAntesFechaCupom", listener);
+
+		if (!hasListeners("onAntesFechaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesFechaCupom(getHandle(), null);
+		}
+	}
+
+	private void onAntesFechaCupom(String Observacao, int IndiceBMP)
+	{
+		FechaCupomEventObject e = new FechaCupomEventObject(this, Observacao, IndiceBMP);
+		notifyListeners("onAntesFechaCupom", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesFechaNaoFiscal">
+	public void addOnAntesFechaNaoFiscal(ACBrEventListener<FechaCupomEventObject> listener)
+	{
+		if (!hasListeners("onAntesFechaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesFechaNaoFiscal(getHandle(), new ACBrECFInterop.FechaCupomCallback()
+			{
+				@Override
+				public void invoke(String Observacao, int IndiceBMP)
+				{
+					onAntesFechaNaoFiscal(toUTF8(Observacao), IndiceBMP);
+				}
+			});
+		}
+
+		addListener("onAntesFechaNaoFiscal", listener);
+	}
+
+	public void removeOnAntesFechaNaoFiscal(ACBrEventListener<FechaCupomEventObject> listener)
+	{
+		removeListener("onAntesFechaNaoFiscal", listener);
+
+		if (!hasListeners("onAntesFechaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesFechaNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private void onAntesFechaNaoFiscal(String Observacao, int IndiceBMP)
+	{
+		FechaCupomEventObject e = new FechaCupomEventObject(this, Observacao, IndiceBMP);
+		notifyListeners("onAntesFechaNaoFiscal", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesFechaRelatorio">
+	public void addOnAntesFechaRelatorio(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onAntesFechaRelatorio")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesFechaRelatorio(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onAntesFechaRelatorio();
+				}
+			});
+		}
+
+		addListener("onAntesFechaRelatorio", listener);
+	}
+
+	public void removeOnAntesFechaRelatorio(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onAntesFechaRelatorio", listener);
+
+		if (!hasListeners("onAntesFechaRelatorio")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesFechaRelatorio(getHandle(), null);
+		}
+	}
+
+	private void onAntesFechaRelatorio()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onAntesFechaRelatorio", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesLeituraX">
+	public void addOnAntesLeituraX(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onAntesLeituraX")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesLeituraX(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onAntesLeituraX();
+				}
+			});
+		}
+
+		addListener("onAntesLeituraX", listener);
+	}
+
+	public void removeOnAntesLeituraX(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onAntesLeituraX", listener);
+
+		if (!hasListeners("onAntesLeituraX")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesLeituraX(getHandle(), null);
+		}
+	}
+
+	private void onAntesLeituraX()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onAntesLeituraX", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesReducaoZ">
+	public void addOnAntesReducaoZ(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onAntesReducaoZ")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesReducaoZ(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onAntesReducaoZ();
+				}
+			});
+		}
+
+		addListener("onAntesReducaoZ", listener);
+	}
+
+	public void removeOnAntesReducaoZ(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onAntesReducaoZ", listener);
+
+		if (!hasListeners("onAntesReducaoZ")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesReducaoZ(getHandle(), null);
+		}
+	}
+
+	private void onAntesReducaoZ()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onAntesReducaoZ", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesSangria">
+	public void addOnAntesSangria(ACBrEventListener<SangriaSuprimentoEventObject> listener)
+	{
+		if (!hasListeners("onAntesSangria")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesSangria(getHandle(), new ACBrECFInterop.SangriaSuprimentoCallback()
+			{
+				@Override
+				public void invoke(double Valor, String Obs, String DescricaoCNF, String DescricaoFPG)
+				{
+					onAntesSangria(Valor, toUTF8(Obs), toUTF8(DescricaoCNF), toUTF8(DescricaoFPG));
+				}
+			});
+		}
+
+		addListener("onAntesSangria", listener);
+	}
+
+	public void removeOnAntesSangria(ACBrEventListener<SangriaSuprimentoEventObject> listener)
+	{
+		removeListener("onAntesSangria", listener);
+
+		if (!hasListeners("onAntesSangria")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesSangria(getHandle(), null);
+		}
+	}
+
+	private void onAntesSangria(double Valor, String Obs, String DescricaoCNF, String DescricaoFPG)
+	{
+		SangriaSuprimentoEventObject e = new SangriaSuprimentoEventObject(this, Valor, Obs, DescricaoCNF, DescricaoFPG);
+		notifyListeners("onAntesSangria", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesSubtotalizaCupom">
+	public void addOnAntesSubtotalizaCupom(ACBrEventListener<SubtotalizaCupomEventObject> listener)
+	{
+		if (!hasListeners("onAntesSubtotalizaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesSubtotalizaCupom(getHandle(), new ACBrECFInterop.SubtotalizaCupomCallback()
+			{
+				@Override
+				public void invoke(double DescontoAcrescimo, String MensagemRodape)
+				{
+					onAntesSubtotalizaCupom(DescontoAcrescimo, toUTF8(MensagemRodape));
+				}
+			});
+		}
+
+		addListener("onAntesSubtotalizaCupom", listener);
+	}
+
+	public void removeOnAntesSubtotalizaCupom(ACBrEventListener<SubtotalizaCupomEventObject> listener)
+	{
+		removeListener("onAntesSubtotalizaCupom", listener);
+
+		if (!hasListeners("onAntesSubtotalizaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesSubtotalizaCupom(getHandle(), null);
+		}
+	}
+
+	private void onAntesSubtotalizaCupom(double DescontoAcrescimo, String MensagemRodape)
+	{
+		SubtotalizaCupomEventObject e = new SubtotalizaCupomEventObject(this, DescontoAcrescimo, MensagemRodape);
+		notifyListeners("onAntesSubtotalizaCupom", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesSubtotalizaNaoFiscal">
+	public void addOnAntesSubtotalizaNaoFiscal(ACBrEventListener<SubtotalizaCupomEventObject> listener)
+	{
+		if (!hasListeners("onAntesSubtotalizaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesSubtotalizaNaoFiscal(getHandle(), new ACBrECFInterop.SubtotalizaCupomCallback()
+			{
+				@Override
+				public void invoke(double DescontoAcrescimo, String MensagemRodape)
+				{
+					onAntesSubtotalizaNaoFiscal(DescontoAcrescimo, toUTF8(MensagemRodape));
+				}
+			});
+		}
+
+		addListener("onAntesSubtotalizaNaoFiscal", listener);
+	}
+
+	public void removeOnAntesSubtotalizaNaoFiscal(ACBrEventListener<SubtotalizaCupomEventObject> listener)
+	{
+		removeListener("onAntesSubtotalizaNaoFiscal", listener);
+
+		if (!hasListeners("onAntesSubtotalizaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesSubtotalizaNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private void onAntesSubtotalizaNaoFiscal(double DescontoAcrescimo, String MensagemRodape)
+	{
+		SubtotalizaCupomEventObject e = new SubtotalizaCupomEventObject(this, DescontoAcrescimo, MensagemRodape);
+		notifyListeners("onAntesSubtotalizaNaoFiscal", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesSuprimento">
+	public void addOnAntesSuprimento(ACBrEventListener<SangriaSuprimentoEventObject> listener)
+	{
+		if (!hasListeners("onAntesSuprimento")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesSuprimento(getHandle(), new ACBrECFInterop.SangriaSuprimentoCallback()
+			{
+				@Override
+				public void invoke(double Valor, String Obs, String DescricaoCNF, String DescricaoFPG)
+				{
+					onAntesSuprimento(Valor, toUTF8(Obs), toUTF8(DescricaoCNF), toUTF8(DescricaoFPG));
+				}
+			});
+		}
+
+		addListener("onAntesSuprimento", listener);
+	}
+
+	public void removeOnAntesSuprimento(ACBrEventListener<SangriaSuprimentoEventObject> listener)
+	{
+		removeListener("onAntesSuprimento", listener);
+
+		if (!hasListeners("onAntesSuprimento")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesSuprimento(getHandle(), null);
+		}
+	}
+
+	private void onAntesSuprimento(double Valor, String Obs, String DescricaoCNF, String DescricaoFPG)
+	{
+		SangriaSuprimentoEventObject e = new SangriaSuprimentoEventObject(this, Valor, Obs, DescricaoCNF, DescricaoFPG);
+		notifyListeners("onAntesSuprimento", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onAntesVendeItem">
+	public void addOnAntesVendeItem(ACBrEventListener<VendeItemEventObject> listener)
+	{
+		if (!hasListeners("onAntesVendeItem")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesVendeItem(getHandle(), new ACBrECFInterop.VendeItemCallback()
+			{
+				@Override
+				public void invoke(String Codigo, String Descricao, String AliquotaICMS, double Qtd, double ValorUnitario, double ValorDescontoAcrescimo, String Unidade, String TipoDescontoAcrescimo, String DescontoAcrescimo)
+				{
+					onAntesVendeItem(toUTF8(Codigo), toUTF8(Descricao), toUTF8(AliquotaICMS), Qtd, ValorUnitario, ValorDescontoAcrescimo, toUTF8(Unidade), toUTF8(TipoDescontoAcrescimo), toUTF8(DescontoAcrescimo));
+				}
+			});
+		}
+
+		addListener("onAntesVendeItem", listener);
+	}
+
+	public void removeOnAntesVendeItem(ACBrEventListener<VendeItemEventObject> listener)
+	{
+		removeListener("onAntesVendeItem", listener);
+
+		if (!hasListeners("onAntesVendeItem")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnAntesVendeItem(getHandle(), null);
+		}
+	}
+
+	private void onAntesVendeItem(String Codigo, String Descricao, String AliquotaICMS, double Qtd, double ValorUnitario, double ValorDescontoAcrescimo, String Unidade, String TipoDescontoAcrescimo, String DescontoAcrescimo)
+	{
+		VendeItemEventObject e = new VendeItemEventObject(this, Codigo, Descricao, AliquotaICMS, Qtd, ValorUnitario, ValorDescontoAcrescimo, Unidade, TipoDescontoAcrescimo, DescontoAcrescimo);
+		notifyListeners("onAntesVendeItem", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onBobinaAdicionaLinhas">
+	public void addOnBobinaAdicionaLinhas(ACBrEventListener<BobinaAdicionaLinhasEventObject> listener)
+	{
+		if (!hasListeners("onBobinaAdicionaLinhas")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnBobinaAdicionaLinhas(getHandle(), new ACBrECFInterop.BobinaAdicionaLinhasCallback()
+			{
+				@Override
+				public void invoke(String linhas, String operacao)
+				{
+					onBobinaAdicionaLinhas(toUTF8(linhas), toUTF8(operacao));
+				}
+			});
+		}
+
+		addListener("onBobinaAdicionaLinhas", listener);
+	}
+
+	public void removeOnBobinaAdicionaLinhas(ACBrEventListener<BobinaAdicionaLinhasEventObject> listener)
+	{
+		removeListener("onBobinaAdicionaLinhas", listener);
+
+		if (!hasListeners("onBobinaAdicionaLinhas")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnBobinaAdicionaLinhas(getHandle(), null);
+		}
+	}
+
+	private void onBobinaAdicionaLinhas(String linhas, String operacao)
+	{
+		BobinaAdicionaLinhasEventObject e = new BobinaAdicionaLinhasEventObject(this, linhas, operacao);
+		notifyListeners("onBobinaAdicionaLinhas", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onChangeEstado">
+	public void addOnChangeEstado(ACBrEventListener<ChangeEstadoEventObject> listener)
+	{
+		if (!hasListeners("onChangeEstado")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnChangeEstado(getHandle(), new ACBrECFInterop.ChangeEstadoCallback()
+			{
+				@Override
+				public void invoke(int EstadoAnterior, int EstadoAtual)
+				{
+					onChangeEstado(EstadoAnterior, EstadoAtual);
+				}
+			});
+		}
+
+		addListener("onChangeEstado", listener);
+	}
+
+	public void removeOnChangeEstado(ACBrEventListener<ChangeEstadoEventObject> listener)
+	{
+		removeListener("onChangeEstado", listener);
+
+		if (!hasListeners("onChangeEstado")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnChangeEstado(getHandle(), null);
+		}
+	}
+
+	private void onChangeEstado(int EstadoAnterior, int EstadoAtual)
+	{
+		ChangeEstadoEventObject e = new ChangeEstadoEventObject(this, EstadoAnterior, EstadoAtual);
+		notifyListeners("onChangeEstado", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onChequeEstado">
+	
+	public void addOnChequeEstado(ACBrEventListener<ChequeEstadoEventObject> listener)
+	{
+		if (!hasListeners("onChequeEstado")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnChequeEstado(getHandle(), new ACBrECFInterop.ChequeEstadoCallback()
+			{
+				@Override
+				public boolean invoke(int EstadoAtual)
+				{
+					return onChequeEstado(EstadoAtual);
+				}
+			});
+		}
+
+		addListener("onChequeEstado", listener);
+	}
+
+	public void removeOnChequeEstado(ACBrEventListener<ChequeEstadoEventObject> listener)
+	{
+		removeListener("onChequeEstado", listener);
+
+		if (!hasListeners("onChequeEstado")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnChequeEstado(getHandle(), null);
+		}
+	}
+
+	private boolean onChequeEstado(int EstadoAtual)
+	{
+		ChequeEstadoEventObject e = new ChequeEstadoEventObject(this, EstadoAtual, true);
+		notifyListeners("onChequeEstado", e);
+		
+		return e.getContinuar();
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisAbreCupom">
+	public void addOnDepoisAbreCupom(ACBrEventListener<AbreCupomEventObject> listener)
+	{
+		if (!hasListeners("onDepoisAbreCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisAbreCupom(getHandle(), new ACBrECFInterop.AbreCupomCallback()
+			{
+				@Override
+				public void invoke(String CPF_CNPJ, String Nome, String Endereco)
+				{
+					onDepoisAbreCupom(toUTF8(CPF_CNPJ), toUTF8(Nome), toUTF8(Endereco));
+				}
+			});
+		}
+
+		addListener("onDepoisAbreCupom", listener);
+	}
+
+	public void removeOnDepoisAbreCupom(ACBrEventListener<AbreCupomEventObject> listener)
+	{
+		removeListener("onDepoisAbreCupom", listener);
+
+		if (!hasListeners("onDepoisAbreCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisAbreCupom(getHandle(), null);
+		}
+	}
+
+	private void onDepoisAbreCupom(String CPF_CNPJ, String Nome, String Endereco)
+	{
+		AbreCupomEventObject e = new AbreCupomEventObject(this, CPF_CNPJ, Nome, Endereco);
+		notifyListeners("onDepoisAbreCupom", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisAbreCupomVinculado">
+	
+	public void addOnDepoisAbreCupomVinculado(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onDepoisAbreCupomVinculado")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisAbreCupomVinculado(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onDepoisAbreCupomVinculado();
+				}
+			});
+		}
+
+		addListener("onDepoisAbreCupomVinculado", listener);
+	}
+
+	public void removeOnDepoisAbreCupomVinculado(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onDepoisAbreCupomVinculado", listener);
+
+		if (!hasListeners("onDepoisAbreCupomVinculado")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisAbreCupomVinculado(getHandle(), null);
+		}
+	}
+
+	private void onDepoisAbreCupomVinculado()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onDepoisAbreCupomVinculado", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisAbreNaoFiscal">
+	
+	public void addOnDepoisAbreNaoFiscal(ACBrEventListener<AbreCupomEventObject> listener)
+	{
+		if (!hasListeners("onDepoisAbreNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisAbreNaoFiscal(getHandle(), new ACBrECFInterop.AbreCupomCallback()
+			{
+				@Override
+				public void invoke(String CPF_CNPJ, String Nome, String Endereco)
+				{
+					onDepoisAbreNaoFiscal(toUTF8(CPF_CNPJ), toUTF8(Nome), toUTF8(Endereco));
+				}
+			});
+		}
+
+		addListener("onDepoisAbreNaoFiscal", listener);
+	}
+
+	public void removeOnDepoisAbreNaoFiscal(ACBrEventListener<AbreCupomEventObject> listener)
+	{
+		removeListener("onDepoisAbreNaoFiscal", listener);
+
+		if (!hasListeners("onDepoisAbreNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisAbreNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private void onDepoisAbreNaoFiscal(String CPF_CNPJ, String Nome, String Endereco)
+	{
+		AbreCupomEventObject e = new AbreCupomEventObject(this, CPF_CNPJ, Nome, Endereco);
+		notifyListeners("onDepoisAbreNaoFiscal", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisAbreRelatorioGerencial">
+	
+	public void addOnDepoisAbreRelatorioGerencial(ACBrEventListener<RelatorioGerencialEventObject> listener)
+	{
+		if (!hasListeners("onDepoisAbreRelatorioGerencial")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisAbreRelatorioGerencial(getHandle(), new ACBrECFInterop.RelatorioGerencialCallback()
+			{
+				@Override
+				public void invoke(int value)
+				{
+					onDepoisAbreRelatorioGerencial(value);
+				}
+			});
+		}
+
+		addListener("onDepoisAbreRelatorioGerencial", listener);
+	}
+
+	public void removeOnDepoisAbreRelatorioGerencial(ACBrEventListener<RelatorioGerencialEventObject> listener)
+	{
+		removeListener("onDepoisAbreRelatorioGerencial", listener);
+
+		if (!hasListeners("onDepoisAbreRelatorioGerencial")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisAbreRelatorioGerencial(getHandle(), null);
+		}
+	}
+
+	private void onDepoisAbreRelatorioGerencial(int value)
+	{
+		RelatorioGerencialEventObject e = new RelatorioGerencialEventObject(this, value);
+		notifyListeners("onDepoisAbreRelatorioGerencial", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisCancelaCupom">
+	public void addOnDepoisCancelaCupom(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onDepoisCancelaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisCancelaCupom(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onDepoisCancelaCupom();
+				}
+			});
+		}
+
+		addListener("onDepoisCancelaCupom", listener);
+	}
+
+	public void removeOnDepoisCancelaCupom(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onDepoisCancelaCupom", listener);
+
+		if (!hasListeners("onDepoisCancelaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisCancelaCupom(getHandle(), null);
+		}
+	}
+
+	private void onDepoisCancelaCupom()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onDepoisCancelaCupom", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisCancelaItemNaoFiscal">
+	
+	public void addOnDepoisCancelaItemNaoFiscal(ACBrEventListener<CancelaItemEventObject> listener)
+	{
+		if (!hasListeners("onDepoisCancelaItemNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisCancelaItemNaoFiscal(getHandle(), new ACBrECFInterop.CancelaItemCallback()
+			{
+				@Override
+				public void invoke(int value)
+				{
+					onDepoisCancelaItemNaoFiscal(value);
+				}
+			});
+		}
+
+		addListener("onDepoisCancelaItemNaoFiscal", listener);
+	}
+
+	public void removeOnDepoisCancelaItemNaoFiscal(ACBrEventListener<CancelaItemEventObject> listener)
+	{
+		removeListener("onDepoisCancelaItemNaoFiscal", listener);
+
+		if (!hasListeners("onDepoisCancelaItemNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisCancelaItemNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private void onDepoisCancelaItemNaoFiscal(int value)
+	{
+		CancelaItemEventObject e = new CancelaItemEventObject(this, value);
+		notifyListeners("onDepoisCancelaItemNaoFiscal", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisCancelaItemVendido">
+	public void addOnDepoisCancelaItemVendido(ACBrEventListener<CancelaItemEventObject> listener)
+	{
+		if (!hasListeners("onDepoisCancelaItemVendido")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisCancelaItemVendido(getHandle(), new ACBrECFInterop.CancelaItemCallback()
+			{
+				@Override
+				public void invoke(int value)
+				{
+					onDepoisCancelaItemVendido(value);
+				}
+			});
+		}
+
+		addListener("onDepoisCancelaItemVendido", listener);
+	}
+
+	public void removeOnDepoisCancelaItemVendido(ACBrEventListener<CancelaItemEventObject> listener)
+	{
+		removeListener("onDepoisCancelaItemVendido", listener);
+
+		if (!hasListeners("onDepoisCancelaItemVendido")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisCancelaItemVendido(getHandle(), null);
+		}
+	}
+
+	private void onDepoisCancelaItemVendido(int value)
+	{
+		CancelaItemEventObject e = new CancelaItemEventObject(this, value);
+		notifyListeners("onDepoisCancelaItemVendido", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisCancelaNaoFiscal">
+	public void addOnDepoisCancelaNaoFiscal(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onDepoisCancelaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisCancelaNaoFiscal(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onDepoisCancelaNaoFiscal();
+				}
+			});
+		}
+
+		addListener("onDepoisCancelaNaoFiscal", listener);
+	}
+
+	public void removeOnDepoisCancelaNaoFiscal(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onDepoisCancelaNaoFiscal", listener);
+
+		if (!hasListeners("onDepoisCancelaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisCancelaNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private void onDepoisCancelaNaoFiscal()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onDepoisCancelaNaoFiscal", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisEfetuaPagamento">
+	public void addOnDepoisEfetuaPagamento(ACBrEventListener<EfetuaPagamentoEventObject> listener)
+	{
+		if (!hasListeners("onDepoisEfetuaPagamento")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisEfetuaPagamento(getHandle(), new ACBrECFInterop.EfetuaPagamentoCallback()
+			{
+				@Override
+				public void invoke(String CodFormaPagto, double Valor, String Observacao, boolean ImprimeVinculado)
+				{
+					onDepoisEfetuaPagamento(toUTF8(CodFormaPagto), Valor, toUTF8(Observacao), ImprimeVinculado);
+				}
+			});
+		}
+
+		addListener("onDepoisEfetuaPagamento", listener);
+	}
+
+	public void removeOnDepoisEfetuaPagamento(ACBrEventListener<EfetuaPagamentoEventObject> listener)
+	{
+		removeListener("onDepoisEfetuaPagamento", listener);
+
+		if (!hasListeners("onDepoisEfetuaPagamento")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisEfetuaPagamento(getHandle(), null);
+		}
+	}
+
+	private void onDepoisEfetuaPagamento(String CodFormaPagto, double Valor, String Observacao, boolean ImprimeVinculado)
+	{
+		EfetuaPagamentoEventObject e = new EfetuaPagamentoEventObject(this, CodFormaPagto, Valor, Observacao, ImprimeVinculado);
+		notifyListeners("onDepoisEfetuaPagamento", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisEfetuaPagamentoNaoFiscal">
+	public void addOnDepoisEfetuaPagamentoNaoFiscal(ACBrEventListener<EfetuaPagamentoEventObject> listener)
+	{
+		if (!hasListeners("onDepoisEfetuaPagamentoNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisEfetuaPagamentoNaoFiscal(getHandle(), new ACBrECFInterop.EfetuaPagamentoCallback()
+			{
+				@Override
+				public void invoke(String CodFormaPagto, double Valor, String Observacao, boolean ImprimeVinculado)
+				{
+					onDepoisEfetuaPagamentoNaoFiscal(toUTF8(CodFormaPagto), Valor, toUTF8(Observacao), ImprimeVinculado);
+				}
+			});
+		}
+
+		addListener("onDepoisEfetuaPagamentoNaoFiscal", listener);
+	}
+
+	public void removeOnDepoisEfetuaPagamentoNaoFiscal(ACBrEventListener<EfetuaPagamentoEventObject> listener)
+	{
+		removeListener("onDepoisEfetuaPagamentoNaoFiscal", listener);
+
+		if (!hasListeners("onDepoisEfetuaPagamentoNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisEfetuaPagamentoNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private void onDepoisEfetuaPagamentoNaoFiscal(String CodFormaPagto, double Valor, String Observacao, boolean ImprimeVinculado)
+	{
+		EfetuaPagamentoEventObject e = new EfetuaPagamentoEventObject(this, CodFormaPagto, Valor, Observacao, ImprimeVinculado);
+		notifyListeners("onDepoisEfetuaPagamentoNaoFiscal", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisFechaCupom">
+	public void addOnDepoisFechaCupom(ACBrEventListener<FechaCupomEventObject> listener)
+	{
+		if (!hasListeners("onDepoisFechaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisFechaCupom(getHandle(), new ACBrECFInterop.FechaCupomCallback()
+			{
+				@Override
+				public void invoke(String Observacao, int IndiceBMP)
+				{
+					onDepoisFechaCupom(toUTF8(Observacao), IndiceBMP);
+				}
+			});
+		}
+
+		addListener("onDepoisFechaCupom", listener);
+	}
+
+	public void removeOnDepoisFechaCupom(ACBrEventListener<FechaCupomEventObject> listener)
+	{
+		removeListener("onDepoisFechaCupom", listener);
+
+		if (!hasListeners("onDepoisFechaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisFechaCupom(getHandle(), null);
+		}
+	}
+
+	private void onDepoisFechaCupom(String Observacao, int IndiceBMP)
+	{
+		FechaCupomEventObject e = new FechaCupomEventObject(this, Observacao, IndiceBMP);
+		notifyListeners("onDepoisFechaCupom", e);
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisFechaNaoFiscal">
+	public void addOnDepoisFechaNaoFiscal(ACBrEventListener<FechaCupomEventObject> listener)
+	{
+		if (!hasListeners("onDepoisFechaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisFechaNaoFiscal(getHandle(), new ACBrECFInterop.FechaCupomCallback()
+			{
+				@Override
+				public void invoke(String Observacao, int IndiceBMP)
+				{
+					onDepoisFechaNaoFiscal(toUTF8(Observacao), IndiceBMP);
+				}
+			});
+		}
+
+		addListener("onDepoisFechaNaoFiscal", listener);
+	}
+
+	public void removeOnDepoisFechaNaoFiscal(ACBrEventListener<FechaCupomEventObject> listener)
+	{
+		removeListener("onDepoisFechaNaoFiscal", listener);
+
+		if (!hasListeners("onDepoisFechaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisFechaNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private void onDepoisFechaNaoFiscal(String Observacao, int IndiceBMP)
+	{
+		FechaCupomEventObject e = new FechaCupomEventObject(this, Observacao, IndiceBMP);
+		notifyListeners("onDepoisFechaNaoFiscal", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisFechaRelatorio">
+	public void addOnDepoisFechaRelatorio(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onDepoisFechaRelatorio")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisFechaRelatorio(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onDepoisFechaRelatorio();
+				}
+			});
+		}
+
+		addListener("onDepoisFechaRelatorio", listener);
+	}
+
+	public void removeOnDepoisFechaRelatorio(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onDepoisFechaRelatorio", listener);
+
+		if (!hasListeners("onDepoisFechaRelatorio")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisFechaRelatorio(getHandle(), null);
+		}
+	}
+
+	private void onDepoisFechaRelatorio()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onDepoisFechaRelatorio", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisLeituraX">
+	public void addOnDepoisLeituraX(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onDepoisLeituraX")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisLeituraX(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onDepoisLeituraX();
+				}
+			});
+		}
+
+		addListener("onDepoisLeituraX", listener);
+	}
+
+	public void removeOnDepoisLeituraX(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onDepoisLeituraX", listener);
+
+		if (!hasListeners("onDepoisLeituraX")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisLeituraX(getHandle(), null);
+		}
+	}
+
+	private void onDepoisLeituraX()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onDepoisLeituraX", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisReducaoZ">
+	public void addOnDepoisReducaoZ(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onDepoisReducaoZ")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisReducaoZ(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onDepoisReducaoZ();
+				}
+			});
+		}
+
+		addListener("onDepoisReducaoZ", listener);
+	}
+
+	public void removeOnDepoisReducaoZ(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onDepoisReducaoZ", listener);
+
+		if (!hasListeners("onDepoisReducaoZ")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisReducaoZ(getHandle(), null);
+		}
+	}
+
+	private void onDepoisReducaoZ()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onDepoisReducaoZ", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisSangria">
+	public void addOnDepoisSangria(ACBrEventListener<SangriaSuprimentoEventObject> listener)
+	{
+		if (!hasListeners("onDepoisSangria")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisSangria(getHandle(), new ACBrECFInterop.SangriaSuprimentoCallback()
+			{
+				@Override
+				public void invoke(double Valor, String Obs, String DescricaoCNF, String DescricaoFPG)
+				{
+					onDepoisSangria(Valor, toUTF8(Obs), toUTF8(DescricaoCNF), toUTF8(DescricaoFPG));
+				}
+			});
+		}
+
+		addListener("onDepoisSangria", listener);
+	}
+
+	public void removeOnDepoisSangria(ACBrEventListener<SangriaSuprimentoEventObject> listener)
+	{
+		removeListener("onDepoisSangria", listener);
+
+		if (!hasListeners("onDepoisSangria")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisSangria(getHandle(), null);
+		}
+	}
+
+	private void onDepoisSangria(double Valor, String Obs, String DescricaoCNF, String DescricaoFPG)
+	{
+		SangriaSuprimentoEventObject e = new SangriaSuprimentoEventObject(this, Valor, Obs, DescricaoCNF, DescricaoFPG);
+		notifyListeners("onDepoisSangria", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisSubtotalizaCupom">
+	public void addOnDepoisSubtotalizaCupom(ACBrEventListener<SubtotalizaCupomEventObject> listener)
+	{
+		if (!hasListeners("onDepoisSubtotalizaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisSubtotalizaCupom(getHandle(), new ACBrECFInterop.SubtotalizaCupomCallback()
+			{
+				@Override
+				public void invoke(double DescontoAcrescimo, String MensagemRodape)
+				{
+					onDepoisSubtotalizaCupom(DescontoAcrescimo, toUTF8(MensagemRodape));
+				}
+			});
+		}
+
+		addListener("onDepoisSubtotalizaCupom", listener);
+	}
+
+	public void removeOnDepoisSubtotalizaCupom(ACBrEventListener<SubtotalizaCupomEventObject> listener)
+	{
+		removeListener("onDepoisSubtotalizaCupom", listener);
+
+		if (!hasListeners("onDepoisSubtotalizaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisSubtotalizaCupom(getHandle(), null);
+		}
+	}
+
+	private void onDepoisSubtotalizaCupom(double DescontoAcrescimo, String MensagemRodape)
+	{
+		SubtotalizaCupomEventObject e = new SubtotalizaCupomEventObject(this, DescontoAcrescimo, MensagemRodape);
+		notifyListeners("onDepoisSubtotalizaCupom", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisSubtotalizaNaoFiscal">
+	public void addOnDepoisSubtotalizaNaoFiscal(ACBrEventListener<SubtotalizaCupomEventObject> listener)
+	{
+		if (!hasListeners("onDepoisSubtotalizaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisSubtotalizaNaoFiscal(getHandle(), new ACBrECFInterop.SubtotalizaCupomCallback()
+			{
+				@Override
+				public void invoke(double DescontoAcrescimo, String MensagemRodape)
+				{
+					onDepoisSubtotalizaNaoFiscal(DescontoAcrescimo, toUTF8(MensagemRodape));
+				}
+			});
+		}
+
+		addListener("onDepoisSubtotalizaNaoFiscal", listener);
+	}
+
+	public void removeOnDepoisSubtotalizaNaoFiscal(ACBrEventListener<SubtotalizaCupomEventObject> listener)
+	{
+		removeListener("onDepoisSubtotalizaNaoFiscal", listener);
+
+		if (!hasListeners("onDepoisSubtotalizaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisSubtotalizaNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private void onDepoisSubtotalizaNaoFiscal(double DescontoAcrescimo, String MensagemRodape)
+	{
+		SubtotalizaCupomEventObject e = new SubtotalizaCupomEventObject(this, DescontoAcrescimo, MensagemRodape);
+		notifyListeners("onDepoisSubtotalizaNaoFiscal", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisSuprimento">
+	public void addOnDepoisSuprimento(ACBrEventListener<SangriaSuprimentoEventObject> listener)
+	{
+		if (!hasListeners("onDepoisSuprimento")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisSuprimento(getHandle(), new ACBrECFInterop.SangriaSuprimentoCallback()
+			{
+				@Override
+				public void invoke(double Valor, String Obs, String DescricaoCNF, String DescricaoFPG)
+				{
+					onDepoisSuprimento(Valor, toUTF8(Obs), toUTF8(DescricaoCNF), toUTF8(DescricaoFPG));
+				}
+			});
+		}
+
+		addListener("onDepoisSuprimento", listener);
+	}
+
+	public void removeOnDepoisSuprimento(ACBrEventListener<SangriaSuprimentoEventObject> listener)
+	{
+		removeListener("onDepoisSuprimento", listener);
+
+		if (!hasListeners("onDepoisSuprimento")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisSuprimento(getHandle(), null);
+		}
+	}
+
+	private void onDepoisSuprimento(double Valor, String Obs, String DescricaoCNF, String DescricaoFPG)
+	{
+		SangriaSuprimentoEventObject e = new SangriaSuprimentoEventObject(this, Valor, Obs, DescricaoCNF, DescricaoFPG);
+		notifyListeners("onDepoisSuprimento", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onDepoisVendeItem">
+	public void addOnDepoisVendeItem(ACBrEventListener<VendeItemEventObject> listener)
+	{
+		if (!hasListeners("onDepoisVendeItem")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisVendeItem(getHandle(), new ACBrECFInterop.VendeItemCallback()
+			{
+				@Override
+				public void invoke(String Codigo, String Descricao, String AliquotaICMS, double Qtd, double ValorUnitario, double ValorDescontoAcrescimo, String Unidade, String TipoDescontoAcrescimo, String DescontoAcrescimo)
+				{
+					onDepoisVendeItem(toUTF8(Codigo), toUTF8(Descricao), toUTF8(AliquotaICMS), Qtd, ValorUnitario, ValorDescontoAcrescimo, toUTF8(Unidade), toUTF8(TipoDescontoAcrescimo), toUTF8(DescontoAcrescimo));
+				}
+			});
+		}
+
+		addListener("onDepoisVendeItem", listener);
+	}
+
+	public void removeOnDepoisVendeItem(ACBrEventListener<VendeItemEventObject> listener)
+	{
+		removeListener("onDepoisVendeItem", listener);
+
+		if (!hasListeners("onDepoisVendeItem")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnDepoisVendeItem(getHandle(), null);
+		}
+	}
+
+	private void onDepoisVendeItem(String Codigo, String Descricao, String AliquotaICMS, double Qtd, double ValorUnitario, double ValorDescontoAcrescimo, String Unidade, String TipoDescontoAcrescimo, String DescontoAcrescimo)
+	{
+		VendeItemEventObject e = new VendeItemEventObject(this, Codigo, Descricao, AliquotaICMS, Qtd, ValorUnitario, ValorDescontoAcrescimo, Unidade, TipoDescontoAcrescimo, DescontoAcrescimo);
+		notifyListeners("onDepoisVendeItem", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorAbreCupom">
+	public void addOnErrorAbreCupom(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorAbreCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorAbreCupom(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorAbreCupom();
+				}
+			});
+		}
+
+		addListener("onErrorAbreCupom", listener);
+	}
+
+	public void removeOnErrorAbreCupom(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorAbreCupom", listener);
+
+		if (!hasListeners("onErrorAbreCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorAbreCupom(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorAbreCupom()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorAbreCupom", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorAbreCupomVinculado">
+	public void addOnErrorAbreCupomVinculado(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorAbreCupomVinculado")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorAbreCupomVinculado(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorAbreCupomVinculado();
+				}
+			});
+		}
+
+		addListener("onErrorAbreCupomVinculado", listener);
+	}
+
+	public void removeOnErrorAbreCupomVinculado(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorAbreCupomVinculado", listener);
+
+		if (!hasListeners("onErrorAbreCupomVinculado")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorAbreCupomVinculado(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorAbreCupomVinculado()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorAbreCupomVinculado", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorAbreNaoFiscal">
+	public void addOnErrorAbreNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorAbreNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorAbreNaoFiscal(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorAbreNaoFiscal();
+				}
+			});
+		}
+
+		addListener("onErrorAbreNaoFiscal", listener);
+	}
+
+	public void removeOnErrorAbreNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorAbreNaoFiscal", listener);
+
+		if (!hasListeners("onErrorAbreNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorAbreNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorAbreNaoFiscal()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorAbreNaoFiscal", e);
+		
+		return e.getTratado();
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorAbreRelatorioGerencial">
+	public void addOnErrorAbreRelatorioGerencial(ACBrEventListener<ErrorRelatorioEventObject> listener)
+	{
+		if (!hasListeners("onErrorAbreRelatorioGerencial")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorAbreRelatorioGerencial(getHandle(), new ACBrECFInterop.ErrorRelatorioCallback()
+			{
+				@Override
+				public boolean invoke(int Indice)
+				{
+					return onErrorAbreRelatorioGerencial(Indice);
+				}
+			});
+		}
+
+		addListener("onErrorAbreRelatorioGerencial", listener);
+	}
+
+	public void removeOnErrorAbreRelatorioGerencial(ACBrEventListener<ErrorRelatorioEventObject> listener)
+	{
+		removeListener("onErrorAbreRelatorioGerencial", listener);
+
+		if (!hasListeners("onErrorAbreRelatorioGerencial")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorAbreRelatorioGerencial(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorAbreRelatorioGerencial(int Indice)
+	{
+		ErrorRelatorioEventObject e = new ErrorRelatorioEventObject(this, false, Indice);
+		notifyListeners("onErrorAbreRelatorioGerencial", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorCancelaCupom">
+	public void addOnErrorCancelaCupom(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorCancelaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorCancelaCupom(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorCancelaCupom();
+				}
+			});
+		}
+
+		addListener("onErrorCancelaCupom", listener);
+	}
+
+	public void removeOnErrorCancelaCupom(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorCancelaCupom", listener);
+
+		if (!hasListeners("onErrorCancelaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorCancelaCupom(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorCancelaCupom()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorCancelaCupom", e);
+		
+		return e.getTratado();
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorCancelaItemNaoFiscal">
+	public void addOnErrorCancelaItemNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorCancelaItemNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorCancelaItemNaoFiscal(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorCancelaItemNaoFiscal();
+				}
+			});
+		}
+
+		addListener("onErrorCancelaItemNaoFiscal", listener);
+	}
+
+	public void removeOnErrorCancelaItemNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorCancelaItemNaoFiscal", listener);
+
+		if (!hasListeners("onErrorCancelaItemNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorCancelaItemNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorCancelaItemNaoFiscal()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorCancelaItemNaoFiscal", e);
+		
+		return e.getTratado();
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorCancelaItemVendido">
+	public void addOnErrorCancelaItemVendido(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorCancelaItemVendido")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorCancelaItemVendido(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorCancelaItemVendido();
+				}
+			});
+		}
+
+		addListener("onErrorCancelaItemVendido", listener);
+	}
+
+	public void removeOnErrorCancelaItemVendido(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorCancelaItemVendido", listener);
+
+		if (!hasListeners("onErrorCancelaItemVendido")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorCancelaItemVendido(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorCancelaItemVendido()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorCancelaItemVendido", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorCancelaNaoFiscal">
+	public void addOnErrorCancelaNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorCancelaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorCancelaNaoFiscal(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorCancelaNaoFiscal();
+				}
+			});
+		}
+
+		addListener("onErrorCancelaNaoFiscal", listener);
+	}
+
+	public void removeOnErrorCancelaNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorCancelaNaoFiscal", listener);
+
+		if (!hasListeners("onErrorCancelaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorCancelaNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorCancelaNaoFiscal()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorCancelaNaoFiscal", e);
+		
+		return e.getTratado();
+	}
+
+	//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorEfetuaPagamento">
+	public void addOnErrorEfetuaPagamento(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorEfetuaPagamento")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorEfetuaPagamento(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorEfetuaPagamento();
+				}
+			});
+		}
+
+		addListener("onErrorEfetuaPagamento", listener);
+	}
+
+	public void removeOnErrorEfetuaPagamento(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorEfetuaPagamento", listener);
+
+		if (!hasListeners("onErrorEfetuaPagamento")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorEfetuaPagamento(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorEfetuaPagamento()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorEfetuaPagamento", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorEfetuaPagamentoNaoFiscal">
+	public void addOnErrorEfetuaPagamentoNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorEfetuaPagamentoNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorEfetuaPagamentoNaoFiscal(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorEfetuaPagamentoNaoFiscal();
+				}
+			});
+		}
+
+		addListener("onErrorEfetuaPagamentoNaoFiscal", listener);
+	}
+
+	public void removeOnErrorEfetuaPagamentoNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorEfetuaPagamentoNaoFiscal", listener);
+
+		if (!hasListeners("onErrorEfetuaPagamentoNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorEfetuaPagamentoNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorEfetuaPagamentoNaoFiscal()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorEfetuaPagamentoNaoFiscal", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorFechaCupom">
+	public void addOnErrorFechaCupom(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorFechaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorFechaCupom(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorFechaCupom();
+				}
+			});
+		}
+
+		addListener("onErrorFechaCupom", listener);
+	}
+
+	public void removeOnErrorFechaCupom(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorFechaCupom", listener);
+
+		if (!hasListeners("onErrorFechaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorFechaCupom(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorFechaCupom()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorFechaCupom", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorFechaNaoFiscal">
+	public void addOnErrorFechaNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorFechaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorFechaNaoFiscal(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorFechaNaoFiscal();
+				}
+			});
+		}
+
+		addListener("onErrorFechaNaoFiscal", listener);
+	}
+
+	public void removeOnErrorFechaNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorFechaNaoFiscal", listener);
+
+		if (!hasListeners("onErrorFechaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorFechaNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorFechaNaoFiscal()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorFechaNaoFiscal", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorFechaRelatorio">
+	public void addOnErrorFechaRelatorio(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorFechaRelatorio")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorFechaRelatorio(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorFechaRelatorio();
+				}
+			});
+		}
+
+		addListener("onErrorFechaRelatorio", listener);
+	}
+
+	public void removeOnErrorFechaRelatorio(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorFechaRelatorio", listener);
+
+		if (!hasListeners("onErrorFechaRelatorio")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorFechaRelatorio(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorFechaRelatorio()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorFechaRelatorio", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorLeituraX">
+	public void addOnErrorLeituraX(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorLeituraX")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorLeituraX(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorLeituraX();
+				}
+			});
+		}
+
+		addListener("onErrorLeituraX", listener);
+	}
+
+	public void removeOnErrorLeituraX(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorLeituraX", listener);
+
+		if (!hasListeners("onErrorLeituraX")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorLeituraX(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorLeituraX()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorLeituraX", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorReducaoZ">
+	public void addOnErrorReducaoZ(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorReducaoZ")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorReducaoZ(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorReducaoZ();
+				}
+			});
+		}
+
+		addListener("onErrorReducaoZ", listener);
+	}
+
+	public void removeOnErrorReducaoZ(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorReducaoZ", listener);
+
+		if (!hasListeners("onErrorReducaoZ")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorReducaoZ(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorReducaoZ()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorReducaoZ", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorSangria">
+	public void addOnErrorSangria(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorSangria")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorSangria(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorSangria();
+				}
+			});
+		}
+
+		addListener("onErrorSangria", listener);
+	}
+
+	public void removeOnErrorSangria(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorSangria", listener);
+
+		if (!hasListeners("onErrorSangria")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorSangria(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorSangria()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorSangria", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorSemPapel">
+	public void addOnErrorSemPapel(ACBrEventListener<EventObject> listener)
+	{
+		if (!hasListeners("onErrorSemPapel")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorSemPapel(getHandle(), new ACBrECFInterop.Callback()
+			{
+				@Override
+				public void invoke()
+				{
+					onErrorSemPapel();
+				}
+			});
+		}
+
+		addListener("onErrorSemPapel", listener);
+	}
+
+	public void removeOnErrorSemPapel(ACBrEventListener<EventObject> listener)
+	{
+		removeListener("onErrorSemPapel", listener);
+
+		if (!hasListeners("onErrorSemPapel")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorSemPapel(getHandle(), null);
+		}
+	}
+
+	private void onErrorSemPapel()
+	{
+		EventObject e = new EventObject(this);
+		notifyListeners("onErrorSemPapel", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorSubtotalizaCupom">
+	public void addOnErrorSubtotalizaCupom(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorSubtotalizaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorSubtotalizaCupom(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorSubtotalizaCupom();
+				}
+			});
+		}
+
+		addListener("onErrorSubtotalizaCupom", listener);
+	}
+
+	public void removeOnErrorSubtotalizaCupom(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorSubtotalizaCupom", listener);
+
+		if (!hasListeners("onErrorSubtotalizaCupom")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorSubtotalizaCupom(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorSubtotalizaCupom()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorSubtotalizaCupom", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorSubtotalizaNaoFiscal">
+	public void addOnErrorSubtotalizaNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorSubtotalizaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorSubtotalizaNaoFiscal(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorSubtotalizaNaoFiscal();
+				}
+			});
+		}
+
+		addListener("onErrorSubtotalizaNaoFiscal", listener);
+	}
+
+	public void removeOnErrorSubtotalizaNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorSubtotalizaNaoFiscal", listener);
+
+		if (!hasListeners("onErrorSubtotalizaNaoFiscal")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorSubtotalizaNaoFiscal(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorSubtotalizaNaoFiscal()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorSubtotalizaNaoFiscal", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorSuprimento">
+	public void addOnErrorSuprimento(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorSuprimento")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorSuprimento(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorSuprimento();
+				}
+			});
+		}
+
+		addListener("onErrorSuprimento", listener);
+	}
+
+	public void removeOnErrorSuprimento(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorSuprimento", listener);
+
+		if (!hasListeners("onErrorSuprimento")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorSuprimento(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorSuprimento()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorSuprimento", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onErrorVendeItem">
+	public void addOnErrorVendeItem(ACBrEventListener<ErrorEventObject> listener)
+	{
+		if (!hasListeners("onErrorVendeItem")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorVendeItem(getHandle(), new ACBrECFInterop.ErrorCallback()
+			{
+				@Override
+				public boolean invoke()
+				{
+					return onErrorVendeItem();
+				}
+			});
+		}
+
+		addListener("onErrorVendeItem", listener);
+	}
+
+	public void removeOnErrorVendeItem(ACBrEventListener<ErrorEventObject> listener)
+	{
+		removeListener("onErrorVendeItem", listener);
+
+		if (!hasListeners("onErrorVendeItem")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnErrorVendeItem(getHandle(), null);
+		}
+	}
+
+	private boolean onErrorVendeItem()
+	{
+		ErrorEventObject e = new ErrorEventObject(this, false);
+		notifyListeners("onErrorVendeItem", e);
+		
+		return e.getTratado();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onMsgAguarde">
+	public void addOnMsgAguarde(ACBrEventListener<MsgEventObject> listener)
+	{
+		if (!hasListeners("onMsgAguarde")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnMsgAguarde(getHandle(), new ACBrECFInterop.MsgCallback()
+			{
+				@Override
+				public void invoke(String Mensagem)
+				{
+					onMsgAguarde(toUTF8(Mensagem));
+				}
+			});
+		}
+
+		addListener("onMsgAguarde", listener);
+	}
+
+	public void removeOnMsgAguarde(ACBrEventListener<MsgEventObject> listener)
+	{
+		removeListener("onMsgAguarde", listener);
+
+		if (!hasListeners("onMsgAguarde")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnMsgAguarde(getHandle(), null);
+		}
+	}
+
+	private void onMsgAguarde(String Mensagem)
+	{
+		MsgEventObject e = new MsgEventObject(this, Mensagem);
+		notifyListeners("onMsgAguarde", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onMsgRetentar">
+	public void addOnMsgRetentar(ACBrEventListener<MsgRetentarEventObject> listener)
+	{
+		if (!hasListeners("onMsgRetentar")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnMsgRetentar(getHandle(), new ACBrECFInterop.MsgRetentarCallback()
+			{
+				@Override
+				public boolean invoke(String Mensagem, String Situacao)
+				{
+					return onMsgRetentar(toUTF8(Mensagem), toUTF8(Situacao));
+				}
+			});
+		}
+
+		addListener("onMsgRetentar", listener);
+	}
+
+	public void removeOnMsgRetentar(ACBrEventListener<MsgRetentarEventObject> listener)
+	{
+		removeListener("onMsgRetentar", listener);
+
+		if (!hasListeners("onMsgRetentar")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnMsgRetentar(getHandle(), null);
+		}
+	}
+
+	private boolean onMsgRetentar(String Mensagem, String Situacao)
+	{
+		MsgRetentarEventObject e = new MsgRetentarEventObject(this, Mensagem, Situacao, false);
+		notifyListeners("onMsgRetentar", e);
+		
+		return e.getResult();
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onPAFCalcEAD">
+	public void addOnPAFCalcEAD(ACBrEventListener<PAFCalcEADEventObject> listener)
+	{
+		if (!hasListeners("onPAFCalcEAD")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnPAFCalcEAD(getHandle(), new ACBrECFInterop.PAFCalcEADCallback()
+			{
+				@Override
+				public void invoke(String value)
+				{
+					onPAFCalcEAD(toUTF8(value));
+				}
+			});
+		}
+
+		addListener("onPAFCalcEAD", listener);
+	}
+
+	public void removeOnPAFCalcEAD(ACBrEventListener<PAFCalcEADEventObject> listener)
+	{
+		removeListener("onPAFCalcEAD", listener);
+
+		if (!hasListeners("onPAFCalcEAD")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnPAFCalcEAD(getHandle(), null);
+		}
+	}
+
+	private void onPAFCalcEAD(String value)
+	{
+		PAFCalcEADEventObject e = new PAFCalcEADEventObject(this, value);
+		notifyListeners("onPAFCalcEAD", e);
+	}
+
+//</editor-fold>
+
+	//<editor-fold defaultstate="collapsed" desc="onPAFGetKeyRSA">
+	public void addOnPAFGetKeyRSA(ACBrEventListener<ChaveEventObject> listener)
+	{
+		if (!hasListeners("onPAFGetKeyRSA")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnPAFGetKeyRSA(getHandle(), new ACBrECFInterop.ChaveCallback()
+			{
+				@Override
+				public String invoke()
+				{
+					return onPAFGetKeyRSA();
+				}
+			});
+		}
+
+		addListener("onPAFGetKeyRSA", listener);
+	}
+
+	public void removeOnPAFGetKeyRSA(ACBrEventListener<ChaveEventObject> listener)
+	{
+		removeListener("onPAFGetKeyRSA", listener);
+
+		if (!hasListeners("onPAFGetKeyRSA")) {
+			ACBrECFInterop.INSTANCE.ECF_SetOnPAFGetKeyRSA(getHandle(), null);
+		}
+	}
+
+	private String onPAFGetKeyRSA()
+	{
+		ChaveEventObject e = new ChaveEventObject(this, "");
+		notifyListeners("onPAFGetKeyRSA", e);
+		
+		return e.getChave();
+	}
+
+//</editor-fold>
+	
 	//</editor-fold>
 	
 	//<editor-fold defaultstate="collapsed" desc="Component Properties">
-	
 	public ACBrDevice getDevice()
 	{
 		return this.device;
 	}
-	
+
 	public FormaPagamento[] getFormasPagamento() throws ACBrException
 	{
 		return formasPagamento;
 	}
-	
+
 	public void carregaFormasPagamento() throws ACBrException
 	{
-		
-		
+
+
 		int ret = ACBrECFInterop.INSTANCE.ECF_CarregaFormasPagamento(getHandle());
 		checkResult(ret);
-		
+
 		carregaFormasPagamento(ret);
-		
+
 	}
-	
+
 	public void lerTotaisFormaPagamento() throws ACBrException
 	{
-		
-		
+
+
 		int ret = ACBrECFInterop.INSTANCE.ECF_LerTotaisFormaPagamento(getHandle());
 		checkResult(ret);
-		
+
 		carregaFormasPagamento(ret);
-		
+
 	}
 
 	//</editor-fold>
-
-	//<editor-fold defaultstate="collapsed" desc="Properties">
 	
+	//<editor-fold defaultstate="collapsed" desc="Properties">
 	public int getModelo() throws ACBrException
 	{
 
@@ -540,7 +2861,6 @@ public final class ACBrECF extends ACBrClass
 	 * checkResult(ret);
 	 * 
 	 * }*/
-
 	public boolean getAtivo() throws ACBrException
 	{
 
@@ -1237,7 +3557,6 @@ public final class ACBrECF extends ACBrClass
 	 * {
 	 * //NotImplemented
 	 * }*/
-
 	//</editor-fold>	
 	
 	//<editor-fold defaultstate="collapsed" desc="Methods">

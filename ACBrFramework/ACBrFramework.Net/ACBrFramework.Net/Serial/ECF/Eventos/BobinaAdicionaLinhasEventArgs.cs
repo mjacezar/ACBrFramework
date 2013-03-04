@@ -23,13 +23,23 @@ namespace ACBrFramework.ECF
 
 	#endregion COM_INTEROP
 
-	public class BobinaEventArgs : EventArgs
+	public class BobinaAdicionaLinhasEventArgs : EventArgs
 	{
+		#region Constructor
+
+		internal BobinaAdicionaLinhasEventArgs(string linhas, string operacao)
+		{
+			this.Linhas = linhas;
+			this.Operacao = operacao;
+		}
+
+		#endregion Constructor
+
 		#region Properties
 
-		public string Linhas { get; internal set; }
+		public string Linhas { get; private set; }
 
-		public string Operacao { get; internal set; }
+		public string Operacao { get; private set; }
 
 		#endregion Properties
 	}

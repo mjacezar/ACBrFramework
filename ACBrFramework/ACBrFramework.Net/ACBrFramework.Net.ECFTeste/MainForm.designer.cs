@@ -4229,7 +4229,7 @@
 			this.acbrECF.PausaRelatorio = 5;
 			this.acbrECF.RFD = this.aCBrRFD1;
 			this.acbrECF.OnAguardandoRespostaChange += new System.EventHandler(this.acbrECF_OnAguardandoRespostaChange);
-			this.acbrECF.OnBobinaAdicionaLinhas += new System.EventHandler<ACBrFramework.ECF.BobinaEventArgs>(this.acbrECF_OnBobinaAdicionaLinhas);
+			this.acbrECF.OnBobinaAdicionaLinhas += new System.EventHandler<ACBrFramework.ECF.BobinaAdicionaLinhasEventArgs>(this.acbrECF_OnBobinaAdicionaLinhas);
 			// 
 			// aCBrRFD1
 			// 

@@ -1065,7 +1065,7 @@ namespace ACBrFramework.ECF
 		public event BobinaAdicionaLinhasEventHandler OnBobinaAdicionaLinhas
 #else
 
-		public event EventHandler<BobinaEventArgs> OnBobinaAdicionaLinhas
+		public event EventHandler<BobinaAdicionaLinhasEventArgs> OnBobinaAdicionaLinhas
 #endif
 		{
 			#region COM_INTEROP
@@ -2704,77 +2704,77 @@ namespace ACBrFramework.ECF
 		private ACBrEAD ead;
 		private ACBrRFD rfd;
 
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onMsgPoucoPapel;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAguardandoRespostaChange;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onMsgPoucoPapel;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onAguardandoRespostaChange;
 		private readonly ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback> onAntesAbreCupom;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAntesAbreCupomVinculado;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onAntesAbreCupomVinculado;
 		private readonly ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback> onAntesAbreNaoFiscal;
-		private readonly ACBrEventHandler<RelatorioGerencialEventArgs, ACBrECFInterop.IntArgumentCallback> onAntesAbreRelatorioGerencial;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAntesCancelaCupom;
-		private readonly ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback> onAntesCancelaItemNaoFiscal;
-		private readonly ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback> onAntesCancelaItemVendido;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAntesCancelaNaoFiscal;
+		private readonly ACBrEventHandler<RelatorioGerencialEventArgs, ACBrECFInterop.RelatorioGerencialCallback> onAntesAbreRelatorioGerencial;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onAntesCancelaCupom;
+		private readonly ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.CancelaItemCallback> onAntesCancelaItemNaoFiscal;
+		private readonly ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.CancelaItemCallback> onAntesCancelaItemVendido;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onAntesCancelaNaoFiscal;
 		private readonly ACBrEventHandler<EfetuaPagamentoEventArgs, ACBrECFInterop.EfetuaPagamentoCallback> onAntesEfetuaPagamento;
 		private readonly ACBrEventHandler<EfetuaPagamentoEventArgs, ACBrECFInterop.EfetuaPagamentoCallback> onAntesEfetuaPagamentoNaoFiscal;
 		private readonly ACBrEventHandler<FechaCupomEventArgs, ACBrECFInterop.FechaCupomCallback> onAntesFechaCupom;
 		private readonly ACBrEventHandler<FechaCupomEventArgs, ACBrECFInterop.FechaCupomCallback> onAntesFechaNaoFiscal;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAntesFechaRelatorio;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAntesLeituraX;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onAntesReducaoZ;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onAntesFechaRelatorio;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onAntesLeituraX;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onAntesReducaoZ;
 		private readonly ACBrEventHandler<SangriaSuprimentoEventArgs, ACBrECFInterop.SangriaSuprimentoCallback> onAntesSangria;
 		private readonly ACBrEventHandler<SubtotalizaCupomEventArgs, ACBrECFInterop.SubtotalizaCupomCallback> onAntesSubtotalizaCupom;
 		private readonly ACBrEventHandler<SubtotalizaCupomEventArgs, ACBrECFInterop.SubtotalizaCupomCallback> onAntesSubtotalizaNaoFiscal;
 		private readonly ACBrEventHandler<SangriaSuprimentoEventArgs, ACBrECFInterop.SangriaSuprimentoCallback> onAntesSuprimento;
 		private readonly ACBrEventHandler<VendeItemEventArgs, ACBrECFInterop.VendeItemCallback> onAntesVendeItem;
-		private readonly ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback> onBobinaAdicionaLinhas;
+		private readonly ACBrEventHandler<BobinaAdicionaLinhasEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback> onBobinaAdicionaLinhas;
 		private readonly ACBrEventHandler<ChangeEstadoEventArgs, ACBrECFInterop.ChangeEstadoCallback> onChangeEstado;
 		private readonly ACBrEventHandler<ChequeEstadoEventArgs, ACBrECFInterop.ChequeEstadoCallback> onChequeEstado;
 		private readonly ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback> onDepoisAbreCupom;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onDepoisAbreCupomVinculado;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onDepoisAbreCupomVinculado;
 		private readonly ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback> onDepoisAbreNaoFiscal;
-		private readonly ACBrEventHandler<RelatorioGerencialEventArgs, ACBrECFInterop.IntArgumentCallback> onDepoisAbreRelatorioGerencial;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onDepoisCancelaCupom;
-		private readonly ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback> onDepoisCancelaItemNaoFiscal;
-		private readonly ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback> onDepoisCancelaItemVendido;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onDepoisCancelaNaoFiscal;
+		private readonly ACBrEventHandler<RelatorioGerencialEventArgs, ACBrECFInterop.RelatorioGerencialCallback> onDepoisAbreRelatorioGerencial;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onDepoisCancelaCupom;
+		private readonly ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.CancelaItemCallback> onDepoisCancelaItemNaoFiscal;
+		private readonly ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.CancelaItemCallback> onDepoisCancelaItemVendido;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onDepoisCancelaNaoFiscal;
 		private readonly ACBrEventHandler<EfetuaPagamentoEventArgs, ACBrECFInterop.EfetuaPagamentoCallback> onDepoisEfetuaPagamento;
 		private readonly ACBrEventHandler<EfetuaPagamentoEventArgs, ACBrECFInterop.EfetuaPagamentoCallback> onDepoisEfetuaPagamentoNaoFiscal;
 		private readonly ACBrEventHandler<FechaCupomEventArgs, ACBrECFInterop.FechaCupomCallback> onDepoisFechaCupom;
 		private readonly ACBrEventHandler<FechaCupomEventArgs, ACBrECFInterop.FechaCupomCallback> onDepoisFechaNaoFiscal;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onDepoisFechaRelatorio;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onDepoisLeituraX;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onDepoisReducaoZ;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onDepoisFechaRelatorio;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onDepoisLeituraX;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onDepoisReducaoZ;
 		private readonly ACBrEventHandler<SangriaSuprimentoEventArgs, ACBrECFInterop.SangriaSuprimentoCallback> onDepoisSangria;
 		private readonly ACBrEventHandler<SubtotalizaCupomEventArgs, ACBrECFInterop.SubtotalizaCupomCallback> onDepoisSubtotalizaCupom;
 		private readonly ACBrEventHandler<SubtotalizaCupomEventArgs, ACBrECFInterop.SubtotalizaCupomCallback> onDepoisSubtotalizaNaoFiscal;
 		private readonly ACBrEventHandler<SangriaSuprimentoEventArgs, ACBrECFInterop.SangriaSuprimentoCallback> onDepoisSuprimento;
 		private readonly ACBrEventHandler<VendeItemEventArgs, ACBrECFInterop.VendeItemCallback> onDepoisVendeItem;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorAbreCupom;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorAbreCupomVinculado;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorAbreNaoFiscal;
-		private readonly ACBrEventHandler<ErrorRelatorioEventArgs, ACBrECFInterop.OnErrorRelatorioCallback> onErrorAbreRelatorioGerencial;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorCancelaCupom;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorCancelaItemNaoFiscal;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorCancelaItemVendido;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorCancelaNaoFiscal;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorEfetuaPagamento;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorEfetuaPagamentoNaoFiscal;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorFechaCupom;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorFechaNaoFiscal;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorFechaRelatorio;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorLeituraX;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorReducaoZ;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorSangria;
-		private readonly ACBrEventHandler<ACBrECFInterop.NoArgumentCallback> onErrorSemPapel;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorSubtotalizaCupom;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorSubtotalizaNaoFiscal;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorSuprimento;
-		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback> onErrorVendeItem;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorAbreCupom;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorAbreCupomVinculado;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorAbreNaoFiscal;
+		private readonly ACBrEventHandler<ErrorRelatorioEventArgs, ACBrECFInterop.ErrorRelatorioCallback> onErrorAbreRelatorioGerencial;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorCancelaCupom;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorCancelaItemNaoFiscal;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorCancelaItemVendido;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorCancelaNaoFiscal;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorEfetuaPagamento;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorEfetuaPagamentoNaoFiscal;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorFechaCupom;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorFechaNaoFiscal;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorFechaRelatorio;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorLeituraX;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorReducaoZ;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorSangria;
+		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onErrorSemPapel;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorSubtotalizaCupom;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorSubtotalizaNaoFiscal;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorSuprimento;
+		private readonly ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback> onErrorVendeItem;
 
-		private readonly ACBrEventHandler<MsgEventArgs, ACBrECFInterop.StringCallback> onMsgAguarde;
-		private readonly ACBrEventHandler<MsgRetentarEventArgs, ACBrECFInterop.OnMsgRetentarCallback> onMsgRetentar;
-		private readonly ACBrEventHandler<PAFCalcEADEventArgs, ACBrECFInterop.StringCallback> onPAFCalcEAD;
-		private readonly ACBrEventHandler<ChaveEventArgs, ACBrECFInterop.GetKeyCallback> onPAFGetKeyRSA;
+		private readonly ACBrEventHandler<MsgEventArgs, ACBrECFInterop.MsgCallback> onMsgAguarde;
+		private readonly ACBrEventHandler<MsgRetentarEventArgs, ACBrECFInterop.MsgRetentarCallback> onMsgRetentar;
+		private readonly ACBrEventHandler<PAFCalcEADEventArgs, ACBrECFInterop.PAFCalcEADCallback> onPAFCalcEAD;
+		private readonly ACBrEventHandler<ChaveEventArgs, ACBrECFInterop.ChaveCallback> onPAFGetKeyRSA;
 
 		#endregion Fields
 
@@ -2782,76 +2782,76 @@ namespace ACBrFramework.ECF
 
 		public ACBrECF()
 		{
-			onMsgPoucoPapel = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnMsgPoucoPapelCallback, ACBrECFInterop.ECF_SetOnPoucoPapel);
-			onAguardandoRespostaChange = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnAguardandoRespostaChangeCallback, ACBrECFInterop.ECF_SetOnAguardandoRespostaChange);
+			onMsgPoucoPapel = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnMsgPoucoPapelCallback, ACBrECFInterop.ECF_SetOnMsgPoucoPapel);
+			onAguardandoRespostaChange = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnAguardandoRespostaChangeCallback, ACBrECFInterop.ECF_SetOnAguardandoRespostaChange);
 			onAntesAbreCupom = new ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback>(this, OnAntesAbreCupomCallback, ACBrECFInterop.ECF_SetOnAntesAbreCupom);
-			onAntesAbreCupomVinculado = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnAntesAbreCupomVinculadoCallback, ACBrECFInterop.ECF_SetOnAntesAbreCupomVinculado);
+			onAntesAbreCupomVinculado = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnAntesAbreCupomVinculadoCallback, ACBrECFInterop.ECF_SetOnAntesAbreCupomVinculado);
 			onAntesAbreNaoFiscal = new ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback>(this, OnAntesAbreNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesAbreNaoFiscal);
-			onAntesAbreRelatorioGerencial = new ACBrEventHandler<RelatorioGerencialEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnAntesAbreRelatorioGerencialCallback, ACBrECFInterop.ECF_SetOnAntesAbreRelatorioGerencial);
-			onAntesCancelaCupom = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnAntesCancelaCupomCallback, ACBrECFInterop.ECF_SetOnAntesCancelaCupom);
-			onAntesCancelaItemNaoFiscal = new ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnAntesCancelaItemNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesCancelaItemNaoFiscal);
-			onAntesCancelaItemVendido = new ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnAntesCancelaItemVendidoCallback, ACBrECFInterop.ECF_SetOnAntesCancelaItemVendido);
-			onAntesCancelaNaoFiscal = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnAntesCancelaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesCancelaNaoFiscal);
+			onAntesAbreRelatorioGerencial = new ACBrEventHandler<RelatorioGerencialEventArgs, ACBrECFInterop.RelatorioGerencialCallback>(this, OnAntesAbreRelatorioGerencialCallback, ACBrECFInterop.ECF_SetOnAntesAbreRelatorioGerencial);
+			onAntesCancelaCupom = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnAntesCancelaCupomCallback, ACBrECFInterop.ECF_SetOnAntesCancelaCupom);
+			onAntesCancelaItemNaoFiscal = new ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.CancelaItemCallback>(this, OnAntesCancelaItemNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesCancelaItemNaoFiscal);
+			onAntesCancelaItemVendido = new ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.CancelaItemCallback>(this, OnAntesCancelaItemVendidoCallback, ACBrECFInterop.ECF_SetOnAntesCancelaItemVendido);
+			onAntesCancelaNaoFiscal = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnAntesCancelaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesCancelaNaoFiscal);
 			onAntesEfetuaPagamento = new ACBrEventHandler<EfetuaPagamentoEventArgs, ACBrECFInterop.EfetuaPagamentoCallback>(this, OnAntesEfetuaPagamentoCallback, ACBrECFInterop.ECF_SetOnAntesEfetuaPagamento);
 			onAntesEfetuaPagamentoNaoFiscal = new ACBrEventHandler<EfetuaPagamentoEventArgs, ACBrECFInterop.EfetuaPagamentoCallback>(this, OnAntesEfetuaPagamentoNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesEfetuaPagamentoNaoFiscal);
 			onAntesFechaCupom = new ACBrEventHandler<FechaCupomEventArgs, ACBrECFInterop.FechaCupomCallback>(this, OnAntesFechaCupomCallback, ACBrECFInterop.ECF_SetOnAntesFechaCupom);
 			onAntesFechaNaoFiscal = new ACBrEventHandler<FechaCupomEventArgs, ACBrECFInterop.FechaCupomCallback>(this, OnAntesFechaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesFechaNaoFiscal);
-			onAntesFechaRelatorio = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnAntesFechaRelatorioCallback, ACBrECFInterop.ECF_SetOnAntesFechaRelatorio);
-			onAntesLeituraX = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnAntesLeituraXCallback, ACBrECFInterop.ECF_SetOnAntesLeituraX);
-			onAntesReducaoZ = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnAntesReducaoZCallback, ACBrECFInterop.ECF_SetOnAntesReducaoZ);
+			onAntesFechaRelatorio = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnAntesFechaRelatorioCallback, ACBrECFInterop.ECF_SetOnAntesFechaRelatorio);
+			onAntesLeituraX = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnAntesLeituraXCallback, ACBrECFInterop.ECF_SetOnAntesLeituraX);
+			onAntesReducaoZ = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnAntesReducaoZCallback, ACBrECFInterop.ECF_SetOnAntesReducaoZ);
 			onAntesSangria = new ACBrEventHandler<SangriaSuprimentoEventArgs, ACBrECFInterop.SangriaSuprimentoCallback>(this, OnAntesSangriaCallback, ACBrECFInterop.ECF_SetOnAntesSangria);
 			onAntesSubtotalizaCupom = new ACBrEventHandler<SubtotalizaCupomEventArgs, ACBrECFInterop.SubtotalizaCupomCallback>(this, OnAntesSubtotalizaCupomCallback, ACBrECFInterop.ECF_SetOnAntesSubtotalizaCupom);
 			onAntesSubtotalizaNaoFiscal = new ACBrEventHandler<SubtotalizaCupomEventArgs, ACBrECFInterop.SubtotalizaCupomCallback>(this, OnAntesSubtotalizaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnAntesSubtotalizaCupom);
 			onAntesSuprimento = new ACBrEventHandler<SangriaSuprimentoEventArgs, ACBrECFInterop.SangriaSuprimentoCallback>(this, OnAntesSuprimentoCallback, ACBrECFInterop.ECF_SetOnAntesSuprimento);
 			onAntesVendeItem = new ACBrEventHandler<VendeItemEventArgs, ACBrECFInterop.VendeItemCallback>(this, OnAntesVendeItemCallback, ACBrECFInterop.ECF_SetOnAntesVendeItem);
-			onBobinaAdicionaLinhas = new ACBrEventHandler<BobinaEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback>(this, OnBobinaAdicionaLinhasCallback, ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas);
+			onBobinaAdicionaLinhas = new ACBrEventHandler<BobinaAdicionaLinhasEventArgs, ACBrECFInterop.BobinaAdicionaLinhasCallback>(this, OnBobinaAdicionaLinhasCallback, ACBrECFInterop.ECF_SetOnBobinaAdicionaLinhas);
 			onChangeEstado = new ACBrEventHandler<ChangeEstadoEventArgs, ACBrECFInterop.ChangeEstadoCallback>(this, OnChangeEstadoCallback, ACBrECFInterop.ECF_SetOnChangeEstado);
 			onChequeEstado = new ACBrEventHandler<ChequeEstadoEventArgs, ACBrECFInterop.ChequeEstadoCallback>(this, OnChequeEstadoCallback, ACBrECFInterop.ECF_SetOnChequeEstado);
 			onDepoisAbreCupom = new ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback>(this, OnDepoisAbreCupomCallback, ACBrECFInterop.ECF_SetOnDepoisAbreCupom);
-			onDepoisAbreCupomVinculado = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnDepoisAbreCupomVinculadoCallback, ACBrECFInterop.ECF_SetOnDepoisAbreCupomVinculado);
+			onDepoisAbreCupomVinculado = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnDepoisAbreCupomVinculadoCallback, ACBrECFInterop.ECF_SetOnDepoisAbreCupomVinculado);
 			onDepoisAbreNaoFiscal = new ACBrEventHandler<AbreCupomEventArgs, ACBrECFInterop.AbreCupomCallback>(this, OnDepoisAbreNaoFiscalCallback, ACBrECFInterop.ECF_SetOnDepoisAbreNaoFiscal);
-			onDepoisAbreRelatorioGerencial = new ACBrEventHandler<RelatorioGerencialEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnDepoisAbreRelatorioGerencialCallback, ACBrECFInterop.ECF_SetOnDepoisAbreRelatorioGerencial);
-			onDepoisCancelaCupom = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnDepoisCancelaCupomCallback, ACBrECFInterop.ECF_SetOnDepoisCancelaCupom);
-			onDepoisCancelaItemNaoFiscal = new ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnDepoisCancelaItemNaoFiscalCallback, ACBrECFInterop.ECF_SetOnDepoisCancelaItemNaoFiscal);
-			onDepoisCancelaItemVendido = new ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.IntArgumentCallback>(this, OnDepoisCancelaItemVendidoCallback, ACBrECFInterop.ECF_SetOnDepoisCancelaItemVendido);
-			onDepoisCancelaNaoFiscal = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnDepoisCancelaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnDepoisCancelaNaoFiscal);
+			onDepoisAbreRelatorioGerencial = new ACBrEventHandler<RelatorioGerencialEventArgs, ACBrECFInterop.RelatorioGerencialCallback>(this, OnDepoisAbreRelatorioGerencialCallback, ACBrECFInterop.ECF_SetOnDepoisAbreRelatorioGerencial);
+			onDepoisCancelaCupom = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnDepoisCancelaCupomCallback, ACBrECFInterop.ECF_SetOnDepoisCancelaCupom);
+			onDepoisCancelaItemNaoFiscal = new ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.CancelaItemCallback>(this, OnDepoisCancelaItemNaoFiscalCallback, ACBrECFInterop.ECF_SetOnDepoisCancelaItemNaoFiscal);
+			onDepoisCancelaItemVendido = new ACBrEventHandler<CancelaItemEventArgs, ACBrECFInterop.CancelaItemCallback>(this, OnDepoisCancelaItemVendidoCallback, ACBrECFInterop.ECF_SetOnDepoisCancelaItemVendido);
+			onDepoisCancelaNaoFiscal = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnDepoisCancelaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnDepoisCancelaNaoFiscal);
 			onDepoisEfetuaPagamento = new ACBrEventHandler<EfetuaPagamentoEventArgs, ACBrECFInterop.EfetuaPagamentoCallback>(this, OnDepoisEfetuaPagamentoCallback, ACBrECFInterop.ECF_SetOnDepoisEfetuaPagamento);
 			onDepoisEfetuaPagamentoNaoFiscal = new ACBrEventHandler<EfetuaPagamentoEventArgs, ACBrECFInterop.EfetuaPagamentoCallback>(this, OnDepoisEfetuaPagamentoNaoFiscalCallback, ACBrECFInterop.ECF_SetOnDepoisEfetuaPagamentoNaoFiscal);
 			onDepoisFechaCupom = new ACBrEventHandler<FechaCupomEventArgs, ACBrECFInterop.FechaCupomCallback>(this, OnDepoisFechaCupomCallback, ACBrECFInterop.ECF_SetOnDepoisFechaCupom);
 			onDepoisFechaNaoFiscal = new ACBrEventHandler<FechaCupomEventArgs, ACBrECFInterop.FechaCupomCallback>(this, OnDepoisFechaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnDepoisFechaNaoFiscal);
-			onDepoisFechaRelatorio = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnDepoisFechaRelatorioCallback, ACBrECFInterop.ECF_SetOnDepoisFechaRelatorio);
-			onDepoisLeituraX = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnDepoisLeituraXCallback, ACBrECFInterop.ECF_SetOnDepoisLeituraX);
-			onDepoisReducaoZ = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnDepoisReducaoZCallback, ACBrECFInterop.ECF_SetOnDepoisReducaoZ);
+			onDepoisFechaRelatorio = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnDepoisFechaRelatorioCallback, ACBrECFInterop.ECF_SetOnDepoisFechaRelatorio);
+			onDepoisLeituraX = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnDepoisLeituraXCallback, ACBrECFInterop.ECF_SetOnDepoisLeituraX);
+			onDepoisReducaoZ = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnDepoisReducaoZCallback, ACBrECFInterop.ECF_SetOnDepoisReducaoZ);
 			onDepoisSangria = new ACBrEventHandler<SangriaSuprimentoEventArgs, ACBrECFInterop.SangriaSuprimentoCallback>(this, OnDepoisSangriaCallback, ACBrECFInterop.ECF_SetOnDepoisSangria);
 			onDepoisSubtotalizaCupom = new ACBrEventHandler<SubtotalizaCupomEventArgs, ACBrECFInterop.SubtotalizaCupomCallback>(this, OnDepoisSubtotalizaCupomCallback, ACBrECFInterop.ECF_SetOnDepoisSubtotalizaCupom);
 			onDepoisSubtotalizaNaoFiscal = new ACBrEventHandler<SubtotalizaCupomEventArgs, ACBrECFInterop.SubtotalizaCupomCallback>(this, OnDepoisSubtotalizaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnDepoisSubtotalizaCupom);
 			onDepoisSuprimento = new ACBrEventHandler<SangriaSuprimentoEventArgs, ACBrECFInterop.SangriaSuprimentoCallback>(this, OnDepoisSuprimentoCallback, ACBrECFInterop.ECF_SetOnDepoisSuprimento);
 			onDepoisVendeItem = new ACBrEventHandler<VendeItemEventArgs, ACBrECFInterop.VendeItemCallback>(this, OnDepoisVendeItemCallback, ACBrECFInterop.ECF_SetOnDepoisVendeItem);
-			onErrorAbreCupom = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorAbreCupomCallback, ACBrECFInterop.ECF_SetOnErrorAbreCupom);
-			onErrorAbreCupomVinculado = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorAbreCupomVinculadoCallback, ACBrECFInterop.ECF_SetOnErrorAbreCupomVinculado);
-			onErrorAbreNaoFiscal = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorAbreNaoFiscalCallback, ACBrECFInterop.ECF_SetOnErrorAbreNaoFiscal);
-			onErrorAbreRelatorioGerencial = new ACBrEventHandler<ErrorRelatorioEventArgs, ACBrECFInterop.OnErrorRelatorioCallback>(this, OnErrorAbreRelatorioGerencialCallback, ACBrECFInterop.ECF_SetOnErrorAbreRelatorioGerencial);
-			onErrorCancelaCupom = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorCancelaCupomCallback, ACBrECFInterop.ECF_SetOnErrorCancelaCupom);
-			onErrorCancelaItemNaoFiscal = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorCancelaItemNaoFiscalCallback, ACBrECFInterop.ECF_SetOnErrorCancelaItemNaoFiscal);
-			onErrorCancelaItemVendido = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorCancelaItemVendidoCallback, ACBrECFInterop.ECF_SetOnErrorCancelaItemVendido);
-			onErrorCancelaNaoFiscal = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorCancelaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnErrorCancelaNaoFiscal);
-			onErrorEfetuaPagamento = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorEfetuaPagamentoCallback, ACBrECFInterop.ECF_SetOnErrorEfetuaPagamento);
-			onErrorEfetuaPagamentoNaoFiscal = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorEfetuaPagamentoNaoFiscalCallback, ACBrECFInterop.ECF_SetOnErrorEfetuaPagamentoNaoFiscal);
-			onErrorFechaCupom = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorFechaCupomCallback, ACBrECFInterop.ECF_SetOnErrorFechaCupom);
-			onErrorFechaNaoFiscal = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorFechaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnErrorFechaNaoFiscal);
-			onErrorFechaRelatorio = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorFechaRelatorioCallback, ACBrECFInterop.ECF_SetOnErrorFechaRelatorio);
-			onErrorLeituraX = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorLeituraXCallback, ACBrECFInterop.ECF_SetOnErrorLeituraX);
-			onErrorReducaoZ = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorReducaoZCallback, ACBrECFInterop.ECF_SetOnErrorReducaoZ);
-			onErrorSangria = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorSangriaCallback, ACBrECFInterop.ECF_SetOnErrorSangria);
-			onErrorSemPapel = new ACBrEventHandler<ACBrECFInterop.NoArgumentCallback>(this, OnErrorSemPapelCallback, ACBrECFInterop.ECF_SetOnErrorSemPapel);
-			onErrorSubtotalizaCupom = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorSubtotalizaCupomCallback, ACBrECFInterop.ECF_SetOnErrorSubtotalizaCupom);
-			onErrorSubtotalizaNaoFiscal = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorSubtotalizaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnErrorSubtotalizaCupom);
-			onErrorSuprimento = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorSuprimentoCallback, ACBrECFInterop.ECF_SetOnErrorSuprimento);
-			onErrorVendeItem = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.OnErrorCallback>(this, OnErrorVendeItemCallback, ACBrECFInterop.ECF_SetOnErrorVendeItem);
-			onMsgAguarde = new ACBrEventHandler<MsgEventArgs, ACBrECFInterop.StringCallback>(this, OnMsgAguardeCallback, ACBrECFInterop.ECF_SetOnMsgAguarde);
-			onMsgRetentar = new ACBrEventHandler<MsgRetentarEventArgs, ACBrECFInterop.OnMsgRetentarCallback>(this, OnMsgRetentarCallback, ACBrECFInterop.ECF_SetOnMsgRetentar);
-			onPAFCalcEAD = new ACBrEventHandler<PAFCalcEADEventArgs, ACBrECFInterop.StringCallback>(this, OnPAFCalcEADCallback, ACBrECFInterop.ECF_SetOnPAFCalcEAD);
-			onPAFGetKeyRSA = new ACBrEventHandler<ChaveEventArgs, ACBrECFInterop.GetKeyCallback>(this, OnPAFGetKeyRSACallback, ACBrECFInterop.ECF_SetOnPAFGetKeyRSA);
+			onErrorAbreCupom = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorAbreCupomCallback, ACBrECFInterop.ECF_SetOnErrorAbreCupom);
+			onErrorAbreCupomVinculado = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorAbreCupomVinculadoCallback, ACBrECFInterop.ECF_SetOnErrorAbreCupomVinculado);
+			onErrorAbreNaoFiscal = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorAbreNaoFiscalCallback, ACBrECFInterop.ECF_SetOnErrorAbreNaoFiscal);
+			onErrorAbreRelatorioGerencial = new ACBrEventHandler<ErrorRelatorioEventArgs, ACBrECFInterop.ErrorRelatorioCallback>(this, OnErrorAbreRelatorioGerencialCallback, ACBrECFInterop.ECF_SetOnErrorAbreRelatorioGerencial);
+			onErrorCancelaCupom = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorCancelaCupomCallback, ACBrECFInterop.ECF_SetOnErrorCancelaCupom);
+			onErrorCancelaItemNaoFiscal = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorCancelaItemNaoFiscalCallback, ACBrECFInterop.ECF_SetOnErrorCancelaItemNaoFiscal);
+			onErrorCancelaItemVendido = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorCancelaItemVendidoCallback, ACBrECFInterop.ECF_SetOnErrorCancelaItemVendido);
+			onErrorCancelaNaoFiscal = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorCancelaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnErrorCancelaNaoFiscal);
+			onErrorEfetuaPagamento = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorEfetuaPagamentoCallback, ACBrECFInterop.ECF_SetOnErrorEfetuaPagamento);
+			onErrorEfetuaPagamentoNaoFiscal = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorEfetuaPagamentoNaoFiscalCallback, ACBrECFInterop.ECF_SetOnErrorEfetuaPagamentoNaoFiscal);
+			onErrorFechaCupom = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorFechaCupomCallback, ACBrECFInterop.ECF_SetOnErrorFechaCupom);
+			onErrorFechaNaoFiscal = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorFechaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnErrorFechaNaoFiscal);
+			onErrorFechaRelatorio = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorFechaRelatorioCallback, ACBrECFInterop.ECF_SetOnErrorFechaRelatorio);
+			onErrorLeituraX = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorLeituraXCallback, ACBrECFInterop.ECF_SetOnErrorLeituraX);
+			onErrorReducaoZ = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorReducaoZCallback, ACBrECFInterop.ECF_SetOnErrorReducaoZ);
+			onErrorSangria = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorSangriaCallback, ACBrECFInterop.ECF_SetOnErrorSangria);
+			onErrorSemPapel = new ACBrEventHandler<ACBrECFInterop.Callback>(this, OnErrorSemPapelCallback, ACBrECFInterop.ECF_SetOnErrorSemPapel);
+			onErrorSubtotalizaCupom = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorSubtotalizaCupomCallback, ACBrECFInterop.ECF_SetOnErrorSubtotalizaCupom);
+			onErrorSubtotalizaNaoFiscal = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorSubtotalizaNaoFiscalCallback, ACBrECFInterop.ECF_SetOnErrorSubtotalizaCupom);
+			onErrorSuprimento = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorSuprimentoCallback, ACBrECFInterop.ECF_SetOnErrorSuprimento);
+			onErrorVendeItem = new ACBrEventHandler<ErrorEventArgs, ACBrECFInterop.ErrorCallback>(this, OnErrorVendeItemCallback, ACBrECFInterop.ECF_SetOnErrorVendeItem);
+			onMsgAguarde = new ACBrEventHandler<MsgEventArgs, ACBrECFInterop.MsgCallback>(this, OnMsgAguardeCallback, ACBrECFInterop.ECF_SetOnMsgAguarde);
+			onMsgRetentar = new ACBrEventHandler<MsgRetentarEventArgs, ACBrECFInterop.MsgRetentarCallback>(this, OnMsgRetentarCallback, ACBrECFInterop.ECF_SetOnMsgRetentar);
+			onPAFCalcEAD = new ACBrEventHandler<PAFCalcEADEventArgs, ACBrECFInterop.PAFCalcEADCallback>(this, OnPAFCalcEADCallback, ACBrECFInterop.ECF_SetOnPAFCalcEAD);
+			onPAFGetKeyRSA = new ACBrEventHandler<ChaveEventArgs, ACBrECFInterop.ChaveCallback>(this, OnPAFGetKeyRSACallback, ACBrECFInterop.ECF_SetOnPAFGetKeyRSA);
 		}
 
 		#endregion Constructor
@@ -5407,9 +5407,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onBobinaAdicionaLinhas.IsAssigned)
 			{
-				BobinaEventArgs e = new BobinaEventArgs();
-				e.Linhas = FromUTF8(Linhas);
-				e.Operacao = FromUTF8(Operacao);
+				BobinaAdicionaLinhasEventArgs e = new BobinaAdicionaLinhasEventArgs(Linhas, Operacao);
 				onBobinaAdicionaLinhas.Raise(e);
 			}
 		}

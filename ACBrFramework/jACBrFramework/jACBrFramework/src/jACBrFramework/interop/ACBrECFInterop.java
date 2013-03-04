@@ -20,7 +20,7 @@ public interface ACBrECFInterop extends InteropLib
 
 	// Tipos de dados
 
-	public interface AbreCupomCallback extends Callback
+	public interface AbreCupomCallback extends com.sun.jna.Callback
 	{
 		void invoke(String CPF_CNPJ,String Nome,String Endereco);
 	}
@@ -28,7 +28,7 @@ public interface ACBrECFInterop extends InteropLib
 
 	public static class AliquotaRec extends Structure
 	{
-		public char[] Indice = new char[4];
+		public byte[] Indice = new byte[4];
 		public double Aliquota;
 		public boolean Tipo;
 		public double Total;
@@ -46,19 +46,37 @@ public interface ACBrECFInterop extends InteropLib
 		public static class ByValue extends AliquotaRec implements Structure.ByValue{ }
 	}
 
-	public interface BobinaAdicionaLinhasCallback extends Callback
+	public interface BobinaAdicionaLinhasCallback extends com.sun.jna.Callback
 	{
 		void invoke(String linhas,String operacao);
 	}
 
 
-	public interface ChangeEstadoCallback extends Callback
+	public interface Callback extends com.sun.jna.Callback
+	{
+		void invoke();
+	}
+
+
+	public interface CancelaItemCallback extends com.sun.jna.Callback
+	{
+		void invoke(int value);
+	}
+
+
+	public interface ChangeEstadoCallback extends com.sun.jna.Callback
 	{
 		void invoke(int EstadoAnterior,int EstadoAtual);
 	}
 
 
-	public interface ChequeEstadoCallback extends Callback
+	public interface ChaveCallback extends com.sun.jna.Callback
+	{
+		String invoke();
+	}
+
+
+	public interface ChequeEstadoCallback extends com.sun.jna.Callback
 	{
 		boolean invoke(int EstadoAtual);
 	}
@@ -66,10 +84,10 @@ public interface ACBrECFInterop extends InteropLib
 
 	public static class ComprovanteNaoFiscalRec extends Structure
 	{
-		public char[] Indice = new char[4];
-		public char[] Descricao = new char[30];
+		public byte[] Indice = new byte[4];
+		public byte[] Descricao = new byte[30];
 		public boolean PermiteVinculado;
-		public char[] FormaPagamento = new char[4];
+		public byte[] FormaPagamento = new byte[4];
 		public double Total;
 		public int Contador;
 
@@ -87,10 +105,10 @@ public interface ACBrECFInterop extends InteropLib
 
 	public static class DAVsRec extends Structure
 	{
-		public char[] Numero = new char[14];
+		public byte[] Numero = new byte[14];
 		public int COO_Cupom;
 		public int COO_Dav;
-		public char[] Titulo = new char[31];
+		public byte[] Titulo = new byte[31];
 		public double Valor;
 		public double DtEmissao;
 
@@ -106,13 +124,25 @@ public interface ACBrECFInterop extends InteropLib
 		public static class ByValue extends DAVsRec implements Structure.ByValue{ }
 	}
 
-	public interface EfetuaPagamentoCallback extends Callback
+	public interface EfetuaPagamentoCallback extends com.sun.jna.Callback
 	{
 		void invoke(String CodFormaPagto,double Valor,String Observacao,boolean ImprimeVinculado);
 	}
 
 
-	public interface FechaCupomCallback extends Callback
+	public interface ErrorCallback extends com.sun.jna.Callback
+	{
+		boolean invoke();
+	}
+
+
+	public interface ErrorRelatorioCallback extends com.sun.jna.Callback
+	{
+		boolean invoke(int Indice);
+	}
+
+
+	public interface FechaCupomCallback extends com.sun.jna.Callback
 	{
 		void invoke(String Observacao,int IndiceBMP);
 	}
@@ -139,46 +169,34 @@ public interface ACBrECFInterop extends InteropLib
 		public static class ByValue extends FormaPagamentoRec implements Structure.ByValue{ }
 	}
 
-	public interface GetKeyCallback extends Callback
+	public interface MsgCallback extends com.sun.jna.Callback
 	{
-		String invoke();
+		void invoke(String Mensagem);
 	}
 
 
-	public interface IntArgumentCallback extends Callback
-	{
-		void invoke(int value);
-	}
-
-
-	public interface NoArgumentCallback extends Callback
-	{
-		void invoke();
-	}
-
-
-	public interface OnErrorCallback extends Callback
-	{
-		boolean invoke();
-	}
-
-
-	public interface OnErrorRelatorioCallback extends Callback
-	{
-		boolean invoke(int Indice);
-	}
-
-
-	public interface OnMsgRetentarCallback extends Callback
+	public interface MsgRetentarCallback extends com.sun.jna.Callback
 	{
 		boolean invoke(String Mensagem,String Situacao);
 	}
 
 
+	public interface PAFCalcEADCallback extends com.sun.jna.Callback
+	{
+		void invoke(String value);
+	}
+
+
+	public interface RelatorioGerencialCallback extends com.sun.jna.Callback
+	{
+		void invoke(int value);
+	}
+
+
 	public static class RelatorioGerencialRec extends Structure
 	{
-		public char[] Indice = new char[4];
-		public char[] Descricao = new char[30];
+		public byte[] Indice = new byte[4];
+		public byte[] Descricao = new byte[30];
 		public int Contador;
 
 
@@ -193,25 +211,19 @@ public interface ACBrECFInterop extends InteropLib
 		public static class ByValue extends RelatorioGerencialRec implements Structure.ByValue{ }
 	}
 
-	public interface SangriaSuprimentoCallback extends Callback
+	public interface SangriaSuprimentoCallback extends com.sun.jna.Callback
 	{
 		void invoke(double Valor,String Obs,String DescricaoCNF,String DescricaoFPG);
 	}
 
 
-	public interface StringCallback extends Callback
-	{
-		void invoke(String Mensagem);
-	}
-
-
-	public interface SubtotalizaCupomCallback extends Callback
+	public interface SubtotalizaCupomCallback extends com.sun.jna.Callback
 	{
 		void invoke(double DescontoAcrescimo,String MensagemRodape);
 	}
 
 
-	public interface VendeItemCallback extends Callback
+	public interface VendeItemCallback extends com.sun.jna.Callback
 	{
 		void invoke(String Codigo,String Descricao,String AliquotaICMS,double Qtd,double ValorUnitario,double ValorDescontoAcrescimo,String Unidade,String TipoDescontoAcrescimo,String DescontoAcrescimo);
 	}
@@ -515,22 +527,22 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_SetMaxLinhasBuffer(int ecfHandle, int maxLinhas);
 	int ECF_SetMemoParams(int ecfHandle, String linhas[], int count);
 	int ECF_SetModelo(int ecfHandle, int modelo);
-	int ECF_SetOnAguardandoRespostaChange(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
+	int ECF_SetOnAguardandoRespostaChange(int ecfHandle, ACBrECFInterop.Callback method);
 	int ECF_SetOnAntesAbreCupom(int ecfHandle, ACBrECFInterop.AbreCupomCallback method);
-	int ECF_SetOnAntesAbreCupomVinculado(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
+	int ECF_SetOnAntesAbreCupomVinculado(int ecfHandle, ACBrECFInterop.Callback method);
 	int ECF_SetOnAntesAbreNaoFiscal(int ecfHandle, ACBrECFInterop.AbreCupomCallback method);
-	int ECF_SetOnAntesAbreRelatorioGerencial(int ecfHandle, ACBrECFInterop.IntArgumentCallback method);
-	int ECF_SetOnAntesCancelaCupom(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
-	int ECF_SetOnAntesCancelaItemNaoFiscal(int ecfHandle, ACBrECFInterop.IntArgumentCallback method);
-	int ECF_SetOnAntesCancelaItemVendido(int ecfHandle, ACBrECFInterop.IntArgumentCallback method);
-	int ECF_SetOnAntesCancelaNaoFiscal(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
+	int ECF_SetOnAntesAbreRelatorioGerencial(int ecfHandle, ACBrECFInterop.RelatorioGerencialCallback method);
+	int ECF_SetOnAntesCancelaCupom(int ecfHandle, ACBrECFInterop.Callback method);
+	int ECF_SetOnAntesCancelaItemNaoFiscal(int ecfHandle, ACBrECFInterop.CancelaItemCallback method);
+	int ECF_SetOnAntesCancelaItemVendido(int ecfHandle, ACBrECFInterop.CancelaItemCallback method);
+	int ECF_SetOnAntesCancelaNaoFiscal(int ecfHandle, ACBrECFInterop.Callback method);
 	int ECF_SetOnAntesEfetuaPagamento(int ecfHandle, ACBrECFInterop.EfetuaPagamentoCallback method);
 	int ECF_SetOnAntesEfetuaPagamentoNaoFiscal(int ecfHandle, ACBrECFInterop.EfetuaPagamentoCallback method);
 	int ECF_SetOnAntesFechaCupom(int ecfHandle, ACBrECFInterop.FechaCupomCallback method);
 	int ECF_SetOnAntesFechaNaoFiscal(int ecfHandle, ACBrECFInterop.FechaCupomCallback method);
-	int ECF_SetOnAntesFechaRelatorio(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
-	int ECF_SetOnAntesLeituraX(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
-	int ECF_SetOnAntesReducaoZ(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
+	int ECF_SetOnAntesFechaRelatorio(int ecfHandle, ACBrECFInterop.Callback method);
+	int ECF_SetOnAntesLeituraX(int ecfHandle, ACBrECFInterop.Callback method);
+	int ECF_SetOnAntesReducaoZ(int ecfHandle, ACBrECFInterop.Callback method);
 	int ECF_SetOnAntesSangria(int ecfHandle, ACBrECFInterop.SangriaSuprimentoCallback method);
 	int ECF_SetOnAntesSubtotalizaCupom(int ecfHandle, ACBrECFInterop.SubtotalizaCupomCallback method);
 	int ECF_SetOnAntesSubtotalizaNaoFiscal(int ecfHandle, ACBrECFInterop.SubtotalizaCupomCallback method);
@@ -540,51 +552,51 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_SetOnChangeEstado(int ecfHandle, ACBrECFInterop.ChangeEstadoCallback method);
 	int ECF_SetOnChequeEstado(int ecfHandle, ACBrECFInterop.ChequeEstadoCallback method);
 	int ECF_SetOnDepoisAbreCupom(int ecfHandle, ACBrECFInterop.AbreCupomCallback method);
-	int ECF_SetOnDepoisAbreCupomVinculado(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
+	int ECF_SetOnDepoisAbreCupomVinculado(int ecfHandle, ACBrECFInterop.Callback method);
 	int ECF_SetOnDepoisAbreNaoFiscal(int ecfHandle, ACBrECFInterop.AbreCupomCallback method);
-	int ECF_SetOnDepoisAbreRelatorioGerencial(int ecfHandle, ACBrECFInterop.IntArgumentCallback method);
-	int ECF_SetOnDepoisCancelaCupom(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
-	int ECF_SetOnDepoisCancelaItemNaoFiscal(int ecfHandle, ACBrECFInterop.IntArgumentCallback method);
-	int ECF_SetOnDepoisCancelaItemVendido(int ecfHandle, ACBrECFInterop.IntArgumentCallback method);
-	int ECF_SetOnDepoisCancelaNaoFiscal(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
+	int ECF_SetOnDepoisAbreRelatorioGerencial(int ecfHandle, ACBrECFInterop.RelatorioGerencialCallback method);
+	int ECF_SetOnDepoisCancelaCupom(int ecfHandle, ACBrECFInterop.Callback method);
+	int ECF_SetOnDepoisCancelaItemNaoFiscal(int ecfHandle, ACBrECFInterop.CancelaItemCallback method);
+	int ECF_SetOnDepoisCancelaItemVendido(int ecfHandle, ACBrECFInterop.CancelaItemCallback method);
+	int ECF_SetOnDepoisCancelaNaoFiscal(int ecfHandle, ACBrECFInterop.Callback method);
 	int ECF_SetOnDepoisEfetuaPagamento(int ecfHandle, ACBrECFInterop.EfetuaPagamentoCallback method);
 	int ECF_SetOnDepoisEfetuaPagamentoNaoFiscal(int ecfHandle, ACBrECFInterop.EfetuaPagamentoCallback method);
 	int ECF_SetOnDepoisFechaCupom(int ecfHandle, ACBrECFInterop.FechaCupomCallback method);
 	int ECF_SetOnDepoisFechaNaoFiscal(int ecfHandle, ACBrECFInterop.FechaCupomCallback method);
-	int ECF_SetOnDepoisFechaRelatorio(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
-	int ECF_SetOnDepoisLeituraX(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
-	int ECF_SetOnDepoisReducaoZ(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
+	int ECF_SetOnDepoisFechaRelatorio(int ecfHandle, ACBrECFInterop.Callback method);
+	int ECF_SetOnDepoisLeituraX(int ecfHandle, ACBrECFInterop.Callback method);
+	int ECF_SetOnDepoisReducaoZ(int ecfHandle, ACBrECFInterop.Callback method);
 	int ECF_SetOnDepoisSangria(int ecfHandle, ACBrECFInterop.SangriaSuprimentoCallback method);
 	int ECF_SetOnDepoisSubtotalizaCupom(int ecfHandle, ACBrECFInterop.SubtotalizaCupomCallback method);
 	int ECF_SetOnDepoisSubtotalizaNaoFiscal(int ecfHandle, ACBrECFInterop.SubtotalizaCupomCallback method);
 	int ECF_SetOnDepoisSuprimento(int ecfHandle, ACBrECFInterop.SangriaSuprimentoCallback method);
 	int ECF_SetOnDepoisVendeItem(int ecfHandle, ACBrECFInterop.VendeItemCallback method);
-	int ECF_SetOnErrorAbreCupom(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorAbreCupomVinculado(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorAbreNaoFiscal(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorAbreRelatorioGerencial(int ecfHandle, ACBrECFInterop.OnErrorRelatorioCallback method);
-	int ECF_SetOnErrorCancelaCupom(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorCancelaItemNaoFiscal(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorCancelaItemVendido(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorCancelaNaoFiscal(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorEfetuaPagamento(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorEfetuaPagamentoNaoFiscal(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorFechaCupom(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorFechaNaoFiscal(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorFechaRelatorio(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorLeituraX(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorReducaoZ(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorSangria(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorSemPapel(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
-	int ECF_SetOnErrorSubtotalizaCupom(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorSubtotalizaNaoFiscal(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorSuprimento(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnErrorVendeItem(int ecfHandle, ACBrECFInterop.OnErrorCallback method);
-	int ECF_SetOnMsgAguarde(int ecfHandle, ACBrECFInterop.StringCallback method);
-	int ECF_SetOnMsgRetentar(int ecfHandle, ACBrECFInterop.OnMsgRetentarCallback method);
-	int ECF_SetOnPAFCalcEAD(int ecfHandle, ACBrECFInterop.StringCallback method);
-	int ECF_SetOnPAFGetKeyRSA(int ecfHandle, ACBrECFInterop.GetKeyCallback method);
-	int ECF_SetOnPoucoPapel(int ecfHandle, ACBrECFInterop.NoArgumentCallback method);
+	int ECF_SetOnErrorAbreCupom(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorAbreCupomVinculado(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorAbreNaoFiscal(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorAbreRelatorioGerencial(int ecfHandle, ACBrECFInterop.ErrorRelatorioCallback method);
+	int ECF_SetOnErrorCancelaCupom(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorCancelaItemNaoFiscal(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorCancelaItemVendido(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorCancelaNaoFiscal(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorEfetuaPagamento(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorEfetuaPagamentoNaoFiscal(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorFechaCupom(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorFechaNaoFiscal(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorFechaRelatorio(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorLeituraX(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorReducaoZ(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorSangria(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorSemPapel(int ecfHandle, ACBrECFInterop.Callback method);
+	int ECF_SetOnErrorSubtotalizaCupom(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorSubtotalizaNaoFiscal(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorSuprimento(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnErrorVendeItem(int ecfHandle, ACBrECFInterop.ErrorCallback method);
+	int ECF_SetOnMsgAguarde(int ecfHandle, ACBrECFInterop.MsgCallback method);
+	int ECF_SetOnMsgRetentar(int ecfHandle, ACBrECFInterop.MsgRetentarCallback method);
+	int ECF_SetOnPAFCalcEAD(int ecfHandle, ACBrECFInterop.PAFCalcEADCallback method);
+	int ECF_SetOnPAFGetKeyRSA(int ecfHandle, ACBrECFInterop.ChaveCallback method);
+	int ECF_SetOnMsgPoucoPapel(int ecfHandle, ACBrECFInterop.Callback method);
 	int ECF_SetOperador(int ecfHandle, String operador);
 	int ECF_SetPaginaDeCodigo(int ecfHandle, int pagina);
 	int ECF_SetPausaRelatorio(int ecfHandle, int pausa);

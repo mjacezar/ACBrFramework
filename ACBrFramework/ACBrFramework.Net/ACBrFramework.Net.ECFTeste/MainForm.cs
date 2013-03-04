@@ -1302,7 +1302,7 @@ namespace ACBrFramework.ECFTeste
                        "-----END RSA PRIVATE KEY-----";
         }
 
-        private void acbrECF_OnBobinaAdicionaLinhas(object sender, BobinaEventArgs e)
+        private void acbrECF_OnBobinaAdicionaLinhas(object sender, BobinaAdicionaLinhasEventArgs e)
         {
             bobina.Append(e.Linhas);
             wbBobina.Navigate("about:blank");
