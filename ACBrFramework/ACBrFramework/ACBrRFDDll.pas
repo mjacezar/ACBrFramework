@@ -12,15 +12,15 @@ uses
 { Ponteiros de função para uso nos eventos}
 type TCalcEADCallback = procedure(Arquivo: PChar); cdecl;
 type TCalcHashLogCallback = function(const Linha: PChar) : PChar; cdecl;
-type TGetKeyCallback =  function () : PChar;
+type TChaveCallback =  function () : PChar;
 
 {Classe que armazena os EventHandlers para o componente ACBr}
 type TEventHandlersRFD = class
 
   OnCalcEADCallback : TCalcEADCallback;
   OnCalcHashLogCallback : TCalcHashLogCallback;
-  OnGetKeyHashLogCallback : TGetKeyCallback;
-  OnGetKeyRSACallback : TGetKeyCallback;
+  OnGetKeyHashLogCallback : TChaveCallback;
+  OnGetKeyRSACallback : TChaveCallback;
 
   procedure OnCalcEAD(Arquivo: String);
   procedure OnCalcHashLog(const Linha: String; var Hash: String);
@@ -1946,7 +1946,7 @@ begin
   end;
 end;
 
-Function RFD_SetOnGetKeyHashLog(const rfdHandle: PRFDHandle; const method : TGetKeyCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function RFD_SetOnGetKeyHashLog(const rfdHandle: PRFDHandle; const method : TChaveCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (rfdHandle = nil) then
@@ -1977,7 +1977,7 @@ begin
   end;
 end;
 
-Function RFD_SetOnGetKeyRSA(const rfdHandle: PRFDHandle; const method : TGetKeyCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function RFD_SetOnGetKeyRSA(const rfdHandle: PRFDHandle; const method : TChaveCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (rfdHandle = nil) then
