@@ -294,6 +294,13 @@
       <DependentUpon>Framework64.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serial\DIS\ACBrDIS.cs" />
+    <Compile Include="Serial\DIS\ACBrDISInterop.cs" />
+    <Compile Include="Serial\DIS\Classes\Alinhamento.cs" />
+    <Compile Include="Serial\DIS\Classes\EfeitoExibir.cs" />
+    <Compile Include="Serial\DIS\Classes\EfeitoRolar.cs" />
+    <Compile Include="Serial\DIS\Classes\ModeloDIS.cs" />
+    <Compile Include="Serial\DIS\Eventos\AtualizaEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\ErrorEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\ErrorRelatorioEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\MsgEventArgs.cs" />
@@ -739,6 +746,7 @@
     <EmbeddedResource Include="Serial\SMS\ico.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Serial\DIS\ico.bmp" />
     <EmbeddedResource Include="CEP\ico.bmp" />
     <Content Include="IBGE\ico.bmp" />
     <EmbeddedResource Include="NFE\ico.bmp" />

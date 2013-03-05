@@ -1712,7 +1712,7 @@ begin
 
 end;
 
-Function ECF_Consumidor_GetEnviado(const ecfHandle: PECFHandle; var value : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_Consumidor_GetEnviado(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -1722,8 +1722,10 @@ begin
   end;
 
  try
-     value := ecfHandle^.ECF.Consumidor.Enviado;
-     Result := 0;
+     if ecfHandle^.ECF.Consumidor.Enviado then
+       Result := 1
+     else
+       Result := 0;
   except
      on exception : Exception do
      begin
@@ -1766,8 +1768,10 @@ begin
   end;
 
  try
-     value := ecfHandle^.ECF.Consumidor.Atribuido;
-     Result := 0;
+     if ecfHandle^.ECF.Consumidor.Atribuido then
+       Result := 1
+     else
+       Result := 0;
   except
      on exception : Exception do
      begin

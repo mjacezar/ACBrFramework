@@ -8,6 +8,7 @@ uses
   ACBrECF,
   ACBrBAL,
   ACBrLCB,
+  ACBrDIS,
   ACBrDevice,
   ACBrBase,
   ACBrUtil;
@@ -513,7 +514,9 @@ begin
     else if (deviceHandle^.Component is TACBrBAL) then
       result := TACBrBAL(deviceHandle.Component).Device
     else if (deviceHandle^.Component is TACBrLCB) then
-      result := TACBrLCB(deviceHandle.Component).Device;
+      result := TACBrLCB(deviceHandle.Component).Device
+    else if (deviceHandle.Component is TACBrDIS) then
+      result := TACBrDIS(deviceHandle.Component).Device;
 
 end;
 
