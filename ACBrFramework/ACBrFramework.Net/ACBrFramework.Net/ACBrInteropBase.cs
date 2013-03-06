@@ -63,16 +63,22 @@ namespace ACBrFramework
 
 		protected string ToUTF8(string value)
 		{
-			if (string.IsNullOrEmpty(value)) return string.Empty;
-			return Encoding.Default.GetString(Encoding.Default.GetBytes(value));
+			if (string.IsNullOrEmpty(value)) return value;
+			return Encoding.Default.GetString(Encoding.UTF8.GetBytes(value));
 		}
 
 		protected string[] ToUTF8(string[] value)
 		{
-			foreach (string str in value)
-				Encoding.Default.GetString(Encoding.Default.GetBytes(str));
+			if (value == null || value.Length == 0) return value;
 
-			return value;
+			string[] array = new string[value.Length];
+
+			for (int i = 0; i < value.Length; i++)
+			{
+				array[i] = ToUTF8(value[i]);
+			}
+
+			return array;
 		}
 
 		protected string FromUTF8(string value)
