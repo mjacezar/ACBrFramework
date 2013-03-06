@@ -25,7 +25,6 @@ public final class ACBrECF extends ACBrClass
 	// </editor-fold>
 	
 	//<editor-fold defaultstate="collapsed" desc="Constructor">
-	
 	public ACBrECF() throws ACBrException
 	{
 	}
@@ -33,7 +32,6 @@ public final class ACBrECF extends ACBrClass
 	//</editor-fold>
 	
 	//<editor-fold defaultstate="collapsed" desc="Events">
-	
 	//<editor-fold defaultstate="collapsed" desc="onMsgPoucoPapel">
 	public void addOnMsgPoucoPapel(ACBrEventListener<EventObject> listener)
 	{
@@ -67,7 +65,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAguardandoRespostaChange">
 	public void addOnAguardandoRespostaChange(ACBrEventListener<EventObject> listener)
 	{
@@ -101,7 +98,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesAbreCupom">
 	public void addOnAntesAbreCupom(ACBrEventListener<AbreCupomEventObject> listener)
 	{
@@ -135,9 +131,7 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesAbreCupomVinculado">
-	
 	public void addOnAntesAbreCupomVinculado(ACBrEventListener<EventObject> listener)
 	{
 		if (!hasListeners("onAntesAbreCupomVinculado")) {
@@ -170,9 +164,7 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesAbreNaoFiscal">
-	
 	public void addOnAntesAbreNaoFiscal(ACBrEventListener<AbreCupomEventObject> listener)
 	{
 		if (!hasListeners("onAntesAbreNaoFiscal")) {
@@ -205,7 +197,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesAbreRelatorioGerencial">
 	public void addOnAntesAbreRelatorioGerencial(ACBrEventListener<RelatorioGerencialEventObject> listener)
 	{
@@ -239,7 +230,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesCancelaCupom">
 	public void addOnAntesCancelaCupom(ACBrEventListener<EventObject> listener)
 	{
@@ -273,7 +263,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesCancelaItemNaoFiscal">
 	public void addOnAntesCancelaItemNaoFiscal(ACBrEventListener<CancelaItemEventObject> listener)
 	{
@@ -307,7 +296,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesCancelaItemVendido">
 	public void addOnAntesCancelaItemVendido(ACBrEventListener<CancelaItemEventObject> listener)
 	{
@@ -341,9 +329,7 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesCancelaNaoFiscal">
-	
 	public void addOnAntesCancelaNaoFiscal(ACBrEventListener<EventObject> listener)
 	{
 		if (!hasListeners("onAntesCancelaNaoFiscal")) {
@@ -376,9 +362,7 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesEfetuaPagamento">
-	
 	public void addOnAntesEfetuaPagamento(ACBrEventListener<EfetuaPagamentoEventObject> listener)
 	{
 		if (!hasListeners("onAntesEfetuaPagamento")) {
@@ -411,7 +395,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesEfetuaPagamentoNaoFiscal">
 	public void addOnAntesEfetuaPagamentoNaoFiscal(ACBrEventListener<EfetuaPagamentoEventObject> listener)
 	{
@@ -445,7 +428,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesFechaCupom">
 	public void addOnAntesFechaCupom(ACBrEventListener<FechaCupomEventObject> listener)
 	{
@@ -479,7 +461,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesFechaNaoFiscal">
 	public void addOnAntesFechaNaoFiscal(ACBrEventListener<FechaCupomEventObject> listener)
 	{
@@ -513,7 +494,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesFechaRelatorio">
 	public void addOnAntesFechaRelatorio(ACBrEventListener<EventObject> listener)
 	{
@@ -547,7 +527,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesLeituraX">
 	public void addOnAntesLeituraX(ACBrEventListener<EventObject> listener)
 	{
@@ -581,7 +560,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesReducaoZ">
 	public void addOnAntesReducaoZ(ACBrEventListener<EventObject> listener)
 	{
@@ -615,7 +593,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesSangria">
 	public void addOnAntesSangria(ACBrEventListener<SangriaSuprimentoEventObject> listener)
 	{
@@ -649,7 +626,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesSubtotalizaCupom">
 	public void addOnAntesSubtotalizaCupom(ACBrEventListener<SubtotalizaCupomEventObject> listener)
 	{
@@ -683,7 +659,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesSubtotalizaNaoFiscal">
 	public void addOnAntesSubtotalizaNaoFiscal(ACBrEventListener<SubtotalizaCupomEventObject> listener)
 	{
@@ -717,7 +692,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesSuprimento">
 	public void addOnAntesSuprimento(ACBrEventListener<SangriaSuprimentoEventObject> listener)
 	{
@@ -751,7 +725,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onAntesVendeItem">
 	public void addOnAntesVendeItem(ACBrEventListener<VendeItemEventObject> listener)
 	{
@@ -785,7 +758,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onBobinaAdicionaLinhas">
 	public void addOnBobinaAdicionaLinhas(ACBrEventListener<BobinaAdicionaLinhasEventObject> listener)
 	{
@@ -819,7 +791,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onChangeEstado">
 	public void addOnChangeEstado(ACBrEventListener<ChangeEstadoEventObject> listener)
 	{
@@ -853,9 +824,7 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onChequeEstado">
-	
 	public void addOnChequeEstado(ACBrEventListener<ChequeEstadoEventObject> listener)
 	{
 		if (!hasListeners("onChequeEstado")) {
@@ -885,12 +854,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ChequeEstadoEventObject e = new ChequeEstadoEventObject(this, EstadoAtual, true);
 		notifyListeners("onChequeEstado", e);
-		
+
 		return e.getContinuar();
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisAbreCupom">
 	public void addOnDepoisAbreCupom(ACBrEventListener<AbreCupomEventObject> listener)
 	{
@@ -924,9 +892,7 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisAbreCupomVinculado">
-	
 	public void addOnDepoisAbreCupomVinculado(ACBrEventListener<EventObject> listener)
 	{
 		if (!hasListeners("onDepoisAbreCupomVinculado")) {
@@ -959,9 +925,7 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisAbreNaoFiscal">
-	
 	public void addOnDepoisAbreNaoFiscal(ACBrEventListener<AbreCupomEventObject> listener)
 	{
 		if (!hasListeners("onDepoisAbreNaoFiscal")) {
@@ -994,9 +958,7 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisAbreRelatorioGerencial">
-	
 	public void addOnDepoisAbreRelatorioGerencial(ACBrEventListener<RelatorioGerencialEventObject> listener)
 	{
 		if (!hasListeners("onDepoisAbreRelatorioGerencial")) {
@@ -1029,7 +991,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisCancelaCupom">
 	public void addOnDepoisCancelaCupom(ACBrEventListener<EventObject> listener)
 	{
@@ -1063,9 +1024,7 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisCancelaItemNaoFiscal">
-	
 	public void addOnDepoisCancelaItemNaoFiscal(ACBrEventListener<CancelaItemEventObject> listener)
 	{
 		if (!hasListeners("onDepoisCancelaItemNaoFiscal")) {
@@ -1098,7 +1057,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisCancelaItemVendido">
 	public void addOnDepoisCancelaItemVendido(ACBrEventListener<CancelaItemEventObject> listener)
 	{
@@ -1132,7 +1090,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisCancelaNaoFiscal">
 	public void addOnDepoisCancelaNaoFiscal(ACBrEventListener<EventObject> listener)
 	{
@@ -1166,7 +1123,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisEfetuaPagamento">
 	public void addOnDepoisEfetuaPagamento(ACBrEventListener<EfetuaPagamentoEventObject> listener)
 	{
@@ -1200,7 +1156,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisEfetuaPagamentoNaoFiscal">
 	public void addOnDepoisEfetuaPagamentoNaoFiscal(ACBrEventListener<EfetuaPagamentoEventObject> listener)
 	{
@@ -1234,7 +1189,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisFechaCupom">
 	public void addOnDepoisFechaCupom(ACBrEventListener<FechaCupomEventObject> listener)
 	{
@@ -1268,7 +1222,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisFechaNaoFiscal">
 	public void addOnDepoisFechaNaoFiscal(ACBrEventListener<FechaCupomEventObject> listener)
 	{
@@ -1302,7 +1255,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisFechaRelatorio">
 	public void addOnDepoisFechaRelatorio(ACBrEventListener<EventObject> listener)
 	{
@@ -1336,7 +1288,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisLeituraX">
 	public void addOnDepoisLeituraX(ACBrEventListener<EventObject> listener)
 	{
@@ -1370,7 +1321,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisReducaoZ">
 	public void addOnDepoisReducaoZ(ACBrEventListener<EventObject> listener)
 	{
@@ -1404,7 +1354,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisSangria">
 	public void addOnDepoisSangria(ACBrEventListener<SangriaSuprimentoEventObject> listener)
 	{
@@ -1438,7 +1387,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisSubtotalizaCupom">
 	public void addOnDepoisSubtotalizaCupom(ACBrEventListener<SubtotalizaCupomEventObject> listener)
 	{
@@ -1472,7 +1420,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisSubtotalizaNaoFiscal">
 	public void addOnDepoisSubtotalizaNaoFiscal(ACBrEventListener<SubtotalizaCupomEventObject> listener)
 	{
@@ -1506,7 +1453,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisSuprimento">
 	public void addOnDepoisSuprimento(ACBrEventListener<SangriaSuprimentoEventObject> listener)
 	{
@@ -1540,7 +1486,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onDepoisVendeItem">
 	public void addOnDepoisVendeItem(ACBrEventListener<VendeItemEventObject> listener)
 	{
@@ -1574,7 +1519,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorAbreCupom">
 	public void addOnErrorAbreCupom(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -1605,12 +1549,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorAbreCupom", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorAbreCupomVinculado">
 	public void addOnErrorAbreCupomVinculado(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -1641,12 +1584,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorAbreCupomVinculado", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorAbreNaoFiscal">
 	public void addOnErrorAbreNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -1677,12 +1619,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorAbreNaoFiscal", e);
-		
+
 		return e.getTratado();
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorAbreRelatorioGerencial">
 	public void addOnErrorAbreRelatorioGerencial(ACBrEventListener<ErrorRelatorioEventObject> listener)
 	{
@@ -1713,12 +1654,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorRelatorioEventObject e = new ErrorRelatorioEventObject(this, false, Indice);
 		notifyListeners("onErrorAbreRelatorioGerencial", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorCancelaCupom">
 	public void addOnErrorCancelaCupom(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -1749,12 +1689,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorCancelaCupom", e);
-		
+
 		return e.getTratado();
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorCancelaItemNaoFiscal">
 	public void addOnErrorCancelaItemNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -1785,12 +1724,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorCancelaItemNaoFiscal", e);
-		
+
 		return e.getTratado();
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorCancelaItemVendido">
 	public void addOnErrorCancelaItemVendido(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -1821,12 +1759,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorCancelaItemVendido", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorCancelaNaoFiscal">
 	public void addOnErrorCancelaNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -1857,12 +1794,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorCancelaNaoFiscal", e);
-		
+
 		return e.getTratado();
 	}
 
 	//</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorEfetuaPagamento">
 	public void addOnErrorEfetuaPagamento(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -1893,12 +1829,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorEfetuaPagamento", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorEfetuaPagamentoNaoFiscal">
 	public void addOnErrorEfetuaPagamentoNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -1929,12 +1864,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorEfetuaPagamentoNaoFiscal", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorFechaCupom">
 	public void addOnErrorFechaCupom(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -1965,12 +1899,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorFechaCupom", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorFechaNaoFiscal">
 	public void addOnErrorFechaNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -2001,12 +1934,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorFechaNaoFiscal", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorFechaRelatorio">
 	public void addOnErrorFechaRelatorio(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -2037,12 +1969,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorFechaRelatorio", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorLeituraX">
 	public void addOnErrorLeituraX(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -2073,12 +2004,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorLeituraX", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorReducaoZ">
 	public void addOnErrorReducaoZ(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -2109,12 +2039,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorReducaoZ", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorSangria">
 	public void addOnErrorSangria(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -2145,12 +2074,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorSangria", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorSemPapel">
 	public void addOnErrorSemPapel(ACBrEventListener<EventObject> listener)
 	{
@@ -2184,7 +2112,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorSubtotalizaCupom">
 	public void addOnErrorSubtotalizaCupom(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -2215,12 +2142,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorSubtotalizaCupom", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorSubtotalizaNaoFiscal">
 	public void addOnErrorSubtotalizaNaoFiscal(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -2251,12 +2177,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorSubtotalizaNaoFiscal", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorSuprimento">
 	public void addOnErrorSuprimento(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -2287,12 +2212,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorSuprimento", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onErrorVendeItem">
 	public void addOnErrorVendeItem(ACBrEventListener<ErrorEventObject> listener)
 	{
@@ -2323,12 +2247,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		ErrorEventObject e = new ErrorEventObject(this, false);
 		notifyListeners("onErrorVendeItem", e);
-		
+
 		return e.getTratado();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onMsgAguarde">
 	public void addOnMsgAguarde(ACBrEventListener<MsgEventObject> listener)
 	{
@@ -2362,7 +2285,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onMsgRetentar">
 	public void addOnMsgRetentar(ACBrEventListener<MsgRetentarEventObject> listener)
 	{
@@ -2393,12 +2315,11 @@ public final class ACBrECF extends ACBrClass
 	{
 		MsgRetentarEventObject e = new MsgRetentarEventObject(this, Mensagem, Situacao, false);
 		notifyListeners("onMsgRetentar", e);
-		
+
 		return e.getResult();
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onPAFCalcEAD">
 	public void addOnPAFCalcEAD(ACBrEventListener<PAFCalcEADEventObject> listener)
 	{
@@ -2432,7 +2353,6 @@ public final class ACBrECF extends ACBrClass
 	}
 
 //</editor-fold>
-
 	//<editor-fold defaultstate="collapsed" desc="onPAFGetKeyRSA">
 	public void addOnPAFGetKeyRSA(ACBrEventListener<ChaveEventObject> listener)
 	{
@@ -2463,15 +2383,15 @@ public final class ACBrECF extends ACBrClass
 	{
 		ChaveEventObject e = new ChaveEventObject(this, "");
 		notifyListeners("onPAFGetKeyRSA", e);
-		
+
 		return e.getChave();
 	}
 
 //</editor-fold>
-	
 	//</editor-fold>
 	
 	//<editor-fold defaultstate="collapsed" desc="Component Properties">
+	
 	public ACBrDevice getDevice()
 	{
 		return this.device;
@@ -2504,8 +2424,46 @@ public final class ACBrECF extends ACBrClass
 
 	}
 
-	//</editor-fold>
+	public void lerTotaisAliquota() throws ACBrException
+	{
+		int ret = ACBrECFInterop.INSTANCE.ECF_LerTotaisAliquota(getHandle());
+		checkResult(ret);
+
+		carregaAliquotas(ret);
+	}
+
+	public void carregaAliquotas() throws ACBrException
+	{
+		int ret = ACBrECFInterop.INSTANCE.ECF_CarregaAliquotas(getHandle());
+		checkResult(ret);
+
+		carregaAliquotas(ret);
+	}
+
+	private void carregaAliquotas(int count) throws ACBrException
+	{
+
+		Aliquota[] array = new Aliquota[count];
+		for (int i = 0; i < count; i++) 
+		{
+			ACBrECFInterop.AliquotaRec record = new ACBrECFInterop.AliquotaRec();
+			int ret = ACBrECFInterop.INSTANCE.ECF_GetAliquota(getHandle(), record, i);
+			checkResult(ret);
+
+			Aliquota item = new Aliquota(fromUTF8(record.Indice), record.Aliquota, record.Tipo, record.Total, record.Sequencia);
+			array[i] = item;
+		}
+
+		this.aliquotas = array;
+
+	}	
 	
+	public Aliquota[] getAliquotas() throws ACBrException
+	{
+		return aliquotas;
+	}
+
+	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="Properties">
 	public int getModelo() throws ACBrException
 	{
@@ -3558,9 +3516,7 @@ public final class ACBrECF extends ACBrClass
 	 * //NotImplemented
 	 * }*/
 	//</editor-fold>	
-	
 	//<editor-fold defaultstate="collapsed" desc="Methods">
-	
 	//<editor-fold defaultstate="collapsed" desc="Override Methods">
 	@Override
 	protected void onInitialize() throws ACBrException
@@ -3604,9 +3560,7 @@ public final class ACBrECF extends ACBrClass
 	}
 
 	//</editor-fold>
-	
 	//<editor-fold defaultstate="collapsed" desc="Component Methods">
-	
 	public String leituraMemoriaFiscalSerial(Date dataInicial, Date dataFinal, boolean simplificada) throws ACBrException
 	{
 
@@ -3788,26 +3742,6 @@ public final class ACBrECF extends ACBrClass
 
 
 		int ret = ACBrECFInterop.INSTANCE.ECF_FechaRelatorio(getHandle());
-		checkResult(ret);
-
-
-	}
-
-	public void carregaAliquotas() throws ACBrException
-	{
-
-
-		int ret = ACBrECFInterop.INSTANCE.ECF_CarregaAliquotas(getHandle());
-		checkResult(ret);
-
-
-	}
-
-	public void lerTotaisAliquota() throws ACBrException
-	{
-
-
-		int ret = ACBrECFInterop.INSTANCE.ECF_LerTotaisAliquota(getHandle());
 		checkResult(ret);
 
 
@@ -4552,6 +4486,5 @@ public final class ACBrECF extends ACBrClass
 		return fromUTF8(returnBuffer, ret);
 	}
 	//</editor-fold>
-	
 	//</editor-fold>
 }

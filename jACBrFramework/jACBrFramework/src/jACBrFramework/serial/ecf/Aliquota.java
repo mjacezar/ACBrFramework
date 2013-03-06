@@ -3,12 +3,25 @@ package jACBrFramework.serial.ecf;
 public class Aliquota
 {
 	//<editor-fold defaultstate="collapsed" desc="Fields">
-	
+
 	private String indice;
 	private double aliquota;
-	private char tipo;
+	private boolean tipo;
 	private double total;
-	private int sequencia;
+	private boolean sequencia;
+
+	//</editor-fold>
+		
+	//<editor-fold defaultstate="collapsed" desc="Constructor">
+	
+	public Aliquota(String indice, double aliquota, boolean tipo, double total, boolean sequencia)
+	{
+		this.indice = indice;
+		this.aliquota = aliquota;
+		this.tipo = tipo;
+		this.total = total;
+		this.sequencia = sequencia;
+	}
 	
 	//</editor-fold>
 
@@ -18,23 +31,23 @@ public class Aliquota
 	{
 		return indice;
 	}
-	
+
 	public double getAliquota()
 	{
 		return aliquota;
 	}
-	
-	public char getTipo()
+
+	public boolean getTipo()
 	{
 		return tipo;
 	}
-	
+
 	public double getTotal()
 	{
 		return total;
 	}
-	
-	public int getSequencia()
+
+	public boolean getSequencia()
 	{
 		return sequencia;
 	}
