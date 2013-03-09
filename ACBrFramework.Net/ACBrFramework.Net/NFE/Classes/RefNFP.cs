@@ -64,15 +64,15 @@ namespace ACBrFramework.NFE
 			}
 		}
 
-		public int Modelo
+		public string Modelo
 		{
 			get
 			{
-				return GetInt32(ACBrNFEInterop.NFE_NFe_Ide_NFref_Item_RefNFP_Getmodelo);
+				return GetString(ACBrNFEInterop.NFE_NFe_Ide_NFref_Item_RefNFP_Getmodelo);
 			}
 			set
 			{
-				SetInt32(ACBrNFEInterop.NFE_NFe_Ide_NFref_Item_RefNFP_Setmodelo, value);
+				SetString(ACBrNFEInterop.NFE_NFe_Ide_NFref_Item_RefNFP_Setmodelo, value);
 			}
 		}
 

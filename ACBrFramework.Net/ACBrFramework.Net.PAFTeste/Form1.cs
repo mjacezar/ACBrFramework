@@ -204,8 +204,6 @@ namespace ACBrFramework.Net.PAFTeste
 		{
 			try
 			{
-				List<ACBrPAFRegistroP2> RegistroP2 = new List<ACBrPAFRegistroP2>();
-
 				acbrPAF.PAF_P.RegistroP1.RazaoSocial = txtRazaoSocial.Text;
 				acbrPAF.PAF_P.RegistroP1.UF = txtUF.Text;
 				acbrPAF.PAF_P.RegistroP1.CNPJ = txtCNPJ.Text;
