@@ -42,11 +42,9 @@ Símbolo : Significado
 Changelog
 
 05/03/2013
+
 -- ACBrFramework.Net 0.9.2.8 --
 [-] Correção funções ToUTF8 - ACBrInteropBase - Rafael Batiati.
-
-05/03/2013
--- ACBrFramework.Net 0.9.2.8 --
 [+] Inclusão do componente ACBrDIS - Rafael Batiati.
 
 -- ACBrFramework 0.9.2.8 --
