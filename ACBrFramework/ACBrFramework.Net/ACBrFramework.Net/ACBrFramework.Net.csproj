@@ -195,8 +195,11 @@
     <Compile Include="IBGE\ACBrIBGEInterop.cs" />
     <Compile Include="IBGE\Classes\Cidade.cs" />
     <Compile Include="NFE\Classes\Avulsa.cs" />
+    <Compile Include="NFE\Classes\Dest.cs" />
+    <Compile Include="NFE\Classes\DestEmit.cs" />
     <Compile Include="NFE\Classes\Emit.cs" />
     <Compile Include="NFE\Classes\EnderEmit.cs" />
+    <Compile Include="NFE\Classes\Entrega.cs" />
     <Compile Include="NFE\Classes\Ide.cs" />
     <Compile Include="NFE\Classes\NFE.cs" />
     <Compile Include="NFE\Classes\NFref.cs" />
@@ -205,6 +208,7 @@
     <Compile Include="NFE\Classes\RefECF.cs" />
     <Compile Include="NFE\Classes\RefNF.cs" />
     <Compile Include="NFE\Classes\RefNFP.cs" />
+    <Compile Include="NFE\Classes\Retirada.cs" />
     <Compile Include="NFE\Enums\CRT.cs" />
     <Compile Include="NFE\Enums\ECFModRef.cs" />
     <Compile Include="NFE\Enums\FinalidadeNFe.cs" />
