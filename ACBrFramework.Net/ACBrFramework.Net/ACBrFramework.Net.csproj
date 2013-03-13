@@ -197,6 +197,8 @@
     <Compile Include="NFE\Classes\Avulsa.cs" />
     <Compile Include="NFE\Classes\Dest.cs" />
     <Compile Include="NFE\Classes\DestEmit.cs" />
+    <Compile Include="NFE\Classes\DetCollection.cs" />
+    <Compile Include="NFE\Classes\DetCollectionItem.cs" />
     <Compile Include="NFE\Classes\Emit.cs" />
     <Compile Include="NFE\Classes\EnderEmit.cs" />
     <Compile Include="NFE\Classes\Entrega.cs" />

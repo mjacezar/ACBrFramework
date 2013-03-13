@@ -18,6 +18,7 @@ namespace ACBrFramework.NFE
 			this.Avulsa = new Avulsa(parent, composedHandle);
 			this.Retirada = new Retirada(parent, composedHandle);
 			this.Entrega = new Entrega(parent, composedHandle);
+			this.Det = new DetCollection(parent, composedHandle);
 		}
 
 		#endregion Constructor
@@ -49,6 +50,7 @@ namespace ACBrFramework.NFE
 		public Avulsa Avulsa { get; private set; }
 		public Retirada Retirada { get; private set; }
 		public Entrega Entrega { get; private set; }
+		public DetCollection Det { get; private set; }
 
 		#endregion Properties
 

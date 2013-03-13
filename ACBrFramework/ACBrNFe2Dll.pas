@@ -4215,7 +4215,7 @@ begin
   end;
 
   try
-     nfrefHandle.RefECF.nNF := TpcnECFModRef(value);
+     nfrefHandle.RefECF.modelo := TpcnECFModRef(value);
      Result := 0;
   except
      on exception : Exception do
@@ -5372,7 +5372,7 @@ begin
   end;
 end;
 
-Function NFE_NFe_Avulsa_GetVDAR(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NFe_Avulsa_GetVDAR(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -5382,8 +5382,8 @@ begin
   end;
 
   try
-     StrPLCopy(Buffer, nfeeHandle.Avulsa.vDAR, BufferLen);
-     Result := length(Buffer);
+     value := Double(nfeeHandle.Avulsa.vDAR);
+     Result := 0;
   except
      on exception : Exception do
      begin
@@ -5393,7 +5393,7 @@ begin
   end;
 end;
 
-Function NFE_NFe_Avulsa_SetVDAR(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_NFe_Avulsa_SetVDAR(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe;  const value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (nfeHandle = nil) then
@@ -5403,7 +5403,7 @@ begin
   end;
 
   try
-     nfeeHandle.Avulsa.vDAR := value;
+     nfeeHandle.Avulsa.vDAR := Currency(value);
      Result := 0;
   except
      on exception : Exception do
@@ -6962,27 +6962,6 @@ begin
   end;
 end;
 
-Function NFE_NFe_Det_Insert(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe; var detHandle : TDetCollectionItem; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (nfeHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     detHandle := nfeeHandle.Det.Insert(idx);
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        nfeHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
 Function NFE_NFe_Det_GetItem(const nfeHandle: PNFEHandle; const nfeeHandle : TNFe; var detHandle : TDetCollectionItem; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -7495,7 +7474,7 @@ NFE_NFe_Ide_NFref_Item_RefNF_GetCNPJ, NFE_NFe_Ide_NFref_Item_RefNF_SetCNPJ,
 NFE_NFe_Ide_NFref_Item_RefNF_GetcUF, NFE_NFe_Ide_NFref_Item_RefNF_SetcUF,
 NFE_NFe_Ide_NFref_Item_RefNF_Getmodelo, NFE_NFe_Ide_NFref_Item_RefNF_Setmodelo,
 NFE_NFe_Ide_NFref_Item_RefNF_Getserie, NFE_NFe_Ide_NFref_Item_RefNF_Setserie,
-NFE_NFe_Ide_NFref_Item_RefNF_GetnNF, NFE_NFe_Ide_NFref_Item_RefNF_GetnNF,
+NFE_NFe_Ide_NFref_Item_RefNF_GetnNF, NFE_NFe_Ide_NFref_Item_RefNF_SetnNF,
 
 NFE_NFe_Ide_NFref_Item_RefNFP_GetAAMM, NFE_NFe_Ide_NFref_Item_RefNFP_SetAAMM,
 NFE_NFe_Ide_NFref_Item_RefNFP_GetCNPJCPF, NFE_NFe_Ide_NFref_Item_RefNFP_SetCNPJCPF,
@@ -7503,7 +7482,7 @@ NFE_NFe_Ide_NFref_Item_RefNFP_GetIE, NFE_NFe_Ide_NFref_Item_RefNFP_SetIE,
 NFE_NFe_Ide_NFref_Item_RefNFP_GetcUF, NFE_NFe_Ide_NFref_Item_RefNFP_SetcUF,
 NFE_NFe_Ide_NFref_Item_RefNFP_Getmodelo, NFE_NFe_Ide_NFref_Item_RefNFP_Setmodelo,
 NFE_NFe_Ide_NFref_Item_RefNFP_Getserie, NFE_NFe_Ide_NFref_Item_RefNFP_Setserie,
-NFE_NFe_Ide_NFref_Item_RefNFP_GetnNF, NFE_NFe_Ide_NFref_Item_RefNFP_GetnNF,
+NFE_NFe_Ide_NFref_Item_RefNFP_GetnNF, NFE_NFe_Ide_NFref_Item_RefNFP_SetnNF,
 
 NFE_NFe_Ide_NFref_Item_RefECF_Getmodelo, NFE_NFe_Ide_NFref_Item_RefECF_Setmodelo,
 NFE_NFe_Ide_NFref_Item_RefECF_GetnCOO, NFE_NFe_Ide_NFref_Item_RefECF_SetnCOO,
@@ -7583,7 +7562,7 @@ NFE_NFe_Retirada_GetXCpl, NFE_NFe_Retirada_SetXCpl,
 NFE_NFe_Retirada_GetXBairro, NFE_NFe_Retirada_SetXBairro,
 NFE_NFe_Retirada_GetXMun, NFE_NFe_Retirada_SetXMun,
 NFE_NFe_Retirada_GetUF, NFE_NFe_Retirada_SetUF,
-NFE_NFe_Retirada_GetCMun, NFE_NFe_Retirada_GetCMun,
+NFE_NFe_Retirada_GetCMun, NFE_NFe_Retirada_SetCMun,
 
 {%endregion}
 
@@ -7596,13 +7575,13 @@ NFE_NFe_Entrega_GetXCpl, NFE_NFe_Entrega_SetXCpl,
 NFE_NFe_Entrega_GetXBairro, NFE_NFe_Entrega_SetXBairro,
 NFE_NFe_Entrega_GetXMun, NFE_NFe_Entrega_SetXMun,
 NFE_NFe_Entrega_GetUF, NFE_NFe_Entrega_SetUF,
-NFE_NFe_Entrega_GetCMun, NFE_NFe_Entrega_GetCMun,
+NFE_NFe_Entrega_GetCMun, NFE_NFe_Entrega_SetCMun,
 
 {%endregion}
 
 {%region Det }
 
-NFE_NFe_Det_Add, NFE_NFe_Det_Insert,
+NFE_NFe_Det_Add,
 NFE_NFe_Det_GetItem, NFE_NFe_Det_SetItem,
 NFE_NFe_Det_Clear, NFE_NFe_Det_Count;
 

@@ -44,11 +44,11 @@
         <PackageName Value="LazUtils"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="71">
+    <Units Count="73">
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="25" Y="13"/>
@@ -536,7 +536,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="66"/>
         <CursorPos X="26" Y="109"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit51>
@@ -557,31 +557,31 @@
       <Unit54>
         <Filename Value="ACBrNFe2DANFEFramework.pas"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="83"/>
+        <UsageCount Value="84"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit54>
       <Unit55>
         <Filename Value="ACBrNFe2Dll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrNFe2Dll"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="6942"/>
-        <CursorPos X="1" Y="2423"/>
-        <FoldState Value=" TJV2{P1 p)ejO2~q p0'12_a1]9z12{Q[94ih42#pV0[L5S2#d[94=P2~_1 T3}F0J41294B]My10I[U4j-4]M piXjJ0I5 pj8je[IAJ3J"/>
-        <UsageCount Value="83"/>
+        <TopLine Value="7048"/>
+        <CursorPos X="1" Y="7196"/>
+        <FoldState Value=" TJV2{P1 p)ejO2~q p0'12_a1]9z12{Q[94ih42#pV0[L5S2#d[94=P2~_1 T3}F0J412946]MuU]D pjOkE0I[d4j-40J5]I8jf[98d[a5iXjJ0JQ"/>
+        <UsageCount Value="84"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit55>
       <Unit56>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFe.pas"/>
         <UnitName Value="ACBrNFe"/>
-        <EditorIndex Value="4"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="122"/>
         <CursorPos X="28" Y="141"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit56>
@@ -599,9 +599,9 @@
         <UnitName Value="pcnNFe"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="575"/>
-        <CursorPos X="14" Y="576"/>
-        <UsageCount Value="34"/>
+        <TopLine Value="398"/>
+        <CursorPos X="14" Y="412"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit58>
@@ -617,12 +617,10 @@
       <Unit60>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnConversao.pas"/>
         <UnitName Value="pcnConversao"/>
-        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="144"/>
-        <CursorPos X="3" Y="166"/>
-        <UsageCount Value="30"/>
-        <Loaded Value="True"/>
+        <TopLine Value="167"/>
+        <CursorPos X="3" Y="181"/>
+        <UsageCount Value="31"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit60>
       <Unit61>
@@ -708,8 +706,24 @@
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit70>
+      <Unit71>
+        <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\classes\classesh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="560"/>
+        <CursorPos X="14" Y="573"/>
+        <UsageCount Value="11"/>
+      </Unit71>
+      <Unit72>
+        <Filename Value="..\..\ACBr\Fontes\ACBrComum\OpenSSL.pas"/>
+        <UnitName Value="OpenSSL"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="982"/>
+        <CursorPos X="69" Y="993"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit72>
     </Units>
-    <JumpHistory Count="4" HistoryIndex="3">
+    <JumpHistory Count="19" HistoryIndex="18">
       <Position1>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFe.pas"/>
         <Caret Line="174" Column="14" TopLine="154"/>
@@ -726,6 +740,66 @@
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFe.pas"/>
         <Caret Line="83" Column="3" TopLine="69"/>
       </Position4>
+      <Position5>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="6944" Column="10" TopLine="5120"/>
+      </Position5>
+      <Position6>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="6965" Column="10" TopLine="5120"/>
+      </Position6>
+      <Position7>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="4218" Column="25" TopLine="4204"/>
+      </Position7>
+      <Position8>
+        <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFe.pas"/>
+        <Caret Line="278" Column="14" TopLine="263"/>
+      </Position8>
+      <Position9>
+        <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFe.pas"/>
+        <Caret Line="73" Column="3" TopLine="59"/>
+      </Position9>
+      <Position10>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="4186" Column="1" TopLine="4048"/>
+      </Position10>
+      <Position11>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="5382" Column="48" TopLine="5242"/>
+      </Position11>
+      <Position12>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="6942" Column="39" TopLine="4124"/>
+      </Position12>
+      <Position13>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="6975" Column="29" TopLine="6944"/>
+      </Position13>
+      <Position14>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="7584" Column="17" TopLine="7433"/>
+      </Position14>
+      <Position15>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="2401" Column="31" TopLine="2391"/>
+      </Position15>
+      <Position16>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="2395" Column="27" TopLine="2385"/>
+      </Position16>
+      <Position17>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="2401" Column="31" TopLine="2391"/>
+      </Position17>
+      <Position18>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="2395" Column="27" TopLine="2385"/>
+      </Position18>
+      <Position19>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="2389" Column="28" TopLine="2379"/>
+      </Position19>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
