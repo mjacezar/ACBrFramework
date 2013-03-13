@@ -971,6 +971,19 @@ namespace ACBrFramework.NFE
 
 		#endregion Entrega
 
+		#region Det
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_GetItem(IntPtr nfeHandle, IntPtr nfeeHandle, out IntPtr detHandle, int idx);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_SetItem(IntPtr nfeHandle, IntPtr nfeeHandle, IntPtr detHandle, int idx);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Count(IntPtr nfeHandle, IntPtr nfeeHandle);
+
+		#endregion Det
+
 		#endregion NFe
 
 		#endregion Propriedades do Componente
@@ -1095,6 +1108,16 @@ namespace ACBrFramework.NFE
 		public static extern int NFE_NFe_Ide_NFref_Clear(IntPtr nfeHandle, IntPtr nfeeHandle);
 
 		#endregion NFe Ide NFref
+
+		#region NFe Det
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Add(IntPtr nfeHandle, IntPtr nfeeHandle, out IntPtr nfsHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Clear(IntPtr nfeHandle, IntPtr nfeeHandle);
+
+		#endregion NFe Det
 
 		#endregion Methods
 
