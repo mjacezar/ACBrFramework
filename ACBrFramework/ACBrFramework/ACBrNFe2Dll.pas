@@ -1062,7 +1062,7 @@ begin
   end;
 end;
 
-Function NFE_CFG_Arquivos_FGetPathEvento(const nfeHandle: PNFEHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_CFG_Arquivos_FGetPathEvento(const nfeHandle: PNFEHandle; const value : Integer; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   strTemp : string;
 begin
@@ -1074,7 +1074,7 @@ begin
   end;
 
   try
-     strTemp := nfeHandle^.NFE.Configuracoes.Arquivos.GetPathEvento;
+     strTemp := nfeHandle^.NFE.Configuracoes.Arquivos.GetPathEvento(TpcnTpEvento(value));
      StrPLCopy(Buffer, strTemp, BufferLen);
      Result := length(Buffer);
   except
@@ -9262,9 +9262,35 @@ NFE_NFe_Det_Item_Prod_GetVDesc, NFE_NFe_Det_Item_Prod_SetVDesc,
 NFE_NFe_Det_Item_Prod_GetVOutro, NFE_NFe_Det_Item_Prod_SetVOutro,
 NFE_NFe_Det_Item_Prod_GetIndTot, NFE_NFe_Det_Item_Prod_SetIndTot,
 NFE_NFe_Det_Item_Prod_GetXPed, NFE_NFe_Det_Item_Prod_SetXPed,
-NFE_NFe_Det_Item_Prod_GetNItemPed, NFE_NFe_Det_Item_Prod_SetNItemPed;
+NFE_NFe_Det_Item_Prod_GetNItemPed, NFE_NFe_Det_Item_Prod_SetNItemPed,
 
-{%region veicProd
+{%region veicProd }
+
+NFE_NFe_Det_Item_Prod_veicProd_GetTpOP, NFE_NFe_Det_Item_Prod_veicProd_SetTpOP,
+NFE_NFe_Det_Item_Prod_veicProd_GetChassi, NFE_NFe_Det_Item_Prod_veicProd_SetChassi,
+NFE_NFe_Det_Item_Prod_veicProd_GetCCor, NFE_NFe_Det_Item_Prod_veicProd_SetCCor,
+NFE_NFe_Det_Item_Prod_veicProd_GetXCor, NFE_NFe_Det_Item_Prod_veicProd_SetXCor,
+NFE_NFe_Det_Item_Prod_veicProd_GetPot, NFE_NFe_Det_Item_Prod_veicProd_SetPot,
+NFE_NFe_Det_Item_Prod_veicProd_GetCilin, NFE_NFe_Det_Item_Prod_veicProd_SetCilin,
+NFE_NFe_Det_Item_Prod_veicProd_GetPesoL, NFE_NFe_Det_Item_Prod_veicProd_SetPesoL,
+NFE_NFe_Det_Item_Prod_veicProd_GetPesoB, NFE_NFe_Det_Item_Prod_veicProd_SetPesoB,
+NFE_NFe_Det_Item_Prod_veicProd_GetNSerie, NFE_NFe_Det_Item_Prod_veicProd_SetNSerie,
+NFE_NFe_Det_Item_Prod_veicProd_GetTpComb, NFE_NFe_Det_Item_Prod_veicProd_SetTpComb,
+NFE_NFe_Det_Item_Prod_veicProd_GetCombDescricao,
+NFE_NFe_Det_Item_Prod_veicProd_GetNMotor, NFE_NFe_Det_Item_Prod_veicProd_SetNMotor,
+NFE_NFe_Det_Item_Prod_veicProd_GetCMT, NFE_NFe_Det_Item_Prod_veicProd_SetCMT,
+NFE_NFe_Det_Item_Prod_veicProd_GetDist, NFE_NFe_Det_Item_Prod_veicProd_SetDist,
+NFE_NFe_Det_Item_Prod_veicProd_GetAnoMod, NFE_NFe_Det_Item_Prod_veicProd_SetAnoMod,
+NFE_NFe_Det_Item_Prod_veicProd_GetAnoFab, NFE_NFe_Det_Item_Prod_veicProd_SetAnoFab,
+NFE_NFe_Det_Item_Prod_veicProd_GetTpPint, NFE_NFe_Det_Item_Prod_veicProd_SetTpPint,
+NFE_NFe_Det_Item_Prod_veicProd_GetTpVeic, NFE_NFe_Det_Item_Prod_veicProd_SetTpVeic,
+NFE_NFe_Det_Item_Prod_veicProd_GetEspVeic, NFE_NFe_Det_Item_Prod_veicProd_SetEspVeic,
+NFE_NFe_Det_Item_Prod_veicProd_GetVIN, NFE_NFe_Det_Item_Prod_veicProd_SetVIN,
+NFE_NFe_Det_Item_Prod_veicProd_GetCondVeic, NFE_NFe_Det_Item_Prod_veicProd_SetCondVeic,
+NFE_NFe_Det_Item_Prod_veicProd_GetCMod, NFE_NFe_Det_Item_Prod_veicProd_SetCMod,
+NFE_NFe_Det_Item_Prod_veicProd_GetCCorDENATRAN, NFE_NFe_Det_Item_Prod_veicProd_SetCCorDENATRAN,
+NFE_NFe_Det_Item_Prod_veicProd_GetLota, NFE_NFe_Det_Item_Prod_veicProd_SetLota,
+NFE_NFe_Det_Item_Prod_veicProd_GetTpRest, NFE_NFe_Det_Item_Prod_veicProd_SetTpRest;
 
 {%endregion}
 
