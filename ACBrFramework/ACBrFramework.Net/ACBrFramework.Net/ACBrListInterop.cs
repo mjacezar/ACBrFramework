@@ -2,21 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-#if COM_INTEROP
-
-using System.Runtime.InteropServices;
-
-#endif
-
 namespace ACBrFramework
 {
-#if COM_INTEROP
-
-	[ComVisible(true)]
-	[Guid("CDF895D4-5B09-46E0-8109-E5F75E255983")]
-	[ClassInterface(ClassInterfaceType.AutoDual)]
-#endif
-
 	public abstract class ACBrListInterop<TItem> : ACBrClassInterop, IEnumerable<TItem> where TItem : ACBrClassInterop
 	{
 		#region Inner Types

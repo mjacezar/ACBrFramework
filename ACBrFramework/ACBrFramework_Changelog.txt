@@ -41,6 +41,15 @@ Símbolo : Significado
 
 Changelog
 
+18/03/2013
+-- ACBrFramework.Net 0.9.2.8 --
+[+] Inclusão da propriedade "Restaurante" no rodapé do cupom - ACBrECF - Rafael Batiati
+[-] Correção nos registros ACBrPAF - Rafael Batiati
+[*] Inclusão de atributos para COM Interop em enuns do EAD - ACBrECF/ACBrAAC/ACBrEAD - Rafael Batiati
+
+-- ACBrFramework 0.9.2.8 --
+[+] Inclusão da propriedade "Restaurante" no rodapé do cupom - ACBrECF - Rafael Batiati
+
 05/03/2013
 
 -- ACBrFramework.Net 0.9.2.8 --

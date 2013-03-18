@@ -92,7 +92,7 @@ namespace ACBrFramework.AAC
 
 		#region IEnumerable<ACBrAACArquivo>
 
-		public IEnumerator<Arquivo> GetEnumerator()
+		IEnumerator<Arquivo> IEnumerable<Arquivo>.GetEnumerator()
 		{
 			int count = Count;
 			for (int i = 0; i < count; i++)
@@ -103,9 +103,11 @@ namespace ACBrFramework.AAC
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			return this.GetEnumerator();
+			return ((IEnumerable<Arquivo>)this).GetEnumerator();
 		}
 
 		#endregion IEnumerable<ACBrAACArquivo>
+
+		
 	}
 }

@@ -126,7 +126,7 @@ namespace ACBrFramework.ECF
 		void OnAntesVendeItem(VendeItemEventArgs e);
 
 		[DispId(23)]
-		void OnBobinaAdicionaLinhas(BobinaEventArgs e);
+		void OnBobinaAdicionaLinhas(BobinaAdicionaLinhasEventArgs e);
 
 		[DispId(24)]
 		void OnChangeEstado(ChangeEstadoEventArgs e);
@@ -287,7 +287,7 @@ namespace ACBrFramework.ECF
 
 	public delegate void CancelaItemEventHandler(CancelaItemEventArgs e);
 
-	public delegate void BobinaAdicionaLinhasEventHandler(BobinaEventArgs e);
+	public delegate void BobinaAdicionaLinhasEventHandler(BobinaAdicionaLinhasEventArgs e);
 
 	public delegate void EfetuaPagamentoEventHandler(EfetuaPagamentoEventArgs e);
 

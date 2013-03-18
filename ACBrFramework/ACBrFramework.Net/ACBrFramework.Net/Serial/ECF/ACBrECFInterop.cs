@@ -39,37 +39,37 @@ namespace ACBrFramework.ECF
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void RelatorioGerencialCallback(int value);
-		
+
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void BobinaAdicionaLinhasCallback(string linhas, string operacao);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void EfetuaPagamentoCallback(string CodFormaPagto, double Valor, string Observacao, bool ImprimeVinculado);
-		
+
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void FechaCupomCallback(string Observacao, int IndiceBMP);
-		
+
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void SangriaSuprimentoCallback(double Valor, string Obs, string DescricaoCNF, string DescricaoFPG);
-		
+
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void SubtotalizaCupomCallback(double DescontoAcrescimo, string MensagemRodape); 
-		
+		public delegate void SubtotalizaCupomCallback(double DescontoAcrescimo, string MensagemRodape);
+
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void VendeItemCallback(string Codigo, string Descricao, string AliquotaICMS, double Qtd, double ValorUnitario, double ValorDescontoAcrescimo, string Unidade, string TipoDescontoAcrescimo, string DescontoAcrescimo);
-		
+
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void ChangeEstadoCallback(int EstadoAnterior, int EstadoAtual); 
+		public delegate void ChangeEstadoCallback(int EstadoAnterior, int EstadoAtual);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate bool ChequeEstadoCallback(int EstadoAtual);
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate bool ErrorCallback();
-		
+
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate bool ErrorRelatorioCallback(int Indice);
-		
+
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void MsgCallback(string Mensagem);
 
@@ -628,6 +628,36 @@ namespace ACBrFramework.ECF
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_InfoRodapeCupom_NotaLegalDF_SetValorISS(IntPtr ecfHandle, double value);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Restaurante_GetImprimir(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Restaurante_SetImprimir(IntPtr ecfHandle, bool imprimir);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Restaurante_GetECF(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Restaurante_SetECF(IntPtr ecfHandle, int ecf);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Restaurante_GetCER(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Restaurante_SetCER(IntPtr ecfHandle, int cer);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Restaurante_GetCOO(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Restaurante_SetCOO(IntPtr ecfHandle, int coo);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Restaurante_GetMesa(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Restaurante_SetMesa(IntPtr ecfHandle, string mesa);
+
 		#endregion InfoRodapeCupom
 
 		#region Consumidor
@@ -1182,7 +1212,7 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_LeituraCMC7(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
-				
+
 		#endregion Cheque
 
 		#region Eventos
@@ -1191,7 +1221,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_SetOnMsgPoucoPapel(IntPtr ecfHandle, Callback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetOnAguardandoRespostaChange(IntPtr ecfHandle, Callback method);		
+		public static extern int ECF_SetOnAguardandoRespostaChange(IntPtr ecfHandle, Callback method);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnAntesAbreCupom(IntPtr ecfHandle, AbreCupomCallback method);
@@ -1396,7 +1426,6 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetOnPAFGetKeyRSA(IntPtr ecfHandle, ChaveCallback method);
-
 
 		#endregion Eventos
 
