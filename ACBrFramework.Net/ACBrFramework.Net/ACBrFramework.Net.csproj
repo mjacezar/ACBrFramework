@@ -207,6 +207,7 @@
     <Compile Include="NFE\Classes\NFref.cs" />
     <Compile Include="NFE\Classes\NFrefCollectionItem.cs" />
     <Compile Include="NFE\Classes\NotasFiscais.cs" />
+    <Compile Include="NFE\Classes\Prod.cs" />
     <Compile Include="NFE\Classes\RefECF.cs" />
     <Compile Include="NFE\Classes\RefNF.cs" />
     <Compile Include="NFE\Classes\RefNFP.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="NFE\Classes\NFECFGGeral.cs" />
     <Compile Include="NFE\Classes\NFECFGWebServices.cs" />
     <Compile Include="NFE\Classes\NFEConfiguracoes.cs" />
+    <Compile Include="NFE\Enums\IndicadorTotal.cs" />
     <Compile Include="NFE\Enums\NFeUF.cs" />
     <Compile Include="NFE\Enums\ProcessoEmissao.cs" />
     <Compile Include="NFE\Enums\Schema.cs" />
@@ -230,6 +232,7 @@
     <Compile Include="NFE\Enums\TipoEmissao.cs" />
     <Compile Include="NFE\Enums\TipoImpressao.cs" />
     <Compile Include="NFE\Enums\TipoNFe.cs" />
+    <Compile Include="NFE\Enums\TpEvento.cs" />
     <Compile Include="PAF\ACBrPAF.cs" />
     <Compile Include="PAF\ACBrPAFInterop.cs" />
     <Compile Include="PAF\Classes\TipoDesenvolvimento.cs" />

@@ -200,9 +200,13 @@ namespace ACBrFramework.NFE
 			return GetString(ACBrNFEInterop.NFE_CFG_Arquivos_FGetPathMDe);
 		}
 
-		public string GetPathEvento()
+		public string GetPathEvento(TpEvento evento)
 		{
-			return GetString(ACBrNFEInterop.NFE_CFG_Arquivos_FGetPathEvento);
+			int bufferlen = 512;
+			StringBuilder buffer = new StringBuilder(bufferlen);
+			int ret = ACBrNFEInterop.NFE_CFG_Arquivos_FGetPathEvento(this.Handle, (int)evento, buffer, bufferlen);
+
+			return FromUTF8(buffer.ToString());
 		}
 
 		#endregion Methods

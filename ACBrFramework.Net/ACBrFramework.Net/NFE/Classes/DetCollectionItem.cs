@@ -10,9 +10,15 @@ namespace ACBrFramework.NFE
 		internal DetCollectionItem(ACBrNFE parent, IntPtr composedHandle)
 			: base(parent, composedHandle)
 		{
-
+			Prod = new Prod(parent, composedHandle);
 		}
 
 		#endregion Constructor
+
+		#region Propriedades
+
+		public Prod Prod { get; private set; }
+
+		#endregion Propriedades
 	}
 }

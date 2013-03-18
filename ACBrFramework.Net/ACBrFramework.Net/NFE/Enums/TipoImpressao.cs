@@ -9,7 +9,6 @@ namespace ACBrFramework.NFE
 		Paisagem,
 		Simplificado,
 		NFCe,
-		Resumido,
 		MsgEletronica
 	}
 }
