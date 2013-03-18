@@ -241,12 +241,12 @@ namespace ACBrFramework.EAD
 
 		public void GerarXMLeECFc(string NomeSH)
 		{
-			GerarXMLeECFc(NomeSH, null);
+			GerarXMLeECFc(ToUTF8(NomeSH), null);
 		}
 
 		public void GerarXMLeECFc(string NomeSH, string CaminhoArquivo)
 		{
-			int ret = ACBrEADInterop.EAD_GerarXMLeECFc(this.Handle, NomeSH, CaminhoArquivo);
+			int ret = ACBrEADInterop.EAD_GerarXMLeECFc(this.Handle, ToUTF8(NomeSH), ToUTF8(CaminhoArquivo));
 			CheckResult(ret);
 		}
 
@@ -254,7 +254,7 @@ namespace ACBrFramework.EAD
 		{
 			const int BUFFER_LEN = 512;
 			StringBuilder ChavePUB = new StringBuilder(BUFFER_LEN);
-			int ret = ACBrEADInterop.EAD_ConverteXMLeECFcParaOpenSSL(this.Handle, Arquivo, ChavePUB, BUFFER_LEN);
+			int ret = ACBrEADInterop.EAD_ConverteXMLeECFcParaOpenSSL(this.Handle, ToUTF8(Arquivo), ChavePUB, BUFFER_LEN);
 			CheckResult(ret);
 			return ChavePUB.ToString();
 		}
@@ -263,7 +263,7 @@ namespace ACBrFramework.EAD
 		{
 			const int BUFFER_LEN = 128;
 			StringBuilder Hash = new StringBuilder(BUFFER_LEN);
-			int ret = ACBrEADInterop.EAD_CalcularHashArquivo(Handle, Arquivo, (int)HashType, Hash, BUFFER_LEN);
+			int ret = ACBrEADInterop.EAD_CalcularHashArquivo(Handle, ToUTF8(Arquivo), (int)HashType, Hash, BUFFER_LEN);
 			CheckResult(ret);
 			return Hash.ToString();
 		}
@@ -300,7 +300,7 @@ namespace ACBrFramework.EAD
 		{
 			const int BUFFER_LEN = 128;
 			StringBuilder Hash = new StringBuilder(BUFFER_LEN);
-			int ret = ACBrEADInterop.EAD_CalcularHash(Handle, AString, (int)HashType, Hash, BUFFER_LEN);
+			int ret = ACBrEADInterop.EAD_CalcularHash(Handle, ToUTF8(AString), (int)HashType, Hash, BUFFER_LEN);
 			CheckResult(ret);
 			return Hash.ToString();
 		}
@@ -309,7 +309,7 @@ namespace ACBrFramework.EAD
 		{
 			const int BUFFER_LEN = 256;
 			StringBuilder EAD = new StringBuilder(BUFFER_LEN);
-			int ret = ACBrEADInterop.EAD_CalcularEADArquivo(Handle, Arquivo, EAD, BUFFER_LEN);
+			int ret = ACBrEADInterop.EAD_CalcularEADArquivo(Handle, ToUTF8(Arquivo), EAD, BUFFER_LEN);
 			CheckResult(ret);
 			return EAD.ToString();
 		}
@@ -332,7 +332,7 @@ namespace ACBrFramework.EAD
 		{
 			const int BUFFER_LEN = 256;
 			StringBuilder EAD = new StringBuilder(BUFFER_LEN);
-			int ret = ACBrEADInterop.EAD_CalcularEAD(Handle, AString, EAD, BUFFER_LEN);
+			int ret = ACBrEADInterop.EAD_CalcularEAD(Handle, ToUTF8(AString), EAD, BUFFER_LEN);
 			CheckResult(ret);
 			return EAD.ToString();
 		}
@@ -350,14 +350,14 @@ namespace ACBrFramework.EAD
 		{
 			const int BUFFER_LEN = 256;
 			StringBuilder EAD = new StringBuilder(BUFFER_LEN);
-			int ret = ACBrEADInterop.EAD_AssinarArquivoComEAD(this.Handle, Arquivo, Remover, EAD, BUFFER_LEN);
+			int ret = ACBrEADInterop.EAD_AssinarArquivoComEAD(this.Handle, ToUTF8(Arquivo), Remover, EAD, BUFFER_LEN);
 			CheckResult(ret);
 			return EAD.ToString();
 		}
 
 		public bool VerificarEADArquivo(string Arquivo)
 		{
-			int ret = ACBrEADInterop.EAD_VerificarEADArquivo(this.Handle, Arquivo);
+			int ret = ACBrEADInterop.EAD_VerificarEADArquivo(this.Handle, ToUTF8(Arquivo));
 			CheckResult(ret);
 
 			return Convert.ToBoolean(ret);
@@ -365,7 +365,7 @@ namespace ACBrFramework.EAD
 
 		public bool VerificarEAD(string AString)
 		{
-			int ret = ACBrEADInterop.EAD_VerificarEAD(this.Handle, AString);
+			int ret = ACBrEADInterop.EAD_VerificarEAD(this.Handle, ToUTF8(AString));
 			CheckResult(ret);
 
 			return Convert.ToBoolean(ret);
@@ -373,7 +373,7 @@ namespace ACBrFramework.EAD
 
 		public void RemoveEADArquivo(string Arquivo)
 		{
-			int ret = ACBrEADInterop.EAD_RemoveEADArquivo(Handle, Arquivo);
+			int ret = ACBrEADInterop.EAD_RemoveEADArquivo(Handle, ToUTF8(Arquivo));
 			CheckResult(ret);
 		}
 
@@ -381,7 +381,7 @@ namespace ACBrFramework.EAD
 		{
 			const int BUFFER_LEN = 256;
 			StringBuilder MD5 = new StringBuilder(BUFFER_LEN);
-			int ret = ACBrEADInterop.EAD_MD5FromFile(Handle, Arquivo, MD5, BUFFER_LEN);
+			int ret = ACBrEADInterop.EAD_MD5FromFile(Handle, ToUTF8(Arquivo), MD5, BUFFER_LEN);
 			CheckResult(ret);
 			return MD5.ToString();
 		}
@@ -390,7 +390,7 @@ namespace ACBrFramework.EAD
 		{
 			const int BUFFER_LEN = 256;
 			StringBuilder MD5 = new StringBuilder(BUFFER_LEN);
-			int ret = ACBrEADInterop.EAD_MD5FromString(Handle, AString, MD5, BUFFER_LEN);
+			int ret = ACBrEADInterop.EAD_MD5FromString(Handle, ToUTF8(AString), MD5, BUFFER_LEN);
 			CheckResult(ret);
 			return MD5.ToString();
 		}

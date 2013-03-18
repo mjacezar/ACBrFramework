@@ -738,7 +738,7 @@ begin
      DT_FIN        := TDateTime(registro0000.DT_FIN);
      NOME          := registro0000.NOME;
      CNPJ          := registro0000.CNPJ;
-     CPF           := registro0000.CNPJ;
+     CPF           := registro0000.CPF;
      UF            := registro0000.UF;
      IE            := registro0000.IE;
      COD_MUN       := registro0000.COD_MUN;

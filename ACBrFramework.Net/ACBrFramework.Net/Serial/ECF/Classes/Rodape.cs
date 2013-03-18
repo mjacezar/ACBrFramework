@@ -29,6 +29,7 @@ namespace ACBrFramework.ECF
 			: base(acbrECF)
 		{
 			this.NotaLegalDF = new RodapeNotaLegalDF(this);
+			this.Restaurante = new Restaurante(this);
 		}
 
 		#endregion Constructor
@@ -120,6 +121,9 @@ namespace ACBrFramework.ECF
 		}
 
 		public RodapeNotaLegalDF NotaLegalDF { get; private set; }
+
+
+		public Restaurante Restaurante { get; private set; }
 
 		#endregion Properties
 	}
