@@ -22,7 +22,7 @@
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="8"/>
+      <BuildNr Value="9"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -48,7 +48,7 @@
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="27" Y="13"/>
@@ -425,12 +425,10 @@
       <Unit38>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
         <UnitName Value="pcnGerador"/>
-        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="31"/>
         <CursorPos X="22" Y="55"/>
         <UsageCount Value="12"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit38>
       <Unit39>
@@ -534,7 +532,7 @@
       <Unit51>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFeNotasFiscais.pas"/>
         <UnitName Value="ACBrNFeNotasFiscais"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
@@ -570,7 +568,6 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1055"/>
         <CursorPos X="27" Y="1065"/>
-        <FoldState Value=" T3k$K0J5 pj8jf[98d0J4 piXjJ[99[99[RR[+67jc[{09[sj[99[{s9[94TJl^M2k223]K0l62K2y"/>
         <UsageCount Value="97"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -578,7 +575,7 @@
       <Unit56>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFe.pas"/>
         <UnitName Value="ACBrNFe"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="31"/>
         <CursorPos X="20" Y="101"/>
@@ -600,6 +597,7 @@
       <Unit58>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFe.pas"/>
         <UnitName Value="pcnNFe"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="589"/>
@@ -620,13 +618,10 @@
       <Unit60>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnConversao.pas"/>
         <UnitName Value="pcnConversao"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="189"/>
         <CursorPos X="7" Y="207"/>
         <UsageCount Value="32"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit60>
       <Unit61>
@@ -810,12 +805,10 @@
       <Unit82>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnAuxiliar.pas"/>
         <UnitName Value="pcnAuxiliar"/>
-        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="145"/>
         <CursorPos X="1" Y="1"/>
         <UsageCount Value="12"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit82>
       <Unit83>
@@ -828,55 +821,51 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit83>
     </Units>
-    <JumpHistory Count="12" HistoryIndex="11">
+    <JumpHistory Count="11" HistoryIndex="10">
       <Position1>
-        <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
-        <Caret Line="55" Column="22" TopLine="31"/>
-      </Position1>
-      <Position2>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFeNotasFiscais.pas"/>
         <Caret Line="70" Column="27" TopLine="61"/>
-      </Position2>
-      <Position3>
+      </Position1>
+      <Position2>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFe.pas"/>
         <Caret Line="101" Column="20" TopLine="31"/>
-      </Position3>
-      <Position4>
+      </Position2>
+      <Position3>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFe.pas"/>
         <Caret Line="554" Column="14" TopLine="77"/>
+      </Position3>
+      <Position4>
+        <Filename Value="ACBrNFe2Dll.pas"/>
+        <Caret Line="9293" Column="84" TopLine="8620"/>
       </Position4>
       <Position5>
         <Filename Value="ACBrNFe2Dll.pas"/>
-        <Caret Line="9293" Column="84" TopLine="8620"/>
+        <Caret Line="1077" Column="26" TopLine="1063"/>
       </Position5>
       <Position6>
         <Filename Value="ACBrNFe2Dll.pas"/>
-        <Caret Line="1077" Column="26" TopLine="1063"/>
+        <Caret Line="1074" Column="6" TopLine="1061"/>
       </Position6>
       <Position7>
         <Filename Value="ACBrNFe2Dll.pas"/>
-        <Caret Line="1074" Column="6" TopLine="1061"/>
+        <Caret Line="1077" Column="67" TopLine="1068"/>
       </Position7>
       <Position8>
-        <Filename Value="ACBrNFe2Dll.pas"/>
-        <Caret Line="1077" Column="67" TopLine="1068"/>
+        <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFeConfiguracoes.pas"/>
+        <Caret Line="204" Column="37" TopLine="195"/>
       </Position8>
       <Position9>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFeConfiguracoes.pas"/>
-        <Caret Line="204" Column="37" TopLine="195"/>
+        <Caret Line="4" Column="49" TopLine="1"/>
       </Position9>
       <Position10>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFeConfiguracoes.pas"/>
-        <Caret Line="4" Column="49" TopLine="1"/>
+        <Caret Line="175" Column="27" TopLine="161"/>
       </Position10>
       <Position11>
-        <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFeConfiguracoes.pas"/>
-        <Caret Line="175" Column="27" TopLine="161"/>
-      </Position11>
-      <Position12>
         <Filename Value="ACBrNFe2Dll.pas"/>
         <Caret Line="1065" Column="27" TopLine="1055"/>
-      </Position12>
+      </Position11>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
