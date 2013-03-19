@@ -4370,7 +4370,7 @@ public final class ACBrECF extends ACBrClass
 	{
 
 
-		int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_LMFC_Impressao(getHandle(), CRZInicial, CRZFinal);
+		int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_LMFC_Impressao_CRZ(getHandle(), CRZInicial, CRZFinal);
 		checkResult(ret);
 
 
