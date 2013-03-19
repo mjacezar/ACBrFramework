@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ACBrFramework.NFE
 {
-	public sealed class DetCollection : ACBrComposedComponent, IEnumerable<NFrefCollectionItem>
+	public sealed class DetCollection : ACBrComposedComponent, IEnumerable<DetCollectionItem>
 	{
 		#region Constructor
 
@@ -74,9 +74,9 @@ namespace ACBrFramework.NFE
 
 		#endregion Methods
 
-		#region IEnumerable<NotasFiscais>
+		#region IEnumerable<DetCollectionItem>
 
-		public IEnumerator<NFrefCollectionItem> GetEnumerator()
+		public IEnumerator<DetCollectionItem> GetEnumerator()
 		{
 			int count = Count;
 			for (int i = 0; i < count; i++)
