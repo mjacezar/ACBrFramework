@@ -1118,6 +1118,157 @@ namespace ACBrFramework.NFE
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int NFE_NFe_Det_Item_Prod_SetNItemPed(IntPtr nfeHandle, IntPtr nfHandle, int value);
 
+		#region Det Item Prod veicProd
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetTpOP(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetTpOP(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetChassi(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetChassi(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetCCor(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetCCor(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetXCor(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetXCor(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetPot(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetPot(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetCilin(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetCilin(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetPesoL(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetPesoL(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetPesoB(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetPesoB(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetNSerie(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetNSerie(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetTpComb(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetTpComb(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetCombDescricao(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetNMotor(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetNMotor(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetCMT(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetCMT(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetDist(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetDist(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetAnoMod(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetAnoMod(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetAnoFab(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetAnoFab(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetTpPint(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetTpPint(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetTpVeic(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetTpVeic(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetEspVeic(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetEspVeic(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetVIN(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetVIN(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetCondVeic(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetCondVeic(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetCMod(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetCMod(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetCCorDENATRAN(IntPtr nfeHandle, IntPtr nfHandle, StringBuilder buffer, int bufferlen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetCCorDENATRAN(IntPtr nfeHandle, IntPtr nfHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetLota(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetLota(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_GetTpRest(IntPtr nfeHandle, IntPtr nfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int NFE_NFe_Det_Item_Prod_veicProd_SetTpRest(IntPtr nfeHandle, IntPtr nfHandle, int value);
+
+		#endregion Det Item Prod veicProd
+
 		#endregion Det Item Prod
 
 		#endregion Det Item
