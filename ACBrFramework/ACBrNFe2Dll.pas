@@ -419,8 +419,6 @@ begin
 end;
 
 Function NFE_CFG_Geral_Save(const nfeHandle: PNFEHandle;const AXMLName, AXMLFile, aPath : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  ret : Boolean;
 begin
 
   if (nfeHandle = nil) then
@@ -430,11 +428,11 @@ begin
   end;
 
   try
-     ret := nfeHandle^.NFE.Configuracoes.Geral.Save(AXMLName, AXMLFile, aPath);
-     if ret then
-     Result := 1
+
+     if nfeHandle^.NFE.Configuracoes.Geral.Save(AXMLName, AXMLFile, aPath) then
+       Result := 1
      else
-     Result := 0;
+       Result := 0;
   except
      on exception : Exception do
      begin
@@ -990,7 +988,7 @@ begin
   end;
 end;
 
-Function NFE_CFG_Arquivos_FGetPathNFe(const nfeHandle: PNFEHandle;const value : Double ; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function NFE_CFG_Arquivos_FGetPathNFe(const nfeHandle: PNFEHandle; const value : Double ; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   strTemp : string;
 begin
@@ -8992,7 +8990,6 @@ begin
 end;
 
 {%endregion}
-
 
 {%endregion}
 

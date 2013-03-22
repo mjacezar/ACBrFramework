@@ -10,7 +10,7 @@ namespace ACBrFramework.NFE
 		internal Prod(ACBrNFE parent, IntPtr composedHandle)
 			: base(parent, composedHandle)
 		{
-
+			this.VeicProd = new veicProd(parent, composedHandle);
 		}
 
 		#endregion Constructor
@@ -280,6 +280,8 @@ namespace ACBrFramework.NFE
 				SetInt32(ACBrNFEInterop.NFE_NFe_Det_Item_Prod_SetNItemPed, value);
 			}
 		}
+
+		public veicProd VeicProd { get; private set; }
 
 		#endregion Propriedades
 	}
