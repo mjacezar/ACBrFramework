@@ -328,7 +328,7 @@
     <Compile Include="Serial\RFD\Eventos\OnCalcHashLogArgs.cs" />
     <Compile Include="Serial\Device\ACBrDevice.cs" />
     <Compile Include="Serial\Device\ACBrDeviceInterop.cs" />
-    <Compile Include="Serial\BAL\ACBrBal.cs" />
+    <Compile Include="Serial\BAL\ACBrBAL.cs" />
     <Compile Include="Serial\BAL\ACBrBALInterop.cs" />
     <Compile Include="Serial\BAL\Eventos\LePesoEventArgs.cs" />
     <Compile Include="Serial\BAL\Classes\ModeloBal.cs" />
