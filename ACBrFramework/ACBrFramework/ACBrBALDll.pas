@@ -27,6 +27,8 @@ type PBALHandle = ^TBALHandle;
 
 implementation
 
+{%region Constructor/Destructor/Ultimo Erro}
+
 {
 PADRONIZAÇÃO DAS FUNÇÕES:
 
@@ -52,11 +54,6 @@ PADRONIZAÇÃO DAS FUNÇÕES:
 
                   A função "UltimoErro" retornará a mensagem da última exception disparada pelo componente.
 }
-
-procedure TEventHandlers.OnLePeso(Peso : Double; Resposta : AnsiString);
-begin
-     OnLePesoCallback(Peso);
-end;
 
 {
 CRIA um novo componente TACBrBAL retornando o ponteiro para o objeto criado.
@@ -141,50 +138,9 @@ begin
   end;
 end;
 
+{%endregion}
 
-Function BAL_Ativar(const balHandle: PBALHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (balHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     balHandle^.BAL.Ativar;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        balHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-
-end;
-
-Function BAL_Desativar(const balHandle: PBALHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (balHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     balHandle^.BAL.Desativar;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        balHandle^.UltimoErro := exception.Message;
-        Result  := -1;
-     end
-  end;
-
-end;
+{%region Propriedades}
 
 Function BAL_GetModelo(const balHandle: PBALHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -325,6 +281,52 @@ begin
 
 end;
 
+Function BAL_GetMonitoraBalanca(const balHandle: PBALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (balHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     If balHandle^.BAL.MonitorarBalanca then
+        Result := 1
+     Else
+        Result := 0;
+
+  except
+     on exception : Exception do
+     begin
+        balHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function BAL_SetMonitoraBalanca(const balHandle: PBALHandle; const monitora : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (balHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+
+     balHandle^.BAL.MonitorarBalanca := monitora;
+
+  except
+     on exception : Exception do
+     begin
+        balHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 Function BAL_GetUltimoPesoLido(const balHandle: PBALHandle; var peso : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -372,6 +374,54 @@ begin
 
 end;
 
+{%endregion}
+
+{%region Metodos}
+
+Function BAL_Ativar(const balHandle: PBALHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (balHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     balHandle^.BAL.Ativar;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        balHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function BAL_Desativar(const balHandle: PBALHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (balHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     balHandle^.BAL.Desativar;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        balHandle^.UltimoErro := exception.Message;
+        Result  := -1;
+     end
+  end;
+
+end;
+
 Function BAL_LePeso(const balHandle: PBALHandle; const timeout : Integer; var peso : Double) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -394,50 +444,13 @@ begin
 
 end;
 
-Function BAL_GetMonitoraBalanca(const balHandle: PBALHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+{%endregion}
+
+{%region Eventos}
+
+procedure TEventHandlers.OnLePeso(Peso : Double; Resposta : AnsiString);
 begin
-
-  if (balHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     If balHandle^.BAL.MonitorarBalanca then
-        Result := 1
-     Else
-        Result := 0;
-
-  except
-     on exception : Exception do
-     begin
-        balHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function BAL_SetMonitoraBalanca(const balHandle: PBALHandle; const monitora : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (balHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-
-     balHandle^.BAL.MonitorarBalanca := monitora;
-
-  except
-     on exception : Exception do
-     begin
-        balHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
+     OnLePesoCallback(Peso);
 end;
 
 Function BAL_SetOnLePeso(const balHandle: PBALHandle; const method : TLePesoCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -472,23 +485,24 @@ begin
 
 end;
 
+{%endregion}
+
 exports
 
 { Funções }
 
 BAL_Create, BAL_Destroy,
 BAL_GetUltimoErro,
-BAL_Ativar, BAL_Desativar,
 
 { Propriedades do Componente }
 
 BAL_GetModelo, BAL_SetModelo, BAL_GetModeloStr,
-BAL_GetPorta, BAL_SetPorta,
-BAL_GetAtivo,
+BAL_GetPorta, BAL_SetPorta, BAL_GetAtivo,
 BAL_GetUltimoPesoLido, BAL_GetUltimaResposta,
 BAL_GetMonitoraBalanca, BAL_SetMonitoraBalanca,
 
-{Métodos}
+{ Métodos }
+BAL_Ativar, BAL_Desativar,
 BAL_LePeso,
 
 {Eventos}

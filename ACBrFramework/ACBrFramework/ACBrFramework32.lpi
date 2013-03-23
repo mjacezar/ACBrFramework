@@ -98,7 +98,8 @@
         <UnitName Value="ACBrBALDll"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="10" Y="8"/>
+        <CursorPos X="20" Y="13"/>
+        <FoldState Value=" TLV0O2 T3iJ0M4 pifjd0N]9j1jY0K[I4ejV0K2K"/>
         <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
@@ -134,9 +135,9 @@
         <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrBAL.pas"/>
         <UnitName Value="ACBrBAL"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="97"/>
-        <CursorPos X="15" Y="114"/>
-        <UsageCount Value="12"/>
+        <TopLine Value="63"/>
+        <CursorPos X="15" Y="118"/>
+        <UsageCount Value="13"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit8>
       <Unit9>
@@ -536,7 +537,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit51>
@@ -557,19 +558,19 @@
       <Unit54>
         <Filename Value="ACBrNFe2DANFEFramework.pas"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="102"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit54>
       <Unit55>
         <Filename Value="ACBrNFe2Dll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrNFe2Dll"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="8640"/>
         <CursorPos X="44" Y="8951"/>
-        <FoldState Value=" TJV2{P1 p)cjO2~o p0)g2_a1]9z12{Q[94ih42#pV0[L5S2#d[94=P2~_1 T3}D0J0G2D]Ky10I[S4j-40J5 pj8jf[98d0J4 piXjJ[99[99[RR[+67jc[{09[sj[99[{s9]9H"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="102"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit55>
@@ -580,7 +581,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="31"/>
         <CursorPos X="20" Y="101"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit56>
@@ -591,19 +592,18 @@
         <WindowIndex Value="0"/>
         <TopLine Value="513"/>
         <CursorPos X="51" Y="605"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit57>
       <Unit58>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFe.pas"/>
         <UnitName Value="pcnNFe"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="616"/>
+        <TopLine Value="614"/>
         <CursorPos X="60" Y="603"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="45"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit58>
@@ -623,7 +623,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="123"/>
         <CursorPos X="7" Y="145"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit60>
@@ -824,7 +824,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit83>
     </Units>
-    <JumpHistory Count="12" HistoryIndex="11">
+    <JumpHistory Count="11" HistoryIndex="10">
       <Position1>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFeNotasFiscais.pas"/>
         <Caret Line="70" Column="27" TopLine="61"/>
@@ -869,10 +869,6 @@
         <Filename Value="ACBrNFe2Dll.pas"/>
         <Caret Line="1065" Column="27" TopLine="1055"/>
       </Position11>
-      <Position12>
-        <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFe.pas"/>
-        <Caret Line="603" Column="60" TopLine="616"/>
-      </Position12>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
