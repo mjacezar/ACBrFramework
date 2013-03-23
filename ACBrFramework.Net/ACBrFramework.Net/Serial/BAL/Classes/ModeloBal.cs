@@ -1,10 +1,15 @@
 ﻿namespace ACBrFramework.BAL
 {
-	public enum ModeloBal : int
+	public enum ModeloBal
 	{
-		Nenhum = 0,
-		Filizola = 1,
-		Toledo = 2,
-		Urano = 3
+		Nenhum,
+		Filizola, 
+		Toledo, 
+		Toledo2180, 
+		Urano, 
+		LucasTec, 
+		Magna, 
+		Digitron, 
+		Magellan 
 	}
 }

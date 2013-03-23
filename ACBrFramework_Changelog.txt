@@ -41,6 +41,11 @@ Símbolo : Significado
 
 Changelog
 
+22/03/2013
+
+-- ACBrFramework.Net 0.9.2.10 --
+[-] Corrigido erro nos modelos de balança - ACBrBAL - Rafael Batiati
+
 18/03/2013
 
 -- ACBrFramework.Net 0.9.2.9 --
