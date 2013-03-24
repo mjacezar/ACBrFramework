@@ -180,6 +180,90 @@ begin
   end;
 end;
 
+Function CEP_GetUsuario(const cepHandle: PCEPHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (cepHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, cepHandle^.CEP.Usuario, BufferLen);
+     Result := length(cepHandle^.CEP.Usuario);
+  except
+     on exception : Exception do
+     begin
+        cepHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function CEP_SetUsuario(const cepHandle: PCEPHandle; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (cepHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     cepHandle^.CEP.Usuario := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        cepHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function CEP_GetSenha(const cepHandle: PCEPHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (cepHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, cepHandle^.CEP.Senha, BufferLen);
+     Result := length(cepHandle^.CEP.Senha);
+  except
+     on exception : Exception do
+     begin
+        cepHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function CEP_SetSenha(const cepHandle: PCEPHandle; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (cepHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     cepHandle^.CEP.Senha := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        cepHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 Function CEP_GetURL(const cepHandle: PCEPHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -1033,6 +1117,8 @@ CEP_GetUltimoErro,
 
 {Funções mapeando as propriedades do componente}
 CEP_GetChaveAcesso, CEP_SetChaveAcesso,
+CEP_GetUsuario, CEP_SetUsuario,
+CEP_GetSenha, CEP_SetSenha,
 CEP_GetParseText, CEP_SetParseText,
 CEP_GetProxyHost, CEP_SetProxyHost,
 CEP_GetProxyPort, CEP_SetProxyPort,

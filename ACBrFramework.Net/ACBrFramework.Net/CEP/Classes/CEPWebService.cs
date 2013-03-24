@@ -8,6 +8,7 @@
 		RepublicaVirtual,
 		Bases4you,
 		RNSolucoes,
-		KingHost
+		KingHost,
+		ByJG
 	}
 }

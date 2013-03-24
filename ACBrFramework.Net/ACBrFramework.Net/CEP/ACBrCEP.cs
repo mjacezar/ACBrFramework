@@ -56,7 +56,7 @@ namespace ACBrFramework.CEP
 
 		#region Properties
 
-		[Category("Geral")]
+		[Category("Dados de Acesso")]
 		public string ChaveAcesso
 		{
 			get
@@ -66,6 +66,32 @@ namespace ACBrFramework.CEP
 			set
 			{
 				SetString(ACBrCEPInterop.CEP_SetChaveAcesso, value);
+			}
+		}
+
+		[Category("Dados de Acesso")]
+		public string Usuario
+		{
+			get
+			{
+				return GetString(ACBrCEPInterop.CEP_GetUsuario);
+			}
+			set
+			{
+				SetString(ACBrCEPInterop.CEP_SetUsuario, value);
+			}
+		}
+
+		[Category("Dados de Acesso")]
+		public string Senha
+		{
+			get
+			{
+				return GetString(ACBrCEPInterop.CEP_GetSenha);
+			}
+			set
+			{
+				SetString(ACBrCEPInterop.CEP_SetSenha, value);
 			}
 		}
 
