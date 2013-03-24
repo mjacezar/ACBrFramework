@@ -37,6 +37,18 @@ namespace ACBrFramework.CEP
 		public static extern int CEP_SetChaveAcesso(IntPtr cepHandle, string value);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int CEP_GetUsuario(IntPtr cepHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int CEP_SetUsuario(IntPtr cepHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int CEP_GetSenha(IntPtr cepHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int CEP_SetSenha(IntPtr cepHandle, string value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int CEP_GetURL(IntPtr cepHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
