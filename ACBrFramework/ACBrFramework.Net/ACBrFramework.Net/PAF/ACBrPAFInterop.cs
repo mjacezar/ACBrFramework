@@ -79,10 +79,10 @@ namespace ACBrFramework.PAF
 			public double DT_EST;
 
 			[MarshalAs(UnmanagedType.U1)]
-			public bool RegistroValido;
+			public bool InclusaoExclusao;
 
 			[MarshalAs(UnmanagedType.U1)]
-			public bool InclusaoExclusao;
+			public bool RegistroValido;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
