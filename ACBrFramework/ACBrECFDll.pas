@@ -4737,6 +4737,27 @@ begin
   end;
 end;
 
+Function ECF_SegundaViaVinculado(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.SegundaViaVinculado;
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 {%endregion}
 
 {%region Alíquotas}
@@ -10735,7 +10756,7 @@ ECF_CancelaItemVendido, ECF_CancelaItemVendidoParcial,
 ECF_CancelaDescontoAcrescimoItem, ECF_CancelaDescontoAcrescimoSubTotal,
 ECF_LeituraX, ECF_LinhaCupomVinculado, ECF_ReimpressaoVinculado, ECF_PreparaTEF,
 ECF_FechaRelatorio, ECF_PulaLinhas, ECF_CortaPapel,
-ECF_AbreCupomVinculado, ECF_AbreCupomVinculadoCNF,
+ECF_AbreCupomVinculado, ECF_AbreCupomVinculadoCNF, ECF_SegundaViaVinculado,
 
 { Aliquotas }
 

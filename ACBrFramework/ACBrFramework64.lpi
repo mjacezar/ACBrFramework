@@ -22,7 +22,7 @@
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="10"/>
+      <BuildNr Value="12"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -445,7 +445,6 @@
       <Unit45>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
         <UnitName Value="pcnGerador"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="682"/>
@@ -508,9 +507,10 @@
         <Filename Value="ACBrNFe2Dll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrNFe2Dll"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="7471"/>
+        <TopLine Value="7461"/>
         <CursorPos X="70" Y="7485"/>
         <UsageCount Value="23"/>
         <Loaded Value="True"/>
@@ -696,7 +696,7 @@
       <CompilerMessages>
         <UseMsgFile Value="True"/>
       </CompilerMessages>
-      <CustomOptions Value="-dCONSOLE -dFRAMEWORK -dCDECL -dx64"/>
+      <CustomOptions Value="-dCONSOLE -dFRAMEWORK -dCDECL"/>
       <CompilerPath Value="$(CompPath)"/>
     </Other>
   </CompilerOptions>

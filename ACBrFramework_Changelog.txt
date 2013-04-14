@@ -42,16 +42,18 @@ Símbolo : Significado
 Changelog
 
 14/04/2013
--- ACBrFramework 0.9.2.10 --
+-- ACBrFramework 0.9.2.12 --
 [-] Corrigido erro no campos decimais em alguns registros do ACBrSpedFiscal - Rafael Batiati
 
--- ACBrFramework.Net 0.9.2.10 --
+-- ACBrFramework.Net 0.9.2.12 --
 [-] Corrigido erro no campos decimais em alguns registros do ACBrSpedFiscal - Rafael Batiati
 
 04/04/2013
--- ACBrFramework 0.9.2.10 --
-[-] Corrigido erro no campo RegistroValido do Registro H1 - ACBrPAF - Rafael Batiati
-[*] Modificado Encoding de UTF8 para Latin1, resolvendo problemas de acentuação - ACBrInteropBase - Rafael Batiati
+
+-- ACBrFramework 0.9.2.11 --
+[-] Corrigido erro no campo RegistroValido do Registro H1 - ACBrPAF - Rafael Batiati.
+[*] Modificado Encoding de UTF8 para Latin1, resolvendo problemas de acentuação - ACBrInteropBase - Rafael Batiati.
+[+] Adicinado a função SegundaViaVinculado - ACBrECF - Rafael Dias.
 
 22/03/2013
 

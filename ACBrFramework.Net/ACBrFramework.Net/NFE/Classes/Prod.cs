@@ -11,6 +11,8 @@ namespace ACBrFramework.NFE
 			: base(parent, composedHandle)
 		{
 			this.VeicProd = new veicProd(parent, composedHandle);
+            this.Med = new MedCollection(parent, composedHandle);
+            this.Arma = new ArmaCollection(parent, composedHandle);
 		}
 
 		#endregion Constructor
@@ -280,6 +282,10 @@ namespace ACBrFramework.NFE
 				SetInt32(ACBrNFEInterop.NFE_NFe_Det_Item_Prod_SetNItemPed, value);
 			}
 		}
+
+        public MedCollection Med { get; private set; }
+
+        public ArmaCollection Arma { get; private set; }
 
 		public veicProd VeicProd { get; private set; }
 
