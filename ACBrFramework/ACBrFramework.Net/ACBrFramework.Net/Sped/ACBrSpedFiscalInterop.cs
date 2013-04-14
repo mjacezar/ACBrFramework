@@ -256,8 +256,10 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 201)]
 			public string DESCR_ANT_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_INI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_FIN;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -277,6 +279,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string UNID_CONV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double FAT_CONV;
 		}
 
@@ -286,6 +289,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_IND_BEM;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IDENT_MERC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 201)]
@@ -297,6 +301,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_CTA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double NR_PARC;
 		}
 
@@ -309,6 +314,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 201)]
 			public string FUNC;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int VIDA_UTIL;
 		}
 
@@ -345,6 +351,7 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Bloco0Registro0500
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_ALT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
@@ -366,6 +373,7 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Bloco0Registro0600
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_ALT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -420,27 +428,34 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Bloco1Registro1100
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_DOC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 12)]
 			public string NRO_DE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DE;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int NAT_EXP;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 13)]
 			public string NRO_RE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_RE;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 19)]
 			public string CHC_EMB;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_CHC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_AVB;
-
+			
+			[MarshalAs(UnmanagedType.I4)]
 			public int TP_CHC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
@@ -462,6 +477,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
 			public string CHV_NFE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -483,6 +499,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
@@ -491,6 +508,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string NR_MEMO;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -503,14 +521,19 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 9)]
 			public string COD_AJ_APUR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double SLD_CRED;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double CRED_APR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double CRED_RECEB;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double CRED_UTIL;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double SLD_CRED_FIM;
 		}
 
@@ -523,6 +546,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string NR_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_CRED_UTIL;
 		}
 
@@ -532,22 +556,31 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_FECH;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ESTQ_ABERT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VOL_ENTR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VOL_DISP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VOL_SAIDAS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ESTQ_ESCR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VAL_AJ_PERDA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VAL_AJ_GANHO;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double FECH_FISICO;
 		}
 
@@ -557,20 +590,28 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
 			public string NUM_TANQUE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ESTQ_ABERT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VOL_ENTR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VOL_DISP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VOL_SAIDAS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ESTQ_ESCR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VAL_AJ_PERDA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VAL_AJ_GANHO;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double FECH_FISICO;
 		}
 
@@ -595,12 +636,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 12)]
 			public string CPF_INTERV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VAL_FECHA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VAL_ABERT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VOL_AFERI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VOL_VENDAS;
 		}
 
@@ -616,6 +661,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string MODELO;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int TIPO_MEDICAO;
 		}
 
@@ -625,6 +671,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
 			public string NUM_LACRE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_APLICACAO;
 		}
 
@@ -657,6 +704,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 6)]
 			public string MUN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VALOR;
 		}
 
@@ -675,6 +723,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_MOD;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_SIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
@@ -683,44 +732,61 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
 			public string SUB;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_CONS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_E_S;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_FORN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV_NT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TERC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string COD_INF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int TP_LIGACAO;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_GRUPO_TENSAO;
 		}
 
@@ -736,13 +802,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string COD_CLASS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string UNID;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
@@ -751,25 +820,34 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_REC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_PART;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -782,14 +860,17 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_PART;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double TOT_CREDITO;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double TOT_DEBITO;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Bloco1Registro1700
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_DISP;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
@@ -824,22 +905,31 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Bloco1Registro1800
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_CARGA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PASS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_FAT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double IND_RAT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ANT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_APUR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_APUR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DIF;
 		}
 
@@ -902,52 +992,71 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
 			public string CHV_NFE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_E_S;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DOC;
 
 			[MarshalAs(UnmanagedType.I4)]
 			public int IND_PGTO;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ABAT_NT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_MERC;
 
 			[MarshalAs(UnmanagedType.I4)]
 			public int IND_FRT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_FRT;
-
+			
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SEG;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OUT_DA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_IPI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS_ST;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC105
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int OPER;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
@@ -970,12 +1079,14 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
 			public string NUM_PROC;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_PROC;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC112
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_DA;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
@@ -987,18 +1098,23 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_AUT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_VCTO;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_PGTO;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC113
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_OPER;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_EMIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -1016,6 +1132,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 		}
 
@@ -1034,12 +1151,14 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC115
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_CARGA;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
@@ -1082,19 +1201,23 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string NUM_CFE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC120
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_DOC_IMP;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 11)]
 			public string NUM_DOC__IMP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double PIS_IMP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double COFINS_IMP;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
@@ -1104,26 +1227,35 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC130
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV_NT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ISSQN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ISSQN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_IRRF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_IRRF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_PREV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PREV;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC140
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_EMIT;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_TIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 255)]
@@ -1132,8 +1264,10 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string NUM_TIT;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int QTD_PARC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TIT;
 		}
 
@@ -1143,8 +1277,10 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string NUM_PARC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_VCTO;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PARC;
 		}
 
@@ -1157,10 +1293,13 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
 			public string VEIC_ID;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int QTD_VOL;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double PESO_BRT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double PESO_LIQ;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
@@ -1188,10 +1327,13 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string TEMPER;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int QTD_VOL;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double PESO_BRT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double PESO_LIQ;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -1216,15 +1358,19 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 255)]
 			public string DESCR_COMPL;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string UNID;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_MOV;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
@@ -1236,18 +1382,25 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 11)]
 			public string COD_NAT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_APUR;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
@@ -1256,36 +1409,49 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
 			public string COD_ENQ;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_IPI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_IPI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_IPI;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string CST_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_PIS_PERC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QUANT_BC_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_PIS_R;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string CST_COFINS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_COFINS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_COFINS_PERC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QUANT_BC_COFINS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_COFINS_R;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -1298,16 +1464,20 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
 			public string NUM_TANQUE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTDE;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC172
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ISSQN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ISSQN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ISSQN;
 		}
 
@@ -1317,22 +1487,29 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string LOTE_MED;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_FAB;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_VAL;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_MED;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int TP_PROD;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TAB_MAX;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC174
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_ARM;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -1345,6 +1522,7 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC175
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_VEIC_OPER;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
@@ -1369,15 +1547,19 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
 			public string SER_ULT_E;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_ULT_E;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_PART_ULT_E;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QUANT_ULT_E;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_UNIT_ULT_E;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_UNIT_BC_ST;
 		}
 
@@ -1387,6 +1569,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string COD_SELO_IPI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QT_SELO_IPI;
 		}
 
@@ -1396,22 +1579,29 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 6)]
 			public string CL_ENQ;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_UNID;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QUANT_PAD;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC179
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double BC_ST_ORIG_DEST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ICMS_ST_REP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ICMS_ST_COMPL;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double BC_RET;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ICMS_RET;
 		}
 
@@ -1424,20 +1614,28 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_RED_BC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_IPI;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -1466,12 +1664,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 255)]
 			public string COD_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
-
+			
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OUTROS;
 		}
 
@@ -1493,12 +1695,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string NUM_DOC_FIN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -1521,14 +1727,19 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_RED_BC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -1541,21 +1752,28 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string UNID;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 		}
 
@@ -1571,19 +1789,25 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
 			public string CNPJ_CPF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_MERC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -1599,13 +1823,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
 			public string UNID;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 		}
 
@@ -1618,14 +1845,19 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
-
+			
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_RED_BC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -1651,24 +1883,32 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC405
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int CRO;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int CRZ;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int NUM_COO_FIN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double GT_FIN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BRT;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC410
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 		}
 
@@ -1678,8 +1918,10 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
 			public string COD_TOT_PAR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VLR_ACUM_TOT;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int NR_TOT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 255)]
@@ -1692,15 +1934,19 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string UNID;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 		}
 
@@ -1710,17 +1956,22 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string COD_MOD;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_SIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
@@ -1736,13 +1987,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD_CANC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string UNID;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ITEM;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
@@ -1751,10 +2005,13 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 		}
 
@@ -1767,12 +2024,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -1782,42 +2043,56 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC495
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD_CANC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string UNID;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_CANC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ACMO;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ISEN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_NT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoCRegistroC500
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_OPER;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_EMIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -1826,6 +2101,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string COD_MOD;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_SIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
@@ -1840,39 +2116,55 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_E_S;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_FORN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV_NT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TERC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string COD_INF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int TP_LIGACAO;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_GRUPO_TENSAO;
 		}
 
@@ -1888,13 +2180,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string COD_CLASS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string UNID;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
@@ -1903,25 +2198,34 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_REC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_PART;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -1937,18 +2241,25 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_RED_BC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -1973,36 +2284,52 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string COD_CONS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD_CONS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD_CANC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double CONS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_FORN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV_NT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TERC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 		}
 
@@ -2022,13 +2349,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string UNID;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
@@ -2037,18 +2367,25 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -2064,18 +2401,25 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_RED_BC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -2091,12 +2435,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string SER;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int NRO_ORD_INI;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int NRO_ORD_FIN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC_INI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC_FIN;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
@@ -2115,18 +2463,25 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public double CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_RED_BC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -2139,8 +2494,10 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string UF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_ST;
 		}
 
@@ -2150,17 +2507,22 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string COD_MOD;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_SIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string NUM_CFE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_CFE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
@@ -2172,16 +2534,22 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
 			public string CHV_CFE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_MERC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OUT_DA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS_ST;
 		}
 
@@ -2194,12 +2562,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -2215,6 +2587,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
 			public string NR_SAT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -2233,12 +2606,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -2259,8 +2636,10 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoDRegistroD100
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_OPER;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_EMIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -2269,6 +2648,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string COD_MOD;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_SIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
@@ -2283,8 +2663,10 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
 			public string CHV_CTE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_A_P;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
@@ -2293,18 +2675,25 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
 			public string CHV_CTE_REF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_FRT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_NT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -2320,10 +2709,13 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_ITEM;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int NUN_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OUT;
 		}
 
@@ -2352,6 +2744,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_PART_RED;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_FRT_RED;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
@@ -2363,16 +2756,22 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
 			public string VEIC_ID;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_LIQ_FRT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SEC_CAT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PEDG;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OUT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_FRT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
@@ -2394,23 +2793,31 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
 			public string IND_VEIC;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int VEIC_ID;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_NAV;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string VIAGEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_FRT_LIQ;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESP_PORT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESP_CAR_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OUT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_FRT_BRT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_FRT_MM;
 		}
 
@@ -2429,16 +2836,22 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string VIAGEM;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_TFA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PESO_TX;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TX_TERR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TX_RED;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OUT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TX_ADV;
 		}
 
@@ -2470,6 +2883,7 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoDRegistroD161
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_CARGA;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
@@ -2503,16 +2917,22 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_MERC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD_VOL;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double PESO_BRT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double PESO_LIQ;
 		}
 
@@ -2534,16 +2954,22 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string OTM;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_NAT_FRT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_LIQ_FRT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_GRIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PDG;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OUT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_FRT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
@@ -2559,6 +2985,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string NUM_SEQ;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_EMIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
@@ -2597,8 +3024,10 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DOC;
 		}
 
@@ -2611,14 +3040,19 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_RED_BC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -2647,12 +3081,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OUTROS;
 		}
 
@@ -2680,24 +3118,34 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SEG;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OUT_DESP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_RED_BC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -2720,10 +3168,13 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
 			public string COD_MUN_ORIG;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 		}
 
@@ -2746,24 +3197,32 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoDRegistroD355
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int CRO;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int CRZ;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int NUM_COO_FIN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double GT_FIN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BRT;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoDRegistroD360
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 		}
 
@@ -2773,8 +3232,10 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
 			public string COD_TOT_PAR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VLR_ACUM_TOT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double NR_TOT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 255)]
@@ -2787,12 +3248,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
 			public string COD_MUN_ORIG;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD_BILH;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 		}
 
@@ -2805,18 +3270,25 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ISSQN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ISSQN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ISSQN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -2832,6 +3304,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string COD_MOD;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_SIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
@@ -2843,20 +3316,28 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -2881,6 +3362,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string NUM_DOC_FIN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
@@ -2889,16 +3371,22 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 		}
 
@@ -2915,18 +3403,23 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
 			public string COD_MUN_ORIG;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoDRegistroD500
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_OPER;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_EMIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -2935,6 +3428,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string COD_MOD;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int COD_SIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
@@ -2946,48 +3440,63 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_A_P;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DESC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SERV_NT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TERC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DA;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string COD_INF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PIS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_COFINS;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_CTA;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int TP_ASSINANTE;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoDRegistroD510
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_REC;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoDRegistroD530
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_SERV;
 		}
 
@@ -3000,18 +3509,25 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_UF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_UF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_RED_BC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -3042,12 +3558,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string SER;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int NRO_ORD_INI;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int NRO_ORD_FIN;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC_INI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC_FIN;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
@@ -3066,18 +3586,25 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
 			public string CFOP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ALIQ_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OPR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS_UF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_UF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_RED_BC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
@@ -3090,8 +3617,10 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string UF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 		}
 
@@ -3109,40 +3638,56 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoERegistroE100
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_INI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_FIN;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoERegistroE110
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TOT_DEBITOS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_AJ_DEBITOS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TOT_AJ_DEBITOS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ESTORNOS_CRED;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TOT_CREDITOS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_AJ_CREDITOS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TOT_AJ_CREDITOS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ESTORNOS_DEB;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SLD_CREDOR_ANT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SLD_APURADO;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TOT_DED;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_RECOLHER;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SLD_CREDOR_TRANSPORTAR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DEB_ESP;
 		}
 
@@ -3155,6 +3700,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 255)]
 			public string DESCR_COMPL_AJ;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_AJ_APUR;
 		}
 
@@ -3167,6 +3713,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
 			public string NUM_PROC;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_PROC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 1024)]
@@ -3194,6 +3741,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
@@ -3202,6 +3750,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_AJ_ITEM;
 		}
 
@@ -3211,6 +3760,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 9)]
 			public string COD_INF_ADIC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_INF_ADIC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 1024)]
@@ -3223,8 +3773,10 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
 			public string COD_OR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_VCTO;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -3233,6 +3785,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
 			public string NUM_PROC;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_PROC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 1024)]
@@ -3251,40 +3804,56 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string UF;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_INI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_FIN;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoERegistroE210
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_MOV_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SLD_CRED_ANT_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DEVOL_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_RESSARC_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OUT_CRED_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_AJ_CREDITOS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_RETENCAO_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OUT_DEB_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_AJ_DEBITOS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SLD_DEV_ANT_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DEDUCOES_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS_RECOL_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SLD_CRED_ST_TRANSPORTAR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DEB_ESP_ST;
 		}
 
@@ -3297,6 +3866,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 1024)]
 			public string DESCR_COMPL_AJ;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_AJ_APUR;
 		}
 
@@ -3309,6 +3879,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
 			public string NUM_PROC;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_PROC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 1024)]
@@ -3336,6 +3907,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
 			public string NUM_DOC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
@@ -3344,6 +3916,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_ITEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_AJ_ITEM;
 		}
 
@@ -3353,8 +3926,10 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
 			public string COD_OR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_VCTO;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -3363,6 +3938,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
 			public string NUM_PROC;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_PROC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 1024)]
@@ -3378,10 +3954,13 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoERegistroE500
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_APUR;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_INI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_FIN;
 		}
 
@@ -3394,41 +3973,54 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 			public string CST_IPI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_CONT_IPI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_BC_IPI;
-
+			
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_IPI;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoERegistroE520
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SD_ANT_IPI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_DEB_IPI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_CRED_IPI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OD_IPI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_OC_IPI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SC_IPI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_SD_IPI;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoERegistroE530
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_AJ;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_AJ;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
 			public string COD_AJ;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_DOC;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -3455,20 +4047,28 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string MODO_CIAP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double SALDO_IN_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double SALDO_FN_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double SOM_PARC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TRIB_EXP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TOTAL;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double IND_PER_SAI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double ICMS_APROP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double SOM_ICMS_OC;
 		}
 
@@ -3478,48 +4078,66 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
 			public string COD_IND_BEM;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_MOV;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int TIPO_MOV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_IMOB_ICMS_OP;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_IMOB_ICMS_ST;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_IMOB_ICMS_FRT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_IMOB_ICMS_DIF;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int NUM_PARC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PARC_PASS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PARC_APROP;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoGRegistroG126
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_INI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_FIN;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int NUM_PARC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PARC_PASS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TRIB_OC;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_TOTAL;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double IND_PER_SAI;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_PARC_APROP;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoGRegistroG130
 		{
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_EMIT;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -3537,6 +4155,7 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
 			public string CHV_NFE_CTE;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_DOC;
 		}
 
@@ -3564,10 +4183,13 @@ namespace ACBrFramework.Sped
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlocoHRegistroH005
 		{
+			[MarshalAs(UnmanagedType.R8)]
 			public double DT_INV;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_INV;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int MOT_INV;
 		}
 
@@ -3580,12 +4202,16 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
 			public string UNID;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double QTD;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_UNIT;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ITEM;
 
+			[MarshalAs(UnmanagedType.I4)]
 			public int IND_PROP;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 61)]
@@ -3604,8 +4230,10 @@ namespace ACBrFramework.Sped
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
 			public string CST_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double BC_ICMS;
 
+			[MarshalAs(UnmanagedType.R8)]
 			public double VL_ICMS;
 		}
 

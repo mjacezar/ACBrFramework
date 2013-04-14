@@ -2482,24 +2482,24 @@ begin
           CHV_NFE       := registroC100.CHV_NFE;
           DT_DOC        := TDateTime(registroC100.DT_DOC);
           DT_E_S        := TDateTime(registroC100.DT_E_S);
-          VL_DOC        := Currency(registroC100.VL_DOC);
+          VL_DOC        := registroC100.VL_DOC;
           IND_PGTO      := TACBrTipoPagamento(registroC100.IND_PGTO);
-          VL_DESC       := Currency(registroC100.VL_DESC);
-          VL_ABAT_NT    := Currency(registroC100.VL_ABAT_NT);
-          VL_MERC       := Currency(registroC100.VL_MERC);
+          VL_DESC       := registroC100.VL_DESC;
+          VL_ABAT_NT    := registroC100.VL_ABAT_NT;
+          VL_MERC       := registroC100.VL_MERC;
           IND_FRT       := TACBrTipoFrete(registroC100.IND_FRT);
-          VL_FRT        := Currency(registroC100.VL_FRT);
-          VL_SEG        := Currency(registroC100.VL_SEG);
-          VL_OUT_DA     := Currency( registroC100.VL_OUT_DA);
-          VL_BC_ICMS    := Currency(registroC100.VL_BC_ICMS);
-          VL_ICMS       := Currency(registroC100.VL_ICMS);
-          VL_BC_ICMS_ST := Currency(registroC100.VL_BC_ICMS_ST);
-          VL_ICMS_ST    := Currency(registroC100.VL_ICMS_ST);
-          VL_IPI        := Currency(registroC100.VL_IPI);
-          VL_PIS        := Currency(registroC100.VL_PIS);
-          VL_COFINS     := Currency(registroC100.VL_COFINS);
-          VL_PIS_ST     := Currency(registroC100.VL_PIS_ST);
-          VL_COFINS_ST  := Currency(registroC100.VL_COFINS_ST);
+          VL_FRT        := registroC100.VL_FRT;
+          VL_SEG        := registroC100.VL_SEG;
+          VL_OUT_DA     := registroC100.VL_OUT_DA;
+          VL_BC_ICMS    := registroC100.VL_BC_ICMS;
+          VL_ICMS       := registroC100.VL_ICMS;
+          VL_BC_ICMS_ST := registroC100.VL_BC_ICMS_ST;
+          VL_ICMS_ST    := registroC100.VL_ICMS_ST;
+          VL_IPI        := registroC100.VL_IPI;
+          VL_PIS        := registroC100.VL_PIS;
+          VL_COFINS     := registroC100.VL_COFINS;
+          VL_PIS_ST     := registroC100.VL_PIS_ST;
+          VL_COFINS_ST  := registroC100.VL_COFINS_ST;
      end;
      Result := 0;
   except
@@ -2602,7 +2602,7 @@ begin
         UF         :=   registroC112.UF;
         NUM_DA     :=   registroC112.NUM_DA;
         COD_AUT    :=   registroC112.COD_AUT;
-        VL_DA      :=   Currency(registroC112.VL_DA);
+        VL_DA      :=   registroC112.VL_DA;
         DT_VCTO    :=   TDateTime(registroC112.DT_VCTO);
         DT_PGTO    :=   TDateTime(registroC112.DT_PGTO);
      end;
@@ -2749,8 +2749,8 @@ begin
      begin
          COD_DOC_IMP   := TACBrDoctoImporta(registroC120.COD_DOC_IMP);
          NUM_DOC__IMP  := registroC120.NUM_DOC__IMP;
-         PIS_IMP       := Currency(registroC120.PIS_IMP);
-         COFINS_IMP    := Currency(registroC120.COFINS_IMP);
+         PIS_IMP       := registroC120.PIS_IMP;
+         COFINS_IMP    := registroC120.COFINS_IMP;
          NUM_ACDRAW    := registroC120.NUM_ACDRAW;
      end;
      Result := 0;
@@ -2775,13 +2775,13 @@ begin
   try
      with spdfHandle^.SPEDFiscal.Bloco_C.RegistroC130New do
      begin
-        VL_SERV_NT     := Currency(registroC130.VL_SERV_NT);
-        VL_BC_ISSQN    := Currency(registroC130.VL_BC_ISSQN);
-        VL_ISSQN       := Currency(registroC130.VL_ISSQN);
-        VL_BC_IRRF     := Currency(registroC130.VL_BC_IRRF);
-        VL_IRRF        := Currency(registroC130.VL_IRRF);
-        VL_BC_PREV     := Currency(registroC130.VL_BC_PREV);
-        VL_PREV        := Currency(registroC130.VL_PREV);
+        VL_SERV_NT     := registroC130.VL_SERV_NT;
+        VL_BC_ISSQN    := registroC130.VL_BC_ISSQN;
+        VL_ISSQN       := registroC130.VL_ISSQN;
+        VL_BC_IRRF     := registroC130.VL_BC_IRRF;
+        VL_IRRF        := registroC130.VL_IRRF;
+        VL_BC_PREV     := registroC130.VL_BC_PREV;
+        VL_PREV        := registroC130.VL_PREV;
      end;
      Result := 0;
   except
@@ -2810,7 +2810,7 @@ begin
           DESC_TIT   :=  registroC140.DESC_TIT;
           NUM_TIT    :=  registroC140.NUM_TIT;
           QTD_PARC   :=  registroC140.QTD_PARC;
-          VL_TIT     :=  Currency(registroC140.VL_TIT);
+          VL_TIT     :=  registroC140.VL_TIT;
      end;
      Result := 0;
   except
@@ -2836,7 +2836,7 @@ begin
      begin
         NUM_PARC := registroC141.NUM_PARC;
         DT_VCTO  := TDateTime(registroC141.DT_VCTO);
-        VL_PARC  := Currency(registroC141.VL_PARC);
+        VL_PARC  := registroC141.VL_PARC;
      end;
      Result := 0;
   except
@@ -2863,8 +2863,8 @@ begin
        COD_PART   :=  registroC160.COD_PART;
        VEIC_ID    :=  registroC160.VEIC_ID;
        QTD_VOL    :=  registroC160.QTD_VOL;
-       PESO_BRT   :=  Currency(registroC160.PESO_BRT);
-       PESO_LIQ   :=  Currency(registroC160.PESO_LIQ);
+       PESO_BRT   :=  registroC160.PESO_BRT;
+       PESO_LIQ   :=  registroC160.PESO_LIQ;
        UF_ID      :=  registroC160.UF_ID;
      end;
      Result := 0;
@@ -2896,8 +2896,8 @@ begin
         HORA      := registroC165.HORA;
         TEMPER    := registroC165.TEMPER;
         QTD_VOL   := registroC165.QTD_VOL;
-        PESO_BRT  := Currency(registroC165.PESO_BRT);
-        PESO_LIQ  := Currency(registroC165.PESO_LIQ);
+        PESO_BRT  := registroC165.PESO_BRT;
+        PESO_LIQ  := registroC165.PESO_LIQ;
         NOM_MOT   := registroC165.NOM_MOT;
         CPF       := registroC165.CPF;
         UF_ID     := registroC165.UF_ID;
@@ -2929,36 +2929,36 @@ begin
          DESCR_COMPL     := registroC170.DESCR_COMPL;
          QTD             := registroC170.QTD;
          UNID            := registroC170.UNID;
-         VL_ITEM         := Currency(registroC170.VL_ITEM);
-         VL_DESC         := Currency(registroC170.VL_DESC);
+         VL_ITEM         := registroC170.VL_ITEM;
+         VL_DESC         := registroC170.VL_DESC;
          IND_MOV         := TACBrMovimentacaoFisica(registroC170.IND_MOV);
          CST_ICMS        := registroC170.CST_ICMS;
          CFOP            := registroC170.CFOP;
          COD_NAT         := registroC170.COD_NAT;
-         VL_BC_ICMS      := Currency(registroC170.VL_BC_ICMS);
-         ALIQ_ICMS       := Currency(registroC170.ALIQ_ICMS);
-         VL_ICMS         := Currency(registroC170.VL_ICMS);
-         VL_BC_ICMS_ST   := Currency(registroC170.VL_BC_ICMS_ST);
-         ALIQ_ST         := Currency(registroC170.ALIQ_ST);
-         VL_ICMS_ST      := Currency(registroC170.VL_ICMS_ST);
+         VL_BC_ICMS      := registroC170.VL_BC_ICMS;
+         ALIQ_ICMS       := registroC170.ALIQ_ICMS;
+         VL_ICMS         := registroC170.VL_ICMS;
+         VL_BC_ICMS_ST   := registroC170.VL_BC_ICMS_ST;
+         ALIQ_ST         := registroC170.ALIQ_ST;
+         VL_ICMS_ST      := registroC170.VL_ICMS_ST;
          IND_APUR        := TACBrApuracaoIPI(registroC170.IND_APUR);
          CST_IPI         := registroC170.CST_IPI;
          COD_ENQ         := registroC170.COD_ENQ;
-         VL_BC_IPI       := Currency(registroC170.VL_BC_IPI);
-         ALIQ_IPI        := Currency(registroC170.ALIQ_IPI);
-         VL_IPI          := Currency(registroC170.VL_IPI);
+         VL_BC_IPI       := registroC170.VL_BC_IPI;
+         ALIQ_IPI        := registroC170.ALIQ_IPI;
+         VL_IPI          := registroC170.VL_IPI;
          CST_PIS         := registroC170.CST_PIS;
-         VL_BC_PIS       := Currency(registroC170.VL_BC_PIS);
-         ALIQ_PIS_PERC   := Currency(registroC170.ALIQ_PIS_PERC);
+         VL_BC_PIS       := registroC170.VL_BC_PIS;
+         ALIQ_PIS_PERC   := registroC170.ALIQ_PIS_PERC;
          QUANT_BC_PIS    := registroC170.QUANT_BC_PIS;
-         ALIQ_PIS_R      := Currency(registroC170.ALIQ_PIS_R);
-         VL_PIS          := Currency(registroC170.VL_PIS);
+         ALIQ_PIS_R      := registroC170.ALIQ_PIS_R;
+         VL_PIS          := registroC170.VL_PIS;
          CST_COFINS      := registroC170.CST_COFINS;
-         VL_BC_COFINS    := Currency(registroC170.VL_BC_COFINS);
-         ALIQ_COFINS_PERC:= Currency(registroC170.ALIQ_COFINS_PERC);
+         VL_BC_COFINS    := registroC170.VL_BC_COFINS;
+         ALIQ_COFINS_PERC:= registroC170.ALIQ_COFINS_PERC;
          QUANT_BC_COFINS := registroC170.QUANT_BC_COFINS;
-         ALIQ_COFINS_R   := Currency(registroC170.ALIQ_COFINS_R);
-         VL_COFINS       := Currency(registroC170.VL_COFINS);
+         ALIQ_COFINS_R   := registroC170.ALIQ_COFINS_R;
+         VL_COFINS       := registroC170.VL_COFINS;
          COD_CTA         := registroC170.COD_CTA;
      end;
      Result := 0;
@@ -3008,9 +3008,9 @@ begin
   try
      with spdfHandle^.SPEDFiscal.Bloco_C.RegistroC172New do
      begin
-         VL_BC_ISSQN := Currency(registroC172.VL_BC_ISSQN);
-         ALIQ_ISSQN  := Currency(registroC172.ALIQ_ISSQN);
-         VL_ISSQN    := Currency(registroC172.VL_ISSQN);
+         VL_BC_ISSQN := registroC172.VL_BC_ISSQN;
+         ALIQ_ISSQN  := registroC172.ALIQ_ISSQN;
+         VL_ISSQN    := registroC172.VL_ISSQN;
      end;
      Result := 0;
   except
@@ -3040,7 +3040,7 @@ begin
         DT_VAL     := TDateTime(registroC173.DT_VAL);
         IND_MED    := TACBrTipoBaseMedicamento(registroC173.IND_MED);
         TP_PROD    := TACBrTipoProduto(registroC173.TP_PROD);
-        VL_TAB_MAX := Currency(registroC173.VL_TAB_MAX);
+        VL_TAB_MAX := registroC173.VL_TAB_MAX;
      end;
      Result := 0;
   except
@@ -3149,7 +3149,7 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_C.RegistroC177New do
      begin
          COD_SELO_IPI  := registroC177.COD_SELO_IPI;
-         QT_SELO_IPI   := Currency(registroC177.QT_SELO_IPI);
+         QT_SELO_IPI   := registroC177.QT_SELO_IPI;
      end;
      Result := 0;
   except
@@ -3174,7 +3174,7 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_C.RegistroC178New do
      begin
         CL_ENQ     :=  registroC178.CL_ENQ;
-        VL_UNID    :=  Currency(registroC178.VL_UNID);
+        VL_UNID    :=  registroC178.VL_UNID;
         QUANT_PAD  :=  registroC178.QUANT_PAD;
      end;
      Result := 0;
@@ -3199,11 +3199,11 @@ begin
   try
      with spdfHandle^.SPEDFiscal.Bloco_C.RegistroC179New do
      begin
-         BC_ST_ORIG_DEST := Currency(registroC179.BC_ST_ORIG_DEST);
-         ICMS_ST_REP     := Currency(registroC179.ICMS_ST_REP);
-         ICMS_ST_COMPL   := Currency(registroC179.ICMS_ST_COMPL);
-         BC_RET          := Currency(registroC179.BC_RET);
-         ICMS_RET        := Currency(registroC179.ICMS_RET);
+         BC_ST_ORIG_DEST := registroC179.BC_ST_ORIG_DEST;
+         ICMS_ST_REP     := registroC179.ICMS_ST_REP;
+         ICMS_ST_COMPL   := registroC179.ICMS_ST_COMPL;
+         BC_RET          := registroC179.BC_RET;
+         ICMS_RET        := registroC179.ICMS_RET;
      end;
      Result := 0;
   except
@@ -3229,14 +3229,14 @@ begin
      begin
         CST_ICMS       :=  registroC190.CST_ICMS;
         CFOP           :=  registroC190.CFOP;
-        ALIQ_ICMS      :=  Currency(registroC190.ALIQ_ICMS);
-        VL_OPR         :=  Currency(registroC190.VL_OPR);
-        VL_BC_ICMS     :=  Currency(registroC190.VL_BC_ICMS);
-        VL_ICMS        :=  Currency(registroC190.VL_ICMS);
-        VL_BC_ICMS_ST  :=  Currency(registroC190.VL_BC_ICMS_ST);
-        VL_ICMS_ST     :=  Currency(registroC190.VL_ICMS_ST);
-        VL_RED_BC      :=  Currency(registroC190.VL_RED_BC);
-        VL_IPI         :=  Currency(registroC190.VL_IPI);
+        ALIQ_ICMS      :=  registroC190.ALIQ_ICMS;
+        VL_OPR         :=  registroC190.VL_OPR;
+        VL_BC_ICMS     :=  registroC190.VL_BC_ICMS;
+        VL_ICMS        :=  registroC190.VL_ICMS;
+        VL_BC_ICMS_ST  :=  registroC190.VL_BC_ICMS_ST;
+        VL_ICMS_ST     :=  registroC190.VL_ICMS_ST;
+        VL_RED_BC      :=  registroC190.VL_RED_BC;
+        VL_IPI         :=  registroC190.VL_IPI;
         COD_OBS        :=  registroC190.COD_OBS;
      end;
      Result := 0;
@@ -3289,10 +3289,10 @@ begin
         COD_AJ          := registroC197.COD_AJ;
         DESCR_COMPL_AJ  := registroC197.DESCR_COMPL_AJ;
         COD_ITEM        := registroC197.COD_ITEM;
-        VL_BC_ICMS      := Currency(registroC197.VL_BC_ICMS);
-        ALIQ_ICMS       := Currency(registroC197.ALIQ_ICMS);
-        VL_ICMS         := Currency(registroC197.VL_ICMS);
-        VL_OUTROS       := Currency(registroC197.VL_OUTROS);
+        VL_BC_ICMS      := registroC197.VL_BC_ICMS;
+        ALIQ_ICMS       := registroC197.ALIQ_ICMS;
+        VL_ICMS         := registroC197.VL_ICMS;
+        VL_OUTROS       := registroC197.VL_OUTROS;
      end;
      Result := 0;
   except
@@ -3322,9 +3322,9 @@ begin
         NUM_DOC_INI  := registroC300.NUM_DOC_INI;
         NUM_DOC_FIN  := registroC300.NUM_DOC_FIN;
         DT_DOC       := TDateTime(registroC300.DT_DOC);
-        VL_DOC       := Currency(registroC300.VL_DOC);
-        VL_PIS       := Currency(registroC300.VL_PIS);
-        VL_COFINS    := Currency(registroC300.VL_COFINS);
+        VL_DOC       := registroC300.VL_DOC;
+        VL_PIS       := registroC300.VL_PIS;
+        VL_COFINS    := registroC300.VL_COFINS;
         COD_CTA      := registroC300.COD_CTA;
      end;
      Result := 0;
@@ -3375,11 +3375,11 @@ begin
      begin
           CST_ICMS    := registroC320.CST_ICMS;
           CFOP        := registroC320.CFOP;
-          ALIQ_ICMS   := Currency(registroC320.ALIQ_ICMS);
-          VL_OPR      := Currency(registroC320.VL_OPR);
-          VL_BC_ICMS  := Currency(registroC320.VL_BC_ICMS);
-          VL_ICMS     := Currency(registroC320.VL_ICMS);
-          VL_RED_BC   := Currency(registroC320.VL_RED_BC);
+          ALIQ_ICMS   := registroC320.ALIQ_ICMS;
+          VL_OPR      := registroC320.VL_OPR;
+          VL_BC_ICMS  := registroC320.VL_BC_ICMS;
+          VL_ICMS     := registroC320.VL_ICMS;
+          VL_RED_BC   := registroC320.VL_RED_BC;
           COD_OBS     := registroC320.COD_OBS;
      end;
      Result := 0;
@@ -3405,14 +3405,14 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_C.RegistroC321New do
      begin
          COD_ITEM    := registroC321.COD_ITEM;
-         QTD         := Currency(registroC321.QTD);
+         QTD         := registroC321.QTD;
          UNID        := registroC321.UNID;
-         VL_ITEM     := Currency(registroC321.VL_ITEM);
-         VL_DESC     := Currency(registroC321.VL_DESC);
-         VL_BC_ICMS  := Currency(registroC321.VL_BC_ICMS);
-         VL_ICMS     := Currency(registroC321.VL_ICMS);
-         VL_PIS      := Currency(registroC321.VL_PIS);
-         VL_COFINS   := Currency(registroC321.VL_COFINS);
+         VL_ITEM     := registroC321.VL_ITEM;
+         VL_DESC     := registroC321.VL_DESC;
+         VL_BC_ICMS  := registroC321.VL_BC_ICMS;
+         VL_ICMS     := registroC321.VL_ICMS;
+         VL_PIS      := registroC321.VL_PIS;
+         VL_COFINS   := registroC321.VL_COFINS;
      end;
      Result := 0;
   except
@@ -3441,11 +3441,11 @@ begin
         NUM_DOC   := registroC350.NUM_DOC;
         DT_DOC    := TDateTime(registroC350.DT_DOC);
         CNPJ_CPF  := registroC350.CNPJ_CPF;
-        VL_MERC   := Currency(registroC350.VL_MERC);
-        VL_DOC    := Currency(registroC350.VL_DOC);
-        VL_DESC   := Currency(registroC350.VL_DESC);
-        VL_PIS    := Currency(registroC350.VL_PIS);
-        VL_COFINS := Currency(registroC350.VL_COFINS);
+        VL_MERC   := registroC350.VL_MERC;
+        VL_DOC    := registroC350.VL_DOC;
+        VL_DESC   := registroC350.VL_DESC;
+        VL_PIS    := registroC350.VL_PIS;
+        VL_COFINS := registroC350.VL_COFINS;
         COD_CTA   := registroC350.COD_CTA;
      end;
      Result := 0;
@@ -3475,8 +3475,8 @@ begin
         COD_ITEM  := registroC370.COD_ITEM;
         QTD       := registroC370.QTD;
         UNID      := registroC370.UNID;
-        VL_ITEM   := Currency(registroC370.VL_ITEM);
-        VL_DESC   := Currency(registroC370.VL_DESC);
+        VL_ITEM   := registroC370.VL_ITEM;
+        VL_DESC   := registroC370.VL_DESC;
      end;
      Result := 0;
   except
@@ -3502,11 +3502,11 @@ begin
      begin
         CST_ICMS    := registroC390.CST_ICMS;
         CFOP        := registroC390.CFOP;
-        ALIQ_ICMS   := Currency(registroC390.ALIQ_ICMS);
-        VL_OPR      := Currency(registroC390.VL_OPR);
-        VL_BC_ICMS  := Currency(registroC390.VL_BC_ICMS);
-        VL_ICMS     := Currency(registroC390.VL_ICMS);
-        VL_RED_BC   := Currency(registroC390.VL_RED_BC);
+        ALIQ_ICMS   := registroC390.ALIQ_ICMS;
+        VL_OPR      := registroC390.VL_OPR;
+        VL_BC_ICMS  := registroC390.VL_BC_ICMS;
+        VL_ICMS     := registroC390.VL_ICMS;
+        VL_RED_BC   := registroC390.VL_RED_BC;
         COD_OBS     := registroC390.COD_OBS;
      end;
      Result := 0;
@@ -3562,8 +3562,8 @@ begin
         CRO          := registroC405.CRO;
         CRZ          := registroC405.CRZ;
         NUM_COO_FIN  := registroC405.NUM_COO_FIN;
-        GT_FIN       := Currency(registroC405.GT_FIN);
-        VL_BRT       := Currency(registroC405.VL_BRT);
+        GT_FIN       := registroC405.GT_FIN;
+        VL_BRT       := registroC405.VL_BRT;
      end;
      Result := 0;
   except
@@ -3613,7 +3613,7 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_C.RegistroC420New do
      begin
          COD_TOT_PAR   := registroC420.COD_TOT_PAR;
-         VLR_ACUM_TOT  := Currency(registroC420.VLR_ACUM_TOT);
+         VLR_ACUM_TOT  := registroC420.VLR_ACUM_TOT;
          NR_TOT        := registroC420.NR_TOT;
          DESCR_NR_TOT  := registroC420.DESCR_NR_TOT;
      end;
@@ -3642,9 +3642,9 @@ begin
         COD_ITEM  := registroC425.COD_ITEM;
         QTD       := registroC425.QTD;
         UNID      := registroC425.UNID;
-        VL_ITEM   := Currency(registroC425.VL_ITEM);
-        VL_PIS    := Currency(registroC425.VL_PIS);
-        VL_COFINS := Currency(registroC425.VL_COFINS);
+        VL_ITEM   := registroC425.VL_ITEM;
+        VL_PIS    := registroC425.VL_PIS;
+        VL_COFINS := registroC425.VL_COFINS;
      end;
      Result := 0;
   except
@@ -3672,9 +3672,9 @@ begin
         COD_SIT   := TACBrSituacaoDocto(registroC460.COD_SIT);
         NUM_DOC   := registroC460.NUM_DOC;
         DT_DOC    := TDateTime(registroC460.DT_DOC);
-        VL_DOC    := Currency(registroC460.VL_DOC);
-        VL_PIS    := Currency(registroC460.VL_PIS);
-        VL_COFINS := Currency(registroC460.VL_COFINS);
+        VL_DOC    := registroC460.VL_DOC;
+        VL_PIS    := registroC460.VL_PIS;
+        VL_COFINS := registroC460.VL_COFINS;
         CPF_CNPJ  := registroC460.CPF_CNPJ;
         NOM_ADQ   := registroC460.NOM_ADQ;
      end;
@@ -3704,12 +3704,12 @@ begin
         QTD        := registroC470.QTD;
         QTD_CANC   := registroC470.QTD_CANC;
         UNID       := registroC470.UNID;
-        VL_ITEM    := Currency(registroC470.VL_ITEM);
+        VL_ITEM    := registroC470.VL_ITEM;
         CST_ICMS   := registroC470.CST_ICMS;
         CFOP       := registroC470.CFOP;
-        ALIQ_ICMS  := Currency(registroC470.ALIQ_ICMS);
-        VL_PIS     := Currency(registroC470.VL_PIS);
-        VL_COFINS  := Currency(registroC470.VL_COFINS);
+        ALIQ_ICMS  := registroC470.ALIQ_ICMS;
+        VL_PIS     := registroC470.VL_PIS;
+        VL_COFINS  := registroC470.VL_COFINS;
      end;
      Result := 0;
   except
@@ -3736,10 +3736,10 @@ begin
      begin
           CST_ICMS   := registroC490.CST_ICMS;
           CFOP       := registroC490.CFOP;
-          ALIQ_ICMS  := Currency(registroC490.ALIQ_ICMS);
-          VL_OPR     := Currency(registroC490.VL_OPR);
-          VL_BC_ICMS := Currency(registroC490.VL_BC_ICMS);
-          VL_ICMS    := Currency(registroC490.VL_ICMS);
+          ALIQ_ICMS  := registroC490.ALIQ_ICMS;
+          VL_OPR     := registroC490.VL_OPR;
+          VL_BC_ICMS := registroC490.VL_BC_ICMS;
+          VL_ICMS    := registroC490.VL_ICMS;
           COD_OBS    := registroC490.COD_OBS;
      end;
      Result := 0;
@@ -3764,20 +3764,20 @@ begin
   try
      with spdfHandle^.SPEDFiscal.Bloco_C.RegistroC495New do
      begin
-        ALIQ_ICMS   := Currency(registroC495.ALIQ_ICMS);
+        ALIQ_ICMS   := registroC495.ALIQ_ICMS;
         COD_ITEM    := registroC495.COD_ITEM;
         QTD         := registroC495.QTD;
         QTD_CANC    := registroC495.QTD_CANC;
         UNID        := registroC495.UNID;
-        VL_ITEM     := Currency(registroC495.VL_ITEM);
-        VL_DESC     := Currency(registroC495.VL_DESC);
-        VL_CANC     := Currency(registroC495.VL_CANC);
-        VL_ACMO     := Currency(registroC495.VL_ACMO);
-        VL_BC_ICMS  := Currency(registroC495.VL_BC_ICMS);
-        VL_ICMS     := Currency(registroC495.VL_ICMS);
-        VL_ISEN     := Currency(registroC495.VL_ISEN);
-        VL_NT       := Currency(registroC495.VL_NT);
-        VL_ICMS_ST  := Currency(registroC495.VL_ICMS_ST);
+        VL_ITEM     := registroC495.VL_ITEM;
+        VL_DESC     := registroC495.VL_DESC;
+        VL_CANC     := registroC495.VL_CANC;
+        VL_ACMO     := registroC495.VL_ACMO;
+        VL_BC_ICMS  := registroC495.VL_BC_ICMS;
+        VL_ICMS     := registroC495.VL_ICMS;
+        VL_ISEN     := registroC495.VL_ISEN;
+        VL_NT       := registroC495.VL_NT;
+        VL_ICMS_ST  := registroC495.VL_ICMS_ST;
      end;
      Result := 0;
   except
@@ -3812,19 +3812,19 @@ begin
           NUM_DOC            :=  registroC500.NUM_DOC;
           DT_DOC             :=  TDateTime(registroC500.DT_DOC);
           DT_E_S             :=  TDateTime(registroC500.DT_E_S);
-          VL_DOC             :=  Currency(registroC500.VL_DOC);
-          VL_DESC            :=  Currency(registroC500.VL_DESC);
-          VL_FORN            :=  Currency(registroC500.VL_FORN);
-          VL_SERV_NT         :=  Currency(registroC500.VL_SERV_NT);
-          VL_TERC            :=  Currency(registroC500.VL_TERC);
-          VL_DA              :=  Currency(registroC500.VL_DA);
-          VL_BC_ICMS         :=  Currency(registroC500.VL_BC_ICMS);
-          VL_ICMS            :=  Currency(registroC500.VL_ICMS);
-          VL_BC_ICMS_ST      :=  Currency(registroC500.VL_BC_ICMS_ST);
-          VL_ICMS_ST         := Currency( registroC500.VL_ICMS_ST);
+          VL_DOC             :=  registroC500.VL_DOC;
+          VL_DESC            :=  registroC500.VL_DESC;
+          VL_FORN            :=  registroC500.VL_FORN;
+          VL_SERV_NT         :=  registroC500.VL_SERV_NT;
+          VL_TERC            :=  registroC500.VL_TERC;
+          VL_DA              :=  registroC500.VL_DA;
+          VL_BC_ICMS         :=  registroC500.VL_BC_ICMS;
+          VL_ICMS            :=  registroC500.VL_ICMS;
+          VL_BC_ICMS_ST      :=  registroC500.VL_BC_ICMS_ST;
+          VL_ICMS_ST         :=  registroC500.VL_ICMS_ST;
           COD_INF            :=  registroC500.COD_INF;
-          VL_PIS             :=  Currency(registroC500.VL_PIS);
-          VL_COFINS          :=  Currency(registroC500.VL_COFINS);
+          VL_PIS             :=  registroC500.VL_PIS;
+          VL_COFINS          :=  registroC500.VL_COFINS;
           TP_LIGACAO         :=  TACBrTipoLigacao(registroC500.TP_LIGACAO);
           COD_GRUPO_TENSAO   :=  TACBrGrupoTensao(registroC500.COD_GRUPO_TENSAO);
      end;
@@ -3855,20 +3855,20 @@ begin
          COD_CLASS      := registroC510.COD_CLASS;
          QTD            := registroC510.QTD;
          UNID           := registroC510.UNID;
-         VL_ITEM        := Currency(registroC510.VL_ITEM);
-         VL_DESC        := Currency(registroC510.VL_DESC);
+         VL_ITEM        := registroC510.VL_ITEM;
+         VL_DESC        := registroC510.VL_DESC;
          CST_ICMS       := registroC510.CST_ICMS;
          CFOP           := registroC510.CFOP;
-         VL_BC_ICMS     := Currency(registroC510.VL_BC_ICMS);
-         ALIQ_ICMS      := Currency(registroC510.ALIQ_ICMS);
-         VL_ICMS        := Currency(registroC510.VL_ICMS);
-         VL_BC_ICMS_ST  := Currency(registroC510.VL_BC_ICMS_ST);
-         ALIQ_ST        := Currency(registroC510.ALIQ_ST);
-         VL_ICMS_ST     := Currency(registroC510.VL_ICMS_ST);
+         VL_BC_ICMS     := registroC510.VL_BC_ICMS;
+         ALIQ_ICMS      := registroC510.ALIQ_ICMS;
+         VL_ICMS        := registroC510.VL_ICMS;
+         VL_BC_ICMS_ST  := registroC510.VL_BC_ICMS_ST;
+         ALIQ_ST        := registroC510.ALIQ_ST;
+         VL_ICMS_ST     := registroC510.VL_ICMS_ST;
          IND_REC        := TACBrTipoReceita(registroC510.IND_REC);
          COD_PART       := registroC510.COD_PART;
-         VL_PIS         := Currency(registroC510.VL_PIS);
-         VL_COFINS      := Currency(registroC510.VL_COFINS);
+         VL_PIS         := registroC510.VL_PIS;
+         VL_COFINS      := registroC510.VL_COFINS;
          COD_CTA        := registroC510.COD_CTA;
      end;
      Result := 0;
@@ -3895,13 +3895,13 @@ begin
      begin
          CST_ICMS       := registroC590.CST_ICMS;
          CFOP           := registroC590.CFOP;
-         ALIQ_ICMS      := Currency(registroC590.ALIQ_ICMS);
-         VL_OPR         := Currency(registroC590.VL_OPR);
-         VL_BC_ICMS     := Currency(registroC590.VL_BC_ICMS);
-         VL_ICMS        := Currency(registroC590.VL_ICMS);
-         VL_BC_ICMS_ST  := Currency(registroC590.VL_BC_ICMS_ST);
-         VL_ICMS_ST     := Currency(registroC590.VL_ICMS_ST);
-         VL_RED_BC      := Currency(registroC590.VL_RED_BC);
+         ALIQ_ICMS      := registroC590.ALIQ_ICMS;
+         VL_OPR         := registroC590.VL_OPR;
+         VL_BC_ICMS     := registroC590.VL_BC_ICMS;
+         VL_ICMS        := registroC590.VL_ICMS;
+         VL_BC_ICMS_ST  := registroC590.VL_BC_ICMS_ST;
+         VL_ICMS_ST     := registroC590.VL_ICMS_ST;
+         VL_RED_BC      := registroC590.VL_RED_BC;
          COD_OBS        := registroC590.COD_OBS;
      end;
      Result := 0;
@@ -3931,22 +3931,22 @@ begin
         SER               := registroC600.SER;
         SUB               := registroC600.SUB;
         COD_CONS          := registroC600.COD_CONS;
-        QTD_CONS          := Currency(registroC600.QTD_CONS);
-        QTD_CANC          := Currency(registroC600.QTD_CANC);
+        QTD_CONS          := registroC600.QTD_CONS;
+        QTD_CANC          := registroC600.QTD_CANC;
         DT_DOC            := TDateTime(registroC600.DT_DOC);
-        VL_DOC            := Currency(registroC600.VL_DOC);
-        VL_DESC           := Currency(registroC600.VL_DESC);
-        CONS              := Currency(registroC600.CONS);
-        VL_FORN           := Currency(registroC600.VL_FORN);
-        VL_SERV_NT        := Currency(registroC600.VL_SERV_NT);
-        VL_TERC           := Currency(registroC600.VL_TERC);
-        VL_DA             := Currency(registroC600.VL_DA);
-        VL_BC_ICMS        := Currency(registroC600.VL_BC_ICMS);
-        VL_ICMS           := Currency(registroC600.VL_ICMS);
-        VL_BC_ICMS_ST     := Currency(registroC600.VL_BC_ICMS_ST);
-        VL_ICMS_ST        := Currency(registroC600.VL_ICMS_ST);
-        VL_PIS            := Currency(registroC600.VL_PIS);
-        VL_COFINS         := Currency(registroC600.VL_COFINS);
+        VL_DOC            := registroC600.VL_DOC;
+        VL_DESC           := registroC600.VL_DESC;
+        CONS              := registroC600.CONS;
+        VL_FORN           := registroC600.VL_FORN;
+        VL_SERV_NT        := registroC600.VL_SERV_NT;
+        VL_TERC           := registroC600.VL_TERC;
+        VL_DA             := registroC600.VL_DA;
+        VL_BC_ICMS        := registroC600.VL_BC_ICMS;
+        VL_ICMS           := registroC600.VL_ICMS;
+        VL_BC_ICMS_ST     := registroC600.VL_BC_ICMS_ST;
+        VL_ICMS_ST        := registroC600.VL_ICMS_ST;
+        VL_PIS            := registroC600.VL_PIS;
+        VL_COFINS         := registroC600.VL_COFINS;
      end;
      Result := 0;
   except
@@ -3998,17 +3998,17 @@ begin
          COD_ITEM     := registroC610.COD_ITEM;
          QTD          := registroC610.QTD;
          UNID         := registroC610.UNID;
-         VL_ITEM      := Currency(registroC610.VL_ITEM);
-         VL_DESC      := Currency(registroC610.VL_DESC);
+         VL_ITEM      := registroC610.VL_ITEM;
+         VL_DESC      := registroC610.VL_DESC;
          CST_ICMS     := registroC610.CST_ICMS;
          CFOP         := registroC610.CFOP;
-         ALIQ_ICMS    := Currency(registroC610.ALIQ_ICMS);
-         VL_BC_ICMS   := Currency(registroC610.VL_BC_ICMS);
-         VL_ICMS      := Currency(registroC610.VL_ICMS);
-         VL_BC_ICMS_ST:= Currency(registroC610.VL_BC_ICMS_ST);
-         VL_ICMS_ST   := Currency(registroC610.VL_ICMS_ST);
-         VL_PIS       := Currency(registroC610.VL_PIS);
-         VL_COFINS    := Currency(registroC610.VL_COFINS);
+         ALIQ_ICMS    := registroC610.ALIQ_ICMS;
+         VL_BC_ICMS   := registroC610.VL_BC_ICMS;
+         VL_ICMS      := registroC610.VL_ICMS;
+         VL_BC_ICMS_ST:= registroC610.VL_BC_ICMS_ST;
+         VL_ICMS_ST   := registroC610.VL_ICMS_ST;
+         VL_PIS       := registroC610.VL_PIS;
+         VL_COFINS    := registroC610.VL_COFINS;
          COD_CTA      := registroC610.COD_CTA;
      end;
      Result := 0;
@@ -4035,13 +4035,13 @@ begin
      begin
         CST_ICMS         := registroC690.CST_ICMS;
         CFOP             := registroC690.CFOP;
-        ALIQ_ICMS        := Currency(registroC690.ALIQ_ICMS);
-        VL_OPR           := Currency(registroC690.VL_OPR);
-        VL_BC_ICMS       := Currency(registroC690.VL_BC_ICMS);
-        VL_ICMS          := Currency(registroC690.VL_ICMS);
-        VL_RED_BC        := Currency(registroC690.VL_RED_BC);
-        VL_BC_ICMS_ST    := Currency(registroC690.VL_BC_ICMS_ST);
-        VL_ICMS_ST       := Currency(registroC690.VL_ICMS_ST);
+        ALIQ_ICMS        := registroC690.ALIQ_ICMS;
+        VL_OPR           := registroC690.VL_OPR;
+        VL_BC_ICMS       := registroC690.VL_BC_ICMS;
+        VL_ICMS          := registroC690.VL_ICMS;
+        VL_RED_BC        := registroC690.VL_RED_BC;
+        VL_BC_ICMS_ST    := registroC690.VL_BC_ICMS_ST;
+        VL_ICMS_ST       := registroC690.VL_ICMS_ST;
         COD_OBS          := registroC690.COD_OBS;
      end;
      Result := 0;
@@ -4100,13 +4100,13 @@ begin
      begin
         CST_ICMS         := registroC790.CST_ICMS;
         CFOP             := registroC790.CFOP;
-        ALIQ_ICMS        := Currency(registroC790.ALIQ_ICMS);
-        VL_OPR           := Currency(registroC790.VL_OPR);
-        VL_BC_ICMS       := Currency(registroC790.VL_BC_ICMS);
-        VL_ICMS          := Currency(registroC790.VL_ICMS);
-        VL_BC_ICMS_ST    := Currency(registroC790.VL_BC_ICMS_ST);
-        VL_ICMS_ST       := Currency(registroC790.VL_ICMS_ST);
-        VL_RED_BC        := Currency(registroC790.VL_RED_BC);
+        ALIQ_ICMS        := registroC790.ALIQ_ICMS;
+        VL_OPR           := registroC790.VL_OPR;
+        VL_BC_ICMS       := registroC790.VL_BC_ICMS;
+        VL_ICMS          := registroC790.VL_ICMS;
+        VL_BC_ICMS_ST    := registroC790.VL_BC_ICMS_ST;
+        VL_ICMS_ST       := registroC790.VL_ICMS_ST;
+        VL_RED_BC        := registroC790.VL_RED_BC;
         COD_OBS          := registroC790.COD_OBS;
      end;
      Result := 0;
@@ -4132,8 +4132,8 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_C.RegistroC791New do
      begin
        UF             := registroC791.UF;
-       VL_BC_ICMS_ST  := Currency(registroC791.VL_BC_ICMS_ST);
-       VL_ICMS_ST     := Currency(registroC791.VL_ICMS_ST);
+       VL_BC_ICMS_ST  := registroC791.VL_BC_ICMS_ST;
+       VL_ICMS_ST     := registroC791.VL_ICMS_ST;
      end;
      Result := 0;
   except
@@ -4161,18 +4161,18 @@ begin
         COD_SIT        := TACBrSituacaoDocto(registroC800.COD_SIT);
         NUM_CFE        := registroC800.NUM_CFE;
         DT_DOC         := TDateTime(registroC800.DT_DOC);
-        VL_CFE         := Currency(registroC800.VL_CFE);
-        VL_PIS         := Currency(registroC800.VL_PIS);
-        VL_COFINS      := Currency(registroC800.VL_COFINS);
+        VL_CFE         := registroC800.VL_CFE;
+        VL_PIS         := registroC800.VL_PIS;
+        VL_COFINS      := registroC800.VL_COFINS;
         CNPJ_CPF       := registroC800.CNPJ_CPF;
         NR_SAT         := registroC800.NR_SAT;
         CHV_CFE        := registroC800.CHV_CFE;
-        VL_DESC        := Currency(registroC800.VL_DESC);
-        VL_MERC        := Currency(registroC800.VL_MERC);
-        VL_OUT_DA      := Currency(registroC800.VL_OUT_DA);
-        VL_ICMS        := Currency(registroC800.VL_ICMS);
-        VL_PIS_ST      := Currency(registroC800.VL_PIS_ST);
-        VL_COFINS_ST   := Currency(registroC800.VL_COFINS_ST);
+        VL_DESC        := registroC800.VL_DESC;
+        VL_MERC        := registroC800.VL_MERC;
+        VL_OUT_DA      := registroC800.VL_OUT_DA;
+        VL_ICMS        := registroC800.VL_ICMS;
+        VL_PIS_ST      := registroC800.VL_PIS_ST;
+        VL_COFINS_ST   := registroC800.VL_COFINS_ST;
      end;
      Result := 0;
   except
@@ -4198,10 +4198,10 @@ begin
      begin
         CST_ICMS    := registroC850.CST_ICMS;
         CFOP        := registroC850.CFOP;
-        ALIQ_ICMS   := Currency(registroC850.ALIQ_ICMS);
-        VL_OPR      := Currency(registroC850.VL_OPR);
-        VL_BC_ICMS  := Currency(registroC850.VL_BC_ICMS);
-        VL_ICMS     := Currency(registroC850.VL_ICMS);
+        ALIQ_ICMS   := registroC850.ALIQ_ICMS;
+        VL_OPR      := registroC850.VL_OPR;
+        VL_BC_ICMS  := registroC850.VL_BC_ICMS;
+        VL_ICMS     := registroC850.VL_ICMS;
         COD_OBS     := registroC850.COD_OBS;
      end;
      Result := 0;
@@ -4257,10 +4257,10 @@ begin
      begin
         CST_ICMS    := registroC890.CST_ICMS;
         CFOP        := registroC890.CFOP;
-        ALIQ_ICMS   := Currency(registroC890.ALIQ_ICMS);
-        VL_OPR      := Currency(registroC890.VL_OPR);
-        VL_BC_ICMS  := Currency(registroC890.VL_BC_ICMS);
-        VL_ICMS     := Currency(registroC890.VL_ICMS);
+        ALIQ_ICMS   := registroC890.ALIQ_ICMS;
+        VL_OPR      := registroC890.VL_OPR;
+        VL_BC_ICMS  := registroC890.VL_BC_ICMS;
+        VL_ICMS     := registroC890.VL_ICMS;
         COD_OBS     := registroC890.COD_OBS;
      end;
      Result := 0;
@@ -4455,13 +4455,13 @@ begin
         DT_A_P        := TDateTime(registroD100.DT_A_P);
         TP_CT_e       := registroD100.TP_CT_e;
         CHV_CTE_REF   := registroD100.CHV_CTE_REF;
-        VL_DOC        := Currency(registroD100.VL_DOC);
-        VL_DESC       := Currency(registroD100.VL_DESC);
+        VL_DOC        := registroD100.VL_DOC;
+        VL_DESC       := registroD100.VL_DESC;
         IND_FRT       := TACBrTipoFrete(registroD100.IND_FRT);
-        VL_SERV       := Currency(registroD100.VL_SERV);
-        VL_BC_ICMS    := Currency(registroD100.VL_BC_ICMS);
-        VL_ICMS       := Currency(registroD100.VL_ICMS);
-        VL_NT         := Currency(registroD100.VL_NT);
+        VL_SERV       := registroD100.VL_SERV;
+        VL_BC_ICMS    := registroD100.VL_BC_ICMS;
+        VL_ICMS       := registroD100.VL_ICMS;
+        VL_NT         := registroD100.VL_NT;
         COD_INF       := registroD100.COD_INF;
         COD_CTA       := registroD100.COD_CTA;
      end;
@@ -4489,8 +4489,8 @@ begin
      begin
         COD_ITEM  := registroD110.COD_ITEM;
         NUN_ITEM  := registroD110.NUN_ITEM;
-        VL_SERV   := Currency(registroD110.VL_SERV);
-        VL_OUT    := Currency(registroD110.VL_OUT);
+        VL_SERV   := registroD110.VL_SERV;
+        VL_OUT    := registroD110.VL_OUT;
      end;
      Result := 0;
   except
@@ -4547,12 +4547,12 @@ begin
         COD_MUN_ORIG    := registroD130.COD_MUN_ORIG;
         COD_MUN_DEST    := registroD130.COD_MUN_DEST;
         VEIC_ID         := registroD130.VEIC_ID;
-        VL_LIQ_FRT      := Currency(registroD130.VL_LIQ_FRT);
-        VL_SEC_CAT      := Currency(registroD130.VL_SEC_CAT);
-        VL_DESP         := Currency(registroD130.VL_DESP);
-        VL_PEDG         := Currency(registroD130.VL_PEDG);
-        VL_OUT          := Currency(registroD130.VL_OUT);
-        VL_FRT          := Currency(registroD130.VL_FRT);
+        VL_LIQ_FRT      := registroD130.VL_LIQ_FRT;
+        VL_SEC_CAT      := registroD130.VL_SEC_CAT;
+        VL_DESP         := registroD130.VL_DESP;
+        VL_PEDG         := registroD130.VL_PEDG;
+        VL_OUT          := registroD130.VL_OUT;
+        VL_FRT          := registroD130.VL_FRT;
         UF_ID           := registroD130.UF_ID;
       end;
      Result := 0;
@@ -4584,12 +4584,12 @@ begin
          VEIC_ID          := TACBrTipoVeiculo(registroD140.VEIC_ID);
          IND_NAV          := TACBrTipoNavegacao(registroD140.IND_NAV);
          VIAGEM           := registroD140.VIAGEM;
-         VL_FRT_LIQ       := Currency(registroD140.VL_FRT_LIQ);
-         VL_DESP_PORT     := Currency(registroD140.VL_DESP_PORT);
-         VL_DESP_CAR_DESC := Currency(registroD140.VL_DESP_CAR_DESC);
-         VL_OUT           := Currency(registroD140.VL_OUT);
-         VL_FRT_BRT       := Currency(registroD140.VL_FRT_BRT);
-         VL_FRT_MM        := Currency(registroD140.VL_FRT_MM);
+         VL_FRT_LIQ       := registroD140.VL_FRT_LIQ;
+         VL_DESP_PORT     := registroD140.VL_DESP_PORT;
+         VL_DESP_CAR_DESC := registroD140.VL_DESP_CAR_DESC;
+         VL_OUT           := registroD140.VL_OUT;
+         VL_FRT_BRT       := registroD140.VL_FRT_BRT;
+         VL_FRT_MM        := registroD140.VL_FRT_MM;
       end;
      Result := 0;
   except
@@ -4618,11 +4618,11 @@ begin
         VEIC_ID       := registroD150.VEIC_ID;
         VIAGEM        := registroD150.VIAGEM;
         IND_TFA       := TACBrTipoTarifa(registroD150.IND_TFA);
-        VL_PESO_TX    := Currency(registroD150.VL_PESO_TX);
-        VL_TX_TERR    := Currency(registroD150.VL_TX_TERR);
-        VL_TX_RED     := Currency(registroD150.VL_TX_RED);
-        VL_OUT        := Currency(registroD150.VL_OUT);
-        VL_TX_ADV     := Currency(registroD150.VL_TX_ADV);
+        VL_PESO_TX    := registroD150.VL_PESO_TX;
+        VL_TX_TERR    := registroD150.VL_TX_TERR;
+        VL_TX_RED     := registroD150.VL_TX_RED;
+        VL_OUT        := registroD150.VL_OUT;
+        VL_TX_ADV     := registroD150.VL_TX_ADV;
       end;
      Result := 0;
   except
@@ -4710,11 +4710,11 @@ begin
          SER        := registroD162.SER;
          NUM_DOC    := registroD162.NUM_DOC;
          DT_DOC     := TDateTime(registroD162.DT_DOC);
-         VL_DOC     := Currency(registroD162.VL_DOC);
-         VL_MERC    := Currency(registroD162.VL_MERC);
+         VL_DOC     := registroD162.VL_DOC;
+         VL_MERC    := registroD162.VL_MERC;
          QTD_VOL    := registroD162.QTD_VOL;
-         PESO_BRT   := Currency(registroD162.PESO_BRT);
-         PESO_LIQ   := Currency(registroD162.PESO_LIQ);
+         PESO_BRT   := registroD162.PESO_BRT;
+         PESO_LIQ   := registroD162.PESO_LIQ;
      end;
      Result := 0;
   except
@@ -4744,11 +4744,11 @@ begin
          COD_MUN_DEST    := registroD170.COD_MUN_DEST;
          OTM             := registroD170.OTM;
          IND_NAT_FRT     := TACBrNaturezaFrete(registroD170.IND_NAT_FRT);
-         VL_LIQ_FRT      := Currency(registroD170.VL_LIQ_FRT);
-         VL_GRIS         := Currency(registroD170.VL_GRIS);
-         VL_PDG          := Currency(registroD170.VL_PDG);
-         VL_OUT          := Currency(registroD170.VL_OUT);
-         VL_FRT          := Currency(registroD170.VL_FRT);
+         VL_LIQ_FRT      := registroD170.VL_LIQ_FRT;
+         VL_GRIS         := registroD170.VL_GRIS;
+         VL_PDG          := registroD170.VL_PDG;
+         VL_OUT          := registroD170.VL_OUT;
+         VL_FRT          := registroD170.VL_FRT;
          VEIC_ID         := registroD170.VEIC_ID;
          UF_ID           := registroD170.UF_ID;
      end;
@@ -4789,7 +4789,7 @@ begin
         SUB               := registroD180.SUB;
         NUM_DOC           := registroD180.NUM_DOC;
         DT_DOC            := TDateTime(registroD180.DT_DOC);
-        VL_DOC            := Currency(registroD180.VL_DOC);
+        VL_DOC            := registroD180.VL_DOC;
      end;
      Result := 0;
   except
@@ -4815,11 +4815,11 @@ begin
      begin
         CST_ICMS    := registroD190.CST_ICMS;
         CFOP        := registroD190.CFOP;
-        ALIQ_ICMS   := Currency(registroD190.ALIQ_ICMS);
-        VL_OPR      := Currency(registroD190.VL_OPR);
-        VL_BC_ICMS  := Currency(registroD190.VL_BC_ICMS);
-        VL_ICMS     := Currency(registroD190.VL_ICMS);
-        VL_RED_BC   := Currency(registroD190.VL_RED_BC);
+        ALIQ_ICMS   := registroD190.ALIQ_ICMS;
+        VL_OPR      := registroD190.VL_OPR;
+        VL_BC_ICMS  := registroD190.VL_BC_ICMS;
+        VL_ICMS     := registroD190.VL_ICMS;
+        VL_RED_BC   := registroD190.VL_RED_BC;
         COD_OBS     := registroD190.COD_OBS;
      end;
      Result := 0;
@@ -4872,10 +4872,10 @@ begin
         COD_AJ             := registroD197.COD_AJ;
         DESCR_COMPL_AJ     := registroD197.DESCR_COMPL_AJ;
         COD_ITEM           := registroD197.COD_ITEM;
-        VL_BC_ICMS         := Currency(registroD197.VL_BC_ICMS);
-        ALIQ_ICMS          := Currency(registroD197.ALIQ_ICMS);
-        VL_ICMS            := Currency(registroD197.VL_ICMS);
-        VL_OUTROS          := Currency(registroD197.VL_OUTROS);
+        VL_BC_ICMS         := registroD197.VL_BC_ICMS;
+        ALIQ_ICMS          := registroD197.ALIQ_ICMS;
+        VL_ICMS            := registroD197.VL_ICMS;
+        VL_OUTROS          := registroD197.VL_OUTROS;
      end;
      Result := 0;
   except
@@ -4906,16 +4906,16 @@ begin
         NUM_DOC_FIN    := registroD300.NUM_DOC_FIN;
         CST_ICMS       := registroD300.CST_ICMS;
         CFOP           := registroD300.CFOP;
-        ALIQ_ICMS      := Currency(registroD300.ALIQ_ICMS);
+        ALIQ_ICMS      := registroD300.ALIQ_ICMS;
         DT_DOC         := TDateTime(registroD300.DT_DOC);
-        VL_OPR         := Currency(registroD300.VL_OPR);
-        VL_DESC        := Currency(registroD300.VL_DESC);
-        VL_SERV        := Currency(registroD300.VL_SERV);
-        VL_SEG         := Currency(registroD300.VL_SEG);
-        VL_OUT_DESP    := Currency(registroD300.VL_OUT_DESP);
-        VL_BC_ICMS     := Currency(registroD300.VL_BC_ICMS);
-        VL_ICMS        := Currency(registroD300.VL_ICMS);
-        VL_RED_BC      := Currency(registroD300.VL_RED_BC);
+        VL_OPR         := registroD300.VL_OPR;
+        VL_DESC        := registroD300.VL_DESC;
+        VL_SERV        := registroD300.VL_SERV;
+        VL_SEG         := registroD300.VL_SEG;
+        VL_OUT_DESP    := registroD300.VL_OUT_DESP;
+        VL_BC_ICMS     := registroD300.VL_BC_ICMS;
+        VL_ICMS        := registroD300.VL_ICMS;
+        VL_RED_BC      := registroD300.VL_RED_BC;
         COD_OBS        := registroD300.COD_OBS;
         COD_CTA        := registroD300.COD_CTA;
      end;
@@ -4966,9 +4966,9 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD310New do
      begin
          COD_MUN_ORIG := registroD310.COD_MUN_ORIG;
-         VL_SERV      := Currency(registroD310.VL_SERV);
-         VL_BC_ICMS   := Currency(registroD310.VL_BC_ICMS);
-         VL_ICMS      := Currency(registroD310.VL_ICMS);
+         VL_SERV      := registroD310.VL_SERV;
+         VL_BC_ICMS   := registroD310.VL_BC_ICMS;
+         VL_ICMS      := registroD310.VL_ICMS;
      end;
      Result := 0;
   except
@@ -5023,8 +5023,8 @@ begin
         CRO           := registroD355.CRO;
         CRZ           := registroD355.CRZ;
         NUM_COO_FIN   := registroD355.NUM_COO_FIN;
-        GT_FIN        := Currency(registroD355.GT_FIN);
-        VL_BRT        := Currency(registroD355.VL_BRT);
+        GT_FIN        := registroD355.GT_FIN;
+        VL_BRT        := registroD355.VL_BRT;
      end;
      Result := 0;
   except
@@ -5074,7 +5074,7 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD365New do
      begin
         COD_TOT_PAR  := registroD365.COD_TOT_PAR;
-        VLR_ACUM_TOT := Currency(registroD365.VLR_ACUM_TOT);
+        VLR_ACUM_TOT := registroD365.VLR_ACUM_TOT;
         NR_TOT       := registroD365.NR_TOT;
         DESCR_NR_TOT := registroD365.DESCR_NR_TOT;
      end;
@@ -5101,10 +5101,10 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD370New do
      begin
         COD_MUN_ORIG := registroD370.COD_MUN_ORIG;
-        VL_SERV      := Currency(registroD370.VL_SERV);
-        QTD_BILH     := Currency(registroD370.QTD_BILH);
-        VL_BC_ICMS   := Currency(registroD370.VL_BC_ICMS);
-        VL_ICMS      := Currency(registroD370.VL_ICMS);
+        VL_SERV      := registroD370.VL_SERV;
+        QTD_BILH     := registroD370.QTD_BILH;
+        VL_BC_ICMS   := registroD370.VL_BC_ICMS;
+        VL_ICMS      := registroD370.VL_ICMS;
      end;
      Result := 0;
   except
@@ -5130,13 +5130,13 @@ begin
      begin
          CST_ICMS       := registroD390.CST_ICMS;
          CFOP           := registroD390.CFOP;
-         ALIQ_ICMS      := Currency(registroD390.ALIQ_ICMS);
-         VL_OPR         := Currency(registroD390.VL_OPR);
-         VL_BC_ISSQN    := Currency(registroD390.VL_BC_ISSQN);
-         ALIQ_ISSQN     := Currency(registroD390.ALIQ_ISSQN);
-         VL_ISSQN       := Currency(registroD390.VL_ISSQN);
-         VL_BC_ICMS     := Currency(registroD390.VL_BC_ICMS);
-         VL_ICMS        := Currency(registroD390.VL_ICMS);
+         ALIQ_ICMS      := registroD390.ALIQ_ICMS;
+         VL_OPR         := registroD390.VL_OPR;
+         VL_BC_ISSQN    := registroD390.VL_BC_ISSQN;
+         ALIQ_ISSQN     := registroD390.ALIQ_ISSQN;
+         VL_ISSQN       := registroD390.VL_ISSQN;
+         VL_BC_ICMS     := registroD390.VL_BC_ICMS;
+         VL_ICMS        := registroD390.VL_ICMS;
          COD_OBS        := registroD390.COD_OBS;
      end;
      Result := 0;
@@ -5168,13 +5168,13 @@ begin
         SUB            := registroD400.SUB;
         NUM_DOC        := registroD400.NUM_DOC;
         DT_DOC         := TDateTime(registroD400.DT_DOC);
-        VL_DOC         := Currency(registroD400.VL_DOC);
-        VL_DESC        := Currency(registroD400.VL_DESC);
-        VL_SERV        := Currency(registroD400.VL_SERV);
-        VL_BC_ICMS     := Currency(registroD400.VL_BC_ICMS);
-        VL_ICMS        := Currency(registroD400.VL_ICMS);
-        VL_PIS         := Currency(registroD400.VL_PIS);
-        VL_COFINS      := Currency(registroD400.VL_COFINS);
+        VL_DOC         := registroD400.VL_DOC;
+        VL_DESC        := registroD400.VL_DESC;
+        VL_SERV        := registroD400.VL_SERV;
+        VL_BC_ICMS     := registroD400.VL_BC_ICMS;
+        VL_ICMS        := registroD400.VL_ICMS;
+        VL_PIS         := registroD400.VL_PIS;
+        VL_COFINS      := registroD400.VL_COFINS;
         COD_CTA        := registroD400.COD_CTA;
      end;
      Result := 0;
@@ -5208,11 +5208,11 @@ begin
         CST_ICMS       := registroD410.CST_ICMS;
         CFOP           := registroD410.CFOP;
         ALIQ_ICMS      := registroD410.ALIQ_ICMS;
-        VL_OPR         := Currency(registroD410.VL_OPR);
-        VL_DESC        := Currency(registroD410.VL_DESC);
-        VL_SERV        := Currency(registroD410.VL_SERV);
-        VL_BC_ICMS     := Currency(registroD410.VL_BC_ICMS);
-        VL_ICMS        := Currency(registroD410.VL_ICMS);
+        VL_OPR         := registroD410.VL_OPR;
+        VL_DESC        := registroD410.VL_DESC;
+        VL_SERV        := registroD410.VL_SERV;
+        VL_BC_ICMS     := registroD410.VL_BC_ICMS;
+        VL_ICMS        := registroD410.VL_ICMS;
      end;
      Result := 0;
   except
@@ -5261,9 +5261,9 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD420New do
      begin
         COD_MUN_ORIG := registroD420.COD_MUN_ORIG;
-        VL_SERV      := Currency(registroD420.VL_SERV);
-        VL_BC_ICMS   := Currency(registroD420.VL_BC_ICMS);
-        VL_ICMS      := Currency(registroD420.VL_ICMS);
+        VL_SERV      := registroD420.VL_SERV;
+        VL_BC_ICMS   := registroD420.VL_BC_ICMS;
+        VL_ICMS      := registroD420.VL_ICMS;
      end;
      Result := 0;
   except
@@ -5297,17 +5297,17 @@ begin
         NUM_DOC         := registroD500.NUM_DOC;
         DT_DOC          := TDateTime(registroD500.DT_DOC);
         DT_A_P          := TDateTime(registroD500.DT_A_P);
-        VL_DOC          := Currency(registroD500.VL_DOC);
-        VL_DESC         := Currency(registroD500.VL_DESC);
-        VL_SERV         := Currency(registroD500.VL_SERV);
-        VL_SERV_NT      := Currency(registroD500.VL_SERV_NT);
-        VL_TERC         := Currency(registroD500.VL_TERC);
-        VL_DA           := Currency(registroD500.VL_DA);
-        VL_BC_ICMS      := Currency(registroD500.VL_BC_ICMS);
-        VL_ICMS         := Currency(registroD500.VL_ICMS);
+        VL_DOC          := registroD500.VL_DOC;
+        VL_DESC         := registroD500.VL_DESC;
+        VL_SERV         := registroD500.VL_SERV;
+        VL_SERV_NT      := registroD500.VL_SERV_NT;
+        VL_TERC         := registroD500.VL_TERC;
+        VL_DA           := registroD500.VL_DA;
+        VL_BC_ICMS      := registroD500.VL_BC_ICMS;
+        VL_ICMS         := registroD500.VL_ICMS;
         COD_INF         := registroD500.COD_INF;
-        VL_PIS          := Currency(registroD500.VL_PIS);
-        VL_COFINS       := Currency(registroD500.VL_COFINS);
+        VL_PIS          := registroD500.VL_PIS;
+        VL_COFINS       := registroD500.VL_COFINS;
         COD_CTA         := registroD500.COD_CTA;
         TP_ASSINANTE    := TACBrTipoAssinante(registroD500.TP_ASSINANTE);
      end;
@@ -5383,13 +5383,13 @@ begin
      begin
         CST_ICMS       := registroD590.CST_ICMS;
         CFOP           := registroD590.CFOP;
-        ALIQ_ICMS      := Currency(registroD590.ALIQ_ICMS);
-        VL_OPR         := Currency(registroD590.VL_OPR);
-        VL_BC_ICMS     := Currency(registroD590.VL_BC_ICMS);
-        VL_ICMS        := Currency(registroD590.VL_ICMS);
-        VL_BC_ICMS_UF  := Currency(registroD590.VL_BC_ICMS_UF);
-        VL_ICMS_UF     := Currency(registroD590.VL_ICMS_UF);
-        VL_RED_BC      := Currency(registroD590.VL_RED_BC);
+        ALIQ_ICMS      := registroD590.ALIQ_ICMS;
+        VL_OPR         := registroD590.VL_OPR;
+        VL_BC_ICMS     := registroD590.VL_BC_ICMS;
+        VL_ICMS        := registroD590.VL_ICMS;
+        VL_BC_ICMS_UF  := registroD590.VL_BC_ICMS_UF;
+        VL_ICMS_UF     := registroD590.VL_ICMS_UF;
+        VL_RED_BC      := registroD590.VL_RED_BC;
         COD_OBS        := registroD590.COD_OBS;
      end;
      Result := 0;
@@ -5517,13 +5517,13 @@ begin
      begin
         CST_ICMS          := registroD696.CST_ICMS;
         CFOP              := registroD696.CFOP;
-        ALIQ_ICMS         := Currency(registroD696.ALIQ_ICMS);
-        VL_OPR            := Currency(registroD696.VL_OPR);
-        VL_BC_ICMS        := Currency(registroD696.VL_BC_ICMS);
-        VL_ICMS           := Currency(registroD696.VL_ICMS);
-        VL_BC_ICMS_UF     := Currency(registroD696.VL_BC_ICMS_UF);
-        VL_ICMS_UF        := Currency(registroD696.VL_ICMS_UF);
-        VL_RED_BC         := Currency(registroD696.VL_RED_BC);
+        ALIQ_ICMS         := registroD696.ALIQ_ICMS;
+        VL_OPR            := registroD696.VL_OPR;
+        VL_BC_ICMS        := registroD696.VL_BC_ICMS;
+        VL_ICMS           := registroD696.VL_ICMS;
+        VL_BC_ICMS_UF     := registroD696.VL_BC_ICMS_UF;
+        VL_ICMS_UF        := registroD696.VL_ICMS_UF;
+        VL_RED_BC         := registroD696.VL_RED_BC;
         COD_OBS           := registroD696.COD_OBS;
      end;
      Result := 0;
@@ -5549,8 +5549,8 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_D.RegistroD697New do
      begin
         UF          := registroD697.UF;
-        VL_BC_ICMS  := Currency(registroD697.VL_BC_ICMS);
-        VL_ICMS     := Currency(registroD697.VL_ICMS);
+        VL_BC_ICMS  := registroD697.VL_BC_ICMS;
+        VL_ICMS     := registroD697.VL_ICMS;
      end;
      Result := 0;
   except
@@ -5757,20 +5757,20 @@ begin
   try
      with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE110New do
      BEGIN
-        VL_TOT_DEBITOS               := Currency(registroE110.VL_TOT_DEBITOS);
-        VL_AJ_DEBITOS                := Currency(registroE110.VL_AJ_DEBITOS);
-        VL_TOT_AJ_DEBITOS            := Currency(registroE110.VL_TOT_AJ_DEBITOS);
-        VL_ESTORNOS_CRED             := Currency(registroE110.VL_ESTORNOS_CRED);
-        VL_TOT_CREDITOS              := Currency(registroE110.VL_TOT_CREDITOS);
-        VL_AJ_CREDITOS               := Currency(registroE110.VL_AJ_CREDITOS);
-        VL_TOT_AJ_CREDITOS           := Currency(registroE110.VL_TOT_AJ_CREDITOS);
-        VL_ESTORNOS_DEB              := Currency(registroE110.VL_ESTORNOS_DEB);
-        VL_SLD_CREDOR_ANT            := Currency(registroE110.VL_SLD_CREDOR_ANT);
-        VL_SLD_APURADO               := Currency(registroE110.VL_SLD_APURADO);
-        VL_TOT_DED                   := Currency(registroE110.VL_TOT_DED);
-        VL_ICMS_RECOLHER             := Currency(registroE110.VL_ICMS_RECOLHER);
-        VL_SLD_CREDOR_TRANSPORTAR    := Currency(registroE110.VL_SLD_CREDOR_TRANSPORTAR);
-        DEB_ESP                      := Currency(registroE110.DEB_ESP);
+        VL_TOT_DEBITOS               := registroE110.VL_TOT_DEBITOS;
+        VL_AJ_DEBITOS                := registroE110.VL_AJ_DEBITOS;
+        VL_TOT_AJ_DEBITOS            := registroE110.VL_TOT_AJ_DEBITOS;
+        VL_ESTORNOS_CRED             := registroE110.VL_ESTORNOS_CRED;
+        VL_TOT_CREDITOS              := registroE110.VL_TOT_CREDITOS;
+        VL_AJ_CREDITOS               := registroE110.VL_AJ_CREDITOS;
+        VL_TOT_AJ_CREDITOS           := registroE110.VL_TOT_AJ_CREDITOS;
+        VL_ESTORNOS_DEB              := registroE110.VL_ESTORNOS_DEB;
+        VL_SLD_CREDOR_ANT            := registroE110.VL_SLD_CREDOR_ANT;
+        VL_SLD_APURADO               := registroE110.VL_SLD_APURADO;
+        VL_TOT_DED                   := registroE110.VL_TOT_DED;
+        VL_ICMS_RECOLHER             := registroE110.VL_ICMS_RECOLHER;
+        VL_SLD_CREDOR_TRANSPORTAR    := registroE110.VL_SLD_CREDOR_TRANSPORTAR;
+        DEB_ESP                      := registroE110.DEB_ESP;
      end;
 
      Result := 0;
@@ -5797,7 +5797,7 @@ begin
      BEGIN
         COD_AJ_APUR     := registroE111.COD_AJ_APUR;
         DESCR_COMPL_AJ  := registroE111.DESCR_COMPL_AJ;
-        VL_AJ_APUR      := Currency(registroE111.VL_AJ_APUR);
+        VL_AJ_APUR      := registroE111.VL_AJ_APUR;
      end;
 
      Result := 0;
@@ -5859,7 +5859,7 @@ begin
         DT_DOC      :=  TDateTime(registroE113.DT_DOC);
         CHV_NFE     :=  registroE113.CHV_NFE;
         COD_ITEM    :=  registroE113.COD_ITEM;
-        VL_AJ_ITEM  :=  Currency(registroE113.VL_AJ_ITEM);
+        VL_AJ_ITEM  :=  registroE113.VL_AJ_ITEM;
      end;
 
      Result := 0;
@@ -5885,7 +5885,7 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE115New do
      BEGIN
         COD_INF_ADIC    := registroE115.COD_INF_ADIC;
-        VL_INF_ADIC     := Currency(registroE115.VL_INF_ADIC);
+        VL_INF_ADIC     := registroE115.VL_INF_ADIC;
         DESCR_COMPL_AJ  := registroE115.DESCR_COMPL_AJ;
      end;
 
@@ -5912,7 +5912,7 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE116New do
      BEGIN
          COD_OR      := registroE116.COD_OR;
-         VL_OR       := Currency(registroE116.VL_OR);
+         VL_OR       := registroE116.VL_OR;
          DT_VCTO     := TDateTime(registroE116.DT_VCTO);
          COD_REC     := registroE116.COD_REC;
          NUM_PROC    := registroE116.NUM_PROC;
@@ -5972,19 +5972,19 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE210New do
      BEGIN
         IND_MOV_ST                  := TACBRMovimentoST(registroE210.IND_MOV_ST);
-        VL_SLD_CRED_ANT_ST          := Currency(registroE210.VL_SLD_CRED_ANT_ST);
-        VL_DEVOL_ST                 := Currency(registroE210.VL_DEVOL_ST);
-        VL_RESSARC_ST               := Currency(registroE210.VL_RESSARC_ST);
-        VL_OUT_CRED_ST              := Currency(registroE210.VL_OUT_CRED_ST);
-        VL_AJ_CREDITOS_ST           := Currency(registroE210.VL_AJ_CREDITOS_ST);
-        VL_RETENCAO_ST              := Currency(registroE210.VL_RETENCAO_ST);
-        VL_OUT_DEB_ST               := Currency(registroE210.VL_OUT_DEB_ST);
-        VL_AJ_DEBITOS_ST            := Currency(registroE210.VL_AJ_DEBITOS_ST);
-        VL_SLD_DEV_ANT_ST           := Currency(registroE210.VL_SLD_DEV_ANT_ST);
-        VL_DEDUCOES_ST              := Currency(registroE210.VL_DEDUCOES_ST);
-        VL_ICMS_RECOL_ST            := Currency(registroE210.VL_ICMS_RECOL_ST);
-        VL_SLD_CRED_ST_TRANSPORTAR  := Currency(registroE210.VL_SLD_CRED_ST_TRANSPORTAR);
-        DEB_ESP_ST                  := Currency(registroE210.DEB_ESP_ST);
+        VL_SLD_CRED_ANT_ST          := registroE210.VL_SLD_CRED_ANT_ST;
+        VL_DEVOL_ST                 := registroE210.VL_DEVOL_ST;
+        VL_RESSARC_ST               := registroE210.VL_RESSARC_ST;
+        VL_OUT_CRED_ST              := registroE210.VL_OUT_CRED_ST;
+        VL_AJ_CREDITOS_ST           := registroE210.VL_AJ_CREDITOS_ST;
+        VL_RETENCAO_ST              := registroE210.VL_RETENCAO_ST;
+        VL_OUT_DEB_ST               := registroE210.VL_OUT_DEB_ST;
+        VL_AJ_DEBITOS_ST            := registroE210.VL_AJ_DEBITOS_ST;
+        VL_SLD_DEV_ANT_ST           := registroE210.VL_SLD_DEV_ANT_ST;
+        VL_DEDUCOES_ST              := registroE210.VL_DEDUCOES_ST;
+        VL_ICMS_RECOL_ST            := registroE210.VL_ICMS_RECOL_ST;
+        VL_SLD_CRED_ST_TRANSPORTAR  := registroE210.VL_SLD_CRED_ST_TRANSPORTAR;
+        DEB_ESP_ST                  := registroE210.DEB_ESP_ST;
      end;
 
      Result := 0;
@@ -6011,7 +6011,7 @@ begin
      BEGIN
         COD_AJ_APUR     := registroE220.COD_AJ_APUR;
         DESCR_COMPL_AJ  := registroE220.DESCR_COMPL_AJ;
-        VL_AJ_APUR      := Currency(registroE220.VL_AJ_APUR);
+        VL_AJ_APUR      := registroE220.VL_AJ_APUR;
      end;
 
      Result := 0;
@@ -6073,7 +6073,7 @@ begin
         DT_DOC       := TDateTime(registroE240.DT_DOC);
         CHV_NFE      := registroE240.CHV_NFE;
         COD_ITEM     := registroE240.COD_ITEM;
-        VL_AJ_ITEM   := Currency(registroE240.VL_AJ_ITEM);
+        VL_AJ_ITEM   := registroE240.VL_AJ_ITEM;
      end;
 
      Result := 0;
@@ -6099,7 +6099,7 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE250New do
      BEGIN
         COD_OR       := registroE250.COD_OR;
-        VL_OR        := Currency(registroE250.VL_OR);
+        VL_OR        := registroE250.VL_OR;
         DT_VCTO      := TDateTime(registroE250.DT_VCTO);
         COD_REC      := registroE250.COD_REC;
         NUM_PROC     := registroE250.NUM_PROC;
@@ -6160,9 +6160,9 @@ begin
      BEGIN
         CFOP          := registroE510.CFOP;
         CST_IPI       := registroE510.CST_IPI;
-        VL_CONT_IPI   := Currency(registroE510.VL_CONT_IPI);
-        VL_BC_IPI     := Currency(registroE510.VL_BC_IPI);
-        VL_IPI        := Currency(registroE510.VL_IPI);
+        VL_CONT_IPI   := registroE510.VL_CONT_IPI;
+        VL_BC_IPI     := registroE510.VL_BC_IPI;
+        VL_IPI        := registroE510.VL_IPI;
      end;
 
      Result := 0;
@@ -6187,13 +6187,13 @@ begin
   try
      with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE520New do
      BEGIN
-        VL_SD_ANT_IPI := Currency(registroE520.VL_SD_ANT_IPI);
-        VL_DEB_IPI    := Currency(registroE520.VL_DEB_IPI);
-        VL_CRED_IPI   := Currency(registroE520.VL_CRED_IPI);
-        VL_OD_IPI     := Currency(registroE520.VL_OD_IPI);
-        VL_OC_IPI     := Currency(registroE520.VL_OC_IPI);
-        VL_SC_IPI     := Currency(registroE520.VL_SC_IPI);
-        VL_SD_IPI     := Currency(registroE520.VL_SD_IPI);
+        VL_SD_ANT_IPI := registroE520.VL_SD_ANT_IPI;
+        VL_DEB_IPI    := registroE520.VL_DEB_IPI;
+        VL_CRED_IPI   := registroE520.VL_CRED_IPI;
+        VL_OD_IPI     := registroE520.VL_OD_IPI;
+        VL_OC_IPI     := registroE520.VL_OC_IPI;
+        VL_SC_IPI     := registroE520.VL_SC_IPI;
+        VL_SD_IPI     := registroE520.VL_SD_IPI;
      end;
 
      Result := 0;
@@ -6219,7 +6219,7 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_E.RegistroE530New do
      BEGIN
         IND_AJ   := TACBrTipoAjuste(registroE530.IND_AJ);
-        VL_AJ    := Currency(registroE530.VL_AJ);
+        VL_AJ    := registroE530.VL_AJ;
         COD_AJ   := registroE530.COD_AJ;
         IND_DOC  := TACBrOrigemDocto(registroE530.IND_DOC);
         NUM_DOC  := registroE530.NUM_DOC;
@@ -6406,14 +6406,14 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_G.RegistroG110New do
      BEGIN
         MODO_CIAP     := registroG110.MODO_CIAP;
-        SALDO_IN_ICMS := Currency(registroG110.SALDO_IN_ICMS);
-        SALDO_FN_ICMS := Currency(registroG110.SALDO_FN_ICMS);
-        SOM_PARC      := Currency(registroG110.SOM_PARC);
-        VL_TRIB_EXP   := Currency(registroG110.VL_TRIB_EXP);
-        VL_TOTAL      := Currency(registroG110.VL_TOTAL);
-        IND_PER_SAI   := Currency(registroG110.IND_PER_SAI);
-        ICMS_APROP    := Currency(registroG110.ICMS_APROP);
-        SOM_ICMS_OC   := Currency(registroG110.SOM_ICMS_OC);
+        SALDO_IN_ICMS := registroG110.SALDO_IN_ICMS;
+        SALDO_FN_ICMS := registroG110.SALDO_FN_ICMS;
+        SOM_PARC      := registroG110.SOM_PARC;
+        VL_TRIB_EXP   := registroG110.VL_TRIB_EXP;
+        VL_TOTAL      := registroG110.VL_TOTAL;
+        IND_PER_SAI   := registroG110.IND_PER_SAI;
+        ICMS_APROP    := registroG110.ICMS_APROP;
+        SOM_ICMS_OC   := registroG110.SOM_ICMS_OC;
      end;
 
      Result := 0;
@@ -6441,13 +6441,13 @@ begin
         COD_IND_BEM         := registroG125.COD_IND_BEM;
         DT_MOV              := TDateTime(registroG125.DT_MOV);
         TIPO_MOV            := TACBrMovimentoBens(registroG125.TIPO_MOV);
-        VL_IMOB_ICMS_OP     := Currency(registroG125.VL_IMOB_ICMS_OP);
-        VL_IMOB_ICMS_ST     := Currency(registroG125.VL_IMOB_ICMS_ST);
-        VL_IMOB_ICMS_FRT    := Currency(registroG125.VL_IMOB_ICMS_FRT);
-        VL_IMOB_ICMS_DIF    := Currency(registroG125.VL_IMOB_ICMS_DIF);
+        VL_IMOB_ICMS_OP     := registroG125.VL_IMOB_ICMS_OP;
+        VL_IMOB_ICMS_ST     := registroG125.VL_IMOB_ICMS_ST;
+        VL_IMOB_ICMS_FRT    := registroG125.VL_IMOB_ICMS_FRT;
+        VL_IMOB_ICMS_DIF    := registroG125.VL_IMOB_ICMS_DIF;
         NUM_PARC            := registroG125.NUM_PARC;
-        VL_PARC_PASS        := Currency(registroG125.VL_PARC_PASS);
-        VL_PARC_APROP       := Currency(registroG125.VL_PARC_APROP);
+        VL_PARC_PASS        := registroG125.VL_PARC_PASS;
+        VL_PARC_APROP       := registroG125.VL_PARC_APROP;
      end;
 
      Result := 0;
@@ -6475,11 +6475,11 @@ begin
          DT_INI         := TDateTime(registroG126.DT_INI);
          DT_FIN         := TDateTime(registroG126.DT_FIN);
          NUM_PARC       := registroG126.NUM_PARC;
-         VL_PARC_PASS   := Currency(registroG126.VL_PARC_PASS);
-         VL_TRIB_OC     := Currency(registroG126.VL_TRIB_OC);
-         VL_TOTAL       := Currency(registroG126.VL_TOTAL);
+         VL_PARC_PASS   := registroG126.VL_PARC_PASS;
+         VL_TRIB_OC     := registroG126.VL_TRIB_OC;
+         VL_TOTAL       := registroG126.VL_TOTAL;
          IND_PER_SAI    := registroG126.IND_PER_SAI;
-         VL_PARC_APROP  := Currency(registroG126.VL_PARC_APROP);
+         VL_PARC_APROP  := registroG126.VL_PARC_APROP;
      end;
 
      Result := 0;
@@ -6720,7 +6720,7 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_H.RegistroH005New do
      BEGIN
         DT_INV   := TDateTime(registroH005.DT_INV);
-        VL_INV   := Currency(registroH005.VL_INV);
+        VL_INV   := registroH005.VL_INV;
         MOT_INV  := TACBrMotivoInventario(registroH005.MOT_INV);
      end;
 
@@ -6750,7 +6750,7 @@ begin
         UNID       := registroH010.UNID;
         QTD        := registroH010.QTD;
         VL_UNIT    := registroH010.VL_UNIT;
-        VL_ITEM    := Currency(registroH010.VL_ITEM);
+        VL_ITEM    := registroH010.VL_ITEM;
         IND_PROP   := TACBrPosseItem(registroH010.IND_PROP);
         COD_PART   := registroH010.COD_PART;
         TXT_COMPL  := registroH010.TXT_COMPL;
@@ -6780,8 +6780,8 @@ begin
      with spdfHandle^.SPEDFiscal.Bloco_H.RegistroH020New do
      BEGIN
         CST_ICMS  := registroH020.CST_ICMS;
-        BC_ICMS   := Currency(registroH020.BC_ICMS);
-        VL_ICMS   := Currency(registroH020.VL_ICMS);
+        BC_ICMS   := registroH020.BC_ICMS;
+        VL_ICMS   := registroH020.VL_ICMS;
      end;
 
      Result := 0;
