@@ -609,8 +609,8 @@ namespace ACBrFramework.Net.SpedFiscalTeste
 			registroC405.CRO = 1;
 			registroC405.CRZ = 1;
 			registroC405.NUM_COO_FIN = 1;
-			registroC405.GT_FIN = 100.00M;
-			registroC405.VL_BRT = 100.00M;
+			registroC405.GT_FIN = 105.00M;
+			registroC405.VL_BRT = 105.00M;
 			registroC400.RegistroC405.Add(registroC405);
 
 			var registroC410 = new RegistroC410();

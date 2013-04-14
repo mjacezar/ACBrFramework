@@ -42,7 +42,7 @@ namespace ACBrFramework
 
 		#region Fields
 
-		protected static readonly Encoding Encoding;
+		protected static readonly Encoding DefaultEncoding;
 
 		#endregion Fields
 
@@ -57,21 +57,7 @@ namespace ACBrFramework
 		static ACBrInteropBase()
 		{
 			UnmanagedResources.Extract();
-
-			try
-			{
-				#region Comments
-				///Encoding Latin1 padrão do Windows configurado em PT/BR
-				///Normalmente quando compilado em Delphi7 a DLL vai utilizar esse encoding.
-				///É um subset do UTF8 compatível nos caracteres básicos.
-				#endregion Comments
-
-				ACBrInteropBase.Encoding = Encoding.GetEncoding("iso-8859-1");
-			}
-			catch
-			{
-				ACBrInteropBase.Encoding = Encoding.UTF8;
-			}
+			ACBrInteropBase.DefaultEncoding = Encoding.UTF8;
 		}
 
 		protected ACBrInteropBase()
@@ -85,7 +71,7 @@ namespace ACBrFramework
 		protected string ToUTF8(string value)
 		{
 			if (string.IsNullOrEmpty(value)) return value;
-			return Encoding.Default.GetString(Encoding.GetBytes(value));
+			return Encoding.Default.GetString(DefaultEncoding.GetBytes(value));
 		}
 
 		protected string[] ToUTF8(string[] value)
@@ -107,7 +93,7 @@ namespace ACBrFramework
 			if (value == null) return null;
 			if (value.Length == 0) return string.Empty;
 
-			return Encoding.GetString(Encoding.Default.GetBytes(value));
+			return DefaultEncoding.GetString(Encoding.Default.GetBytes(value));
 		}
 
 		protected string FromUTF8(StringBuilder value)
@@ -115,7 +101,7 @@ namespace ACBrFramework
 			if (value == null) return null;
 			if (value.Length == 0) return string.Empty;
 
-			return Encoding.GetString(Encoding.Default.GetBytes(value.ToString()));
+			return DefaultEncoding.GetString(Encoding.Default.GetBytes(value.ToString()));
 		}
 
 		protected double ToOADate(DateTime value)
