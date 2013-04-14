@@ -7045,6 +7045,8 @@ end;
 
 {%region Det Item }
 
+{%region Det Item Prod }
+
 Function NFE_NFe_Det_Item_Prod_GetCProd(const nfeHandle: PNFEHandle; const detHandle : TDetCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -7965,6 +7967,607 @@ begin
      end
   end;
 end;
+
+{%region Med }
+
+Function NFE_NFe_Det_Item_Med_Add(const nfeHandle: PNFEHandle; const detHandle : TDetCollectionItem; var medHandle : TMedCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     medHandle := detHandle.Prod.med.Add;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_Clear(const nfeHandle: PNFEHandle; const detHandle : TDetCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     detHandle.Prod.med.Clear;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_Count(const nfeHandle: PNFEHandle; const detHandle : TDetCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := detHandle.Prod.med.Count;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_GetItem(const nfeHandle: PNFEHandle; const detHandle : TDetCollectionItem; var medHandle : TMedCollectionItem; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     medHandle := detHandle.Prod.med.Items[idx];
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_SetItem(const nfeHandle: PNFEHandle; const detHandle : TDetCollectionItem; const medHandle : TMedCollectionItem; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     detHandle.Prod.med.Items[idx] := medHandle;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%region Med Item }
+
+Function NFE_NFe_Det_Item_Med_Item_GetNLote(const nfeHandle: PNFEHandle; const medHandle : TMedCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, medHandle.nLote, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_Item_SetNLote(const nfeHandle: PNFEHandle; const medHandle : TMedCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     medHandle.nLote := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_Item_GetQLote(const nfeHandle: PNFEHandle; const medHandle : TMedCollectionItem; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     value := Double(medHandle.qLote);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_Item_SetQLote(const nfeHandle: PNFEHandle; const medHandle : TMedCollectionItem; const value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     medHandle.qLote := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_Item_GetVPMC(const nfeHandle: PNFEHandle; const medHandle : TMedCollectionItem; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     value := Double(medHandle.vPMC);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_Item_SetVPMC(const nfeHandle: PNFEHandle; const medHandle : TMedCollectionItem; const value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     medHandle.vPMC := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_Item_GetDFab(const nfeHandle: PNFEHandle; const medHandle : TMedCollectionItem; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     value := Double(medHandle.dFab);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_Item_SetDFab(const nfeHandle: PNFEHandle; const medHandle : TMedCollectionItem; const value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     medHandle.dFab := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_Item_GetDVal(const nfeHandle: PNFEHandle; const medHandle : TMedCollectionItem; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     value := Double(medHandle.dVal);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Med_Item_SetDVal(const nfeHandle: PNFEHandle; const medHandle : TMedCollectionItem; const value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     medHandle.dVal := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%endregion}
+
+{%region Arma }
+
+Function NFE_NFe_Det_Item_Arma_Add(const nfeHandle: PNFEHandle; const detHandle : TDetCollectionItem; var armHandle : TArmaCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     armHandle := detHandle.Prod.arma.Add;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Arma_Clear(const nfeHandle: PNFEHandle; const detHandle : TDetCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     detHandle.Prod.arma.Clear;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Arma_Count(const nfeHandle: PNFEHandle; const detHandle : TDetCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := detHandle.Prod.arma.Count;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Arma_GetItem(const nfeHandle: PNFEHandle; const detHandle : TDetCollectionItem; var armHandle : TArmaCollectionItem; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     armHandle := detHandle.Prod.arma.Items[idx];
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Arma_SetItem(const nfeHandle: PNFEHandle; const detHandle : TDetCollectionItem; const armHandle : TArmaCollectionItem; const idx : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     detHandle.Prod.arma.Items[idx] := armHandle;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%region Arma Item }
+
+Function NFE_NFe_Det_Item_Arma_Item_GetTpArma(const nfeHandle: PNFEHandle; const armHandle : TArmaCollectionItem) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := Integer(armHandle.tpArma);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Arma_Item_SetTpArma(const nfeHandle: PNFEHandle; const armHandle : TArmaCollectionItem; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     armHandle.tpArma := TpcnTipoArma(value);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Arma_Item_GetNSerie(const nfeHandle: PNFEHandle; const armHandle : TArmaCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, armHandle.nSerie, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Arma_Item_SetNSerie(const nfeHandle: PNFEHandle; const armHandle : TArmaCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     armHandle.nSerie := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Arma_Item_GetNCano(const nfeHandle: PNFEHandle; const armHandle : TArmaCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, armHandle.nCano, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Arma_Item_SetNCano(const nfeHandle: PNFEHandle; const armHandle : TArmaCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     armHandle.nCano := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Arma_Item_GetDescr(const nfeHandle: PNFEHandle; const armHandle : TArmaCollectionItem; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrPLCopy(Buffer, armHandle.descr, BufferLen);
+     Result := length(Buffer);
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function NFE_NFe_Det_Item_Arma_Item_SetDescr(const nfeHandle: PNFEHandle; const armHandle : TArmaCollectionItem; const value : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (nfeHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     armHandle.descr := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        nfeHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%endregion}
 
 {%region veicProd }
 
@@ -8997,6 +9600,8 @@ end;
 
 {%endregion}
 
+{%endregion}
+
 exports
 
 { Constructor/Destructor/Erro }
@@ -9238,6 +9843,8 @@ NFE_NFe_Det_Clear, NFE_NFe_Det_Count,
 
 {%region Det Item }
 
+{%region Det Item Prod }
+
 NFE_NFe_Det_Item_Prod_GetCProd, NFE_NFe_Det_Item_Prod_SetCProd,
 NFE_NFe_Det_Item_Prod_GetNItem, NFE_NFe_Det_Item_Prod_SetNItem,
 NFE_NFe_Det_Item_Prod_GetXProd, NFE_NFe_Det_Item_Prod_SetXProd,
@@ -9260,6 +9867,41 @@ NFE_NFe_Det_Item_Prod_GetVOutro, NFE_NFe_Det_Item_Prod_SetVOutro,
 NFE_NFe_Det_Item_Prod_GetIndTot, NFE_NFe_Det_Item_Prod_SetIndTot,
 NFE_NFe_Det_Item_Prod_GetXPed, NFE_NFe_Det_Item_Prod_SetXPed,
 NFE_NFe_Det_Item_Prod_GetNItemPed, NFE_NFe_Det_Item_Prod_SetNItemPed,
+
+{%region Med }
+
+NFE_NFe_Det_Item_Med_Add,
+NFE_NFe_Det_Item_Med_Clear, NFE_NFe_Det_Item_Med_Count,
+NFE_NFe_Det_Item_Med_GetItem, NFE_NFe_Det_Item_Med_SetItem,
+
+{%region Med Item }
+
+NFE_NFe_Det_Item_Med_Item_GetNLote, NFE_NFe_Det_Item_Med_Item_SetNLote,
+NFE_NFe_Det_Item_Med_Item_GetQLote, NFE_NFe_Det_Item_Med_Item_SetQLote,
+NFE_NFe_Det_Item_Med_Item_GetVPMC, NFE_NFe_Det_Item_Med_Item_SetVPMC,
+NFE_NFe_Det_Item_Med_Item_GetDFab, NFE_NFe_Det_Item_Med_Item_SetDFab,
+NFE_NFe_Det_Item_Med_Item_GetDVal, NFE_NFe_Det_Item_Med_Item_SetDVal,
+
+{%endregion}
+
+{%endregion}
+
+{%region Arma }
+
+NFE_NFe_Det_Item_Arma_Add,
+NFE_NFe_Det_Item_Arma_Clear, NFE_NFe_Det_Item_Arma_Count,
+NFE_NFe_Det_Item_Arma_GetItem, NFE_NFe_Det_Item_Arma_SetItem,
+
+{%region Arma Item }
+
+NFE_NFe_Det_Item_Arma_Item_GetTpArma, NFE_NFe_Det_Item_Arma_Item_SetTpArma,
+NFE_NFe_Det_Item_Arma_Item_GetNSerie, NFE_NFe_Det_Item_Arma_Item_SetNSerie,
+NFE_NFe_Det_Item_Arma_Item_GetNCano, NFE_NFe_Det_Item_Arma_Item_SetNCano,
+NFE_NFe_Det_Item_Arma_Item_GetDescr, NFE_NFe_Det_Item_Arma_Item_SetDescr,
+
+{%endregion}
+
+{%endregion}
 
 {%region veicProd }
 
@@ -9288,6 +9930,8 @@ NFE_NFe_Det_Item_Prod_veicProd_GetCMod, NFE_NFe_Det_Item_Prod_veicProd_SetCMod,
 NFE_NFe_Det_Item_Prod_veicProd_GetCCorDENATRAN, NFE_NFe_Det_Item_Prod_veicProd_SetCCorDENATRAN,
 NFE_NFe_Det_Item_Prod_veicProd_GetLota, NFE_NFe_Det_Item_Prod_veicProd_SetLota,
 NFE_NFe_Det_Item_Prod_veicProd_GetTpRest, NFE_NFe_Det_Item_Prod_veicProd_SetTpRest;
+
+{%endregion}
 
 {%endregion}
 

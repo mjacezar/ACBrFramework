@@ -4661,6 +4661,12 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+		public void SegundaViaVinculado()
+		{
+			int ret = ACBrECFInterop.ECF_SegundaViaVinculado(this.Handle);
+			CheckResult(ret);
+		}
+
 		#endregion Cupom Vinculado
 
 		#region Leitura X / Redução Z

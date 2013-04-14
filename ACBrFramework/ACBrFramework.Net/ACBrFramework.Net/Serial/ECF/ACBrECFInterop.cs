@@ -873,19 +873,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_LeituraX(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_ReducaoZ(IntPtr ecfHandle, double data);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_AbreCupomVinculado(IntPtr ecfHandle, string coo, string codFormaPagto, double valor);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_AbreCupomVinculadoCNF(IntPtr ecfHandle, string coo, string codFormaPagto, string codComprovanteNaoFiscal, double valor);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_LinhaCupomVinculado(IntPtr ecfHandle, string linha);
-
-		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_ReimpressaoVinculado(IntPtr ecfHandle);
+		public static extern int ECF_ReducaoZ(IntPtr ecfHandle, double data);		
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_FechaRelatorio(IntPtr ecfHandle);
@@ -903,6 +891,25 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_IdentificaOperador(IntPtr ecfHandle, string nome);
 
 		#endregion Relatórios
+
+		#region Cupom Vinculado
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_AbreCupomVinculado(IntPtr ecfHandle, string coo, string codFormaPagto, double valor);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_AbreCupomVinculadoCNF(IntPtr ecfHandle, string coo, string codFormaPagto, string codComprovanteNaoFiscal, double valor);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_LinhaCupomVinculado(IntPtr ecfHandle, string linha);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ReimpressaoVinculado(IntPtr ecfHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_SegundaViaVinculado(IntPtr ecfHandle);
+
+		#endregion Cupom Vinculado
 
 		#region Cupom Não Fiscal
 

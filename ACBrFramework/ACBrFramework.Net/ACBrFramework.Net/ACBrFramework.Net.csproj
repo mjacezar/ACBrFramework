@@ -194,6 +194,8 @@
     <Compile Include="IBGE\ACBrIBGE.cs" />
     <Compile Include="IBGE\ACBrIBGEInterop.cs" />
     <Compile Include="IBGE\Classes\Cidade.cs" />
+    <Compile Include="NFE\Classes\ArmaCollection.cs" />
+    <Compile Include="NFE\Classes\ArmaCollectionItem.cs" />
     <Compile Include="NFE\Classes\Avulsa.cs" />
     <Compile Include="NFE\Classes\Dest.cs" />
     <Compile Include="NFE\Classes\DestEmit.cs" />
@@ -203,6 +205,8 @@
     <Compile Include="NFE\Classes\EnderEmit.cs" />
     <Compile Include="NFE\Classes\Entrega.cs" />
     <Compile Include="NFE\Classes\Ide.cs" />
+    <Compile Include="NFE\Classes\MedCollection.cs" />
+    <Compile Include="NFE\Classes\MedCollectionItem.cs" />
     <Compile Include="NFE\Classes\NFE.cs" />
     <Compile Include="NFE\Classes\NFref.cs" />
     <Compile Include="NFE\Classes\NFrefCollectionItem.cs" />
@@ -231,6 +235,7 @@
     <Compile Include="NFE\Enums\Schema.cs" />
     <Compile Include="NFE\Enums\StatusACBrNFe.cs" />
     <Compile Include="NFE\Enums\TipoAmbiente.cs" />
+    <Compile Include="NFE\Enums\TipoArma.cs" />
     <Compile Include="NFE\Enums\TipoEmissao.cs" />
     <Compile Include="NFE\Enums\TipoImpressao.cs" />
     <Compile Include="NFE\Enums\TipoNFe.cs" />
