@@ -15,6 +15,7 @@ namespace ACBrFramework.ECFTeste
 		#region Fields
 
 		private StringBuilder bobina = new StringBuilder();
+		public static MainForm Instance;
 
 		#endregion Fields
 
@@ -23,10 +24,15 @@ namespace ACBrFramework.ECFTeste
 		public MainForm()
 		{
 			InitializeComponent();
-
+			Instance = this;
 			InicializarECF();
 			Popular();
 			PopularAAC();
+		}
+
+		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			Instance = null;
 		}
 
 		#endregion Constructor
@@ -698,7 +704,6 @@ namespace ACBrFramework.ECFTeste
 		{
 			using (frmVendeItem Vendas = new frmVendeItem())
 			{
-				Vendas.Main = this;
 				Vendas.ShowDialog();				
 			}			
 		}
@@ -732,7 +737,7 @@ namespace ACBrFramework.ECFTeste
 				string obs = string.Empty;
 				decimal desconto = 0;
 
-				if (acbrECF.ModeloStr == "DataRegis")
+				if (acbrECF.ModeloStr.Equals("DataRegis"))
 					if (InputBox.Show("Subtotaliza Cupom", msg1, ref obs).Equals(DialogResult.Cancel))
 						return;
 
@@ -753,13 +758,21 @@ namespace ACBrFramework.ECFTeste
 
 		private void efetuaPagamento()
 		{
-			if(acbrECF.Modelo != ModeloECF.DataRegis || acbrECF.Modelo == ModeloECF.FiscNET)
-				MessageBox.Show("Impressora nao está em Estado de Pagamento\nPrimeiro use SubTotaliza Cupom", "AcbrFramework.Net", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			switch(acbrECF.Modelo)
+			{
+				case ModeloECF.DataRegis:
+				case ModeloECF.FiscNET:
+				break;
+		
+				default:
+					if(acbrECF.Estado != EstadoECF.Pagamento)
+						MessageBox.Show("Impressora nao está em Estado de Pagamento\nPrimeiro use SubTotaliza Cupom", "AcbrFramework.Net", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					break;
+		}
 
 			using (frmPagamento pagamento = new frmPagamento())
 			{
-				pagamento.Main = this;
-				pagamento.Tipo = "F";
+				pagamento.Tipo = 'F';
 				pagamento.ShowDialog();
 			}
 		}
@@ -1646,7 +1659,7 @@ namespace ACBrFramework.ECFTeste
 			ImprimeMeiosPgto();
 		}
 
-		#endregion Menu PAF
+		#endregion Menu PAF	
 
 		#endregion Event Handlers
 	}

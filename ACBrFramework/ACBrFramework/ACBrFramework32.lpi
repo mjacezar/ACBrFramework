@@ -21,8 +21,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="9"/>
-      <RevisionNr Value="2"/>
-      <BuildNr Value="12"/>
+      <RevisionNr Value="3"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -52,7 +51,7 @@
         <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="30" Y="13"/>
+        <CursorPos X="34" Y="18"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -571,7 +570,6 @@
         <WindowIndex Value="0"/>
         <TopLine Value="7784"/>
         <CursorPos X="1" Y="7805"/>
-        <FoldState Value=" TJV2{P1 T3iuE0I1g"/>
         <UsageCount Value="111"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -883,7 +881,7 @@
       <CompilerMessages>
         <UseMsgFile Value="True"/>
       </CompilerMessages>
-      <CustomOptions Value="-dCONSOLE -dFRAMEWORK -dCDECL"/>
+      <CustomOptions Value="-dNOGUI -dFRAMEWORK -dCDECL"/>
       <CompilerPath Value="$(CompPath)"/>
     </Other>
   </CompilerOptions>

@@ -11,7 +11,7 @@ namespace ACBrFramework.ECFTeste
 		#region Field
 
 		private Item item { get; set; }
-		public MainForm Main { get; set; }
+		private MainForm Main;
 
 		#endregion Field
 
@@ -20,6 +20,7 @@ namespace ACBrFramework.ECFTeste
 		public frmVendeItem()
 		{
 			InitializeComponent();
+			Main = MainForm.Instance;
 			item = new Item();
 		}
 
@@ -33,21 +34,25 @@ namespace ACBrFramework.ECFTeste
 
 			item.codigo = txtCodigo.Text;
 			item.descricao = txtDescricao.Text;
-			
-			decimal.TryParse(txtQuantidade.Text, out valor);
-			item.quantidade = valor;
-			valor = 0;
 
-			decimal.TryParse(txtPreco.Text, out valor);
-			item.ValorUnitario = valor;
-			valor = 0;
+			if (decimal.TryParse(txtQuantidade.Text, out valor))
+				item.quantidade = valor;
+			else
+				item.quantidade = 1;
+
+			if(decimal.TryParse(txtPreco.Text, out valor))
+				item.ValorUnitario = valor;
+			else
+				item.ValorUnitario = 1;
 			
 			item.Unidade = txtUnidade.Text;
 			item.tipoDescAcres = radPercentagem.Checked ? "%" : "$";
 			item.DescAcres = radAcrescimo.Checked ? "A" : "D";
 
-			decimal.TryParse(txtDescAcres.Text, out valor);
-			item.ValorDescAcres = valor;
+			if (decimal.TryParse(txtDescAcres.Text, out valor))
+				item.ValorDescAcres = valor;
+			else
+				item.ValorDescAcres = 0;
 
 			item.icms = txtICMS.Text;
 

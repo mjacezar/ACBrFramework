@@ -14,8 +14,8 @@ namespace ACBrFramework.ECFTeste
 	{
 		#region Field
 
-		public MainForm Main { get; set; }
-		public string Tipo { get; set; }
+		private readonly MainForm Main;
+		public char Tipo { get; set; }
 
 		#endregion Field
 
@@ -23,7 +23,8 @@ namespace ACBrFramework.ECFTeste
 
 		public frmPagamento()
 		{
-			InitializeComponent();			
+			InitializeComponent();
+			Main = MainForm.Instance;
 		}
 
 		private void frmPagamento_Load(object sender, EventArgs e)
@@ -47,7 +48,7 @@ namespace ACBrFramework.ECFTeste
 
 			foreach (FormaPagamento pag in Main.acbrECF.FormasPagamento)
 			{
-				string forma = string.Format("{0} -> {1} - {2}", pag.Indice, pag.Descricao, pag.PermiteVinculado);
+				string forma = string.Format("{0:00} -> {1} - {2}", pag.Indice, pag.Descricao, pag.PermiteVinculado);
 				lstFPG.Items.Add(forma);
 			}
 		}
@@ -77,7 +78,7 @@ namespace ACBrFramework.ECFTeste
 					return;
 				}
 
-				txtIndice.Text = FPG.Indice;
+				txtIndice.Text = string.Format("{0:00}", FPG.Indice);
 
 				if (Main.acbrECF.ModeloStr.Equals("Bematech"))
 					carregarFPG();
@@ -90,18 +91,19 @@ namespace ACBrFramework.ECFTeste
 
 		private void efetuarPagamento()
 		{
-			string msg = string.Format("Efetua Pagamento: {0} Valor: {1:c} Obs: {2} Vinc: {3}", txtIndice.Text, txtValor.Text, txtObservacao.Text, chkVinculado.Checked);
+			string indice = string.Format("{0:00}", Convert.ToInt32(txtIndice.Text));
+			string msg = string.Format("Efetua Pagamento: {0} Valor: {1:c} Obs: {2} Vinc: {3}", indice, txtValor.Text, txtObservacao.Text, chkVinculado.Checked);		
 
 			switch (Tipo)
 			{
-				case "F":
-					Main.acbrECF.EfetuaPagamento(txtIndice.Text, Convert.ToDecimal(txtValor.Text), txtObservacao.Text, chkVinculado.Checked);					
+				case 'F':
+					Main.acbrECF.EfetuaPagamento(indice, Convert.ToDecimal(txtValor.Text), txtObservacao.Text, chkVinculado.Checked);					
 					Main.WriteResp(msg);
 					atualizaValor();
 					break;
 
-				case "N":
-					Main.acbrECF.EfetuaPagamentoNaoFiscal(txtIndice.Text, Convert.ToDecimal(txtValor.Text), txtObservacao.Text, chkVinculado.Checked);					
+				case 'N':
+					Main.acbrECF.EfetuaPagamentoNaoFiscal(indice, Convert.ToDecimal(txtValor.Text), txtObservacao.Text, chkVinculado.Checked);					
 					Main.WriteResp(msg);
 					atualizaValor();
 					break;

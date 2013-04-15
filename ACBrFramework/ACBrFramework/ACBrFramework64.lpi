@@ -21,8 +21,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="9"/>
-      <RevisionNr Value="2"/>
-      <BuildNr Value="12"/>
+      <RevisionNr Value="3"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -696,7 +695,7 @@
       <CompilerMessages>
         <UseMsgFile Value="True"/>
       </CompilerMessages>
-      <CustomOptions Value="-dCONSOLE -dFRAMEWORK -dCDECL"/>
+      <CustomOptions Value="-dNOGUI -dFRAMEWORK -dCDECL"/>
       <CompilerPath Value="$(CompPath)"/>
     </Other>
   </CompilerOptions>
