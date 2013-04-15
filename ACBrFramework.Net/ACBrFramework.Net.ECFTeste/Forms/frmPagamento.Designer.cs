@@ -13,10 +13,14 @@
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing && (components != null))
+			if (disposing)
 			{
-				components.Dispose();
+				if (components != null)
+				{
+					components.Dispose();
+				}
 			}
+	
 			base.Dispose(disposing);
 		}
 
@@ -96,6 +100,7 @@
 			// txtIndice
 			// 
 			this.txtIndice.Location = new System.Drawing.Point(49, 95);
+			this.txtIndice.MaxLength = 2;
 			this.txtIndice.Name = "txtIndice";
 			this.txtIndice.Size = new System.Drawing.Size(41, 20);
 			this.txtIndice.TabIndex = 5;
@@ -166,7 +171,7 @@
 			// btnProcurar
 			// 
 			this.btnProcurar.Image = global::ACBrFramework.ECFTeste.Properties.Resources.Procurar16;
-			this.btnProcurar.Location = new System.Drawing.Point(96, 95);
+			this.btnProcurar.Location = new System.Drawing.Point(96, 93);
 			this.btnProcurar.Name = "btnProcurar";
 			this.btnProcurar.Size = new System.Drawing.Size(28, 23);
 			this.btnProcurar.TabIndex = 13;

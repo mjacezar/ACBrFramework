@@ -41,12 +41,16 @@ Símbolo : Significado
 
 Changelog
 
-14/04/2013
+15/04/2013
+
+-- ACBrFramework 0.9.3.0 --
+[*] Modificado a diretiva de compilação para manter compatibilidade com a nova versão do ACBr - Rafael Dias.
+
 -- ACBrFramework 0.9.2.12 --
-[-] Corrigido erro no campos decimais em alguns registros do ACBrSpedFiscal - Rafael Batiati
+[-] Corrigido erro no campos decimais em alguns registros do ACBrSpedFiscal - Rafael Batiati.
 
 -- ACBrFramework.Net 0.9.2.12 --
-[-] Corrigido erro no campos decimais em alguns registros do ACBrSpedFiscal - Rafael Batiati
+[-] Corrigido erro no campos decimais em alguns registros do ACBrSpedFiscal - Rafael Batiati.
 
 04/04/2013
 
