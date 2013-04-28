@@ -41,10 +41,19 @@ Símbolo : Significado
 
 Changelog
 
+
 18/04/2013
 
--- ACBrFramework 0.9.3.0 --
-[+] Adicionado suporte a COMINTEROP no componente ACBrDIS - Rafael Batiati
+-- ACBrFramework 0.9.3.1 --
+[-] Corrigido o evento OnBobinaAdicionaLinhas - ACBrECF - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.3.1 --
+[-] Corrigido o evento OnBobinaAdicionaLinhas - ACBrECF - Rafael Dias.
+
+18/04/2013
+
+-- ACBrFramework.Net 0.9.3.0 --
+[+] Adicionado suporte a COMInterop - ACBrDIS - Rafael Batiati.
 
 15/04/2013
 
