@@ -15,11 +15,11 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ACBrFramework.Net")]
 [assembly: AssemblyDescription("Projeto ACBrFramework para .Net")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ACBr")]
+[assembly: AssemblyCompany("Equipe ACBrFramework")]
 [assembly: AssemblyProduct("ACBrFramework.Net")]
 #endif
 
-[assembly: AssemblyCopyright("Direitos Autorais © ACBr 2010-2013")]
+[assembly: AssemblyCopyright("Direitos Autorais © Equipe ACBrFramework 2010-2013")]
 [assembly: AssemblyTrademark("http://acbrframework.sourceforge.net")]
 [assembly: AssemblyCulture("")]
 
@@ -39,7 +39,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.3.0")]
-[assembly: AssemblyFileVersion("0.9.3.0")]
+[assembly: AssemblyVersion("0.9.3.1")]
+[assembly: AssemblyFileVersion("0.9.3.1")]
 
 internal sealed class ToolboxIcons { }

@@ -1,3 +1,7 @@
 ACBr - Automação Comercial Brasil.
-Copyright (c) 2004-2010 Equipe do Projeto ACBr (http://sourceforge.net/projects/acbr) e contribuidores.
+Copyright (c) 2004-2013 Equipe do Projeto ACBr (http://sourceforge.net/projects/acbr) e contribuidores.
+Todos os direitos reservados.
+
+ACBrFramework - Automação Para Todos.
+Copyright (c) 2010-2013 Equipe do Projeto ACBrFramework (http://sourceforge.net/projects/acbrframework) e contribuidores.
 Todos os direitos reservados.
