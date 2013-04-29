@@ -1324,6 +1324,11 @@ namespace ACBrFramework.ECFTeste
             wbBobina.Refresh();
         }
 
+        private void acbrECF_OnMsgPoucoPapel(object sender, EventArgs e)
+        {
+            WriteResp("Pouco Papel");
+        }
+
 		private void acbrECF_OnAguardandoRespostaChange(object sender, EventArgs e)
 		{
 			if (acbrECF.AguardandoResposta)
@@ -1659,7 +1664,7 @@ namespace ACBrFramework.ECFTeste
 			ImprimeMeiosPgto();
 		}
 
-		#endregion Menu PAF	
+		#endregion Menu PAF	        
 
 		#endregion Event Handlers
 	}
