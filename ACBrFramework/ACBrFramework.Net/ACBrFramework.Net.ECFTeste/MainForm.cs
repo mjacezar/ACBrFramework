@@ -1325,8 +1325,8 @@ namespace ACBrFramework.ECFTeste
         }
 
         private void acbrECF_OnMsgPoucoPapel(object sender, EventArgs e)
-        {
-            WriteResp("Pouco Papel");
+        {            
+            WriteResp("Atenção.... Pouco Papel");
         }
 
 		private void acbrECF_OnAguardandoRespostaChange(object sender, EventArgs e)
