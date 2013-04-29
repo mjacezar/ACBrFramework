@@ -5413,7 +5413,7 @@ namespace ACBrFramework.ECF
 		{
 			if (onBobinaAdicionaLinhas.IsAssigned)
 			{
-				BobinaAdicionaLinhasEventArgs e = new BobinaAdicionaLinhasEventArgs(Linhas, Operacao);
+				BobinaAdicionaLinhasEventArgs e = new BobinaAdicionaLinhasEventArgs(FromUTF8(Linhas), FromUTF8(Operacao));
 				onBobinaAdicionaLinhas.Raise(e);
 			}
 		}
