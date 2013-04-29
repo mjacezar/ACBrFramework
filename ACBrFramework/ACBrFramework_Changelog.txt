@@ -42,7 +42,7 @@ Símbolo : Significado
 Changelog
 
 
-18/04/2013
+26/04/2013
 
 -- ACBrFramework 0.9.3.1 --
 [-] Corrigido o evento OnBobinaAdicionaLinhas - ACBrECF - Rafael Dias.
