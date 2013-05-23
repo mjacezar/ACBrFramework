@@ -318,6 +318,7 @@
     <Compile Include="Serial\DIS\Classes\EfeitoRolar.cs" />
     <Compile Include="Serial\DIS\Classes\ModeloDIS.cs" />
     <Compile Include="Serial\DIS\Eventos\AtualizaEventArgs.cs" />
+    <Compile Include="Serial\ECF\Classes\Imposto.cs" />
     <Compile Include="Serial\ECF\Classes\Restaurante.cs" />
     <Compile Include="Serial\ECF\Eventos\ErrorEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\ErrorRelatorioEventArgs.cs" />

@@ -1855,6 +1855,144 @@ begin
 
 end;
 
+Function ECF_InfoRodapeCupom_Imposto_GetTexto(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := ecfHandle^.ECF.InfoRodapeCupom.Imposto.Texto;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_Imposto_SetTexto(const ecfHandle: PECFHandle; const texto : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.InfoRodapeCupom.Imposto.Texto := texto;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_Imposto_GetFonte(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := ecfHandle^.ECF.InfoRodapeCupom.Imposto.Fonte;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_Imposto_SetFonte(const ecfHandle: PECFHandle; const fonte : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.InfoRodapeCupom.Imposto.Fonte := fonte;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_Imposto_GetValorAproximado(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     value := ecfHandle^.ECF.InfoRodapeCupom.Imposto.ValorAproximado;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_Imposto_SetValorAproximado(const ecfHandle: PECFHandle; const valor : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.InfoRodapeCupom.Imposto.ValorAproximado := valor;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 {%endregion}
 
 {%region Consumidor}
@@ -10812,6 +10950,10 @@ ECF_InfoRodapeCupom_Restaurante_GetECF, ECF_InfoRodapeCupom_Restaurante_SetECF,
 ECF_InfoRodapeCupom_Restaurante_GetCER, ECF_InfoRodapeCupom_Restaurante_SetCER,
 ECF_InfoRodapeCupom_Restaurante_GetCOO, ECF_InfoRodapeCupom_Restaurante_SetCOO,
 ECF_InfoRodapeCupom_Restaurante_GetMesa,ECF_InfoRodapeCupom_Restaurante_SetMesa,
+
+ECF_InfoRodapeCupom_Imposto_GetTexto, ECF_InfoRodapeCupom_Imposto_SetTexto,
+ECF_InfoRodapeCupom_Imposto_GetFonte, ECF_InfoRodapeCupom_Imposto_SetFonte,
+ECF_InfoRodapeCupom_Imposto_GetValorAproximado, ECF_InfoRodapeCupom_Imposto_SetValorAproximado,
 
 { Consumidor }
 

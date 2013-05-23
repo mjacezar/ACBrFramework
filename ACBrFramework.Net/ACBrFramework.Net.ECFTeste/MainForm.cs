@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -1326,7 +1325,7 @@ namespace ACBrFramework.ECFTeste
 
         private void acbrECF_OnMsgPoucoPapel(object sender, EventArgs e)
         {            
-            WriteResp("Atenção.... Pouco Papel");
+            WriteResp("ATENÇÂO... Pouco Papel");
         }
 
 		private void acbrECF_OnAguardandoRespostaChange(object sender, EventArgs e)
