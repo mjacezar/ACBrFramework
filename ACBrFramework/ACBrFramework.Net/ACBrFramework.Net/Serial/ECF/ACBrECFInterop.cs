@@ -658,6 +658,24 @@ namespace ACBrFramework.ECF
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_InfoRodapeCupom_Restaurante_SetMesa(IntPtr ecfHandle, string mesa);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Imposto_GetTexto(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Imposto_SetTexto(IntPtr ecfHandle, string mesa);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Imposto_GetFonte(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Imposto_SetFonte(IntPtr ecfHandle, string mesa);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Imposto_GetValorAproximado(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_InfoRodapeCupom_Imposto_SetValorAproximado(IntPtr ecfHandle, double value);
+
 		#endregion InfoRodapeCupom
 
 		#region Consumidor

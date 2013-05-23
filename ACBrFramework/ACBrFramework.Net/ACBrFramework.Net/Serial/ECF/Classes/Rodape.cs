@@ -30,6 +30,7 @@ namespace ACBrFramework.ECF
 		{
 			this.NotaLegalDF = new RodapeNotaLegalDF(this);
 			this.Restaurante = new Restaurante(this);
+			this.Imposto = new Imposto(this);
 		}
 
 		#endregion Constructor
@@ -122,8 +123,9 @@ namespace ACBrFramework.ECF
 
 		public RodapeNotaLegalDF NotaLegalDF { get; private set; }
 
-
 		public Restaurante Restaurante { get; private set; }
+
+		public Imposto Imposto { get; private set; }
 
 		#endregion Properties
 	}

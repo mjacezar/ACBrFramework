@@ -22,7 +22,7 @@
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="1"/>
+      <BuildNr Value="2"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -48,7 +48,7 @@
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="34" Y="18"/>
@@ -70,9 +70,12 @@
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="4725"/>
-        <CursorPos X="14" Y="4740"/>
+        <TopLine Value="1930"/>
+        <CursorPos X="17" Y="1963"/>
+        <FoldState Value=" TJG2L1 pkZlR2h]9jHkN2#oW p0^d2}O[S47oU2#+I]J!F2{8]JoVqc2~![m48qb2~s[A4LqV2}q]AnSsa2_V[x4Lt82i2 p\H!O2{7[d4cm12{2]KlHnK[{Z6TkX2{J1]JPo02.]Sq9rd2#~R TLn50O T3pP0N3V p0yT0N014]t0kC0N]9ifjV0K[96S0M[94bjQ[I6cjP0J[94djP]I11],jrI0Jw"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <WindowIndex Value="0"/>
@@ -81,6 +84,7 @@
           <FoldState Value=" TJG2L1 pkZlR2h]9jHkN2#oW p0yT]94[9412}O1 T3ilX0K1l"/>
         </ExtraEditor1>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
@@ -116,19 +120,23 @@
       <Unit6>
         <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
         <UnitName Value="ACBrECF"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="4915"/>
-        <CursorPos X="11" Y="5302"/>
+        <TopLine Value="2173"/>
+        <CursorPos X="35" Y="2210"/>
         <UsageCount Value="100"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
         <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECFClass.pas"/>
         <UnitName Value="ACBrECFClass"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="3984"/>
-        <CursorPos X="12" Y="4011"/>
+        <TopLine Value="228"/>
+        <CursorPos X="1" Y="326"/>
         <UsageCount Value="78"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
@@ -584,7 +592,7 @@
       <Unit57>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFeConfiguracoes.pas"/>
         <UnitName Value="ACBrNFeConfiguracoes"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="588"/>
         <CursorPos X="16" Y="595"/>
@@ -595,11 +603,10 @@
       <Unit58>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFe.pas"/>
         <UnitName Value="pcnNFe"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="700"/>
-        <CursorPos X="54" Y="727"/>
+        <TopLine Value="691"/>
+        <CursorPos X="57" Y="717"/>
         <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -616,7 +623,7 @@
       <Unit60>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnConversao.pas"/>
         <UnitName Value="pcnConversao"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="116"/>
         <CursorPos X="7" Y="134"/>
@@ -972,7 +979,84 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit100>
     </Units>
-    <JumpHistory Count="0" HistoryIndex="-1"/>
+    <JumpHistory Count="19" HistoryIndex="18">
+      <Position1>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="1165" Column="35" TopLine="368"/>
+      </Position1>
+      <Position2>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
+        <Caret Line="1020" Column="15" TopLine="1004"/>
+      </Position2>
+      <Position3>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECFClass.pas"/>
+        <Caret Line="114" Column="1" TopLine="102"/>
+      </Position3>
+      <Position4>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="1904" Column="6" TopLine="1768"/>
+      </Position4>
+      <Position5>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
+        <Caret Line="1020" Column="15" TopLine="998"/>
+      </Position5>
+      <Position6>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECFClass.pas"/>
+        <Caret Line="114" Column="1" TopLine="93"/>
+      </Position6>
+      <Position7>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="5414" Column="1" TopLine="4062"/>
+      </Position7>
+      <Position8>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
+        <Caret Line="441" Column="63" TopLine="421"/>
+      </Position8>
+      <Position9>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
+        <Caret Line="443" Column="71" TopLine="421"/>
+      </Position9>
+      <Position10>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
+        <Caret Line="2210" Column="35" TopLine="2173"/>
+      </Position10>
+      <Position11>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECFClass.pas"/>
+        <Caret Line="877" Column="63" TopLine="857"/>
+      </Position11>
+      <Position12>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECFClass.pas"/>
+        <Caret Line="879" Column="70" TopLine="857"/>
+      </Position12>
+      <Position13>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECFClass.pas"/>
+        <Caret Line="1491" Column="18" TopLine="1455"/>
+      </Position13>
+      <Position14>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECFClass.pas"/>
+        <Caret Line="1525" Column="18" TopLine="1488"/>
+      </Position14>
+      <Position15>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECFClass.pas"/>
+        <Caret Line="2621" Column="40" TopLine="2599"/>
+      </Position15>
+      <Position16>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECFClass.pas"/>
+        <Caret Line="616" Column="5" TopLine="596"/>
+      </Position16>
+      <Position17>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="10960" Column="78" TopLine="10938"/>
+      </Position17>
+      <Position18>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="1165" Column="1" TopLine="1129"/>
+      </Position18>
+      <Position19>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="1953" Column="1" TopLine="1929"/>
+      </Position19>
+    </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
       <Item1 Name="SVN repository" Value="..\..\ACBrFramework"/>
