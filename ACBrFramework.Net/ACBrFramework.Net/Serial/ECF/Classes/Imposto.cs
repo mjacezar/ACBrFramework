@@ -37,24 +37,10 @@ namespace ACBrFramework.ECF
 
 		public string Texto
 		{
-			#region COM_INTEROP
-
-#if COM_INTEROP
-			[return: MarshalAs(UnmanagedType.Currency)]
-#endif
-
-			#endregion COM_INTEROP
 			get
 			{
 				return GetString(ACBrECFInterop.ECF_InfoRodapeCupom_Imposto_GetTexto);
-			}
-			#region COM_INTEROP
-
-#if COM_INTEROP
-			[param: MarshalAs(UnmanagedType.Currency)]
-#endif
-
-			#endregion COM_INTEROP
+			}			
 			set
 			{
 				SetString(ACBrECFInterop.ECF_InfoRodapeCupom_Imposto_SetTexto, value);
@@ -75,10 +61,24 @@ namespace ACBrFramework.ECF
 
 		public decimal ValorAproximado
 		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
 			get
 			{
 				return GetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_Imposto_GetValorAproximado);
 			}
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
 			set
 			{
 				SetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_Imposto_SetValorAproximado, value);

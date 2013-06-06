@@ -886,7 +886,93 @@ begin
   end;
 end;
 
+Function TEF_SetSuportaDesconto(const tefHandle : PTEFHandle; const value : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
 
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.SuportaDesconto := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetSuportaDesconto(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     If tefHandle^.TEF.SuportaDesconto then
+        Result:= 1
+     Else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_SetSuportaSaque(const tefHandle : PTEFHandle; const value : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.SuportaSaque := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_GetSuportaSaque(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     If tefHandle^.TEF.SuportaSaque then
+        Result:= 1
+     Else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
 
 {%endregion}
 
@@ -9772,6 +9858,8 @@ TEF_SetExibirMsgAutenticacao, TEF_GetExibirMsgAutenticacao,
 TEF_SetPathBackup, TEF_GetPathBackup,
 TEF_SetTrocoMaximo, TEF_GetTrocoMaximo, TEF_GetAbout,
 TEF_GetReq, TEF_GetResp, TEF_GetRespostasPendentes,
+TEF_GetSuportaDesconto, TEF_SetSuportaDesconto,
+TEF_GetSuportaSaque, TEF_SetSuportaSaque,
 
 { Funções TEF }
 TEF_Inicializar, TEF_DesInicializar,
