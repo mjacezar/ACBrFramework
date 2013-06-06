@@ -235,6 +235,18 @@ namespace ACBrFramework.TEFD
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int TEF_GetRespostasPendentes(IntPtr tefHandle, out IntPtr respHandle);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_GetSuportaDesconto(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_SetSuportaDesconto(IntPtr tefHandle, bool Ativar);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_GetSuportaSaque(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_SetSuportaSaque(IntPtr tefHandle, bool Ativar);
+
 		#endregion Propriedades Componente
 
 		#region Identificacao

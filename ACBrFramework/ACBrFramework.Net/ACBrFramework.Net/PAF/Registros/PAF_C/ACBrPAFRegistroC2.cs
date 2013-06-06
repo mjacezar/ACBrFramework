@@ -1,7 +1,25 @@
 ﻿using System;
+#region COM_INTEROP
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+#endregion COM_INTEROP
 
 namespace ACBrFramework.PAF
 {
+	#region COM_INTEROP
+
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("0093D2A3-737A-4FB9-8DA5-E7EC2815CB6D")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+	#endregion COM_INTEROP
+
 	public sealed class ACBrPAFRegistroC2
 	{
 		#region Properties
@@ -36,7 +54,25 @@ namespace ACBrFramework.PAF
 
 		public int NRO_NOTA_FISCAL { get; set; }
 
-		public decimal VOLUME { get; set; }
+		public decimal VOLUME
+		{
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+			get;
+			#region COM_INTEROP
+
+#if COM_INTEROP
+			[param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+			#endregion COM_INTEROP
+			set;
+		}
 
 		public bool RegistroValido { get; set; }
 

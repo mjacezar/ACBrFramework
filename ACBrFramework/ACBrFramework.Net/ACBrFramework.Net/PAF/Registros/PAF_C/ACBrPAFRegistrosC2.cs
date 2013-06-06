@@ -1,9 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+#region COM_INTEROP
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+#endregion COM_INTEROP
 
 namespace ACBrFramework.PAF
 {
+	#region COM_INTEROP
+
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("8D1504E1-FFA6-4E96-AAE1-8A260987A141")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+	#endregion COM_INTEROP
+
 	public sealed class ACBrPAFRegistrosC2 : ICollection<ACBrPAFRegistroC2>
 	{
 		#region Fields
@@ -90,7 +108,21 @@ namespace ACBrFramework.PAF
 
 		#region IEnumerable<ACBrPAFRegistroC2>
 
-		public IEnumerator<ACBrPAFRegistroC2> GetEnumerator()
+#if COM_INTEROP
+		[DispId(-4)]
+		public IDictionaryEnumerator GetEnumerator()
+#else
+		public IEnumerator GetEnumerator()
+#endif
+		{
+#if COM_INTEROP
+			return (IDictionaryEnumerator)(list.GetEnumerator() as IEnumerator);
+#else
+		    return list.GetEnumerator();
+#endif
+		}
+
+		IEnumerator<ACBrPAFRegistroC2> IEnumerable<ACBrPAFRegistroC2>.GetEnumerator()
 		{
 			return list.GetEnumerator();
 		}

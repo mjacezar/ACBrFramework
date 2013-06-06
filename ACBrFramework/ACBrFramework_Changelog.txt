@@ -41,6 +41,18 @@ Símbolo : Significado
 
 Changelog
 
+06/06/2013
+
+-- ACBrFramework 0.9.3.3 --
+[+] Adicionado a propriedade SuportaSaque - ACBrTED - Rafael Dias.
+[+] Adicionado a propriedade SuportaDesconto - ACBrTED - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.3.3 --
+[+] Adicionado a propriedade SuportaSaque - ACBrTED - Rafael Dias.
+[+] Adicionado a propriedade SuportaDesconto - ACBrTED - Rafael Dias.
+[+] Inicio da implementação COMInterop - ACBrPAF - Rafael Dias.
+[-] Corrigido erro nos valores do imposto no rodape - ACBrECF - Rafael Dias.
+
 22/05/2013
 
 -- ACBrFramework 0.9.3.2 --

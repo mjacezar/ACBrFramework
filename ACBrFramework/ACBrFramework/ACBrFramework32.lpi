@@ -22,7 +22,7 @@
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="2"/>
+      <BuildNr Value="3"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -48,7 +48,7 @@
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="34" Y="18"/>
@@ -70,12 +70,11 @@
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1930"/>
-        <CursorPos X="17" Y="1963"/>
-        <FoldState Value=" TJG2L1 pkZlR2h]9jHkN2#oW p0^d2}O[S47oU2#+I]J!F2{8]JoVqc2~![m48qb2~s[A4LqV2}q]AnSsa2_V[x4Lt82i2 p\H!O2{7[d4cm12{2]KlHnK[{Z6TkX2{J1]JPo02.]Sq9rd2#~R TLn50O T3pP0N3V p0yT0N014]t0kC0N]9ifjV0K[96S0M[94bjQ[I6cjP0J[94djP]I11],jrI0Jw"/>
+        <TopLine Value="1776"/>
+        <CursorPos X="1" Y="1883"/>
+        <FoldState Value=" TJG2L1 pkZlR2h]9jHkN2#oW TLn50O T3pP0N3y p0%00K4]Y0jU]IX"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <WindowIndex Value="0"/>
@@ -120,7 +119,7 @@
       <Unit6>
         <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
         <UnitName Value="ACBrECF"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="2173"/>
         <CursorPos X="35" Y="2210"/>
@@ -131,7 +130,7 @@
       <Unit7>
         <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECFClass.pas"/>
         <UnitName Value="ACBrECFClass"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="228"/>
         <CursorPos X="1" Y="326"/>
@@ -277,10 +276,12 @@
         <Filename Value="ACBrTEFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrTEFDll"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="4490"/>
-        <CursorPos X="28" Y="4640"/>
-        <FoldState Value=" TJlV2#n4 p0x12~}1 plEt92#sA]J;72#,Q]9%N2{k T3jlU0M]jifjU0K[96S[I6bjQ0Q[94djW[R6ZjM0J]9j1]jS1,"/>
+        <TopLine Value="90"/>
+        <CursorPos X="6" Y="9862"/>
+        <FoldState Value=" TJD2L2 pkMlI2#p4 p0z12~}1 plEt92#sA]J;72#,Q]9%N2{k]SyN+P2#U]ArP;B[A6[AAoJz5[KA3[UBj4 p0t12{+ T3lX0J]GibjN0L[96P0J5 pj5ja0I[947jb[a6cjO[96ajM0J3]*i\20M[I4fjU0K[96S0M[\6Q0Q[94djW[R6ZjM[+5j1]jS2v"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <WindowIndex Value="0"/>
@@ -289,6 +290,7 @@
           <FoldState Value=" TJD2L2 T3lX0J4 pibjN0L[96P0J5 pj5ja0I[947jb[a6cjO0J3a"/>
         </ExtraEditor1>
         <UsageCount Value="220"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit22>
       <Unit23>
@@ -592,7 +594,7 @@
       <Unit57>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFeConfiguracoes.pas"/>
         <UnitName Value="ACBrNFeConfiguracoes"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="588"/>
         <CursorPos X="16" Y="595"/>
@@ -623,7 +625,7 @@
       <Unit60>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnConversao.pas"/>
         <UnitName Value="pcnConversao"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="116"/>
         <CursorPos X="7" Y="134"/>
@@ -979,7 +981,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit100>
     </Units>
-    <JumpHistory Count="19" HistoryIndex="18">
+    <JumpHistory Count="20" HistoryIndex="19">
       <Position1>
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="1165" Column="35" TopLine="368"/>
@@ -1056,6 +1058,10 @@
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="1953" Column="1" TopLine="1929"/>
       </Position19>
+      <Position20>
+        <Filename Value="ACBrTEFDll.pas"/>
+        <Caret Line="899" Column="45" TopLine="801"/>
+      </Position20>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

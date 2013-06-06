@@ -465,6 +465,32 @@ namespace ACBrFramework.TEFD
 		[Category("Identificação")]
 		public Identificacao Identificacao { get; private set; }
 
+		[Category("Identificação")]
+		public bool SuportaSaque
+		{
+			get
+			{
+				return GetBool(ACBrTEFInterop.TEF_GetSuportaSaque);
+			}
+			set
+			{
+				SetBool(ACBrTEFInterop.TEF_SetSuportaSaque, value);
+			}
+		}
+
+		[Category("Identificação")]
+		public bool SuportaDesconto
+		{
+			get
+			{
+				return GetBool(ACBrTEFInterop.TEF_GetSuportaDesconto);
+			}
+			set
+			{
+				SetBool(ACBrTEFInterop.TEF_SetSuportaDesconto, value);
+			}
+		}
+
 		[Browsable(false)]
 		public Req Req
 		{

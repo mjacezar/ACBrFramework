@@ -1,9 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+#region COM_INTEROP
+#if COM_INTEROP
+
+using System.Runtime.InteropServices;
+
+#endif
+#endregion COM_INTEROP
 
 namespace ACBrFramework.PAF
 {
+	#region COM_INTEROP
+
+#if COM_INTEROP
+
+	[ComVisible(true)]
+	[Guid("0A9A2227-BF7A-472C-80FD-FC58D42BF1E4")]
+	[ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+	#endregion COM_INTEROP
+
 	public sealed class ACBrPAFRegistrosB2 : ICollection<ACBrPAFRegistroB2>
 	{
 		#region Fields
