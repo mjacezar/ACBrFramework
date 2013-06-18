@@ -1,9 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework.Sintegra
 {
+    #region COM_INTEROP
+
+#if COM_INTEROP
+
+    [ComVisible(true)]
+    [Guid("2E17B979-1959-478A-AD86-0B30413A3E47")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+    #endregion COM_INTEROP
+
+
 	public sealed class SintegraRegistros51 : ICollection<SintegraRegistro51>
 	{
 		#region Fields

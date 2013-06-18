@@ -1,9 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework.PAF
 {
+    #region COM_INTEROP
+
+#if COM_INTEROP
+
+    [ComVisible(true)]
+    [Guid("80AE19D9-86C8-4D02-AFE2-98E4FC2E603D")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+    #endregion COM_INTEROP
+
 	public sealed class ACBrPAFRegistroInsumos : ICollection<ACBrPAFRegistroInsumo>
 	{
 		#region Fields
@@ -16,7 +28,7 @@ namespace ACBrFramework.PAF
 
 		internal ACBrPAFRegistroInsumos()
 		{
-			this.list = new List<ACBrPAFRegistroInsumo>();
+			list = new List<ACBrPAFRegistroInsumo>();
 		}
 
 		#endregion Constructor
@@ -87,19 +99,33 @@ namespace ACBrFramework.PAF
 		}
 
 		#endregion Methods
-
+		
 		#region IEnumerable<ACBrPAFRegistroInsumo>
 
-		public IEnumerator<ACBrPAFRegistroInsumo> GetEnumerator()
-		{
-			return list.GetEnumerator();
-		}
+#if COM_INTEROP
+        [DispId(-4)]
+        public IDictionaryEnumerator GetEnumerator()
+#else
+		public IEnumerator GetEnumerator()
+#endif
+        {
+#if COM_INTEROP
+            return (IDictionaryEnumerator)(list.GetEnumerator() as IEnumerator);
+#else
+		    return list.GetEnumerator();
+#endif
+        }
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return list.GetEnumerator();
-		}
+        IEnumerator<ACBrPAFRegistroInsumo> IEnumerable<ACBrPAFRegistroInsumo>.GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
 
-		#endregion IEnumerable<ACBrPAFRegistroInsumo>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
+
+        #endregion IEnumerable<ACBrPAFRegistroInsumo>
 	}
 }

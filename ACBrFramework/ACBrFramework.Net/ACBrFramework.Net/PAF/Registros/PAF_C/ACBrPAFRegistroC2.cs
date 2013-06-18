@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 
 namespace ACBrFramework.PAF
 {
+
 	#region COM_INTEROP
 
 #if COM_INTEROP
@@ -38,9 +39,45 @@ namespace ACBrFramework.PAF
 
 		public DateTime HORA_ABASTECIMENTO { get; set; }
 
-		public decimal ENCERRANTE_INICIAL { get; set; }
+        public decimal ENCERRANTE_INICIAL
+        {
+            #region COM_INTEROP
 
-		public decimal ENCERRANTE_FINAL { get; set; }
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
+
+        public decimal ENCERRANTE_FINAL
+        {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
 
 		public string STATUS_ABASTECIMENTO { get; set; }
 

@@ -1,9 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework.Sintegra
 {
+    #region COM_INTEROP
+
+#if COM_INTEROP
+
+    [ComVisible(true)]
+    [Guid("298A41E0-0FF5-465D-A6DC-55A62A8A7AD5")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+    #endregion COM_INTEROP
+
 	public sealed class SintegraRegistros50 : ICollection<SintegraRegistro50>
 	{
 		#region Fields
@@ -88,18 +100,32 @@ namespace ACBrFramework.Sintegra
 
 		#endregion Methods
 
-		#region IEnumerable<SintegraRegistro50>
+        #region IEnumerable<SintegraRegistro50>
 
-		public IEnumerator<SintegraRegistro50> GetEnumerator()
-		{
-			return list.GetEnumerator();
-		}
+#if COM_INTEROP
+        [DispId(-4)]
+        public IDictionaryEnumerator GetEnumerator()
+#else
+		public IEnumerator GetEnumerator()
+#endif
+        {
+#if COM_INTEROP
+            return (IDictionaryEnumerator)(list.GetEnumerator() as IEnumerator);
+#else
+		    return list.GetEnumerator();
+#endif
+        }
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return list.GetEnumerator();
-		}
+        IEnumerator<SintegraRegistro50> IEnumerable<SintegraRegistro50>.GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
 
-		#endregion IEnumerable<SintegraRegistro50>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
+
+        #endregion IEnumerable<SintegraRegistro50>
 	}
 }

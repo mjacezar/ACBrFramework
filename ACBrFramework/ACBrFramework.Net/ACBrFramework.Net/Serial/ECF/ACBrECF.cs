@@ -4335,6 +4335,12 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+		public void PafMF_Binario(string pathArquivo)
+		{
+			int ret = ACBrECFInterop.ECF_PafMF_Binario(Handle, ToUTF8(pathArquivo));
+			CheckResult(ret);
+		}
+
 		#endregion PAF
 
 		#region PAF LMFC

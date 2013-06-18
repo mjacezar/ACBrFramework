@@ -14,12 +14,11 @@ namespace ACBrFramework.PAF
 #if COM_INTEROP
 
 	[ComVisible(true)]
-	[Guid("4213AA68-5C58-4DC0-A927-B0040C80466F")]
+    [Guid("39420A22-B8C3-47D8-8BF5-225EA71B3B15")]
 	[ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
 
 	#endregion COM_INTEROP
-
 
 	public sealed class ACBrPAF_D : ACBrComposedComponent
 	{

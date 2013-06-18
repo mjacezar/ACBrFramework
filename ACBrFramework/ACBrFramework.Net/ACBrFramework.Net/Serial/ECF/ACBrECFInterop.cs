@@ -825,6 +825,9 @@ namespace ACBrFramework.ECF
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DoVerificaValorGT(IntPtr ecfHandle);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_PafMF_Binario(IntPtr ecfHandle, string pathArquivo);
+
 		#endregion PAF
 
 		#region PAF LMFC

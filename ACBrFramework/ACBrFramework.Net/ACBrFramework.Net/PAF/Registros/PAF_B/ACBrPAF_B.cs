@@ -1,9 +1,7 @@
 using System.ComponentModel;
 #region COM_INTEROP
 #if COM_INTEROP
-
 using System.Runtime.InteropServices;
-
 #endif
 #endregion COM_INTEROP
 

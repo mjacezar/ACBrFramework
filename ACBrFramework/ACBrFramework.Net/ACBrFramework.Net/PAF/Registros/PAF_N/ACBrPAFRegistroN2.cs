@@ -1,15 +1,33 @@
+#region COM_INTEROP
+#if COM_INTEROP
+using System.Runtime.InteropServices;
+#endif
+#endregion COM_INTEROP
+
 namespace ACBrFramework.PAF
 {
-	public sealed class ACBrPAFRegistroN2
-	{
-		#region Properties
+    #region COM Interop Attributes
 
-		public string LAUDO { get; set; }
+#if COM_INTEROP
 
-		public string NOME { get; set; }
+    [ComVisible(true)]
+    [Guid("CC0A4ECA-FF6B-437F-9F70-EF63E4493771")]
+    [ComSourceInterfaces(typeof(IACBrPAFEvents))]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 
-		public string VERSAO { get; set; }
+    #endregion COM Interop Attributes
 
-		#endregion Properties
-	}
+    public sealed class ACBrPAFRegistroN2
+    {
+        #region Properties
+
+        public string LAUDO { get; set; }
+
+        public string NOME { get; set; }
+
+        public string VERSAO { get; set; }
+
+        #endregion Properties
+    }
 }

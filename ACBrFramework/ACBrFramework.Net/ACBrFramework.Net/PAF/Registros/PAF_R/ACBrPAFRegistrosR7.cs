@@ -1,105 +1,132 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework.PAF
 {
-	public sealed class ACBrPAFRegistrosR7 : ICollection<ACBrPAFRegistroR7>
-	{
-		#region Fields
 
-		private List<ACBrPAFRegistroR7> list;
+    #region COM_INTEROP
 
-		#endregion Fields
+#if COM_INTEROP
 
-		#region Constructor
+    [ComVisible(true)]
+    [Guid("45818E0A-FDB0-41E3-8AE2-D481D026140B")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
 
-		internal ACBrPAFRegistrosR7()
-		{
-			this.list = new List<ACBrPAFRegistroR7>();
-		}
+    #endregion COM_INTEROP
 
-		#endregion Constructor
+    public sealed class ACBrPAFRegistrosR7 : ICollection<ACBrPAFRegistroR7>
+    {
+        #region Fields
 
-		#region Properties
+        private List<ACBrPAFRegistroR7> list;
 
-		public int Count
-		{
-			get
-			{
-				return list.Count;
-			}
-		}
+        #endregion Fields
 
-		public bool IsReadOnly
-		{
-			get
-			{
-				return false;
-			}
-		}
+        #region Constructor
 
-		[IndexerName("GetItem")]
-		public ACBrPAFRegistroR7 this[int index]
-		{
-			get
-			{
-				return list[index];
-			}
-			set
-			{
-				list[index] = value;
-			}
-		}
+        internal ACBrPAFRegistrosR7()
+        {
+            this.list = new List<ACBrPAFRegistroR7>();
+        }
 
-		#endregion Properties
+        #endregion Constructor
 
-		#region Methods
+        #region Properties
 
-		public void Add(ACBrPAFRegistroR7 item)
-		{
-			list.Add(item);
-		}
+        public int Count
+        {
+            get
+            {
+                return list.Count;
+            }
+        }
 
-		public void AddRange(ACBrPAFRegistroR7[] items)
-		{
-			list.AddRange(items);
-		}
+        public bool IsReadOnly
+        {
+            get
+            {
+                return false;
+            }
+        }
 
-		public bool Contains(ACBrPAFRegistroR7 item)
-		{
-			return list.Contains(item);
-		}
+        [IndexerName("GetItem")]
+        public ACBrPAFRegistroR7 this[int index]
+        {
+            get
+            {
+                return list[index];
+            }
+            set
+            {
+                list[index] = value;
+            }
+        }
 
-		public void CopyTo(ACBrPAFRegistroR7[] array, int arrayIndex)
-		{
-			list.CopyTo(array, arrayIndex);
-		}
+        #endregion Properties
 
-		public bool Remove(ACBrPAFRegistroR7 item)
-		{
-			return list.Remove(item);
-		}
+        #region Methods
 
-		public void Clear()
-		{
-			list.Clear();
-		}
+        public void Add(ACBrPAFRegistroR7 item)
+        {
+            list.Add(item);
+        }
 
-		#endregion Methods
+        public void AddRange(ACBrPAFRegistroR7[] items)
+        {
+            list.AddRange(items);
+        }
 
-		#region IEnumerable<ACBrPAFRegistroR7>
+        public bool Contains(ACBrPAFRegistroR7 item)
+        {
+            return list.Contains(item);
+        }
 
-		public IEnumerator<ACBrPAFRegistroR7> GetEnumerator()
-		{
-			return list.GetEnumerator();
-		}
+        public void CopyTo(ACBrPAFRegistroR7[] array, int arrayIndex)
+        {
+            list.CopyTo(array, arrayIndex);
+        }
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return list.GetEnumerator();
-		}
+        public bool Remove(ACBrPAFRegistroR7 item)
+        {
+            return list.Remove(item);
+        }
 
-		#endregion IEnumerable<ACBrPAFRegistroR7>
-	}
+        public void Clear()
+        {
+            list.Clear();
+        }
+
+        #endregion Methods
+
+        #region IEnumerable<ACBrPAFRegistroR7>
+
+#if COM_INTEROP
+        [DispId(-4)]
+        public IDictionaryEnumerator GetEnumerator()
+#else
+		public IEnumerator GetEnumerator()
+#endif
+        {
+#if COM_INTEROP
+            return (IDictionaryEnumerator)(list.GetEnumerator() as IEnumerator);
+#else
+		    return list.GetEnumerator();
+#endif
+        }
+
+        IEnumerator<ACBrPAFRegistroR7> IEnumerable<ACBrPAFRegistroR7>.GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
+
+        #endregion IEnumerable<ACBrPAFRegistroR7>	}
+    }
 }
