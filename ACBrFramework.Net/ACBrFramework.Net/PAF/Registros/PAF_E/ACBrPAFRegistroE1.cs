@@ -1,7 +1,19 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework.PAF
 {
+
+    #region COM_INTEROP
+
+#if COM_INTEROP
+
+    [ComVisible(true)]
+    [Guid("E11B3B88-1E35-49DA-803C-554FB6F79E5B")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+    #endregion COM_INTEROP
 	public sealed class ACBrPAFRegistroE1
 	{
 		#region Properties

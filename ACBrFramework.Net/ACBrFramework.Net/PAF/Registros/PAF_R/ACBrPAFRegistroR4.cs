@@ -1,7 +1,19 @@
 using System;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework.PAF
 {
+    #region COM_INTEROP
+
+#if COM_INTEROP
+
+    [ComVisible(true)]
+    [Guid("3F9A5DE9-1907-4576-89AD-CD4B79109836")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+    #endregion COM_INTEROP
+
 	public sealed class ACBrPAFRegistroR4
 	{
 		#region Constructor
@@ -28,21 +40,106 @@ namespace ACBrFramework.PAF
 
 		public DateTime DT_INI { get; set; }
 
-		public decimal SUB_DOCTO { get; set; }
+		public decimal SUB_DOCTO {
+            #region COM_INTEROP
 
-		public decimal SUB_DESCTO { get; set; }
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
+
+		public decimal SUB_DESCTO {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
 
 		public string TP_DESCTO { get; set; }
 
-		public decimal SUB_ACRES { get; set; }
+		public decimal SUB_ACRES {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
 
 		public string TP_ACRES { get; set; }
 
-		public decimal VL_TOT { get; set; }
+		public decimal VL_TOT {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
 
 		public string CANC { get; set; }
 
-		public decimal VL_CA { get; set; }
+		public decimal VL_CA {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
 
 		public string ORDEM_DA { get; set; }
 

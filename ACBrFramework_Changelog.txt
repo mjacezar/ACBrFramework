@@ -41,6 +41,18 @@ Símbolo : Significado
 
 Changelog
 
+18/06/2013
+
+-- ACBrFramework 0.9.4.0 --
+[+] Adicionado a função PafMF_Binario - ACBrECF  - Rafael Dias.
+[*] Inicio da implementação COMInterop - ACBrSintegra - Rafael Dias.
+    Contribuição - Amilton Soares.
+[*] Adicionado COMInterop - ACBrPAF - Rafael Dias.
+    Contribuição - Amilton Soares.
+
+-- ACBrFramework.Net 0.9.4.0 --
+[+] Adicionado a função ECF_PafMF_Binario - ACBrECF - Rafael Dias.
+
 06/06/2013
 
 -- ACBrFramework 0.9.3.3 --

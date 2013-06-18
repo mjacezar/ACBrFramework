@@ -1,7 +1,19 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework.PAF
 {
+    #region COM_INTEROP
+
+#if COM_INTEROP
+
+    [ComVisible(true)]
+    [Guid("B23B571D-EA5D-4900-AB81-8C0421952F0A")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+    #endregion COM_INTEROP
+
 	public sealed class ACBrPAFRegistroD2
 	{
 		#region Constructor
@@ -33,7 +45,24 @@ namespace ACBrFramework.PAF
 
 		public string TIT_DAV { get; set; }
 
-		public decimal VLT_DAV { get; set; }
+		public decimal VLT_DAV {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
 
 		public string COO_DFV { get; set; }
 

@@ -1,7 +1,19 @@
 using System;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework.PAF
 {
+    #region COM_INTEROP
+
+#if COM_INTEROP
+
+    [ComVisible(true)]
+    [Guid("3199D2BB-2FD2-40E9-84C4-52A2AD48DFB4")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+    #endregion COM_INTEROP
+
 	public sealed class ACBrPAFRegistroR2
 	{
 		#region Constructor
@@ -31,7 +43,24 @@ namespace ACBrFramework.PAF
 
 		public DateTime HR_EMI { get; set; }
 
-		public decimal VL_VBD { get; set; }
+		public decimal VL_VBD {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
 
 		public string PAR_ECF { get; set; }
 

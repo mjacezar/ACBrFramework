@@ -1,9 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework.PAF
 {
+    #region COM_INTEROP
+
+#if COM_INTEROP
+
+    [ComVisible(true)]
+    [Guid("7AFC0F6D-CA64-4F43-BC4F-077D1D26B1EB")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+    #endregion COM_INTEROP
+
 	public sealed class ACBrPAFRegistroMercadorias : ICollection<ACBrPAFRegistroMercadoria>
 	{
 		#region Fields
@@ -88,18 +100,32 @@ namespace ACBrFramework.PAF
 
 		#endregion Methods
 
-		#region IEnumerable<ACBrPAFRegistroMercadoria>
+        #region IEnumerable<ACBrPAFRegistroMercadoria>
 
-		public IEnumerator<ACBrPAFRegistroMercadoria> GetEnumerator()
-		{
-			return list.GetEnumerator();
-		}
+#if COM_INTEROP
+        [DispId(-4)]
+        public IDictionaryEnumerator GetEnumerator()
+#else
+		public IEnumerator GetEnumerator()
+#endif
+        {
+#if COM_INTEROP
+            return (IDictionaryEnumerator)(list.GetEnumerator() as IEnumerator);
+#else
+		    return list.GetEnumerator();
+#endif
+        }
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return list.GetEnumerator();
-		}
+        IEnumerator<ACBrPAFRegistroMercadoria> IEnumerable<ACBrPAFRegistroMercadoria>.GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
 
-		#endregion IEnumerable<ACBrPAFRegistroMercadoria>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
+
+        #endregion IEnumerable<ACBrPAFRegistroMercadoria>
 	}
 }

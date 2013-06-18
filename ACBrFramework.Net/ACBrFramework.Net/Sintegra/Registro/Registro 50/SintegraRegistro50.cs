@@ -1,7 +1,19 @@
 using System;
+using System.Runtime.InteropServices;
 
 namespace ACBrFramework.Sintegra
 {
+    #region COM_INTEROP
+
+#if COM_INTEROP
+
+    [ComVisible(true)]
+    [Guid("0684D411-202A-4D89-B5C0-8D0B95E8D21B")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+#endif
+
+    #endregion COM_INTEROP
+
 	public sealed class SintegraRegistro50
 	{
 		public string CPFCNPJ { get; set; }
@@ -12,17 +24,119 @@ namespace ACBrFramework.Sintegra
 
 		public string Situacao { get; set; }
 
-		public decimal Aliquota { get; set; }
+		public decimal Aliquota {
+            #region COM_INTEROP
 
-		public decimal Isentas { get; set; }
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
 
-		public decimal Icms { get; set; }
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
 
-		public decimal ValorContabil { get; set; }
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
 
-		public decimal BasedeCalculo { get; set; }
+            #endregion COM_INTEROP
+            set;
+        }
 
-		public decimal Outras { get; set; }
+		public decimal Isentas {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
+
+		public decimal Icms {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
+
+		public decimal ValorContabil {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
+
+		public decimal BasedeCalculo {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
+
+		public decimal Outras {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get;
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set;
+        }
 
 		public string EmissorDocumento { get; set; }
 
