@@ -51,6 +51,14 @@ namespace ACBrFramework.ECF
 
 		#region Propriedades
 
+		public DateTime DataHoraEmissao
+		{
+			get
+			{
+				return GetDateTime(ACBrECFInterop.ECF_DadosReducaoZClass_GetDataHoraEmissao);
+			}
+		}
+
 		public int COO
 		{
 			get

@@ -59,34 +59,34 @@ namespace ACBrFramework.IBGE
 		public void BuscarPorCodigo(int codigo)
 		{
 			cidades = null;
-			int ret = ACBrIBGEInterop.IBGE_BuscarPorCodigo(this.Handle, codigo);
+			int ret = ACBrIBGEInterop.IBGE_BuscarPorCodigo(Handle, codigo);
 			CheckResult(ret);
 		}
 
-		public void BuscarPorNome(string nome)
+        public void BuscarPorNome(string nome, string uf = "", bool exata = false)
 		{
 			cidades = null;
-			int ret = ACBrIBGEInterop.IBGE_BuscarPorNome(this.Handle, ToUTF8(nome));
+			int ret = ACBrIBGEInterop.IBGE_BuscarPorNome(Handle, nome.ToUTF8(), uf.ToUTF8(), exata);
 			CheckResult(ret);
 		}
 
 		private void CarregaCidades()
 		{
-			int count = ACBrIBGEInterop.IBGE_Cidades_GetCount(this.Handle);
+			int count = ACBrIBGEInterop.IBGE_Cidades_GetCount(Handle);
 			CheckResult(count);
 
 			cidades = new Cidade[count];
 
 			for (int i = 0; i < count; i++)
 			{
-				ACBrIBGEInterop.CidadeRec cidadeRec = new ACBrIBGEInterop.CidadeRec();
-				int ret = ACBrIBGEInterop.IBGE_Cidades_GetItem(this.Handle, ref cidadeRec, i);
+				var cidadeRec = new ACBrIBGEInterop.CidadeRec();
+				int ret = ACBrIBGEInterop.IBGE_Cidades_GetItem(Handle, ref cidadeRec, i);
 				CheckResult(ret);
 
 				Cidade cidade = new Cidade();
-				cidade.Municipio = FromUTF8(cidadeRec.Municipio);
+				cidade.Municipio = cidadeRec.Municipio.FromUTF8();
 				cidade.CodMunicio = cidadeRec.CodMunicio;
-				cidade.UF = FromUTF8(cidadeRec.UF);
+				cidade.UF = cidadeRec.UF.FromUTF8();
 				cidade.CodUF = cidadeRec.CodUF;
 				cidade.Area = cidadeRec.Area;
 

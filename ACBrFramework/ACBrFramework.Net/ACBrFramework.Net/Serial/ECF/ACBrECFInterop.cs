@@ -325,6 +325,9 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_GetDataHora(IntPtr ecfHandle, ref double value);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_GetDataHoraUltimaReducaoZ(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetNumCupom(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
@@ -1070,6 +1073,9 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DadosReducaoZClass_GetDescontoICMS(IntPtr ecfHandle, ref double value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_DadosReducaoZClass_GetDataHoraEmissao(IntPtr ecfHandle, ref double value);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DadosReducaoZClass_GetNaoTributadoICMS(IntPtr ecfHandle, ref double value);

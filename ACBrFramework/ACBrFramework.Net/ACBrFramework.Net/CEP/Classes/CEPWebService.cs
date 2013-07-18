@@ -9,6 +9,7 @@
 		Bases4you,
 		RNSolucoes,
 		KingHost,
-		ByJG
+		ByJG,
+        Correios
 	}
 }

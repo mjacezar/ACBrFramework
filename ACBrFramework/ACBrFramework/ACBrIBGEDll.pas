@@ -165,7 +165,7 @@ begin
   end;
 end;
 
-Function IBGE_BuscarPorNome(const ibgeHandle: PIBGEHandle; const nome : PChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function IBGE_BuscarPorNome(const ibgeHandle: PIBGEHandle; const nome, uf : PChar; exata :  Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ibgeHandle = nil) then
@@ -175,7 +175,7 @@ begin
   end;
 
   try
-     Result := ibgeHandle^.IBGE.BuscarPorNome(nome);
+     Result := ibgeHandle^.IBGE.BuscarPorNome(nome, uf, exata);
   except
      on exception : Exception do
      begin
