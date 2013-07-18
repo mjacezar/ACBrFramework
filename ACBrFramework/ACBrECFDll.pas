@@ -1123,6 +1123,27 @@ begin
   end;
 end;
 
+Function ECF_GetDataHoraUltimaReducaoZ(const ecfHandle: PECFHandle; var data : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+    data := ecfHandle^.ECF.DataHoraUltimaReducaoZ;
+    Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 {%endregion}
 
 {%region InfoRodapeCupom}
@@ -6197,6 +6218,27 @@ begin
    end;
 end;
 
+Function ECF_DadosReducaoZClass_GetDataHoraEmissao(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+   try
+   value := ecfHandle^.ECF.DadosReducaoZClass.DataHoraEmissao;
+   Result := 0;
+   except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+   end;
+end;
+
 Function ECF_DadosReducaoZClass_GetDescontoICMS(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -7593,7 +7635,8 @@ end;
 
 {%region PAF Arquivos }
 
-Function ECF_ArquivoMFD_DLL( const ecfHandle: PECFHandle; const DataInicial, DataFinal: double; const Arquivo : pChar ;const Documentos: array of Integer; const QTD_DOC, Finalidade : Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_ArquivoMFD_DLL( const ecfHandle: PECFHandle; const DataInicial, DataFinal: double; const Arquivo : pChar ;
+      const Documentos: array of Integer; const QTD_DOC, Finalidade : Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   DocumentSet   : TACBrECFTipoDocumentoSet;
   i             : Integer;
@@ -7629,7 +7672,8 @@ end
 end;
 end;
 
-Function ECF_ArquivoMFD_DLL_COO( const ecfHandle: PECFHandle; const COOInicial, COOFinal: Integer; const Arquivo : pChar ;const Documentos: array of Integer; const QTD_DOC, Finalidade, TipoContador : Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_ArquivoMFD_DLL_COO( const ecfHandle: PECFHandle; const COOInicial, COOFinal: Integer; const Arquivo : pChar ;
+      const Documentos: array of Integer; const QTD_DOC, Finalidade, TipoContador : Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   DocumentSet   : TACBrECFTipoDocumentoSet;
   i             : Integer;
@@ -10904,7 +10948,7 @@ ECF_GetChequePronto, ECF_GetIntervaloAposComando, ECF_SetIntervaloAposComando,
 ECF_GetDescricaoGrande, ECF_SetDescricaoGrande, ECF_GetGavetaSinalInvertido, ECF_SetGavetaSinalInvertido,
 ECF_GetOperador, ECF_SetOperador, ECF_GetLinhasEntreCupons, ECF_SetLinhasEntreCupons,
 ECF_GetDecimaisPreco, ECF_SetDecimaisPreco, ECF_GetDecimaisQtd, ECF_SetDecimaisQtd,
-ECF_GetPausaRelatorio, ECF_SetPausaRelatorio,
+ECF_GetPausaRelatorio, ECF_SetPausaRelatorio, ECF_GetDataHoraUltimaReducaoZ,
 
 { Métodos do Componente }
 
@@ -11020,7 +11064,7 @@ ECF_DadosReducaoZClass_GetCCDC, ECF_DadosReducaoZClass_GetNCN,
 ECF_DadosReducaoZClass_GetDataDoMovimento, ECF_DadosReducaoZClass_GetNumeroCOOInicial,
 ECF_DadosReducaoZClass_GetNumeroDoECF, ECF_DadosReducaoZClass_GetNumeroDeSerie,
 ECF_DadosReducaoZClass_GetNumeroDeSerieMFD, ECF_DadosReducaoZClass_GetNumeroDaLoja,
-ECF_DadosReducaoZClass_GetTotalTroco,
+ECF_DadosReducaoZClass_GetTotalTroco, ECF_DadosReducaoZClass_GetDataHoraEmissao,
 
 ECF_DadosReducaoZClass_GetCNFCount, ECF_DadosReducaoZClass_GetCNF,
 ECF_DadosReducaoZClass_GetICMSCount, ECF_DadosReducaoZClass_GetICMS,
@@ -11030,6 +11074,8 @@ ECF_DadosReducaoZClass_GetFPGCount, ECF_DadosReducaoZClass_GetFPG,
 
 ECF_DadosReducaoZClass_CalculaValoresVirtuais,
 ECF_DadosReducaoZClass_MontaDadosReducaoZ,
+
+
 ECF_IdentificaOperador,
 
 { Componentes ACBr }

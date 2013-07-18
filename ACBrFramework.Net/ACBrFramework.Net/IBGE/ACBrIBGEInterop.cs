@@ -63,7 +63,7 @@ namespace ACBrFramework.IBGE
 		public static extern int IBGE_BuscarPorCodigo(IntPtr ibgeHandle, int codigo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int IBGE_BuscarPorNome(IntPtr ibgeHandle, string cidade);
+        public static extern int IBGE_BuscarPorNome(IntPtr ibgeHandle, string cidade, string uf, bool exata);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int IBGE_Cidades_GetCount(IntPtr ibgeHandle);

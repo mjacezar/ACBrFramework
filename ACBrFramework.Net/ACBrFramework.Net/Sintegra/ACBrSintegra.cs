@@ -279,12 +279,12 @@ namespace ACBrFramework.Sintegra
 		private void GerarRegistro10()
 		{
 			var record = new ACBrSintegraInterop.Registro10Rec();
-			record.RazaoSocial = ToUTF8(Registro10.RazaoSocial);
-			record.CNPJ = ToUTF8(Registro10.CNPJ);
-			record.Inscricao = ToUTF8(Registro10.Inscricao);
-			record.Cidade = ToUTF8(Registro10.Cidade);
-			record.Estado = ToUTF8(Registro10.Estado);
-			record.Telefone = ToUTF8(Registro10.Telefone);
+			record.RazaoSocial = Registro10.RazaoSocial.ToUTF8();
+			record.CNPJ = Registro10.CNPJ.ToUTF8();
+			record.Inscricao = Registro10.Inscricao.ToUTF8();
+			record.Cidade = Registro10.Cidade.ToUTF8();
+			record.Estado = Registro10.Estado.ToUTF8();
+			record.Telefone = Registro10.Telefone.ToUTF8();
 			record.DataInicial = Registro10.DataInicial.ToOADate();
 			record.DataFinal = Registro10.DataFinal.ToOADate();
 			record.NaturezaInformacoes = Registro10.NaturezaInformacoes;

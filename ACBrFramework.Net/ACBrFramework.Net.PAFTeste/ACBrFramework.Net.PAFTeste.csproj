@@ -71,13 +71,6 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COM Interop|x86'">
-    <OutputPath>bin\COM Interop\</OutputPath>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COM Interop|x64'">
-    <OutputPath>bin\x64\COM Interop\</OutputPath>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />

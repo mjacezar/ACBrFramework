@@ -3188,6 +3188,15 @@ namespace ACBrFramework.ECF
 		}
 
 		[Browsable(false)]
+		public DateTime DataHoraUltimaReducaoZ
+		{
+			get
+			{
+				return GetDateTime(ACBrECFInterop.ECF_GetDataHoraUltimaReducaoZ);
+			}
+		}
+
+		[Browsable(false)]
 		public int Colunas
 		{
 			get
@@ -4305,7 +4314,7 @@ namespace ACBrFramework.ECF
 			else
 				Docs = new int[1] { (int)TipoDocumento.Todos };
 
-			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL(this.Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo), Docs, Docs.Length, (int)Finaliza);
+			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL(Handle, DataInicial.ToOADate(), DataFinal.ToOADate(), ToUTF8(CaminhoArquivo), Docs, Docs.Length, (int)Finaliza);
 
 			CheckResult(ret);
 		}
@@ -4319,13 +4328,13 @@ namespace ACBrFramework.ECF
 			else
 				Docs = new int[1] { (int)TipoDocumento.Todos };
 
-			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL_COO(this.Handle, COOInicial, COOFinal, ToUTF8(CaminhoArquivo), Docs, Docs.Length, (int)Finaliza, (int)TipoContador);
+			int ret = ACBrECFInterop.ECF_ArquivoMFD_DLL_COO(Handle, COOInicial, COOFinal, ToUTF8(CaminhoArquivo), Docs, Docs.Length, (int)Finaliza, (int)TipoContador);
 			CheckResult(ret);
 		}
 
 		public void DoAtualizarValorGT()
 		{
-			int ret = ACBrECFInterop.ECF_DoAtualizarValorGT(this.Handle);
+			int ret = ACBrECFInterop.ECF_DoAtualizarValorGT(Handle);
 			CheckResult(ret);
 		}
 

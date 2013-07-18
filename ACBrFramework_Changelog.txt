@@ -43,6 +43,17 @@ Changelog
 
 18/06/2013
 
+-- ACBrFramework 0.9.4.2 --
+[+] Adicionado Webservice do correios - ACBrCEP - Rafael Dias.
+[*] Adicionado novos campos na consulta por nome uf e exato - ACBrIBGE - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.4.2 --
+[+] Adicionado Webservice do correios - ACBrCEP - Rafael Dias.
+[*] Adicionado novos campos na consulta por nome uf e exato - ACBrIBGE - Rafael Dias.
+[-] Removido ACBrNFe do projeto - Rafael Dias.
+
+18/06/2013
+
 -- ACBrFramework 0.9.4.0 --
 [+] Adicionado a função PafMF_Binario - ACBrECF  - Rafael Dias.
 [*] Inicio da implementação COMInterop - ACBrSintegra - Rafael Dias.
