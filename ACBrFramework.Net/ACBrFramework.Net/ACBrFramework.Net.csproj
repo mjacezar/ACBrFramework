@@ -723,7 +723,6 @@
     <EmbeddedResource Include="Serial\RFD\ico.bmp" />
     <EmbeddedResource Include="Validador\ico.bmp" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

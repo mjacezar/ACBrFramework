@@ -41,6 +41,13 @@ Símbolo : Significado
 
 Changelog
 
+08/10/2013
+
+-- ACBrFramework 0.9.4.2 --
+[*] Incluída as dlls dependentes do ACBr na dll ACBrFramework.Net.dll. - Rafael Batiati
+    Além da ACBrFramework32.dll, agora a inpout32.dll, libeay32.dll e ssleay32.dll 
+    são automaticamente copiadas para um path válido.
+
 18/06/2013
 
 -- ACBrFramework 0.9.4.2 --

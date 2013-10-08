@@ -14,10 +14,15 @@ namespace ACBrFramework
 			try
 			{
 #if x86
-
 				File.WriteAllBytes(Path.Combine(BinPath, "ACBrFramework32.dll"), Properties.Framework32.ACBrFramework32);
+				File.WriteAllBytes(Path.Combine(BinPath, "inpout32.dll"), Properties.Framework32.inpout32);
+				File.WriteAllBytes(Path.Combine(BinPath, "libeay32.dll"), Properties.Framework32.libeay32);
+				File.WriteAllBytes(Path.Combine(BinPath, "ssleay32.dll"), Properties.Framework32.ssleay32);
 #elif x64
-			File.WriteAllBytes(Path.Combine(BinPath, "ACBrFramework64.dll"), Properties.Framework64.ACBrFramework64);
+				File.WriteAllBytes(Path.Combine(BinPath, "ACBrFramework64.dll"), Properties.Framework64.ACBrFramework64);
+				File.WriteAllBytes(Path.Combine(BinPath, "inpoutx64.dll"), Properties.Framework64.inpoutx64);
+				File.WriteAllBytes(Path.Combine(BinPath, "libeay32.dll"), Properties.Framework64.libeay32);
+				File.WriteAllBytes(Path.Combine(BinPath, "ssleay32.dll"), Properties.Framework64.ssleay32);
 #endif
 			}
 			catch { }

@@ -121,4 +121,13 @@
   <data name="ACBrFramework32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\..\ACBrFramework\x86\ACBrFramework32.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="inpout32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\Dll\x86\inpout32.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="libeay32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\Dll\x86\libeay32.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ssleay32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\Dll\x86\ssleay32.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
