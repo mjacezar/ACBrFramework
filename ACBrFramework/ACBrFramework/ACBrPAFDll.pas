@@ -173,6 +173,8 @@ end;
 
 type TRegistroR1Rec = record
    QTD_R2           : Integer;
+   QTD_R4           : Integer;
+   QTD_R6           : Integer;
    NUM_FAB          : array[0..20] of char;
    MF_ADICIONAL     : array[0..1] of char;
    TIPO_ECF         : array[0..7] of char;
@@ -1225,12 +1227,9 @@ begin
 end;
 
 Function PAF_SaveFileTXT_R(const pafHandle: PPAFHandle; const RegistroR1Rec : array of TRegistroR1Rec; const CountR1 : Integer;
-      const RegistroR2Rec : array of TRegistroR2Rec; const CountR2 : Integer;
-      const RegistroR3Rec: array of TRegistroR3Rec;  const CountR3 : Integer;
-      const RegistroR4Rec: array of TRegistroR4Rec; const CountR4 : Integer;
-      const RegistroR5Rec: array of TRegistroR5Rec; const CountR5 : Integer;
-      const RegistroR6Rec: array of TRegistroR6Rec; const CountR6 : Integer;
-      const RegistroR7Rec: array of TRegistroR7Rec; const CountR7 : Integer;
+      const RegistroR2Rec : array of TRegistroR2Rec; const RegistroR3Rec: array of TRegistroR3Rec;
+      const RegistroR4Rec: array of TRegistroR4Rec; const RegistroR5Rec: array of TRegistroR5Rec;
+      const RegistroR6Rec: array of TRegistroR6Rec; const RegistroR7Rec: array of TRegistroR7Rec;
       const Arquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
   i, d, e, IndexR2, IndexR3, IndexR4, IndexR5, IndexR6, IndexR7: Integer;
@@ -1295,7 +1294,7 @@ begin
    PAR_ECF        := RegistroR2Rec[IndexR2].PAR_ECF;
    RegistroValido := RegistroR2Rec[IndexR2].RegistroValido;
 
-   for e := 0 to RegistroR2Rec[d].QTD_R3 - 1 do
+   for e := 0 to RegistroR2Rec[IndexR2].QTD_R3 - 1 do
    begin
    with RegistroR03.New do
    begin
@@ -1303,14 +1302,14 @@ begin
    VL_ACUM        := RegistroR3Rec[IndexR3].VL_ACUM;
    RegistroValido := RegistroR3Rec[IndexR3].RegistroValido;
    end;
-   inc(IndexR2);
    inc(IndexR3);
    end;
    end;
+   inc(IndexR2);
    end;
 
    //Registro R4, R5 e R7
-   for d := 0 to CountR4 - 1 do
+   for d := 0 to RegistroR1Rec[i].QTD_R4 - 1 do
    begin
    with RegistroR04.New do
    begin
@@ -1373,13 +1372,12 @@ begin
    end;
    inc(IndexR7);
    end;
-
-   inc(IndexR4);
    end;
+   inc(IndexR4);
    end;
 
    //Registro R6 e R7
-   for d := 0 to CountR6 - 1 do
+   for d := 0 to RegistroR1Rec[i].QTD_R6 - 1 do
    begin
    with RegistroR06.New do
    begin
@@ -1408,7 +1406,6 @@ begin
    inc(IndexR7);
    end;
    end;
-
    inc(IndexR6);
    end;
    end;

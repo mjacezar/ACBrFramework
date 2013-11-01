@@ -626,6 +626,8 @@ namespace ACBrFramework.PAF
 			foreach (ACBrPAFRegistroR1 R1 in PAF_R.RegistroR1)
 			{
 				RegistroR1Rec[ItemR1].QTD_R2 = R1.RegistroR2.Count;
+				RegistroR1Rec[ItemR1].QTD_R4 = R1.RegistroR4.Count;
+				RegistroR1Rec[ItemR1].QTD_R6 = R1.RegistroR6.Count;
 				RegistroR1Rec[ItemR1].NUM_FAB = ToUTF8(R1.NUM_FAB);
 				RegistroR1Rec[ItemR1].MF_ADICIONAL = ToUTF8(R1.MF_ADICIONAL);
 				RegistroR1Rec[ItemR1].TIPO_ECF = ToUTF8(R1.TIPO_ECF);
@@ -770,10 +772,9 @@ namespace ACBrFramework.PAF
 				ItemR1++;
 			}
 
-			int ret = ACBrPAFInterop.PAF_SaveFileTXT_R(this.Handle, RegistroR1Rec, PAF_R.RegistroR1.Count,
-	                                   			       RegistroR2Rec, CR2, RegistroR3Rec, CR3, RegistroR4Rec, 
-											           CR4, RegistroR5Rec, CR5, RegistroR6Rec, CR6, 
-												       RegistroR7Rec, CR7, ToUTF8(arquivo));
+			int ret = ACBrPAFInterop.PAF_SaveFileTXT_R(Handle, RegistroR1Rec, PAF_R.RegistroR1.Count,
+	                                   			       RegistroR2Rec, RegistroR3Rec, RegistroR4Rec, 
+													   RegistroR5Rec, RegistroR6Rec, RegistroR7Rec, ToUTF8(arquivo));
 			CheckResult(ret);
 			PAF_R.LimparRegistros();
 

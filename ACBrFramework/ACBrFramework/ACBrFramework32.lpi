@@ -68,11 +68,10 @@
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="7637"/>
-        <CursorPos X="14" Y="7805"/>
+        <TopLine Value="7622"/>
+        <CursorPos X="32" Y="7635"/>
         <FoldState Value=" TJG1L1 pkZlR1h]9jHkN1#pA p0z71#rD]9+A1}O[b47oU1#+I]J!F1{8]JoVqc1~![v48qb1~s[A4LqV1}q]AnSsa1_V[x4Lt81i2 p\c?21{7 T3kmg0JZ"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
@@ -159,10 +158,12 @@
         <Filename Value="ACBrPAFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrPAFDll"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="433"/>
-        <CursorPos X="66" Y="1231"/>
+        <TopLine Value="1280"/>
+        <CursorPos X="18" Y="1279"/>
+        <FoldState Value=" TJr41~/ T3yV0w2 pkfmJ0x]9jMl10vy"/>
         <UsageCount Value="225"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
