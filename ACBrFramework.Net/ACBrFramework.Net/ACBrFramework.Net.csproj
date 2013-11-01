@@ -236,6 +236,7 @@
     <Compile Include="PAF\Registros\PAF_B\ACBrPAF_B.cs" />
     <Compile Include="PAF\Registros\PAF_E\ACBrPAFRegistrosE2.cs" />
     <Compile Include="PAF\Registros\PAF_E\ACBrPAF_E.cs" />
+    <Compile Include="PAF\Registros\PAF_R\ACBrPAFRegistrosR1.cs" />
     <Compile Include="PAF\Registros\PAF_R\ACBrPAFRegistrosR2.cs" />
     <Compile Include="PAF\Registros\PAF_R\ACBrPAFRegistrosR3.cs" />
     <Compile Include="PAF\Registros\PAF_R\ACBrPAFRegistrosR4.cs" />

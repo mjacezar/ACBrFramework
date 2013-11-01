@@ -4350,6 +4350,18 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
+		public void PafMF_ArqMF(string pathArquivo)
+		{
+			int ret = ACBrECFInterop.ECF_PafMF_ArqMF(Handle, ToUTF8(pathArquivo));
+			CheckResult(ret);
+		}
+
+		public void PafMF_ArqMFD(string pathArquivo)
+		{
+			int ret = ACBrECFInterop.ECF_PafMF_ArqMFD(Handle, ToUTF8(pathArquivo));
+			CheckResult(ret);
+		}
+
 		#endregion PAF
 
 		#region PAF LMFC

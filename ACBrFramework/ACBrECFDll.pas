@@ -7802,6 +7802,48 @@ begin
   end;
 end;
 
+Function ECF_PafMF_ArqMF(const ecfHandle: PECFHandle; const path : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.PafMF_ArqMF(path);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_PafMF_ArqMFD(const ecfHandle: PECFHandle; const path : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.PafMF_ArqMFD(path);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 {%endregion}
 
 {%region PAF Arq. MFD }
@@ -11099,7 +11141,7 @@ ECF_DoVerificaValorGT,
 
 ECF_ArquivoMFD_DLL, ECF_ArquivoMFD_DLL_COO,
 ECF_EspelhoMFD_DLL, ECF_EspelhoMFD_DLL_COO,
-ECF_PafMF_Binario,
+ECF_PafMF_Binario, ECF_PafMF_ArqMF, ECF_PafMF_ArqMFD,
 
 {PAF LMFC}
 
