@@ -41,6 +41,13 @@ Símbolo : Significado
 
 Changelog
 
+01/11/2013
+
+-- ACBrFramework 0.9.4.5 --
+[+] Adicionado as funções PafMF_ArqMF - ACBrECF - Rafael Dias.
+[+] Adicionado as funções PafMF_ArqMFD - ACBrECF - Rafael Dias.
+[*] Modificado o RegistroR do PAF para ficar igual a versão atual do ACBr - ACBrPAF - Rafael Dias.
+
 08/10/2013
 
 -- ACBrFramework 0.9.4.2 --

@@ -172,6 +172,7 @@ type TRegistroP2Rec = record
 end;
 
 type TRegistroR1Rec = record
+   QTD_R2           : Integer;
    NUM_FAB          : array[0..20] of char;
    MF_ADICIONAL     : array[0..1] of char;
    TIPO_ECF         : array[0..7] of char;
@@ -1223,12 +1224,16 @@ begin
   end;
 end;
 
-Function PAF_SaveFileTXT_R(const pafHandle: PPAFHandle; const RegistroR1Rec : TRegistroR1Rec;
-      const RegistroR2Rec : array of TRegistroR2Rec; const CountR2 : Integer; const RegistroR3Rec: array of TRegistroR3Rec;
-      const RegistroR4Rec: array of TRegistroR4Rec; const CountR4 : Integer; const RegistroR5Rec: array of TRegistroR5Rec;
-      const RegistroR6Rec: array of TRegistroR6Rec; const CountR6 : Integer; const RegistroR7Rec: array of TRegistroR7Rec; const Arquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function PAF_SaveFileTXT_R(const pafHandle: PPAFHandle; const RegistroR1Rec : array of TRegistroR1Rec; const CountR1 : Integer;
+      const RegistroR2Rec : array of TRegistroR2Rec; const CountR2 : Integer;
+      const RegistroR3Rec: array of TRegistroR3Rec;  const CountR3 : Integer;
+      const RegistroR4Rec: array of TRegistroR4Rec; const CountR4 : Integer;
+      const RegistroR5Rec: array of TRegistroR5Rec; const CountR5 : Integer;
+      const RegistroR6Rec: array of TRegistroR6Rec; const CountR6 : Integer;
+      const RegistroR7Rec: array of TRegistroR7Rec; const CountR7 : Integer;
+      const Arquivo: pChar) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 var
-  i, D, IndexR3, IndexR5, IndexR7: Integer;
+  i, d, e, IndexR2, IndexR3, IndexR4, IndexR5, IndexR6, IndexR7: Integer;
 begin
   if (pafHandle = nil) then
   begin
@@ -1238,52 +1243,59 @@ begin
 
   try
 
+   IndexR2 := 0;
    IndexR3 := 0;
+   IndexR4 := 0;
    IndexR5 := 0;
+   IndexR6 := 0;
    IndexR7 := 0;
    pafHandle^.PAF.PAF_R.LimpaRegistros;
 
-   pafHandle^.PAF.PAF_R.RegistroR01.NUM_FAB          := RegistroR1Rec.NUM_FAB;
-   pafHandle^.PAF.PAF_R.RegistroR01.MF_ADICIONAL     := RegistroR1Rec.MF_ADICIONAL;
-   pafHandle^.PAF.PAF_R.RegistroR01.TIPO_ECF         := RegistroR1Rec.TIPO_ECF;
-   pafHandle^.PAF.PAF_R.RegistroR01.MARCA_ECF        := RegistroR1Rec.MARCA_ECF;
-   pafHandle^.PAF.PAF_R.RegistroR01.MODELO_ECF       := RegistroR1Rec.MODELO_ECF;
-   pafHandle^.PAF.PAF_R.RegistroR01.VERSAO_SB        := RegistroR1Rec.VERSAO_SB;
-   pafHandle^.PAF.PAF_R.RegistroR01.DT_INST_SB       := RegistroR1Rec.DT_INST_SB;
-   pafHandle^.PAF.PAF_R.RegistroR01.HR_INST_SB       := RegistroR1Rec.HR_INST_SB;
-   pafHandle^.PAF.PAF_R.RegistroR01.NUM_SEQ_ECF      := RegistroR1Rec.NUM_SEQ_ECF;
-   pafHandle^.PAF.PAF_R.RegistroR01.CNPJ             := RegistroR1Rec.CNPJ;
-   pafHandle^.PAF.PAF_R.RegistroR01.IE               := RegistroR1Rec.IE;
-   pafHandle^.PAF.PAF_R.RegistroR01.CNPJ_SH          := RegistroR1Rec.CNPJ_SH;
-   pafHandle^.PAF.PAF_R.RegistroR01.IE_SH            := RegistroR1Rec.IE_SH;
-   pafHandle^.PAF.PAF_R.RegistroR01.IM_SH            := RegistroR1Rec.IM_SH;
-   pafHandle^.PAF.PAF_R.RegistroR01.NOME_SH          := RegistroR1Rec.NOME_SH;
-   pafHandle^.PAF.PAF_R.RegistroR01.NOME_PAF         := RegistroR1Rec.NOME_PAF;
-   pafHandle^.PAF.PAF_R.RegistroR01.VER_PAF          := RegistroR1Rec.VER_PAF;
-   pafHandle^.PAF.PAF_R.RegistroR01.COD_MD5          := RegistroR1Rec.COD_MD5;
-   pafHandle^.PAF.PAF_R.RegistroR01.DT_INI           := RegistroR1Rec.DT_INI;
-   pafHandle^.PAF.PAF_R.RegistroR01.DT_FIN           := RegistroR1Rec.DT_FIN;
-   pafHandle^.PAF.PAF_R.RegistroR01.ER_PAF_ECF       := RegistroR1Rec.ER_PAF_ECF;
-   pafHandle^.PAF.PAF_R.RegistroR01.InclusaoExclusao := RegistroR1Rec.InclusaoExclusao;
-   pafHandle^.PAF.PAF_R.RegistroR01.RegistroValido   := RegistroR1Rec.RegistroValido;
+   for i := 0 to CountR1 - 1 do
+   begin
+   with pafHandle^.PAF.PAF_R.RegistroR01.New do
+   begin
+   NUM_FAB          := RegistroR1Rec[i].NUM_FAB;
+   MF_ADICIONAL     := RegistroR1Rec[i].MF_ADICIONAL;
+   TIPO_ECF         := RegistroR1Rec[i].TIPO_ECF;
+   MARCA_ECF        := RegistroR1Rec[i].MARCA_ECF;
+   MODELO_ECF       := RegistroR1Rec[i].MODELO_ECF;
+   VERSAO_SB        := RegistroR1Rec[i].VERSAO_SB;
+   DT_INST_SB       := RegistroR1Rec[i].DT_INST_SB;
+   HR_INST_SB       := RegistroR1Rec[i].HR_INST_SB;
+   NUM_SEQ_ECF      := RegistroR1Rec[i].NUM_SEQ_ECF;
+   CNPJ             := RegistroR1Rec[i].CNPJ;
+   IE               := RegistroR1Rec[i].IE;
+   CNPJ_SH          := RegistroR1Rec[i].CNPJ_SH;
+   IE_SH            := RegistroR1Rec[i].IE_SH;
+   IM_SH            := RegistroR1Rec[i].IM_SH;
+   NOME_SH          := RegistroR1Rec[i].NOME_SH;
+   NOME_PAF         := RegistroR1Rec[i].NOME_PAF;
+   VER_PAF          := RegistroR1Rec[i].VER_PAF;
+   COD_MD5          := RegistroR1Rec[i].COD_MD5;
+   DT_INI           := RegistroR1Rec[i].DT_INI;
+   DT_FIN           := RegistroR1Rec[i].DT_FIN;
+   ER_PAF_ECF       := RegistroR1Rec[i].ER_PAF_ECF;
+   InclusaoExclusao := RegistroR1Rec[i].InclusaoExclusao;
+   RegistroValido   := RegistroR1Rec[i].RegistroValido;
 
    //Registro R2 e R3
-   for i := 0 to CountR2 - 1 do
+   for d := 0 to RegistroR1Rec[i].QTD_R2 - 1 do
    begin
-   with pafHandle^.PAF.PAF_R.RegistroR02.New do
+   with RegistroR02.New do
    begin
-   NUM_USU        := RegistroR2Rec[i].NUM_USU;
-   CRZ            := RegistroR2Rec[i].CRZ;
-   COO            := RegistroR2Rec[i].COO;
-   CRO            := RegistroR2Rec[i].CRO;
-   DT_MOV         := RegistroR2Rec[i].DT_MOV;
-   DT_EMI         := RegistroR2Rec[i].DT_EMI;
-   HR_EMI         := RegistroR2Rec[i].HR_EMI;
-   VL_VBD         := RegistroR2Rec[i].VL_VBD;
-   PAR_ECF        := RegistroR2Rec[i].PAR_ECF;
-   RegistroValido := RegistroR2Rec[i].RegistroValido;
+   NUM_USU        := RegistroR2Rec[IndexR2].NUM_USU;
+   CRZ            := RegistroR2Rec[IndexR2].CRZ;
+   COO            := RegistroR2Rec[IndexR2].COO;
+   CRO            := RegistroR2Rec[IndexR2].CRO;
+   DT_MOV         := RegistroR2Rec[IndexR2].DT_MOV;
+   DT_EMI         := RegistroR2Rec[IndexR2].DT_EMI;
+   HR_EMI         := RegistroR2Rec[IndexR2].HR_EMI;
+   VL_VBD         := RegistroR2Rec[IndexR2].VL_VBD;
+   PAR_ECF        := RegistroR2Rec[IndexR2].PAR_ECF;
+   RegistroValido := RegistroR2Rec[IndexR2].RegistroValido;
 
-   for D := 0 to RegistroR2Rec[i].QTD_R3 - 1 do
+   for e := 0 to RegistroR2Rec[d].QTD_R3 - 1 do
    begin
    with RegistroR03.New do
    begin
@@ -1291,34 +1303,35 @@ begin
    VL_ACUM        := RegistroR3Rec[IndexR3].VL_ACUM;
    RegistroValido := RegistroR3Rec[IndexR3].RegistroValido;
    end;
+   inc(IndexR2);
    inc(IndexR3);
    end;
    end;
    end;
 
    //Registro R4, R5 e R7
-   for i := 0 to CountR4 - 1 do
+   for d := 0 to CountR4 - 1 do
    begin
-   with pafHandle^.PAF.PAF_R.RegistroR04.New do
+   with RegistroR04.New do
    begin
-   NUM_USU        :=  RegistroR4Rec[i].NUM_USU;
-   NUM_CONT       :=  RegistroR4Rec[i].NUM_CONT;
-   COO            :=  RegistroR4Rec[i].COO;
-   DT_INI         :=  RegistroR4Rec[i].DT_INI;
-   SUB_DOCTO      :=  RegistroR4Rec[i].SUB_DOCTO;
-   SUB_DESCTO     :=  RegistroR4Rec[i].SUB_DESCTO;
-   TP_DESCTO      :=  RegistroR4Rec[i].TP_DESCTO;
-   SUB_ACRES      :=  RegistroR4Rec[i].SUB_ACRES;
-   TP_ACRES       :=  RegistroR4Rec[i].TP_ACRES;
-   VL_TOT         :=  RegistroR4Rec[i].VL_TOT;
-   CANC           :=  RegistroR4Rec[i].CANC;
-   VL_CA          :=  RegistroR4Rec[i].VL_CA;
-   ORDEM_DA       :=  RegistroR4Rec[i].ORDEM_DA;
-   NOME_CLI       :=  RegistroR4Rec[i].NOME_CLI;
-   CNPJ_CPF       :=  RegistroR4Rec[i].CNPJ_CPF;
-   RegistroValido :=  RegistroR4Rec[i].RegistroValido;
+   NUM_USU        :=  RegistroR4Rec[IndexR4].NUM_USU;
+   NUM_CONT       :=  RegistroR4Rec[IndexR4].NUM_CONT;
+   COO            :=  RegistroR4Rec[IndexR4].COO;
+   DT_INI         :=  RegistroR4Rec[IndexR4].DT_INI;
+   SUB_DOCTO      :=  RegistroR4Rec[IndexR4].SUB_DOCTO;
+   SUB_DESCTO     :=  RegistroR4Rec[IndexR4].SUB_DESCTO;
+   TP_DESCTO      :=  RegistroR4Rec[IndexR4].TP_DESCTO;
+   SUB_ACRES      :=  RegistroR4Rec[IndexR4].SUB_ACRES;
+   TP_ACRES       :=  RegistroR4Rec[IndexR4].TP_ACRES;
+   VL_TOT         :=  RegistroR4Rec[IndexR4].VL_TOT;
+   CANC           :=  RegistroR4Rec[IndexR4].CANC;
+   VL_CA          :=  RegistroR4Rec[IndexR4].VL_CA;
+   ORDEM_DA       :=  RegistroR4Rec[IndexR4].ORDEM_DA;
+   NOME_CLI       :=  RegistroR4Rec[IndexR4].NOME_CLI;
+   CNPJ_CPF       :=  RegistroR4Rec[IndexR4].CNPJ_CPF;
+   RegistroValido :=  RegistroR4Rec[IndexR4].RegistroValido;
 
-   for D := 0 to RegistroR4Rec[i].QTD_R5 - 1 do
+   for e := 0 to RegistroR4Rec[IndexR4].QTD_R5 - 1 do
    begin
    with RegistroR05.New do
    begin
@@ -1346,7 +1359,7 @@ begin
    inc(IndexR5);
    end;
 
-   for D := 0 to RegistroR4Rec[i].QTD_R7 - 1 do
+   for e := 0 to RegistroR4Rec[IndexR4].QTD_R7 - 1 do
    begin
    with RegistroR07.New do
    begin
@@ -1360,25 +1373,27 @@ begin
    end;
    inc(IndexR7);
    end;
+
+   inc(IndexR4);
    end;
    end;
 
    //Registro R6 e R7
-   for i := 0 to CountR6 - 1 do
+   for d := 0 to CountR6 - 1 do
    begin
-   with pafHandle^.PAF.PAF_R.RegistroR06.New do
+   with RegistroR06.New do
    begin
-   NUM_USU        := RegistroR6Rec[i].NUM_USU;
-   COO            := RegistroR6Rec[i].COO;
-   GNF            := RegistroR6Rec[i].GNF;
-   GRG            := RegistroR6Rec[i].GRG;
-   CDC            := RegistroR6Rec[i].CDC;
-   DENOM          := RegistroR6Rec[i].DENOM;
-   DT_FIN         := RegistroR6Rec[i].DT_FIN;
-   HR_FIN         := RegistroR6Rec[i].HR_FIN;
-   RegistroValido := RegistroR6Rec[i].RegistroValido;
+   NUM_USU        := RegistroR6Rec[IndexR6].NUM_USU;
+   COO            := RegistroR6Rec[IndexR6].COO;
+   GNF            := RegistroR6Rec[IndexR6].GNF;
+   GRG            := RegistroR6Rec[IndexR6].GRG;
+   CDC            := RegistroR6Rec[IndexR6].CDC;
+   DENOM          := RegistroR6Rec[IndexR6].DENOM;
+   DT_FIN         := RegistroR6Rec[IndexR6].DT_FIN;
+   HR_FIN         := RegistroR6Rec[IndexR6].HR_FIN;
+   RegistroValido := RegistroR6Rec[IndexR6].RegistroValido;
 
-   for D := 0 to RegistroR6Rec[i].QTD_R7 - 1 do
+   for e := 0 to RegistroR6Rec[IndexR6].QTD_R7 - 1 do
    begin
    with RegistroR07.New do
    begin
@@ -1391,6 +1406,10 @@ begin
    RegistroValido := RegistroR7Rec[IndexR7].RegistroValido;
    end;
    inc(IndexR7);
+   end;
+   end;
+
+   inc(IndexR6);
    end;
    end;
    end;

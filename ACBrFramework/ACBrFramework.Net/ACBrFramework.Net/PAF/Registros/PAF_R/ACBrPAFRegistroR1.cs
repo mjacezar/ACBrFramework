@@ -16,6 +16,17 @@ namespace ACBrFramework.PAF
 
 	public sealed class ACBrPAFRegistroR1
 	{
+		#region Constructor
+
+		public ACBrPAFRegistroR1()
+		{
+			RegistroR2 = new ACBrPAFRegistrosR2();
+			RegistroR4 = new ACBrPAFRegistrosR4();
+			RegistroR6 = new ACBrPAFRegistrosR6();
+		}
+
+		#endregion Constructor
+
 		#region Properties
 
 		public string NUM_FAB { get; set; }
@@ -63,6 +74,12 @@ namespace ACBrFramework.PAF
 		public bool InclusaoExclusao { get; set; }
 
 		public bool RegistroValido { get; set; }
+
+		public ACBrPAFRegistrosR2 RegistroR2 { get; private set; }
+
+		public ACBrPAFRegistrosR4 RegistroR4 { get; private set; }
+
+		public ACBrPAFRegistrosR6 RegistroR6 { get; private set; }
 
 		#endregion Properties
 	}
