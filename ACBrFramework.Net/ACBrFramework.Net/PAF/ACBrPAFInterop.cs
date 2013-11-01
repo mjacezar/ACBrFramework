@@ -391,6 +391,12 @@ namespace ACBrFramework.PAF
 			[MarshalAs(UnmanagedType.I4)]
 			public int QTD_R2;
 
+			[MarshalAs(UnmanagedType.I4)]
+			public int QTD_R4;
+
+			[MarshalAs(UnmanagedType.I4)]
+			public int QTD_R6;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
 			public string NUM_FAB;
 
@@ -881,7 +887,7 @@ namespace ACBrFramework.PAF
 		public static extern int PAF_SaveFileTXT_P(IntPtr pafHandle, RegistroHD1Rec RegistroP1, RegistroP2Rec[] RegistroP2, int CountP2, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_R(IntPtr pafHandle, RegistroR1Rec[] RegistroR1, int CountR1, RegistroR2Rec[] RegistroR2, int CountR2, RegistroR3Rec[] RegistroR3, int CountR3, RegistroR4Rec[] RegistroR4, int CountR4, RegistroR5Rec[] RegistroR5, int CountR5, RegistroR6Rec[] RegistroR6, int CountR6, RegistroR7Rec[] RegistroR7, int CountR7, string Arquivo);
+		public static extern int PAF_SaveFileTXT_R(IntPtr pafHandle, RegistroR1Rec[] RegistroR1, int CountR1, RegistroR2Rec[] RegistroR2, RegistroR3Rec[] RegistroR3, RegistroR4Rec[] RegistroR4, RegistroR5Rec[] RegistroR5, RegistroR6Rec[] RegistroR6, RegistroR7Rec[] RegistroR7, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int PAF_SaveFileTXT_T(IntPtr pafHandle, RegistroHD1Rec RegistroT1, RegistroT2Rec[] RegistroT2, int CountT2, string Arquivo);
