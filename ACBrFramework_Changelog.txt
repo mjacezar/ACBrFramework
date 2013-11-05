@@ -41,6 +41,12 @@ Símbolo : Significado
 
 Changelog
 
+05/11/2013
+
+-- ACBrFramework 0.9.4.5 --
+[+] Adicionado suporte ao COMInterop - ACBrLCB - Rafael Dias.
+[+] Adicionado suporte ao COMInterop - ACBrBAL - Rafael Dias.
+
 01/11/2013
 
 -- ACBrFramework 0.9.4.5 --
