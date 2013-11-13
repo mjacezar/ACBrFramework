@@ -3783,15 +3783,29 @@ public final class ACBrECF extends ACBrClass
 
 	}
 
-	public void carregaComprovantesNaoFiscais() throws ACBrException
-	{
+    public void carregaComprovantesNaoFiscais() throws ACBrException {
+        int ret = ACBrECFInterop.INSTANCE.ECF_CarregaComprovantesNaoFiscais(getHandle());
+        checkResult(ret);
+        carregaComprovantesNaoFiscais(ret);
+    }
 
+    private void carregaComprovantesNaoFiscais(int count) throws ACBrException {
+        ComprovanteNaoFiscal[] array = new ComprovanteNaoFiscal[count];
+        for (int i = 0; i < count; i++) {
+            ACBrECFInterop.ComprovanteNaoFiscalRec record = new ACBrECFInterop.ComprovanteNaoFiscalRec();
+            int ret = ACBrECFInterop.INSTANCE.ECF_GetComprovanteNaoFiscal(getHandle(), record, i);
+            checkResult(ret);
 
-		int ret = ACBrECFInterop.INSTANCE.ECF_CarregaComprovantesNaoFiscais(getHandle());
-		checkResult(ret);
+            ComprovanteNaoFiscal item = new ComprovanteNaoFiscal(fromUTF8(record.Indice), fromUTF8(record.Descricao), fromUTF8(record.FormaPagamento), record.Contador, record.PermiteVinculado, record.Total);
+            array[i] = item;
+        }
 
-
-	}
+        this.comprovantesNaoFiscais = array;
+    }
+    
+    public ComprovanteNaoFiscal[] getComprovantesNaoFiscais() throws ACBrException {
+        return comprovantesNaoFiscais;
+    } 
 
 	public void lerTotaisComprovanteNaoFiscal() throws ACBrException
 	{
