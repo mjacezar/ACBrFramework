@@ -41,6 +41,12 @@ Símbolo : Significado
 
 Changelog
 
+25/11/2013
+
+-- ACBrFramework 0.9.5.0 --
+[*] Ajustes na classe do paf para ficar de acordo com as novas especificações - ACBrPAF - Marcelo Unimake.
+[-] Tentativa de correção nos eventos TEF - ACBrTEFD - Rafael Dias.
+
 05/11/2013
 
 -- ACBrFramework 0.9.4.5 --

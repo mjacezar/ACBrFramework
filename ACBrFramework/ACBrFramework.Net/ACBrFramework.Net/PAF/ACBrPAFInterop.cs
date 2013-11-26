@@ -186,6 +186,9 @@ namespace ACBrFramework.PAF
 			[MarshalAs(UnmanagedType.I4)]
 			public int QTD_D3;
 
+            [MarshalAs(UnmanagedType.I4)]
+            public int QTD_D4;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
 			public string NUM_FAB;
 
@@ -806,6 +809,108 @@ namespace ACBrFramework.PAF
 			public double VlrUnitario;
 		}
 
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RegistroA2Rec
+        {
+            [MarshalAs(UnmanagedType.R8)]
+            public double Data;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 26)]
+            public string MeioDePagamento;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
+            public string CodigoTipoDocumento;
+
+            [MarshalAs(UnmanagedType.R8)]
+            public double Valor;
+
+            [MarshalAs(UnmanagedType.U1)]
+            public bool RegistroValido;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RegistroD4Rec
+        {
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
+            public string NumeroDAV;
+
+            [MarshalAs(UnmanagedType.R8)]
+            public double DataAlteracao;
+
+            [MarshalAs(UnmanagedType.R8)]
+            public double HoraAlteracao;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+            public string CodigoProdutoServico;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 101)]
+            public string Descricao;
+
+            [MarshalAs(UnmanagedType.R8)]
+            public double Quantidade;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+            public string Unidade;
+
+            [MarshalAs(UnmanagedType.R8)]
+            public double ValorUnitario;
+
+            [MarshalAs(UnmanagedType.R8)]
+            public double DescontoSobreItem;
+
+            [MarshalAs(UnmanagedType.R8)]
+            public double AcrescimoSobreItem;
+
+            [MarshalAs(UnmanagedType.R8)]
+            public double ValorTotalLiquido;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
+            public string SituacaoTributaria;
+
+            [MarshalAs(UnmanagedType.R8)]
+            public double Aliquota;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
+            public string IndicadorCancelamento;
+
+            [MarshalAs(UnmanagedType.I4)]
+            public int CasasDecimaisQtd;
+
+            [MarshalAs(UnmanagedType.I4)]
+            public int CasasDecimaisVlUn;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
+            public string TipoAlteracao;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RegistroE3Rec
+        {
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
+            public string NumeroFabricacao;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
+            public string MFAdicional;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+            public string TipoECF;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
+            public string MarcaECF;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
+            public string ModeloECF;
+
+            [MarshalAs(UnmanagedType.R8)]
+            public double DataEstoque;
+
+            [MarshalAs(UnmanagedType.R8)]
+            public double HoraEstoque;
+
+            [MarshalAs(UnmanagedType.U1)]
+            public bool RegistroValido;
+        }
+
 		#endregion Interop Types
 
 		#region Constructors/Erro Handler
@@ -863,37 +968,123 @@ namespace ACBrFramework.PAF
 
 		#region Methods
 
+        #region Preenche
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_Preenche_A(IntPtr pafHandle,
+                                                 RegistroA2Rec[] registrosA2Rec,
+                                                 int countA2);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_Preenche_B(IntPtr pafHandle,
+                                                 RegistroHD1Rec registrosHD1Rec,
+                                                 RegistroB2Rec[] registrosB2Rec,
+                                                 int countB2);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_Preenche_C(IntPtr pafHandle,
+                                                 RegistroHD1Rec registrosC1Rec,
+                                                 RegistroC2Rec[] registrosC2Rec,
+                                                 int countC2);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_Preenche_D(IntPtr pafHandle,
+                                                RegistroHD1Rec registroD1Rec,
+                                                RegistroD2Rec[] registrosD2Rec,
+                                                int countD2,
+                                                RegistroD3Rec[] registrosD3Rec,
+                                                RegistroD4Rec[] registrosD4Rec,
+                                                int countD4);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_Preenche_E(IntPtr pafHandle,
+                                                RegistroHD2Rec registroE1Rec,
+                                                RegistroE2Rec[] RegistroE2Rec,
+                                                RegistroE3Rec RegistroE3Rec,
+                                                int countE2);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_Preenche_H(IntPtr pafHandle,
+                                            RegistroHD2Rec RegistroH1Rec,
+                                            RegistroH2Rec[] RegistroH2Rec,
+                                            int CountH2);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_Preenche_N(IntPtr pafHandle,
+                                                 RegistroHD1Rec registroN1Rec,
+                                                 RegistroN2Rec registrosN2Rec,
+                                                 RegistroN3Rec[] registrosN3Rec,
+                                                 int countN3);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_Preenche_P(IntPtr pafHandle,
+                                                 RegistroHD1Rec registroP1Rec,
+                                                 RegistroP2Rec[] registrosP2Rec,
+                                                 int countP2);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_Preenche_R(IntPtr pafHandle,
+                                                int CountR1,
+                                                RegistroR1Rec[] registrosR1Rec,
+                                                RegistroR2Rec[] registrosR2Rec,
+                                                RegistroR3Rec[] registrosR3Rec,
+                                                RegistroR4Rec[] registrosR4Rec,
+                                                RegistroR5Rec[] registrosR5Rec,
+                                                RegistroR6Rec[] registrosR6Rec,
+                                                RegistroR7Rec[] registrosR7Rec);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_Preenche_T(IntPtr pafHandle,
+                                                 RegistroHD1Rec registroT1Rec,
+                                                 RegistroT2Rec[] registrosT2Rec,                                                 
+                                                 int countT2);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_Preenche_U(IntPtr pafHandle,
+                                                 RegistroHD1Rec registroU1Rec);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_Preenche_TITP(IntPtr pafHandle,
+                                                  RegistroMercadoriasRec[] RegistroMercadorias,
+                                                  int Count, RegistroInsumosRec[] RegistroInsumos,
+                                                  string titulo, double data);
+
+        #endregion
+
 		#region SaveFile
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_B(IntPtr pafHandle, RegistroHD1Rec RegistroB1, RegistroB2Rec[] RegistroB2, int CountB2, string Arquivo);
+		public static extern int PAF_SaveFileTXT_B(IntPtr pafHandle, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_C(IntPtr pafHandle, RegistroHD1Rec RegistroC1, RegistroC2Rec[] RegistroC2, int CountC2, string Arquivo);
+		public static extern int PAF_SaveFileTXT_C(IntPtr pafHandle, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_D(IntPtr pafHandle, RegistroHD1Rec RegistroD1, RegistroD2Rec[] RegistroD2, int CountD2, RegistroD3Rec[] RegistroD3, string Arquivo);
+		public static extern int PAF_SaveFileTXT_D(IntPtr pafHandle, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_E(IntPtr pafHandle, RegistroHD2Rec RegistroE1, RegistroE2Rec[] RegistroE2, int CountE2, string Arquivo);
+		public static extern int PAF_SaveFileTXT_E(IntPtr pafHandle, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_H(IntPtr pafHandle, RegistroHD2Rec RegistroH1, RegistroH2Rec[] RegistroH2, int CountH2, string Arquivo);
+		public static extern int PAF_SaveFileTXT_H(IntPtr pafHandle, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_N(IntPtr pafHandle, RegistroHD1Rec RegistroN1, RegistroN2Rec RegistroN2, RegistroN3Rec[] RegistroN3, int CountN3, string Arquivo);
+		public static extern int PAF_SaveFileTXT_N(IntPtr pafHandle, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_P(IntPtr pafHandle, RegistroHD1Rec RegistroP1, RegistroP2Rec[] RegistroP2, int CountP2, string Arquivo);
+		public static extern int PAF_SaveFileTXT_P(IntPtr pafHandle, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_R(IntPtr pafHandle, RegistroR1Rec[] RegistroR1, int CountR1, RegistroR2Rec[] RegistroR2, RegistroR3Rec[] RegistroR3, RegistroR4Rec[] RegistroR4, RegistroR5Rec[] RegistroR5, RegistroR6Rec[] RegistroR6, RegistroR7Rec[] RegistroR7, string Arquivo);
+		public static extern int PAF_SaveFileTXT_R(IntPtr pafHandle, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_T(IntPtr pafHandle, RegistroHD1Rec RegistroT1, RegistroT2Rec[] RegistroT2, int CountT2, string Arquivo);
+		public static extern int PAF_SaveFileTXT_T(IntPtr pafHandle, string Arquivo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int PAF_SaveFileTXT_TITP(IntPtr pafHandle, RegistroMercadoriasRec[] RegistroMercadorias, int Count, RegistroInsumosRec[] RegistroInsumos, string Arquivo, string titulo, double data);
+		public static extern int PAF_SaveFileTXT_TITP(IntPtr pafHandle, string Arquivo);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int PAF_SaveFileTXT_RegistrosPAF(IntPtr pafHandle, string Arquivo);
 
 		#endregion SaveFile
 

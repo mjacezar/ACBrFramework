@@ -614,19 +614,9 @@ namespace ACBrFramework.TEFD
 		{
 			int ret = ACBrTEFInterop.TEF_AtivarGP(this.Handle, (int)gp);
 			CheckResult(ret);
-		}
+		}        
 
-		public bool CRT(decimal valor, string indiceFPG_ECF)
-		{
-			return CRT(valor, indiceFPG_ECF, string.Empty, 0);
-		}
-
-		public bool CRT(decimal valor, string indiceFPG_ECF, string documentoVinculado)
-		{
-			return CRT(valor, indiceFPG_ECF, documentoVinculado, 0);
-		}
-
-		public bool CRT(decimal valor, string indiceFPG_ECF, string documentoVinculado, int moeda)
+		public bool CRT(decimal valor, string indiceFPG_ECF, string documentoVinculado = "", int moeda = 0)
 		{
 			int ret = ACBrTEFInterop.TEF_CRT(this.Handle, Convert.ToDouble(valor), ToUTF8(indiceFPG_ECF), ToUTF8(documentoVinculado), moeda);
 			CheckResult(ret);
@@ -634,17 +624,14 @@ namespace ACBrFramework.TEFD
 			return ret == 1;
 		}
 
-		public bool CHQ(decimal valor, string indiceFPG_ECF)
+		public bool CHQ(decimal valor, string indiceFPG_ECF, string documentoVinculado = "", string CMC7 = "",
+            char tipoPessoa = 'F', string documentoPessoa = "", DateTime DataCheque = default(DateTime), string banco = "",
+            string agencia = "",	string agenciaDC = "", string conta = "", string contaDC = "", string cheque = "", 
+            string chequeDC = "", string compensacao = "")
 		{
-			return CHQ(valor, indiceFPG_ECF, string.Empty, string.Empty, 'F', string.Empty,
-				DateTime.Now, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty,
-				string.Empty, string.Empty);
-		}
+            if(DataCheque == default(DateTime))
+                DataCheque = DateTime.Now;
 
-		public bool CHQ(decimal valor, string indiceFPG_ECF, string documentoVinculado, string CMC7, char tipoPessoa,
-			string documentoPessoa, DateTime DataCheque, string banco, string agencia,
-			string agenciaDC, string conta, string contaDC, string cheque, string chequeDC, string compensacao)
-		{
 			int ret = ACBrTEFInterop.TEF_CHQ(this.Handle, Convert.ToDouble(valor), ToUTF8(indiceFPG_ECF), ToUTF8(documentoVinculado), ToUTF8(CMC7),
 				tipoPessoa, ToUTF8(documentoPessoa), DataCheque.ToOADate(), ToUTF8(banco), ToUTF8(agencia),
 				ToUTF8(agenciaDC), ToUTF8(conta), ToUTF8(contaDC), ToUTF8(cheque), ToUTF8(chequeDC), ToUTF8(compensacao));
@@ -653,23 +640,13 @@ namespace ACBrFramework.TEFD
 			return ret == 1;
 		}
 
-		public void ATV()
-		{
-			ATV(TefTipo.Nenhum);
-		}
-
-		public void ATV(TefTipo gp)
+		public void ATV(TefTipo gp = TefTipo.Nenhum)
 		{
 			int ret = ACBrTEFInterop.TEF_ATV(this.Handle, (int)gp);
 			CheckResult(ret);
 		}
 
-		public bool ADM()
-		{
-			return ADM(TefTipo.Nenhum);
-		}
-
-		public bool ADM(TefTipo gp)
+		public bool ADM(TefTipo gp = TefTipo.Nenhum)
 		{
 			int ret = ACBrTEFInterop.TEF_ADM(this.Handle, (int)gp);
 			CheckResult(ret);
@@ -685,28 +662,13 @@ namespace ACBrFramework.TEFD
 			return ret == 1;
 		}
 
-		public void CNF(string rede, string nsu, string finalizacao)
-		{
-			CNF(rede, nsu, finalizacao, string.Empty);
-		}
-
-		public void CNF(string rede, string nsu, string finalizacao, string documentoVinculado)
+		public void CNF(string rede, string nsu, string finalizacao, string documentoVinculado = "")
 		{
 			int ret = ACBrTEFInterop.TEF_CNF(this.Handle, rede, nsu, finalizacao, documentoVinculado);
 			CheckResult(ret);
 		}
 
-		public void NCN(string rede, string nsu, string finalizacao)
-		{
-			NCN(rede, nsu, finalizacao, 0M, string.Empty);
-		}
-
-		public void NCN(string rede, string nsu, string finalizacao, decimal valor)
-		{
-			NCN(rede, nsu, finalizacao, valor, string.Empty);
-		}
-
-		public void NCN(string rede, string nsu, string finalizacao, decimal valor, string documentoVinculado)
+		public void NCN(string rede, string nsu, string finalizacao, decimal valor = 0M, string documentoVinculado = "")
 		{
 			int ret = ACBrTEFInterop.TEF_NCN(this.Handle, rede, nsu, finalizacao, Convert.ToDouble(valor), documentoVinculado);
 			CheckResult(ret);
@@ -729,13 +691,8 @@ namespace ACBrFramework.TEFD
 			int ret = ACBrTEFInterop.TEF_ImprimirTransacoesPendentes(this.Handle);
 			CheckResult(ret);
 		}
-
-		public void FinalizarCupom()
-		{
-			FinalizarCupom(true);
-		}
-
-		public void FinalizarCupom(bool bloqueia)
+        
+		public void FinalizarCupom(bool bloqueia = true)
 		{
 			int ret = ACBrTEFInterop.TEF_FinalizarCupom(this.Handle, bloqueia);
 			CheckResult(ret);
@@ -799,11 +756,11 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnExibeMensagemCallback(OperacaoMensagem Operacao, string Mensagem, ref ModalResult AModalResult)
+		private void OnExibeMensagemCallback(int Operacao, string Mensagem, ref ModalResult AModalResult)
 		{
 			if (onExibeMensagem.IsAssigned)
 			{
-				ExibeMensagemEventArgs e = new ExibeMensagemEventArgs(Operacao, FromUTF8(Mensagem));
+				ExibeMensagemEventArgs e = new ExibeMensagemEventArgs((OperacaoMensagem)Operacao, FromUTF8(Mensagem));
 				onExibeMensagem.Raise(e);
 				AModalResult = e.ModalResult;
 			}
@@ -843,7 +800,7 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnComandaECFCallback(OperacaoECF Operacao, IntPtr respHandle, ref int RetornoECF)
+		private void OnComandaECFCallback(int Operacao, IntPtr respHandle, ref int RetornoECF)
 		{
 			if (onComandaECF.IsAssigned)
 			{
@@ -858,7 +815,7 @@ namespace ACBrFramework.TEFD
 					resp = new Resp(this, respHandle);
 				}
 
-				ComandaECFEventArgs e = new ComandaECFEventArgs(Operacao, resp);
+				var e = new ComandaECFEventArgs((OperacaoECF)Operacao, resp);
 				onComandaECF.Raise(e);
 				RetornoECF = e.RetornoECF ? 1 : 0;
 			}
@@ -869,7 +826,7 @@ namespace ACBrFramework.TEFD
 		{
 			if (onComandaECFSubtotaliza.IsAssigned)
 			{
-				ComandaECFSubtotalizaEventArgs e = new ComandaECFSubtotalizaEventArgs(Convert.ToDecimal(DescAcre));
+				var e = new ComandaECFSubtotalizaEventArgs(Convert.ToDecimal(DescAcre));
 				onComandaECFSubtotaliza.Raise(e);
 				RetornoECF = e.RetornoECF ? 1 : 0;
 			}
@@ -880,7 +837,7 @@ namespace ACBrFramework.TEFD
 		{
 			if (onComandaECFPagamento.IsAssigned)
 			{
-				ComandaECFPagamentoEventArgs e = new ComandaECFPagamentoEventArgs(IndiceECF, Convert.ToDecimal(Valor));
+				var e = new ComandaECFPagamentoEventArgs(IndiceECF, Convert.ToDecimal(Valor));
 				onComandaECFPagamento.Raise(e);
 				RetornoECF = e.RetornoECF ? 1 : 0;
 			}
@@ -891,20 +848,20 @@ namespace ACBrFramework.TEFD
 		{
 			if (onComandaECFAbreVinculado.IsAssigned)
 			{
-				ComandaECFAbreVinculadoEventArgs e = new ComandaECFAbreVinculadoEventArgs(COO, IndiceECF, Convert.ToDecimal(Valor));
+				var e = new ComandaECFAbreVinculadoEventArgs(COO, IndiceECF, Convert.ToDecimal(Valor));
 				onComandaECFAbreVinculado.Raise(e);
 				RetornoECF = e.RetornoECF ? 1 : 0;
 			}
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnComandaECFImprimeViaCallback(TipoRelatorio TipoRelatorio, int Via, IntPtr ImagemComprovante, int ImagemComprovanteCount, ref int RetornoECF)
+		private void OnComandaECFImprimeViaCallback(int TipoRelatorio, int Via, IntPtr ImagemComprovante, int ImagemComprovanteCount, ref int RetornoECF)
 		{
 			if (onComandaECFImprimeVia.IsAssigned)
 			{
 				string[] imagemComprovante = GetStringArray(ImagemComprovante, ImagemComprovanteCount);
 
-				ComandaECFImprimeViaEventArgs e = new ComandaECFImprimeViaEventArgs(TipoRelatorio, Via, imagemComprovante);
+                var e = new ComandaECFImprimeViaEventArgs((TipoRelatorio)TipoRelatorio, Via, imagemComprovante);
 				onComandaECFImprimeVia.Raise(e);
 
 				RetornoECF = e.RetornoECF ? 1 : 0;
@@ -912,11 +869,11 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnInfoECFCallback(InfoECF Operacao, StringBuilder RetornoECF, int RetornoECFLen)
+		private void OnInfoECFCallback(int Operacao, StringBuilder RetornoECF, int RetornoECFLen)
 		{
 			if (onInfoECF.IsAssigned)
 			{
-				InfoECFEventArgs e = new InfoECFEventArgs(Operacao);
+                var e = new InfoECFEventArgs((InfoECF)Operacao);
 				onInfoECF.Raise(e);
 
 				PrepareOutStringBuilder(RetornoECF, RetornoECFLen);
@@ -1009,21 +966,21 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnMudaEstadoReqCallback(ReqEstado EstadoReq)
+		private void OnMudaEstadoReqCallback(int EstadoReq)
 		{
 			if (onMudaEstadoReq.IsAssigned)
 			{
-				MudaEstadoReqEventArgs e = new MudaEstadoReqEventArgs(EstadoReq);
+                var e = new MudaEstadoReqEventArgs((ReqEstado)EstadoReq);
 				onMudaEstadoReq.Raise(e);
 			}
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnMudaEstadoRespCallback(RespEstado EstadoResp)
+		private void OnMudaEstadoRespCallback(int EstadoResp)
 		{
 			if (onMudaEstadoResp.IsAssigned)
 			{
-				MudaEstadoRespEventArgs e = new MudaEstadoRespEventArgs(EstadoResp);
+                var e = new MudaEstadoRespEventArgs((RespEstado)EstadoResp);
 				onMudaEstadoResp.Raise(e);
 			}
 		}

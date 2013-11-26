@@ -251,7 +251,7 @@ namespace ACBrFramework.TEFD
 			{
 				string[] opcoes = GetStringArray(Opcoes, OpcoesCount);
 
-				TEFCliSiTefExibeMenuEventArgs e = new TEFCliSiTefExibeMenuEventArgs(Titulo, opcoes);
+				var e = new TEFCliSiTefExibeMenuEventArgs(Titulo, opcoes);
 				onExibeMenu.Raise(e);
 
 				ItemSelecionado = e.ItemSelecionado;
@@ -260,11 +260,11 @@ namespace ACBrFramework.TEFD
 		}
 
 		[AllowReversePInvokeCalls]
-		private void OnTEFCliSiTefObtemCampoCalback(string Titulo, int TamanhoMinimo, int TamanhoMaximo, int TipoCampo, TefCliSiTefOperacaoCampo Operacao, StringBuilder Resposta, int RespLen, ref bool Digitado, ref bool VoltarMenu)
+		private void OnTEFCliSiTefObtemCampoCalback(string Titulo, int TamanhoMinimo, int TamanhoMaximo, int TipoCampo, int Operacao, StringBuilder Resposta, int RespLen, ref bool Digitado, ref bool VoltarMenu)
 		{
 			if (onObtemCampo.IsAssigned)
 			{
-				TEFCliSiTefObtemCampoEventArgs e = new TEFCliSiTefObtemCampoEventArgs(Titulo, TamanhoMinimo, TamanhoMaximo, TipoCampo, Operacao);
+                var e = new TEFCliSiTefObtemCampoEventArgs(Titulo, TamanhoMinimo, TamanhoMaximo, TipoCampo, (TefCliSiTefOperacaoCampo)Operacao);
 				onObtemCampo.Raise(e);
 
 				PrepareOutStringBuilder(Resposta, RespLen);

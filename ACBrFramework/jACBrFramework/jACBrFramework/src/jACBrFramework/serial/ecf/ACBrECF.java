@@ -21,6 +21,7 @@ public final class ACBrECF extends ACBrClass
 	private Aliquota[] aliquotas;
 	private FormaPagamento[] formasPagamento;
 	private ComprovanteNaoFiscal[] comprovantesNaoFiscais;
+    private RelatorioGerencial[] relatoriosGerenciais;
 
 	// </editor-fold>
 	
@@ -3717,15 +3718,29 @@ public final class ACBrECF extends ACBrClass
 
 	}
 
-	public void carregaRelatoriosGerenciais() throws ACBrException
-	{
+    public void carregaRelatoriosGerenciais() throws ACBrException {
+        int ret = ACBrECFInterop.INSTANCE.ECF_CarregaRelatoriosGerenciais(getHandle());
+        checkResult(ret);
+        carregaRelatoriosGerenciais(ret);
+    }
+    
+    private void carregaRelatoriosGerenciais(int count) throws ACBrException {
+        RelatorioGerencial[] array = new RelatorioGerencial[count];
+        for (int i = 0; i < count; i++) {            
+            ACBrECFInterop.RelatorioGerencialRec record = new ACBrECFInterop.RelatorioGerencialRec();
+            int ret = ACBrECFInterop.INSTANCE.ECF_GetRelatoriosGerenciais(getHandle(), record, i);
+            checkResult(ret);
 
+            RelatorioGerencial item = new RelatorioGerencial(fromUTF8(record.Indice), fromUTF8(record.Descricao), record.Contador);
+            array[i] = item;
+        }
 
-		int ret = ACBrECFInterop.INSTANCE.ECF_CarregaRelatoriosGerenciais(getHandle());
-		checkResult(ret);
-
-
-	}
+        this.relatoriosGerenciais = array;
+    }   
+    
+    public RelatorioGerencial[] getRelatoriosGerenciais() throws ACBrException {
+        return relatoriosGerenciais;
+    }     
 
 	public void lerTotaisRelatoriosGerenciais() throws ACBrException
 	{

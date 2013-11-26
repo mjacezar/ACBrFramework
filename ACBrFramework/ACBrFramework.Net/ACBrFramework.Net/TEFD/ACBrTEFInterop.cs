@@ -22,7 +22,7 @@ namespace ACBrFramework.TEFD
 		public delegate void AguardaRespCallback(string Arquivo, int SegundosTimeOut, ref bool Interromper);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void ExibeMsgCallback(OperacaoMensagem Operacao, string Mensagem, ref ModalResult AModalResult);
+		public delegate void ExibeMsgCallback(int Operacao, string Mensagem, ref ModalResult AModalResult);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void BloqueiaMouseTecladoCallback(bool Bloqueia, ref bool Tratado);
@@ -31,7 +31,7 @@ namespace ACBrFramework.TEFD
 		public delegate void ExecutaAcaoCallback(ref bool Tratado);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void ComandaECFCallback(OperacaoECF Operacao, IntPtr Resp, ref int RetornoECF);
+		public delegate void ComandaECFCallback(int Operacao, IntPtr Resp, ref int RetornoECF);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void ComandaECFSubtotalizaCallback(double DescAcre, ref int RetornoECF);
@@ -43,10 +43,10 @@ namespace ACBrFramework.TEFD
 		public delegate void ComandaECFAbreVinculadoCallback(string COO, string IndiceECF, double Valor, ref int RetornoECF);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void ComandaECFImprimeViaCallback(TipoRelatorio TipoRelatorio, int Via, IntPtr ImagemComprovante, int ImagemComprovanteCount, ref int RetornoECF);
+		public delegate void ComandaECFImprimeViaCallback(int TipoRelatorio, int Via, IntPtr ImagemComprovante, int ImagemComprovanteCount, ref int RetornoECF);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void InfoECFCallback(InfoECF Operacao, StringBuilder RetornoECF, int RetornoECFLen);
+		public delegate void InfoECFCallback(int Operacao, StringBuilder RetornoECF, int RetornoECFLen);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void AntesFinalizarRequisicaoCallback(IntPtr Req);
@@ -61,16 +61,16 @@ namespace ACBrFramework.TEFD
 		public delegate void DepoisCancelarTransacoesCallback(IntPtr RespostasPendentes);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void MudaEstadoReqCallback(ReqEstado EstadoReq);
+		public delegate void MudaEstadoReqCallback(int EstadoReq);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void MudaEstadoRespCallback(RespEstado EstadoResp);
+		public delegate void MudaEstadoRespCallback(int EstadoResp);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void TEFCliSiTefExibeMenuCallback(string Titulo, IntPtr Opcoes, int OpcoesCount, ref int ItemSelecionado, ref bool VoltarMenu);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void TEFCliSiTefObtemCampoCalback(string Titulo, int TamanhoMinimo, int TamanhoMaximo, int TipoCampo, TefCliSiTefOperacaoCampo Operacao, StringBuilder Resposta, int RespLen, ref bool Digitado, ref bool VoltarMenu);
+		public delegate void TEFCliSiTefObtemCampoCalback(string Titulo, int TamanhoMinimo, int TamanhoMaximo, int TipoCampo, int Operacao, StringBuilder Resposta, int RespLen, ref bool Digitado, ref bool VoltarMenu);
 
 		#endregion InteropTypes
 
