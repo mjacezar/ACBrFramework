@@ -48,6 +48,7 @@
             this.descriptionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.respListBox = new System.Windows.Forms.ListBox();
             this.btnTipoN = new System.Windows.Forms.Button();
+            this.btnRegistroECF = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -247,11 +248,22 @@
             this.btnTipoN.UseVisualStyleBackColor = true;
             this.btnTipoN.Click += new System.EventHandler(this.btnTipoN_Click);
             // 
+            // btnRegistroECF
+            // 
+            this.btnRegistroECF.Location = new System.Drawing.Point(335, 162);
+            this.btnRegistroECF.Name = "btnRegistroECF";
+            this.btnRegistroECF.Size = new System.Drawing.Size(102, 23);
+            this.btnRegistroECF.TabIndex = 29;
+            this.btnRegistroECF.Text = "Registros ECF";
+            this.btnRegistroECF.UseVisualStyleBackColor = true;
+            this.btnRegistroECF.Click += new System.EventHandler(this.btnRegistroECF_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(449, 353);
+            this.Controls.Add(this.btnRegistroECF);
             this.Controls.Add(this.btnTipoN);
             this.Controls.Add(this.respListBox);
             this.Controls.Add(this.statusStrip1);
@@ -301,6 +313,7 @@
 		private System.Windows.Forms.ToolStripStatusLabel descriptionToolStripStatusLabel;
 		private System.Windows.Forms.ListBox respListBox;
         private System.Windows.Forms.Button btnTipoN;
+        private System.Windows.Forms.Button btnRegistroECF;
 	}
 }
 

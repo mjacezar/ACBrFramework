@@ -198,20 +198,28 @@
     <Compile Include="PAF\Classes\TipoDesenvolvimento.cs" />
     <Compile Include="PAF\Classes\TipoFuncionamento.cs" />
     <Compile Include="PAF\Classes\TipoIntegracao.cs" />
+    <Compile Include="PAF\Registros\PAF_A\ACBrPAFRegistroA1.cs" />
+    <Compile Include="PAF\Registros\PAF_A\ACBrPAFRegistroA2.cs" />
+    <Compile Include="PAF\Registros\PAF_A\ACBrPAFRegistrosA2.cs" />
+    <Compile Include="PAF\Registros\PAF_A\ACBrPAF_A.cs" />
+    <Compile Include="PAF\Registros\PAF_A\CodigoTipoDocumento.cs" />
     <Compile Include="PAF\Registros\PAF_B\ACBrPAFRegistroB1.cs" />
     <Compile Include="PAF\Registros\PAF_B\ACBrPAFRegistroB2.cs" />
     <Compile Include="PAF\Registros\PAF_C\ACBrPAFRegistrosC2.cs" />
+    <Compile Include="PAF\Registros\PAF_D\ACBrPAFRegistroD4.cs" />
     <Compile Include="PAF\Registros\PAF_D\ACBrPAFRegistrosD2.cs" />
     <Compile Include="PAF\Registros\PAF_C\ACBrPAF_C.cs" />
     <Compile Include="PAF\Registros\PAF_C\ACBrPAFRegistroC1.cs" />
     <Compile Include="PAF\Registros\PAF_C\ACBrPAFRegistroC2.cs" />
     <Compile Include="PAF\Registros\PAF_D\ACBrPAFRegistrosD3.cs" />
+    <Compile Include="PAF\Registros\PAF_D\ACBrPAFRegistrosD4.cs" />
     <Compile Include="PAF\Registros\PAF_D\ACBrPAF_D.cs" />
     <Compile Include="PAF\Registros\PAF_D\ACBrPAFRegistroD1.cs" />
     <Compile Include="PAF\Registros\PAF_D\ACBrPAFRegistroD2.cs" />
     <Compile Include="PAF\Registros\PAF_D\ACBrPAFRegistroD3.cs" />
     <Compile Include="PAF\Registros\PAF_E\ACBrPAFRegistroE1.cs" />
     <Compile Include="PAF\Registros\PAF_E\ACBrPAFRegistroE2.cs" />
+    <Compile Include="PAF\Registros\PAF_E\ACBrPAFRegistroE3.cs" />
     <Compile Include="PAF\Registros\PAF_H\ACBrPAFRegistroH1.cs" />
     <Compile Include="PAF\Registros\PAF_H\ACBrPAFRegistroH2.cs" />
     <Compile Include="PAF\Registros\PAF_H\ACBrPAF_H.cs" />
@@ -253,6 +261,8 @@
     <Compile Include="PAF\Registros\PAF_T\ACBrPAFRegistrosT2.cs" />
     <Compile Include="PAF\Registros\PAF_T\ACBrPAFRegistroT2.cs" />
     <Compile Include="PAF\Registros\PAF_T\ACBrPAF_T.cs" />
+    <Compile Include="PAF\Registros\PAF_U\ACBrPAFRegistroU1.cs" />
+    <Compile Include="PAF\Registros\PAF_U\ACBrPAF_U.cs" />
     <Compile Include="Properties\Framework32.Designer.cs" Condition=" $(Platform) == x86 ">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

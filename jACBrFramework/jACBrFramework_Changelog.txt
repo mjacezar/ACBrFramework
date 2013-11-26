@@ -41,6 +41,15 @@ Símbolo : Significado
 
 Changelog
 
+22/11/2013
+
+-- jACBrFramework --
+[+] Propriedades Relatorios Gerenciais e Metodos - ACBrECF - jmsandy.
+    http://www.projetoacbr.com.br/forum/index.php?/topic/13332-patch-relatorios-gerenciais/
+
+[+] Adicionado a função carregaComprovantesNaoFiscais - ACBrECF - jmsandy;
+    http://www.projetoacbr.com.br/forum/index.php?/topic/13205-path-totalizadores-n%C3%A3o-fiscais/
+
 06/03/2013
 
 -- jACBrFramework --

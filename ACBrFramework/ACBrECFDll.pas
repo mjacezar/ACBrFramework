@@ -5848,6 +5848,7 @@ Function ECF_LeituraMemoriaFiscalSerialReducao(const ecfHandle: PECFHandle; cons
    var lista : TStringList;
 begin
 
+  try
   if (ecfHandle = nil) then
   begin
      Result := -2;
@@ -5862,14 +5863,15 @@ begin
 
      StrPLCopy(Buffer, lista.DelimitedText, BufferLen);
      Result := length(lista.DelimitedText);
-
-     lista.Free;
   except
      on exception : Exception do
      begin
         ecfHandle^.UltimoErro := exception.Message;
         Result  := -1;
      end
+  end;
+  finally
+    FreeAndNil(lista);
   end;
 end;
 
@@ -5878,6 +5880,7 @@ Function ECF_LeituraMemoriaFiscalSerialData(const ecfHandle: PECFHandle; const D
 
 begin
 
+  try
   if (ecfHandle = nil) then
   begin
      Result := -2;
@@ -5893,14 +5896,15 @@ begin
      StrPLCopy(Buffer, lista.DelimitedText, BufferLen);
      Result := length(lista.DelimitedText);
 
-     lista.Free;
-
   except
      on exception : Exception do
      begin
         ecfHandle^.UltimoErro := exception.Message;
         Result  := -1;
      end
+  end;
+  finally
+    FreeAndNil(lista);
   end;
 end;
 
@@ -8284,6 +8288,8 @@ var
   Lista: TStringList;
 begin
 
+  try
+
   if (ecfHandle = nil) then
   begin
      Result := -2;
@@ -8304,6 +8310,9 @@ begin
         ecfHandle^.UltimoErro := exception.Message;
         Result := -1;
      end
+  end;
+  finally
+    FreeAndNil(Lista);
   end;
 end;
 

@@ -8,19 +8,20 @@ namespace ACBrFramework.PAF
 #if COM_INTEROP
 
     [ComVisible(true)]
-    [Guid("B23B571D-EA5D-4900-AB81-8C0421952F0A")]
+    [Guid("218422c6-f2ee-47dc-aea0-dc8f66b0d031")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
 
     #endregion COM_INTEROP
 
-	public sealed class ACBrPAFRegistroD2
+    public sealed class ACBrPAFRegistroD2
 	{
 		#region Constructor
 
 		public ACBrPAFRegistroD2()
 		{
 			RegistroD3 = new ACBrPAFRegistrosD3();
+            RegistroD4 = new ACBrPAFRegistrosD4();
 		}
 
 		#endregion Constructor
@@ -75,6 +76,8 @@ namespace ACBrFramework.PAF
 		public bool RegistroValido { get; set; }
 
 		public ACBrPAFRegistrosD3 RegistroD3 { get; private set; }
+
+        public ACBrPAFRegistrosD4 RegistroD4 { get; private set; }
 
 		#endregion Properties
 	}

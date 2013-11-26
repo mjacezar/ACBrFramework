@@ -1129,8 +1129,7 @@ namespace ACBrFramework.TEFDTeste
                 }
                 else if (e.Operacao == InfoECF.SubTotal)
                 {
-                    decimal valor = 0;
-                    valor += acBrECF1.SubTotal;
+                    decimal valor = acBrECF1.SubTotal;
                     valor -= acBrECF1.TotalPago + decimal.Parse(txtDescAcresc.Text);
                     e.Value = valor;
                 }
@@ -1463,8 +1462,7 @@ namespace ACBrFramework.TEFDTeste
             }
         }
 
-		#endregion Eventos ECF        
-		
+		#endregion Eventos ECF        		
 
 		#endregion EventHandlers
         
