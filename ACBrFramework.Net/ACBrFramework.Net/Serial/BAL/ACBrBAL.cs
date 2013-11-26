@@ -48,7 +48,7 @@ namespace ACBrFramework.BAL
     #endregion Documentation
 
     [ComVisible(true)]
-    [Guid("64B823A3-9D78-4AA8-8F69-01D660139B39")]
+    [Guid("3950B46A-0DA3-4F1C-99EE-2CEC5EA457F2")]
     [InterfaceType(ComInterfaceType.InterfaceIsIDispatch)]
     public interface IACBrBALEvents
     {

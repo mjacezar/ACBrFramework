@@ -41,6 +41,12 @@ Símbolo : Significado
 
 Changelog
 
+26/11/2013
+
+-- jACBrFramework --
+[-] Correção na classe Aliquota - ACBrECF - jmsandy.
+    http://www.projetoacbr.com.br/forum/index.php?/topic/13369-patch-recupera%C3%A7%C3%A3o-tipos-de-al%C3%ADquota/
+
 22/11/2013
 
 -- jACBrFramework --

@@ -30,7 +30,7 @@ public interface ACBrECFInterop extends InteropLib
 	{
 		public byte[] Indice = new byte[4];
 		public double Aliquota;
-		public boolean Tipo;
+		public char Tipo;
 		public double Total;
 		public boolean Sequencia;
 
