@@ -41,6 +41,11 @@ Símbolo : Significado
 
 Changelog
 
+26/11/2013
+
+-- ACBrFramework 0.9.5.0 --
+[-] Corrigido erros na compilação COMInterop - ACBrFramework - Rafael Dias.
+
 25/11/2013
 
 -- ACBrFramework 0.9.5.0 --

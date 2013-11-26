@@ -10,7 +10,7 @@ namespace ACBrFramework.PAF
 #if COM_INTEROP
 
     [ComVisible(true)]
-    [Guid("95a1cc87-c985-49ff-bf02-a9980e96883a")]
+    [Guid("25392B3C-3C1A-4262-BEFC-EE51A801B456")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
 

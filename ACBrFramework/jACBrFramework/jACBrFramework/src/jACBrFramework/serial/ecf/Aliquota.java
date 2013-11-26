@@ -6,7 +6,7 @@ public class Aliquota
 
 	private String indice;
 	private double aliquota;
-	private boolean tipo;
+	private char tipo;
 	private double total;
 	private boolean sequencia;
 
@@ -14,7 +14,7 @@ public class Aliquota
 		
 	//<editor-fold defaultstate="collapsed" desc="Constructor">
 	
-	public Aliquota(String indice, double aliquota, boolean tipo, double total, boolean sequencia)
+	public Aliquota(String indice, double aliquota, char tipo, double total, boolean sequencia)
 	{
 		this.indice = indice;
 		this.aliquota = aliquota;
@@ -37,7 +37,7 @@ public class Aliquota
 		return aliquota;
 	}
 
-	public boolean getTipo()
+	public char getTipo()
 	{
 		return tipo;
 	}

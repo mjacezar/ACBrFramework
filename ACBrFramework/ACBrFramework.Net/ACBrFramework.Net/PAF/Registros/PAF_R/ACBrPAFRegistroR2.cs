@@ -8,13 +8,13 @@ namespace ACBrFramework.PAF
 #if COM_INTEROP
 
     [ComVisible(true)]
-    [Guid("3199D2BB-2FD2-40E9-84C4-52A2AD48DFB4")]
+    [Guid("B027DF52-B1C7-46F8-A362-4F83235EE9C0")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
 
     #endregion COM_INTEROP
 
-	public sealed class ACBrPAFRegistroR2
+    public sealed class ACBrPAFRegistroR2
 	{
 		#region Constructor
 
