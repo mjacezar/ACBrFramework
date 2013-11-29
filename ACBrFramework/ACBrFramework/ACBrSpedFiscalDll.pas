@@ -6863,6 +6863,9 @@ SPDF_Bloco_0_Registro0450New,
 SPDF_Bloco_0_Registro0460New,
 SPDF_Bloco_0_Registro0500New,
 SPDF_Bloco_0_Registro0600New,
+SPDF_Bloco_1_Registro1700New,
+SPDF_Bloco_1_Registro1710New,
+SPDF_Bloco_1_Registro1800New,
 SPDF_Bloco_0_Registro0990_GetQTD_LIN_0,
 
 {%endregion Bloco0}
@@ -6887,6 +6890,8 @@ SPDF_Bloco_1_Registro1360New,
 SPDF_Bloco_1_Registro1370New,
 SPDF_Bloco_1_Registro1390New,
 SPDF_Bloco_1_Registro1400New,
+SPDF_Bloco_1_Registro1500New,
+SPDF_Bloco_1_Registro1600New,
 SPDF_Bloco_1_Registro1990_GetQTD_LIN_1,
 
 {%endregion Bloco1}
