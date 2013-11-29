@@ -8112,6 +8112,26 @@ except
 end;
 end;
 
+Function ECF_PafMF_RelParametrosConfiguracao2(const ecfHandle: PECFHandle; const Perfil: pChar; const indiceRelatorio : Integer) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+if (ecfHandle = nil) then
+begin
+   Result := -2;
+   Exit;
+end;
+
+try
+   ecfHandle^.ECF.PafMF_RelParametrosConfiguracao(Perfil, indiceRelatorio);
+   Result := 0;
+except
+   on exception : Exception do
+   begin
+   ecfHandle^.UltimoErro := exception.Message;
+   Result := -1;
+   end
+end;
+end;
+
 {%endregion}
 
 {%region Relatorio Gerencial }
@@ -11179,7 +11199,7 @@ ECF_DAV_Fechar, ECF_PafMF_RelDAVEmitidos,
 {Paf Rels}
 
 ECF_PafMF_RelMeiosPagamento, ECF_PafMF_RelIdentificacaoPafECF,
-ECF_PafMF_RelParametrosConfiguracao,
+ECF_PafMF_RelParametrosConfiguracao, ECF_PafMF_RelParametrosConfiguracao2,
 
 { Bobina }
 

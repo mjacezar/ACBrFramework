@@ -22,7 +22,7 @@
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="5"/>
-      <BuildNr Value="1"/>
+      <BuildNr Value="2"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -68,10 +68,12 @@
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="2760"/>
-        <CursorPos X="7" Y="2780"/>
+        <TopLine Value="8088"/>
+        <CursorPos X="1" Y="8123"/>
+        <FoldState Value=" T3lwI0Q1b"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <WindowIndex Value="0"/>
@@ -116,10 +118,12 @@
       <Unit6>
         <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
         <UnitName Value="ACBrECF"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="320"/>
-        <CursorPos X="42" Y="351"/>
+        <TopLine Value="769"/>
+        <CursorPos X="14" Y="783"/>
         <UsageCount Value="98"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -155,7 +159,7 @@
         <Filename Value="ACBrPAFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrPAFDll"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1822"/>
         <CursorPos X="47" Y="1849"/>
@@ -166,7 +170,7 @@
       <Unit11>
         <Filename Value="..\..\ACBr\Fontes\ACBrTEFD\ACBrTEFDClass.pas"/>
         <UnitName Value="ACBrTEFDClass"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="138"/>
         <CursorPos X="3" Y="160"/>
@@ -253,8 +257,7 @@
         <Filename Value="ACBrSpedFiscalDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrSpedFiscaldll"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="522"/>
         <CursorPos X="1" Y="6842"/>
@@ -276,7 +279,7 @@
         <Filename Value="ACBrTEFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrTEFDll"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="7805"/>
         <CursorPos X="28" Y="9761"/>
@@ -433,7 +436,7 @@
       <Unit38>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
         <UnitName Value="pcnGerador"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="13"/>
         <WindowIndex Value="0"/>
         <TopLine Value="830"/>
         <CursorPos X="36" Y="838"/>
@@ -542,7 +545,7 @@
       <Unit51>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFeNotasFiscais.pas"/>
         <UnitName Value="ACBrNFeNotasFiscais"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <WindowIndex Value="0"/>
         <TopLine Value="357"/>
         <CursorPos X="30" Y="364"/>
@@ -583,7 +586,7 @@
       <Unit56>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFe.pas"/>
         <UnitName Value="ACBrNFe"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="121"/>
         <CursorPos X="33" Y="129"/>
@@ -603,7 +606,7 @@
       <Unit58>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFe.pas"/>
         <UnitName Value="pcnNFe"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="14"/>
         <WindowIndex Value="0"/>
         <TopLine Value="970"/>
         <CursorPos X="14" Y="981"/>
@@ -706,7 +709,7 @@
       <Unit70>
         <Filename Value="..\..\ACBr\Fontes\ACBrTEFD\ACBrTEFDCliSiTef.pas"/>
         <UnitName Value="ACBrTEFDCliSiTef"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="74"/>
         <CursorPos X="3" Y="97"/>
@@ -794,7 +797,7 @@
       <Unit80>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFeWebServices.pas"/>
         <UnitName Value="ACBrNFeWebServices"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <WindowIndex Value="0"/>
         <TopLine Value="114"/>
         <CursorPos X="3" Y="122"/>
@@ -805,7 +808,7 @@
       <Unit81>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnNFeW.pas"/>
         <UnitName Value="pcnNFeW"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1098"/>
         <CursorPos X="45" Y="1106"/>
@@ -816,7 +819,7 @@
       <Unit82>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnAuxiliar.pas"/>
         <UnitName Value="pcnAuxiliar"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="12"/>
         <WindowIndex Value="0"/>
         <TopLine Value="322"/>
         <CursorPos X="24" Y="335"/>
@@ -1022,7 +1025,7 @@
       <Unit105>
         <Filename Value="..\..\ACBr\Fontes\ACBrPAF\ACBrPAF.pas"/>
         <UnitName Value="ACBrPAF"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="131"/>
         <CursorPos X="38" Y="146"/>
@@ -1033,7 +1036,7 @@
       <Unit106>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnEnvEventoNFe.pas"/>
         <UnitName Value="pcnEnvEventoNFe"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="16"/>
         <WindowIndex Value="0"/>
         <TopLine Value="64"/>
         <CursorPos X="3" Y="62"/>
@@ -1044,7 +1047,7 @@
       <Unit107>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnDownloadNFe.pas"/>
         <UnitName Value="pcnDownloadNFe"/>
-        <EditorIndex Value="17"/>
+        <EditorIndex Value="18"/>
         <WindowIndex Value="0"/>
         <TopLine Value="59"/>
         <CursorPos X="4" Y="71"/>
@@ -1055,7 +1058,7 @@
       <Unit108>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnEventoNFe.pas"/>
         <UnitName Value="pcnEventoNFe"/>
-        <EditorIndex Value="16"/>
+        <EditorIndex Value="17"/>
         <WindowIndex Value="0"/>
         <TopLine Value="81"/>
         <CursorPos X="40" Y="106"/>
@@ -1075,7 +1078,7 @@
       <Unit110>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnCancNFe.pas"/>
         <UnitName Value="pcnCancNFe"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="15"/>
         <WindowIndex Value="0"/>
         <TopLine Value="82"/>
         <CursorPos X="3" Y="60"/>
@@ -1098,119 +1101,127 @@
         <UsageCount Value="10"/>
       </Unit112>
     </Units>
-    <JumpHistory Count="28" HistoryIndex="27">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="5889" Column="28" TopLine="5873"/>
-      </Position1>
-      <Position2>
-        <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="5891" Column="26" TopLine="5873"/>
-      </Position2>
-      <Position3>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFe.pas"/>
         <Caret Line="107" Column="6" TopLine="94"/>
-      </Position3>
-      <Position4>
+      </Position1>
+      <Position2>
         <Filename Value="..\..\ACBr\Fontes\ACBrNFe2\ACBrNFeWebServices.pas"/>
         <Caret Line="530" Column="16" TopLine="517"/>
+      </Position2>
+      <Position3>
+        <Filename Value="ACBrTEFDll.pas"/>
+        <Caret Line="17" Column="54" TopLine="4"/>
+      </Position3>
+      <Position4>
+        <Filename Value="ACBrTEFDll.pas"/>
+        <Caret Line="9722" Column="42" TopLine="9701"/>
       </Position4>
       <Position5>
         <Filename Value="ACBrTEFDll.pas"/>
-        <Caret Line="17" Column="54" TopLine="4"/>
+        <Caret Line="24" Column="77" TopLine="8"/>
       </Position5>
       <Position6>
         <Filename Value="ACBrTEFDll.pas"/>
-        <Caret Line="9722" Column="42" TopLine="9701"/>
+        <Caret Line="9755" Column="57" TopLine="9723"/>
       </Position6>
       <Position7>
         <Filename Value="ACBrTEFDll.pas"/>
-        <Caret Line="24" Column="77" TopLine="8"/>
+        <Caret Line="50" Column="3" TopLine="28"/>
       </Position7>
       <Position8>
         <Filename Value="ACBrTEFDll.pas"/>
-        <Caret Line="9755" Column="57" TopLine="9723"/>
+        <Caret Line="9831" Column="107" TopLine="9804"/>
       </Position8>
       <Position9>
         <Filename Value="ACBrTEFDll.pas"/>
-        <Caret Line="50" Column="3" TopLine="28"/>
+        <Caret Line="60" Column="3" TopLine="38"/>
       </Position9>
       <Position10>
         <Filename Value="ACBrTEFDll.pas"/>
-        <Caret Line="9831" Column="107" TopLine="9804"/>
+        <Caret Line="33" Column="174" TopLine="11"/>
       </Position10>
       <Position11>
         <Filename Value="ACBrTEFDll.pas"/>
-        <Caret Line="60" Column="3" TopLine="38"/>
+        <Caret Line="9769" Column="39" TopLine="9752"/>
       </Position11>
       <Position12>
         <Filename Value="ACBrTEFDll.pas"/>
-        <Caret Line="33" Column="174" TopLine="11"/>
+        <Caret Line="51" Column="3" TopLine="29"/>
       </Position12>
       <Position13>
-        <Filename Value="ACBrTEFDll.pas"/>
-        <Caret Line="9769" Column="39" TopLine="9752"/>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="8153" Column="49" TopLine="8138"/>
       </Position13>
       <Position14>
-        <Filename Value="ACBrTEFDll.pas"/>
-        <Caret Line="51" Column="3" TopLine="29"/>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="8324" Column="72" TopLine="8287"/>
       </Position14>
       <Position15>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="8153" Column="49" TopLine="8138"/>
+        <Caret Line="10984" Column="43" TopLine="10947"/>
       </Position15>
       <Position16>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="8324" Column="72" TopLine="8287"/>
+        <Caret Line="2778" Column="47" TopLine="2758"/>
       </Position16>
       <Position17>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="10984" Column="43" TopLine="10947"/>
+        <Caret Line="2773" Column="36" TopLine="2758"/>
       </Position17>
       <Position18>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="2778" Column="47" TopLine="2758"/>
+        <Caret Line="2784" Column="14" TopLine="2764"/>
       </Position18>
       <Position19>
         <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="2773" Column="36" TopLine="2758"/>
+        <Caret Line="2773" Column="4" TopLine="2751"/>
       </Position19>
       <Position20>
-        <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="2784" Column="14" TopLine="2764"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="1048" Column="1" TopLine="330"/>
       </Position20>
       <Position21>
-        <Filename Value="ACBrECFDll.pas"/>
-        <Caret Line="2773" Column="4" TopLine="2751"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="1920" Column="1" TopLine="1832"/>
       </Position21>
       <Position22>
         <Filename Value="ACBrPAFDll.pas"/>
-        <Caret Line="1048" Column="1" TopLine="330"/>
+        <Caret Line="29" Column="5" TopLine="7"/>
       </Position22>
       <Position23>
         <Filename Value="ACBrPAFDll.pas"/>
-        <Caret Line="1920" Column="1" TopLine="1832"/>
+        <Caret Line="1734" Column="34" TopLine="1142"/>
       </Position23>
       <Position24>
         <Filename Value="ACBrPAFDll.pas"/>
-        <Caret Line="29" Column="5" TopLine="7"/>
+        <Caret Line="2432" Column="3" TopLine="2398"/>
       </Position24>
       <Position25>
-        <Filename Value="ACBrPAFDll.pas"/>
-        <Caret Line="1734" Column="34" TopLine="1142"/>
-      </Position25>
-      <Position26>
-        <Filename Value="ACBrPAFDll.pas"/>
-        <Caret Line="2432" Column="3" TopLine="2398"/>
-      </Position26>
-      <Position27>
         <Filename Value="ACBrSpedFiscalDll.pas"/>
         <Caret Line="3673" Column="55" TopLine="3655"/>
-      </Position27>
-      <Position28>
+      </Position25>
+      <Position26>
         <Filename Value="ACBrSpedFiscalDll.pas"/>
         <Caret Line="1985" Column="38" TopLine="1967"/>
+      </Position26>
+      <Position27>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="2772" Column="22" TopLine="2760"/>
+      </Position27>
+      <Position28>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="8101" Column="72" TopLine="8079"/>
       </Position28>
+      <Position29>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
+        <Caret Line="782" Column="46" TopLine="762"/>
+      </Position29>
+      <Position30>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="8128" Column="51" TopLine="8059"/>
+      </Position30>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

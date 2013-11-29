@@ -4241,10 +4241,8 @@ namespace ACBrFramework.ECF
 		#region PAF Relatorios
 
 #if COM_INTEROP
-
 		public void PafMF_RelMeiosPagamento(ref FormaPagamento[] formasPagamento, string TituloRelatorio, int indiceRelatorio)
 #else
-
 		public void PafMF_RelMeiosPagamento(FormaPagamento[] formasPagamento, string TituloRelatorio, int indiceRelatorio)
 #endif
 		{
@@ -4286,6 +4284,16 @@ namespace ACBrFramework.ECF
 				Info = infoPAF;
 
 			int ret = ACBrECFInterop.ECF_PafMF_RelParametrosConfiguracao(this.Handle, Info.Handle, indiceRelatorio);
+			CheckResult(ret);
+		}
+
+#if COM_INTEROP
+		public void PafMF_RelParametrosConfiguracao2(string perfil, int indiceRelatorio = 1)
+#else
+		public void PafMF_RelParametrosConfiguracao(string perfil, int indiceRelatorio = 1)
+#endif
+		{
+			int ret = ACBrECFInterop.ECF_PafMF_RelParametrosConfiguracao2(this.Handle, perfil.ToUTF8(), indiceRelatorio);
 			CheckResult(ret);
 		}
 
