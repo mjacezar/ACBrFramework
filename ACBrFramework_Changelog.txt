@@ -41,6 +41,11 @@ Símbolo : Significado
 
 Changelog
 
+28/11/2013
+
+-- ACBrFramework 0.9.5.1 --
+[-] Corrigido erros na declaração do esports do SPED - ACBrSPED - Rafael Dias.
+
 26/11/2013
 
 -- ACBrFramework 0.9.5.0 --

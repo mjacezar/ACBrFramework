@@ -22,6 +22,7 @@
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="5"/>
+      <BuildNr Value="1"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
@@ -47,12 +48,10 @@
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="18"/>
         <UsageCount Value="175"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
@@ -69,10 +68,11 @@
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="191"/>
-        <CursorPos X="3" Y="209"/>
+        <TopLine Value="200"/>
+        <CursorPos X="18" Y="205"/>
         <UsageCount Value="102"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -80,12 +80,10 @@
       <Unit3>
         <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
         <UnitName Value="ACBrUtil"/>
-        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="2474"/>
         <CursorPos X="41" Y="2491"/>
         <UsageCount Value="12"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
@@ -120,12 +118,10 @@
       <Unit7>
         <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
         <UnitName Value="ACBrECF"/>
-        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="16"/>
         <CursorPos X="27" Y="110"/>
         <UsageCount Value="60"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
@@ -322,7 +318,7 @@
         <Filename Value="ACBrEADDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrEADDll"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="14" Y="15"/>
@@ -444,12 +440,10 @@
       <Unit45>
         <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
         <UnitName Value="pcnGerador"/>
-        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="682"/>
         <CursorPos X="24" Y="702"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit45>
       <Unit46>
@@ -506,12 +500,10 @@
         <Filename Value="ACBrNFe2Dll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrNFe2Dll"/>
-        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="7461"/>
         <CursorPos X="70" Y="7485"/>
         <UsageCount Value="23"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit52>
       <Unit53>
@@ -547,132 +539,25 @@
       <Unit57>
         <Filename Value="C:\lazarus\components\lazcontrols\treefilteredit.pas"/>
         <UnitName Value="TreeFilterEdit"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="50"/>
         <CursorPos X="70" Y="61"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit57>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="3" HistoryIndex="2">
       <Position1>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="267" Column="11" TopLine="248"/>
-      </Position1>
-      <Position2>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="1507" Column="22" TopLine="1480"/>
-      </Position2>
-      <Position3>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="1508" Column="22" TopLine="1480"/>
-      </Position3>
-      <Position4>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="2492" Column="25" TopLine="2469"/>
-      </Position4>
-      <Position5>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="2493" Column="56" TopLine="2469"/>
-      </Position5>
-      <Position6>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="10" Column="37" TopLine="1"/>
-      </Position6>
-      <Position7>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="267" Column="11" TopLine="240"/>
-      </Position7>
-      <Position8>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="1516" Column="3" TopLine="1489"/>
-      </Position8>
-      <Position9>
         <Filename Value="ACBrEADDll.pas"/>
         <Caret Line="15" Column="14" TopLine="3"/>
-      </Position9>
-      <Position10>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="2434" Column="27" TopLine="2427"/>
-      </Position10>
-      <Position11>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="2489" Column="55" TopLine="2471"/>
-      </Position11>
-      <Position12>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="1516" Column="1" TopLine="1503"/>
-      </Position12>
-      <Position13>
+      </Position1>
+      <Position2>
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="4430" Column="31" TopLine="4417"/>
-      </Position13>
-      <Position14>
+      </Position2>
+      <Position3>
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="209" Column="3" TopLine="191"/>
-      </Position14>
-      <Position15>
-        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrECF.pas"/>
-        <Caret Line="110" Column="27" TopLine="16"/>
-      </Position15>
-      <Position16>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="267" Column="11" TopLine="243"/>
-      </Position16>
-      <Position17>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="1498" Column="11" TopLine="1477"/>
-      </Position17>
-      <Position18>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="217" Column="1" TopLine="206"/>
-      </Position18>
-      <Position19>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="267" Column="11" TopLine="249"/>
-      </Position19>
-      <Position20>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="1499" Column="24" TopLine="1489"/>
-      </Position20>
-      <Position21>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="1507" Column="22" TopLine="1489"/>
-      </Position21>
-      <Position22>
-        <Filename Value="..\..\ACBr\Fontes\ACBrComum\ACBrUtil.pas"/>
-        <Caret Line="1508" Column="22" TopLine="1490"/>
-      </Position22>
-      <Position23>
-        <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
-        <Caret Line="703" Column="56" TopLine="693"/>
-      </Position23>
-      <Position24>
-        <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
-        <Caret Line="706" Column="55" TopLine="696"/>
-      </Position24>
-      <Position25>
-        <Filename Value="ACBrFramework.lpr"/>
-        <Caret Line="13" Column="37" TopLine="1"/>
-      </Position25>
-      <Position26>
-        <Filename Value="ACBrFramework.lpr"/>
-        <Caret Line="18" Column="1" TopLine="1"/>
-      </Position26>
-      <Position27>
-        <Filename Value="..\..\ACBr\Fontes\PCN2\pcnGerador.pas"/>
-        <Caret Line="708" Column="62" TopLine="691"/>
-      </Position27>
-      <Position28>
-        <Filename Value="C:\lazarus\components\lazcontrols\treefilteredit.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
-      </Position28>
-      <Position29>
-        <Filename Value="C:\lazarus\components\lazcontrols\treefilteredit.pas"/>
-        <Caret Line="60" Column="60" TopLine="50"/>
-      </Position29>
+      </Position3>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
