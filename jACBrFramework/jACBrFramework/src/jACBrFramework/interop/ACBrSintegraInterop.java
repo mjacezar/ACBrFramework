@@ -2,6 +2,10 @@
 * ACBrFramework DefExporter
 * Este arquivo foi gerado automaticamente - não altere
 * This file was generated automatically - don't change it.
+* 
+* - Para que nao haja erro no envio dos dados foi preciso implementar a
+* - interface Structure.ByValue nos registros 10 e 11. Alem disso todos os 
+* -- vetores de char[] foram modificados para vetor de bytes[].
 **/
 
 
@@ -20,20 +24,19 @@ public interface ACBrSintegraInterop extends InteropLib
 
 	// Tipos de dados
 
-	public static class Registro10Rec extends Structure
+	public static class Registro10Rec extends Structure implements Structure.ByValue
 	{
-		public char[] CNPJ = new char[15];
-		public char[] Inscricao = new char[15];
-		public char[] RazaoSocial = new char[36];
-		public char[] Cidade = new char[31];
-		public char[] Estado = new char[3];
-		public char[] Telefone = new char[13];
+		public byte[] CNPJ = new byte[15];
+		public byte[] Inscricao = new byte[15]; 
+		public byte[] RazaoSocial = new byte[36];
+		public byte[] Cidade = new byte[31];
+		public byte[] Estado = new byte[3];
+		public byte[] Telefone = new byte[13];
 		public double DataInicial;
 		public double DataFinal;
 		public int CodigoConvenio;
 		public int NaturezaInformacoes;
 		public int FinalidadeArquivo;
-
 
 		@Override
 		protected List<String> getFieldOrder()
@@ -46,15 +49,15 @@ public interface ACBrSintegraInterop extends InteropLib
 		public static class ByValue extends Registro10Rec implements Structure.ByValue{ }
 	}
 
-	public static class Registro11Rec extends Structure
+	public static class Registro11Rec extends Structure implements Structure.ByValue
 	{
-		public char[] Responsavel = new char[29];
-		public char[] Bairro = new char[16];
-		public char[] Cep = new char[9];
-		public char[] Numero = new char[6];
-		public char[] Complemento = new char[23];
-		public char[] Endereco = new char[35];
-		public char[] Telefone = new char[13];
+		public byte[] Responsavel = new byte[29];
+		public byte[] Bairro = new byte[16];
+		public byte[] Cep = new byte[9];
+		public byte[] Numero = new byte[6];
+		public byte[] Complemento = new byte[23];
+		public byte[] Endereco = new byte[35];
+		public byte[] Telefone = new byte[13];
 
 
 		@Override
@@ -70,21 +73,21 @@ public interface ACBrSintegraInterop extends InteropLib
 
 	public static class Registro50Rec extends Structure
 	{
-		public char[] CPFCNPJ = new char[15];
-		public char[] Inscricao = new char[15];
-		public char[] UF = new char[3];
-		public char[] Situacao = new char[2];
+		public byte[] CPFCNPJ = new byte[15];
+		public byte[] Inscricao = new byte[15];
+		public byte[] UF = new byte[3];
+		public byte[] Situacao = new byte[2];
 		public double Aliquota;
 		public double Isentas;
 		public double Icms;
 		public double ValorContabil;
 		public double BasedeCalculo;
 		public double Outras;
-		public char[] EmissorDocumento = new char[2];
-		public char[] Cfop = new char[5];
-		public char[] Serie = new char[4];
-		public char[] Modelo = new char[3];
-		public char[] Numero = new char[7];
+		public byte[] EmissorDocumento = new byte[2];
+		public byte[] Cfop = new byte[5];
+		public byte[] Serie = new byte[4];
+		public byte[] Modelo = new byte[3];
+		public byte[] Numero = new byte[7];
 		public double DataDocumento;
 
 
@@ -101,16 +104,16 @@ public interface ACBrSintegraInterop extends InteropLib
 
 	public static class Registro51Rec extends Structure
 	{
-		public char[] CPFCNPJ = new char[15];
-		public char[] Inscricao = new char[15];
-		public char[] Estado = new char[3];
+		public byte[] CPFCNPJ = new byte[15];
+		public byte[] Inscricao = new byte[15];
+		public byte[] Estado = new byte[3];
 		public double ValorIpi;
 		public double ValorContabil;
-		public char[] Serie = new char[4];
+		public byte[] Serie = new byte[4];
 		public double DataDocumento;
-		public char[] Cfop = new char[5];
-		public char[] Numero = new char[7];
-		public char[] Situacao = new char[2];
+		public byte[] Cfop = new byte[5];
+		public byte[] Numero = new byte[7];
+		public byte[] Situacao = new byte[2];
 		public double ValorIsentas;
 		public double ValorOutras;
 
@@ -128,18 +131,18 @@ public interface ACBrSintegraInterop extends InteropLib
 
 	public static class Registro53Rec extends Structure
 	{
-		public char[] CPFCNPJ = new char[15];
-		public char[] Inscricao = new char[15];
-		public char[] Estado = new char[3];
-		public char[] Serie = new char[4];
+		public byte[] CPFCNPJ = new byte[15];
+		public byte[] Inscricao = new byte[15];
+		public byte[] Estado = new byte[3];
+		public byte[] Serie = new byte[4];
 		public double DataDocumento;
-		public char[] Cfop = new char[5];
-		public char[] Numero = new char[7];
-		public char[] Situacao = new char[4];
-		public char[] CodigoAntecipacao = new char[2];
+		public byte[] Cfop = new byte[5];
+		public byte[] Numero = new byte[7];
+		public byte[] Situacao = new byte[4];
+		public byte[] CodigoAntecipacao = new byte[2];
 		public double BaseST;
-		public char[] Modelo = new char[3];
-		public char[] Emitente = new char[2];
+		public byte[] Modelo = new byte[3];
+		public byte[] Emitente = new byte[2];
 		public double Despesas;
 		public double IcmsRetido;
 
@@ -165,14 +168,14 @@ public interface ACBrSintegraInterop extends InteropLib
 		public double ValorIpi;
 		public double Valor;
 		public int NumeroItem;
-		public char[] CST = new char[4];
-		public char[] Codigo = new char[15];
-		public char[] CFOP = new char[5];
-		public char[] Descricao = new char[54];
-		public char[] CPFCNPJ = new char[15];
-		public char[] Numero = new char[7];
-		public char[] Modelo = new char[3];
-		public char[] Serie = new char[4];
+		public byte[] CST = new byte[4];
+		public byte[] Codigo = new byte[15];
+		public byte[] CFOP = new byte[5];
+		public byte[] Descricao = new byte[54];
+		public byte[] CPFCNPJ = new byte[15];
+		public byte[] Numero = new byte[7];
+		public byte[] Modelo = new byte[3];
+		public byte[] Serie = new byte[4];
 
 
 		@Override
@@ -191,12 +194,12 @@ public interface ACBrSintegraInterop extends InteropLib
 		public double Valor;
 		public int Agencia;
 		public int Banco;
-		public char[] NumeroConvenio = new char[31];
-		public char[] Inscricao = new char[15];
-		public char[] MesAno = new char[7];
-		public char[] CNPJ = new char[15];
-		public char[] UF = new char[3];
-		public char[] Numero = new char[15];
+		public byte[] NumeroConvenio = new byte[31];
+		public byte[] Inscricao = new byte[15];
+		public byte[] MesAno = new byte[7];
+		public byte[] CNPJ = new byte[15];
+		public byte[] UF = new byte[3];
+		public byte[] Numero = new byte[15];
 		public double DataPagamento;
 		public double Vencimento;
 
@@ -214,18 +217,18 @@ public interface ACBrSintegraInterop extends InteropLib
 
 	public static class Registro56Rec extends Structure
 	{
-		public char[] Cnpj = new char[15];
-		public char[] Modelo = new char[3];
-		public char[] Serie = new char[4];
-		public char[] Numero = new char[7];
-		public char[] Cfop = new char[5];
-		public char[] Cst = new char[4];
+		public byte[] Cnpj = new byte[15];
+		public byte[] Modelo = new byte[3];
+		public byte[] Serie = new byte[4];
+		public byte[] Numero = new byte[7];
+		public byte[] Cfop = new byte[5];
+		public byte[] Cst = new byte[4];
 		public int NumeroItem;
-		public char[] Codigo = new char[15];
-		public char[] TipoOperacao = new char[2];
-		public char[] CnpjConcessionaria = new char[15];
+		public byte[] Codigo = new byte[15];
+		public byte[] TipoOperacao = new byte[2];
+		public byte[] CnpjConcessionaria = new byte[15];
 		public double Ipi;
-		public char[] Chassi = new char[18];
+		public byte[] Chassi = new byte[18];
 
 
 		@Override
@@ -241,8 +244,8 @@ public interface ACBrSintegraInterop extends InteropLib
 
 	public static class Registro60ARec extends Structure
 	{
-		public char[] NumSerie = new char[21];
-		public char[] Aliquota = new char[5];
+		public byte[] NumSerie = new byte[21];
+		public byte[] Aliquota = new byte[5];
 		public double Emissao;
 		public double Valor;
 
@@ -260,11 +263,11 @@ public interface ACBrSintegraInterop extends InteropLib
 
 	public static class Registro60DRec extends Structure
 	{
-		public char[] NumSerie = new char[21];
-		public char[] StAliquota = new char[5];
+		public byte[] NumSerie = new byte[21];
+		public byte[] StAliquota = new byte[5];
 		public double Emissao;
 		public double Valor;
-		public char[] Codigo = new char[15];
+		public byte[] Codigo = new byte[15];
 		public double ValorIcms;
 		public double Quantidade;
 		public double BaseDeCalculo;
@@ -283,17 +286,17 @@ public interface ACBrSintegraInterop extends InteropLib
 
 	public static class Registro60IRec extends Structure
 	{
-		public char[] NumSerie = new char[21];
-		public char[] StAliquota = new char[5];
+		public byte[] NumSerie = new byte[21];
+		public byte[] StAliquota = new byte[5];
 		public double Emissao;
 		public double Valor;
-		public char[] Codigo = new char[15];
+		public byte[] Codigo = new byte[15];
 		public double ValorIcms;
 		public double Quantidade;
 		public double BaseDeCalculo;
 		public int Item;
-		public char[] Cupom = new char[7];
-		public char[] ModeloDoc = new char[3];
+		public byte[] Cupom = new byte[7];
+		public byte[] ModeloDoc = new byte[3];
 
 
 		@Override
@@ -312,12 +315,12 @@ public interface ACBrSintegraInterop extends InteropLib
 		public int CRO;
 		public int NumOrdem;
 		public double VendaBruta;
-		public char[] ModeloDoc = new char[3];
+		public byte[] ModeloDoc = new byte[3];
 		public double ValorGT;
 		public int CRZ;
 		public int CooFinal;
 		public int CooInicial;
-		public char[] NumSerie = new char[21];
+		public byte[] NumSerie = new byte[21];
 		public double Emissao;
 
 
@@ -337,9 +340,9 @@ public interface ACBrSintegraInterop extends InteropLib
 		public double BaseDeCalculo;
 		public double Valor;
 		public double Qtd;
-		public char[] MesAno = new char[7];
-		public char[] Codigo = new char[15];
-		public char[] Aliquota = new char[5];
+		public byte[] MesAno = new byte[7];
+		public byte[] Codigo = new byte[15];
+		public byte[] Aliquota = new byte[5];
 
 
 		@Override
@@ -363,9 +366,9 @@ public interface ACBrSintegraInterop extends InteropLib
 		public double Isentas;
 		public int NumOrdemInicial;
 		public int NumOrdemFinal;
-		public char[] Modelo = new char[3];
-		public char[] SubSerie = new char[3];
-		public char[] Serie = new char[4];
+		public byte[] Modelo = new byte[3];
+		public byte[] SubSerie = new byte[3];
+		public byte[] Serie = new byte[4];
 		public double Aliquota;
 
 
@@ -385,8 +388,8 @@ public interface ACBrSintegraInterop extends InteropLib
 		public double Aliquota;
 		public double Valor;
 		public double Qtd;
-		public char[] MesAno = new char[7];
-		public char[] Codigo = new char[15];
+		public byte[] MesAno = new byte[7];
+		public byte[] Codigo = new byte[15];
 		public double BaseDeCalculo;
 
 
@@ -405,20 +408,20 @@ public interface ACBrSintegraInterop extends InteropLib
 	{
 		public double Icms;
 		public double ValorContabil;
-		public char[] UF = new char[3];
+		public byte[] UF = new byte[3];
 		public double Isentas;
-		public char[] SubSerie = new char[3];
-		public char[] Serie = new char[2];
+		public byte[] SubSerie = new byte[3];
+		public byte[] Serie = new byte[2];
 		public double DataDocumento;
-		public char[] Modelo = new char[3];
-		public char[] CPFCNPJ = new char[15];
-		public char[] Cfop = new char[5];
-		public char[] Numero = new char[7];
-		public char[] Inscricao = new char[15];
-		public char[] Situacao = new char[15];
+		public byte[] Modelo = new byte[3];
+		public byte[] CPFCNPJ = new byte[15];
+		public byte[] Cfop = new byte[5];
+		public byte[] Numero = new byte[7];
+		public byte[] Inscricao = new byte[15];
+		public byte[] Situacao = new byte[15];
 		public double Outras;
 		public double BasedeCalculo;
-		public char[] CifFobOutros = new char[2];
+		public byte[] CifFobOutros = new byte[2];
 
 
 		@Override
@@ -434,21 +437,21 @@ public interface ACBrSintegraInterop extends InteropLib
 
 	public static class Registro71Rec extends Structure
 	{
-		public char[] CPFCNPJ = new char[15];
-		public char[] Inscricao = new char[15];
+		public byte[] CPFCNPJ = new byte[15];
+		public byte[] Inscricao = new byte[15];
 		public double DataDocumento;
-		public char[] Modelo = new char[3];
-		public char[] Serie = new char[2];
-		public char[] SubSerie = new char[3];
-		public char[] Numero = new char[7];
-		public char[] UF = new char[3];
-		public char[] UFNF = new char[3];
-		public char[] CPFCNPJNF = new char[15];
-		public char[] InscricaoNF = new char[15];
+		public byte[] Modelo = new byte[3];
+		public byte[] Serie = new byte[2];
+		public byte[] SubSerie = new byte[3];
+		public byte[] Numero = new byte[7];
+		public byte[] UF = new byte[3];
+		public byte[] UFNF = new byte[3];
+		public byte[] CPFCNPJNF = new byte[15];
+		public byte[] InscricaoNF = new byte[15];
 		public double DataNF;
-		public char[] ModeloNF = new char[3];
-		public char[] SerieNF = new char[4];
-		public char[] NumeroNF = new char[7];
+		public byte[] ModeloNF = new byte[3];
+		public byte[] SerieNF = new byte[4];
+		public byte[] NumeroNF = new byte[7];
 		public double ValorNF;
 
 
@@ -466,11 +469,11 @@ public interface ACBrSintegraInterop extends InteropLib
 	public static class Registro74Rec extends Structure
 	{
 		public double ValorProduto;
-		public char[] CodigoPosse = new char[2];
-		public char[] InscricaoPossuidor = new char[15];
-		public char[] Codigo = new char[15];
-		public char[] CNPJPossuidor = new char[15];
-		public char[] UFPossuidor = new char[3];
+		public byte[] CodigoPosse = new byte[2];
+		public byte[] InscricaoPossuidor = new byte[15];
+		public byte[] Codigo = new byte[15];
+		public byte[] CNPJPossuidor = new byte[15];
+		public byte[] UFPossuidor = new byte[3];
 		public double Data;
 		public double Quantidade;
 
@@ -486,15 +489,15 @@ public interface ACBrSintegraInterop extends InteropLib
 		public static class ByValue extends Registro74Rec implements Structure.ByValue{ }
 	}
 
-	public static class Registro75Rec extends Structure
+	public static class Registro75Rec extends Structure implements Structure.ByValue
 	{
-		public char[] Codigo = new char[15];
-		public char[] Descricao = new char[54];
+		public byte[] Codigo = new byte[15];
+		public byte[] Descricao = new byte[54];
 		public double Reducao;
 		public double BaseST;
 		public double AliquotaIpi;
-		public char[] NCM = new char[9];
-		public char[] Unidade = new char[7];
+		public byte[] NCM = new byte[9];
+		public byte[] Unidade = new byte[7];
 		public double AliquotaICMS;
 		public double DataFinal;
 		public double DataInicial;
@@ -520,13 +523,13 @@ public interface ACBrSintegraInterop extends InteropLib
 		public double Outras;
 		public int Modelo;
 		public int Numero;
-		public char[] Situacao = new char[2];
-		public char[] Inscricao = new char[15];
-		public char[] SubSerie = new char[3];
-		public char[] Uf = new char[3];
-		public char[] Serie = new char[3];
-		public char[] Cfop = new char[5];
-		public char[] CPFCNPJ = new char[15];
+		public byte[] Situacao = new byte[2];
+		public byte[] Inscricao = new byte[15];
+		public byte[] SubSerie = new byte[3];
+		public byte[] Uf = new byte[3];
+		public byte[] Serie = new byte[3];
+		public byte[] Cfop = new byte[5];
+		public byte[] CPFCNPJ = new byte[15];
 		public double DataDocumento;
 		public int TipoReceita;
 		public int Aliquota;
@@ -554,12 +557,12 @@ public interface ACBrSintegraInterop extends InteropLib
 		public int NumeroTerminal;
 		public int NumeroItem;
 		public int Aliquota;
-		public char[] CNPJMF = new char[15];
-		public char[] Cfop = new char[5];
-		public char[] Codigo = new char[12];
-		public char[] SubSerie = new char[3];
-		public char[] CPFCNPJ = new char[15];
-		public char[] Serie = new char[3];
+		public byte[] CNPJMF = new byte[15];
+		public byte[] Cfop = new byte[5];
+		public byte[] Codigo = new byte[12];
+		public byte[] SubSerie = new byte[3];
+		public byte[] CPFCNPJ = new byte[15];
+		public byte[] Serie = new byte[3];
 		public int TipoReceita;
 
 
@@ -576,20 +579,20 @@ public interface ACBrSintegraInterop extends InteropLib
 
 	public static class Registro85Rec extends Structure
 	{
-		public char[] Declaracao = new char[12];
+		public byte[] Declaracao = new byte[12];
 		public double DataDeclaracao;
-		public char[] NaturezaExportacao = new char[2];
-		public char[] RegistroExportacao = new char[13];
+		public byte[] NaturezaExportacao = new byte[2];
+		public byte[] RegistroExportacao = new byte[13];
 		public double DataRegistro;
-		public char[] Conhecimento = new char[17];
+		public byte[] Conhecimento = new byte[17];
 		public double DataConhecimento;
-		public char[] TipoConhecimento = new char[3];
-		public char[] Pais = new char[5];
+		public byte[] TipoConhecimento = new byte[3];
+		public byte[] Pais = new byte[5];
 		public double DataAverbacao;
-		public char[] NumeroNotaFiscal = new char[7];
+		public byte[] NumeroNotaFiscal = new byte[7];
 		public double DataNotaFiscal;
-		public char[] Modelo = new char[3];
-		public char[] Serie = new char[4];
+		public byte[] Modelo = new byte[3];
+		public byte[] Serie = new byte[4];
 
 
 		@Override
@@ -605,20 +608,20 @@ public interface ACBrSintegraInterop extends InteropLib
 
 	public static class Registro86Rec extends Structure
 	{
-		public char[] RegistroExportacao = new char[13];
+		public byte[] RegistroExportacao = new byte[13];
 		public double DataRegistro;
-		public char[] CPFCNPJ = new char[15];
-		public char[] Inscricao = new char[3];
-		public char[] UF = new char[3];
-		public char[] NumeroNotaFiscal = new char[7];
+		public byte[] CPFCNPJ = new byte[15];
+		public byte[] Inscricao = new byte[15];
+		public byte[] UF = new byte[3];
+		public byte[] NumeroNotaFiscal = new byte[7];
 		public double DataDocumento;
-		public char[] Modelo = new char[3];
-		public char[] Serie = new char[4];
-		public char[] Codigo = new char[15];
+		public byte[] Modelo = new byte[3];
+		public byte[] Serie = new byte[4];
+		public byte[] Codigo = new byte[15];
 		public double Quantidade;
 		public double ValorUnitario;
 		public double ValorTotalProduto;
-		public char[] Relacionamento = new char[2];
+		public byte[] Relacionamento = new byte[2];
 
 
 		@Override
