@@ -65,11 +65,10 @@ namespace ACBrDefExporter
 		protected override void BeginHeader(StreamWriter writer, Type interopType)
 		{
 			writer.WriteLine("/**");
-			writer.WriteLine("* ACBrFramework DefExporter");
-			writer.WriteLine("* Este arquivo foi gerado automaticamente - não altere");
-			writer.WriteLine("* This file was generated automatically - don't change it.");
-			writer.WriteLine("**/");
-			writer.WriteLine();
+			writer.WriteLine(" * ACBrFramework DefExporter");
+			writer.WriteLine(" * Este arquivo foi gerado automaticamente - não altere");
+			writer.WriteLine(" * This file was generated automatically - don't change it.");
+			writer.WriteLine(" **/");
 			writer.WriteLine();
 		}
 
@@ -86,18 +85,16 @@ namespace ACBrDefExporter
 			writer.WriteLine("import java.util.Arrays;");
 			writer.WriteLine("import java.util.List;");
 			writer.WriteLine();
-			writer.WriteLine();
 
-			writer.WriteLine("public interface {0} extends InteropLib", className);
-			writer.WriteLine("{");
-			writer.WriteLine("	public static final {0} INSTANCE = ({0})Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, {0}.class);", className);
+			writer.WriteLine("public interface {0} extends InteropLib {{", className);
+			writer.WriteLine("");
+			writer.WriteLine("\tpublic static final {0} INSTANCE = ({0})Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, {0}.class);", className);
 			writer.WriteLine();
 		}
 
 		protected override void ExportTypes(StreamWriter writer, Type interopType)
 		{
-			writer.WriteLine("	// Tipos de dados");
-			writer.WriteLine();
+            writer.WriteLine("\t// Tipos de dados");
 
 			foreach (var type in GetTypes(interopType))
 			{
@@ -109,8 +106,6 @@ namespace ACBrDefExporter
 				{
 					ExportStruct(writer, type);
 				}
-
-				writer.WriteLine();
 			}
 
 			writer.WriteLine();
@@ -118,8 +113,7 @@ namespace ACBrDefExporter
 
 		protected override void ExportMethods(StreamWriter writer, Type InteropType)
 		{
-			writer.WriteLine("	// Funções");
-			writer.WriteLine();
+            writer.WriteLine("\t// Funções");
 
 			foreach (var method in GetMethods(InteropType))
 			{
@@ -143,7 +137,7 @@ namespace ACBrDefExporter
 				parameters.Append(paramDeclaration);
 			}
 
-			const string METHOD_DECLARATION = @"	int {0}({1});";
+            const string METHOD_DECLARATION = "\tint {0}({1});";
 			string methodDeclaration = string.Format(METHOD_DECLARATION, methodInfo.Name, parameters);
 
 			writer.WriteLine(methodDeclaration);
@@ -184,8 +178,7 @@ namespace ACBrDefExporter
 
 		private void ExportStruct(StreamWriter writer, Type type)
 		{
-			writer.WriteLine("	public static class {0} extends Structure", type.Name);
-			writer.WriteLine("	{");
+            writer.WriteLine("\tpublic static class {0} extends Structure {{", type.Name);
 
 			StringBuilder fieldNames = new StringBuilder();
 
@@ -216,11 +209,11 @@ namespace ACBrDefExporter
 
 				if (marshalAs != null && marshalAs.SizeConst > 0)
 				{
-					writer.WriteLine("		public {0}[] {1} = new {0}[{2}];", typeName, field.Name, marshalAs.SizeConst);
+                    writer.WriteLine("\t\tpublic {0}[] {1} = new {0}[{2}];", (typeName.Equals("char") ? "byte" : typeName), field.Name, marshalAs.SizeConst);
 				}
 				else
 				{
-					writer.WriteLine("		public {0} {1};", typeName, field.Name);
+                    writer.WriteLine("\t\tpublic {0} {1};", typeName, field.Name);
 				}
 
 				if (fieldNames.Length > 0) fieldNames.Append(" , ");
@@ -229,24 +222,18 @@ namespace ACBrDefExporter
 			}
 
 			writer.WriteLine();
-			writer.WriteLine();
-			
-			writer.WriteLine("		@Override");
-			writer.WriteLine("		protected List<String> getFieldOrder()");
-			writer.WriteLine("		{");
-			writer.WriteLine("			return Arrays.asList({0});", fieldNames);
-			writer.WriteLine("		}");
 
-			writer.WriteLine();
+            writer.WriteLine("\t\t@Override");
+            writer.WriteLine("\t\tprotected List<String> getFieldOrder() {");
+            writer.WriteLine("\t\t\treturn Arrays.asList({0});", fieldNames);
+            writer.WriteLine("\t\t}");
 			writer.WriteLine();
 
+            writer.WriteLine("\t\tpublic static class ByReference extends {0} implements Structure.ByReference {{ }}", type.Name);
+            writer.WriteLine("\t\tpublic static class ByValue extends {0} implements Structure.ByValue {{ }}", type.Name);
 
-			writer.Write("		public static class ByReference extends {0} implements Structure.ByReference", type.Name);
-			writer.WriteLine("{ }");
-			writer.Write("		public static class ByValue extends {0} implements Structure.ByValue", type.Name);
-			writer.WriteLine("{ }");
-
-			writer.WriteLine("	}");
+            writer.WriteLine("\t}");
+            writer.WriteLine();
 		}
 
 		private void ExportDelegate(StreamWriter writer, Type type)
@@ -262,9 +249,8 @@ namespace ACBrDefExporter
 
 			string functionName = type.Name;
 
-			writer.WriteLine("	public interface {0} extends Callback", functionName);
-			writer.WriteLine("	{");
-			writer.Write("		{0} invoke(", returnValue);
+            writer.WriteLine("\tpublic interface {0} extends com.sun.jna.Callback {{", functionName);
+            writer.Write("\t\t{0} invoke(", returnValue);
 
 			ParameterInfo[] parameters = method.GetParameters();
 			if (parameters.Length > 0)
@@ -323,8 +309,7 @@ namespace ACBrDefExporter
 			}
 
 			writer.WriteLine(");");
-			writer.WriteLine("	}");
-			writer.WriteLine();
+            writer.WriteLine("\t}");
 		}
 
 		#endregion Methods

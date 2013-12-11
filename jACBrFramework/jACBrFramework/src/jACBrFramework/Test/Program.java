@@ -8,6 +8,7 @@ import jACBrFramework.serial.ecf.ACBrECF;
 import jACBrFramework.serial.ecf.AbreCupomEventObject;
 import jACBrFramework.serial.ecf.FormaPagamento;
 import jACBrFramework.serial.ecf.VendeItemEventObject;
+import java.util.Date;
 import java.util.EventObject;
 
 public class Program
@@ -126,6 +127,13 @@ public class Program
 				System.out.println(" - " + formaPagto.getIndice() + " " + formaPagto.getDescricao());
 			}
 
+            System.out.println("\nImprimindo relatório com as formas de pagamento");
+            FormaPagamento[] lForma = {
+                new FormaPagamento("Dinheiro", 100, new Date(), "Cupom Fiscal"),
+                new FormaPagamento("Cheque", 150, new Date(), "Cupom Fiscal"),
+                new FormaPagamento("Dinheiro", 3000, new Date(), "Nota Fiscal"),
+            };
+            ecf.pafMF_RelMeiosPagamento(lForma, "MEIOS DE PAGAMENTO", 0);
 			System.out.println("\nTesta cupom fiscal\n");
 			ecf.abreCupom();
 
