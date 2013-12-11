@@ -3487,27 +3487,7 @@ public final class ACBrECF extends ACBrClass
 
 	}
 
-	/*public Aliquota[] getAliquotas() throws ACBrException
-	 * {
-	 * //NotImplemented
-	 * }
-	 * 
-	 * public FormaPagamento[] getFormasPagamento() throws ACBrException
-	 * {
-	 * //NotImplemented
-	 * }
-	 * 
-	 * public RelatorioGerencial[] getRelatoriosGerenciais() throws ACBrException
-	 * {
-	 * //NotImplemented
-	 * }
-	 * 
-	 * public ComprovanteNaoFiscal[] getComprovantesNaoFiscais() throws ACBrException
-	 * {
-	 * //NotImplemented
-	 * }
-	 * 
-	 * public Consumidor getConsumidor() throws ACBrException
+	/* public Consumidor getConsumidor() throws ACBrException
 	 * {
 	 * //NotImplemented
 	 * }
@@ -4285,6 +4265,26 @@ public final class ACBrECF extends ACBrClass
 
 	}
 
+    public void pafMF_RelMeiosPagamento(FormaPagamento[] pFormasPagamento, 
+            String pTitulo, int pIndiceRelatorio) throws ACBrException {
+        if (pFormasPagamento == null) throw new ACBrException("Forma de pagamento não informada.");
+        ACBrECFInterop.FormaPagamentoRec[] lFormasPagamento = criaVetorJNA(ACBrECFInterop.FormaPagamentoRec.class, pFormasPagamento.length);
+        int i = 0;
+        for (FormaPagamento lFormaPgto : pFormasPagamento) {
+            //lFormasPagamento[i].Indice = toByte(lFormaPgto.getIndice(), 4);
+            lFormasPagamento[i].Descricao = toByte(lFormaPgto.getDescricao(), 30);
+            //lFormasPagamento[i].PermiteVinculado = lFormaPgto.getPermiteVinculado();
+            lFormasPagamento[i].Total = lFormaPgto.getTotal();
+            lFormasPagamento[i].Data = OleDate.toOADate(lFormaPgto.getData());
+            lFormasPagamento[i].TipoDoc = toByte(lFormaPgto.getTipoDoc(), 30);
+            i++;
+        }
+        
+        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_RelMeiosPagamento(getHandle(), 
+                lFormasPagamento, lFormasPagamento.length, pTitulo, pIndiceRelatorio);
+		checkResult(ret);
+    }
+    
 	public void pafMF_GerarCAT52(Date DataInicial, Date DataFinal, String CaminhoArquivo) throws ACBrException
 	{
 
