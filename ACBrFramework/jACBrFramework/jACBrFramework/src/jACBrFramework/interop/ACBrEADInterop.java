@@ -1,9 +1,8 @@
 /**
-* ACBrFramework DefExporter
-* Este arquivo foi gerado automaticamente - não altere
-* This file was generated automatically - don't change it.
-**/
-
+ * ACBrFramework DefExporter
+ * Este arquivo foi gerado automaticamente - não altere
+ * This file was generated automatically - don't change it.
+ **/
 
 package jACBrFramework.interop;
 import jACBrFramework.InteropLib;
@@ -13,28 +12,19 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
 
+public interface ACBrEADInterop extends InteropLib {
 
-public interface ACBrEADInterop extends InteropLib
-{
 	public static final ACBrEADInterop INSTANCE = (ACBrEADInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrEADInterop.class);
 
 	// Tipos de dados
-
-	public interface GetChavePrivadaCallback extends Callback
-	{
+	public interface GetChavePrivadaCallback extends com.sun.jna.Callback {
 		String invoke();
 	}
-
-
-	public interface GetChavePublicaCallback extends Callback
-	{
+	public interface GetChavePublicaCallback extends com.sun.jna.Callback {
 		String invoke();
 	}
-
-
 
 	// Funções
-
 	int EAD_AssinarArquivoComEAD(int eadHandle, String Arquivo, boolean Remove, ByteBuffer EAD, int bufferLen);
 	int EAD_CalcularChavePublica(int eadHandle, ByteBuffer ChavePUB, int bufferLen);
 	int EAD_CalcularEAD(int eadHandle, String EString[], ByteBuffer EAD, int bufferLen);

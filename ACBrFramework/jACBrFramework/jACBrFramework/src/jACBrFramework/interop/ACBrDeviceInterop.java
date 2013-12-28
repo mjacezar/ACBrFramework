@@ -1,9 +1,8 @@
 /**
-* ACBrFramework DefExporter
-* Este arquivo foi gerado automaticamente - não altere
-* This file was generated automatically - don't change it.
-**/
-
+ * ACBrFramework DefExporter
+ * Este arquivo foi gerado automaticamente - não altere
+ * This file was generated automatically - don't change it.
+ **/
 
 package jACBrFramework.interop;
 import jACBrFramework.InteropLib;
@@ -13,16 +12,13 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
 
+public interface ACBrDeviceInterop extends InteropLib {
 
-public interface ACBrDeviceInterop extends InteropLib
-{
 	public static final ACBrDeviceInterop INSTANCE = (ACBrDeviceInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrDeviceInterop.class);
 
 	// Tipos de dados
 
-
 	// Funções
-
 	int DEV_GetBaud(int ecfHandle);
 	int DEV_GetDataBits(int ecfHandle);
 	int DEV_GetHandShake(int ecfHandle);

@@ -1,9 +1,8 @@
 /**
-* ACBrFramework DefExporter
-* Este arquivo foi gerado automaticamente - não altere
-* This file was generated automatically - don't change it.
-**/
-
+ * ACBrFramework DefExporter
+ * Este arquivo foi gerado automaticamente - não altere
+ * This file was generated automatically - don't change it.
+ **/
 
 package jACBrFramework.interop;
 import jACBrFramework.InteropLib;
@@ -13,77 +12,49 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
 
+public interface ACBrECFInterop extends InteropLib {
 
-public interface ACBrECFInterop extends InteropLib
-{
 	public static final ACBrECFInterop INSTANCE = (ACBrECFInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrECFInterop.class);
 
 	// Tipos de dados
-
-	public interface AbreCupomCallback extends com.sun.jna.Callback
-	{
+	public interface AbreCupomCallback extends com.sun.jna.Callback {
 		void invoke(String CPF_CNPJ,String Nome,String Endereco);
 	}
-
-
-	public static class AliquotaRec extends Structure
-	{
+	public static class AliquotaRec extends Structure {
 		public byte[] Indice = new byte[4];
 		public double Aliquota;
 		public char Tipo;
 		public double Total;
 		public boolean Sequencia;
 
-
 		@Override
-		protected List<String> getFieldOrder()
-		{
+		protected List<String> getFieldOrder() {
 			return Arrays.asList("Indice" , "Aliquota" , "Tipo" , "Total" , "Sequencia");
 		}
 
-
-		public static class ByReference extends AliquotaRec implements Structure.ByReference{ }
-		public static class ByValue extends AliquotaRec implements Structure.ByValue{ }
+		public static class ByReference extends AliquotaRec implements Structure.ByReference { }
+		public static class ByValue extends AliquotaRec implements Structure.ByValue { }
 	}
 
-	public interface BobinaAdicionaLinhasCallback extends com.sun.jna.Callback
-	{
+	public interface BobinaAdicionaLinhasCallback extends com.sun.jna.Callback {
 		void invoke(String linhas,String operacao);
 	}
-
-
-	public interface Callback extends com.sun.jna.Callback
-	{
+	public interface Callback extends com.sun.jna.Callback {
 		void invoke();
 	}
-
-
-	public interface CancelaItemCallback extends com.sun.jna.Callback
-	{
+	public interface CancelaItemCallback extends com.sun.jna.Callback {
 		void invoke(int value);
 	}
-
-
-	public interface ChangeEstadoCallback extends com.sun.jna.Callback
-	{
+	public interface ChangeEstadoCallback extends com.sun.jna.Callback {
 		void invoke(int EstadoAnterior,int EstadoAtual);
 	}
-
-
-	public interface ChaveCallback extends com.sun.jna.Callback
-	{
+	public interface ChaveCallback extends com.sun.jna.Callback {
 		String invoke();
 	}
-
-
-	public interface ChequeEstadoCallback extends com.sun.jna.Callback
-	{
+	public interface ChequeEstadoCallback extends com.sun.jna.Callback {
 		boolean invoke(int EstadoAtual);
 	}
-
-
-	public static class ComprovanteNaoFiscalRec extends Structure
-	{
+	public static class ComprovanteNaoFiscalRec extends Structure {
 		public byte[] Indice = new byte[4];
 		public byte[] Descricao = new byte[30];
 		public boolean PermiteVinculado;
@@ -91,20 +62,16 @@ public interface ACBrECFInterop extends InteropLib
 		public double Total;
 		public int Contador;
 
-
 		@Override
-		protected List<String> getFieldOrder()
-		{
+		protected List<String> getFieldOrder() {
 			return Arrays.asList("Indice" , "Descricao" , "PermiteVinculado" , "FormaPagamento" , "Total" , "Contador");
 		}
 
-
-		public static class ByReference extends ComprovanteNaoFiscalRec implements Structure.ByReference{ }
-		public static class ByValue extends ComprovanteNaoFiscalRec implements Structure.ByValue{ }
+		public static class ByReference extends ComprovanteNaoFiscalRec implements Structure.ByReference { }
+		public static class ByValue extends ComprovanteNaoFiscalRec implements Structure.ByValue { }
 	}
 
-	public static class DAVsRec extends Structure
-	{
+	public static class DAVsRec extends Structure {
 		public byte[] Numero = new byte[14];
 		public int COO_Cupom;
 		public int COO_Dav;
@@ -112,44 +79,28 @@ public interface ACBrECFInterop extends InteropLib
 		public double Valor;
 		public double DtEmissao;
 
-
 		@Override
-		protected List<String> getFieldOrder()
-		{
+		protected List<String> getFieldOrder() {
 			return Arrays.asList("Numero" , "COO_Cupom" , "COO_Dav" , "Titulo" , "Valor" , "DtEmissao");
 		}
 
-
-		public static class ByReference extends DAVsRec implements Structure.ByReference{ }
-		public static class ByValue extends DAVsRec implements Structure.ByValue{ }
+		public static class ByReference extends DAVsRec implements Structure.ByReference { }
+		public static class ByValue extends DAVsRec implements Structure.ByValue { }
 	}
 
-	public interface EfetuaPagamentoCallback extends com.sun.jna.Callback
-	{
+	public interface EfetuaPagamentoCallback extends com.sun.jna.Callback {
 		void invoke(String CodFormaPagto,double Valor,String Observacao,boolean ImprimeVinculado);
 	}
-
-
-	public interface ErrorCallback extends com.sun.jna.Callback
-	{
+	public interface ErrorCallback extends com.sun.jna.Callback {
 		boolean invoke();
 	}
-
-
-	public interface ErrorRelatorioCallback extends com.sun.jna.Callback
-	{
+	public interface ErrorRelatorioCallback extends com.sun.jna.Callback {
 		boolean invoke(int Indice);
 	}
-
-
-	public interface FechaCupomCallback extends com.sun.jna.Callback
-	{
+	public interface FechaCupomCallback extends com.sun.jna.Callback {
 		void invoke(String Observacao,int IndiceBMP);
 	}
-
-
-	public static class FormaPagamentoRec extends Structure
-	{
+	public static class FormaPagamentoRec extends Structure {
 		public byte[] Indice = new byte[4];
 		public byte[] Descricao = new byte[30];
 		public boolean PermiteVinculado;
@@ -157,81 +108,52 @@ public interface ACBrECFInterop extends InteropLib
 		public double Data;
 		public byte[] TipoDoc = new byte[30];
 
-
 		@Override
-		protected List<String> getFieldOrder()
-		{
+		protected List<String> getFieldOrder() {
 			return Arrays.asList("Indice" , "Descricao" , "PermiteVinculado" , "Total" , "Data" , "TipoDoc");
 		}
 
-
-		public static class ByReference extends FormaPagamentoRec implements Structure.ByReference{ }
-		public static class ByValue extends FormaPagamentoRec implements Structure.ByValue{ }
+		public static class ByReference extends FormaPagamentoRec implements Structure.ByReference { }
+		public static class ByValue extends FormaPagamentoRec implements Structure.ByValue { }
 	}
 
-	public interface MsgCallback extends com.sun.jna.Callback
-	{
+	public interface MsgCallback extends com.sun.jna.Callback {
 		void invoke(String Mensagem);
 	}
-
-
-	public interface MsgRetentarCallback extends com.sun.jna.Callback
-	{
+	public interface MsgRetentarCallback extends com.sun.jna.Callback {
 		boolean invoke(String Mensagem,String Situacao);
 	}
-
-
-	public interface PAFCalcEADCallback extends com.sun.jna.Callback
-	{
+	public interface PAFCalcEADCallback extends com.sun.jna.Callback {
 		void invoke(String value);
 	}
-
-
-	public interface RelatorioGerencialCallback extends com.sun.jna.Callback
-	{
+	public interface RelatorioGerencialCallback extends com.sun.jna.Callback {
 		void invoke(int value);
 	}
-
-
-	public static class RelatorioGerencialRec extends Structure
-	{
+	public static class RelatorioGerencialRec extends Structure {
 		public byte[] Indice = new byte[4];
 		public byte[] Descricao = new byte[30];
 		public int Contador;
 
-
 		@Override
-		protected List<String> getFieldOrder()
-		{
+		protected List<String> getFieldOrder() {
 			return Arrays.asList("Indice" , "Descricao" , "Contador");
 		}
 
-
-		public static class ByReference extends RelatorioGerencialRec implements Structure.ByReference{ }
-		public static class ByValue extends RelatorioGerencialRec implements Structure.ByValue{ }
+		public static class ByReference extends RelatorioGerencialRec implements Structure.ByReference { }
+		public static class ByValue extends RelatorioGerencialRec implements Structure.ByValue { }
 	}
 
-	public interface SangriaSuprimentoCallback extends com.sun.jna.Callback
-	{
+	public interface SangriaSuprimentoCallback extends com.sun.jna.Callback {
 		void invoke(double Valor,String Obs,String DescricaoCNF,String DescricaoFPG);
 	}
-
-
-	public interface SubtotalizaCupomCallback extends com.sun.jna.Callback
-	{
+	public interface SubtotalizaCupomCallback extends com.sun.jna.Callback {
 		void invoke(double DescontoAcrescimo,String MensagemRodape);
 	}
-
-
-	public interface VendeItemCallback extends com.sun.jna.Callback
-	{
+	public interface VendeItemCallback extends com.sun.jna.Callback {
 		void invoke(String Codigo,String Descricao,String AliquotaICMS,double Qtd,double ValorUnitario,double ValorDescontoAcrescimo,String Unidade,String TipoDescontoAcrescimo,String DescontoAcrescimo);
 	}
 
-
-
 	// Funções
-
 	int ECF_AbreCupom(int ecfHandle, String cpfCnpj, String nome, String endereco, boolean ModoPreVenda);
 	int ECF_AbreCupomVinculado(int ecfHandle, String coo, String codFormaPagto, double valor);
 	int ECF_AbreCupomVinculadoCNF(int ecfHandle, String coo, String codFormaPagto, String codComprovanteNaoFiscal, double valor);
@@ -293,6 +215,7 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_DadosReducaoZClass_GetCRZ(int ecfHandle);
 	int ECF_DadosReducaoZClass_GetDataDaImpressora(int ecfHandle, DoubleByReference value);
 	int ECF_DadosReducaoZClass_GetDataDoMovimento(int ecfHandle, DoubleByReference value);
+	int ECF_DadosReducaoZClass_GetDataHoraEmissao(int ecfHandle, DoubleByReference value);
 	int ECF_DadosReducaoZClass_GetDescontoICMS(int ecfHandle, DoubleByReference value);
 	int ECF_DadosReducaoZClass_GetDescontoISSQN(int ecfHandle, DoubleByReference value);
 	int ECF_DadosReducaoZClass_GetDescontoOPNF(int ecfHandle, DoubleByReference value);
@@ -366,6 +289,7 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_GetDadosUltimaReducaoZ(int ecfHandle, ByteBuffer buffer, int bufferLen);
 	int ECF_GetDataHora(int ecfHandle, DoubleByReference value);
 	int ECF_GetDataHoraSB(int ecfHandle, DoubleByReference value);
+	int ECF_GetDataHoraUltimaReducaoZ(int ecfHandle, DoubleByReference value);
 	int ECF_GetDataMovimento(int ecfHandle, DoubleByReference value);
 	int ECF_GetDecimaisPreco(int ecfHandle);
 	int ECF_GetDecimaisQtd(int ecfHandle);
@@ -447,6 +371,12 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_InfoRodapeCupom_GetMinasLegal(int ecfHandle);
 	int ECF_InfoRodapeCupom_GetParaibaLegal(int ecfHandle);
 	int ECF_InfoRodapeCupom_GetPreVenda(int ecfHandle, ByteBuffer buffer, int bufferLen);
+	int ECF_InfoRodapeCupom_Imposto_GetFonte(int ecfHandle, ByteBuffer buffer, int bufferLen);
+	int ECF_InfoRodapeCupom_Imposto_GetTexto(int ecfHandle, ByteBuffer buffer, int bufferLen);
+	int ECF_InfoRodapeCupom_Imposto_GetValorAproximado(int ecfHandle, DoubleByReference value);
+	int ECF_InfoRodapeCupom_Imposto_SetFonte(int ecfHandle, String mesa);
+	int ECF_InfoRodapeCupom_Imposto_SetTexto(int ecfHandle, String mesa);
+	int ECF_InfoRodapeCupom_Imposto_SetValorAproximado(int ecfHandle, double value);
 	int ECF_InfoRodapeCupom_NotaLegalDF_GetImprimir(int ecfHandle);
 	int ECF_InfoRodapeCupom_NotaLegalDF_GetProgramaDeCredito(int ecfHandle);
 	int ECF_InfoRodapeCupom_NotaLegalDF_GetValorICMS(int ecfHandle, DoubleByReference value);
@@ -455,6 +385,16 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_InfoRodapeCupom_NotaLegalDF_SetProgramaDeCredito(int ecfHandle, boolean value);
 	int ECF_InfoRodapeCupom_NotaLegalDF_SetValorICMS(int ecfHandle, double value);
 	int ECF_InfoRodapeCupom_NotaLegalDF_SetValorISS(int ecfHandle, double value);
+	int ECF_InfoRodapeCupom_Restaurante_GetCER(int ecfHandle);
+	int ECF_InfoRodapeCupom_Restaurante_GetCOO(int ecfHandle);
+	int ECF_InfoRodapeCupom_Restaurante_GetECF(int ecfHandle);
+	int ECF_InfoRodapeCupom_Restaurante_GetImprimir(int ecfHandle);
+	int ECF_InfoRodapeCupom_Restaurante_GetMesa(int ecfHandle, ByteBuffer buffer, int bufferLen);
+	int ECF_InfoRodapeCupom_Restaurante_SetCER(int ecfHandle, int cer);
+	int ECF_InfoRodapeCupom_Restaurante_SetCOO(int ecfHandle, int coo);
+	int ECF_InfoRodapeCupom_Restaurante_SetECF(int ecfHandle, int ecf);
+	int ECF_InfoRodapeCupom_Restaurante_SetImprimir(int ecfHandle, boolean imprimir);
+	int ECF_InfoRodapeCupom_Restaurante_SetMesa(int ecfHandle, String mesa);
 	int ECF_InfoRodapeCupom_SetCupomMania(int ecfHandle, boolean value);
 	int ECF_InfoRodapeCupom_SetDav(int ecfHandle, String value);
 	int ECF_InfoRodapeCupom_SetDavOs(int ecfHandle, String value);
@@ -479,6 +419,9 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_LinhaRelatorioGerencial(int ecfHandle, String linha, int indiceBMP);
 	int ECF_MudaArredondamento(int ecfHandle, boolean arredonda);
 	int ECF_MudaHorarioVerao(int ecfHandle);
+	int ECF_PafMF_ArqMF(int ecfHandle, String pathArquivo);
+	int ECF_PafMF_ArqMFD(int ecfHandle, String pathArquivo);
+	int ECF_PafMF_Binario(int ecfHandle, String pathArquivo);
 	int ECF_PafMF_GerarCAT52(int ecfHandle, double DataInicial, double DataFinal, String CaminhoArquivo);
 	int ECF_PafMF_LMFC_Cotepe1704(int ecfHandle, double DataInicial, double DataFinal, String CaminhoArquivo);
 	int ECF_PafMF_LMFC_Cotepe1704_CRZ(int ecfHandle, int CRZInicial, int CRZFinal, String CaminhoArquivo);
@@ -499,6 +442,7 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_PafMF_RelIdentificacaoPafECF(int ecfHandle, int aacHandle, int IndiceRelatorio);
 	int ECF_PafMF_RelMeiosPagamento(int ecfHandle, ACBrECFInterop.FormaPagamentoRec formasPagamento[], int count, String TituloRelatorio, int IndiceRelatorio);
 	int ECF_PafMF_RelParametrosConfiguracao(int ecfHandle, int aacHandle, int IndiceRelatorio);
+	int ECF_PafMF_RelParametrosConfiguracao2(int ecfHandle, String perfil, int IndiceRelatorio);
 	int ECF_PreparaTEF(int ecfHandle);
 	int ECF_ProgramaAliquota(int ecfHandle, double aliquota, char tipo, String posicao);
 	int ECF_ProgramaComprovanteNaoFiscal(int ecfHandle, String descricao, String tipo, String posicao);
@@ -510,6 +454,7 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_ReimpressaoVinculado(int ecfHandle);
 	int ECF_RelatorioGerencial(int ecfHandle, String linhas[], int linhasCount, int Via, int Indice);
 	int ECF_Sangria(int ecfHandle, double valor, String obs, String DescricaoCNF, String DescricaoFPG, int indicebmp);
+	int ECF_SegundaViaVinculado(int ecfHandle);
 	int ECF_SetAAC(int ecfHandle, int aacHandle);
 	int ECF_SetAguardaImpressao(int ecfHandle, boolean aguardaImpressao);
 	int ECF_SetArqLOG(int ecfHandle, String arqLog);
@@ -593,10 +538,10 @@ public interface ACBrECFInterop extends InteropLib
 	int ECF_SetOnErrorSuprimento(int ecfHandle, ACBrECFInterop.ErrorCallback method);
 	int ECF_SetOnErrorVendeItem(int ecfHandle, ACBrECFInterop.ErrorCallback method);
 	int ECF_SetOnMsgAguarde(int ecfHandle, ACBrECFInterop.MsgCallback method);
+	int ECF_SetOnMsgPoucoPapel(int ecfHandle, ACBrECFInterop.Callback method);
 	int ECF_SetOnMsgRetentar(int ecfHandle, ACBrECFInterop.MsgRetentarCallback method);
 	int ECF_SetOnPAFCalcEAD(int ecfHandle, ACBrECFInterop.PAFCalcEADCallback method);
 	int ECF_SetOnPAFGetKeyRSA(int ecfHandle, ACBrECFInterop.ChaveCallback method);
-	int ECF_SetOnMsgPoucoPapel(int ecfHandle, ACBrECFInterop.Callback method);
 	int ECF_SetOperador(int ecfHandle, String operador);
 	int ECF_SetPaginaDeCodigo(int ecfHandle, int pagina);
 	int ECF_SetPausaRelatorio(int ecfHandle, int pausa);

@@ -1,9 +1,8 @@
 /**
-* ACBrFramework DefExporter
-* Este arquivo foi gerado automaticamente - não altere
-* This file was generated automatically - don't change it.
-**/
-
+ * ACBrFramework DefExporter
+ * Este arquivo foi gerado automaticamente - não altere
+ * This file was generated automatically - don't change it.
+ **/
 
 package jACBrFramework.interop;
 import jACBrFramework.InteropLib;
@@ -13,22 +12,16 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
 
+public interface ACBrLCBInterop extends InteropLib {
 
-public interface ACBrLCBInterop extends InteropLib
-{
 	public static final ACBrLCBInterop INSTANCE = (ACBrLCBInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrLCBInterop.class);
 
 	// Tipos de dados
-
-	public interface LeCodigoCallback extends Callback
-	{
+	public interface LeCodigoCallback extends com.sun.jna.Callback {
 		void invoke();
 	}
 
-
-
 	// Funções
-
 	int LCB_Ativar(int lcbHandle);
 	int LCB_Create(IntByReference lcbHandle);
 	int LCB_Desativar(int lcbHandle);

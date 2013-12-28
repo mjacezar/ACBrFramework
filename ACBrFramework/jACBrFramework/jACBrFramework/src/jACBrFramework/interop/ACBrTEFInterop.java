@@ -1,9 +1,8 @@
 /**
-* ACBrFramework DefExporter
-* Este arquivo foi gerado automaticamente - não altere
-* This file was generated automatically - don't change it.
-**/
-
+ * ACBrFramework DefExporter
+ * Este arquivo foi gerado automaticamente - não altere
+ * This file was generated automatically - don't change it.
+ **/
 
 package jACBrFramework.interop;
 import jACBrFramework.InteropLib;
@@ -13,124 +12,67 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
 
+public interface ACBrTEFInterop extends InteropLib {
 
-public interface ACBrTEFInterop extends InteropLib
-{
 	public static final ACBrTEFInterop INSTANCE = (ACBrTEFInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrTEFInterop.class);
 
 	// Tipos de dados
-
-	public interface AguardaRespCallback extends Callback
-	{
+	public interface AguardaRespCallback extends com.sun.jna.Callback {
 		void invoke(String Arquivo,int SegundosTimeOut,IntByReference Interromper);
 	}
-
-
-	public interface AntesCancelarTransacaoCallback extends Callback
-	{
+	public interface AntesCancelarTransacaoCallback extends com.sun.jna.Callback {
 		void invoke(int RespostaPendente);
 	}
-
-
-	public interface AntesFinalizarRequisicaoCallback extends Callback
-	{
+	public interface AntesFinalizarRequisicaoCallback extends com.sun.jna.Callback {
 		void invoke(int Req);
 	}
-
-
-	public interface BloqueiaMouseTecladoCallback extends Callback
-	{
+	public interface BloqueiaMouseTecladoCallback extends com.sun.jna.Callback {
 		void invoke(boolean Bloqueia,IntByReference Tratado);
 	}
-
-
-	public interface ComandaECFAbreVinculadoCallback extends Callback
-	{
+	public interface ComandaECFAbreVinculadoCallback extends com.sun.jna.Callback {
 		void invoke(String COO,String IndiceECF,double Valor,IntByReference RetornoECF);
 	}
-
-
-	public interface ComandaECFCallback extends Callback
-	{
+	public interface ComandaECFCallback extends com.sun.jna.Callback {
 		void invoke(int Operacao,int Resp,IntByReference RetornoECF);
 	}
-
-
-	public interface ComandaECFImprimeViaCallback extends Callback
-	{
+	public interface ComandaECFImprimeViaCallback extends com.sun.jna.Callback {
 		void invoke(int TipoRelatorio,int Via,int ImagemComprovante,int ImagemComprovanteCount,IntByReference RetornoECF);
 	}
-
-
-	public interface ComandaECFPagamentoCallback extends Callback
-	{
+	public interface ComandaECFPagamentoCallback extends com.sun.jna.Callback {
 		void invoke(String IndiceECF,double Valor,IntByReference RetornoECF);
 	}
-
-
-	public interface ComandaECFSubtotalizaCallback extends Callback
-	{
+	public interface ComandaECFSubtotalizaCallback extends com.sun.jna.Callback {
 		void invoke(double DescAcre,IntByReference RetornoECF);
 	}
-
-
-	public interface DepoisCancelarTransacoesCallback extends Callback
-	{
+	public interface DepoisCancelarTransacoesCallback extends com.sun.jna.Callback {
 		void invoke(int RespostasPendentes);
 	}
-
-
-	public interface DepoisConfirmarTransacoesCallback extends Callback
-	{
+	public interface DepoisConfirmarTransacoesCallback extends com.sun.jna.Callback {
 		void invoke(int RespostasPendentes);
 	}
-
-
-	public interface ExecutaAcaoCallback extends Callback
-	{
+	public interface ExecutaAcaoCallback extends com.sun.jna.Callback {
 		void invoke(IntByReference Tratado);
 	}
-
-
-	public interface ExibeMsgCallback extends Callback
-	{
+	public interface ExibeMsgCallback extends com.sun.jna.Callback {
 		void invoke(int Operacao,String Mensagem,IntByReference AModalResult);
 	}
-
-
-	public interface InfoECFCallback extends Callback
-	{
+	public interface InfoECFCallback extends com.sun.jna.Callback {
 		void invoke(int Operacao,ByteBuffer RetornoECF,int RetornoECFLen);
 	}
-
-
-	public interface MudaEstadoReqCallback extends Callback
-	{
+	public interface MudaEstadoReqCallback extends com.sun.jna.Callback {
 		void invoke(int EstadoReq);
 	}
-
-
-	public interface MudaEstadoRespCallback extends Callback
-	{
+	public interface MudaEstadoRespCallback extends com.sun.jna.Callback {
 		void invoke(int EstadoResp);
 	}
-
-
-	public interface TEFCliSiTefExibeMenuCallback extends Callback
-	{
+	public interface TEFCliSiTefExibeMenuCallback extends com.sun.jna.Callback {
 		void invoke(String Titulo,int Opcoes,int OpcoesCount,IntByReference ItemSelecionado,IntByReference VoltarMenu);
 	}
-
-
-	public interface TEFCliSiTefObtemCampoCalback extends Callback
-	{
+	public interface TEFCliSiTefObtemCampoCalback extends com.sun.jna.Callback {
 		void invoke(String Titulo,int TamanhoMinimo,int TamanhoMaximo,int TipoCampo,int Operacao,ByteBuffer Resposta,int RespLen,IntByReference Digitado,IntByReference VoltarMenu);
 	}
 
-
-
 	// Funções
-
 	int TEF_ADM(int tefHandle, int GP);
 	int TEF_AtivarGP(int tefHandle, int gp);
 	int TEF_ATV(int tefHandle, int GP);
@@ -161,6 +103,8 @@ public interface ACBrTEFInterop extends InteropLib
 	int TEF_GetReq(int tefHandle, IntByReference reqHandle);
 	int TEF_GetResp(int tefHandle, IntByReference respHandle);
 	int TEF_GetRespostasPendentes(int tefHandle, IntByReference respHandle);
+	int TEF_GetSuportaDesconto(int tefHandle);
+	int TEF_GetSuportaSaque(int tefHandle);
 	int TEF_GetTrocoMaximo(int tefHandle, DoubleByReference Troco);
 	int TEF_GetUltimoErro(int tefHandle, ByteBuffer buffer, int bufferLen);
 	int TEF_Identificacao_GetNomeAplicacao(int tefHandle, ByteBuffer buffer, int bufferLen);
@@ -300,6 +244,8 @@ public interface ACBrTEFInterop extends InteropLib
 	int TEF_SetOnMudaEstadoResp(int tefHandler, ACBrTEFInterop.MudaEstadoRespCallback method);
 	int TEF_SetOnRestauraFocoAplicacao(int tefHandler, ACBrTEFInterop.ExecutaAcaoCallback method);
 	int TEF_SetPathBackup(int tefHandle, String path);
+	int TEF_SetSuportaDesconto(int tefHandle, boolean Ativar);
+	int TEF_SetSuportaSaque(int tefHandle, boolean Ativar);
 	int TEF_SetTrocoMaximo(int tefHandle, double Troco);
 	int TEF_TEFAuttar_GetArqReq(int tefHandle, ByteBuffer buffer, int bufferLen);
 	int TEF_TEFAuttar_GetArqResp(int tefHandle, ByteBuffer buffer, int bufferLen);
