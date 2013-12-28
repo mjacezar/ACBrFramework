@@ -1,9 +1,8 @@
 /**
-* ACBrFramework DefExporter
-* Este arquivo foi gerado automaticamente - não altere
-* This file was generated automatically - don't change it.
-**/
-
+ * ACBrFramework DefExporter
+ * Este arquivo foi gerado automaticamente - não altere
+ * This file was generated automatically - don't change it.
+ **/
 
 package jACBrFramework.interop;
 import jACBrFramework.InteropLib;
@@ -13,22 +12,16 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
 
+public interface ACBrBALInterop extends InteropLib {
 
-public interface ACBrBALInterop extends InteropLib
-{
 	public static final ACBrBALInterop INSTANCE = (ACBrBALInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrBALInterop.class);
 
 	// Tipos de dados
-
-	public interface LePesoCallback extends Callback
-	{
+	public interface LePesoCallback extends com.sun.jna.Callback {
 		void invoke(double value);
 	}
 
-
-
 	// Funções
-
 	int BAL_Ativar(int balHandle);
 	int BAL_Create(IntByReference balHandle);
 	int BAL_Desativar(int balHandle);

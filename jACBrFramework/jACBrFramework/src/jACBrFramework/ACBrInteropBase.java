@@ -3,9 +3,9 @@ package jACBrFramework;
 import com.sun.jna.Structure;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public abstract class ACBrInteropBase
 {
@@ -81,7 +81,8 @@ public abstract class ACBrInteropBase
     @SuppressWarnings("UseSpecificCatch")
     protected <T extends Structure> T[] criaVetorJNA(Class<? extends Structure> pClass, int pSize) throws ACBrException {        
         try {
-            return (T[]) pClass.newInstance().toArray(pSize);
+            if (pSize == 0) return null;
+            else return (T[]) pClass.newInstance().toArray(pSize);
         } catch (Exception e) {
             Logger.getLogger(ACBrInteropBase.class.getName()).log(Level.SEVERE, null, e);
             throw new ACBrException(e.getMessage());

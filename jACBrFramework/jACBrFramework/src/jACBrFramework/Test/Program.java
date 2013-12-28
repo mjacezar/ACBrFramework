@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 
 import jACBrFramework.serial.ecf.ACBrECF;
 import jACBrFramework.serial.ecf.AbreCupomEventObject;
+import jACBrFramework.serial.ecf.DAV;
 import jACBrFramework.serial.ecf.FormaPagamento;
 import jACBrFramework.serial.ecf.VendeItemEventObject;
 import java.util.Date;
@@ -112,6 +113,18 @@ public class Program
 			System.out.println(": " + ecf.getDataHora().toString());
 
 
+        DAV[] lDavs = new DAV[3];
+        for (int i = 0; i < lDavs.length; i++) {
+            lDavs[i] = new DAV();
+            lDavs[i].setCooCupom(i);
+            lDavs[i].setCooDAV(i + 1);
+            lDavs[i].setDtEmissao(new Date());
+            lDavs[i].setNumero(String.valueOf(i));
+            lDavs[i].setTitulo("Pedido" + i);
+            lDavs[i].setValor(i + 100);
+        }            
+        
+        ecf.pafMF_RelDAVEmitidos(lDavs, "DAVs", 0);
 			System.out.println("\nLeituraX\n");
 			ecf.corrigeEstadoErro(true);
 			ecf.leituraX();

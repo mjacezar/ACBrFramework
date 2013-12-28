@@ -13,16 +13,19 @@ public class FormaPagamento {
     //</editor-fold>	
     //<editor-fold defaultstate="collapsed" desc="Constructor">
     public FormaPagamento(String indice, String descricao, boolean permiteVinculado, double total) {
+        this(indice, descricao, permiteVinculado, total, null, null);
+    }
+    public FormaPagamento(String descricao, double total, Date data, String tipoDoc) {
+        this(null, descricao, false, total, data, tipoDoc);
+    }  
+    public FormaPagamento(String indice, String descricao, boolean permiteVinculado, double total, Date data, String tipoDoc) {
         this.indice = indice;
         this.descricao = descricao;
         this.permiteVinculado = permiteVinculado;
         this.total = total;
-    }
-    public FormaPagamento(String descricao, double total, Date data, String tipoDoc) {
-        this(null, descricao, false, total);
         this.data = data;
         this.tipoDoc = tipoDoc;
-    }    
+    }     
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Properties">
     public String getIndice() {

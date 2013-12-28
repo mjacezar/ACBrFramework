@@ -22,7 +22,7 @@ public final class ACBrSintegra extends ACBrClass {
     /**
      * @see SintegraRegistro10
      */
-    private SintegraRegistro10 registro10;
+    private SintegraRegistro10 registro10 = new SintegraRegistro10();
     /**
      * @see SintegraRegistro11
      */
@@ -142,7 +142,6 @@ public final class ACBrSintegra extends ACBrClass {
         int ret = ACBrSintegraInterop.INSTANCE.SIN_Create(handle);
         checkResult(ret);
         setHandle(handle.getValue());
-        registro10 = new SintegraRegistro10();
     }
 
     /**
@@ -188,7 +187,7 @@ public final class ACBrSintegra extends ACBrClass {
     /**
      * Seta o nome do arquivo para exportacao.
      * 
-     * @param pNomeArquivo nome do arquivo que sera geraco.
+     * @param pNomeArquivo nome do arquivo que sera geracao.
      * @throws ACBrException 
      */
     public void setNomeArquivo(String pNomeArquivo) throws ACBrException {

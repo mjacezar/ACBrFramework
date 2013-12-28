@@ -1,9 +1,8 @@
 /**
-* ACBrFramework DefExporter
-* Este arquivo foi gerado automaticamente - não altere
-* This file was generated automatically - don't change it.
-**/
-
+ * ACBrFramework DefExporter
+ * Este arquivo foi gerado automaticamente - não altere
+ * This file was generated automatically - don't change it.
+ **/
 
 package jACBrFramework.interop;
 import jACBrFramework.InteropLib;
@@ -13,89 +12,60 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
 
+public interface ACBrAACInterop extends InteropLib {
 
-public interface ACBrAACInterop extends InteropLib
-{
 	public static final ACBrAACInterop INSTANCE = (ACBrAACInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrAACInterop.class);
 
 	// Tipos de dados
-
-	public interface AntesArquivoCallback extends Callback
-	{
+	public interface AntesArquivoCallback extends com.sun.jna.Callback {
 		boolean invoke();
 	}
-
-
-	public interface CryptCallback extends Callback
-	{
+	public interface CryptCallback extends com.sun.jna.Callback {
 		String invoke(String value);
 	}
-
-
-	public interface NoArgumentsCallback extends Callback
-	{
+	public interface NoArgumentsCallback extends com.sun.jna.Callback {
 		void invoke();
 	}
-
-
-	public interface OnGetChaveCallback extends Callback
-	{
+	public interface OnGetChaveCallback extends com.sun.jna.Callback {
 		String invoke();
 	}
-
-
-	public static class TECFArquivo extends Structure
-	{
-		public char[] NOME_ARQUIVO = new char[51];
-		public char[] MD5 = new char[33];
-
+	public static class TECFArquivo extends Structure {
+		public byte[] NOME_ARQUIVO = new byte[51];
+		public byte[] MD5 = new byte[33];
 
 		@Override
-		protected List<String> getFieldOrder()
-		{
+		protected List<String> getFieldOrder() {
 			return Arrays.asList("NOME_ARQUIVO" , "MD5");
 		}
 
-
-		public static class ByReference extends TECFArquivo implements Structure.ByReference{ }
-		public static class ByValue extends TECFArquivo implements Structure.ByValue{ }
+		public static class ByReference extends TECFArquivo implements Structure.ByReference { }
+		public static class ByValue extends TECFArquivo implements Structure.ByValue { }
 	}
 
-	public static class TECFAutorizado extends Structure
-	{
+	public static class TECFAutorizado extends Structure {
 		public double ValorGT;
-		public char[] NumeroSerie = new char[30];
+		public byte[] NumeroSerie = new byte[30];
 		public int CRO;
 		public int CNI;
 		public double DtHrAtualizado;
 
-
 		@Override
-		protected List<String> getFieldOrder()
-		{
+		protected List<String> getFieldOrder() {
 			return Arrays.asList("ValorGT" , "NumeroSerie" , "CRO" , "CNI" , "DtHrAtualizado");
 		}
 
-
-		public static class ByReference extends TECFAutorizado implements Structure.ByReference{ }
-		public static class ByValue extends TECFAutorizado implements Structure.ByValue{ }
+		public static class ByReference extends TECFAutorizado implements Structure.ByReference { }
+		public static class ByValue extends TECFAutorizado implements Structure.ByValue { }
 	}
 
-	public interface VerificarRecomporNumSerieCallback extends Callback
-	{
+	public interface VerificarRecomporNumSerieCallback extends com.sun.jna.Callback {
 		void invoke(String NumSerie,double ValorGT,IntByReference CRO,IntByReference CNI);
 	}
-
-
-	public interface VerificarRecomporValorGTCallback extends Callback
-	{
+	public interface VerificarRecomporValorGTCallback extends com.sun.jna.Callback {
 		void invoke(String NumSerie,DoubleByReference ValorGT);
 	}
 
-
-
 	// Funções
-
 	int AAC_AbrirArquivo(int aacHandle);
 	int AAC_AchaECF(int aacHandle, String numSerie, ACBrAACInterop.TECFAutorizado ECF);
 	int AAC_AchaIndiceECF(int aacHandle, String numSerie, IntByReference indice);
