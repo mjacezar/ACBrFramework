@@ -223,7 +223,7 @@ public class InfoPaf extends ACBrAACWrapper {
      * @param pTipoIntegracao
      * @throws ACBrException 
      */
-    public void setTipoFuncionamento(TipoIntegracao pTipoIntegracao) throws ACBrException {
+    public void setTipoIntegracao(TipoIntegracao pTipoIntegracao) throws ACBrException {
         int ret = ACBrAACInterop.INSTANCE.AAC_IdentPaf_Paf_SetIntegracaoPafECF(getHandle(), pTipoIntegracao.getCodigo());
         checkResult(ret);
     }

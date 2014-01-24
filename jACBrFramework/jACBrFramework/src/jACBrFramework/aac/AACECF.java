@@ -20,7 +20,7 @@ public class AACECF {
      */
     private String numeroSerie;
     /**
-     * Contador de Reinicio de Operacoa.
+     * Contador de Reinicio de Operacao.
      */
     private int cro;
     /**
@@ -66,7 +66,7 @@ public class AACECF {
     }
 
     /**
-     * Contador de Reinicio de Operacoa.
+     * Contador de Reinicio de Operacao.
      * @return the cro
      */
     public int getCro() {
@@ -74,7 +74,7 @@ public class AACECF {
     }
 
     /**
-     * Contador de Reinicio de Operacoa.
+     * Contador de Reinicio de Operacao.
      * @param cro the cro to set
      */
     public void setCro(int cro) {

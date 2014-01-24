@@ -10,6 +10,7 @@ using ACBrFramework.PAF;
 using ACBrFramework.Sintegra;
 using ACBrFramework.TEFD;
 using ACBrFramework;
+using ACBrFramework.Sped;
 
 namespace ACBrDefExporter
 {
@@ -113,6 +114,7 @@ namespace ACBrDefExporter
 				defExporter.Export(typeof(ACBrDeviceInterop));
 				defExporter.Export(typeof(ACBrLCBInterop));
 				defExporter.Export(typeof(ACBrSintegraInterop));
+                defExporter.Export(typeof(ACBrSpedFiscalInterop));
 				defExporter.Export(typeof(ACBrTEFInterop));
 
 				MessageBox.Show(this, "Definições exportadas com sucesso!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);

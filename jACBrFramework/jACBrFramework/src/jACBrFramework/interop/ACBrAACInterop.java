@@ -41,7 +41,7 @@ public interface ACBrAACInterop extends InteropLib {
 		public static class ByReference extends TECFArquivo implements Structure.ByReference { }
 		public static class ByValue extends TECFArquivo implements Structure.ByValue { }
 	}
-
+    
 	public static class TECFAutorizado extends Structure {
 		public double ValorGT;
 		public byte[] NumeroSerie = new byte[30];
@@ -91,7 +91,7 @@ public interface ACBrAACInterop extends InteropLib {
 	int AAC_IdentPaf_ECFsAutorizados_Clear(int aacHandle);
 	int AAC_IdentPaf_ECFsAutorizados_Count(int aacHandle);
 	int AAC_IdentPaf_ECFsAutorizados_Get(int aacHandle, ACBrAACInterop.TECFAutorizado retAutorizado, int index);
-	int AAC_IdentPaf_ECFsAutorizados_New(int aacHandle, ACBrAACInterop.TECFAutorizado ecfAutorizado);
+	int AAC_IdentPaf_ECFsAutorizados_New(int aacHandle, ACBrAACInterop.TECFAutorizado.ByValue ecfAutorizado);
 	int AAC_IdentPaf_Empresa_GetCep(int aacHandle, ByteBuffer buffer, int bufferLen);
 	int AAC_IdentPaf_Empresa_GetCidade(int aacHandle, ByteBuffer buffer, int bufferLen);
 	int AAC_IdentPaf_Empresa_GetCNPJ(int aacHandle, ByteBuffer buffer, int bufferLen);

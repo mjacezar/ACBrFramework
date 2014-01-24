@@ -16,7 +16,7 @@ public class Arquivo {
     /**
      * Nome do arquivo.
      */
-    private String Nome;
+    private String nome;
     // </editor-fold>    
     // <editor-fold defaultstate="collapsed" desc="Getters - Setters">    
     /**
@@ -37,18 +37,18 @@ public class Arquivo {
 
     /**
      * Nome do arquivo.
-     * @return the Nome
+     * @return the nome
      */
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     /**
      * Nome do arquivo.
-     * @param Nome the Nome to set
+     * @param nome the nome to set
      */
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     // </editor-fold>        
     
