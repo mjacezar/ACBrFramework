@@ -115,7 +115,7 @@ public class Rodape {
      */
     public String getMD5() throws ACBrException {
         ByteBuffer lMD5 = ByteBuffer.allocate(STR_BUFFER_LEN);
-        int ret = ACBrECFInterop.INSTANCE.ECF_InfoRodapeCupom_GetDavOs(ecf.getHandle(), lMD5, STR_BUFFER_LEN);
+        int ret = ACBrECFInterop.INSTANCE.ECF_InfoRodapeCupom_GetMD5(ecf.getHandle(), lMD5, STR_BUFFER_LEN);
         ecf.checkResult(ret);   
         return ecf.fromUTF8(lMD5, ret);
     }    

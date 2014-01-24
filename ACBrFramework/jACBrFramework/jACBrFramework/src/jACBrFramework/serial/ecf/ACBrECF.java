@@ -2875,6 +2875,43 @@ public final class ACBrECF extends ACBrClass {
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Component Methods">
+    /**
+     * Seta a chave RSA e um Wrapper para o evento 
+     * 
+     * {@see ACBrECF#addOnPAFGetKeyRSA}
+     * @param pKeyRSA chave rsa.
+     */
+    public void setKeyRSA(final String pKeyRSA) {
+        addOnPAFGetKeyRSA(new ACBrEventListener<ChaveEventObject>() {
+            @Override
+            public void notification(ChaveEventObject e) {
+                e.setChave(pKeyRSA);
+            }
+        });
+    }    
+    
+    /**
+     * Realiza a geracao do arquivo MFD.
+     * 
+     * @param pArquivo arquivo de saida.
+     * @throws ACBrException
+     */
+    public void gerarArquivoMFD(String pArquivo) throws ACBrException {
+        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_ArqMFD(getHandle(), toUTF8(pArquivo));
+        checkResult(ret);
+    }
+    
+    /**
+     * Realiza a geracao do arquivo MF.
+     * 
+     * @param pArquivo arquivo de saida.
+     * @throws ACBrException
+     */
+    public void gerarArquivoMF(String pArquivo) throws ACBrException {
+        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_ArqMF(getHandle(), toUTF8(pArquivo));
+        checkResult(ret);
+    }
+    
     public String leituraMemoriaFiscalSerial(Date dataInicial, Date dataFinal, boolean simplificada) throws ACBrException {
         ByteBuffer returnBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
         int ret = ACBrECFInterop.INSTANCE.ECF_LeituraMemoriaFiscalSerialData(getHandle(), OleDate.toOADate(dataInicial), OleDate.toOADate(dataFinal), simplificada, returnBuffer, STR_BUFFER_LEN);

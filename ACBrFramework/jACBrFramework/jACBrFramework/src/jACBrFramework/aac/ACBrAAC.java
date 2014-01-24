@@ -129,6 +129,21 @@ public class ACBrAAC extends ACBrClass {
     // </editor-fold>    
     //<editor-fold defaultstate="collapsed" desc="Components Methods">
     /**
+     * Seta a chave para criptografia dos arquivos.
+     * 
+     * {@see ACBrAAC#addOnGetChave}
+     * @param pKey chave.
+     */
+    public void setKey(final String pKey) {
+        addOnGetChave(new ACBrEventListener<AACGetChaveEventObject>() {
+            @Override
+            public void notification(AACGetChaveEventObject e) {
+                e.setKey(pKey);
+            }
+        });
+    }    
+        
+    /**
      * Nome do arquivo auxiliar.
      * 
      * @param pNomeArquivoAuxiliar

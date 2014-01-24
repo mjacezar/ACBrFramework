@@ -94,7 +94,7 @@ public class ECFs extends ACBrAACWrapper implements Iterable<AACECF> {
      * @throws ACBrException 
      */
     public void add(AACECF pAacECF) throws ACBrException {
-        ACBrAACInterop.TECFAutorizado lItem = new ACBrAACInterop.TECFAutorizado();
+        ACBrAACInterop.TECFAutorizado.ByValue lItem = new ACBrAACInterop.TECFAutorizado.ByValue();
         lItem.ValorGT = pAacECF.getValorGT();
         lItem.NumeroSerie = toByte(pAacECF.getNumeroSerie(), 30);
         lItem.CNI = pAacECF.getCni();

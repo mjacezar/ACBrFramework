@@ -89,7 +89,6 @@ public class ACBrEAD extends ACBrClass {
             }
         }
     }
-	
     // </editor-fold>       
     //<editor-fold defaultstate="collapsed" desc="Components Methods">
     /**
@@ -106,7 +105,6 @@ public class ACBrEAD extends ACBrClass {
         });        
     }
     
-    //<editor-fold defaultstate="collapsed" desc="Components Methods">
     /**
      * Seta a chave publica e um Wrapper para o evento 
      * {@see ACBrEAD#addOnGetChavePublica}

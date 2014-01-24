@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ACBrFramework.Sped
 {
-	internal class ACBrSpedFiscalInterop
+    public static class ACBrSpedFiscalInterop
 	{
 		#region InnerTypes
 

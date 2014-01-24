@@ -150,6 +150,21 @@ public class ACBrPAF extends ACBrClass {
     // </editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Components Methods">
     /**
+     * Seta a chave RSA e um Wrapper para o evento 
+     * 
+     * {@see ACBrPAF#addOnPAFGetKeyRSA}
+     * @param pKeyRSA chave rsa.
+     */
+    public void setKeyRSA(final String pKeyRSA) {
+        addOnPAFGetKeyRSA(new ACBrEventListener<PAFGetKeyRSAEventObject>() {
+            @Override
+            public void notification(PAFGetKeyRSAEventObject e) {
+                e.setKey(pKeyRSA);
+            }
+        });
+    }    
+    
+    /**
      * Seta o nome do arquivo para exportacao.
      * 
      * @param pNomeArquivo nome do arquivo que sera geracao.
