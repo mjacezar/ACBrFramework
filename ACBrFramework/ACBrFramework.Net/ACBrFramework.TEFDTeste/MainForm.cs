@@ -80,6 +80,9 @@ namespace ACBrFramework.TEFDTeste
 
 			acBrTEFD1.TEFCliSiTef.OnExibeMenu += new EventHandler<TEFCliSiTefExibeMenuEventArgs>(TEFCliSiTef_OnExibeMenu);
 			acBrTEFD1.TEFCliSiTef.OnObtemCampo += new EventHandler<TEFCliSiTefObtemCampoEventArgs>(TEFCliSiTef_OnObtemCampo);
+
+            acBrTEFD1.TEFVeSPague.OnExibeMenu += new EventHandler<TEFVeSPagueExibeMenuEventArgs>(TEFVeSPague_OnExibeMenu);
+            acBrTEFD1.TEFVeSPague.OnObtemCampo += new EventHandler<TEFVeSPagueObtemCampoEventArgs>(TEFVeSPague_OnObtemCampo);
 		}
 
         private void ConfigSerial()
@@ -1436,6 +1439,38 @@ namespace ACBrFramework.TEFDTeste
 					e.Resposta = Input.InputText;
 			}
 		}
+
+        private void TEFVeSPague_OnExibeMenu(object sender, TEFVeSPagueExibeMenuEventArgs e)
+        {
+            using (MenuVeSPagueForm Menu = new MenuVeSPagueForm())
+            {
+                Menu.Initialize(e);
+                DialogResult ret = Menu.ShowDialog();
+
+                switch (ret)
+                {
+                    case DialogResult.OK:
+                        e.ItemSelecionado = Menu.SelectedItem;
+                        break;
+                    case DialogResult.Cancel:
+                        //e.VoltarMenu = true; //?
+                        break;
+                }
+            }
+        }
+
+        private void TEFVeSPague_OnObtemCampo(object sender, TEFVeSPagueObtemCampoEventArgs e)
+        {
+            using (InputVeSPagueForm Input = new InputVeSPagueForm())
+            {
+                Input.Initialize(e);
+                if (Input.ShowDialog().Equals(DialogResult.OK))
+                {
+                    e.Resposta = Input.InputText;
+                    e.Digitado = true;
+                }
+            }
+        }
 
         #endregion Eventos TEF
 

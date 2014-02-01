@@ -555,6 +555,9 @@ namespace ACBrFramework.TEFD
 		public TefCliSiTef TEFCliSiTef { get; private set; }
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+		public TEFVeSPague TEFVeSPague { get; private set; }
+
+		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public TefDial TEFDial { get; private set; }
 
 		[Category("GP"), DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
@@ -721,6 +724,7 @@ namespace ACBrFramework.TEFD
 
 			this.Identificacao = new Identificacao(this);
 			this.TEFCliSiTef = new TefCliSiTef(this);
+			this.TEFVeSPague = new TEFVeSPague(this);
 			this.TEFDial = new TefDial(this);
 			this.TEFDisc = new TefDisc(this);
 			this.TEFHiper = new TefHiper(this);

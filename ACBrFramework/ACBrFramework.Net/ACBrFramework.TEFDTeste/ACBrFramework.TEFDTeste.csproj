@@ -89,6 +89,18 @@
     <Compile Include="Forms\CNF_CNCForm.Designer.cs">
       <DependentUpon>CNF_CNCForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\InputVeSPagueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputVeSPagueForm.designer.cs">
+      <DependentUpon>InputVeSPagueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MenuVeSPagueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MenuVeSPagueForm.designer.cs">
+      <DependentUpon>MenuVeSPagueForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\InputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +131,12 @@
     <Compile Include="Utils\InputBox.cs" />
     <EmbeddedResource Include="Forms\CNF_CNCForm.resx">
       <DependentUpon>CNF_CNCForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputVeSPagueForm.resx">
+      <DependentUpon>InputVeSPagueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MenuVeSPagueForm.resx">
+      <DependentUpon>MenuVeSPagueForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InputForm.resx">
       <DependentUpon>InputForm.cs</DependentUpon>

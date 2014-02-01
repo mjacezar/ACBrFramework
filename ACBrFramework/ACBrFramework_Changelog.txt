@@ -41,6 +41,12 @@ Símbolo : Significado
 
 Changelog
 
+31/01/2014
+
+-- ACBrFramework 0.9.5.5 --
+[+] Adicionado o TEFVespague contribuição por daspn - ACBrTEFD - Rafael Dias.
+    http://www.projetoacbr.com.br/forum/index.php?/topic/14160-contribui%C3%A7%C3%A3o-tef-vpague-em-background/#entry86294
+
 29/11/2013
 
 -- ACBrFramework 0.9.5.1 --

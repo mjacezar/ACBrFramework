@@ -625,6 +625,7 @@
     <Compile Include="Sped\Registros\Bloco9\Registro9900.cs" />
     <Compile Include="Sped\Registros\RegistroList.cs" />
     <Compile Include="TEFD\ACBrTEFD.cs" />
+    <Compile Include="TEFD\Classes\TEFVeSPague.cs" />
     <Compile Include="TEFD\Classes\TefAuttar.cs" />
     <Compile Include="TEFD\Classes\TefCliSiTef.cs" />
     <Compile Include="TEFD\Classes\TefCliSiTefOperacaoCampo.cs" />
@@ -656,6 +657,8 @@
     <Compile Include="TEFD\Eventos\ComandaECFPagamentoEventArgs.cs" />
     <Compile Include="TEFD\Eventos\ComandaECFSubtotalizaEventArgs.cs" />
     <Compile Include="TEFD\Classes\Resp.cs" />
+    <Compile Include="TEFD\Eventos\TEFVeSPagueExibeMenuEventArgs.cs" />
+    <Compile Include="TEFD\Eventos\TEFVeSPagueObtemCampoEventArgs.cs" />
     <Compile Include="TEFD\Eventos\DepoisCancelarTransacoesEventArgs.cs" />
     <Compile Include="TEFD\Eventos\DepoisConfirmarTransacoesEventArgs.cs" />
     <Compile Include="TEFD\Eventos\ExecutaAcaoEventArgs.cs" />
