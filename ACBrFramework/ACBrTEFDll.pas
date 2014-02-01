@@ -9,6 +9,7 @@ uses
   ACBrTEFD,
   ACBrTEFDClass,
   ACBrTEFDCliSiTef,
+  ACBrTEFDVeSPague,
   ACBrUtil;
 
 {%region Ponteiros de função}
@@ -31,6 +32,8 @@ type TMudaEstadoReqCallback =  procedure(const EstadoReq  : Integer); cdecl;
 type TMudaEstadoRespCallback = procedure(const EstadoResp : Integer); cdecl;
 type TTEFCliSiTefExibeMenuCallback = procedure(const Titulo : PChar; const Opcoes : array of PChar; const OpcoesCount : Integer; var ItemSelecionado : Integer; var VoltarMenu : Boolean); cdecl;
 type TTEFCliSiTefObtemCampoCalback = procedure(const Titulo : PChar; const TamanhoMinimo : Integer; const TamanhoMaximo : Integer; const TipoCampo : Integer; Operacao : Integer; const Resposta : PChar; const RespLen : Integer; var Digitado : Boolean; var VoltarMenu : Boolean); cdecl;
+type TTEFVeSPagueExibeMenuCallback = procedure(const Titulo : PChar; const Opcoes : array of PChar; const OpcoesCount : Integer; const Memo : array of PChar; const MemoCount : Integer; var ItemSelecionado : Integer); cdecl;
+type TTEFVeSPagueObtemCampoCalback = procedure(const Titulo : PChar; const Mascara : PChar; const Tipo : Char; var Resposta : PChar; var Digitado : Boolean); cdecl;
 
 {%endregion}
 
@@ -59,6 +62,9 @@ type TEventHandlers = class
   OnTEFCliSiTefExibeMenuCallback : TTEFCliSiTefExibeMenuCallback;
   OnTEFCliSiTefObtemCampoCalback : TTEFCliSiTefObtemCampoCalback;
 
+  OnTEFVeSPagueExibeMenuCallback : TTEFVeSPagueExibeMenuCallback;
+  OnTEFVeSPagueObtemCampoCalback : TTEFVeSPagueObtemCampoCalback;
+
   procedure OnAguardaResp(Arquivo: String; SegundosTimeOut : Integer; var Interromper : Boolean);
   procedure OnExibeMsg(Operacao : TACBrTEFDOperacaoMensagem; Mensagem : String; var AModalResult : TModalResult);
   procedure OnBloqueiaMouseTeclado(Bloqueia : Boolean; var Tratado : Boolean);
@@ -79,6 +85,9 @@ type TEventHandlers = class
 
   procedure OnTEFCliSiTefExibeMenu(Titulo : String; Opcoes : TStringList; var ItemSelecionado : Integer; var VoltarMenu : Boolean);
   procedure OnTEFCliSiTefObtemCampo(Titulo : String; TamanhoMinimo, TamanhoMaximo : Integer ; TipoCampo : Integer; Operacao : TACBrTEFDCliSiTefOperacaoCampo; var Resposta : AnsiString; var Digitado : Boolean; var VoltarMenu : Boolean );
+
+  procedure OnTEFVeSPagueExibeMenu(Titulo : String; Opcoes : TStringList; Memo: TStringList; var ItemSelecionado : Integer);
+  procedure OnTEFVeSPagueObtemCampo(Titulo : String; Mascara : String; Tipo : AnsiChar; var Resposta : String; var Digitado : Boolean);
 
 end;
 
@@ -4727,6 +4736,756 @@ begin
 
   try
   Result := tefHandle^.TEF.TEFCliSiTef.ObtemQuantidadeTransacoesPendentes(Data, Cupom);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion}
+
+{%region TEFVeSPague}
+
+Function TEF_TEFVeSPague_GetAplicacao(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.Aplicacao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetAplicacao(const tefHandle : PTEFHandle; const Aplicacao : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.Aplicacao := Aplicacao;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetAplicacaoVersao(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.AplicacaoVersao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetAplicacaoVersao(const tefHandle : PTEFHandle; const AplicacaoVersao : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.AplicacaoVersao := AplicacaoVersao;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetGPExeName(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.GPExeName;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetGPExeName(const tefHandle : PTEFHandle; const GPExeName : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.GPExeName := GPExeName;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetGPExeParams(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.GPExeParams;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetGPExeParams(const tefHandle : PTEFHandle; const GPExeParams : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.GPExeParams := GPExeParams;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetEnderecoIP(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.EnderecoIP;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetEnderecoIP(const tefHandle : PTEFHandle; const EnderecoIP : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.EnderecoIP := EnderecoIP;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetPorta(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.Porta;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetPorta(const tefHandle : PTEFHandle; const Porta : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.Porta := Porta;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetTimeOut(const tefHandle : PTEFHandle) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := tefHandle^.TEF.TEFVeSPague.TimeOut;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_SetTimeOut(const tefHandle : PTEFHandle; const TimeOut : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.TimeOut := TimeOut;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetTemPendencias(const tefHandle : PTEFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     If tefHandle^.TEF.TEFVeSPague.TemPendencias then
+        Result:= 1
+     Else
+        Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetTemPendencias(const tefHandle : PTEFHandle; const TemPendencias : Boolean) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.TemPendencias := TemPendencias;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetTransacaoADM(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.TransacaoADM;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetTransacaoADM(const tefHandle : PTEFHandle; const TransacaoADM : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.TransacaoADM := TransacaoADM;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetTransacaoCRT(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.TransacaoCRT;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetTransacaoCRT(const tefHandle : PTEFHandle; const TransacaoCRT : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.TransacaoCRT := TransacaoCRT;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetTransacaoCHQ(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.TransacaoCHQ;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetTransacaoCHQ(const tefHandle : PTEFHandle; const TransacaoCHQ : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.TransacaoCHQ := TransacaoCHQ;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetTransacaoCNC(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.TransacaoCNC;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetTransacaoCNC(const tefHandle : PTEFHandle; const TransacaoCNC : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.TransacaoCNC := TransacaoCNC;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetTransacaoOpcao(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.TransacaoOpcao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetTransacaoOpcao(const tefHandle : PTEFHandle; const TransacaoOpcao : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.TransacaoOpcao := TransacaoOpcao;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetTransacaoReImpressao(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.TransacaoReImpressao;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetTransacaoReImpressao(const tefHandle : PTEFHandle; const TransacaoReImpressao : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.TransacaoReImpressao := TransacaoReImpressao;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_GetTransacaoPendente(const tefHandle : PTEFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := tefHandle^.TEF.TEFVeSPague.TransacaoPendente;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetTransacaoPendente(const tefHandle : PTEFHandle; const TransacaoPendente : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     tefHandle^.TEF.TEFVeSPague.TransacaoPendente := TransacaoPendente;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function TEF_TEFVeSPague_SetOnExibeMenu(const tefHandle : PTEFHandle; const method : TTEFVeSPagueExibeMenuCallback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        tefHandle^.TEF.TEFVeSPague.OnExibeMenu := tefHandle^.EventHandlers.OnTEFVeSPagueExibeMenu;
+        tefHandle^.EventHandlers.OnTEFVeSPagueExibeMenuCallback := method;
+        Result := 0;
+  end
+  else
+  begin
+        tefHandle^.TEF.TEFVeSPague.OnExibeMenu := nil;
+        tefHandle^.EventHandlers.OnTEFVeSPagueExibeMenuCallback := nil;
+        Result := 0;
+  end;
+  except
+     on exception : Exception do
+     begin
+        tefHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function TEF_TEFVeSPague_SetOnObtemCampo(const tefHandle : PTEFHandle; const method : TTEFVeSPagueObtemCampoCalback) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+  if (tefHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+  if Assigned(method) then
+  begin
+        tefHandle^.TEF.TEFVeSPague.OnObtemCampo:= tefHandle^.EventHandlers.OnTEFVeSPagueObtemCampo;
+        tefHandle^.EventHandlers.OnTEFVeSPagueObtemCampoCalback := method;
+        Result := 0;
+  end
+  else
+  begin
+        tefHandle^.TEF.TEFVeSPague.OnObtemCampo := nil;
+        tefHandle^.EventHandlers.OnTEFVeSPagueObtemCampoCalback := nil;
+        Result := 0;
+  end;
   except
      on exception : Exception do
      begin
@@ -9834,6 +10593,48 @@ begin
 
 end;
 
+procedure TEventHandlers.OnTEFVeSPagueExibeMenu(Titulo : String; Opcoes : TStringList; Memo: TStringList; var ItemSelecionado : Integer);
+var
+  i : Integer;
+  linha : String;
+  lista : array of PChar;
+  lista2 : array of PChar;
+begin
+
+   SetLength(lista, Opcoes.Count);
+   for i := 0 TO Opcoes.Count - 1 do
+   Begin
+        linha := Opcoes.Strings[i];
+        lista[i] := PChar(linha);
+   end;
+
+   SetLength(lista2, Memo.Count);
+   for i := 0 TO Memo.Count - 1 do
+   Begin
+        linha := Memo.Strings[i];
+        lista2[i] := PChar(linha);
+   end;
+
+   OnTEFVeSPagueExibeMenuCallback(PChar(Titulo), lista, Opcoes.Count, lista2, Memo.Count, ItemSelecionado);
+
+   SetLength(lista, 0);
+   SetLength(lista2, 0);
+end;
+
+procedure TEventHandlers.OnTEFVeSPagueObtemCampo(Titulo : String; Mascara : String; Tipo : AnsiChar; var Resposta : String; var Digitado : Boolean);
+var
+  resp : PChar;
+const
+  respLen = 256;
+begin
+  resp := StrAlloc(respLen);
+
+  OnTEFVeSPagueObtemCampoCalback(PChar(Titulo), PChar(Mascara), Char(Tipo), resp, Digitado);
+
+  Resposta := resp;
+
+end;
+
 {%endregion}
 
 exports
@@ -9983,6 +10784,24 @@ TEF_TEFCliSiTef_DefineMensagemPermanentePinPad,
 TEF_TEFCliSiTef_ObtemQuantidadeTransacoesPendentes,
 TEF_TEFCliSiTef_GetParametrosAdicionaisCount,
 TEF_TEFCliSiTef_GetParametrosAdicionais, TEF_TEFCliSiTef_SetParametrosAdicionais,
+
+{TEFVeSPague}
+TEF_TEFVeSPague_GetAplicacao, TEF_TEFVeSPague_SetAplicacao,
+TEF_TEFVeSPague_GetAplicacaoVersao, TEF_TEFVeSPague_SetAplicacaoVersao,
+TEF_TEFVeSPague_GetGPExeName, TEF_TEFVeSPague_SetGPExeName,
+TEF_TEFVeSPague_GetGPExeParams, TEF_TEFVeSPague_SetGPExeParams,
+TEF_TEFVeSPague_GetEnderecoIP, TEF_TEFVeSPague_SetEnderecoIP,
+TEF_TEFVeSPague_GetPorta, TEF_TEFVeSPague_SetPorta,
+TEF_TEFVeSPague_GetTimeOut, TEF_TEFVeSPague_SetTimeOut,
+TEF_TEFVeSPague_GetTemPendencias, TEF_TEFVeSPague_SetTemPendencias,
+TEF_TEFVeSPague_GetTransacaoADM, TEF_TEFVeSPague_SetTransacaoADM,
+TEF_TEFVeSPague_GetTransacaoCRT, TEF_TEFVeSPague_SetTransacaoCRT,
+TEF_TEFVeSPague_GetTransacaoCHQ, TEF_TEFVeSPague_SetTransacaoCHQ,
+TEF_TEFVeSPague_GetTransacaoCNC, TEF_TEFVeSPague_SetTransacaoCNC,
+TEF_TEFVeSPague_GetTransacaoOpcao, TEF_TEFVeSPague_SetTransacaoOpcao,
+TEF_TEFVeSPague_GetTransacaoReImpressao, TEF_TEFVeSPague_SetTransacaoReImpressao,
+TEF_TEFVeSPague_GetTransacaoPendente, TEF_TEFVeSPague_SetTransacaoPendente,
+TEF_TEFVeSPague_SetOnExibeMenu, TEF_TEFVeSPague_SetOnObtemCampo,
 
 {TEFDial}
 TEF_TEFDial_GetAutoAtivarGP, TEF_TEFDial_SetAutoAtivarGP,

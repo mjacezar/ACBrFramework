@@ -72,6 +72,12 @@ namespace ACBrFramework.TEFD
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void TEFCliSiTefObtemCampoCalback(string Titulo, int TamanhoMinimo, int TamanhoMaximo, int TipoCampo, int Operacao, StringBuilder Resposta, int RespLen, ref bool Digitado, ref bool VoltarMenu);
 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void TEFVeSPagueExibeMenuCallback(string Titulo, IntPtr Opcoes, int OpcoesCount, IntPtr Memo, int MemoCount, ref int ItemSelecionado);
+
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		public delegate void TEFVeSPagueObtemCampoCalback(string Titulo, string Mascara, char Tipo, ref String Resposta, ref bool Digitado);
+
 		#endregion InteropTypes
 
 		#region Methods
@@ -679,6 +685,106 @@ namespace ACBrFramework.TEFD
 		public static extern int TEF_TEFCliSiTef_GetParametrosAdicionaisCount(IntPtr ecfHandle);
 
 		#endregion TEFCliSiTef
+
+		#region TEFVeSPague
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetAplicacao(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetAplicacao(IntPtr tefHandle, String Aplicacao);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetAplicacaoVersao(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetAplicacaoVersao(IntPtr tefHandle, String AplicacaoVersao);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetGPExeName(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetGPExeName(IntPtr tefHandle, String GPExeName);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetGPExeParams(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetGPExeParams(IntPtr tefHandle, String GPExeParams);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetEnderecoIP(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetEnderecoIP(IntPtr tefHandle, String EnderecoIP);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetPorta(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetPorta(IntPtr tefHandle, String Porta);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetTimeOut(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetTimeOut(IntPtr tefHandle, int TimeOut);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetTemPendencias(IntPtr tefHandle);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetTemPendencias(IntPtr tefHandle, bool TemPendencias);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetTransacaoADM(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetTransacaoADM(IntPtr tefHandle, String TransacaoADM);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetTransacaoCRT(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetTransacaoCRT(IntPtr tefHandle, String TransacaoCRT);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetTransacaoCHQ(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetTransacaoCHQ(IntPtr tefHandle, String TransacaoCHQ);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetTransacaoCNC(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetTransacaoCNC(IntPtr tefHandle, String TransacaoCNC);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetTransacaoOpcao(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetTransacaoOpcao(IntPtr tefHandle, String TransacaoOpcao);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetTransacaoReImpressao(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetTransacaoReImpressao(IntPtr tefHandle, String TransacaoReImpressao);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_GetTransacaoPendente(IntPtr tefHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetTransacaoPendente(IntPtr tefHandle, String TransacaoPendente);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetOnExibeMenu(IntPtr tefHandle, TEFVeSPagueExibeMenuCallback method);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int TEF_TEFVeSPague_SetOnObtemCampo(IntPtr tefHandle, TEFVeSPagueObtemCampoCalback method);
+
+		#endregion TEFVeSPague
 
 		#region TEFDial
 
