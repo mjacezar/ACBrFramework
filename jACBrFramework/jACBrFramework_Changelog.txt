@@ -32,6 +32,7 @@ Agradecimentos:
 
 * Desenvolvedores:
 - Rafael Dias
+- José Mauro da Silva Sandy
 
 Símbolo : Significado
 
@@ -40,6 +41,11 @@ Símbolo : Significado
 [-]     : Correção de Bug (assim esperamos)
 
 Changelog
+
+07/02/2014
+
+-- jACBrFramework --
+[+] Acréscimo da estrutura para geração do Sped Fiscal - José Mauro
 
 26/11/2013
 
