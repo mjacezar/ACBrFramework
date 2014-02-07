@@ -187,7 +187,7 @@ public final class ACBrSintegra extends ACBrClass {
     /**
      * Seta o nome do arquivo para exportacao.
      * 
-     * @param pNomeArquivo nome do arquivo que sera geracao.
+     * @param pNomeArquivo nome do arquivo que sera gerado.
      * @throws ACBrException 
      */
     public void setNomeArquivo(String pNomeArquivo) throws ACBrException {
