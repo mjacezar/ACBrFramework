@@ -58,7 +58,7 @@ public class Arquivos extends ACBrAACWrapper implements Iterable<Arquivo> {
     /**
      * Obtem o arquivo pelo indice recebido.
      * 
-     * @param pIndex indice para recuperacao do arquvi.
+     * @param pIndex indice para recuperacao do arquivo.
      * @return
      * @throws ACBrException 
      */
