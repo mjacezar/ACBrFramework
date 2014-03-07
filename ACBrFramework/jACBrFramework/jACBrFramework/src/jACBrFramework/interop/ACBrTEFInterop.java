@@ -68,8 +68,14 @@ public interface ACBrTEFInterop extends InteropLib {
 	public interface TEFCliSiTefExibeMenuCallback extends com.sun.jna.Callback {
 		void invoke(String Titulo,int Opcoes,int OpcoesCount,IntByReference ItemSelecionado,IntByReference VoltarMenu);
 	}
-	public interface TEFCliSiTefObtemCampoCalback extends com.sun.jna.Callback {
+ 	public interface TEFCliSiTefObtemCampoCalback extends com.sun.jna.Callback {
 		void invoke(String Titulo,int TamanhoMinimo,int TamanhoMaximo,int TipoCampo,int Operacao,ByteBuffer Resposta,int RespLen,IntByReference Digitado,IntByReference VoltarMenu);
+	}
+	public interface TEFVeSPagueExibeMenuCallback extends com.sun.jna.Callback {
+		void invoke(String Titulo,int Opcoes,int OpcoesCount,int Memo,int MemoCount,IntByReference ItemSelecionado);
+	}
+	public interface TEFVeSPagueObtemCampoCalback extends com.sun.jna.Callback {
+		void invoke(String Titulo,String Mascara,char Tipo, ByteBuffer Resposta,IntByReference Digitado);
 	}
 
 	// Funções
@@ -460,4 +466,36 @@ public interface ACBrTEFInterop extends InteropLib {
 	int TEF_TEFPetrocard_SetHabilitado(int tefHandle, boolean Habilitado);
 	int TEF_TEFPetrocard_SetName(int tefHandle, String Name);
 	int TEF_TEFPetrocard_SetNumVias(int tefHandle, int NumVias);
+	int TEF_TEFVeSPague_GetAplicacao(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_GetAplicacaoVersao(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_GetEnderecoIP(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_GetGPExeName(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_GetGPExeParams(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_GetPorta(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_GetTemPendencias(int tefHandle);
+	int TEF_TEFVeSPague_GetTimeOut(int tefHandle);
+	int TEF_TEFVeSPague_GetTransacaoADM(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_GetTransacaoCHQ(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_GetTransacaoCNC(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_GetTransacaoCRT(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_GetTransacaoOpcao(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_GetTransacaoPendente(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_GetTransacaoReImpressao(int tefHandle, ByteBuffer buffer, int bufferLen);
+	int TEF_TEFVeSPague_SetAplicacao(int tefHandle, String Aplicacao);
+	int TEF_TEFVeSPague_SetAplicacaoVersao(int tefHandle, String AplicacaoVersao);
+	int TEF_TEFVeSPague_SetEnderecoIP(int tefHandle, String EnderecoIP);
+	int TEF_TEFVeSPague_SetGPExeName(int tefHandle, String GPExeName);
+	int TEF_TEFVeSPague_SetGPExeParams(int tefHandle, String GPExeParams);
+	int TEF_TEFVeSPague_SetOnExibeMenu(int tefHandle, ACBrTEFInterop.TEFVeSPagueExibeMenuCallback method);
+	int TEF_TEFVeSPague_SetOnObtemCampo(int tefHandle, ACBrTEFInterop.TEFVeSPagueObtemCampoCalback method);
+	int TEF_TEFVeSPague_SetPorta(int tefHandle, String Porta);
+	int TEF_TEFVeSPague_SetTemPendencias(int tefHandle, boolean TemPendencias);
+	int TEF_TEFVeSPague_SetTimeOut(int tefHandle, int TimeOut);
+	int TEF_TEFVeSPague_SetTransacaoADM(int tefHandle, String TransacaoADM);
+	int TEF_TEFVeSPague_SetTransacaoCHQ(int tefHandle, String TransacaoCHQ);
+	int TEF_TEFVeSPague_SetTransacaoCNC(int tefHandle, String TransacaoCNC);
+	int TEF_TEFVeSPague_SetTransacaoCRT(int tefHandle, String TransacaoCRT);
+	int TEF_TEFVeSPague_SetTransacaoOpcao(int tefHandle, String TransacaoOpcao);
+	int TEF_TEFVeSPague_SetTransacaoPendente(int tefHandle, String TransacaoPendente);
+	int TEF_TEFVeSPague_SetTransacaoReImpressao(int tefHandle, String TransacaoReImpressao);
 }
