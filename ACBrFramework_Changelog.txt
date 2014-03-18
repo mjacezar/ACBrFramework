@@ -41,6 +41,15 @@ Símbolo : Significado
 
 Changelog
 
+18/03/2014
+
+-- ACBrFramework 0.9.5.6 --
+[*] Modificado metodo GetRodape para GetRodapePaf agora como publico, acompanhando as modificações do ACBr - ACBrECF - Rafael Dias.
+[*] Modificado metodo DAV_Fechar adicionado os parametros desconto e acrescimo - ACBrECF - Rafael Dias.
+[*] Adicionado novos modelos de balança - ACBrBAL - Rafael Dias.
+[-] Corrigido erro na hora de subtotalizar alguns modelos de ECF - ACBrECF - Rafael Dias.
+    
+
 31/01/2014
 
 -- ACBrFramework 0.9.5.5 --

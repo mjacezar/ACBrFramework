@@ -7379,6 +7379,30 @@ begin
   end;
 end;
 
+Function ECF_GetRodapePaf(const ecfHandle: PECFHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     StrTmp := ecfHandle^.ECF.GetRodapePaf;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 {%endregion}
 
 {%region PAF LMFC }
@@ -7945,7 +7969,7 @@ begin
 
 end;
 
-Function ECF_DAV_Fechar(const ecfHandle: PECFHandle; const Observacao : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_DAV_Fechar(const ecfHandle: PECFHandle; const Observacao : pChar; const AVlrDesconto, AVlrAcrescimo: Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then
@@ -7955,7 +7979,7 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.DAV_Fechar( Observacao );
+     ecfHandle^.ECF.DAV_Fechar(Observacao, AVlrDesconto, AVlrAcrescimo);
      Result := 0 ;
   except
      on exception : Exception do
@@ -11164,7 +11188,7 @@ ECF_RelatorioGerencial,
 
 ECF_PafMF_GerarCAT52, ECF_PafMF_LX_Impressao,
 ECF_IdentificaPAF, ECF_DoAtualizarValorGT,
-ECF_DoVerificaValorGT,
+ECF_DoVerificaValorGT, ECF_GetRodapePaf,
 
 {PAF Arquivos}
 

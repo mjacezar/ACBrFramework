@@ -1111,7 +1111,7 @@ namespace ACBrFramework.ECFTeste
 					for (int i = 0; i < 10; i++)
 					{
 						lstResp.Items.Add(String.Format("DAV Item #{0} ...", i));
-						acbrECF.DAV_RegistrarItem(string.Format("{0:0000000000000}", i + 1), "PRODUTO àáèéìíòóùúü " + i, "UN", 1, 1.99, 0, 0, false);
+						acbrECF.DAV_RegistrarItem(string.Format("{0:0000000000000}", i + 1), "PRODUTO àáèéìíòóùúü " + i, "UN", 1, 1.99M, 0, 0, false);
 					}
 
 					acbrECF.DAV_Fechar("Mensagem àáèéìíòóùúü FechaDAV ACBr.NET");
@@ -1654,6 +1654,16 @@ namespace ACBrFramework.ECFTeste
 			testeArredontamento();
 		}
 
+		private void carregaFormasPagamentoToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			acbrECF.CarregaFormasPagamento();
+		}
+
+		private void acharFormaDePagamentoPorIndiceToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+
 		#endregion Menu			
 
 		#region Menu PAF
@@ -1663,7 +1673,7 @@ namespace ACBrFramework.ECFTeste
 			ImprimeMeiosPgto();
 		}
 
-		#endregion Menu PAF	        
+		#endregion Menu PAF		
 
 		#endregion Event Handlers
 	}

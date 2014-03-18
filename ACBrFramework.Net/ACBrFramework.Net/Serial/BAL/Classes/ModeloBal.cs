@@ -10,6 +10,7 @@
 		LucasTec, 
 		Magna, 
 		Digitron, 
-		Magellan 
+		Magellan,
+		UranoPOP
 	}
 }

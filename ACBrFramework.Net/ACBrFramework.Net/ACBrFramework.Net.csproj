@@ -125,7 +125,7 @@
     <DefineConstants>x86;COM_INTEROP</DefineConstants>
     <PlatformTarget>x86</PlatformTarget>
     <Optimize>false</Optimize>
-    <RegisterForComInterop>true</RegisterForComInterop>
+    <RegisterForComInterop>false</RegisterForComInterop>
     <NoWarn>1591</NoWarn>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
