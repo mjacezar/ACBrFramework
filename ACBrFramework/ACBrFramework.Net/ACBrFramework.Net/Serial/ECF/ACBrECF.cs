@@ -4200,16 +4200,16 @@ namespace ACBrFramework.ECF
 			CheckResult(ret);
 		}
 
-		public void DAV_RegistrarItem(string codigo, string descricao, string unidade, double quantidade, double vlrunitario, double desconto, double acrescimo, bool cancelado)
+		public void DAV_RegistrarItem(string codigo, string descricao, string unidade, decimal quantidade, decimal vlrunitario, decimal desconto, decimal acrescimo, bool cancelado)
 		{
 			int ret = ACBrECFInterop.ECF_DAV_RegistrarItem(this.Handle, ToUTF8(codigo), ToUTF8(descricao), ToUTF8(unidade),
-			quantidade, vlrunitario, desconto, acrescimo, cancelado);
+			(double)quantidade, (double)vlrunitario, (double)desconto, (double)acrescimo, cancelado);
 			CheckResult(ret);
 		}
 
-		public void DAV_Fechar(string observacao)
+		public void DAV_Fechar(string observacao, decimal desconto = 0, decimal acrescimo = 0)
 		{
-			int ret = ACBrECFInterop.ECF_DAV_Fechar(this.Handle, ToUTF8(observacao));
+			int ret = ACBrECFInterop.ECF_DAV_Fechar(this.Handle, ToUTF8(observacao), (double)desconto, (double)acrescimo);
 			CheckResult(ret);
 		}
 
@@ -4217,7 +4217,6 @@ namespace ACBrFramework.ECF
 
 		public void PafMF_RelDAVEmitidos(ref DAVs[] DAVs, string TituloRelatorio, int IndiceRelatorio)
 #else
-
 		public void PafMF_RelDAVEmitidos(DAVs[] DAVs, string TituloRelatorio, int IndiceRelatorio)
 #endif
 		{
@@ -4369,6 +4368,11 @@ namespace ACBrFramework.ECF
 			int ret = ACBrECFInterop.ECF_PafMF_ArqMFD(Handle, ToUTF8(pathArquivo));
 			CheckResult(ret);
 		}
+
+        public string GetRodapePaf()
+        {
+            return GetString(ACBrECFInterop.ECF_GetRodapePaf);
+        }
 
 		#endregion PAF
 
@@ -5110,19 +5114,19 @@ namespace ACBrFramework.ECF
 
 		public void RegistraItemNaoFiscal(string codCNF, [MarshalAs(UnmanagedType.Currency)] decimal value, string obs = "")
 		{
-			int ret = ACBrECFInterop.ECF_RegistraItemNaoFiscal(this.Handle, ToUTF8(codCNF), Convert.ToDouble(value), ToUTF8(obs));
+            int ret = ACBrECFInterop.ECF_RegistraItemNaoFiscal(this.Handle, ToUTF8(codCNF), (double)value, ToUTF8(obs));
 			CheckResult(ret);
 		}
 
 		public void SubtotalizaNaoFiscal([MarshalAs(UnmanagedType.Currency)] decimal descontoAcrescimo, string mensagemRodape = "")
 		{
-			int ret = ACBrECFInterop.ECF_SubtotalizaNaoFiscal(this.Handle, Convert.ToDouble(descontoAcrescimo), ToUTF8(mensagemRodape));
+			int ret = ACBrECFInterop.ECF_SubtotalizaNaoFiscal(this.Handle, (double)descontoAcrescimo, ToUTF8(mensagemRodape));
 			CheckResult(ret);
 		}
 
 		public void EfetuaPagamentoNaoFiscal(string codFormaPagto, [MarshalAs(UnmanagedType.Currency)] decimal valor, string observacao = "", bool imprimeVinculado = false)
 		{
-			int ret = ACBrECFInterop.ECF_EfetuaPagamentoNaoFiscal(this.Handle, codFormaPagto, Convert.ToDouble(valor), observacao, imprimeVinculado);
+			int ret = ACBrECFInterop.ECF_EfetuaPagamentoNaoFiscal(this.Handle, codFormaPagto, (double)valor, observacao, imprimeVinculado);
 			CheckResult(ret);
 		}
 

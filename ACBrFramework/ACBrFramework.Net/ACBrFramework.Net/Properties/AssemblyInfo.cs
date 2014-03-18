@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 #if COM_INTEROP
 [assembly: AssemblyTitle("ACBrFramework")]
-[assembly: AssemblyDescription("ACBrFramework ActiveX")]
+[assembly: AssemblyDescription("Projeto ACBrFramework ActiveX")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ACBr")]
 [assembly: AssemblyProduct("ACBrFramework")]
@@ -39,7 +39,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.5.5")]
-[assembly: AssemblyFileVersion("0.9.5.5")]
+[assembly: AssemblyVersion("0.9.5.6")]
+[assembly: AssemblyFileVersion("0.9.5.6")]
 
 internal sealed class ToolboxIcons { }

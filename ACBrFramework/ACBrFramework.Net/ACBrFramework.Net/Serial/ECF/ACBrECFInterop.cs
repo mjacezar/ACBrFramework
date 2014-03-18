@@ -783,7 +783,7 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_DAV_Abrir(IntPtr ecfHandle, double emissao, string decrdocumento, string numero, string situacao, string vendedor, string observacao, string cpfCnpj, string nome, string endereco, int indice);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_DAV_Fechar(IntPtr ecfHandle, string observacao);
+		public static extern int ECF_DAV_Fechar(IntPtr ecfHandle, string observacao, double avlrDesconto, double avlrAcrescimo);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DAV_RegistrarItem(IntPtr ecfHandle, string codigo, string descricao, string unidade, double quantidade, double vlrunitario, double desconto, double acrescimo, bool cancelado);
@@ -839,6 +839,9 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_PafMF_ArqMFD(IntPtr ecfHandle, string pathArquivo);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_GetRodapePaf(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
 
 		#endregion PAF
 
