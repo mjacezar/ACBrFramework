@@ -90,7 +90,7 @@ public class Arquivos extends ACBrAACWrapper implements Iterable<Arquivo> {
      * @throws ACBrException 
      */
     public void add(Arquivo pArquivo) throws ACBrException {
-        ACBrAACInterop.TECFArquivo lItem = new ACBrAACInterop.TECFArquivo();
+        ACBrAACInterop.TECFArquivo.ByValue lItem = new ACBrAACInterop.TECFArquivo.ByValue();
         lItem.NOME_ARQUIVO = toByte(pArquivo.getNome(), 51);
         lItem.MD5 = toByte(pArquivo.getMd5(), 33);
 

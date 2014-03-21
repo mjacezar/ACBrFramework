@@ -42,6 +42,12 @@ Símbolo : Significado
 
 Changelog
 
+21/03/2014
+
+-- jACBrFramework --
+[-] Correção na gravação dos outros arquivos autenticados para geração dos arquivos do PAF - José Mauro
+[+] Acréscimo do método valueOf pelo código nos enuns utilizados no Sintegra - José Mauro
+
 07/03/2014
 
 -- jACBrFramework --
