@@ -46,5 +46,18 @@ public enum Convenio {
     public int getCodigo() {
         return codigo;
     }
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static Convenio valueOf(int pCodigo) {
+        for (Convenio lConvenio : values()) {
+            if (lConvenio.getCodigo() == pCodigo) return lConvenio;
+        }
+        return null;
+    }    
     // </editor-fold>
 }

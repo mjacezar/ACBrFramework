@@ -46,5 +46,18 @@ public enum NaturezaInformacao {
     public int getCodigo() {
         return codigo;
     }
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static NaturezaInformacao valueOf(int pCodigo) {
+        for (NaturezaInformacao lNaturezaInformacao : values()) {
+            if (lNaturezaInformacao.getCodigo() == pCodigo) return lNaturezaInformacao;
+        }
+        return null;
+    }       
     // </editor-fold>
 }

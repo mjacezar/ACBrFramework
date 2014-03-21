@@ -47,5 +47,18 @@ public enum FinalidadeArquivo {
     public int getCodigo() {
         return codigo;
     }
+
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static FinalidadeArquivo valueOf(int pCodigo) {
+        for (FinalidadeArquivo lFinalidadeArquivo : values()) {
+            if (lFinalidadeArquivo.getCodigo() == pCodigo) return lFinalidadeArquivo;
+        }
+        return null;
+    }        
     // </editor-fold>
 }

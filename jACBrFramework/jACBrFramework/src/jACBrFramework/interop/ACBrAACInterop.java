@@ -119,7 +119,7 @@ public interface ACBrAACInterop extends InteropLib {
 	int AAC_IdentPaf_OutrosArquivos_Clear(int aacHandle);
 	int AAC_IdentPaf_OutrosArquivos_Count(int aacHandle);
 	int AAC_IdentPaf_OutrosArquivos_Get(int aacHandle, ACBrAACInterop.TECFArquivo ecfArquivo, int index);
-	int AAC_IdentPaf_OutrosArquivos_New(int aacHandle, ACBrAACInterop.TECFArquivo ecfArquivo);
+	int AAC_IdentPaf_OutrosArquivos_New(int aacHandle, ACBrAACInterop.TECFArquivo.ByValue ecfArquivo);
 	int AAC_IdentPaf_Paf_GetAcumulaVolumeDiario(int aacHandle);
 	int AAC_IdentPaf_Paf_GetArmazenaEncerranteIniFinal(int aacHandle);
 	int AAC_IdentPaf_Paf_GetBancoDados(int aacHandle, ByteBuffer buffer, int bufferLen);
