@@ -251,7 +251,7 @@ public interface ACBrECFInterop extends InteropLib {
 	int ECF_DadosReducaoZClass_GetVendaLiquida(int ecfHandle, DoubleByReference value);
 	int ECF_DadosReducaoZClass_MontaDadosReducaoZ(int ecfHandle, ByteBuffer buffer, int bufferLen);
 	int ECF_DAV_Abrir(int ecfHandle, double emissao, String decrdocumento, String numero, String situacao, String vendedor, String observacao, String cpfCnpj, String nome, String endereco, int indice);
-	int ECF_DAV_Fechar(int ecfHandle, String observacao);
+	int ECF_DAV_Fechar(int ecfHandle, String observacao, double avlrDesconto, double avlrAcrescimo);
 	int ECF_DAV_RegistrarItem(int ecfHandle, String codigo, String descricao, String unidade, double quantidade, double vlrunitario, double desconto, double acrescimo, boolean cancelado);
 	int ECF_Desativar(int ecfHandle);
 	int ECF_DescontoAcrescimoItemAnterior(int ecfHandle, double valorDescontoAcrescimo, String descontoAcrescimo, String TipoDescontoAcrescimo, int Item);
@@ -339,6 +339,7 @@ public interface ACBrECFInterop extends InteropLib {
 	int ECF_GetRelatoriosGerenciais(int ecfHandle, ACBrECFInterop.RelatorioGerencialRec relatorio, int index);
 	int ECF_GetRespostaComando(int ecfHandle, ByteBuffer buffer, int bufferLen);
 	int ECF_GetRFDID(int ecfHandle, ByteBuffer buffer, int bufferLen);
+	int ECF_GetRodapePaf(int ecfHandle, ByteBuffer buffer, int bufferLen);
 	int ECF_GetSubModeloECF(int ecfHandle, ByteBuffer buffer, int bufferLen);
 	int ECF_GetSubTotal(int ecfHandle, DoubleByReference value);
 	int ECF_GetTermica(int ecfHandle);

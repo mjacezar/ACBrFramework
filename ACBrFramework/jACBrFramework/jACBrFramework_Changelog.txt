@@ -42,6 +42,14 @@ Símbolo : Significado
 
 Changelog
 
+27/03/2014
+
+-- jACBrFramework --
+[*] Modificado metodo GetRodape para GetRodapePaf agora como publico, acompanhando as modificações do ACBr - ACBrECF - José Mauro
+[*] Modificado metodo DAV_Fechar adicionado os parametros desconto e acrescimo - ACBrECF - José Mauro
+[*] Modificaçao do relatório de Registros do ECF para não obrigar que sejam preenchidas DAV's - ACBrPAF - José Mauro
+[+] Acréscimo do método valueOf para recuperar enums pelo código no ACBrPAF - José Mauro
+
 21/03/2014
 
 -- jACBrFramework --

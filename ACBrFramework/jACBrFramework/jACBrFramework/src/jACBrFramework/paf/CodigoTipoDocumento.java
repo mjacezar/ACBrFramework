@@ -45,5 +45,18 @@ public enum CodigoTipoDocumento {
     public String getCodigo() {
         return codigo;
     }
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static CodigoTipoDocumento valueOf(int pCodigo) {
+        for (CodigoTipoDocumento lCodigoTipoDocumento : values()) {
+            if (Integer.parseInt(lCodigoTipoDocumento.getCodigo()) == pCodigo) return lCodigoTipoDocumento;
+        }
+        return null;
+    }     
     // </editor-fold>    
 }

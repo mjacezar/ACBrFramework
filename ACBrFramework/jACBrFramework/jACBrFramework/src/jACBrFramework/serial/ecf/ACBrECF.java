@@ -3293,11 +3293,22 @@ public final class ACBrECF extends ACBrClass {
         checkResult(ret);
     }
 
-    public void dAV_Fechar(String observacao) throws ACBrException {
-        int ret = ACBrECFInterop.INSTANCE.ECF_DAV_Fechar(getHandle(), toUTF8(observacao));
-        checkResult(ret);
+    public void dAV_Fechar(String pObservacao) throws ACBrException {
+        dAV_Fechar(pObservacao, 0, 0);
     }
 
+    public void dAV_Fechar(String pObservacao, double pDesconto, double pAcrescimo) throws ACBrException {
+        int ret = ACBrECFInterop.INSTANCE.ECF_DAV_Fechar(getHandle(), toUTF8(pObservacao), pDesconto, pAcrescimo);
+        checkResult(ret);
+    }
+    
+    public String getRodapePaf() throws ACBrException {
+        ByteBuffer lRodapeBuffer = ByteBuffer.allocate(STR_BUFFER_LEN);
+        int ret = ACBrECFInterop.INSTANCE.ECF_GetRodapePaf(getHandle(), lRodapeBuffer, STR_BUFFER_LEN);
+        checkResult(ret);
+        return fromUTF8(lRodapeBuffer, ret);
+    }
+    
     public void pafMF_RelMeiosPagamento(FormaPagamento[] pFormasPagamento,
             String pTitulo, int pIndiceRelatorio) throws ACBrException {
         if (pFormasPagamento == null) {

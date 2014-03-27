@@ -1126,7 +1126,7 @@ public class ACBrPAF extends ACBrClass {
      */
     public boolean saveFileTXT_RegistrosECF(String pArquivo) throws ACBrException {
         preenche_A();
-        preenche_D();
+        if (getPaf_D().getRegistrosD2().size() > 0) preenche_D();
         preenche_E();                    
         preenche_P();
         preenche_R();

@@ -47,5 +47,18 @@ public enum TipoIntegracao {
     public int getCodigo() {
         return codigo;
     }
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static TipoIntegracao valueOf(int pCodigo) {
+        for (TipoIntegracao lTipoIntegracao : values()) {
+            if (lTipoIntegracao.getCodigo() == pCodigo) return lTipoIntegracao;
+        }
+        return null;
+    }     
     // </editor-fold>        
 }
