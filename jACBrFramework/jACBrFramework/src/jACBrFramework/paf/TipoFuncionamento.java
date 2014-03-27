@@ -46,6 +46,19 @@ public enum TipoFuncionamento {
     public int getCodigo() {
         return codigo;
     }
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static TipoFuncionamento valueOf(int pCodigo) {
+        for (TipoFuncionamento lTipoFuncionamento : values()) {
+            if (lTipoFuncionamento.getCodigo() == pCodigo) return lTipoFuncionamento;
+        }
+        return null;
+    }     
     // </editor-fold>      
 
 }

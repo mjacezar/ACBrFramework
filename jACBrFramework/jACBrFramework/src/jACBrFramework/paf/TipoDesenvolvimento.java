@@ -46,6 +46,19 @@ public enum TipoDesenvolvimento {
     public int getCodigo() {
         return codigo;
     }
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static TipoDesenvolvimento valueOf(int pCodigo) {
+        for (TipoDesenvolvimento lTipoDesenvolvimento : values()) {
+            if (lTipoDesenvolvimento.getCodigo() == pCodigo) return lTipoDesenvolvimento;
+        }
+        return null;
+    }      
     // </editor-fold>      
 
 }
