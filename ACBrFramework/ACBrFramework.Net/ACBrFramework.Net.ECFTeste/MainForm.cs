@@ -305,8 +305,8 @@ namespace ACBrFramework.ECFTeste
 				acbrECF.Device.Porta = (string)portaComboBox.SelectedItem;
 				acbrECF.Device.TimeOut = (int)nudTimeOut.Value;
 
-				acbrECF.GavetaSinalInvertido = gavetaCheckBox.Checked;
-				acbrECF.DescricaoGrande = descricaoCheckBox.Checked;
+				acbrECF.GavetaSinalInvertido = chkGavetaInvertida.Checked;
+				acbrECF.DescricaoGrande = chkDescGrande.Checked;
 
 				acbrECF.Ativar();
 				ativarCheckButton.Checked = true;
@@ -1422,6 +1422,24 @@ namespace ACBrFramework.ECFTeste
             ConfigurarSerial();
         }
 
+        private void btnLog_Click(object sender, EventArgs e)
+        {
+            using(OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Title = "Selecione o arquivo de log";
+                ofd.CheckFileExists = true;
+                ofd.CheckPathExists = true;
+                ofd.Multiselect = false;
+                ofd.FileName = "acbrlog.txt";
+                ofd.Filter = "Arquivo de texto|*.txt|All files (*.*)|*.*";
+
+                if (ofd.ShowDialog().Equals(DialogResult.Cancel))
+                    return;
+
+                txtArqLog.Text = ofd.FileName;
+            }
+        }
+
         #endregion Botões        
 
         #region Checkbox
@@ -1448,6 +1466,36 @@ namespace ACBrFramework.ECFTeste
             {
                 Desativar();
             }
+        }
+
+        private void chkRetentar_CheckedChanged(object sender, EventArgs e)
+        {
+            acbrECF.Retentar = chkRetentar.Checked;
+        }
+
+        private void chkRedQtd_CheckedChanged(object sender, EventArgs e)
+        {
+            acbrECF.ArredondaPorQtd = chkRedQtd.Checked;
+        }
+
+        private void chkGavetaInvertida_CheckedChanged(object sender, EventArgs e)
+        {
+            acbrECF.GavetaSinalInvertido = chkGavetaInvertida.Checked;
+        }
+
+        private void chkArredMFD_CheckedChanged(object sender, EventArgs e)
+        {
+            acbrECF.ArredondaItemMFD = chkArredMFD.Checked;
+        }
+
+        private void chkDescGrande_CheckedChanged(object sender, EventArgs e)
+        {
+            acbrECF.DescricaoGrande = chkDescGrande.Checked;            
+        }
+
+        private void chkIgnoraTags_CheckedChanged(object sender, EventArgs e)
+        {
+            acbrECF.IgnorarTagsFormatacao = chkIgnoraTags.Checked;
         }
 
         #endregion Checkbox
@@ -1673,8 +1721,22 @@ namespace ACBrFramework.ECFTeste
 			ImprimeMeiosPgto();
 		}
 
-		#endregion Menu PAF		
+		#endregion Menu PAF        
 
-		#endregion Event Handlers
-	}
+        #region Txt
+
+        private void txtArqLog_TextChanged(object sender, EventArgs e)
+        {
+            acbrECF.ArqLOG = txtArqLog.Text;
+        }
+
+        private void txtOperador_TextChanged(object sender, EventArgs e)
+        {
+            acbrECF.Operador = txtOperador.Text;
+        }
+
+        #endregion Txt      
+
+        #endregion Event Handlers
+    }
 }
