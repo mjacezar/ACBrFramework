@@ -301,7 +301,6 @@ begin
 
      ecfHandle^.ECF := TACBrECF.Create(nil);
      ecfHandle^.EventHandlers := TEventHandlersECF.Create();
-     ecfHandle^.ECF.ReTentar := False;
      ecfHandle^.ECF.ExibeMensagem := False;
      ecfHandle^.ECF.BloqueiaMouseTeclado := False;
      ecfHandle^.UltimoErro := '';
@@ -1135,6 +1134,50 @@ begin
   try
     data := ecfHandle^.ECF.DataHoraUltimaReducaoZ;
     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_GetReTentar(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if ecfHandle^.ECF.ReTentar then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetReTentar(const ecfHandle: PECFHandle; const ReTentar : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.ReTentar := ReTentar;
+     Result := 0;
   except
      on exception : Exception do
      begin
@@ -11044,6 +11087,7 @@ ECF_GetDescricaoGrande, ECF_SetDescricaoGrande, ECF_GetGavetaSinalInvertido, ECF
 ECF_GetOperador, ECF_SetOperador, ECF_GetLinhasEntreCupons, ECF_SetLinhasEntreCupons,
 ECF_GetDecimaisPreco, ECF_SetDecimaisPreco, ECF_GetDecimaisQtd, ECF_SetDecimaisQtd,
 ECF_GetPausaRelatorio, ECF_SetPausaRelatorio, ECF_GetDataHoraUltimaReducaoZ,
+ECF_GetReTentar, ECF_SetReTentar,
 
 { Métodos do Componente }
 

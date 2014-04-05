@@ -2902,6 +2902,19 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+        [Category("Propriedades")]
+        public bool Retentar
+        {
+            get
+            {
+                return GetBool(ACBrECFInterop.ECF_GetReTentar);
+            }
+            set
+            {
+                SetBool(ACBrECFInterop.ECF_SetReTentar, value);
+            }
+        }
+
 		[Category("Propriedades")]
 		public bool GavetaSinalInvertido
 		{

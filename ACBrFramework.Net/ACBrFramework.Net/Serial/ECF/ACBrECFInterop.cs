@@ -561,6 +561,12 @@ namespace ACBrFramework.ECF
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetPausaRelatorio(IntPtr ecfHandle, int pausa);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_GetReTentar(IntPtr ecfHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_SetReTentar(IntPtr ecfHandle, bool descricaoGrande);
+
 		#endregion Propriedades do Componente
 
 		#region InfoRodapeCupom
