@@ -48,7 +48,7 @@ public class RegistroC470 {
     /**
      * Valor da COFINS.
      */
-    private double valorCofins;    
+    private double VL_COFINS;    
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Getters - Setters">      
     /**
@@ -197,18 +197,18 @@ public class RegistroC470 {
 
     /**
      * Valor da COFINS.
-     * @return the valorCofins
+     * @return the VL_COFINS
      */
-    public double getValorCofins() {
-        return valorCofins;
+    public double getVL_COFINS() {
+        return VL_COFINS;
     }
 
     /**
      * Valor da COFINS.
-     * @param valorCofins the valorCofins to set
+     * @param VL_COFINS the VL_COFINS to set
      */
-    public void setValorCofins(double valorCofins) {
-        this.valorCofins = valorCofins;
+    public void setVL_COFINS(double VL_COFINS) {
+        this.VL_COFINS = VL_COFINS;
     }
     // </editor-fold>
     

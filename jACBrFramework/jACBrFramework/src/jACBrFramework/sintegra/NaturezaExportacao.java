@@ -47,5 +47,18 @@ public enum NaturezaExportacao {
     public String getCodigo() {
         return codigo;
     }
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static NaturezaExportacao valueOf(int pCodigo) {
+        for (NaturezaExportacao lNaturezaExportacao : values()) {
+            if (Integer.parseInt(lNaturezaExportacao.getCodigo()) == pCodigo) return lNaturezaExportacao;
+        }
+        return null;
+    }       
     // </editor-fold>    
 }

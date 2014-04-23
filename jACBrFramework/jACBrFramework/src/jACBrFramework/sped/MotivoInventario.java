@@ -1,18 +1,18 @@
 package jACBrFramework.sped;
 
 /**
- *
+ * Motivo pelo qual foi realizado o inventario de produtos.
+ * 
  * @author Jose Mauro
  * @version Criado em: 30/01/2014 16:22:30, revisao: $Id$
  */
-public enum MotivoInventario {
-    
+public enum MotivoInventario {    
     // <editor-fold defaultstate="collapsed" desc="Enums">    
-    FinalPeriodo(1, "01 – No final no período"),
-    MudancaTributacao(2, "02 – Na mudança de forma de tributação da mercadoria (ICMS)"),
-    BaixaCadastral(3, "03 – Na solicitação da baixa cadastral, paralisação temporária e outras situações"),
-    RegimePagamento(4, "04 – Na alteração de regime de pagamento – condição do contribuinte"),
-    DeterminacaoFiscos(5, "05 – Por determinação dos fiscos");
+    FinalPeriodo(0, "01 – No final no período"),
+    MudancaTributacao(1, "02 – Na mudança de forma de tributação da mercadoria (ICMS)"),
+    BaixaCadastral(2, "03 – Na solicitação da baixa cadastral, paralisação temporária e outras situações"),
+    RegimePagamento(3, "04 – Na alteração de regime de pagamento – condição do contribuinte"),
+    DeterminacaoFiscos(4, "05 – Por determinação dos fiscos");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**
@@ -46,5 +46,18 @@ public enum MotivoInventario {
     public int getCodigo() {
         return codigo;
     }
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static MotivoInventario valueOf(int pCodigo) {
+        for (MotivoInventario lMotivoInventario : values()) {
+            if (lMotivoInventario.getCodigo() == pCodigo) return lMotivoInventario;
+        }
+        return null;
+    }     
     // </editor-fold>           
 }

@@ -46,6 +46,18 @@ public enum ModalidadeFrete {
     public String getCodigo() {
         return codigo;
     }
-    // </editor-fold>
 
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static ModalidadeFrete valueOf(int pCodigo) {
+        for (ModalidadeFrete lModalidadeFrete : values()) {
+            if (Integer.parseInt(lModalidadeFrete.getCodigo()) == pCodigo) return lModalidadeFrete;
+        }
+        return null;
+    }      
+    // </editor-fold>
 }

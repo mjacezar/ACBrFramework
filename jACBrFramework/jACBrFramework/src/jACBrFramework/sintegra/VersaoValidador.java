@@ -31,6 +31,18 @@ public enum VersaoValidador {
     public int getId() {
         return id;
     }
-    // </editor-fold>    
-
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static VersaoValidador valueOf(int pCodigo) {
+        for (VersaoValidador lVersaoValidador : values()) {
+            if (lVersaoValidador.getId() == pCodigo) return lVersaoValidador;
+        }
+        return null;
+    }      
+    // </editor-fold>
 }

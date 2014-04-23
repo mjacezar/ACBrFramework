@@ -7,15 +7,15 @@ package jACBrFramework.sped;
  * @version Criado em: 27/01/2014 08:23:45, revisao: $Id$
  */
 public enum VersaoLeiaute {
-
     // <editor-fold defaultstate="collapsed" desc="Enums">    
-    Versao100("100", 1, "Código 001 - Versão 100 Ato COTEPE 01/01/2008"),
-    Versao101("101", 2, "Código 002 - Versão 101 Ato COTEPE 01/01/2009"),
-    Versao102("102", 3, "Código 003 - Versão 102 Ato COTEPE 01/01/2010"),
-    Versao103("103", 4, "Código 004 - Versão 103 Ato COTEPE 01/01/2011"),
-    Versao104("104", 5, "Código 005 - Versão 104 Ato COTEPE 01/01/2012"),
-    Versao105("105", 6, "Código 006 - Versão 105 Ato COTEPE 01/07/2012"),
-    Versao106("106", 7, "Código 007 - Versão 106 Ato COTEPE 01/01/2013");
+    Versao100("100", 0, "Código 001 - Versão 100 Ato COTEPE 01/01/2008"),
+    Versao101("101", 1, "Código 002 - Versão 101 Ato COTEPE 01/01/2009"),
+    Versao102("102", 2, "Código 003 - Versão 102 Ato COTEPE 01/01/2010"),
+    Versao103("103", 3, "Código 004 - Versão 103 Ato COTEPE 01/01/2011"),
+    Versao104("104", 4, "Código 005 - Versão 104 Ato COTEPE 01/01/2012"),
+    Versao105("105", 5, "Código 006 - Versão 105 Ato COTEPE 01/07/2012"),
+    Versao106("106", 6, "Código 007 - Versão 106 Ato COTEPE 01/01/2013"),
+    Versao107("107", 7, "Código 008 - Versão 107 Ato COTEPE 01/01/2014");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**
@@ -62,6 +62,18 @@ public enum VersaoLeiaute {
     public String getVersao() {
         return versao;
     }
-    // </editor-fold>        
-
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static VersaoLeiaute valueOf(int pCodigo) {
+        for (VersaoLeiaute lVersaoLeiaute : values()) {
+            if (lVersaoLeiaute.getCodigo() == pCodigo) return lVersaoLeiaute;
+        }
+        return null;
+    }    
+    // </editor-fold>
 }
