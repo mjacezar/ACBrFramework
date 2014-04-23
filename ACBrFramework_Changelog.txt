@@ -41,6 +41,11 @@ Símbolo : Significado
 
 Changelog
 
+23/04/2014
+
+-- ACBrFramework.Net 0.9.5.7 --
+[*] Acréscimo da Versão 107 do Leiaute pelo Ato COTEPE/ICMS 52/13, efeitos a partir de 27.11.13. - ACBrSpedFiscal - José Mauro.
+
 04/04/2014
 
 -- ACBrFramework 0.9.5.7 --
