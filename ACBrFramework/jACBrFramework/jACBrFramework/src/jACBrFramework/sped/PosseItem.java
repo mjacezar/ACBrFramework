@@ -7,7 +7,6 @@ package jACBrFramework.sped;
  * @version Criado em: 30/01/2014 16:10:45, revisao: $Id$
  */
 public enum PosseItem {
-
     // <editor-fold defaultstate="collapsed" desc="Enums">    
     Informante(0, "0 - Item de propriedade do informante e em seu poder"),
     InformanteNoTerceiro(1, "1 - Item de propriedade do informante em posse de terceiros"),
@@ -45,6 +44,18 @@ public enum PosseItem {
     public int getCodigo() {
         return codigo;
     }
-    // </editor-fold>      
-        
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static PosseItem valueOf(int pCodigo) {
+        for (PosseItem lPosseItem : values()) {
+            if (lPosseItem.getCodigo() == pCodigo) return lPosseItem;
+        }
+        return null;
+    }      
+    // </editor-fold>  
 }

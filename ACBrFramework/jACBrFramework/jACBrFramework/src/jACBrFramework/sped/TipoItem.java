@@ -7,7 +7,6 @@ package jACBrFramework.sped;
  * @version Criado em: 27/01/2014 09:52:38, revisao: $Id$
  */
 public enum TipoItem {
-
     // <editor-fold defaultstate="collapsed" desc="Enums">    
     MercadoriaRevenda(0, "00 – Mercadoria para Revenda"),
     MateriaPrima(1, "01 – Matéria-Prima"),
@@ -54,5 +53,18 @@ public enum TipoItem {
     public int getCodigo() {
         return codigo;
     }
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static TipoItem valueOf(int pCodigo) {
+        for (TipoItem lTipoItem : values()) {
+            if (lTipoItem.getCodigo() == pCodigo) return lTipoItem;
+        }
+        return null;
+    }      
     // </editor-fold>       
 }

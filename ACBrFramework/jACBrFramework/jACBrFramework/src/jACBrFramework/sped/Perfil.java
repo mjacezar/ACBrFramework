@@ -7,7 +7,6 @@ package jACBrFramework.sped;
  * @version Criado em: 27/01/2014 08:34:38, revisao: $Id$
  */
 public enum Perfil {
-
     // <editor-fold defaultstate="collapsed" desc="Enums">    
     PerfilA(0, "Perfil A"),
     PerfilB(1, "Perfil B"),
@@ -45,5 +44,18 @@ public enum Perfil {
     public int getCodigo() {
         return codigo;
     }
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static Perfil valueOf(int pCodigo) {
+        for (Perfil lPerfil : values()) {
+            if (lPerfil.getCodigo() == pCodigo) return lPerfil;
+        }
+        return null;
+    }        
     // </editor-fold>       
 }

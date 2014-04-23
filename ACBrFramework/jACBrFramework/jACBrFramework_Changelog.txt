@@ -42,6 +42,12 @@ Símbolo : Significado
 
 Changelog
 
+23/04/2014
+
+-- jACBrFramework --
+[+] Acréscimo do método valueOf para recuperar enums pelo código no ACBrPAF - José Mauro
+[*] Refactor do registro C470 para compatibilizar os acessores com o nome da propriedade informada no cotepe e ajuste/acréscimo na ordem do enum layout do sped fiscal - José Mauro
+
 27/03/2014
 
 -- jACBrFramework --

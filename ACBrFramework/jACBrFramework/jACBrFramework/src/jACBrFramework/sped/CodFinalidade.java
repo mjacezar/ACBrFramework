@@ -7,7 +7,6 @@ package jACBrFramework.sped;
  * @version Criado em: 27/01/2014 08:31:02, revisao: $Id$
  */
 public enum CodFinalidade {
-
     // <editor-fold defaultstate="collapsed" desc="Enums">    
     Original(0, "Remessa do arquivo original"),
     Substituto(1, "Remessa do arquivo substituto");
@@ -44,6 +43,18 @@ public enum CodFinalidade {
     public int getCodigo() {
         return codigo;
     }
-    // </editor-fold>      
     
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static CodFinalidade valueOf(int pCodigo) {
+        for (CodFinalidade lCodFinalidade : values()) {
+            if (lCodFinalidade.getCodigo() == pCodigo) return lCodFinalidade;
+        }
+        return null;
+    }        
+    // </editor-fold>      
 }
