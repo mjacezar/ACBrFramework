@@ -42,6 +42,13 @@ Símbolo : Significado
 
 Changelog
 
+28/04/2014
+
+-- jACBrFramework --
+[+] Acréscimo da funcionalidade para carregar a biblioteca com base na JVM em execução.
+    http://www.projetoacbr.com.br/forum/index.php?/topic/15333-pegar-dll-autom%C3%A1ticamente-32-ou-64/#entry94370
+[*] Melhoria no processo de reflexão para permitir enuns vazios e ajustes no indicadores de movimentos - José Mauro
+
 23/04/2014
 
 -- jACBrFramework --

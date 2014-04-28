@@ -20,7 +20,7 @@ public class RegistroH001 {
     /**
      * Indicador de movimento.
      */
-    private IndicadorMovimento IND_MOV;     
+    private IndicadorMovimento IND_MOV = IndicadorMovimento.SemDados;
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Getters - Setters">      
     /**
