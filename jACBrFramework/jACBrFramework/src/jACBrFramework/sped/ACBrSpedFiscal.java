@@ -1837,7 +1837,10 @@ public final class ACBrSpedFiscal extends ACBrClass {
                             lTargetField.set(pTargetJna, 
                                     toByte(lEnumValue.toString(), Array.getLength(lTargetField.get(pTargetJna))));                        
                         }
-                    }
+                    } else {
+                        // Seta o valor -1 informando que o enum nao deve aparecer no arquivo.
+                        lTargetField.set(pTargetJna, -1); 
+                    }                        
                 // Os demais tipos serao setados diretamente ao JNA. Por enquanto, 
                 // espera-se apenas tipos primitivos.
                 } else {
