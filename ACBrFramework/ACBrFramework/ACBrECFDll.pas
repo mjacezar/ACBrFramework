@@ -652,6 +652,50 @@ begin
   end;
 end;
 
+Function ECF_GetControlePorta(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if ecfHandle^.ECF.ControlePorta then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetControlePorta(const ecfHandle: PECFHandle; const ControlePorta : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.ControlePorta := ControlePorta;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 Function ECF_GetGavetaSinalInvertido(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -11087,7 +11131,7 @@ ECF_GetDescricaoGrande, ECF_SetDescricaoGrande, ECF_GetGavetaSinalInvertido, ECF
 ECF_GetOperador, ECF_SetOperador, ECF_GetLinhasEntreCupons, ECF_SetLinhasEntreCupons,
 ECF_GetDecimaisPreco, ECF_SetDecimaisPreco, ECF_GetDecimaisQtd, ECF_SetDecimaisQtd,
 ECF_GetPausaRelatorio, ECF_SetPausaRelatorio, ECF_GetDataHoraUltimaReducaoZ,
-ECF_GetReTentar, ECF_SetReTentar,
+ECF_GetReTentar, ECF_SetReTentar, ECF_GetControlePorta, ECF_SetControlePorta,
 
 { Métodos do Componente }
 

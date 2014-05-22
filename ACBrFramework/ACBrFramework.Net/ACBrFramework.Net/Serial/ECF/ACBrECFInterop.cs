@@ -499,19 +499,19 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_GetDescricaoGrande(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetDescricaoGrande(IntPtr ecfHandle, bool descricaoGrande);
+		public static extern int ECF_SetDescricaoGrande(IntPtr ecfHandle, bool value);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetGavetaSinalInvertido(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetGavetaSinalInvertido(IntPtr ecfHandle, bool gavetaSinalInvertido);
+		public static extern int ECF_SetGavetaSinalInvertido(IntPtr ecfHandle, bool value);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetOperador(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetOperador(IntPtr ecfHandle, string operador);
+		public static extern int ECF_SetOperador(IntPtr ecfHandle, string value);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_SetMemoParams(IntPtr ecfHandle, string[] linhas, int count);
@@ -526,19 +526,19 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_GetLinhasEntreCupons(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetLinhasEntreCupons(IntPtr ecfHandle, int linhasEntreCupons);
+		public static extern int ECF_SetLinhasEntreCupons(IntPtr ecfHandle, int value);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetDecimaisPreco(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetDecimaisPreco(IntPtr ecfHandle, int decimaisPreco);
+		public static extern int ECF_SetDecimaisPreco(IntPtr ecfHandle, int value);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetDecimaisQtd(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetDecimaisQtd(IntPtr ecfHandle, int decimaisQtd);
+		public static extern int ECF_SetDecimaisQtd(IntPtr ecfHandle, int value);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_GetDadosReducaoZ(IntPtr ecfHandle, StringBuilder buffer, int bufferLen);
@@ -559,13 +559,19 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_GetPausaRelatorio(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_SetPausaRelatorio(IntPtr ecfHandle, int pausa);
+		public static extern int ECF_SetPausaRelatorio(IntPtr ecfHandle, int value);
 
         [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
         public static extern int ECF_GetReTentar(IntPtr ecfHandle);
 
         [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ECF_SetReTentar(IntPtr ecfHandle, bool descricaoGrande);
+        public static extern int ECF_SetReTentar(IntPtr ecfHandle, bool value);
+        
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_GetControlePorta(IntPtr ecfHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_SetControlePorta(IntPtr ecfHandle, bool value);
 
 		#endregion Propriedades do Componente
 

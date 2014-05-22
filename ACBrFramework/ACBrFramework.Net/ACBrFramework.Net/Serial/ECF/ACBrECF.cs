@@ -2915,6 +2915,19 @@ namespace ACBrFramework.ECF
             }
         }
 
+        [Category("Propriedades")]
+        public bool ControlePorta
+        {
+            get
+            {
+                return GetBool(ACBrECFInterop.ECF_GetControlePorta);
+            }
+            set
+            {
+                SetBool(ACBrECFInterop.ECF_SetControlePorta, value);
+            }
+        }
+
 		[Category("Propriedades")]
 		public bool GavetaSinalInvertido
 		{

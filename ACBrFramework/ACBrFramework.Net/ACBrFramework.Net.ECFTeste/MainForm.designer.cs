@@ -254,6 +254,7 @@
             this.enviaComandoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.ecfTabPage = new System.Windows.Forms.TabPage();
+            this.chkControlePorta = new System.Windows.Forms.CheckBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.chkProcessMsg = new System.Windows.Forms.CheckBox();
@@ -456,7 +457,7 @@
             this.ativarCheckButton = new System.Windows.Forms.CheckBox();
             this.acbrECF = new ACBrFramework.ECF.ACBrECF();
             this.acbrAAC = new ACBrFramework.AAC.ACBrAAC();
-            this.aCBrRFD1 = new ACBrFramework.RFD.ACBrRFD();
+            this.aCBrRFD = new ACBrFramework.RFD.ACBrRFD();
             this.pnlpanel1 = new System.Windows.Forms.Panel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -1931,7 +1932,7 @@
             this.abreGavetaToolStripMenuItem,
             this.gavetaAbertaToolStripMenuItem});
             this.gavetaToolStripMenuItem.Name = "gavetaToolStripMenuItem";
-            this.gavetaToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.gavetaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.gavetaToolStripMenuItem.Text = "&Gaveta";
             // 
             // abreGavetaToolStripMenuItem
@@ -1954,7 +1955,7 @@
             this.cancelaImpressãoChequeToolStripMenuItem,
             this.leituraCMC7ToolStripMenuItem});
             this.chequeToolStripMenuItem.Name = "chequeToolStripMenuItem";
-            this.chequeToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.chequeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chequeToolStripMenuItem.Text = "&Cheque";
             // 
             // chequeProntoToolStripMenuItem
@@ -2118,6 +2119,7 @@
             // 
             // ecfTabPage
             // 
+            this.ecfTabPage.Controls.Add(this.chkControlePorta);
             this.ecfTabPage.Controls.Add(this.label25);
             this.ecfTabPage.Controls.Add(this.label24);
             this.ecfTabPage.Controls.Add(this.chkProcessMsg);
@@ -2158,6 +2160,17 @@
             this.ecfTabPage.TabIndex = 0;
             this.ecfTabPage.Text = "ECF";
             this.ecfTabPage.UseVisualStyleBackColor = true;
+            // 
+            // chkControlePorta
+            // 
+            this.chkControlePorta.AutoSize = true;
+            this.chkControlePorta.Location = new System.Drawing.Point(12, 135);
+            this.chkControlePorta.Name = "chkControlePorta";
+            this.chkControlePorta.Size = new System.Drawing.Size(93, 17);
+            this.chkControlePorta.TabIndex = 36;
+            this.chkControlePorta.Text = "Controle Porta";
+            this.chkControlePorta.UseVisualStyleBackColor = true;
+            this.chkControlePorta.CheckedChanged += new System.EventHandler(this.chkControlePorta_CheckedChanged);
             // 
             // label25
             // 
@@ -2270,7 +2283,7 @@
             // chkRedQtd
             // 
             this.chkRedQtd.AutoSize = true;
-            this.chkRedQtd.Location = new System.Drawing.Point(191, 83);
+            this.chkRedQtd.Location = new System.Drawing.Point(194, 66);
             this.chkRedQtd.Name = "chkRedQtd";
             this.chkRedQtd.Size = new System.Drawing.Size(180, 17);
             this.chkRedQtd.TabIndex = 24;
@@ -2281,7 +2294,7 @@
             // chkArredMFD
             // 
             this.chkArredMFD.AutoSize = true;
-            this.chkArredMFD.Location = new System.Drawing.Point(191, 133);
+            this.chkArredMFD.Location = new System.Drawing.Point(194, 112);
             this.chkArredMFD.Name = "chkArredMFD";
             this.chkArredMFD.Size = new System.Drawing.Size(153, 17);
             this.chkArredMFD.TabIndex = 23;
@@ -2295,7 +2308,7 @@
             this.chkExibeMsg.Checked = true;
             this.chkExibeMsg.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkExibeMsg.Enabled = false;
-            this.chkExibeMsg.Location = new System.Drawing.Point(9, 133);
+            this.chkExibeMsg.Location = new System.Drawing.Point(12, 112);
             this.chkExibeMsg.Name = "chkExibeMsg";
             this.chkExibeMsg.Size = new System.Drawing.Size(127, 17);
             this.chkExibeMsg.TabIndex = 22;
@@ -2308,7 +2321,7 @@
             this.chkBloqueiaMouseTeclado.Checked = true;
             this.chkBloqueiaMouseTeclado.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkBloqueiaMouseTeclado.Enabled = false;
-            this.chkBloqueiaMouseTeclado.Location = new System.Drawing.Point(9, 110);
+            this.chkBloqueiaMouseTeclado.Location = new System.Drawing.Point(12, 89);
             this.chkBloqueiaMouseTeclado.Name = "chkBloqueiaMouseTeclado";
             this.chkBloqueiaMouseTeclado.Size = new System.Drawing.Size(144, 17);
             this.chkBloqueiaMouseTeclado.TabIndex = 21;
@@ -2318,7 +2331,7 @@
             // chkRetentar
             // 
             this.chkRetentar.AutoSize = true;
-            this.chkRetentar.Location = new System.Drawing.Point(9, 87);
+            this.chkRetentar.Location = new System.Drawing.Point(12, 66);
             this.chkRetentar.Name = "chkRetentar";
             this.chkRetentar.Size = new System.Drawing.Size(115, 17);
             this.chkRetentar.TabIndex = 20;
@@ -2445,7 +2458,7 @@
             this.chkDescGrande.AutoSize = true;
             this.chkDescGrande.Checked = true;
             this.chkDescGrande.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDescGrande.Location = new System.Drawing.Point(191, 159);
+            this.chkDescGrande.Location = new System.Drawing.Point(194, 135);
             this.chkDescGrande.Name = "chkDescGrande";
             this.chkDescGrande.Size = new System.Drawing.Size(112, 17);
             this.chkDescGrande.TabIndex = 10;
@@ -2456,7 +2469,7 @@
             // chkGavetaInvertida
             // 
             this.chkGavetaInvertida.AutoSize = true;
-            this.chkGavetaInvertida.Location = new System.Drawing.Point(191, 106);
+            this.chkGavetaInvertida.Location = new System.Drawing.Point(194, 89);
             this.chkGavetaInvertida.Name = "chkGavetaInvertida";
             this.chkGavetaInvertida.Size = new System.Drawing.Size(131, 17);
             this.chkGavetaInvertida.TabIndex = 9;
@@ -4200,6 +4213,7 @@
             this.acbrECF.ArredondaItemMFD = false;
             this.acbrECF.ArredondaPorQtd = false;
             this.acbrECF.ComandoLog = "ChequePronto";
+            this.acbrECF.ControlePorta = false;
             this.acbrECF.DecimaisPreco = 3;
             this.acbrECF.DecimaisQtd = 3;
             this.acbrECF.DescricaoGrande = true;
@@ -4243,7 +4257,7 @@
             this.acbrECF.PaginaDeCodigo = 0;
             this.acbrECF.PausaRelatorio = 5;
             this.acbrECF.Retentar = false;
-            this.acbrECF.RFD = this.aCBrRFD1;
+            this.acbrECF.RFD = this.aCBrRFD;
             this.acbrECF.OnMsgPoucoPapel += new System.EventHandler(this.acbrECF_OnMsgPoucoPapel);
             this.acbrECF.OnAguardandoRespostaChange += new System.EventHandler(this.acbrECF_OnAguardandoRespostaChange);
             this.acbrECF.OnBobinaAdicionaLinhas += new System.EventHandler<ACBrFramework.ECF.BobinaAdicionaLinhasEventArgs>(this.acbrECF_OnBobinaAdicionaLinhas);
@@ -4265,37 +4279,37 @@
         ""};
             this.acbrAAC.OnGetChave += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrAAC_OnGetChave);
             // 
-            // aCBrRFD1
+            // aCBrRFD
             // 
-            this.aCBrRFD1.Ativo = false;
-            this.aCBrRFD1.AtoCotepe = "PC5207 01.00.00";
-            this.aCBrRFD1.CONT_CNPJ = "";
-            this.aCBrRFD1.CONT_CROCadastro = -1;
-            this.aCBrRFD1.CONT_DataHoraCadastro = new System.DateTime(1899, 12, 30, 0, 0, 0, 0);
-            this.aCBrRFD1.CONT_Endereco = "";
-            this.aCBrRFD1.CONT_GTCadastro = new decimal(new int[] {
+            this.aCBrRFD.Ativo = false;
+            this.aCBrRFD.AtoCotepe = "PC5207 01.00.00";
+            this.aCBrRFD.CONT_CNPJ = "";
+            this.aCBrRFD.CONT_CROCadastro = -1;
+            this.aCBrRFD.CONT_DataHoraCadastro = new System.DateTime(1899, 12, 30, 0, 0, 0, 0);
+            this.aCBrRFD.CONT_Endereco = "";
+            this.aCBrRFD.CONT_GTCadastro = new decimal(new int[] {
             1,
             0,
             0,
             -2147483648});
-            this.aCBrRFD1.CONT_IE = "";
-            this.aCBrRFD1.CONT_NumUsuario = -1;
-            this.aCBrRFD1.CONT_RazaoSocial = "";
-            this.aCBrRFD1.DataHoraSwBasico = new System.DateTime(1899, 12, 30, 0, 0, 0, 0);
-            this.aCBrRFD1.DirRFD = "C:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\IDE\\RFD";
-            this.aCBrRFD1.ECF = this.acbrECF;
-            this.aCBrRFD1.ECF_CROAtual = 0;
-            this.aCBrRFD1.ECF_RFDID = "";
-            this.aCBrRFD1.IgnoraEcfMfd = true;
-            this.aCBrRFD1.SH_CNPJ = "";
-            this.aCBrRFD1.SH_COO = "";
-            this.aCBrRFD1.SH_IE = "";
-            this.aCBrRFD1.SH_IM = "";
-            this.aCBrRFD1.SH_Linha1 = "";
-            this.aCBrRFD1.SH_Linha2 = "";
-            this.aCBrRFD1.SH_NomeAplicativo = "";
-            this.aCBrRFD1.SH_NumeroAplicativo = "";
-            this.aCBrRFD1.SH_VersaoAplicativo = "";
+            this.aCBrRFD.CONT_IE = "";
+            this.aCBrRFD.CONT_NumUsuario = -1;
+            this.aCBrRFD.CONT_RazaoSocial = "";
+            this.aCBrRFD.DataHoraSwBasico = new System.DateTime(1899, 12, 30, 0, 0, 0, 0);
+            this.aCBrRFD.DirRFD = "C:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\IDE\\RFD";
+            this.aCBrRFD.ECF = this.acbrECF;
+            this.aCBrRFD.ECF_CROAtual = 0;
+            this.aCBrRFD.ECF_RFDID = "";
+            this.aCBrRFD.IgnoraEcfMfd = true;
+            this.aCBrRFD.SH_CNPJ = "";
+            this.aCBrRFD.SH_COO = "";
+            this.aCBrRFD.SH_IE = "";
+            this.aCBrRFD.SH_IM = "";
+            this.aCBrRFD.SH_Linha1 = "";
+            this.aCBrRFD.SH_Linha2 = "";
+            this.aCBrRFD.SH_NomeAplicativo = "";
+            this.aCBrRFD.SH_NumeroAplicativo = "";
+            this.aCBrRFD.SH_VersaoAplicativo = "";
             // 
             // pnlpanel1
             // 
@@ -4794,7 +4808,7 @@
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label39;
 		private System.Windows.Forms.ListBox lstParam;
-		private RFD.ACBrRFD aCBrRFD1;
+		private RFD.ACBrRFD aCBrRFD;
 		public ECF.ACBrECF acbrECF;
 		private System.Windows.Forms.Button button8;
 		private System.Windows.Forms.CheckBox checkBox10;
@@ -4820,6 +4834,7 @@
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox chkControlePorta;
     }
 }
 
