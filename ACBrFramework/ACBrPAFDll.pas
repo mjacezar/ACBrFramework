@@ -1208,8 +1208,10 @@ begin
   //continua ...
   if (CountD2 <= 0) then
   begin
-    pafHandle^.UltimoErro := 'O numero de DAVs não pode ser Zero';
-    Result := -1;
+    // Alterado em 07/05/2014 - Permitir que o número de DAV's seja zero
+    //pafHandle^.UltimoErro := 'O numero de DAVs não pode ser Zero';
+    //Result := -1;
+    Result := 1;
     Exit;
   end;
 

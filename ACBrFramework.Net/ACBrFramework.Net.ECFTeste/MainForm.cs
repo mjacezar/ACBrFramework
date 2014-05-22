@@ -1498,6 +1498,11 @@ namespace ACBrFramework.ECFTeste
             acbrECF.IgnorarTagsFormatacao = chkIgnoraTags.Checked;
         }
 
+        private void chkControlePorta_CheckedChanged(object sender, EventArgs e)
+        {
+            acbrECF.ControlePorta = chkControlePorta.Checked;
+        }
+
         #endregion Checkbox
 
         #region NumericUpDown
@@ -1735,7 +1740,7 @@ namespace ACBrFramework.ECFTeste
             acbrECF.Operador = txtOperador.Text;
         }
 
-        #endregion Txt      
+        #endregion Txt
 
         #endregion Event Handlers
     }

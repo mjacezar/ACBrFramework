@@ -41,6 +41,16 @@ Símbolo : Significado
 
 Changelog
 
+21/05/2014
+
+-- ACBrFramework 0.9.5.8 --
+[*] Acréscimo da propriedade ControlePorta acompanhando o projeto em delphi - ACBrECF - Rafael Dias.
+[+] Correção de erro ao gerar arquivo PAF - ACBrPAF - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.5.8 --
+[*] Acréscimo da propriedade ControlePorta acompanhando o projeto em delphi - ACBrECF - Rafael Dias.
+[+] Correção de erro ao gerar arquivo PAF - ACBrPAF - Rafael Dias.
+
 23/04/2014
 
 -- ACBrFramework.Net 0.9.5.7 --
