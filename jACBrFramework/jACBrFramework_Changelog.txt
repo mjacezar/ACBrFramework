@@ -42,6 +42,12 @@ Símbolo : Significado
 
 Changelog
 
+
+26/05/2014
+
+-- jACBrFramework --
+[+] Acréscimo da funcionalidade de leitura de códigos de barra serial - ACBrLCB - José Mauro.
+
 28/04/2014
 
 -- jACBrFramework --
