@@ -42,6 +42,11 @@ Símbolo : Significado
 
 Changelog
 
+27/05/2014
+
+-- jACBrFramework --
+[*] [ACBrFramework 0.9.5.8] Habilitado a propriedade ReTentar, para evitar loop infinito em caso de falha de comunicação e o evento OnMsgRetentar não esteja programado - ACBrECF - José Mauro.
+[+] [ACBrFramework 0.9.5.8] Acréscimo da propriedade ControlePorta acompanhando o projeto em delphi - ACBrECF - José Mauro.
 
 26/05/2014
 
