@@ -3122,6 +3122,51 @@ public final class ACBrECF extends ACBrClass {
         checkResult(ret);
     }
 
+    /**
+     * Informa se havera retentantiva em caso de falha de comunicacao para casos
+     * em que o evento OnMsgRetentar nao esteja programado.
+     * 
+     * @param pRetentar indica que havera retentativas.
+     * @throws ACBrException 
+     */
+    public void setRetentar(boolean pRetentar) throws ACBrException {
+        int ret = ACBrECFInterop.INSTANCE.ECF_SetReTentar(getHandle(), pRetentar);
+        checkResult(ret);
+    }
+
+    /**
+     * Indica se havera retentantiva em caso de falha de comunicacao para casos
+     * em que o evento OnMsgRetentar nao esteja programado.
+     * 
+     * @return indica retentativa.
+     * @throws ACBrException 
+     */
+    public boolean isRetentar() throws ACBrException {
+        return ACBrECFInterop.INSTANCE.ECF_GetReTentar(getHandle()) != 0;
+    }
+    
+    /**
+     * Indica controle de portas. 
+     * Melhoria no processo de portas virtuais.
+     * 
+     * @param pControlePorta indica controle de porta.
+     * @throws ACBrException 
+     */
+    public void setControlePorta(boolean pControlePorta) throws ACBrException {
+        int ret = ACBrECFInterop.INSTANCE.ECF_SetControlePorta(getHandle(), pControlePorta);
+        checkResult(ret);
+    }
+
+    /**
+     * Verifica se ha controle de portas.
+     * 
+     * @return indica controle.
+     * @throws ACBrException 
+     */
+    public boolean isControlePorta() throws ACBrException {
+        return ACBrECFInterop.INSTANCE.ECF_GetControlePorta(getHandle()) != 0;
+    }
+    
     public boolean acharECF(boolean Modelo, boolean Porta, int TimeOut) throws ACBrException {
         int ret = ACBrECFInterop.INSTANCE.ECF_AcharECF(getHandle(), Modelo, Porta, TimeOut);
         checkResult(ret);
