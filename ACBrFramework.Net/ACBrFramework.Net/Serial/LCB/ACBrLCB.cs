@@ -162,7 +162,7 @@ namespace ACBrFramework.LCB
 		{
 			get
 			{
-				return GetString(ACBrLCBInterop.LCB_GetUltimoErro);
+				return GetString(ACBrLCBInterop.LCB_GetUltimoCodigo);
 			}
 		}
 
