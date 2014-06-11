@@ -1012,7 +1012,8 @@ namespace ACBrFramework.PAF
                                                                  CodigoTipoDocumento = ((int)x.CodigoTipoDocumento).ToString(),
                                                                  Data = x.Data.ToOADate(),
                                                                  MeioDePagamento = x.MeioPagamento,
-                                                                 RegistroValido = x.RegistroValido
+                                                                 RegistroValido = x.RegistroValido,
+																 Valor = (double)x.Valor
                                                              }).ToArray();
 
             int ret = ACBrPAFInterop.PAF_Preenche_A(Handle, RegistrosA2Rec, PAF_A.RegistroA2.Count);

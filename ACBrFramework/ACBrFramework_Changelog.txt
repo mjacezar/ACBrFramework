@@ -41,6 +41,13 @@ Símbolo : Significado
 
 Changelog
 
+10/06/2014
+
+-- ACBrFramework 0.9.5.8 --
+[-] Correção na geraçao do registro A2 - ACBrPAF - Rafael Dias.
+    http://www.projetoacbr.com.br/forum/index.php?/topic/16074-registros-paf-ecf-a2/
+[-] Correção da propriedade UltimoCodigo - ACBrBal - Rafael Dias. 
+
 21/05/2014
 
 -- ACBrFramework 0.9.5.8 --
