@@ -42,6 +42,12 @@ Símbolo : Significado
 
 Changelog
 
+
+07/07/2014
+
+-- jACBrFramework --
+[-] Ajuste ao realizar a LMFS por RZ: http://www.projetoacbr.com.br/forum/index.php?/topic/16418-leitura-de-mem%C3%B3ria-fiscal-completa-por-contador-de-redu%C3%A7%C3%A3o-z/ - ACBrECF - José Mauro.
+
 27/05/2014
 
 -- jACBrFramework --
