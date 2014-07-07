@@ -3452,7 +3452,7 @@ public final class ACBrECF extends ACBrClass {
     }
 
     public void pafMF_LMFS_Impressao(int CRZInicial, int CRZFinal) throws ACBrException {
-        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_LMFS_Impressao(getHandle(), CRZInicial, CRZFinal);
+        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_LMFS_Impressao_CRZ(getHandle(), CRZInicial, CRZFinal);
         checkResult(ret);
     }
 
