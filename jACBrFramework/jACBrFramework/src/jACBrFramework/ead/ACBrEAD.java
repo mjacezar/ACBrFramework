@@ -19,6 +19,16 @@ import java.util.List;
  */
 public class ACBrEAD extends ACBrClass {
 
+    //<editor-fold defaultstate="collapsed" desc="Attributes">
+    /**
+     * Evento associado a obtencao da chave privada.
+     */
+    private ACBrEventListener<EADChavePrivadaEventObject> onGetChavePrivada;
+    /**
+     * Evento associado a obtencao da chave publica.
+     */
+    private ACBrEventListener<EADChavePublicaEventObject> onGetChavePublica;
+    // </editor-fold>    
     //<editor-fold defaultstate="collapsed" desc="Constructor">
     /**
      * Construtor padrao.
@@ -97,12 +107,16 @@ public class ACBrEAD extends ACBrClass {
      * @param pChavePrivada chave privada.
      */
     public void setChavePrivada(final String pChavePrivada) {
-        addOnGetChavePrivada(new ACBrEventListener<EADChavePrivadaEventObject>() {
+        if (onGetChavePrivada != null) {
+            removeOnGetChavePrivada(onGetChavePrivada);
+        }
+        onGetChavePrivada = new ACBrEventListener<EADChavePrivadaEventObject>() {
             @Override
             public void notification(EADChavePrivadaEventObject e) {
                 e.setKey(pChavePrivada);
             }
-        });        
+        };
+        addOnGetChavePrivada(onGetChavePrivada);
     }
     
     /**
@@ -111,12 +125,16 @@ public class ACBrEAD extends ACBrClass {
      * @param pChavePublica chave publica.
      */
     public void setChavePublica(final String pChavePublica) {
-        addOnGetChavePublica(new ACBrEventListener<EADChavePublicaEventObject>() {
+        if (onGetChavePublica != null) {
+            removeOnGetChavePublica(onGetChavePublica);
+        }
+        onGetChavePublica = new ACBrEventListener<EADChavePublicaEventObject>() {
             @Override
             public void notification(EADChavePublicaEventObject e) {
                 e.setKey(pChavePublica);
             }
-        });
+        };
+        addOnGetChavePublica(onGetChavePublica);        
     } 
     
     /**

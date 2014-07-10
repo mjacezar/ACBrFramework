@@ -25,6 +25,10 @@ public final class ACBrECF extends ACBrClass {
     private ComprovanteNaoFiscal[] comprovantesNaoFiscais;
     private RelatorioGerencial[] relatoriosGerenciais;
     /**
+     * Evento associado a obtencao da chave.
+     */
+    private ACBrEventListener<ChaveEventObject> onPAFGetKeyRSA;    
+    /**
      * Dados relacionados a reducao Z.
      */
     private DadosReducaoZClass dadosReducaoZClass = new DadosReducaoZClass(this);
@@ -2882,12 +2886,16 @@ public final class ACBrECF extends ACBrClass {
      * @param pKeyRSA chave rsa.
      */
     public void setKeyRSA(final String pKeyRSA) {
-        addOnPAFGetKeyRSA(new ACBrEventListener<ChaveEventObject>() {
+        if (onPAFGetKeyRSA != null) {
+            removeOnPAFGetKeyRSA(onPAFGetKeyRSA);
+        }
+        onPAFGetKeyRSA = new ACBrEventListener<ChaveEventObject>() {
             @Override
             public void notification(ChaveEventObject e) {
                 e.setChave(pKeyRSA);
             }
-        });
+        };
+        addOnPAFGetKeyRSA(onPAFGetKeyRSA);        
     }    
     
     /**
@@ -3412,7 +3420,7 @@ public final class ACBrECF extends ACBrClass {
     }
 
     public void pafMF_LMFC_Cotepe1704(int CRZInicial, int CRZFinal, String CaminhoArquivo) throws ACBrException {
-        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_LMFC_Cotepe1704(getHandle(), CRZInicial, CRZFinal, toUTF8(CaminhoArquivo));
+        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_LMFC_Cotepe1704_CRZ(getHandle(), CRZInicial, CRZFinal, toUTF8(CaminhoArquivo));
         checkResult(ret);
     }
 
@@ -3422,7 +3430,7 @@ public final class ACBrECF extends ACBrClass {
     }
 
     public void pafMF_LMFC_Espelho(int CRZInicial, int CRZFinal, String CaminhoArquivo) throws ACBrException {
-        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_LMFC_Espelho(getHandle(), CRZInicial, CRZFinal, toUTF8(CaminhoArquivo));
+        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_LMFC_Espelho_CRZ(getHandle(), CRZInicial, CRZFinal, toUTF8(CaminhoArquivo));
         checkResult(ret);
     }
 
@@ -3442,7 +3450,7 @@ public final class ACBrECF extends ACBrClass {
     }
 
     public void pafMF_LMFS_Espelho(int CRZInicial, int CRZFinal, String CaminhoArquivo) throws ACBrException {
-        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_LMFS_Espelho(getHandle(), CRZInicial, CRZFinal, toUTF8(CaminhoArquivo));
+        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_LMFS_Espelho_CRZ(getHandle(), CRZInicial, CRZFinal, toUTF8(CaminhoArquivo));
         checkResult(ret);
     }
 
@@ -3462,7 +3470,7 @@ public final class ACBrECF extends ACBrClass {
     }
 
     public void pafMF_MFD_Cotepe1704(int COOInicial, int COOFinal, String CaminhoArquivo) throws ACBrException {
-        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_MFD_Cotepe1704(getHandle(), COOInicial, COOFinal, toUTF8(CaminhoArquivo));
+        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_MFD_Cotepe1704_COO(getHandle(), COOInicial, COOFinal, toUTF8(CaminhoArquivo));
         checkResult(ret);
     }
 
@@ -3472,7 +3480,7 @@ public final class ACBrECF extends ACBrClass {
     }
 
     public void pafMF_MFD_Espelho(int COOInicial, int COOFinal, String CaminhoArquivo) throws ACBrException {
-        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_MFD_Espelho(getHandle(), COOInicial, COOFinal, toUTF8(CaminhoArquivo));
+        int ret = ACBrECFInterop.INSTANCE.ECF_PafMF_MFD_Espelho_COO(getHandle(), COOInicial, COOFinal, toUTF8(CaminhoArquivo));
         checkResult(ret);
     }
 

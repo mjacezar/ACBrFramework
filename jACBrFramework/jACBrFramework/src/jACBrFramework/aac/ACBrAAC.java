@@ -20,6 +20,10 @@ public class ACBrAAC extends ACBrClass {
 
     //<editor-fold defaultstate="collapsed" desc="Attributes">
     /**
+     * Evento associado a obtencao da chave.
+     */
+    private ACBrEventListener<AACGetChaveEventObject> onGetChave;
+    /**
      * Identificacao do PAF.
      */
     private IdenticacaoPaf identPaf = new IdenticacaoPaf(this);
@@ -135,12 +139,16 @@ public class ACBrAAC extends ACBrClass {
      * @param pKey chave.
      */
     public void setKey(final String pKey) {
-        addOnGetChave(new ACBrEventListener<AACGetChaveEventObject>() {
+        if (onGetChave != null) {
+            removeOnGetChave(onGetChave);
+        }
+        onGetChave = new ACBrEventListener<AACGetChaveEventObject>() {
             @Override
             public void notification(AACGetChaveEventObject e) {
                 e.setKey(pKey);
             }
-        });
+        };
+        addOnGetChave(onGetChave);
     }    
         
     /**
