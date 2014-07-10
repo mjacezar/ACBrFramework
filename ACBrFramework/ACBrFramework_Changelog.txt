@@ -41,6 +41,12 @@ Símbolo : Significado
 
 Changelog
 
+09/07/2014
+
+-- ACBrFramework 0.9.5.9 --
+[-] Correção na geraçao do registro D4 - ACBrPAF - Rafael Dias.
+    http://www.projetoacbr.com.br/forum/index.php?/topic/16409-registros-paf-ecf-d4/
+
 10/06/2014
 
 -- ACBrFramework 0.9.5.8 --

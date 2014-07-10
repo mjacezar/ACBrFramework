@@ -510,32 +510,17 @@ namespace ACBrFramework.PAF
         private void PAF_Preenche_R()
         {
             #region Contadores
-            int ItemR1 = 0, ItemR2 = 0, ItemR3 = 0, ItemR4 = 0, ItemR5 = 0, ItemR6 = 0, ItemR7 = 0,
-                CR2 = 0, CR3 = 0, CR4 = 0, CR5 = 0, CR6 = 0, CR7 = 0;
 
-            foreach(ACBrPAFRegistroR1 R1 in PAF_R.RegistroR1)
-            {
+            int ItemR1 = 0, ItemR2 = 0, ItemR3 = 0, ItemR4 = 0, ItemR5 = 0, ItemR6 = 0, ItemR7 = 0;
+			int CR2 = PAF_R.RegistroR1.Sum(s => s.RegistroR2.Count);
+			int CR3 = PAF_R.RegistroR1.Sum(s => s.RegistroR2.Sum(c => c.RegistroR3.Count));
+			int CR4 = PAF_R.RegistroR1.Sum(s => s.RegistroR4.Count);
+			int CR5 = PAF_R.RegistroR1.Sum(s => s.RegistroR4.Sum(c => c.RegistroR5.Count));
+			int CR6 = PAF_R.RegistroR1.Sum(s => s.RegistroR6.Count);
+			int CR7 = PAF_R.RegistroR1.Sum(s => s.RegistroR4.Sum(c => c.RegistroR7.Count) +
+												s.RegistroR6.Sum(c => c.RegistroR7.Count));
 
-                CR2 += R1.RegistroR2.Count;
-                foreach(ACBrPAFRegistroR2 R2 in R1.RegistroR2)
-                {
-                    CR3 += R2.RegistroR3.Count;
-                }
-
-                CR4 += R1.RegistroR4.Count;
-                foreach(ACBrPAFRegistroR4 R4 in R1.RegistroR4)
-                {
-                    CR5 += R4.RegistroR5.Count;
-                    CR7 += R4.RegistroR7.Count;
-                }
-
-                CR6 += R1.RegistroR6.Count;
-                foreach(ACBrPAFRegistroR6 R6 in R1.RegistroR6)
-                {
-                    CR7 += R6.RegistroR7.Count;
-                }
-            }
-            #endregion Contadores
+			#endregion Contadores
 
             #region Arrays
             ACBrPAFInterop.RegistroR1Rec[] RegistrosR1Rec = new ACBrPAFInterop.RegistroR1Rec[PAF_R.RegistroR1.Count];
@@ -550,6 +535,7 @@ namespace ACBrFramework.PAF
             foreach(ACBrPAFRegistroR1 R1 in PAF_R.RegistroR1)
             {
                 #region R1
+
                 RegistrosR1Rec[ItemR1].QTD_R2 = R1.RegistroR2.Count;
                 RegistrosR1Rec[ItemR1].QTD_R4 = R1.RegistroR4.Count;
                 RegistrosR1Rec[ItemR1].QTD_R6 = R1.RegistroR6.Count;
@@ -576,6 +562,7 @@ namespace ACBrFramework.PAF
                 RegistrosR1Rec[ItemR1].ER_PAF_ECF = ToUTF8(R1.ER_PAF_ECF);
                 RegistrosR1Rec[ItemR1].InclusaoExclusao = R1.InclusaoExclusao;
                 RegistrosR1Rec[ItemR1].RegistroValido = R1.RegistroValido;
+
                 #endregion
 
                 #region R2 e R3
@@ -669,6 +656,7 @@ namespace ACBrFramework.PAF
                 #endregion
 
                 #region R6 e R7
+
                 foreach(ACBrPAFRegistroR6 R6 in R1.RegistroR6)
                 {
                     RegistrosR6Rec[ItemR6].QTD_R7 = R6.RegistroR7.Count;
@@ -696,6 +684,7 @@ namespace ACBrFramework.PAF
 
                     ItemR6++;
                 }
+
                 #endregion
 
                 ItemR1++;
@@ -833,6 +822,7 @@ namespace ACBrFramework.PAF
         private void PAF_Preenche_D()
         {
             #region Variáveis
+
             int i, IndexD3 = 0, IndexD4 = 0;
             int D3 = PAF_D.RegistroD2.Sum(s => s.RegistroD3.Count);
             int D4 = PAF_D.RegistroD2.Sum(s => s.RegistroD4.Count);
@@ -840,15 +830,18 @@ namespace ACBrFramework.PAF
             ACBrPAFInterop.RegistroHD1Rec RegistroD1Rec = new ACBrPAFInterop.RegistroHD1Rec();
             ACBrPAFInterop.RegistroD2Rec[] RegistrosD2Rec = new ACBrPAFInterop.RegistroD2Rec[PAF_D.RegistroD2.Count];
             ACBrPAFInterop.RegistroD3Rec[] RegistrosD3Rec = new ACBrPAFInterop.RegistroD3Rec[D3];
-            ACBrPAFInterop.RegistroD4Rec[] RegistrosD4Rec = new ACBrPAFInterop.RegistroD4Rec[D3];
-            #endregion
+            ACBrPAFInterop.RegistroD4Rec[] RegistrosD4Rec = new ACBrPAFInterop.RegistroD4Rec[D4];
+            
+			#endregion
 
             #region D1
+
             RegistroD1Rec.RAZAOSOCIAL = ToUTF8(PAF_D.RegistroD1.RazaoSocial);
             RegistroD1Rec.CNPJ = ToUTF8(PAF_D.RegistroD1.CNPJ);
             RegistroD1Rec.UF = ToUTF8(PAF_D.RegistroD1.UF);
             RegistroD1Rec.IE = ToUTF8(PAF_D.RegistroD1.IE);
             RegistroD1Rec.IM = ToUTF8(PAF_D.RegistroD1.IM);
+
             #endregion
 
             for(i = 0; i < PAF_D.RegistroD2.Count; i++)
@@ -898,6 +891,7 @@ namespace ACBrFramework.PAF
                 #endregion
 
                 #region D4
+
                 foreach(ACBrPAFRegistroD4 RegistroD4 in PAF_D.RegistroD2[i].RegistroD4)
                 {
                     RegistrosD4Rec[IndexD4].NumeroDAV = RegistroD4.NumeroDAV;
@@ -920,6 +914,7 @@ namespace ACBrFramework.PAF
 
                     IndexD4++;
                 }
+
                 #endregion
             }
 
@@ -1023,12 +1018,7 @@ namespace ACBrFramework.PAF
         private void PAF_Preenche_TITP()
         {
             int ItemIndex = 0;
-            int InsumosCount = 0;
-
-            foreach (ACBrPAFRegistroMercadoria mercadoria in PAF_TITP.Mercadorias)
-            {
-                InsumosCount += mercadoria.Insumos.Count;
-            }
+			int InsumosCount = PAF_TITP.Mercadorias.Sum(s => s.Insumos.Count);
 
             ACBrPAFInterop.RegistroMercadoriasRec[] MercadoriasRec = new ACBrPAFInterop.RegistroMercadoriasRec[PAF_TITP.Mercadorias.Count];
             ACBrPAFInterop.RegistroInsumosRec[] InsumosRec = new ACBrPAFInterop.RegistroInsumosRec[InsumosCount];
