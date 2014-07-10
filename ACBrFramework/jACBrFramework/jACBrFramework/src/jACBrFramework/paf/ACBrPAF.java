@@ -21,6 +21,10 @@ public class ACBrPAF extends ACBrClass {
 
     // <editor-fold defaultstate="collapsed" desc="Attributes">
     /**
+     * Evento associado a obtencao da chave RSA.
+     */
+    private ACBrEventListener<PAFGetKeyRSAEventObject> onPAFGetKeyRSA;    
+    /**
      * Instancia AAC.
      */
     private ACBrAAC aac;
@@ -156,12 +160,16 @@ public class ACBrPAF extends ACBrClass {
      * @param pKeyRSA chave rsa.
      */
     public void setKeyRSA(final String pKeyRSA) {
-        addOnPAFGetKeyRSA(new ACBrEventListener<PAFGetKeyRSAEventObject>() {
+        if (onPAFGetKeyRSA != null) {
+            removeOnPAFGetKeyRSA(onPAFGetKeyRSA);
+        }
+        onPAFGetKeyRSA = new ACBrEventListener<PAFGetKeyRSAEventObject>() {
             @Override
             public void notification(PAFGetKeyRSAEventObject e) {
                 e.setKey(pKeyRSA);
             }
-        });
+        };
+        addOnPAFGetKeyRSA(onPAFGetKeyRSA);        
     }    
     
     /**
