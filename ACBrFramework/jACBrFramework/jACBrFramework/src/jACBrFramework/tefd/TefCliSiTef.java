@@ -1,5 +1,6 @@
 package jACBrFramework.tefd;
 
+import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 import jACBrFramework.ACBrComposedClass;
 import jACBrFramework.ACBrEventListener;
@@ -389,69 +390,66 @@ public class TefCliSiTef extends ACBrComposedClass {
     }    
     // </editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="onExibeMenu">
-	public void addOnExibeMenu(ACBrEventListener<TEFCliSiTefExibeMenuEventObject> pListener) {
-		if (!hasListeners("onExibeMenu")) {
+    public void addOnExibeMenu(ACBrEventListener<TEFCliSiTefExibeMenuEventObject> pListener) {
+        if (!hasListeners("onExibeMenu")) {
             ACBrTEFInterop.INSTANCE.TEF_TEFCliSiTef_SetOnExibeMenu(getHandle(), new ACBrTEFInterop.TEFCliSiTefExibeMenuCallback() {
-
                 @Override
-                public void invoke(String pTitulo, int pOpcoes, int pOpcoesCount, IntByReference pItemSelecionado, IntByReference pVoltarMenu) {
+                public void invoke(String pTitulo, Pointer pOpcoes, int pOpcoesCount, IntByReference pItemSelecionado, IntByReference pVoltarMenu) {
                     onExibeMenu(pTitulo, pOpcoes, pOpcoesCount, pItemSelecionado, pVoltarMenu);
                 }
-			});
-		}
-		addListener("onExibeMenu", pListener);
-	}
-    
-	public void removeOnExibeMenu(ACBrEventListener<TEFCliSiTefExibeMenuEventObject> pListener) {
-		removeListener("onExibeMenu", pListener);
+            });
+        }
+        addListener("onExibeMenu", pListener);
+    }
 
-		if (!hasListeners("onExibeMenu")) {
-			ACBrTEFInterop.INSTANCE.TEF_TEFCliSiTef_SetOnExibeMenu(getHandle(), null);
-		}
-	}
+    public void removeOnExibeMenu(ACBrEventListener<TEFCliSiTefExibeMenuEventObject> pListener) {
+        removeListener("onExibeMenu", pListener);
 
-	private void onExibeMenu(String pTitulo, int pOpcoes, int pOpcoesCount, IntByReference pItemSelecionado, IntByReference pVoltarMenu) {
-		TEFCliSiTefExibeMenuEventObject e = new TEFCliSiTefExibeMenuEventObject(this, pTitulo, pOpcoes, pOpcoesCount);
-        //TODO Verificar processo de leitura de opcoes.
-        pItemSelecionado = e.getItemSelecionado();
-        pVoltarMenu = e.getItemSelecionado();
-		notifyListeners("onExibeMenu", e);
-	}
+        if (!hasListeners("onExibeMenu")) {
+            ACBrTEFInterop.INSTANCE.TEF_TEFCliSiTef_SetOnExibeMenu(getHandle(), null);
+        }
+    }
+
+    private void onExibeMenu(String pTitulo, Pointer pOpcoes, int pOpcoesCount, IntByReference pItemSelecionado, IntByReference pVoltarMenu) {
+        String[] opcoesArray = getStringArray(pOpcoes, pOpcoesCount);
+        TEFCliSiTefExibeMenuEventObject e = new TEFCliSiTefExibeMenuEventObject(this, pTitulo, opcoesArray, pOpcoesCount);
+        notifyListeners("onExibeMenu", e);
+        pItemSelecionado.setValue(e.getItemSelecionado());
+        pVoltarMenu.setValue(e.getVoltarMenu() ? 1 : 0);
+    }
 	//</editor-fold>  
 	//<editor-fold defaultstate="collapsed" desc="onObtemCampo">
-	public void addOnObtemCampo(ACBrEventListener<TEFCliSiTefObtemCampoEventObject> pListener) {
-		if (!hasListeners("onObtemCampo")) {
+    public void addOnObtemCampo(ACBrEventListener<TEFCliSiTefObtemCampoEventObject> pListener) {
+        if (!hasListeners("onObtemCampo")) {
             ACBrTEFInterop.INSTANCE.TEF_TEFCliSiTef_SetOnObtemCampo(getHandle(), new ACBrTEFInterop.TEFCliSiTefObtemCampoCalback() {
-
                 @Override
-                public void invoke(String pTitulo, int pTamanhoMinimo, int pTamanhoMaximo, int pTipoCampo, 
-                int pOperacao, ByteBuffer pResposta, int pRespLen, IntByReference pDigitado, IntByReference pVoltarMenu) {
+                public void invoke(String pTitulo, int pTamanhoMinimo, int pTamanhoMaximo, int pTipoCampo,
+                        int pOperacao, Pointer pResposta, int pRespLen, IntByReference pDigitado, IntByReference pVoltarMenu) {
                     onObtemCampo(pTitulo, pTamanhoMinimo, pTamanhoMaximo, pTipoCampo, pOperacao, pResposta, pRespLen, pDigitado, pVoltarMenu);
                 }
-			});
-		}
-		addListener("onObtemCampo", pListener);
-	}
-    
-	public void removeOnObtemCampo(ACBrEventListener<TEFCliSiTefObtemCampoEventObject> pListener) {
-		removeListener("onObtemCampo", pListener);
+            });
+        }
+        addListener("onObtemCampo", pListener);
+    }
 
-		if (!hasListeners("onObtemCampo")) {
-			ACBrTEFInterop.INSTANCE.TEF_TEFCliSiTef_SetOnObtemCampo(getHandle(), null);
-		}
-	}
-    
-	private void onObtemCampo(String pTitulo, int pTamanhoMinimo, int pTamanhoMaximo, int pTipoCampo, 
-            int pOperacao, ByteBuffer pResposta, int pRespLen, IntByReference pDigitado, IntByReference pVoltarMenu) {
-		TEFCliSiTefObtemCampoEventObject e = new TEFCliSiTefObtemCampoEventObject(this, pTitulo, pTamanhoMinimo, 
+    public void removeOnObtemCampo(ACBrEventListener<TEFCliSiTefObtemCampoEventObject> pListener) {
+        removeListener("onObtemCampo", pListener);
+
+        if (!hasListeners("onObtemCampo")) {
+            ACBrTEFInterop.INSTANCE.TEF_TEFCliSiTef_SetOnObtemCampo(getHandle(), null);
+        }
+    }
+
+    private void onObtemCampo(String pTitulo, int pTamanhoMinimo, int pTamanhoMaximo, int pTipoCampo,
+            int pOperacao, Pointer pResposta, int pRespLen, IntByReference pDigitado, IntByReference pVoltarMenu) {
+        TEFCliSiTefObtemCampoEventObject e = new TEFCliSiTefObtemCampoEventObject(this, pTitulo, pTamanhoMinimo,
                 pTamanhoMaximo, pTipoCampo, TefCliSiTefOperacaoCampo.valueOf(pOperacao));
-        //TODO Verificar processo de leitura de opcoes.
-        pResposta = e.getResposta();
-        pRespLen = 0;
+        notifyListeners("onObtemCampo", e);
+        pResposta.clear(pRespLen);
+        pResposta.setString(0, toUTF8(e.getResposta()));
         pDigitado = e.getDigitado();
         pVoltarMenu = e.getVoltarMenu();
-		notifyListeners("onObtemCampo", e);
-	}
+    }
 	//</editor-fold>  
-    
+
 }

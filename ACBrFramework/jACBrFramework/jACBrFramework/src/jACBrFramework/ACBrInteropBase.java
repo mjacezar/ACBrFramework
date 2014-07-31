@@ -1,5 +1,6 @@
 package jACBrFramework;
 
+import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -110,6 +111,10 @@ public abstract class ACBrInteropBase {
     protected String fromUTF8(byte[] value) {
         return new String(value, UTF8).trim();
     }
+    
+    protected String[] getStringArray(Pointer ptr, int len) {
+        return ptr.getStringArray(0, len);
+    }    
 	//</editor-fold>	
 	//<editor-fold defaultstate="collapsed" desc="Listeners methods">	
     protected synchronized void addListener(String key, ACBrEventListener listener) {

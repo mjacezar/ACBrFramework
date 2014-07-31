@@ -45,6 +45,11 @@ Changelog
 31/07/2014
 
 -- jACBrFramework --
+[*] Teste de utilização do ACBrTEFD para CliSiTef - ACBrTEFD - José Mauro.
+
+31/07/2014
+
+-- jACBrFramework --
 [-] Correção do registro C100: http://www.projetoacbr.com.br/forum/index.php?/topic/16805-sped-fiscal-icms/ - ACBrPAF - José Mauro.
 
 10/07/2014
