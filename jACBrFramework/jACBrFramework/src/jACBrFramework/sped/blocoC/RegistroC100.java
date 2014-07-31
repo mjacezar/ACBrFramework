@@ -1,9 +1,9 @@
 package jACBrFramework.sped.blocoC;
 
-import jACBrFramework.sintegra.TipoOperacao;
 import jACBrFramework.sped.Emitente;
 import jACBrFramework.sped.SituacaoDocto;
 import jACBrFramework.sped.TipoFrete;
+import jACBrFramework.sped.TipoOperacao;
 import jACBrFramework.sped.TipoPagamento;
 import java.util.ArrayList;
 import java.util.Collection;

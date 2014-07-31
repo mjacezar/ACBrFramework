@@ -42,12 +42,16 @@ Símbolo : Significado
 
 Changelog
 
+31/07/2014
+
+-- jACBrFramework --
+[-] Correção do registro C100: http://www.projetoacbr.com.br/forum/index.php?/topic/16805-sped-fiscal-icms/ - ACBrPAF - José Mauro.
+
 10/07/2014
 
 -- jACBrFramework --
 [-] Ajustes no métodos que podem que podem ser utilizados com COO/CRZ e Data - ACBrECF - José Mauro.
 [*] Melhoria no processo de processamento das chaves privadas nos componentes: ACBrECF, ACBrEAD, ACBrPAF e ACBrAAC - José Mauro.
-
 
 07/07/2014
 
