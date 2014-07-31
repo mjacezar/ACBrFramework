@@ -1,6 +1,5 @@
 package jACBrFramework.tefd.eventos;
 
-import com.sun.jna.ptr.IntByReference;
 import java.util.EventObject;
 
 /**
@@ -22,7 +21,7 @@ public class TEFCliSiTefExibeMenuEventObject extends EventObject {
     /**
      * Indica as opcoes.
      */
-    private int opcoes;
+    private String[] opcoes;
     /**
      * Quantidade de opcoes.
      */
@@ -30,20 +29,20 @@ public class TEFCliSiTefExibeMenuEventObject extends EventObject {
     /**
      * Handle associado ao item selecionado.
      */
-    private IntByReference itemSelecionado;
+    private int itemSelecionado;
     /**
      * Handle associado ao voltar menu.
      */
-    private IntByReference voltarMenu;
+    private boolean voltarMenu;
     // </editor-fold>    
     //<editor-fold defaultstate="collapsed" desc="Constructor">
-    public TEFCliSiTefExibeMenuEventObject(Object pSource, String pTitulo, int pOpcoes, int pOpcoesCount) {
+    public TEFCliSiTefExibeMenuEventObject(Object pSource, String pTitulo, String[] pOpcoes, int pOpcoesCount) {
         super(pSource);
         this.titulo = pTitulo;
         this.opcoes = pOpcoes;
         this.opcoesCount = pOpcoesCount;
-        itemSelecionado = new IntByReference();
-        voltarMenu = new IntByReference();
+        //itemSelecionado;
+        //voltarMenu = false;
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Getters - Setters">    
@@ -59,7 +58,7 @@ public class TEFCliSiTefExibeMenuEventObject extends EventObject {
      * Indica as opcoes.
      * @return the opcoes
      */
-    public int getOpcoes() {
+    public String[] getOpcoes() {
         return opcoes;
     }
 
@@ -75,7 +74,7 @@ public class TEFCliSiTefExibeMenuEventObject extends EventObject {
      * Handle associado ao item selecionado.
      * @return the itemSelecionado
      */
-    public IntByReference getItemSelecionado() {
+    public int getItemSelecionado() {
         return itemSelecionado;
     }
 
@@ -83,7 +82,7 @@ public class TEFCliSiTefExibeMenuEventObject extends EventObject {
      * Handle associado ao item selecionado.
      * @param itemSelecionado the itemSelecionado to set
      */
-    public void setItemSelecionado(IntByReference itemSelecionado) {
+    public void setItemSelecionado(int itemSelecionado) {
         this.itemSelecionado = itemSelecionado;
     }
 
@@ -91,7 +90,7 @@ public class TEFCliSiTefExibeMenuEventObject extends EventObject {
      * Handle associado ao voltar menu.
      * @return the voltarMenu
      */
-    public IntByReference getVoltarMenu() {
+    public boolean getVoltarMenu() {
         return voltarMenu;
     }
 
@@ -99,7 +98,7 @@ public class TEFCliSiTefExibeMenuEventObject extends EventObject {
      * Handle associado ao voltar menu.
      * @param voltarMenu the voltarMenu to set
      */
-    public void setVoltarMenu(IntByReference voltarMenu) {
+    public void setVoltarMenu(boolean voltarMenu) {
         this.voltarMenu = voltarMenu;
     }
     // </editor-fold>    

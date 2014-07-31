@@ -36,10 +36,10 @@ public interface ACBrTEFInterop extends InteropLib {
 		void invoke(int Operacao,int Resp,IntByReference RetornoECF);
 	}
 	public interface ComandaECFImprimeViaCallback extends com.sun.jna.Callback {
-		void invoke(int TipoRelatorio,int Via,int ImagemComprovante,int ImagemComprovanteCount,IntByReference RetornoECF);
+		void invoke(int TipoRelatorio,int Via, Pointer ImagemComprovante,int ImagemComprovanteCount,IntByReference RetornoECF);
 	}
 	public interface ComandaECFPagamentoCallback extends com.sun.jna.Callback {
-		void invoke(String IndiceECF,double Valor,IntByReference RetornoECF);
+		void invoke(String IndiceECF, double Valor, IntByReference RetornoECF);
 	}
 	public interface ComandaECFSubtotalizaCallback extends com.sun.jna.Callback {
 		void invoke(double DescAcre,IntByReference RetornoECF);
@@ -54,10 +54,10 @@ public interface ACBrTEFInterop extends InteropLib {
 		void invoke(IntByReference Tratado);
 	}
 	public interface ExibeMsgCallback extends com.sun.jna.Callback {
-		void invoke(int Operacao,String Mensagem,IntByReference AModalResult);
+		void invoke(int Operacao, String Mensagem, Pointer AModalResult);
 	}
 	public interface InfoECFCallback extends com.sun.jna.Callback {
-		void invoke(int Operacao,ByteBuffer RetornoECF,int RetornoECFLen);
+        void invoke(int Operacao, Pointer retornoECF, int RetornoECFLen);
 	}
 	public interface MudaEstadoReqCallback extends com.sun.jna.Callback {
 		void invoke(int EstadoReq);
@@ -66,10 +66,10 @@ public interface ACBrTEFInterop extends InteropLib {
 		void invoke(int EstadoResp);
 	}
 	public interface TEFCliSiTefExibeMenuCallback extends com.sun.jna.Callback {
-		void invoke(String Titulo,int Opcoes,int OpcoesCount,IntByReference ItemSelecionado,IntByReference VoltarMenu);
+		void invoke(String Titulo, Pointer Opcoes,int OpcoesCount,IntByReference ItemSelecionado,IntByReference VoltarMenu);
 	}
  	public interface TEFCliSiTefObtemCampoCalback extends com.sun.jna.Callback {
-		void invoke(String Titulo,int TamanhoMinimo,int TamanhoMaximo,int TipoCampo,int Operacao,ByteBuffer Resposta,int RespLen,IntByReference Digitado,IntByReference VoltarMenu);
+		void invoke(String Titulo,int TamanhoMinimo,int TamanhoMaximo,int TipoCampo,int Operacao,Pointer Resposta,int RespLen,IntByReference Digitado,IntByReference VoltarMenu);
 	}
 	public interface TEFVeSPagueExibeMenuCallback extends com.sun.jna.Callback {
 		void invoke(String Titulo,int Opcoes,int OpcoesCount,int Memo,int MemoCount,IntByReference ItemSelecionado);

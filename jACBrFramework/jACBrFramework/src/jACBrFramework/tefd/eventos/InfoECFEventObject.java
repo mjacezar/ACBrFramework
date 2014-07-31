@@ -1,7 +1,7 @@
 package jACBrFramework.tefd.eventos;
 
 import jACBrFramework.tefd.InfoECF;
-import java.nio.ByteBuffer;
+import jACBrFramework.tefd.RetornoECF;
 import java.util.EventObject;
 
 /**
@@ -23,7 +23,7 @@ public class InfoECFEventObject extends EventObject {
     /**
      * Retorno da ECF.
      */
-    private ByteBuffer retornoEcf;
+    private String retornoEcf;
     /**
      * Tamanho do Retorno.
      */
@@ -51,7 +51,7 @@ public class InfoECFEventObject extends EventObject {
      * Retorno da ECF.
      * @return the retornoEcf
      */
-    public ByteBuffer getRetornoEcf() {
+    public String getRetornoEcf() {
         return retornoEcf;
     }
 
@@ -59,7 +59,7 @@ public class InfoECFEventObject extends EventObject {
      * Retorno da ECF.
      * @param retornoEcf the retornoEcf to set
      */
-    public void setRetornoEcf(ByteBuffer retornoEcf) {
+    public void setRetornoEcf(String retornoEcf) {
         this.retornoEcf = retornoEcf;
     }
 
@@ -78,6 +78,23 @@ public class InfoECFEventObject extends EventObject {
     public void setTamanhoRetorno(int tamanhoRetorno) {
         this.tamanhoRetorno = tamanhoRetorno;
     }
+
+    /**
+     * RetornoEcf tipo Enum RetornoEcf
+     * @param retornoECF the retornoECF to set
+     */
+    public void setRetornoEcf(RetornoECF retornoECF){
+        this.retornoEcf = String.format("%s", retornoECF.getCodigo());
+    }
+    
+    /**
+     * RetornoEcf tipo double RetornoEcf
+     * @param retornoECF the retornoECF to set
+     */
+    public void setRetornoEcf(double retornoECF){
+        this.retornoEcf = String.format("%.2f", retornoECF);
+    }
+    
     // </editor-fold>    
 
 }

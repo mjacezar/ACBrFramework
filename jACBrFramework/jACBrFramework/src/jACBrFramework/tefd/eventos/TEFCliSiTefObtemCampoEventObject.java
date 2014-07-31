@@ -2,7 +2,6 @@ package jACBrFramework.tefd.eventos;
 
 import com.sun.jna.ptr.IntByReference;
 import jACBrFramework.tefd.TefCliSiTefOperacaoCampo;
-import java.nio.ByteBuffer;
 import java.util.EventObject;
 
 /**
@@ -40,7 +39,7 @@ public class TEFCliSiTefObtemCampoEventObject extends EventObject {
     /**
      * Resposta.
      */
-    private ByteBuffer resposta;
+    private String resposta;
     /**
      * Tamanho do resposta.
      */
@@ -63,7 +62,7 @@ public class TEFCliSiTefObtemCampoEventObject extends EventObject {
         this.tamanhoMaximo = pTamanhoMaximo;
         this.tipoCampo = pTipoCampo;
         this.operacao = pOperacao;
-        this.resposta = ByteBuffer.allocate(256);
+        this.resposta = new String();
         this.digitado = new IntByReference();
         this.voltarMenu = new IntByReference();
     }
@@ -113,7 +112,7 @@ public class TEFCliSiTefObtemCampoEventObject extends EventObject {
      * Resposta.
      * @return the resposta
      */
-    public ByteBuffer getResposta() {
+    public String getResposta() {
         return resposta;
     }
 
@@ -121,7 +120,7 @@ public class TEFCliSiTefObtemCampoEventObject extends EventObject {
      * Resposta.
      * @param resposta the resposta to set
      */
-    public void setResposta(ByteBuffer resposta) {
+    public void setResposta(String resposta) {
         this.resposta = resposta;
     }
 
