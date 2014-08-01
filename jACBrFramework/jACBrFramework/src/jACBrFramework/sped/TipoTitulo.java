@@ -13,7 +13,7 @@ public enum TipoTitulo {
     Cheque(1, "01- Cheque"),
     Promissoria(2, "02- Promissória"),
     Recibo(3, "03- Recibo"),
-    Outros(99, "99- Outros (descrever)");
+    Outros(4, "99- Outros (descrever)");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

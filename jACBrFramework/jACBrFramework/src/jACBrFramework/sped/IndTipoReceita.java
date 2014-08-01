@@ -14,7 +14,7 @@ public enum IndTipoReceita {
     ServicoPrePago(3, "3 - Receita própria - venda de serviço pré-pago"),
     OutrasProprias(4, "4 - Outras receitas próprias"),
     TerceiroCoFaturamento(5, "5 - Receitas de terceiros (co-faturamento)"),
-    TerceiroOutras(9, "9 - Outras receitas de terceiros");
+    TerceiroOutras(6, "9 - Outras receitas de terceiros");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

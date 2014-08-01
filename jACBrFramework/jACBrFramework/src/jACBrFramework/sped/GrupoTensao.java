@@ -9,7 +9,7 @@ package jACBrFramework.sped;
 public enum GrupoTensao {
     
     // <editor-fold defaultstate="collapsed" desc="Enums">    
-    Nenhum(-1, "'' - Vazio. Para uso quando o documento for cancelado."),
+    Nenhum(0, "'' - Vazio. Para uso quando o documento for cancelado."),
     A1(1, "01 - A1 - Alta Tensão (230kV ou mais)"),
     A2(2, "02 - A2 - Alta Tensão (88 a 138kV)"),
     A3(3, "03 - A3 - Alta Tensão (69kV)"),

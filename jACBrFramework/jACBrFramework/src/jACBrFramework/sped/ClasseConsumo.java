@@ -9,14 +9,14 @@ package jACBrFramework.sped;
 public enum ClasseConsumo {
 
     // <editor-fold defaultstate="collapsed" desc="Enums">    
-    Comercial(1, "01 - Comercial"),
-    ConsumoProprio(2, "02 - Consumo Próprio"),
-    IluminacaoPublica(3, "03 - Iluminação Pública"),
-    Industrial(4, "04 - Industrial"),
-    PoderPublico(5, "05 - Poder Público"),
-    Residencial(6, "06 - Residencial"),
-    Rural(7, "07 - Rural"),
-    ServicoPublico(8, "08 -Serviço Público");
+    Comercial(0, "01 - Comercial"),
+    ConsumoProprio(1, "02 - Consumo Próprio"),
+    IluminacaoPublica(2, "03 - Iluminação Pública"),
+    Industrial(3, "04 - Industrial"),
+    PoderPublico(4, "05 - Poder Público"),
+    Residencial(5, "06 - Residencial"),
+    Rural(6, "07 - Rural"),
+    ServicoPublico(7, "08 -Serviço Público");
     // </editor-fold>    
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

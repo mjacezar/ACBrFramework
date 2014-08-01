@@ -12,7 +12,7 @@ public enum TipoTarifa {
     Exp(0, "0 - Exp"),
     Enc(1, "1 - Enc"),
     CI(2, "2 - CI"),
-    Outra(99, "9 - Outra");
+    Outra(3, "9 - Outra");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**
