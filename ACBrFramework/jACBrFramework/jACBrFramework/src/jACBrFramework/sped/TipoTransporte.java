@@ -15,7 +15,7 @@ public enum TipoTransporte {
     Aquaviario(3, "3 – Aquaviário"),
     Dutoviario(4, "4 – Dutoviário"),
     Aereo(5, "5 – Aéreo"),
-    Outros(9, "9 – Outros");
+    Outros(6, "9 – Outros");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

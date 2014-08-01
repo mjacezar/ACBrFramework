@@ -9,12 +9,12 @@ package jACBrFramework.sped;
 public enum TipoAssinante {
 
     // <editor-fold defaultstate="collapsed" desc="Enums">    
-    ComercialIndustrial(1, "1 - Comercial/Industrial"),
-    PoderPublico(2, "2 - Poder Público"),
-    Residencial(3, "3 - Residencial/Pessoa física"),
-    Publico(4, "4 - Público"),
-    SemiPublico(5, "5 - Semi-Público"),
-    Outros(6, "6 - Outros");
+    ComercialIndustrial(0, "1 - Comercial/Industrial"),
+    PoderPublico(1, "2 - Poder Público"),
+    Residencial(2, "3 - Residencial/Pessoa física"),
+    Publico(3, "4 - Público"),
+    SemiPublico(4, "5 - Semi-Público"),
+    Outros(5, "6 - Outros");
     // </editor-fold>    
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

@@ -12,8 +12,8 @@ public enum TipoPagamento {
     Vista(0, "0 - À Vista"),
     Prazo(1, "1 - A Prazo"),
     Outros(2, "2 - Outros"),
-    SemPagamento(9, "9 - Sem pagamento"),
-    Nenhum(-1, "Preencher vazio");
+    SemPagamento(3, "9 - Sem pagamento"),
+    Nenhum(4, "Preencher vazio");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

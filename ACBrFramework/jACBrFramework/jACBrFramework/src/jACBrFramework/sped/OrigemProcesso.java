@@ -13,8 +13,8 @@ public enum OrigemProcesso {
     JusticaFederal(1, "1 - Justiça Federal"),
     JusticaEstadual(2, "2 - Justiça Estadual"),
     SecexRFB(3, "3 - Secex/RFB"),
-    Outros(9, "9 - Outros"),
-    Nenhum(-1, "Preencher vazio");
+    Outros(4, "9 - Outros"),
+    Nenhum(5, "Preencher vazio");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

@@ -13,7 +13,7 @@ public enum TipoOperacaoVeiculo {
     FaturaDireta(1, "1 - Faturamento direto"),
     VendaDireta(2, "2 - Venda direta"),
     VendaDConcess(3, "3 - Venda da concessionária"),
-    VendaOutros(9, "9 - Outros");
+    VendaOutros(4, "9 - Outros");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

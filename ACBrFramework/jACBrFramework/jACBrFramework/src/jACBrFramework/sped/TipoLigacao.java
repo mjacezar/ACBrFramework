@@ -9,7 +9,7 @@ package jACBrFramework.sped;
 public enum TipoLigacao {
 
     // <editor-fold defaultstate="collapsed" desc="Enums">    
-    Nenhum(-1, "'' - Para uso quando o documento for cancelado"),
+    Nenhum(0, "'' - Para uso quando o documento for cancelado"),
     Monofasico(1, "1 - Monofásico"),
     Bifasico(2, "2 - Bifásico"),
     Trifasico(3, "3 - Trifásico");

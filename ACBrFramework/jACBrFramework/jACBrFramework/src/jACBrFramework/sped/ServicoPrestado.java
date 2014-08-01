@@ -14,7 +14,7 @@ public enum ServicoPrestado {
     TVAssinatura(2, "2 - TV por assinatura"),
     AcessoInternet(3, "3 - Provimento de acesso à Internet;"),
     Multimidia(4, "4 - Multimídia"),
-    Outros(8, "9 - Outros");
+    Outros(5, "9 - Outros");
     // </editor-fold>    
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

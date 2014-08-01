@@ -19,7 +19,7 @@ public enum TipoItem {
     AtivoImobilizado(8, "08 – Ativo Imobilizado"),
     Servicos(9, "09 – Serviços"),
     OutrosInsumos(10, "10 – Outros Insumos"),
-    Outras(99, "99 – Outras");
+    Outras(11, "99 – Outras");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

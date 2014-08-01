@@ -12,8 +12,8 @@ public enum TipoFreteRedespacho {
     SemRedespacho(0, "0 – Sem redespacho"),
     PorContaEmitente(1, "1 - Por conta do emitente"),
     PorContaDestinatario(2, "2 - Por conta do destinatário"),
-    Outros(9, "9 – Outros"),
-    Nenhum(-1, "Preencher vazio");
+    Outros(3, "9 – Outros"),
+    Nenhum(4, "Preencher vazio");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

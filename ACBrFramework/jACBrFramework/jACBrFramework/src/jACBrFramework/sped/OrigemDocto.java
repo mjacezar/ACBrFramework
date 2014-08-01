@@ -12,7 +12,7 @@ public enum OrigemDocto {
     PorcessoJudicial(0, "0 - Processo Judicial"),
     ProcessoAdminist(1, "1 - Processo Administrativo"),
     PerDcomp(2, "2 - PER/DCOMP"),
-    Outros(9, "9 – Outros");
+    Outros(3, "9 – Outros");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

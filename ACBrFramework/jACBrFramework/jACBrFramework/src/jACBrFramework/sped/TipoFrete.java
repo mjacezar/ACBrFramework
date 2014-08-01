@@ -12,8 +12,8 @@ public enum TipoFrete {
     PorContaEmitente(0, "0 - Por conta do emitente"),
     PorContaDestinatario(1, "1 - Por conta do destinatário/remetente"),
     PorContaTerceiros(2, "2 - Por conta de terceiros"),
-    SemCobrancaFrete(9, "9 - Sem frete"),
-    Nenhum(-1, "Preencher vazio");
+    SemCobrancaFrete(3, "9 - Sem frete"),
+    Nenhum(4, "Preencher vazio");
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**
