@@ -224,7 +224,7 @@ type
     CRZ: integer;
     COO: integer;
     CRO: integer;
-    DT_MOV: double;
+    DT_MOV: double;                     QTD_R2: integer;
     DT_EMI: double;
     HR_EMI: double;
     VL_VBD: double;
@@ -387,6 +387,7 @@ type
     Valor: double;
     RegistroValido: boolean;
   end;
+
 //  Identificação do ECF que Emitiu o Documento Base para a Atualização do Estoque
 type
   TRegistroE3Rec = record
@@ -566,15 +567,24 @@ type
 // Mesa/Conta de Cliente
 type
   TRegistroS2Rec = record
-    CNPJ: array[0..14] of char;
-    DataAbertura: double;
-    HoraAabertura: double;
-    Situacao: array[0..1] of char;
-    ValorTotal: double;
-    COOConferenciaMesa: integer;
-    NumeroFabECFRG: array[0..20] of char;
-    COOCupomFIscal: integer;
-    NumeroFabECF: array[0..20] of char;
+    QTD_S3     : integer;
+    CNPJ       : array[0..14] of char;
+    DT_ABER    : double;
+    SITU       : array[0..1] of char;
+    VL_TOT     : double;
+    COO_CM     : array[0..9] of char;
+    NUM_FAB_CM : array[0..20] of char;
+    COO        : array[0..9] of char;
+    NUM_FAB    : array[0..20] of char;
+  end;
+
+type
+  TRegistroS3Rec = record
+    COD_ITEM   : array[0..14] of char;
+    DESC_ITEM  : array[0..100] of char;
+    QTDE_ITEM  : double;
+    UNI_ITEM   : array[0..3] of char;
+    VL_UNIT    : double;
   end;
 
 {%endregion}
@@ -1050,12 +1060,9 @@ begin
     Result := -2;
     Exit;
   end;
-  //continua ...
 
   try
-
     pafHandle^.PAF.PAF_A.RegistroA2.Clear;
-
     for i := 0 to CountA2 - 1 do
     begin
       with pafHandle^.PAF.PAF_A.RegistroA2.New do
@@ -1091,7 +1098,6 @@ begin
     Result := -2;
     Exit;
   end;
-  //continua ...
 
   try
     pafHandle^.PAF.PAF_B.RegistroB1.RAZAOSOCIAL := RegistroB1Rec.RAZAOSOCIAL;
@@ -1145,7 +1151,6 @@ begin
     Exit;
   end;
 
-  //continua ...
   try
     pafHandle^.PAF.PAF_C.RegistroC1.RAZAOSOCIAL := RegistroC1Rec.RAZAOSOCIAL;
     pafHandle^.PAF.PAF_C.RegistroC1.UF := RegistroC1Rec.UF;
@@ -1205,12 +1210,9 @@ begin
     Result := -2;
     Exit;
   end;
-  //continua ...
+
   if (CountD2 <= 0) then
   begin
-    // Alterado em 07/05/2014 - Permitir que o número de DAV's seja zero
-    //pafHandle^.UltimoErro := 'O numero de DAVs não pode ser Zero';
-    //Result := -1;
     Result := 1;
     Exit;
   end;
@@ -1331,7 +1333,6 @@ begin
     Result := -2;
     Exit;
   end;
-  //continua ...
 
   if (CountE2 <= 0) then
   begin
@@ -1403,7 +1404,6 @@ begin
     Result := -2;
     Exit;
   end;
-  //continua ...
 
   if (CountH2 <= 0) then
   begin
@@ -1468,7 +1468,6 @@ begin
     Result := -2;
     Exit;
   end;
-  //continua ...
 
   try
     pafHandle^.PAF.PAF_P.RegistroP1.RAZAOSOCIAL := RegistroP1Rec.RAZAOSOCIAL;
@@ -1573,7 +1572,6 @@ begin
     Result := -2;
     Exit;
   end;
-  //continua ...
 
   try
     IndexR2 := 0;
@@ -1755,6 +1753,62 @@ begin
     end
   end;
 
+end;
+
+function PAF_Preenche_S(const pafHandle: PPAFHandle;
+                        const CountS2: integer;
+                        const RegistroS2Rec: array of TRegistroS2Rec;
+                        const RegistroS3Rec: array of TRegistroS3Rec): integer;
+ {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  i, d,IndexS3: integer;
+begin
+  if (pafHandle = nil) then
+  begin
+    Result := -2;
+    Exit;
+  end;
+
+  try
+    IndexS3 := 0;
+    pafHandle^.PAF.PAF_S.RegistroS2.Clear;
+    for i := 0 to CountS2 - 1 do
+    begin
+      with pafHandle^.PAF.PAF_S.RegistroS2.New do
+      begin
+        CNPJ        := RegistroS2Rec[i].CNPJ;
+        DT_ABER     := RegistroS2Rec[i].DT_ABER;
+        SITU        := RegistroS2Rec[i].SITU;
+        VL_TOT      := RegistroS2Rec[i].VL_TOT;
+        COO_CM      := RegistroS2Rec[i].COO_CM;
+        NUM_FAB_CM  := RegistroS2Rec[i].NUM_FAB_CM;
+        COO         := RegistroS2Rec[i].COO;
+        NUM_FAB     := RegistroS2Rec[i].NUM_FAB;
+
+        for d := 0 to RegistroS2Rec[i].QTD_S3 - 1 do
+        begin
+          with RegistroS3.New do
+          begin
+            COD_ITEM   := RegistroS3Rec[IndexS3].COD_ITEM;
+            DESC_ITEM  := RegistroS3Rec[IndexS3].DESC_ITEM;
+            QTDE_ITEM  := RegistroS3Rec[IndexS3].QTDE_ITEM;
+            UNI_ITEM   := RegistroS3Rec[IndexS3].UNI_ITEM;
+            VL_UNIT    := RegistroS3Rec[IndexS3].VL_UNIT;
+            Inc(IndexS3);
+          end;
+        end;
+      end;
+    end;
+
+    Result := 1;
+  except
+    on Exception: Exception do
+    begin
+      pafHandle^.UltimoErro := Exception.Message;
+      pafHandle^.PAF.PAF_B.LimpaRegistros;
+      Result := -1;
+    end
+  end;
 end;
 
 function PAF_Preenche_T(const pafHandle: PPAFHandle;
@@ -1960,19 +2014,6 @@ I´ll be back...
 //end;
 
 //function PAF_Preenche_M(const pafHandle: PPAFHandle; const Arquivo: PChar): integer;
-// {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-//var
-//  i: integer;
-//begin
-//  if (pafHandle = nil) then
-//  begin
-//    Result := -2;
-//    Exit;
-//  end;
-//  //continua ...
-//end;
-
-//function PAF_Preenche_S(const pafHandle: PPAFHandle; const Arquivo: PChar): integer;
 // {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 //var
 //  i: integer;
@@ -2429,6 +2470,7 @@ exports
   PAF_Preenche_N,
   PAF_Preenche_P,
   PAF_Preenche_R,
+  PAF_Preenche_S,
   PAF_Preenche_T,
   PAF_Preenche_U,
   PAF_Preenche_TITP,

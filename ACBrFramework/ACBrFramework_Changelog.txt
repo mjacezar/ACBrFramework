@@ -43,6 +43,14 @@ Changelog
 
 09/07/2014
 
+-- ACBrFramework 0.9.6.0 --
+[+] Adicionado os registros S2 e S3 - ACBrPAF - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.6.0 --
+[+] Adicionado os registros S2 e S3 - ACBrPAF - Rafael Dias.    
+
+09/07/2014
+
 -- ACBrFramework 0.9.5.9 --
 [-] Correção na geraçao do registro D4 - ACBrPAF - Rafael Dias.
     http://www.projetoacbr.com.br/forum/index.php?/topic/16409-registros-paf-ecf-d4/

@@ -252,6 +252,9 @@
     <Compile Include="PAF\Registros\PAF_R\ACBrPAFRegistrosR6.cs" />
     <Compile Include="PAF\Registros\PAF_R\ACBrPAFRegistrosR7.cs" />
     <Compile Include="PAF\Registros\PAF_R\ACBrPAF_R.cs" />
+    <Compile Include="PAF\Registros\PAF_S\ACBrPAFRegistroS3.cs" />
+    <Compile Include="PAF\Registros\PAF_S\ACBrPAFRegistrosS2.cs" />
+    <Compile Include="PAF\Registros\PAF_T\ACBrPAFRegistroT2.cs" />
     <Compile Include="PAF\Registros\PAF_TITP\ACBrPAF_TITP.cs" />
     <Compile Include="PAF\Registros\PAF_TITP\ACBrPAFRegistroInsumo.cs" />
     <Compile Include="PAF\Registros\PAF_TITP\ACBrPAFRegistroInsumos.cs" />
@@ -259,7 +262,8 @@
     <Compile Include="PAF\Registros\PAF_TITP\ACBrPAFRegistroMercadorias.cs" />
     <Compile Include="PAF\Registros\PAF_T\ACBrPAFRegistroT1.cs" />
     <Compile Include="PAF\Registros\PAF_T\ACBrPAFRegistrosT2.cs" />
-    <Compile Include="PAF\Registros\PAF_T\ACBrPAFRegistroT2.cs" />
+    <Compile Include="PAF\Registros\PAF_S\ACBrPAFRegistroS2.cs" />
+    <Compile Include="PAF\Registros\PAF_S\ACBrPAF_S.cs" />
     <Compile Include="PAF\Registros\PAF_T\ACBrPAF_T.cs" />
     <Compile Include="PAF\Registros\PAF_U\ACBrPAFRegistroU1.cs" />
     <Compile Include="PAF\Registros\PAF_U\ACBrPAF_U.cs" />

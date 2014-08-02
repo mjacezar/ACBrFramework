@@ -911,6 +911,56 @@ namespace ACBrFramework.PAF
             public bool RegistroValido;
         }
 
+		[StructLayout(LayoutKind.Sequential)]
+		public struct RegistroS2Rec
+		{
+			[MarshalAs(UnmanagedType.I4)]
+			public int QTD_S3;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string CNPJ;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double DT_ABER;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
+			public string SITU;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double VL_TOT;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+			public string COO_CM;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
+			public string NUM_FAB_CM;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+			public string COO;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
+			public string NUM_FAB;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct RegistroS3Rec
+		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+			public string COD_ITEM;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 101)]
+			public string DESC_ITEM;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double QTDE_ITEM;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+			public string UNI_ITEM;
+
+			[MarshalAs(UnmanagedType.R8)]
+			public double VL_UNIT;
+		}
+
 		#endregion Interop Types
 
 		#region Constructors/Erro Handler
@@ -1032,6 +1082,11 @@ namespace ACBrFramework.PAF
                                                 RegistroR5Rec[] registrosR5Rec,
                                                 RegistroR6Rec[] registrosR6Rec,
                                                 RegistroR7Rec[] registrosR7Rec);
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int PAF_Preenche_S(IntPtr pafHandle,
+			                                     int CountS2,
+												 RegistroS2Rec[] registrosS2Rec,
+												 RegistroS3Rec[] registrosS3Rec);
 
         [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
         public static extern int PAF_Preenche_T(IntPtr pafHandle,
@@ -1047,7 +1102,7 @@ namespace ACBrFramework.PAF
         public static extern int PAF_Preenche_TITP(IntPtr pafHandle,
                                                   RegistroMercadoriasRec[] RegistroMercadorias,
                                                   int Count, RegistroInsumosRec[] RegistroInsumos,
-                                                  string titulo, double data);
+                                                  string titulo, double data);		
 
         #endregion
 
