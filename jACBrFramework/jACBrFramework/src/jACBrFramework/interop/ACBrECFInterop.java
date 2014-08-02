@@ -25,7 +25,7 @@ public interface ACBrECFInterop extends InteropLib {
 		public double Aliquota;
 		public char Tipo;
 		public double Total;
-		public boolean Sequencia;
+		public int Sequencia;
 
 		@Override
 		protected List<String> getFieldOrder() {

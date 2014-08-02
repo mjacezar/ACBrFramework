@@ -8,13 +8,13 @@ public class Aliquota
 	private double aliquota;
 	private char tipo;
 	private double total;
-	private boolean sequencia;
+	private int sequencia;
 
 	//</editor-fold>
 		
 	//<editor-fold defaultstate="collapsed" desc="Constructor">
 	
-	public Aliquota(String indice, double aliquota, char tipo, double total, boolean sequencia)
+	public Aliquota(String indice, double aliquota, char tipo, double total, int sequencia)
 	{
 		this.indice = indice;
 		this.aliquota = aliquota;
@@ -47,7 +47,7 @@ public class Aliquota
 		return total;
 	}
 
-	public boolean getSequencia()
+	public int getSequencia()
 	{
 		return sequencia;
 	}
