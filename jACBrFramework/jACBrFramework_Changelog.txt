@@ -42,6 +42,12 @@ Símbolo : Significado
 
 Changelog
 
+
+04/08/2014
+
+-- jACBrFramework --
+[+] Adicionado os registros S2 e S3 - ACBrPAF - José Mauro.
+
 02/08/2014
 
 -- jACBrFramework --

@@ -522,6 +522,42 @@ public interface ACBrPAFInterop extends InteropLib {
 		public static class ByValue extends RegistroR7Rec implements Structure.ByValue { }
 	}
 
+	public static class RegistroS2Rec extends Structure {
+		public int QTD_S3;
+		public byte[] CNPJ = new byte[15];
+		public double DT_ABER;
+		public byte[] SITU = new byte[2];
+		public double VL_TOT;
+		public byte[] COO_CM = new byte[10];
+		public byte[] NUM_FAB_CM = new byte[21];
+		public byte[] COO = new byte[10];
+		public byte[] NUM_FAB = new byte[21];
+
+		@Override
+		protected List<String> getFieldOrder() {
+			return Arrays.asList("QTD_S3" , "CNPJ" , "DT_ABER" , "SITU" , "VL_TOT" , "COO_CM" , "NUM_FAB_CM" , "COO" , "NUM_FAB");
+		}
+
+		public static class ByReference extends RegistroS2Rec implements Structure.ByReference { }
+		public static class ByValue extends RegistroS2Rec implements Structure.ByValue { }
+	}
+
+	public static class RegistroS3Rec extends Structure {
+		public byte[] COD_ITEM = new byte[15];
+		public byte[] DESC_ITEM = new byte[101];
+		public double QTDE_ITEM;
+		public byte[] UNI_ITEM = new byte[4];
+		public double VL_UNIT;
+
+		@Override
+		protected List<String> getFieldOrder() {
+			return Arrays.asList("COD_ITEM" , "DESC_ITEM" , "QTDE_ITEM" , "UNI_ITEM" , "VL_UNIT");
+		}
+
+		public static class ByReference extends RegistroS3Rec implements Structure.ByReference { }
+		public static class ByValue extends RegistroS3Rec implements Structure.ByValue { }
+	}
+
 	public static class RegistroT2Rec extends Structure {
 		public double DT_MOV;
 		public byte[] TP_DOCTO = new byte[11];
@@ -568,6 +604,7 @@ public interface ACBrPAFInterop extends InteropLib {
 	int PAF_Preenche_N(int pafHandle, ACBrPAFInterop.RegistroHD1Rec registroN1Rec, ACBrPAFInterop.RegistroN2Rec registrosN2Rec, ACBrPAFInterop.RegistroN3Rec registrosN3Rec[], int countN3);
 	int PAF_Preenche_P(int pafHandle, ACBrPAFInterop.RegistroHD1Rec registroP1Rec, ACBrPAFInterop.RegistroP2Rec registrosP2Rec[], int countP2);
 	int PAF_Preenche_R(int pafHandle, int CountR1, ACBrPAFInterop.RegistroR1Rec registrosR1Rec[], ACBrPAFInterop.RegistroR2Rec registrosR2Rec[], ACBrPAFInterop.RegistroR3Rec registrosR3Rec[], ACBrPAFInterop.RegistroR4Rec registrosR4Rec[], ACBrPAFInterop.RegistroR5Rec registrosR5Rec[], ACBrPAFInterop.RegistroR6Rec registrosR6Rec[], ACBrPAFInterop.RegistroR7Rec registrosR7Rec[]);
+	int PAF_Preenche_S(int pafHandle, int CountS2, ACBrPAFInterop.RegistroS2Rec registrosS2Rec[], ACBrPAFInterop.RegistroS3Rec registrosS3Rec[]);
 	int PAF_Preenche_T(int pafHandle, ACBrPAFInterop.RegistroHD1Rec registroT1Rec, ACBrPAFInterop.RegistroT2Rec registrosT2Rec[], int countT2);
 	int PAF_Preenche_TITP(int pafHandle, ACBrPAFInterop.RegistroMercadoriasRec RegistroMercadorias[], int Count, ACBrPAFInterop.RegistroInsumosRec RegistroInsumos[], String titulo, double data);
 	int PAF_Preenche_U(int pafHandle, ACBrPAFInterop.RegistroHD1Rec registroU1Rec);
