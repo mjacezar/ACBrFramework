@@ -5,6 +5,7 @@ import jACBrFramework.ACBrException;
 import jACBrFramework.paf.*;
 import java.nio.charset.Charset;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -98,6 +99,7 @@ public class ProgramTestPaf {
             populaPafE(lAcbrPaf.getPaf_E(), 5);
             populaPafP(lAcbrPaf.getPaf_P(), 4);
             populaPafR(lAcbrPaf.getPaf_R(), 2, 2, 3, 4, 5, 6, 7);
+            populaPafS(lAcbrPaf.getPaf_S(), 2, 4);
             populaPafU(lAcbrPaf.getPaf_U());
             lAcbrPaf.saveFileTXT_RegistrosECF("registros_ecf.txt");
             
@@ -494,6 +496,31 @@ public class ProgramTestPaf {
         }
     }       
 
+    private static void populaPafS(ACBrPAF_S pRegistroS, int pQtdeS2, int pQtdeS3) {
+        for (int i = 0; i < pQtdeS2; i++) {
+            ACBrPAFRegistroS2 s2 = new ACBrPAFRegistroS2();
+            s2.setCnpj("77058992102725");
+            s2.setCoo("" + (i + 1));
+            s2.setCooConfMesa("" + i);
+            s2.setDtHrAbertura(new Date());
+            s2.setNumFabricacaoEcf("EMULADOR");
+            s2.setNumFabricacaoEcfConfMesa("EMULADOR1");
+            s2.setSituacao("A");
+            s2.setVlrTotal(i * 8.2);            
+            
+            for (int j = 0; j < pQtdeS3; j++) {
+                ACBrPAFRegistroS3 s3 = new ACBrPAFRegistroS3();
+                s3.setCodItem("789" + i);
+                s3.setDescItem("PRODUTO " + (i + 1));
+                s3.setQuantidade(i);
+                s3.setUnidadeMedida("UN");
+                s3.setVlrUnitario((i * j) + 8);
+                s2.getRegistrosS3().add(s3);
+            }
+            pRegistroS.getRegistrosS2().add(s2);
+        }
+    }
+    
     private static void populaPafT(ACBrPAF_T pRegistroT, int pQtdeT2) {
         pRegistroT.getRegistroT1().setCnpj("77058992102725");
         pRegistroT.getRegistroT1().setInscEstadual("0659121090814");

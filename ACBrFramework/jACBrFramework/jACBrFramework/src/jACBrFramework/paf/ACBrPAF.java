@@ -69,6 +69,10 @@ public class ACBrPAF extends ACBrClass {
      */
     private ACBrPAF_R paf_R = new ACBrPAF_R();
     /**
+     * Registros {@see ACBrPAF_S}.
+     */
+    private ACBrPAF_S paf_S = new ACBrPAF_S();
+    /**
      * Registros {@see ACBrPAF_T}.
      */
     private ACBrPAF_T paf_T = new ACBrPAF_T();
@@ -872,6 +876,51 @@ public class ACBrPAF extends ACBrClass {
     }        
     
     /**
+     * Preenche os valores do PAF_S.
+     * 
+     * @throws ACBrException 
+     */
+    private void preenche_S() throws ACBrException {
+        if (paf_S.getRegistrosS2().size() > 0) {
+            // Criando o registro de mesa.
+            ACBrPAFInterop.RegistroS2Rec[] lRegistrosS2 = criaVetorJNA(ACBrPAFInterop.RegistroS2Rec.class, paf_S.getRegistrosS2().size());
+            int lQtdeS3 = 0; // Totalizador de registros S3
+            // Montando o registro S2.
+            int i = 0;
+            for (ACBrPAFRegistroS2 lRegistro : paf_S.getRegistrosS2()) {
+                lRegistrosS2[i].CNPJ = toByte(lRegistro.getCnpj(), 15);
+                lRegistrosS2[i].DT_ABER = OleDate.toOADate(lRegistro.getDtHrAbertura());
+                lRegistrosS2[i].SITU = toByte(lRegistro.getSituacao(), 2);
+                lRegistrosS2[i].VL_TOT = lRegistro.getVlrTotal();
+                lRegistrosS2[i].COO_CM = toByte(lRegistro.getCooConfMesa(), 10);
+                lRegistrosS2[i].NUM_FAB_CM = toByte(lRegistro.getNumFabricacaoEcfConfMesa(), 21);
+                lRegistrosS2[i].COO = toByte(lRegistro.getCoo(), 10);
+                lRegistrosS2[i].NUM_FAB = toByte(lRegistro.getNumFabricacaoEcf(), 21);
+                lRegistrosS2[i].QTD_S3 = lRegistro.getRegistrosS3().size();
+                i++;
+                lQtdeS3 += lRegistro.getRegistrosS3().size();
+            }
+
+            // Cria e monta o registro de itens de venda.
+            ACBrPAFInterop.RegistroS3Rec[] lRegistrosS3 = criaVetorJNA(ACBrPAFInterop.RegistroS3Rec.class, lQtdeS3);
+            i = 0;
+            for (ACBrPAFRegistroS2 lRegistroS2 : paf_S.getRegistrosS2()) {
+                for (ACBrPAFRegistroS3 lRegistroS3 : lRegistroS2.getRegistrosS3()) {
+                    lRegistrosS3[i].COD_ITEM = toByte(lRegistroS3.getCodItem(), 15);
+                    lRegistrosS3[i].DESC_ITEM = toByte(lRegistroS3.getDescItem(), 101);
+                    lRegistrosS3[i].QTDE_ITEM = lRegistroS3.getQuantidade();
+                    lRegistrosS3[i].UNI_ITEM = toByte(lRegistroS3.getUnidadeMedida(), 4);
+                    lRegistrosS3[i].VL_UNIT = lRegistroS3.getVlrUnitario();
+                    i++;
+                }
+            }
+            int ret = ACBrPAFInterop.INSTANCE.PAF_Preenche_S(getHandle(), 
+                    lRegistrosS2.length, lRegistrosS2, lRegistrosS3);
+            checkResult(ret);
+        }
+    }   
+    
+    /**
      * Preenche os valores do PAF_T.
      * 
      * @throws ACBrException 
@@ -1138,6 +1187,7 @@ public class ACBrPAF extends ACBrClass {
         preenche_E();                    
         preenche_P();
         preenche_R();
+        preenche_S();
         preenche_U();
         int ret = ACBrPAFInterop.INSTANCE.PAF_SaveFileTXT_RegistrosPAF(getHandle(), toUTF8(pArquivo));
         checkResult(ret);
@@ -1198,6 +1248,7 @@ public class ACBrPAF extends ACBrClass {
         paf_N.limparRegistros();
         paf_P.limparRegistros();
         paf_R.limparRegistros();
+        paf_S.limparRegistros();
         paf_T.limparRegistros();
         paf_U.limparRegistros();
     }
@@ -1291,6 +1342,14 @@ public class ACBrPAF extends ACBrClass {
         return paf_R;
     }
 
+    /**
+     * Registros {@see ACBrPAF_S}.
+     * @return the paf_S
+     */
+    public ACBrPAF_S getPaf_S() {
+        return paf_S;
+    }
+    
     /**
      * Registros {@see ACBrPAF_T}.
      * @return the paf_T
