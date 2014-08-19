@@ -14,8 +14,9 @@ import java.util.List;
 
 public interface ACBrBALInterop extends InteropLib {
 
-	public static final ACBrBALInterop INSTANCE = (ACBrBALInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrBALInterop.class);
-
+    public static final ACBrBALInterop INSTANCE = (ACBrBALInterop) 
+            Native.synchronizedLibrary((Library) Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrBALInterop.class));
+    
 	// Tipos de dados
 	public interface LePesoCallback extends com.sun.jna.Callback {
 		void invoke(double value);

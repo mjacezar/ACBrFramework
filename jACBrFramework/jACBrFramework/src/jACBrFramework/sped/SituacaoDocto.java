@@ -51,6 +51,19 @@ public enum SituacaoDocto {
     public int getCodigo() {
         return codigo;
     }
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static SituacaoDocto valueOf(int pCodigo) {
+        for (SituacaoDocto lSituacaoDocto : values()) {
+            if (lSituacaoDocto.getCodigo() == pCodigo) return lSituacaoDocto;
+        }
+        return null;
+    }      
     // </editor-fold>   
     
 }

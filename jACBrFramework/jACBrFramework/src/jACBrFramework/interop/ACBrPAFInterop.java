@@ -14,7 +14,8 @@ import java.util.List;
 
 public interface ACBrPAFInterop extends InteropLib {
 
-	public static final ACBrPAFInterop INSTANCE = (ACBrPAFInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrPAFInterop.class);
+    public static final ACBrPAFInterop INSTANCE = (ACBrPAFInterop) 
+            Native.synchronizedLibrary((Library) Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrPAFInterop.class));
 
 	// Tipos de dados
 	public interface PAFGetKeyRSACallback extends com.sun.jna.Callback {
@@ -25,7 +26,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public byte[] MeioDePagamento = new byte[26];
 		public byte[] CodigoTipoDocumento = new byte[2];
 		public double Valor;
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -48,7 +49,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public byte[] NRO_LACRE_APOS = new byte[16];
 		public double ENCERRANTE_ANTES;
 		public double ENCERRANTE_APOS;
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -71,16 +72,16 @@ public interface ACBrPAFInterop extends InteropLib {
 		public double ENCERRANTE_FINAL;
 		public byte[] STATUS_ABASTECIMENTO = new byte[11];
 		public byte[] NRO_SERIE_ECF = new byte[15];
-		public double DATA;
+		public double Data;
 		public double HORA;
 		public int COO;
 		public int NRO_NOTA_FISCAL;
 		public double VOLUME;
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
-			return Arrays.asList("ID_ABASTECIMENTO" , "TANQUE" , "BOMBA" , "BICO" , "COMBUSTIVEL" , "DATA_ABASTECIMENTO" , "HORA_ABASTECIMENTO" , "ENCERRANTE_INICIAL" , "ENCERRANTE_FINAL" , "STATUS_ABASTECIMENTO" , "NRO_SERIE_ECF" , "DATA" , "HORA" , "COO" , "NRO_NOTA_FISCAL" , "VOLUME" , "RegistroValido");
+			return Arrays.asList("ID_ABASTECIMENTO" , "TANQUE" , "BOMBA" , "BICO" , "COMBUSTIVEL" , "DATA_ABASTECIMENTO" , "HORA_ABASTECIMENTO" , "ENCERRANTE_INICIAL" , "ENCERRANTE_FINAL" , "STATUS_ABASTECIMENTO" , "NRO_SERIE_ECF" , "Data" , "HORA" , "COO" , "NRO_NOTA_FISCAL" , "VOLUME" , "RegistroValido");
 		}
 
 		public static class ByReference extends RegistroC2Rec implements Structure.ByReference { }
@@ -104,7 +105,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public byte[] NUMERO_ECF = new byte[4];
 		public byte[] NOME_CLIENTE = new byte[41];
 		public byte[] CPF_CNPJ = new byte[15];
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -131,7 +132,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public byte[] SIT_TRIB = new byte[2];
 		public double ALIQ;
 		public byte[] IND_CANC = new byte[2];
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -175,7 +176,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public byte[] DESC_MERC = new byte[51];
 		public byte[] UN_MED = new byte[7];
 		public double QTDE_EST;
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -194,7 +195,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public byte[] ModeloECF = new byte[21];
 		public double DataEstoque;
 		public double HoraEstoque;
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -213,7 +214,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public double DT_TROCO;
 		public byte[] CPF = new byte[15];
 		public byte[] Titulo = new byte[8];
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -252,8 +253,8 @@ public interface ACBrPAFInterop extends InteropLib {
 		public byte[] MARCA_ECF = new byte[21];
 		public byte[] MODELO_ECF = new byte[21];
 		public double DT_EST;
-		public boolean InclusaoExclusao;
-		public boolean RegistroValido;
+		public byte InclusaoExclusao;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -339,7 +340,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public byte[] ST = new byte[2];
 		public double ALIQ;
 		public double VL_UNIT;
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -375,8 +376,8 @@ public interface ACBrPAFInterop extends InteropLib {
 		public double DT_INI;
 		public double DT_FIN;
 		public byte[] ER_PAF_ECF = new byte[5];
-		public boolean InclusaoExclusao;
-		public boolean RegistroValido;
+		public byte InclusaoExclusao;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -388,6 +389,7 @@ public interface ACBrPAFInterop extends InteropLib {
 	}
 
 	public static class RegistroR2Rec extends Structure {
+		public int QTD_R2;
 		public int QTD_R3;
 		public int NUM_USU;
 		public int CRZ;
@@ -398,11 +400,11 @@ public interface ACBrPAFInterop extends InteropLib {
 		public double HR_EMI;
 		public double VL_VBD;
 		public byte[] PAR_ECF = new byte[2];
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
-			return Arrays.asList("QTD_R3" , "NUM_USU" , "CRZ" , "COO" , "CRO" , "DT_MOV" , "DT_EMI" , "HR_EMI" , "VL_VBD" , "PAR_ECF" , "RegistroValido");
+			return Arrays.asList("QTD_R3" , "NUM_USU" , "CRZ" , "COO" , "CRO" , "DT_MOV" , "QTD_R2", "DT_EMI" , "HR_EMI" , "VL_VBD" , "PAR_ECF" , "RegistroValido");
 		}
 
 		public static class ByReference extends RegistroR2Rec implements Structure.ByReference { }
@@ -412,7 +414,7 @@ public interface ACBrPAFInterop extends InteropLib {
 	public static class RegistroR3Rec extends Structure {
 		public byte[] TOT_PARCIAL = new byte[8];
 		public double VL_ACUM;
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -441,7 +443,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public byte[] ORDEM_DA = new byte[2];
 		public byte[] NOME_CLI = new byte[41];
 		public byte[] CNPJ_CPF = new byte[15];
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -472,7 +474,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public byte[] IPPT = new byte[2];
 		public int QTDE_DECIMAL;
 		public int VL_DECIMAL;
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -493,7 +495,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public byte[] DENOM = new byte[3];
 		public double DT_FIN;
 		public double HR_FIN;
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -511,7 +513,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public double VL_PAGTO;
 		public byte[] IND_EST = new byte[2];
 		public double VL_EST;
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
@@ -573,7 +575,7 @@ public interface ACBrPAFInterop extends InteropLib {
 		public double VL_IMPOSTO;
 		public double VL_ISENTAS;
 		public double VL_OUTRAS;
-		public boolean RegistroValido;
+		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {

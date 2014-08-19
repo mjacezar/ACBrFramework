@@ -14,7 +14,8 @@ import java.util.List;
 
 public interface ACBrDeviceInterop extends InteropLib {
 
-	public static final ACBrDeviceInterop INSTANCE = (ACBrDeviceInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrDeviceInterop.class);
+    public static final ACBrDeviceInterop INSTANCE = (ACBrDeviceInterop) 
+            Native.synchronizedLibrary((Library) Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrDeviceInterop.class));
 
 	// Tipos de dados
 

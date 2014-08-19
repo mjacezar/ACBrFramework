@@ -14,7 +14,8 @@ import java.util.List;
 
 public interface ACBrTEFInterop extends InteropLib {
 
-	public static final ACBrTEFInterop INSTANCE = (ACBrTEFInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrTEFInterop.class);
+    public static final ACBrTEFInterop INSTANCE = (ACBrTEFInterop) 
+            Native.synchronizedLibrary((Library) Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrTEFInterop.class));
 
 	// Tipos de dados
 	public interface AguardaRespCallback extends com.sun.jna.Callback {

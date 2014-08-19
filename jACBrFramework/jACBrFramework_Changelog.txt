@@ -42,6 +42,11 @@ Símbolo : Significado
 
 Changelog
 
+19/08/2014
+
+-- jACBrFramework --
+[-] Correção na geração dos registros do PAF - ACBrPAF - José Mauro.
+[*] Sincronismo dos interops - ACBr - José Mauro.
 
 04/08/2014
 

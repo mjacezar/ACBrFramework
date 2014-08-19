@@ -14,7 +14,8 @@ import java.util.List;
 
 public interface ACBrAACInterop extends InteropLib {
 
-	public static final ACBrAACInterop INSTANCE = (ACBrAACInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrAACInterop.class);
+    public static final ACBrAACInterop INSTANCE = (ACBrAACInterop) 
+            Native.synchronizedLibrary((Library) Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrAACInterop.class));
 
 	// Tipos de dados
 	public interface AntesArquivoCallback extends com.sun.jna.Callback {
