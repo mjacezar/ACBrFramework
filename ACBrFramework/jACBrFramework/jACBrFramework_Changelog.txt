@@ -42,6 +42,12 @@ Símbolo : Significado
 
 Changelog
 
+
+19/08/2014
+
+-- jACBrFramework --
+[-] Modificação na classe OleDate, método toOADate, para retornar 0d caso a data recebida seja nula. Ajuste na recuperação da Ecf presente no arquivo criptografado. - ACBrPAF/ACBrAAC - José Mauro.
+
 19/08/2014
 
 -- jACBrFramework --

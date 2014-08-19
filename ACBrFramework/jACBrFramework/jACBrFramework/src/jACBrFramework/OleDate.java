@@ -59,6 +59,7 @@ public class OleDate extends Date
 	
 	public static double toOADate(Date date)
 	{
+        if (date == null) return 0d;
 		OleDate oleDate = new OleDate(date);
 		return oleDate.toDouble();
 	}

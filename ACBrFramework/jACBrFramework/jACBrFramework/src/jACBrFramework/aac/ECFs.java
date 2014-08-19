@@ -1,5 +1,6 @@
 package jACBrFramework.aac;
 
+import com.sun.jna.Native;
 import jACBrFramework.ACBrException;
 import jACBrFramework.OleDate;
 import jACBrFramework.interop.ACBrAACInterop;
@@ -70,7 +71,7 @@ public class ECFs extends ACBrAACWrapper implements Iterable<AACECF> {
 
         AACECF aacECF = new AACECF();
         aacECF.setValorGT(lItem.ValorGT);
-        aacECF.setNumeroSerie(fromUTF8(lItem.NumeroSerie));
+        aacECF.setNumeroSerie(Native.toString(lItem.NumeroSerie));
         aacECF.setCni(lItem.CNI);
         aacECF.setCro(lItem.CRO);
         aacECF.setDtHrAtualizado(OleDate.fromOADate(lItem.DtHrAtualizado));
