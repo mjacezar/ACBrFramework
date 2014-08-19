@@ -14,7 +14,8 @@ import java.util.List;
 
 public interface ACBrLCBInterop extends InteropLib {
 
-	public static final ACBrLCBInterop INSTANCE = (ACBrLCBInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrLCBInterop.class);
+    public static final ACBrLCBInterop INSTANCE = (ACBrLCBInterop) 
+            Native.synchronizedLibrary((Library) Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrLCBInterop.class));
 
 	// Tipos de dados
 	public interface LeCodigoCallback extends com.sun.jna.Callback {

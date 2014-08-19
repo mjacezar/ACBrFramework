@@ -14,7 +14,8 @@ import java.util.List;
 
 public interface ACBrSintegraInterop extends InteropLib {
 
-	public static final ACBrSintegraInterop INSTANCE = (ACBrSintegraInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrSintegraInterop.class);
+    public static final ACBrSintegraInterop INSTANCE = (ACBrSintegraInterop) 
+            Native.synchronizedLibrary((Library) Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrSintegraInterop.class));
 
 	// Tipos de dados
 	public static class Registro10Rec extends Structure implements Structure.ByValue {

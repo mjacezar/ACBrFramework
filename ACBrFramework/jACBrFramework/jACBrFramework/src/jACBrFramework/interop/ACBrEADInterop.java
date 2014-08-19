@@ -14,7 +14,8 @@ import java.util.List;
 
 public interface ACBrEADInterop extends InteropLib {
 
-	public static final ACBrEADInterop INSTANCE = (ACBrEADInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrEADInterop.class);
+    public static final ACBrEADInterop INSTANCE = (ACBrEADInterop) 
+            Native.synchronizedLibrary((Library) Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrEADInterop.class));
 
 	// Tipos de dados
 	public interface GetChavePrivadaCallback extends com.sun.jna.Callback {

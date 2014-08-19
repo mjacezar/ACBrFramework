@@ -47,5 +47,18 @@ public enum TipoPagamento {
     public int getCodigo() {
         return codigo;
     }
+
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static TipoPagamento valueOf(int pCodigo) {
+        for (TipoPagamento lTipoPagamento : values()) {
+            if (lTipoPagamento.getCodigo() == pCodigo) return lTipoPagamento;
+        }
+        return null;
+    }
     // </editor-fold>      
 }

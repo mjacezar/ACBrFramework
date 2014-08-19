@@ -47,5 +47,18 @@ public enum TipoFrete {
     public int getCodigo() {
         return codigo;
     }
+    
+    /**
+     * Recupera o enum pelo codigo correspondente.
+     * 
+     * @param pCodigo codigo a ser recuperado.
+     * @return 
+     */
+    public static TipoFrete valueOf(int pCodigo) {
+        for (TipoFrete lTipoFrete : values()) {
+            if (lTipoFrete.getCodigo() == pCodigo) return lTipoFrete;
+        }
+        return null;
+    }    
     // </editor-fold>     
 }

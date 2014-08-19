@@ -14,7 +14,8 @@ import java.util.List;
 
 public interface ACBrECFInterop extends InteropLib {
 
-	public static final ACBrECFInterop INSTANCE = (ACBrECFInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrECFInterop.class);
+    public static final ACBrECFInterop INSTANCE = (ACBrECFInterop) 
+            Native.synchronizedLibrary((Library) Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrECFInterop.class));
 
 	// Tipos de dados
 	public interface AbreCupomCallback extends com.sun.jna.Callback {

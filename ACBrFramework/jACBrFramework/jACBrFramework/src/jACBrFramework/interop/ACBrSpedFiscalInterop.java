@@ -14,7 +14,8 @@ import java.util.List;
 
 public interface ACBrSpedFiscalInterop extends InteropLib {
 
-	public static final ACBrSpedFiscalInterop INSTANCE = (ACBrSpedFiscalInterop)Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrSpedFiscalInterop.class);
+    public static final ACBrSpedFiscalInterop INSTANCE = (ACBrSpedFiscalInterop) 
+            Native.synchronizedLibrary((Library) Native.loadLibrary(InteropLib.JNA_LIBRARY_NAME, ACBrSpedFiscalInterop.class));
 
 	// Tipos de dados
 	public static class Bloco0Registro0000 extends Structure implements Structure.ByValue {

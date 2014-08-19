@@ -345,7 +345,7 @@ public class ACBrPAF extends ACBrClass {
             lRecord[i].MeioDePagamento = toByte(lRegistro.getMeioPagamento(), 26);
             lRecord[i].CodigoTipoDocumento = toByte(lRegistro.getCodigoTipoDocumento().getCodigo(), 2);
             lRecord[i].Valor = lRegistro.getValor();
-            lRecord[i].RegistroValido = lRegistro.isRegistroValido();
+            lRecord[i].RegistroValido = converteBooleanToByte(lRegistro.isRegistroValido());
             i++;
         }
         int ret = ACBrPAFInterop.INSTANCE.PAF_Preenche_A(getHandle(), lRecord, paf_A.getRegistrosA2().size());
@@ -383,7 +383,7 @@ public class ACBrPAF extends ACBrClass {
             lRegistrosB2[i].NRO_LACRE_APOS = toByte(lRegistro.getNumLacreApos(), 16);
             lRegistrosB2[i].ENCERRANTE_ANTES = lRegistro.getEncerranteAntes();
             lRegistrosB2[i].ENCERRANTE_APOS = lRegistro.getEncerranteApos();
-            lRegistrosB2[i].RegistroValido = lRegistro.isRegistroValido();
+            lRegistrosB2[i].RegistroValido = converteBooleanToByte(lRegistro.isRegistroValido());
             i++;
         }
         int ret = ACBrPAFInterop.INSTANCE.PAF_Preenche_B(getHandle(), lRegistroB1, lRegistrosB2, paf_B.getRegistrosB2().size());
@@ -420,12 +420,12 @@ public class ACBrPAF extends ACBrClass {
             lRegistrosC2[i].ENCERRANTE_FINAL = lRegistro.getEncerrantaFinal();
             lRegistrosC2[i].STATUS_ABASTECIMENTO = toByte(lRegistro.getStatusAbastecimento(), 11);
             lRegistrosC2[i].NRO_SERIE_ECF = toByte(lRegistro.getNumSerieEcf(), 15);
-            lRegistrosC2[i].DATA = OleDate.toOADate(lRegistro.getData());
+            lRegistrosC2[i].Data = OleDate.toOADate(lRegistro.getData());
             lRegistrosC2[i].HORA = OleDate.toOADate(lRegistro.getHora());
             lRegistrosC2[i].COO = lRegistro.getCoo();
             lRegistrosC2[i].NRO_NOTA_FISCAL = lRegistro.getNumNotaFiscal();
             lRegistrosC2[i].VOLUME = lRegistro.getVolume();
-            lRegistrosC2[i].RegistroValido = lRegistro.isRegistroValido();
+            lRegistrosC2[i].RegistroValido = converteBooleanToByte(lRegistro.isRegistroValido());
             i++;
         }
         int ret = ACBrPAFInterop.INSTANCE.PAF_Preenche_C(getHandle(), lRegistroC1, lRegistrosC2, paf_C.getRegistrosC2().size());
@@ -470,7 +470,7 @@ public class ACBrPAF extends ACBrClass {
             lRegistrosD2[iDxD2].NUMERO_ECF = toByte(lRegistroD2.getNumeroEcf(), 4);
             lRegistrosD2[iDxD2].NOME_CLIENTE = toByte(lRegistroD2.getNomeCliente(), 41);
             lRegistrosD2[iDxD2].CPF_CNPJ = toByte(lRegistroD2.getCpfCnpj(), 15);
-            lRegistrosD2[iDxD2].RegistroValido = lRegistroD2.isRegistroValido();
+            lRegistrosD2[iDxD2].RegistroValido = converteBooleanToByte(lRegistroD2.isRegistroValido());
             
             // Populando o registro D3
             for (ACBrPAFRegistroD3 lRegistroD3 : lRegistroD2.getRegistrosD3()) {
@@ -489,7 +489,7 @@ public class ACBrPAF extends ACBrClass {
                 lRegistrosD3[iDxD3].SIT_TRIB = toByte(lRegistroD3.getSituacaoTributaria(), 2);
                 lRegistrosD3[iDxD3].ALIQ = lRegistroD3.getAliquota();
                 lRegistrosD3[iDxD3].IND_CANC = toByte(lRegistroD3.getIndCancelamento(), 2);
-                lRegistrosD3[iDxD3].RegistroValido = lRegistroD3.isRegistroValido();
+                lRegistrosD3[iDxD3].RegistroValido = converteBooleanToByte(lRegistroD3.isRegistroValido());
                 iDxD3++;                
             }
             
@@ -545,8 +545,8 @@ public class ACBrPAF extends ACBrClass {
         lRegistroE1.MARCA_ECF = toByte(paf_E.getRegistroE1().getMarcaEcf(), 21);
         lRegistroE1.MODELO_ECF = toByte(paf_E.getRegistroE1().getModeloEcf(), 21);        
         lRegistroE1.DT_EST = OleDate.toOADate(paf_E.getRegistroE1().getDataEstoque());
-        lRegistroE1.RegistroValido = paf_E.getRegistroE1().isRegistroValido();
-        lRegistroE1.InclusaoExclusao = paf_E.getRegistroE1().isInclusaoExclusao();
+        lRegistroE1.RegistroValido = converteBooleanToByte(paf_E.getRegistroE1().isRegistroValido());
+        lRegistroE1.InclusaoExclusao = converteBooleanToByte(paf_E.getRegistroE1().isInclusaoExclusao());
                 
         // Montando o registro E2.
         int i = 0;
@@ -555,7 +555,7 @@ public class ACBrPAF extends ACBrClass {
             lRegistrosE2[i].DESC_MERC = toByte(lRegistroE2.getDescMercadoria(), 51);
             lRegistrosE2[i].UN_MED = toByte(lRegistroE2.getUnidadeMedida(), 7);
             lRegistrosE2[i].QTDE_EST = lRegistroE2.getQtdeEstoque();
-            lRegistrosE2[i].RegistroValido = lRegistroE2.isRegistroValido();
+            lRegistrosE2[i].RegistroValido = converteBooleanToByte(lRegistroE2.isRegistroValido());
             i++;
         }
         
@@ -567,7 +567,7 @@ public class ACBrPAF extends ACBrClass {
         lRegistroE3.ModeloECF = toByte(paf_E.getRegistroE3().getModeloEcf(), 21);
         lRegistroE3.DataEstoque = OleDate.toOADate(paf_E.getRegistroE3().getDataEstoque());
         lRegistroE3.HoraEstoque = OleDate.toOADate(paf_E.getRegistroE3().getHoraEstoque());
-        lRegistroE3.RegistroValido = paf_E.getRegistroE3().isRegistroValido();
+        lRegistroE3.RegistroValido = converteBooleanToByte(paf_E.getRegistroE3().isRegistroValido());
          
         int ret = ACBrPAFInterop.INSTANCE.PAF_Preenche_E(getHandle(), lRegistroE1, 
                 lRegistrosE2, lRegistroE3, paf_E.getRegistrosE2().size());
@@ -596,8 +596,8 @@ public class ACBrPAF extends ACBrClass {
         lRegistroH1.MARCA_ECF = toByte(paf_H.getRegistroH1().getMarcaEcf(), 21);
         lRegistroH1.MODELO_ECF = toByte(paf_H.getRegistroH1().getModeloEcf(), 21);        
         lRegistroH1.DT_EST = OleDate.toOADate(paf_H.getRegistroH1().getDataEstoque());
-        lRegistroH1.RegistroValido = paf_H.getRegistroH1().isRegistroValido();
-        lRegistroH1.InclusaoExclusao = paf_H.getRegistroH1().isInclusaoExclusao();
+        lRegistroH1.RegistroValido = converteBooleanToByte(paf_H.getRegistroH1().isRegistroValido());
+        lRegistroH1.InclusaoExclusao = converteBooleanToByte(paf_H.getRegistroH1().isInclusaoExclusao());
                 
         // Montando o registro H2.
         int i = 0;
@@ -609,7 +609,7 @@ public class ACBrPAF extends ACBrClass {
             lRegistrosH2[i].DT_TROCO = OleDate.toOADate(lRegistroH2.getDataTroco());
             lRegistrosH2[i].CPF = toByte(lRegistroH2.getCpfAdquirente(), 15);
             lRegistrosH2[i].Titulo = toByte(lRegistroH2.getNumTitulo(), 8);
-            lRegistrosH2[i].RegistroValido = false;
+            lRegistrosH2[i].RegistroValido = 1;
             i++;
         }
         
@@ -682,7 +682,7 @@ public class ACBrPAF extends ACBrClass {
             lRegistrosP2[i].ST = toByte(lRegistro.getSt(), 2);
             lRegistrosP2[i].ALIQ = lRegistro.getAliquota();
             lRegistrosP2[i].VL_UNIT = lRegistro.getValorUnitario();
-            lRegistrosP2[i].RegistroValido = lRegistro.isRegistroValido();
+            lRegistrosP2[i].RegistroValido = converteBooleanToByte(lRegistro.isRegistroValido());
             i++;
         }
         
@@ -721,7 +721,7 @@ public class ACBrPAF extends ACBrClass {
         ACBrPAFInterop.RegistroR4Rec[] registrosR4 = criaVetorJNA(ACBrPAFInterop.RegistroR4Rec.class, qtde4);
         ACBrPAFInterop.RegistroR5Rec[] registrosR5 = criaVetorJNA(ACBrPAFInterop.RegistroR5Rec.class, qtde5);
         ACBrPAFInterop.RegistroR6Rec[] registrosR6 = criaVetorJNA(ACBrPAFInterop.RegistroR6Rec.class, qtde6);
-        ACBrPAFInterop.RegistroR7Rec[] registrosR7 = criaVetorJNA(ACBrPAFInterop.RegistroR7Rec.class, qtde7);            
+        ACBrPAFInterop.RegistroR7Rec[] registrosR7 = criaVetorJNA(ACBrPAFInterop.RegistroR7Rec.class, qtde7); 
         
         for (ACBrPAFRegistroR1 r1 : paf_R.getRegistrosR1()) {
             // Montando o registro R1.
@@ -749,12 +749,12 @@ public class ACBrPAF extends ACBrClass {
             registrosR1[itemR1].DT_INI = OleDate.toOADate(r1.getDataInicial());
             registrosR1[itemR1].DT_FIN = OleDate.toOADate(r1.getDataFim());
             registrosR1[itemR1].ER_PAF_ECF = toByte(r1.getVersaoRequisitosPaf(), 5);
-            registrosR1[itemR1].InclusaoExclusao = r1.isInclusaoExclusao();
-            registrosR1[itemR1].RegistroValido = r1.isRegistroValido();
-
+            registrosR1[itemR1].InclusaoExclusao = converteBooleanToByte(r1.isInclusaoExclusao());
+            registrosR1[itemR1++].RegistroValido = converteBooleanToByte(r1.isRegistroValido());
             // Montando o registro R2 e R3.
             for (ACBrPAFRegistroR2 r2 : r1.getRegistrosR2()) {
                 // Montando o registro R2.
+                registrosR2[itemR2].QTD_R2 = r1.getRegistrosR2().size();
                 registrosR2[itemR2].QTD_R3 = r2.getRegistrosR3().size();
                 registrosR2[itemR2].NUM_USU = r2.getNumeroUsuario();
                 registrosR2[itemR2].CRZ = r2.getCrz();
@@ -765,16 +765,14 @@ public class ACBrPAF extends ACBrClass {
                 registrosR2[itemR2].HR_EMI = OleDate.toOADate(r2.getHoraEmissao());
                 registrosR2[itemR2].VL_VBD = r2.getVendaBrutaDiaria();
                 registrosR2[itemR2].PAR_ECF = toByte(r2.getParametroEcf(), 2);
-                registrosR2[itemR2].RegistroValido = r2.isRegistroValido();
+                registrosR2[itemR2++].RegistroValido = converteBooleanToByte(r2.isRegistroValido());
 
                 // Montando o registro R3.
                 for (ACBrPAFRegistroR3 r3 : r2.getRegistrosR3()) {
                     registrosR3[itemR3].TOT_PARCIAL = toByte(r3.getCodTotalzadorParcial(), 8);
                     registrosR3[itemR3].VL_ACUM = r3.getValorAcumulado();
-                    registrosR3[itemR3].RegistroValido = r3.isRegistroValido();
-                    itemR3++;
+                    registrosR3[itemR3++].RegistroValido = converteBooleanToByte(r3.isRegistroValido());
                 }
-                itemR2++;
             }
 
             // Montando o registro R4, R5 e R7.
@@ -797,7 +795,7 @@ public class ACBrPAF extends ACBrClass {
                 registrosR4[itemR4].ORDEM_DA = toByte(r4.getOrdemAplicacaoDescAcres(), 2);
                 registrosR4[itemR4].NOME_CLI = toByte(r4.getNomeCliente(), 41);
                 registrosR4[itemR4].CNPJ_CPF = toByte(r4.getCnpjCpf(), 15);
-                registrosR4[itemR4].RegistroValido = r4.isRegistroValido();
+                registrosR4[itemR4++].RegistroValido = converteBooleanToByte(r4.isRegistroValido());
 
                 // Montando o registro R5.
                 for (ACBrPAFRegistroR5 r5 : r4.getRegistrosR5()) {
@@ -820,8 +818,7 @@ public class ACBrPAF extends ACBrClass {
                     registrosR5[itemR5].IPPT = toByte(r5.getIppt(), 2);
                     registrosR5[itemR5].QTDE_DECIMAL = r5.getNumCasasDecimaisEmQtde();
                     registrosR5[itemR5].VL_DECIMAL = r5.getNumCasasDecimaisEmValor();
-                    registrosR5[itemR5].RegistroValido = r5.isRegistroValido();
-                    itemR5++;
+                    registrosR5[itemR5++].RegistroValido = converteBooleanToByte(r5.isRegistroValido());
                 }
 
                 // Montando o registro R7.
@@ -832,11 +829,8 @@ public class ACBrPAF extends ACBrClass {
                     registrosR7[itemR7].VL_PAGTO = r7.getValorPago();
                     registrosR7[itemR7].IND_EST = toByte(r7.getIndEstorno(), 2);
                     registrosR7[itemR7].VL_EST = r7.getValorEstorno();
-                    registrosR7[itemR7].RegistroValido = r7.isRegistroValido();
-                    itemR7++;
+                    registrosR7[itemR7++].RegistroValido = converteBooleanToByte(r7.isRegistroValido());
                 }
-
-                itemR4++;
             }
 
             // Montando o registro R6 e R7.
@@ -851,7 +845,7 @@ public class ACBrPAF extends ACBrClass {
                 registrosR6[itemR6].DENOM = toByte(r6.getDenominacao(), 3);
                 registrosR6[itemR6].DT_FIN = OleDate.toOADate(r6.getDataFinalEmissao());
                 registrosR6[itemR6].HR_FIN = OleDate.toOADate(r6.getHoraFinalEmissao());
-                registrosR6[itemR6].RegistroValido = r6.isRegistroValido();
+                registrosR6[itemR6++].RegistroValido = converteBooleanToByte(r6.isRegistroValido());
 
                 // Montando o registro R7.
                 for (ACBrPAFRegistroR7 r7 : r6.getRegistrosR7()) {
@@ -861,12 +855,9 @@ public class ACBrPAF extends ACBrClass {
                     registrosR7[itemR7].VL_PAGTO = r7.getValorPago();
                     registrosR7[itemR7].IND_EST = toByte(r7.getIndEstorno(), 2);
                     registrosR7[itemR7].VL_EST = r7.getValorEstorno();
-                    registrosR7[itemR7].RegistroValido = r7.isRegistroValido();
-                    itemR7++;
+                    registrosR7[itemR7++].RegistroValido = converteBooleanToByte(r7.isRegistroValido());
                 }
-                itemR6++;
             }
-            itemR1++;
         }
 
         int ret = ACBrPAFInterop.INSTANCE.PAF_Preenche_R(getHandle(), paf_R.getRegistrosR1().size(),
@@ -954,7 +945,7 @@ public class ACBrPAF extends ACBrClass {
             lRegistrosT2[i].VL_IMPOSTO = lRegistro.getValorImposto();
             lRegistrosT2[i].VL_ISENTAS = lRegistro.getValorIsentas();
             lRegistrosT2[i].VL_OUTRAS = lRegistro.getValorOutras();
-            lRegistrosT2[i].RegistroValido = lRegistro.isRegistroValido();
+            lRegistrosT2[i].RegistroValido = converteBooleanToByte(lRegistro.isRegistroValido());
             i++;
         }
         int ret = ACBrPAFInterop.INSTANCE.PAF_Preenche_T(getHandle(), lRegistroT1, 
@@ -1236,6 +1227,15 @@ public class ACBrPAF extends ACBrClass {
 	}
 	//</editor-fold>    
     //<editor-fold defaultstate="collapsed" desc="Methods">
+    /**
+     * Converter um valor booleano para byte.
+     * @param pBoolean valor booleano.
+     * @return valor em byte.
+     */
+    private byte converteBooleanToByte(boolean pBoolean) {
+        return (byte) (pBoolean ? 1 : 0);
+    }
+    
     /**
      * Limpa os registros.
      */
