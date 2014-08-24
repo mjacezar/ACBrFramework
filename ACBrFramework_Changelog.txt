@@ -43,6 +43,16 @@ Changelog
 
 09/07/2014
 
+-- ACBrFramework 0.9.6.1 --
+[-] Correção no registro R7 adicionado o COO - ACBrPAF - Rafael Dias.
+[-] Descontinuação da dll em x64.
+
+-- ACBrFramework.Net 0.9.6.1 --
+[-] Correção no registro R7 adicionado o COO - ACBrPAF - Rafael Dias.
+[-] Descontinuação da dll em x64.
+
+09/07/2014
+
 -- ACBrFramework 0.9.6.0 --
 [+] Adicionado os registros S2 e S3 - ACBrPAF - Rafael Dias.
 

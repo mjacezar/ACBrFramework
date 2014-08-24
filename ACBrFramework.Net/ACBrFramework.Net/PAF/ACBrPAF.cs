@@ -645,6 +645,7 @@ namespace ACBrFramework.PAF
 
                     foreach(ACBrPAFRegistroR7 RegistroR7 in R4.RegistroR7)
                     {
+						RegistrosR7Rec[ItemR7].COO = RegistroR7.COO;
                         RegistrosR7Rec[ItemR7].CCF = RegistroR7.CCF;
                         RegistrosR7Rec[ItemR7].GNF = RegistroR7.GNF;
                         RegistrosR7Rec[ItemR7].MP = ToUTF8(RegistroR7.MP);
@@ -676,6 +677,7 @@ namespace ACBrFramework.PAF
 
                     foreach(ACBrPAFRegistroR7 RegistroR7 in R6.RegistroR7)
                     {
+						RegistrosR7Rec[ItemR7].COO = RegistroR7.COO;
                         RegistrosR7Rec[ItemR7].CCF = RegistroR7.CCF;
                         RegistrosR7Rec[ItemR7].GNF = RegistroR7.GNF;
                         RegistrosR7Rec[ItemR7].MP = ToUTF8(RegistroR7.MP);

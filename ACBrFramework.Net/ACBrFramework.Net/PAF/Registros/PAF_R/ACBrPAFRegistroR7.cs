@@ -15,6 +15,8 @@ namespace ACBrFramework.PAF
 	{
 		#region Properties
 
+		public int COO { get; set; }
+
 		public int CCF { get; set; }
 
 		public int GNF { get; set; }
