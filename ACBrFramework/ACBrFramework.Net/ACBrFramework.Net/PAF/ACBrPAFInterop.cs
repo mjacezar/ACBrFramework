@@ -680,6 +680,9 @@ namespace ACBrFramework.PAF
 		public struct RegistroR7Rec
 		{
 			[MarshalAs(UnmanagedType.I4)]
+			public int COO;
+
+			[MarshalAs(UnmanagedType.I4)]
 			public int CCF;
 
 			[MarshalAs(UnmanagedType.I4)]

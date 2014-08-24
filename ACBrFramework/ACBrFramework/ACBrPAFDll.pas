@@ -301,6 +301,7 @@ type
 
 type
   TRegistroR7Rec = record
+    COO: integer;
     CCF: integer;
     GNF: integer;
     MP: array[0..15] of char;
@@ -1694,6 +1695,7 @@ begin
             begin
               with RegistroR07.New do
               begin
+                COO := RegistroR7Rec[IndexR7].COO;
                 CCF := RegistroR7Rec[IndexR7].CCF;
                 GNF := RegistroR7Rec[IndexR7].GNF;
                 MP := RegistroR7Rec[IndexR7].MP;
@@ -1727,6 +1729,7 @@ begin
             begin
               with RegistroR07.New do
               begin
+                COO := RegistroR7Rec[IndexR7].COO;
                 CCF := RegistroR7Rec[IndexR7].CCF;
                 GNF := RegistroR7Rec[IndexR7].GNF;
                 MP := RegistroR7Rec[IndexR7].MP;
