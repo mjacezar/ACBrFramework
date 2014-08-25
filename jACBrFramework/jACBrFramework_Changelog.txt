@@ -42,6 +42,10 @@ Símbolo : Significado
 
 Changelog
 
+25/08/2014
+
+-- jACBrFramework --
+[-] Correção no registro R7 adicionado o COO - ACBrPAF - José Mauro.
 
 19/08/2014
 

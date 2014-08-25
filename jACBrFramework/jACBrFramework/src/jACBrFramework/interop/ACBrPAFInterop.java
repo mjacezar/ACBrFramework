@@ -507,6 +507,7 @@ public interface ACBrPAFInterop extends InteropLib {
 	}
 
 	public static class RegistroR7Rec extends Structure {
+		public int COO;
 		public int CCF;
 		public int GNF;
 		public byte[] MP = new byte[16];
@@ -517,7 +518,7 @@ public interface ACBrPAFInterop extends InteropLib {
 
 		@Override
 		protected List<String> getFieldOrder() {
-			return Arrays.asList("CCF" , "GNF" , "MP" , "VL_PAGTO" , "IND_EST" , "VL_EST" , "RegistroValido");
+			return Arrays.asList("COO" , "CCF" , "GNF" , "MP" , "VL_PAGTO" , "IND_EST" , "VL_EST" , "RegistroValido");
 		}
 
 		public static class ByReference extends RegistroR7Rec implements Structure.ByReference { }
