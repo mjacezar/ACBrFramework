@@ -823,6 +823,7 @@ public class ACBrPAF extends ACBrClass {
 
                 // Montando o registro R7.
                 for (ACBrPAFRegistroR7 r7 : r4.getRegistrosR7()) {
+                    registrosR7[itemR7].COO = r7.getCoo();
                     registrosR7[itemR7].CCF = r7.getCcf();
                     registrosR7[itemR7].GNF = r7.getGnf();
                     registrosR7[itemR7].MP = toByte(r7.getMeioPagamento(), 16);
@@ -849,6 +850,7 @@ public class ACBrPAF extends ACBrClass {
 
                 // Montando o registro R7.
                 for (ACBrPAFRegistroR7 r7 : r6.getRegistrosR7()) {
+                    registrosR7[itemR7].COO = r7.getCoo();
                     registrosR7[itemR7].CCF = r7.getCcf();
                     registrosR7[itemR7].GNF = r7.getGnf();
                     registrosR7[itemR7].MP = toByte(r7.getMeioPagamento(), 16);

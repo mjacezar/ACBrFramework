@@ -82,7 +82,7 @@ public class ProgramTestPaf {
             lAcbrPaf.saveFileTXT_P("arquivoP.txt");  
 
             System.out.println("Salvando registros R");
-            populaPafR(lAcbrPaf.getPaf_R(), 2, 2, 3, 4, 5, 6, 7);
+            populaPafR(lAcbrPaf.getPaf_R(), 2, 2, 3, 4, 5, 6, 2);
             lAcbrPaf.saveFileTXT_R("arquivoR.txt");  
 
             System.out.println("Salvando registros T");
@@ -98,7 +98,7 @@ public class ProgramTestPaf {
             populaPafD(lAcbrPaf.getPaf_D(), 2, 4, 3);
             populaPafE(lAcbrPaf.getPaf_E(), 5);
             populaPafP(lAcbrPaf.getPaf_P(), 4);
-            populaPafR(lAcbrPaf.getPaf_R(), 2, 2, 3, 4, 5, 6, 7);
+            populaPafR(lAcbrPaf.getPaf_R(), 2, 2, 3, 4, 5, 6, 1);
             populaPafS(lAcbrPaf.getPaf_S(), 2, 4);
             populaPafU(lAcbrPaf.getPaf_U());
             lAcbrPaf.saveFileTXT_RegistrosECF("registros_ecf.txt");
@@ -121,7 +121,7 @@ public class ProgramTestPaf {
             a2.setCodigoTipoDocumento(CodigoTipoDocumento.CUPOM_FISCAL);
             a2.setData(Calendar.getInstance().getTime());
             a2.setMeioPagamento("Dinheiro");
-            a2.setRegistroValido(true);
+            a2.setRegistroValido(false);
             a2.setValor(10);            
             pRegistroA.getRegistrosA2().add(a2);
         }
@@ -147,7 +147,7 @@ public class ProgramTestPaf {
 //            b2.setMotivo("Teste Registro B");
 //            b2.setNumLacreAntes("3");
 //            b2.setNumLacreApos("90");
-//            b2.setRegistroValido(true);
+//            b2.setRegistroValido(false);
 //            
 //            pRegistroB.getRegistrosB2().add(b2);
 //        }
@@ -174,7 +174,7 @@ public class ProgramTestPaf {
             c2.setIdAbastecimento("ID");
             c2.setNumNotaFiscal(1212);
             c2.setNumSerieEcf("0001");
-            c2.setRegistroValido(true);
+            c2.setRegistroValido(false);
             c2.setStatusAbastecimento("A");
             c2.setTanque("Tanque");
             c2.setVolume(9898);
@@ -201,7 +201,7 @@ public class ProgramTestPaf {
             d2.setNumDav("8");
             d2.setNumFabricacao("Num. Fab.");
             d2.setNumeroEcf("0001");
-            d2.setRegistroValido(true);
+            d2.setRegistroValido(false);
             d2.setTipoEcf("Tipo");
             d2.setTituloDav("Titulo");
             d2.setValorTotalDav(9.90);
@@ -217,7 +217,7 @@ public class ProgramTestPaf {
                 d3.setIndCancelamento("N");
                 d3.setNumItem(1);
                 d3.setQtdeItem(8);
-                d3.setRegistroValido(true);
+                d3.setRegistroValido(false);
                 d3.setSituacaoTributaria("000");
                 d3.setUnidItem("UN");
                 d3.setValorAcrescimo(4);
@@ -264,7 +264,7 @@ public class ProgramTestPaf {
         pRegistroE.getRegistroE1().setModeloEcf("4000");
         pRegistroE.getRegistroE1().setNumFabricacao("FAB");
         pRegistroE.getRegistroE1().setRazaoSocial("Teste PAF jACBrFramework");
-        pRegistroE.getRegistroE1().setRegistroValido(true);
+        pRegistroE.getRegistroE1().setRegistroValido(false);
         pRegistroE.getRegistroE1().setTipoEcf("TH");
         pRegistroE.getRegistroE1().setUf("MG");
         
@@ -275,13 +275,14 @@ public class ProgramTestPaf {
         pRegistroE.getRegistroE3().setModeloEcf("4000");
         pRegistroE.getRegistroE3().setNumFabricacao("FAB");
         pRegistroE.getRegistroE3().setTipoEcf("TH");
+        pRegistroE.getRegistroE3().setRegistroValido(false);
         
         for (int i = 0; i < pQtdeE2; i++) {
             ACBrPAFRegistroE2 e2 = new ACBrPAFRegistroE2();
             e2.setCodMercadoria("0001");
             e2.setDescMercadoria("Descrição Item " + i);
             e2.setQtdeEstoque(8);
-            e2.setRegistroValido(true);
+            e2.setRegistroValido(false);
             e2.setUnidadeMedida("UN");
             pRegistroE.getRegistrosE2().add(e2);
         }
@@ -298,7 +299,7 @@ public class ProgramTestPaf {
         pRegistroH.getRegistroH1().setModeloEcf("4000");
         pRegistroH.getRegistroH1().setNumFabricacao("FAB");
         pRegistroH.getRegistroH1().setRazaoSocial("Teste PAF jACBrFramework");
-        pRegistroH.getRegistroH1().setRegistroValido(true);
+        pRegistroH.getRegistroH1().setRegistroValido(false);
         pRegistroH.getRegistroH1().setTipoEcf("TH");
         pRegistroH.getRegistroH1().setUf("MG");
         
@@ -310,7 +311,7 @@ public class ProgramTestPaf {
             h2.setCpfAdquirente("12312312387");
             h2.setDataTroco(Calendar.getInstance().getTime());
             h2.setNumTitulo("012345");
-            h2.setRegistroValido(true);
+            h2.setRegistroValido(false);
             h2.setVlrTroco(10);
             pRegistroH.getRegistrosH2().add(h2);
         }
@@ -349,7 +350,7 @@ public class ProgramTestPaf {
             p2.setDescMercadoriaServico("Descrição Item " + i);
             p2.setIat("A");
             p2.setIppt("T");
-            p2.setRegistroValido(true);
+            p2.setRegistroValido(false);
             p2.setSt("000");
             p2.setUnidadeMedida("UN");
             p2.setValorUnitario(10);
@@ -363,46 +364,52 @@ public class ProgramTestPaf {
             ACBrPAFRegistroR1 r1 = new ACBrPAFRegistroR1();
             r1.setCnpj("77058992102725");
             r1.setCnpjSh("34527888000137");
-            r1.setCodigoMd5("MD5");
-            r1.setDataFim(Calendar.getInstance().getTime());
-            r1.setDataInicial(Calendar.getInstance().getTime());
+            r1.setCodigoMd5("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            Calendar lInicio = Calendar.getInstance();
+            r1.setDataInicial(lInicio.getTime());
+            lInicio.add(Calendar.DAY_OF_MONTH, 1);
+            r1.setDataFim(lInicio.getTime());
             r1.setDtInstalacaoSb(Calendar.getInstance().getTime());
             r1.setHoraInstalacaoSb(Calendar.getInstance().getTime());
-            r1.setInclusaoExclusao(true);
+            r1.setInclusaoExclusao(false);
             r1.setInscEstadual("0659121090814");
             r1.setInscEstadualSh("0659121090814");
             r1.setInscMunicipalSh("");
             r1.setMarcaEcf("Bema");
-            r1.setMfAdicional("D");
+            r1.setMfAdicional("");
             r1.setModeloEcf("MP 4000");
             r1.setNomePaf("Nome PAF");
             r1.setNomeSh("ACBr");
             r1.setNumFabricacao("Num Fab.");
             r1.setNumSeqEcf(1);
-            r1.setRegistroValido(true);
-            r1.setTipoEcf("TH");
-            r1.setVersaoPaf("1.0");
-            r1.setVersaoRequisitosPaf("2.0");
-            r1.setVersaoSb("4.0");
+            r1.setRegistroValido(false);
+            r1.setTipoEcf("ECF-IF");
+            r1.setVersaoPaf("0107");
+            r1.setVersaoRequisitosPaf("01.04");
+            r1.setVersaoSb("010002");
             
             for (int j = 0; j < pQtdeR2; j++) {
                 ACBrPAFRegistroR2 r2 = new ACBrPAFRegistroR2();
-                r2.setCoo(i);
-                r2.setCro(j);
-                r2.setCrz(i + j);
+                r2.setCoo(100 + i);
+                r2.setCro(6);
+                r2.setCrz(100 + i + j);
                 r2.setDataEmissao(Calendar.getInstance().getTime());
                 r2.setDataMovimento(Calendar.getInstance().getTime());
-                r2.setHoraEmissao(Calendar.getInstance().getTime());
+//                Calendar lHora = Calendar.getInstance();
+//                lHora.set(Calendar.YEAR, -1);
+//                lHora.set(Calendar.MONTH, -1);
+//                lHora.set(Calendar.DAY_OF_MONTH, -1);
+                r2.setHoraEmissao(r2.getDataEmissao());
                 r2.setNumeroUsuario(1);
-                r2.setParametroEcf("P");
+                r2.setParametroEcf("");
                 r2.setRegistroValido(true);
-                r2.setVendaBrutaDiaria(100);
+                r2.setVendaBrutaDiaria(pQtdeR2 * 110);
                 
                 for (int k = 0; k < pQtdeR3; k++) {
                     ACBrPAFRegistroR3 r3 = new ACBrPAFRegistroR3();    
-                    r3.setCodTotalzadorParcial("DIN");
+                    r3.setCodTotalzadorParcial("FF");
                     r3.setRegistroValido(true);
-                    r3.setValorAcumulado(100);                    
+                    r3.setValorAcumulado(110);                    
                     r2.getRegistrosR3().add(r3);
                 }
                 
@@ -413,13 +420,13 @@ public class ProgramTestPaf {
                 ACBrPAFRegistroR4 r4 = new ACBrPAFRegistroR4();
                 r4.setAcrescimoSobreSubtotal(0);
                 r4.setCnpjCpf("77058992102725");
-                r4.setCoo(j);
+                r4.setCoo(j + 3);
                 r4.setDataInicioEmissao(Calendar.getInstance().getTime());
                 r4.setDescontoSobreSubtotal(1);
                 r4.setIndCancelamento("N");
                 r4.setNomeCliente("Cliente " + j);
-                r4.setNumContador(j);
-                r4.setNumeroUsuario(i);
+                r4.setNumContador(j + 1);
+                r4.setNumeroUsuario(1);
                 r4.setOrdemAplicacaoDescAcres("D");
                 r4.setRegistroValido(true);
                 r4.setSubTotalDocumento(8);
@@ -430,18 +437,18 @@ public class ProgramTestPaf {
                 
                 for (int k = 0; k < pQtdeR5; k++) {
                     ACBrPAFRegistroR5 r5 = new ACBrPAFRegistroR5();    
-                    r5.setAcrescimoItem(i);
-                    r5.setCodItem(String.valueOf(k));
-                    r5.setCodTotalizadorParcial("DIN");
-                    r5.setDescontoItem(j);
+                    r5.setAcrescimoItem(k + 1);
+                    r5.setCodItem(String.valueOf(k + 1));
+                    r5.setCodTotalizadorParcial("FF");
+                    r5.setDescontoItem(j + 1);
                     r5.setDescricaoItem("Item " + k);
                     r5.setIat("T");
                     r5.setIndCancelamento("N");
                     r5.setIppt("P");
                     r5.setNumCasasDecimaisEmQtde(2);
                     r5.setNumCasasDecimaisEmValor(3);
-                    r5.setNumContador(i + j + k);
-                    r5.setNumItem(k);
+                    r5.setNumContador(i + j + k + 1);
+                    r5.setNumItem(k + 1);
                     r5.setQtdeCancelada(0);
                     r5.setQtdeItem(8);
                     r5.setRegistroValido(true);
@@ -455,8 +462,9 @@ public class ProgramTestPaf {
                 
                 for (int k = 0; k < pQtdeR7; k++) {
                     ACBrPAFRegistroR7 r7 = new ACBrPAFRegistroR7();    
-                    r7.setCcf(k);
-                    r7.setGnf(j);
+                    r7.setCoo(888);
+                    r7.setCcf(r4.getNumContador());
+                    r7.setGnf(j + 10);
                     r7.setIndEstorno("N");
                     r7.setMeioPagamento("Dinheiro");
                     r7.setRegistroValido(true);
@@ -469,20 +477,20 @@ public class ProgramTestPaf {
             
             for (int j = 0; j < pQtdeR6; j++) {
                 ACBrPAFRegistroR6 r6 = new ACBrPAFRegistroR6();
-                r6.setCdc(j);
-                r6.setCoo(i);
+                r6.setCdc(j + 200);
+                r6.setCoo(i + 330);
                 r6.setDataFinalEmissao(Calendar.getInstance().getTime());
-                r6.setDenominacao("Teste");
-                r6.setGnf(i + j);
-                r6.setGrg(j * i);
+                r6.setDenominacao("DE");
+                r6.setGnf(i + j + 100);
+                r6.setGrg(j * i + 150);
                 r6.setHoraFinalEmissao(Calendar.getInstance().getTime());
-                r6.setNumeroUsuario(i);
+                r6.setNumeroUsuario(1);
                 r6.setRegistroValido(true);
                 
                for (int k = 0; k < pQtdeR7; k++) {
-                    ACBrPAFRegistroR7 r7 = new ACBrPAFRegistroR7();    
-                    r7.setCcf(k);
-                    r7.setGnf(j);
+                    ACBrPAFRegistroR7 r7 = new ACBrPAFRegistroR7();  
+                    r7.setCoo(777);
+                    //r7.setCcf(r4.getNumContador());
                     r7.setIndEstorno("N");
                     r7.setMeioPagamento("Dinheiro");
                     r7.setRegistroValido(true);

@@ -10,6 +10,10 @@ public final class ACBrPAFRegistroR7 {
 
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**
+     * Numero do COO (Contador de Ordem de Operacao) relativo ao respectivo Cupom Fiscal ou Comprovante Nao Fiscal.
+     */
+    private int coo;    
+    /**
      * Numero do Contador de Cupom Fiscal relativo ao respectivo Cupom Fiscal emitido.
      */
     private int ccf;
@@ -40,6 +44,22 @@ public final class ACBrPAFRegistroR7 {
     private boolean registroValido;    
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Getters - Setters">    
+    /**
+     * Numero do COO (Contador de Ordem de Operacao) relativo ao respectivo Cupom Fiscal ou Comprovante Nao Fiscal.
+     * @return the coo
+     */
+    public int getCoo() {
+        return coo;
+    }
+
+    /**
+     * Numero do COO (Contador de Ordem de Operacao) relativo ao respectivo Cupom Fiscal ou Comprovante Nao Fiscal.
+     * @param coo the coo to set
+     */
+    public void setCoo(int coo) {
+        this.coo = coo;
+    }
+    
     /**
      * Numero do Contador de Cupom Fiscal relativo ao respectivo Cupom Fiscal emitido.
      * @return the ccf
