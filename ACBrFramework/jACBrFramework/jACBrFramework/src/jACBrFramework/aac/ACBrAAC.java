@@ -18,11 +18,94 @@ import java.nio.charset.Charset;
  */
 public class ACBrAAC extends ACBrClass {
 
+    //<editor-fold defaultstate="collapsed" desc="Events">
+    /**
+     * Evento acionado antes de gravar o arquivo auxiliar.
+     */
+    private ACBrAACInterop.AntesArquivoCallback onAntesGravarArquivo = new ACBrAACInterop.AntesArquivoCallback() {
+        @Override
+        public boolean invoke() {
+            return onAntesGravarArquivo();
+        }
+    };
+    /**
+     * Evento acionado antes da abertura do arquivo auxiliar.
+     */
+    private ACBrAACInterop.AntesArquivoCallback onAntesAbrirArquivo = new ACBrAACInterop.AntesArquivoCallback() {
+        @Override
+        public boolean invoke() {
+            return onAntesAbrirArquivo();
+        }
+    };
+    /**
+     * Evento acionado para criptografar o arquivo.
+     */
+    private ACBrAACInterop.CryptCallback onCrypt = new ACBrAACInterop.CryptCallback() {
+        @Override
+        public String invoke(String value) {
+            return onCrypt(value);
+        }
+    };
+    /**
+     * Evento acionado para descriptografar o arquivo.
+     */
+    private ACBrAACInterop.CryptCallback onDeCrypt = new ACBrAACInterop.CryptCallback() {
+        @Override
+        public String invoke(String value) {
+            return onDeCrypt(value);
+        }
+    };
+    /**
+     * Evento acionado depois da abertura do arquivo.
+     */
+    private ACBrAACInterop.NoArgumentsCallback onDepoisAbrirArquivo = new ACBrAACInterop.NoArgumentsCallback() {
+        @Override
+        public void invoke() {
+            onDepoisAbrirArquivo();
+        }
+    };
+    /**
+     * Evento acionado depois da gravacao do arquivo.
+     */
+    private ACBrAACInterop.NoArgumentsCallback onDepoisGravarArquivo = new ACBrAACInterop.NoArgumentsCallback() {
+        @Override
+        public void invoke() {
+            onDepoisGravarArquivo();
+        }
+    };
+    /**
+     * Evento acionado para obtencao da chave de criptografia.
+     */
+    private ACBrAACInterop.OnGetChaveCallback onGetChave = new ACBrAACInterop.OnGetChaveCallback() {
+        @Override
+        public String invoke() {
+            return onGetChave();
+        }
+    };
+    /**
+     * Evento acionado para verificacao do numero de serie.
+     */
+    private ACBrAACInterop.VerificarRecomporNumSerieCallback onVerificarRecomporNumSerie = new ACBrAACInterop.VerificarRecomporNumSerieCallback() {
+        @Override
+        public void invoke(String NumSerie, double ValorGT, IntByReference CRO, IntByReference CNI) {
+            onVerificarRecomporNumSerie(NumSerie, ValorGT, CRO, CNI);
+        }
+    };
+    /**
+     * Evento acionado para verificar o GT.
+     */
+    private ACBrAACInterop.VerificarRecomporValorGTCallback onVerificarRecomporValorGT = new ACBrAACInterop.VerificarRecomporValorGTCallback() {
+        @Override
+        public void invoke(String NumSerie, DoubleByReference ValorGT) {
+            onVerificarRecomporValorGT(NumSerie, ValorGT);
+        }
+    };
+    // </editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Attributes">
     /**
-     * Evento associado a obtencao da chave.
+     * Listener associado a obtencao da chave.
      */
-    private ACBrEventListener<AACGetChaveEventObject> onGetChave;
+    private ACBrEventListener<AACGetChaveEventObject> listenerGetChave;
     /**
      * Identificacao do PAF.
      */
@@ -139,16 +222,16 @@ public class ACBrAAC extends ACBrClass {
      * @param pKey chave.
      */
     public void setKey(final String pKey) {
-        if (onGetChave != null) {
-            removeOnGetChave(onGetChave);
+        if (listenerGetChave != null) {
+            removeOnGetChave(listenerGetChave);
         }
-        onGetChave = new ACBrEventListener<AACGetChaveEventObject>() {
+        listenerGetChave = new ACBrEventListener<AACGetChaveEventObject>() {
             @Override
             public void notification(AACGetChaveEventObject e) {
                 e.setKey(pKey);
             }
         };
-        addOnGetChave(onGetChave);
+        addOnGetChave(listenerGetChave);
     }    
         
     /**
@@ -482,12 +565,7 @@ public class ACBrAAC extends ACBrClass {
      */
 	public void addOnAntesGravarArquivo(ACBrEventListener<AACAntesArquivoEventObject> pListener) {
 		if (!hasListeners("onAntesGravarArquivo")) {
-			ACBrAACInterop.INSTANCE.AAC_SetAntesGravarArquivo(getHandle(), new ACBrAACInterop.AntesArquivoCallback() {
-                @Override
-                public boolean invoke() {
-                    return onAntesGravarArquivo();
-                }
-			});
+			ACBrAACInterop.INSTANCE.AAC_SetAntesGravarArquivo(getHandle(), onAntesGravarArquivo);
 		}
 		addListener("onAntesGravarArquivo", pListener);
 	}
@@ -523,12 +601,7 @@ public class ACBrAAC extends ACBrClass {
      */
 	public void addOnAntesAbrirArquivo(ACBrEventListener<AACAntesArquivoEventObject> pListener) {
 		if (!hasListeners("onAntesAbrirArquivo")) {
-			ACBrAACInterop.INSTANCE.AAC_SetOnAntesAbrirArquivo(getHandle(), new ACBrAACInterop.AntesArquivoCallback() {
-                @Override
-                public boolean invoke() {
-                    return onAntesAbrirArquivo();
-                }
-			});
+			ACBrAACInterop.INSTANCE.AAC_SetOnAntesAbrirArquivo(getHandle(), onAntesAbrirArquivo);
 		}
 		addListener("onAntesAbrirArquivo", pListener);
 	}
@@ -564,12 +637,7 @@ public class ACBrAAC extends ACBrClass {
      */
 	public void addOnCrypt(ACBrEventListener<AACCryptEventObject> pListener) {
 		if (!hasListeners("onCrypt")) {
-			ACBrAACInterop.INSTANCE.AAC_SetOnCrypt(getHandle(), new ACBrAACInterop.CryptCallback() {
-                @Override
-                public String invoke(String value) {
-                    return onCrypt(value);
-                }
-			});
+			ACBrAACInterop.INSTANCE.AAC_SetOnCrypt(getHandle(), onCrypt);
 		}
 		addListener("onCrypt", pListener);
 	}
@@ -606,12 +674,7 @@ public class ACBrAAC extends ACBrClass {
      */
 	public void addOnDeCrypt(ACBrEventListener<AACCryptEventObject> pListener) {
 		if (!hasListeners("onDeCrypt")) {
-			ACBrAACInterop.INSTANCE.AAC_SetOnDeCrypt(getHandle(), new ACBrAACInterop.CryptCallback() {
-                @Override
-                public String invoke(String value) {
-                    return onDeCrypt(value);
-                }
-			});
+			ACBrAACInterop.INSTANCE.AAC_SetOnDeCrypt(getHandle(), onDeCrypt);
 		}
 		addListener("onDeCrypt", pListener);
 	}
@@ -648,12 +711,7 @@ public class ACBrAAC extends ACBrClass {
      */
 	public void addOnDepoisAbrirArquivo(ACBrEventListener<AACDepoisArquivoEventObject> pListener) {
 		if (!hasListeners("onDepoisAbrirArquivo")) {
-			ACBrAACInterop.INSTANCE.AAC_SetOnDepoisAbrirArquivo(getHandle(), new ACBrAACInterop.NoArgumentsCallback() {
-                @Override
-                public void invoke() {
-                    onDepoisAbrirArquivo();
-                }
-            });
+			ACBrAACInterop.INSTANCE.AAC_SetOnDepoisAbrirArquivo(getHandle(), onDepoisAbrirArquivo);
 		}
 		addListener("onDepoisAbrirArquivo", pListener);
 	}
@@ -686,12 +744,7 @@ public class ACBrAAC extends ACBrClass {
      */
 	public void addOnDepoisGravarArquivo(ACBrEventListener<AACDepoisArquivoEventObject> pListener) {
 		if (!hasListeners("onDepoisGravarArquivo")) {
-			ACBrAACInterop.INSTANCE.AAC_SetOnDepoisGravarArquivo(getHandle(), new ACBrAACInterop.NoArgumentsCallback() {
-                @Override
-                public void invoke() {
-                    onDepoisGravarArquivo();
-                }
-            });
+			ACBrAACInterop.INSTANCE.AAC_SetOnDepoisGravarArquivo(getHandle(), onDepoisGravarArquivo);
 		}
 		addListener("onDepoisGravarArquivo", pListener);
 	}
@@ -724,12 +777,7 @@ public class ACBrAAC extends ACBrClass {
      */
 	public void addOnGetChave(ACBrEventListener<AACGetChaveEventObject> pListener) {
 		if (!hasListeners("onGetChave")) {
-			ACBrAACInterop.INSTANCE.AAC_SetOnGetChave(getHandle(), new ACBrAACInterop.OnGetChaveCallback() {
-                @Override
-                public String invoke() {
-                    return onGetChave();
-                }
-			});
+			ACBrAACInterop.INSTANCE.AAC_SetOnGetChave(getHandle(), onGetChave);
 		}
 		addListener("onGetChave", pListener);
 	}
@@ -765,12 +813,7 @@ public class ACBrAAC extends ACBrClass {
      */
 	public void addOnVerificarRecomporNumSerie(ACBrEventListener<AACVerificarRecomporNumSerieEventObject> pListener) {
 		if (!hasListeners("onVerificarRecomporNumSerie")) {
-			ACBrAACInterop.INSTANCE.AAC_SetVerificarRecomporNumSerie(getHandle(), new ACBrAACInterop.VerificarRecomporNumSerieCallback() {
-                @Override
-                public void invoke(String NumSerie, double ValorGT, IntByReference CRO, IntByReference CNI) {
-                    onVerificarRecomporNumSerie(NumSerie, ValorGT, CRO, CNI);
-                }
-			});
+			ACBrAACInterop.INSTANCE.AAC_SetVerificarRecomporNumSerie(getHandle(), onVerificarRecomporNumSerie);
 		}
 		addListener("onVerificarRecomporNumSerie", pListener);
 	}
@@ -809,12 +852,7 @@ public class ACBrAAC extends ACBrClass {
      */
 	public void addOnVerificarRecomporValorGT(ACBrEventListener<AACVerificarRecomporValorGTEventObject> pListener) {
 		if (!hasListeners("onVerificarRecomporValorGT")) {
-			ACBrAACInterop.INSTANCE.AAC_SetVerificarRecomporValorGT(getHandle(), new ACBrAACInterop.VerificarRecomporValorGTCallback() {
-                @Override
-                public void invoke(String NumSerie, DoubleByReference ValorGT) {
-                    onVerificarRecomporValorGT(NumSerie, ValorGT);
-                }
-			});
+			ACBrAACInterop.INSTANCE.AAC_SetVerificarRecomporValorGT(getHandle(), onVerificarRecomporValorGT);
 		}
 		addListener("onVerificarRecomporValorGT", pListener);
 	}

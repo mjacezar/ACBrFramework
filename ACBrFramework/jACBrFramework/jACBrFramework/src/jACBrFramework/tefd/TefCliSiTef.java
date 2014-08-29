@@ -1,6 +1,5 @@
 package jACBrFramework.tefd;
 
-import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 import jACBrFramework.ACBrComposedClass;
 import jACBrFramework.ACBrEventListener;
@@ -20,6 +19,30 @@ import java.util.Date;
  */
 public class TefCliSiTef extends ACBrComposedClass {
 
+    //<editor-fold defaultstate="collapsed" desc="Events">
+    
+    /**
+     * Evento acionado para exibir o menu.
+     */
+    private ACBrTEFInterop.TEFCliSiTefExibeMenuCallback onExibeMenu = new ACBrTEFInterop.TEFCliSiTefExibeMenuCallback() {
+        @Override
+        public void invoke(String pTitulo, IntByReference pOpcoes, int pOpcoesCount, IntByReference pItemSelecionado, IntByReference pVoltarMenu) {
+            onExibeMenu(pTitulo, pOpcoes, pOpcoesCount, pItemSelecionado, pVoltarMenu);
+        }
+    };
+    
+    /**
+     * Evento acionado para obter campo.
+     */
+    private ACBrTEFInterop.TEFCliSiTefObtemCampoCalback onObtemCampo = new ACBrTEFInterop.TEFCliSiTefObtemCampoCalback() {
+        @Override
+        public void invoke(String pTitulo, int pTamanhoMinimo, int pTamanhoMaximo, int pTipoCampo,
+                int pOperacao, IntByReference pResposta, int pRespLen, IntByReference pDigitado, IntByReference pVoltarMenu) {
+            onObtemCampo(pTitulo, pTamanhoMinimo, pTamanhoMaximo, pTipoCampo, pOperacao, pResposta, pRespLen, pDigitado, pVoltarMenu);
+        }
+    };
+    
+    // </editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Constructor">
     TefCliSiTef(ACBrTEFD pParent) throws ACBrException {
         super(pParent);
@@ -389,15 +412,10 @@ public class TefCliSiTef extends ACBrComposedClass {
         return ret;
     }    
     // </editor-fold>
-	//<editor-fold defaultstate="collapsed" desc="onExibeMenu">
+    //<editor-fold defaultstate="collapsed" desc="onExibeMenu">
     public void addOnExibeMenu(ACBrEventListener<TEFCliSiTefExibeMenuEventObject> pListener) {
         if (!hasListeners("onExibeMenu")) {
-            ACBrTEFInterop.INSTANCE.TEF_TEFCliSiTef_SetOnExibeMenu(getHandle(), new ACBrTEFInterop.TEFCliSiTefExibeMenuCallback() {
-                @Override
-                public void invoke(String pTitulo, Pointer pOpcoes, int pOpcoesCount, IntByReference pItemSelecionado, IntByReference pVoltarMenu) {
-                    onExibeMenu(pTitulo, pOpcoes, pOpcoesCount, pItemSelecionado, pVoltarMenu);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_TEFCliSiTef_SetOnExibeMenu(getHandle(), onExibeMenu);
         }
         addListener("onExibeMenu", pListener);
     }
@@ -410,24 +428,18 @@ public class TefCliSiTef extends ACBrComposedClass {
         }
     }
 
-    private void onExibeMenu(String pTitulo, Pointer pOpcoes, int pOpcoesCount, IntByReference pItemSelecionado, IntByReference pVoltarMenu) {
+    private void onExibeMenu(String pTitulo, IntByReference pOpcoes, int pOpcoesCount, IntByReference pItemSelecionado, IntByReference pVoltarMenu) {
         String[] opcoesArray = getStringArray(pOpcoes, pOpcoesCount);
         TEFCliSiTefExibeMenuEventObject e = new TEFCliSiTefExibeMenuEventObject(this, pTitulo, opcoesArray, pOpcoesCount);
         notifyListeners("onExibeMenu", e);
         pItemSelecionado.setValue(e.getItemSelecionado());
         pVoltarMenu.setValue(e.getVoltarMenu() ? 1 : 0);
     }
-	//</editor-fold>  
-	//<editor-fold defaultstate="collapsed" desc="onObtemCampo">
+    //</editor-fold>  
+    //<editor-fold defaultstate="collapsed" desc="onObtemCampo">
     public void addOnObtemCampo(ACBrEventListener<TEFCliSiTefObtemCampoEventObject> pListener) {
         if (!hasListeners("onObtemCampo")) {
-            ACBrTEFInterop.INSTANCE.TEF_TEFCliSiTef_SetOnObtemCampo(getHandle(), new ACBrTEFInterop.TEFCliSiTefObtemCampoCalback() {
-                @Override
-                public void invoke(String pTitulo, int pTamanhoMinimo, int pTamanhoMaximo, int pTipoCampo,
-                        int pOperacao, Pointer pResposta, int pRespLen, IntByReference pDigitado, IntByReference pVoltarMenu) {
-                    onObtemCampo(pTitulo, pTamanhoMinimo, pTamanhoMaximo, pTipoCampo, pOperacao, pResposta, pRespLen, pDigitado, pVoltarMenu);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_TEFCliSiTef_SetOnObtemCampo(getHandle(), onObtemCampo);
         }
         addListener("onObtemCampo", pListener);
     }
@@ -441,15 +453,14 @@ public class TefCliSiTef extends ACBrComposedClass {
     }
 
     private void onObtemCampo(String pTitulo, int pTamanhoMinimo, int pTamanhoMaximo, int pTipoCampo,
-            int pOperacao, Pointer pResposta, int pRespLen, IntByReference pDigitado, IntByReference pVoltarMenu) {
+            int pOperacao, IntByReference pResposta, int pRespLen, IntByReference pDigitado, IntByReference pVoltarMenu) {
         TEFCliSiTefObtemCampoEventObject e = new TEFCliSiTefObtemCampoEventObject(this, pTitulo, pTamanhoMinimo,
                 pTamanhoMaximo, pTipoCampo, TefCliSiTefOperacaoCampo.valueOf(pOperacao));
         notifyListeners("onObtemCampo", e);
-        pResposta.clear(pRespLen);
-        pResposta.setString(0, toUTF8(e.getResposta()));
+        pResposta.getPointer().setString(0, toUTF8(e.getResposta()));
         pDigitado = e.getDigitado();
         pVoltarMenu = e.getVoltarMenu();
     }
-	//</editor-fold>  
+    //</editor-fold>  
 
 }

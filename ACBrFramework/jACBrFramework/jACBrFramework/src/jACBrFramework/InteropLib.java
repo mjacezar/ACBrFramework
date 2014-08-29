@@ -9,10 +9,11 @@ public interface InteropLib extends Library {
 
     /**
      * Classe auxiliar para obtencao do nome da lib a ser carregada pelo framework.
-     * 
-      * @see <a href="http://www.projetoacbr.com.br/forum/index.php?/topic/15333-pegar-dll-autom%C3%A1ticamente-32-ou-64/#entry94370">
-      * Contribuicao
-      * </a>
+     *
+     * @see <a
+     * href="http://www.projetoacbr.com.br/forum/index.php?/topic/15333-pegar-dll-autom%C3%A1ticamente-32-ou-64/#entry94370">
+     * Contribuicao
+     * </a>
      */
     class PegarDLLpelaArqSO {
         private static String library = "";
