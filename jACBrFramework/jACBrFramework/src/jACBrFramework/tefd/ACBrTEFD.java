@@ -37,6 +37,179 @@ import java.util.Date;
  */
 public class ACBrTEFD extends ACBrClass {
 
+    //<editor-fold defaultstate="collapsed" desc="Events">
+    
+    /**
+     * Evento acionado enquanto a esta aguardando a resposta.
+     */
+    private ACBrTEFInterop.AguardaRespCallback onAguardaResp = new ACBrTEFInterop.AguardaRespCallback() {
+        @Override
+        public void invoke(String pArquivo, int pSegundosTimeOut, IntByReference pInterromper) {
+            onAguardaResp(pArquivo, pSegundosTimeOut, pInterromper);
+        }
+    };
+    
+    /**
+     * Evento acionado para exibir uma mensagem de informacao ou confirmacao.
+     */    
+    private ACBrTEFInterop.ExibeMsgCallback onExibeMensagem = new ACBrTEFInterop.ExibeMsgCallback() {
+        @Override
+        public void invoke(int pOperacao, String pMensagem, IntByReference pAModalResult) {
+            onExibeMensagem(pOperacao, pMensagem, pAModalResult);
+        }
+    };    
+    
+    /**
+     * Evento acionado para bloquear o mouse ou teclado.
+     */    
+    private ACBrTEFInterop.BloqueiaMouseTecladoCallback onBloqueiaMouseTeclado = new ACBrTEFInterop.BloqueiaMouseTecladoCallback() {
+        @Override
+        public void invoke(boolean pBloqueia, IntByReference pTratado) {
+            onBloqueiaMouseTeclado(pBloqueia, pTratado);
+        }
+    };
+    
+    /**
+     * Evento acionado para restaurar o foca da aplicacao.
+     */    
+    private ACBrTEFInterop.ExecutaAcaoCallback onRestauraFocoAplicacao = new ACBrTEFInterop.ExecutaAcaoCallback() {
+        @Override
+        public void invoke(IntByReference pTratado) {
+            onRestauraFocoAplicacao(pTratado);
+        }
+    };
+
+    /**
+     * Evento acionado para limpar o teclado.
+     */    
+    private ACBrTEFInterop.ExecutaAcaoCallback onLimpaTeclado = new ACBrTEFInterop.ExecutaAcaoCallback() {
+        @Override
+        public void invoke(IntByReference pTratado) {
+            onLimpaTeclado(pTratado);
+        }
+    };    
+
+    /**
+     * Evento acionado para comandar a ECF
+     */    
+    private ACBrTEFInterop.ComandaECFCallback onComandaECF = new ACBrTEFInterop.ComandaECFCallback() {
+        @Override
+        public void invoke(int pOperacao, int pResp, IntByReference pRetornoECF) {
+            onComandaECF(pOperacao, pResp, pRetornoECF);
+        }
+    };    
+    
+    /**
+     * Evento acionado para comandar a subtotalizacao na ECF.
+     */    
+    private ACBrTEFInterop.ComandaECFSubtotalizaCallback onComandaECFSubtotaliza = new ACBrTEFInterop.ComandaECFSubtotalizaCallback() {
+        @Override
+        public void invoke(double pDescAcre, IntByReference pRetornoECF) {
+            onComandaECFSubtotaliza(pDescAcre, pRetornoECF);
+        }
+    };    
+    
+    /**
+     * Evento acionado para comandar o pagamento na ECF.
+     */    
+    private ACBrTEFInterop.ComandaECFPagamentoCallback onComandaECFPagamento = new ACBrTEFInterop.ComandaECFPagamentoCallback() {
+        @Override
+        public void invoke(String pIndiceECF, double pValor, IntByReference pRetornoECF) {
+            onComandaECFPagamento(pIndiceECF, pValor, pRetornoECF);
+        }
+    };
+    
+    /**
+     * Evento acionado para abrir um cupom vinculado.
+     */    
+    private ACBrTEFInterop.ComandaECFAbreVinculadoCallback onComandaECFAbreVinculado = new ACBrTEFInterop.ComandaECFAbreVinculadoCallback() {
+        @Override
+        public void invoke(String pCOO, String pIndiceECF, double pValor, IntByReference pRetornoECF) {
+            onComandaECFAbreVinculado(pCOO, pIndiceECF, pValor, pRetornoECF);
+        }
+    };
+    
+    /**
+     * Evento acionado para comandar a impressao na ECF.
+     */    
+    private ACBrTEFInterop.ComandaECFImprimeViaCallback onComandaECFImprimeVia = new ACBrTEFInterop.ComandaECFImprimeViaCallback() {
+        @Override
+        public void invoke(int pTipoRelatorio, int pVia, IntByReference pImagemComprovante, int pImagemComprovanteCount, IntByReference pRetornoECF) {
+            onComandaECFImprimeVia(pTipoRelatorio, pVia, pImagemComprovante, pImagemComprovanteCount, pRetornoECF);
+        }
+    };
+    
+    /**
+     * Evento acionado para obter informacoes da ECF.
+     */    
+    private ACBrTEFInterop.InfoECFCallback onInfoECF = new ACBrTEFInterop.InfoECFCallback() {
+        @Override
+        public void invoke(int pOperacao, Pointer pRetornoECF, int pRetornoECFLen) {
+            onInfoECF(pOperacao, pRetornoECF, pRetornoECFLen);
+        }
+    };    
+    
+    /**
+     * Evento acionado antes de finalizar uma requisicao.
+     */    
+    private ACBrTEFInterop.AntesFinalizarRequisicaoCallback onAntesFinalizarRequisicao = new ACBrTEFInterop.AntesFinalizarRequisicaoCallback() {
+        @Override
+        public void invoke(int pReq) {
+            onAntesFinalizarRequisicao(pReq);
+        }
+    };    
+    
+    /**
+     * Evento acionado apos confirmar uma transacao.
+     */    
+    private ACBrTEFInterop.DepoisConfirmarTransacoesCallback onDepoisConfirmarTransacoes = new ACBrTEFInterop.DepoisConfirmarTransacoesCallback() {
+        @Override
+        public void invoke(int pRespostasPendentes) {
+            onDepoisConfirmarTransacoes(pRespostasPendentes);
+        }
+    };
+    
+    /**
+     * Evento acionado antes de cancelar transacoes.
+     */    
+    private ACBrTEFInterop.AntesCancelarTransacaoCallback onAntesCancelarTransacao = new ACBrTEFInterop.AntesCancelarTransacaoCallback() {
+        @Override
+        public void invoke(int pRespostaPendente) {
+            onAntesCancelarTransacao(pRespostaPendente);
+        }
+    };    
+    
+    /**
+     * Evento acionado apos o cancelamentos de transacoes.
+     */    
+    private ACBrTEFInterop.DepoisCancelarTransacoesCallback onDepoisCancelarTransacoes = new ACBrTEFInterop.DepoisCancelarTransacoesCallback() {
+        @Override
+        public void invoke(int pRespostasPendentes) {
+            onDepoisCancelarTransacoes(pRespostasPendentes);
+        }
+    };
+    
+    /**
+     * Evento acionado para requisicao de mudanca de estado.
+     */    
+    private ACBrTEFInterop.MudaEstadoReqCallback onMudaEstadoReq = new ACBrTEFInterop.MudaEstadoReqCallback() {
+        @Override
+        public void invoke(int pEstadoReq) {
+            onMudaEstadoReq(pEstadoReq);
+        }
+    };
+    
+    /**
+     * Evento acionado para a resposta da mudanca de estado.
+     */    
+    private ACBrTEFInterop.MudaEstadoRespCallback onMudaEstadoResp = new ACBrTEFInterop.MudaEstadoRespCallback() {
+        @Override
+        public void invoke(int pEstadoResp) {
+            onMudaEstadoResp(pEstadoResp);
+        }
+    };
+    
+    // </editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Attributes">
     /**
      * @see Identificacao
@@ -870,15 +1043,10 @@ public class ACBrTEFD extends ACBrClass {
         checkResult(ret);
     }
     // </editor-fold>
-	//<editor-fold defaultstate="collapsed" desc="onAguardaResp">
-	public void addOnAguardaResp(ACBrEventListener<AguardaRespEventObject> pListener) {
+    //<editor-fold defaultstate="collapsed" desc="onAguardaResp">
+    public void addOnAguardaResp(ACBrEventListener<AguardaRespEventObject> pListener) {
 		if (!hasListeners("onAguardaResp")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnAguardaResp(getHandle(), new ACBrTEFInterop.AguardaRespCallback() {
-                @Override
-                public void invoke(String pArquivo, int pSegundosTimeOut, IntByReference pInterromper) {
-                    onAguardaResp(pArquivo, pSegundosTimeOut, pInterromper);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnAguardaResp(getHandle(), onAguardaResp);
         }
         addListener("onAguardaResp", pListener);
     }
@@ -892,20 +1060,15 @@ public class ACBrTEFD extends ACBrClass {
 
     private void onAguardaResp(String pArquivo, int pSegundosTimeOut, IntByReference pInterromper) {
         AguardaRespEventObject e = new AguardaRespEventObject(this, pArquivo, pSegundosTimeOut);
-        pInterromper = e.getInterromper();
         notifyListeners("onAguardaResp", e);
+        pInterromper.setValue(e.getInterromper().getValue());
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="onExibeMensagem">
 
     public void addOnExibeMensagem(ACBrEventListener<ExibeMsgEventObject> pListener) {
         if (!hasListeners("onExibeMensagem")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnExibeMsg(getHandle(), new ACBrTEFInterop.ExibeMsgCallback() {
-                @Override
-                public void invoke(int pOperacao, String pMensagem, Pointer pAModalResult) {
-                    onExibeMensagem(pOperacao, pMensagem, pAModalResult);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnExibeMsg(getHandle(), onExibeMensagem);
         }
         addListener("onExibeMensagem", pListener);
     }
@@ -917,10 +1080,10 @@ public class ACBrTEFD extends ACBrClass {
         }
     }
 
-    private void onExibeMensagem(int pOperacao, String pMensagem, Pointer pAModalResult) {
+    private void onExibeMensagem(int pOperacao, String pMensagem, IntByReference pAModalResult) {
         ExibeMsgEventObject e = new ExibeMsgEventObject(this, OperacaoMensagem.valueOf(pOperacao), toUTF8(pMensagem));
         notifyListeners("onExibeMensagem", e);
-        pAModalResult.setInt(0, e.getaModalResult().getValue());
+        pAModalResult.setValue(e.getaModalResult().getValue());
         //pAModalResult = e.getaModalResult();
     }
     //</editor-fold>
@@ -928,12 +1091,7 @@ public class ACBrTEFD extends ACBrClass {
 
     public void addOnBloqueiaMouseTeclado(ACBrEventListener<BloqueiaMouseTecladoEventObject> pListener) {
         if (!hasListeners("onBloqueiaMouseTeclado")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnBloqueiaMouseTeclado(getHandle(), new ACBrTEFInterop.BloqueiaMouseTecladoCallback() {
-                @Override
-                public void invoke(boolean pBloqueia, IntByReference pTratado) {
-                    onBloqueiaMouseTeclado(pBloqueia, pTratado);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnBloqueiaMouseTeclado(getHandle(), onBloqueiaMouseTeclado);
         }
         addListener("onBloqueiaMouseTeclado", pListener);
     }
@@ -947,20 +1105,15 @@ public class ACBrTEFD extends ACBrClass {
 
     private void onBloqueiaMouseTeclado(boolean pBloqueia, IntByReference pTratado) {
         BloqueiaMouseTecladoEventObject e = new BloqueiaMouseTecladoEventObject(this, pBloqueia ? 1 : 0);
-        pTratado = e.getTratado();
         notifyListeners("onBloqueiaMouseTeclado", e);
+        pTratado.setValue(e.getTratado().getValue());
     }
     //</editor-fold> 
     //<editor-fold defaultstate="collapsed" desc="onRestauraFocoAplicacao">
 
     public void addOnRestauraFocoAplicacao(ACBrEventListener<ExecutaAcaoEventObject> pListener) {
         if (!hasListeners("onRestauraFocoAplicacao")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnRestauraFocoAplicacao(getHandle(), new ACBrTEFInterop.ExecutaAcaoCallback() {
-                @Override
-                public void invoke(IntByReference pTratado) {
-                    onRestauraFocoAplicacao(pTratado);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnRestauraFocoAplicacao(getHandle(), onRestauraFocoAplicacao);
         }
         addListener("onRestauraFocoAplicacao", pListener);
     }
@@ -975,18 +1128,14 @@ public class ACBrTEFD extends ACBrClass {
     private void onRestauraFocoAplicacao(IntByReference pTratado) {
         ExecutaAcaoEventObject e = new ExecutaAcaoEventObject(this, pTratado.getValue());
         notifyListeners("onRestauraFocoAplicacao", e);
+        pTratado.setValue(e.getTratado());
     }
     //</editor-fold>  
     //<editor-fold defaultstate="collapsed" desc="onLimpaTeclado">
 
     public void addOnLimpaTeclado(ACBrEventListener<ExecutaAcaoEventObject> pListener) {
         if (!hasListeners("onLimpaTeclado")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnLimpaTeclado(getHandle(), new ACBrTEFInterop.ExecutaAcaoCallback() {
-                @Override
-                public void invoke(IntByReference pTratado) {
-                    onLimpaTeclado(pTratado);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnLimpaTeclado(getHandle(), onLimpaTeclado);
         }
         addListener("onLimpaTeclado", pListener);
     }
@@ -1001,18 +1150,14 @@ public class ACBrTEFD extends ACBrClass {
     private void onLimpaTeclado(IntByReference pTratado) {
         ExecutaAcaoEventObject e = new ExecutaAcaoEventObject(this, pTratado.getValue());
         notifyListeners("onLimpaTeclado", e);
+        pTratado.setValue(e.getTratado());
     }
     //</editor-fold>  
     //<editor-fold defaultstate="collapsed" desc="onComandaECF">
 
     public void addOnComandaECF(ACBrEventListener<ComandaECFEventObject> pListener) {
         if (!hasListeners("onComandaECF")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnComandaECF(getHandle(), new ACBrTEFInterop.ComandaECFCallback() {
-                @Override
-                public void invoke(int pOperacao, int pResp, IntByReference pRetornoECF) {
-                    onComandaECF(pOperacao, pResp, pRetornoECF);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnComandaECF(getHandle(), onComandaECF);
         }
         addListener("onComandaECF", pListener);
     }
@@ -1039,12 +1184,7 @@ public class ACBrTEFD extends ACBrClass {
 
     public void addOnComandaECFSubtotaliza(ACBrEventListener<ComandaECFSubtotalizaEventObject> pListener) {
         if (!hasListeners("onComandaECFSubtotaliza")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnComandaECFSubtotaliza(getHandle(), new ACBrTEFInterop.ComandaECFSubtotalizaCallback() {
-                @Override
-                public void invoke(double pDescAcre, IntByReference pRetornoECF) {
-                    onComandaECFSubtotaliza(pDescAcre, pRetornoECF);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnComandaECFSubtotaliza(getHandle(), onComandaECFSubtotaliza);
         }
         addListener("onComandaECFSubtotaliza", pListener);
     }
@@ -1058,20 +1198,15 @@ public class ACBrTEFD extends ACBrClass {
 
     private void onComandaECFSubtotaliza(double pDescAcre, IntByReference pRetornoECF) {
         ComandaECFSubtotalizaEventObject e = new ComandaECFSubtotalizaEventObject(this, pDescAcre);
-        pRetornoECF.setValue(e.getRetornoEcf().getValue());
         notifyListeners("onComandaECFSubtotaliza", e);
+        pRetornoECF.setValue(e.getRetornoEcf().getValue());
     }
     //</editor-fold>  
     //<editor-fold defaultstate="collapsed" desc="onComandaECFPagamento">
 
     public void addOnComandaECFPagamento(ACBrEventListener<ComandaECFPagamentoEventObject> pListener) {
         if (!hasListeners("onComandaECFPagamento")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnComandaECFPagamento(getHandle(), new ACBrTEFInterop.ComandaECFPagamentoCallback() {
-                @Override
-                public void invoke(String pIndiceECF, double pValor, IntByReference pRetornoECF) {
-                    onComandaECFPagamento(pIndiceECF, pValor, pRetornoECF);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnComandaECFPagamento(getHandle(), onComandaECFPagamento);
         }
         addListener("onComandaECFPagamento", pListener);
     }
@@ -1083,7 +1218,7 @@ public class ACBrTEFD extends ACBrClass {
         }
     }
 
-    private void onComandaECFPagamento(String pIndiceECF, double  pValor, IntByReference pRetornoECF) {
+    private void onComandaECFPagamento(String pIndiceECF, double pValor, IntByReference pRetornoECF) {
         double valor = pValor; //.getDouble(0);
         ComandaECFPagamentoEventObject e = new ComandaECFPagamentoEventObject(this, toUTF8(pIndiceECF), valor);
         notifyListeners("onComandaECFPagamento", e);
@@ -1094,12 +1229,7 @@ public class ACBrTEFD extends ACBrClass {
 
     public void addOnComandaECFAbreVinculado(ACBrEventListener<ComandaECFAbreVinculadoEventObject> pListener) {
         if (!hasListeners("onComandaECFAbreVinculado")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnComandaECFAbreVinculado(getHandle(), new ACBrTEFInterop.ComandaECFAbreVinculadoCallback() {
-                @Override
-                public void invoke(String pCOO, String pIndiceECF, double pValor, IntByReference pRetornoECF) {
-                    onComandaECFAbreVinculado(pCOO, pIndiceECF, pValor, pRetornoECF);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnComandaECFAbreVinculado(getHandle(), onComandaECFAbreVinculado);
         }
         addListener("onComandaECFAbreVinculado", pListener);
     }
@@ -1121,12 +1251,7 @@ public class ACBrTEFD extends ACBrClass {
 
     public void addOnComandaECFImprimeVia(ACBrEventListener<ComandaECFImprimeViaEventObject> pListener) {
         if (!hasListeners("onComandaECFImprimeVia")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnComandaECFImprimeVia(getHandle(), new ACBrTEFInterop.ComandaECFImprimeViaCallback() {
-                @Override
-                public void invoke(int pTipoRelatorio, int pVia, Pointer pImagemComprovante, int pImagemComprovanteCount, IntByReference pRetornoECF) {
-                    onComandaECFImprimeVia(pTipoRelatorio, pVia, pImagemComprovante, pImagemComprovanteCount, pRetornoECF);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnComandaECFImprimeVia(getHandle(), onComandaECFImprimeVia);
         }
         addListener("onComandaECFImprimeVia", pListener);
     }
@@ -1138,9 +1263,9 @@ public class ACBrTEFD extends ACBrClass {
         }
     }
 
-    private void onComandaECFImprimeVia(int pTipoRelatorio, int pVia, Pointer pImagemComprovante, int pImagemComprovanteCount, IntByReference pRetornoECF) {
+    private void onComandaECFImprimeVia(int pTipoRelatorio, int pVia, IntByReference pImagemComprovante, int pImagemComprovanteCount, IntByReference pRetornoECF) {
         //TODO Ver processo de obtencao para imagem.
-        ComandaECFImprimeViaEventObject e = new ComandaECFImprimeViaEventObject(this, TipoRelatorio.valueOf(pTipoRelatorio), pVia, pImagemComprovante.getStringArray(0, pImagemComprovanteCount), pImagemComprovanteCount);
+        ComandaECFImprimeViaEventObject e = new ComandaECFImprimeViaEventObject(this, TipoRelatorio.valueOf(pTipoRelatorio), pVia, pImagemComprovante.getPointer().getStringArray(0, pImagemComprovanteCount), pImagemComprovanteCount);
         notifyListeners("onComandaECFImprimeVia", e);
         pRetornoECF.setValue(e.getRetornoEcf().getValue());
     }
@@ -1149,12 +1274,7 @@ public class ACBrTEFD extends ACBrClass {
 
     public void addOnInfoECF(ACBrEventListener<InfoECFEventObject> pListener) {
         if (!hasListeners("onInfoECF")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnInfoECF(getHandle(), new ACBrTEFInterop.InfoECFCallback() {
-                @Override
-                public void invoke(int pOperacao, Pointer pRetornoECF, int pRetornoECFLen) {
-                    onInfoECF(pOperacao, pRetornoECF, pRetornoECFLen);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnInfoECF(getHandle(), onInfoECF);
         }
         addListener("onInfoECF", pListener);
     }
@@ -1170,7 +1290,7 @@ public class ACBrTEFD extends ACBrClass {
         //TODO Ajustar processo 
         InfoECFEventObject e = new InfoECFEventObject(this, InfoECF.valueOf(pOperacao));
         notifyListeners("onInfoECF", e);
-        pRetornoECF.clear(pRetornoECFLen);
+        pRetornoECF.clear(pRetornoECFLen + 1);
         pRetornoECF.setString(0, e.getRetornoEcf());
     }
     //</editor-fold>
@@ -1178,12 +1298,7 @@ public class ACBrTEFD extends ACBrClass {
 
     public void addOnAntesFinalizarRequisicao(ACBrEventListener<AntesFinalizarRequisicaoEventObject> pListener) {
         if (!hasListeners("onAntesFinalizarRequisicao")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnAntesFinalizarRequisicao(getHandle(), new ACBrTEFInterop.AntesFinalizarRequisicaoCallback() {
-                @Override
-                public void invoke(int pReq) {
-                    onAntesFinalizarRequisicao(pReq);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnAntesFinalizarRequisicao(getHandle(), onAntesFinalizarRequisicao);
         }
         addListener("onAntesFinalizarRequisicao", pListener);
     }
@@ -1209,12 +1324,7 @@ public class ACBrTEFD extends ACBrClass {
 
     public void addOnDepoisConfirmarTransacoes(ACBrEventListener<DepoisConfirmarTransacoesEventObject> pListener) {
         if (!hasListeners("onDepoisConfirmarTransacoes")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnDepoisConfirmarTransacoes(getHandle(), new ACBrTEFInterop.DepoisConfirmarTransacoesCallback() {
-                @Override
-                public void invoke(int pRespostasPendentes) {
-                    onDepoisConfirmarTransacoes(pRespostasPendentes);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnDepoisConfirmarTransacoes(getHandle(), onDepoisConfirmarTransacoes);
         }
         addListener("onDepoisConfirmarTransacoes", pListener);
     }
@@ -1239,12 +1349,7 @@ public class ACBrTEFD extends ACBrClass {
     //<editor-fold defaultstate="collapsed" desc="onAntesCancelarTransacao">
     public void addOnAntesCancelarTransacao(ACBrEventListener<AntesCancelarTransacaoEventObject> pListener) {
         if (!hasListeners("onAntesCancelarTransacao")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnAntesCancelarTransacao(getHandle(), new ACBrTEFInterop.AntesCancelarTransacaoCallback() {
-                @Override
-                public void invoke(int pRespostaPendente) {
-                    onAntesCancelarTransacao(pRespostaPendente);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnAntesCancelarTransacao(getHandle(), onAntesCancelarTransacao);
         }
         addListener("onAntesCancelarTransacao", pListener);
     }
@@ -1270,12 +1375,7 @@ public class ACBrTEFD extends ACBrClass {
 
     public void addOnDepoisCancelarTransacoes(ACBrEventListener<DepoisCancelarTransacoesEventObject> pListener) {
         if (!hasListeners("onDepoisCancelarTransacoes")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnDepoisCancelarTransacoes(getHandle(), new ACBrTEFInterop.DepoisCancelarTransacoesCallback() {
-                @Override
-                public void invoke(int pRespostasPendentes) {
-                    onDepoisCancelarTransacoes(pRespostasPendentes);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnDepoisCancelarTransacoes(getHandle(), onDepoisCancelarTransacoes);
         }
         addListener("onDepoisCancelarTransacoes", pListener);
     }
@@ -1301,12 +1401,7 @@ public class ACBrTEFD extends ACBrClass {
 
     public void addOnMudaEstadoReq(ACBrEventListener<MudaEstadoReqEventObject> pListener) {
         if (!hasListeners("onMudaEstadoReq")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnMudaEstadoReq(getHandle(), new ACBrTEFInterop.MudaEstadoReqCallback() {
-                @Override
-                public void invoke(int pEstadoReq) {
-                    onMudaEstadoReq(pEstadoReq);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnMudaEstadoReq(getHandle(), onMudaEstadoReq);
         }
         addListener("onMudaEstadoReq", pListener);
     }
@@ -1327,12 +1422,7 @@ public class ACBrTEFD extends ACBrClass {
 
     public void addOnMudaEstadoResp(ACBrEventListener<MudaEstadoRespEventObject> pListener) {
         if (!hasListeners("onMudaEstadoResp")) {
-            ACBrTEFInterop.INSTANCE.TEF_SetOnMudaEstadoResp(getHandle(), new ACBrTEFInterop.MudaEstadoRespCallback() {
-                @Override
-                public void invoke(int pEstadoResp) {
-                    onMudaEstadoResp(pEstadoResp);
-                }
-            });
+            ACBrTEFInterop.INSTANCE.TEF_SetOnMudaEstadoResp(getHandle(), onMudaEstadoResp);
         }
         addListener("onMudaEstadoResp", pListener);
     }

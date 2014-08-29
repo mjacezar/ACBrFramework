@@ -1,7 +1,7 @@
 package jACBrFramework;
 
-import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+import com.sun.jna.ptr.IntByReference;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -112,8 +112,8 @@ public abstract class ACBrInteropBase {
         return new String(value, UTF8).trim();
     }
     
-    protected String[] getStringArray(Pointer ptr, int len) {
-        return ptr.getStringArray(0, len);
+    protected String[] getStringArray(IntByReference ptr, int len) {
+        return ptr.getPointer().getStringArray(0, len);
     }    
 	//</editor-fold>	
 	//<editor-fold defaultstate="collapsed" desc="Listeners methods">	

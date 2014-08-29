@@ -41,7 +41,7 @@ public class ProgramTestTefCliSiTef {
     public static ACBrTEFD acBrTEFD1 = null;
     public static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private static final String CLISITEF_COD_LOJA = "00000000";
-    private static final String CLISITEF_ENDERECO_IP = "192.168.0.139";
+    private static final String CLISITEF_ENDERECO_IP = "192.168.1.102";
     private static final String CLISITEF_NUMERO_TERMINAL = "PV000001";
     private static final String TEFD_ARQ_LOG = "F:\\logs\\log.txt";
     private static final String TEFD_PATH_BACKUP = "C:\\CliSiTef\\";
@@ -61,7 +61,8 @@ public class ProgramTestTefCliSiTef {
 
             acBrTEFD1 = new ACBrTEFD();
             acBrTEFD1.setArqLOG(TEFD_ARQ_LOG);
-            acBrTEFD1.setExibirMsgAutenticacao(true);
+            acBrTEFD1.setExibirMsgAutenticacao(false);
+            
             acBrTEFD1.getTefCliSiTef().setCodigoLoja(CLISITEF_COD_LOJA);
             acBrTEFD1.getTefCliSiTef().setEnderecoIP(CLISITEF_ENDERECO_IP);
             acBrTEFD1.getTefCliSiTef().setNumeroTerminal(CLISITEF_NUMERO_TERMINAL);
@@ -316,15 +317,19 @@ public class ProgramTestTefCliSiTef {
                     }
                 }
             });
-
+            
+            teste();
+            
             //Iniciar CliSiTef
             iniciarGP();
 
             //Ativar CliSiTef
             atv();
+            
+            teste1();
 
             //Carregar formas de pagamento da ECF
-            carregarFormasPagamento();
+            //carregarFormasPagamento();
 
             //Teste 01
             //testePagamentoIntegralCartaoDebito();
@@ -336,7 +341,7 @@ public class ProgramTestTefCliSiTef {
             //testePagamentoIntegralCartaoDeCredito();
 
             //Teste 04
-            testePagamentoParcialCartaoDeCreditoDinheiro();
+            //testePagamentoParcialCartaoDeCreditoDinheiro();
 
         } finally {
             if (acBrECF1 != null) {
@@ -345,6 +350,18 @@ public class ProgramTestTefCliSiTef {
         }
     }
 
+    private static void teste() {
+        //Abre Vende Subtotaliza
+        abrirCupom();
+        vendeItem(100);
+        subTotaliza();
+    }
+    
+    private static void teste1() {
+        //Realizar Pagamento em cartao
+        crt(100, INDICE_CARTAO_DEBITO);
+    }
+    
     private static void testePagamentoIntegralCartaoDebito() {
         //Abre Vende Subtotaliza
         abrirCupom();

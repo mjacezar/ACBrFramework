@@ -42,6 +42,12 @@ Símbolo : Significado
 
 Changelog
 
+29/08/2014
+
+-- jACBrFramework --
+[*] Correção na obtenção das chaves de criptografia - ACBrAAC - José Mauro.
+[*] Ajustes nos eventos do TEF para o CliSiTef - ACBrTEFD - José Mauro.
+
 25/08/2014
 
 -- jACBrFramework --
