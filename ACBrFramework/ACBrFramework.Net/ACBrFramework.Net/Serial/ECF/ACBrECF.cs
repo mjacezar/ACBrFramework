@@ -2702,7 +2702,7 @@ namespace ACBrFramework.ECF
 		private RelatorioGerencial[] relatoriosGerenciais;
 		private ACBrAAC aac;
 		private ACBrEAD ead;
-		private ACBrRFD rfd;
+		internal ACBrRFD rfd;
 
 		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onMsgPoucoPapel;
 		private readonly ACBrEventHandler<ACBrECFInterop.Callback> onAguardandoRespostaChange;
@@ -3097,6 +3097,19 @@ namespace ACBrFramework.ECF
 		[Category("Rodape")]
 		public Rodape InfoRodapeCupom { get; private set; }
 
+        [Category("Rodape")]
+        public bool QuebraLinhaRodape
+        {
+            get
+            {
+                return GetBool(ACBrECFInterop.ECF_GetQuebraLinhaRodape);
+            }
+            set
+            {
+                SetBool(ACBrECFInterop.ECF_SetQuebraLinhaRodape, value);
+            }
+        }
+
 		[Browsable(true)]
 		[Category("ConfigBarras")]
 		public ConfigBarras ConfigBarras { get; private set; }
@@ -3164,40 +3177,29 @@ namespace ACBrFramework.ECF
 			{
 				return this.rfd;
 			}
-			set
-			{
-				if (value == null)
-				{
-					if (rfd != null)
-					{
-						int ret = ACBrECFInterop.ECF_SetRFD(this.Handle, IntPtr.Zero);
-						CheckResult(ret);
+            set
+            {
+                if (value == rfd)
+                    return;
 
-						var orfd = rfd;
-						rfd = null;
+                if (value == null && rfd != null)
+                {
+                    int ret = ACBrECFInterop.ECF_SetRFD(this.Handle, IntPtr.Zero);
+                    CheckResult(ret);
+                }
+                else
+                {
+                    int ret = ACBrECFInterop.ECF_SetRFD(this.Handle, value.Handle);
+                    CheckResult(ret);
+                }
 
-						if (orfd.ECF != null)
-							orfd.ECF = null;
-					}
-					else if (this.rfd != null)
-					{
-						int ret = ACBrECFInterop.ECF_SetRFD(this.Handle, IntPtr.Zero);
-						CheckResult(ret);
+                if (value != null)
+                    value.ecf = this;
+                else
+                    rfd.ecf = null;
 
-						this.rfd = null;
-					}
-				}
-				else
-				{
-					int ret = ACBrECFInterop.ECF_SetRFD(this.Handle, value.Handle);
-					CheckResult(ret);
-
-					this.rfd = value;
-
-					if (rfd.ECF == null)
-						this.rfd.ECF = this;
-				}
-			}
+                rfd = value;
+            }			
 		}
 
 		#endregion Componentes ACBr

@@ -455,10 +455,10 @@
             this.aacParametrosTabPage = new System.Windows.Forms.TabPage();
             this.lstParam = new System.Windows.Forms.ListBox();
             this.ativarCheckButton = new System.Windows.Forms.CheckBox();
+            this.pnlpanel1 = new System.Windows.Forms.Panel();
             this.acbrECF = new ACBrFramework.ECF.ACBrECF();
             this.acbrAAC = new ACBrFramework.AAC.ACBrAAC();
             this.aCBrRFD = new ACBrFramework.RFD.ACBrRFD();
-            this.pnlpanel1 = new System.Windows.Forms.Panel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -1932,7 +1932,7 @@
             this.abreGavetaToolStripMenuItem,
             this.gavetaAbertaToolStripMenuItem});
             this.gavetaToolStripMenuItem.Name = "gavetaToolStripMenuItem";
-            this.gavetaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gavetaToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.gavetaToolStripMenuItem.Text = "&Gaveta";
             // 
             // abreGavetaToolStripMenuItem
@@ -1955,7 +1955,7 @@
             this.cancelaImpressãoChequeToolStripMenuItem,
             this.leituraCMC7ToolStripMenuItem});
             this.chequeToolStripMenuItem.Name = "chequeToolStripMenuItem";
-            this.chequeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chequeToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.chequeToolStripMenuItem.Text = "&Cheque";
             // 
             // chequeProntoToolStripMenuItem
@@ -4205,6 +4205,14 @@
             this.ativarCheckButton.UseVisualStyleBackColor = true;
             this.ativarCheckButton.CheckedChanged += new System.EventHandler(this.ativarCheckButton_CheckedChanged);
             // 
+            // pnlpanel1
+            // 
+            this.pnlpanel1.BackgroundImage = global::ACBrFramework.ECFTeste.Properties.Resources.ACBr;
+            this.pnlpanel1.Location = new System.Drawing.Point(0, 418);
+            this.pnlpanel1.Name = "pnlpanel1";
+            this.pnlpanel1.Size = new System.Drawing.Size(651, 43);
+            this.pnlpanel1.TabIndex = 12;
+            // 
             // acbrECF
             // 
             this.acbrECF.AAC = this.acbrAAC;
@@ -4212,7 +4220,7 @@
             this.acbrECF.ArqLOG = "acbrlog.txt";
             this.acbrECF.ArredondaItemMFD = false;
             this.acbrECF.ArredondaPorQtd = false;
-            this.acbrECF.ComandoLog = "ChequePronto";
+            this.acbrECF.ComandoLog = "ComprovantesNaoFiscais";
             this.acbrECF.ControlePorta = false;
             this.acbrECF.DecimaisPreco = 3;
             this.acbrECF.DecimaisQtd = 3;
@@ -4256,6 +4264,7 @@
             this.acbrECF.Operador = "";
             this.acbrECF.PaginaDeCodigo = 0;
             this.acbrECF.PausaRelatorio = 5;
+            this.acbrECF.QuebraLinhaRodape = false;
             this.acbrECF.Retentar = false;
             this.acbrECF.RFD = this.aCBrRFD;
             this.acbrECF.OnMsgPoucoPapel += new System.EventHandler(this.acbrECF_OnMsgPoucoPapel);
@@ -4310,14 +4319,6 @@
             this.aCBrRFD.SH_NomeAplicativo = "";
             this.aCBrRFD.SH_NumeroAplicativo = "";
             this.aCBrRFD.SH_VersaoAplicativo = "";
-            // 
-            // pnlpanel1
-            // 
-            this.pnlpanel1.BackgroundImage = global::ACBrFramework.ECFTeste.Properties.Resources.ACBr;
-            this.pnlpanel1.Location = new System.Drawing.Point(0, 418);
-            this.pnlpanel1.Name = "pnlpanel1";
-            this.pnlpanel1.Size = new System.Drawing.Size(651, 43);
-            this.pnlpanel1.TabIndex = 12;
             // 
             // MainForm
             // 

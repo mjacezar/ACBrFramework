@@ -573,6 +573,12 @@ namespace ACBrFramework.ECF
         [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
         public static extern int ECF_SetControlePorta(IntPtr ecfHandle, bool value);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_GetQuebraLinhaRodape(IntPtr ecfHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_SetQuebraLinhaRodape(IntPtr ecfHandle, bool aguardaImpressao);
+
 		#endregion Propriedades do Componente
 
 		#region InfoRodapeCupom
@@ -690,6 +696,51 @@ namespace ACBrFramework.ECF
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_InfoRodapeCupom_Imposto_SetValorAproximado(IntPtr ecfHandle, double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_GetImprimir(IntPtr ecfHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_SetImprimir(IntPtr ecfHandle, bool imprimir);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_New(IntPtr ecfHandle, out IntPtr abaHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_Remove(IntPtr ecfHandle, IntPtr abaHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_Clear(IntPtr ecfHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_GetAutomatico(IntPtr ecfHandle, IntPtr abaHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_SetAutomatico(IntPtr ecfHandle, IntPtr abaHandle, bool value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_GetEF(IntPtr ecfHandle, IntPtr abaHandle, ref double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_SetEF(IntPtr ecfHandle, IntPtr abaHandle, double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_GetEI(IntPtr ecfHandle, IntPtr abaHandle, ref double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_SetEI(IntPtr ecfHandle, IntPtr abaHandle, double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_GetVolume(IntPtr ecfHandle, IntPtr abaHandle, ref double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_SetVolume(IntPtr ecfHandle, IntPtr abaHandle, double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_GetBico(IntPtr ecfHandle, IntPtr abaHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_PostoCombustivel_SetBico(IntPtr ecfHandle, IntPtr abaHandle, int value);
 
 		#endregion InfoRodapeCupom
 

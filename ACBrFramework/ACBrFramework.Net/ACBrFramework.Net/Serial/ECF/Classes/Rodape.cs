@@ -20,7 +20,6 @@ namespace ACBrFramework.ECF
 #endif
 
 	#endregion COM_INTEROP
-
 	public sealed class Rodape : ACBrComposedComponent
 	{
 		#region Constructor
@@ -31,6 +30,7 @@ namespace ACBrFramework.ECF
 			this.NotaLegalDF = new RodapeNotaLegalDF(this);
 			this.Restaurante = new Restaurante(this);
 			this.Imposto = new Imposto(this);
+            this.PostoCombustivel = new RodapeAbastecimentos(this);
 		}
 
 		#endregion Constructor
@@ -126,6 +126,8 @@ namespace ACBrFramework.ECF
 		public Restaurante Restaurante { get; private set; }
 
 		public Imposto Imposto { get; private set; }
+
+        public RodapeAbastecimentos PostoCombustivel { get; private set; }
 
 		#endregion Properties
 	}

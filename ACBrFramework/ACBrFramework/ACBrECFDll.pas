@@ -740,6 +740,50 @@ begin
   end;
 end;
 
+Function ECF_GetQuebraLinhaRodape(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if ecfHandle^.ECF.QuebraLinhaRodape then
+       Result := 1
+     else
+       Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_SetQuebraLinhaRodape(const ecfHandle: PECFHandle; const QuebraLinhaRodape : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.QuebraLinhaRodape := QuebraLinhaRodape;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
 Function ECF_GetArredondaPorQtd(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -2100,6 +2144,340 @@ begin
   end;
 
 end;
+
+{%region PostoCombustivel}
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_GetImprimir(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     if (ecfHandle^.ECF.InfoRodapeCupom.PostoCombustivel.Imprimir) then
+          Result := 1
+     else
+          Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_SetImprimir(const ecfHandle: PECFHandle; const Imprimir : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.InfoRodapeCupom.PostoCombustivel.Imprimir := Imprimir;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_New(const ecfHandle: PECFHandle; var abaHandle : TACBRRodapeAbastecimento) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     abaHandle := ecfHandle^.ECF.InfoRodapeCupom.PostoCombustivel.New;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_Remove(const ecfHandle: PECFHandle; var abaHandle : TACBRRodapeAbastecimento) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) or (abaHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.InfoRodapeCupom.PostoCombustivel.Remove(abaHandle);
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_Clear(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.InfoRodapeCupom.PostoCombustivel.Clear;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_GetAutomatico(const ecfHandle: PECFHandle; const abaHandle : TACBRRodapeAbastecimento) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) or (abaHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     if (abaHandle.Automatico) then
+          Result := 1
+     else
+          Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_SetAutomatico(const ecfHandle: PECFHandle; const abaHandle : TACBRRodapeAbastecimento; const value : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) or (abaHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     abaHandle.Automatico := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_GetEF(const ecfHandle: PECFHandle; const abaHandle : TACBRRodapeAbastecimento; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) or (abaHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     value := abaHandle.EF;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_SetEF(const ecfHandle: PECFHandle; const abaHandle : TACBRRodapeAbastecimento; const value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) or (abaHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     abaHandle.EF := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_GetEI(const ecfHandle: PECFHandle; const abaHandle : TACBRRodapeAbastecimento; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) or (abaHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     value := abaHandle.EI;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_SetEI(const ecfHandle: PECFHandle; const abaHandle : TACBRRodapeAbastecimento; const value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) or (abaHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     abaHandle.EI := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_GetVolume(const ecfHandle: PECFHandle; const abaHandle : TACBRRodapeAbastecimento; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) or (abaHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     value := abaHandle.Volume;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_SetVolume(const ecfHandle: PECFHandle; const abaHandle : TACBRRodapeAbastecimento; const value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) or (abaHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     abaHandle.Volume := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_GetBico(const ecfHandle: PECFHandle; const abaHandle : TACBRRodapeAbastecimento) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) or (abaHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     Result := abaHandle.Bico;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_PostoCombustivel_SetBico(const ecfHandle: PECFHandle; const abaHandle : TACBRRodapeAbastecimento; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) or (abaHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     abaHandle.Bico := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+{%endregion}
 
 {%endregion}
 
@@ -11132,6 +11510,7 @@ ECF_GetOperador, ECF_SetOperador, ECF_GetLinhasEntreCupons, ECF_SetLinhasEntreCu
 ECF_GetDecimaisPreco, ECF_SetDecimaisPreco, ECF_GetDecimaisQtd, ECF_SetDecimaisQtd,
 ECF_GetPausaRelatorio, ECF_SetPausaRelatorio, ECF_GetDataHoraUltimaReducaoZ,
 ECF_GetReTentar, ECF_SetReTentar, ECF_GetControlePorta, ECF_SetControlePorta,
+ECF_GetQuebraLinhaRodape, ECF_SetQuebraLinhaRodape,
 
 { Métodos do Componente }
 
@@ -11202,6 +11581,15 @@ ECF_InfoRodapeCupom_Restaurante_GetMesa,ECF_InfoRodapeCupom_Restaurante_SetMesa,
 ECF_InfoRodapeCupom_Imposto_GetTexto, ECF_InfoRodapeCupom_Imposto_SetTexto,
 ECF_InfoRodapeCupom_Imposto_GetFonte, ECF_InfoRodapeCupom_Imposto_SetFonte,
 ECF_InfoRodapeCupom_Imposto_GetValorAproximado, ECF_InfoRodapeCupom_Imposto_SetValorAproximado,
+
+ECF_InfoRodapeCupom_PostoCombustivel_GetImprimir, ECF_InfoRodapeCupom_PostoCombustivel_SetImprimir,
+ECF_InfoRodapeCupom_PostoCombustivel_New, ECF_InfoRodapeCupom_PostoCombustivel_Remove,
+ECF_InfoRodapeCupom_PostoCombustivel_Clear,
+ECF_InfoRodapeCupom_PostoCombustivel_GetAutomatico, ECF_InfoRodapeCupom_PostoCombustivel_SetAutomatico,
+ECF_InfoRodapeCupom_PostoCombustivel_GetEF, ECF_InfoRodapeCupom_PostoCombustivel_SetEF,
+ECF_InfoRodapeCupom_PostoCombustivel_GetEI, ECF_InfoRodapeCupom_PostoCombustivel_SetEI,
+ECF_InfoRodapeCupom_PostoCombustivel_GetVolume, ECF_InfoRodapeCupom_PostoCombustivel_SetVolume,
+ECF_InfoRodapeCupom_PostoCombustivel_GetBico, ECF_InfoRodapeCupom_PostoCombustivel_SetBico,
 
 { Consumidor }
 

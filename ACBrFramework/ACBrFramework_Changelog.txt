@@ -41,6 +41,17 @@ Símbolo : Significado
 
 Changelog
 
+06/09/2014
+
+-- ACBrFramework 0.9.6.2 --
+[+] Adicionado a propriedade QuebraLinhaRodape - ACBrECF - Rafael Dias.
+[+] Adicionado Rodape para Posto de Combustiveis - ACBrECF - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.6.2 --
+[+] Adicionado a propriedade QuebraLinhaRodape - ACBrECF - Rafael Dias.
+[+] Adicionado Rodape para Posto de Combustiveis - ACBrECF - Rafael Dias.
+
+
 09/07/2014
 
 -- ACBrFramework 0.9.6.1 --
