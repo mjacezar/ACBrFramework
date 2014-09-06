@@ -73,7 +73,7 @@ namespace ACBrFramework.RFD
 		private readonly ACBrEventHandler<OnCalcHashLogArgs, ACBrRFDInterop.OnCalcHashLogCallback> onCalcHashLog;
 		private readonly ACBrEventHandler<ChaveEventArgs, ACBrRFDInterop.OnGetKeyCallback> onGetKeyHashLog;
 		private readonly ACBrEventHandler<ChaveEventArgs, ACBrRFDInterop.OnGetKeyCallback> onGetKeyRSA;
-		private ACBrECF ecf;
+		internal ACBrECF ecf;
 
 		#endregion Fields
 
@@ -119,48 +119,37 @@ namespace ACBrFramework.RFD
 			}
 		}
 
-		[Category("Componentes ACBr")]
-		public ACBrECF ECF
-		{
-			get
-			{
-				return this.ecf;
-			}
-			set
-			{
-				if (value == null)
-				{
-					if (ecf != null)
-					{
-						int ret = ACBrRFDInterop.RFD_SetECF(this.Handle, IntPtr.Zero);
-						CheckResult(ret);
+        [Category("Componentes ACBr")]
+        public ACBrECF ECF
+        {
+            get
+            {
+                return this.ecf;
+            }
+            set
+            {
+                if (value == ecf)
+                    return;
 
-						var oecf = ecf;
-						ecf = null;
+                if (value == null && ecf != null)
+                {
+                    int ret = ACBrRFDInterop.RFD_SetECF(this.Handle, IntPtr.Zero);
+                    CheckResult(ret);
+                }
+                else
+                {
+                    int ret = ACBrRFDInterop.RFD_SetECF(this.Handle, value.Handle);
+                    CheckResult(ret);
+                }
 
-						if (oecf.RFD != null)
-							oecf.RFD = null;
-					}
-					else if (this.ecf != null)
-					{						
-						int ret = ACBrRFDInterop.RFD_SetECF(this.Handle, IntPtr.Zero);
-						CheckResult(ret);
+                if (value != null)
+                    value.rfd = this;
+                else
+                    ecf.rfd = null;
 
-						this.ecf = null;
-					}
-				}
-				else
-				{
-					int ret = ACBrRFDInterop.RFD_SetECF(this.Handle, value.Handle);
-					CheckResult(ret);
-
-					ecf = value;
-					
-					if(ecf.RFD == null)
-						this.ecf.RFD = this;				
-				}
-			}
-		}
+                ecf = value;
+            }
+        }
 
 		[Category("Software House")]
 		public string SH_CNPJ
