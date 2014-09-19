@@ -458,8 +458,8 @@ public class TefCliSiTef extends ACBrComposedClass {
                 pTamanhoMaximo, pTipoCampo, TefCliSiTefOperacaoCampo.valueOf(pOperacao));
         notifyListeners("onObtemCampo", e);
         pResposta.getPointer().setString(0, toUTF8(e.getResposta()));
-        pDigitado = e.getDigitado();
-        pVoltarMenu = e.getVoltarMenu();
+        pDigitado.setValue(e.getDigitado().getValue());
+        pVoltarMenu.setValue(e.getVoltarMenu().getValue());
     }
     //</editor-fold>  
 

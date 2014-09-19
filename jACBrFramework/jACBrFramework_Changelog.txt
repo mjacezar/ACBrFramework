@@ -42,6 +42,11 @@ Símbolo : Significado
 
 Changelog
 
+19/09/2014
+
+-- jACBrFramework --
+[-] Ajuste no processo de formação do menu voltar do TEF - ACBrTEFD - José Mauro.
+
 29/08/2014
 
 -- jACBrFramework --
