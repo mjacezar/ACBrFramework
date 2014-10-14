@@ -11,20 +11,19 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("ACBr")]
 [assembly: AssemblyProduct("ACBrFramework")]
 [assembly: TypeLibVersion(109, 23)]
+[assembly: ComVisible(true)]
 #else
 [assembly: AssemblyTitle("ACBrFramework.Net")]
 [assembly: AssemblyDescription("Projeto ACBrFramework para .Net")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Equipe ACBrFramework")]
 [assembly: AssemblyProduct("ACBrFramework.Net")]
+[assembly: ComVisible(false)]
 #endif
 
-[assembly: AssemblyCopyright("Direitos Autorais © Equipe ACBrFramework 2010-2013")]
+[assembly: AssemblyCopyright("Direitos Autorais © Equipe ACBrFramework 2010-2014")]
 [assembly: AssemblyTrademark("http://acbrframework.sourceforge.net")]
 [assembly: AssemblyCulture("")]
-
-[assembly: ComVisible(false)]
-
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("D487CB83-4CD7-4C64-BBC3-FEF2DCD04023")]
