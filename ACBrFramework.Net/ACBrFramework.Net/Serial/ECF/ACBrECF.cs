@@ -4220,11 +4220,14 @@ namespace ACBrFramework.ECF
 
 		#region Métodos DAV
 
-		public void DAV_Abrir(DateTime emissao, string decrdocumento, string numero, string situacao, string vendedor, string observacao, string cpfCnpj, string nome, string endereco, int indice = 0)
+		public void DAV_Abrir(DateTime emissao, string decrdocumento, string numero, string situacao, string vendedor, string observacao, string cpfCnpj, string nome, string endereco,
+            string numFabricacao = "", string marca = "", string modelo = "", string ano = "", string placa = "", string renavam = "", int indice = 0)
 		{
 			int ret = ACBrECFInterop.ECF_DAV_Abrir(this.Handle, emissao.ToOADate(), ToUTF8(decrdocumento),
 				ToUTF8(numero), ToUTF8(situacao), ToUTF8(vendedor), ToUTF8(observacao),
-				ToUTF8(cpfCnpj), ToUTF8(nome), ToUTF8(endereco), indice);
+				ToUTF8(cpfCnpj), ToUTF8(nome), ToUTF8(endereco), ToUTF8(numFabricacao), ToUTF8(marca),
+                ToUTF8(modelo), ToUTF8(ano), ToUTF8(placa), ToUTF8(renavam), indice);
+
 			CheckResult(ret);
 		}
 

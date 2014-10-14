@@ -8388,7 +8388,8 @@ end;
 
 Function ECF_DAV_Abrir(const ecfHandle: PECFHandle; const AEmissao : double;
       const ADescrDocumento, ANumero, ASituacao, AVendedor, AObservacao,
-      ACNPJCPF, ANomeCliente, AEndereco: pChar; AIndice : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+      ACNPJCPF, ANomeCliente, AEndereco, ANumFabricacao,
+      AMarca, AModelo, AAno, APlaca, ARenavam: pChar; AIndice : Integer) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (ecfHandle = nil) then
@@ -8398,7 +8399,9 @@ begin
   end;
 
   try
-     ecfHandle^.ECF.DAV_Abrir(AEmissao, AdescrDocumento, ANumero, ASituacao, AVendedor, AObservacao, ACNPJCPF, ANomeCliente, AEndereco, AIndice);
+     ecfHandle^.ECF.DAV_Abrir(AEmissao, AdescrDocumento, ANumero, ASituacao, AVendedor,
+     AObservacao, ACNPJCPF, ANomeCliente, AEndereco, ANumFabricacao, AMarca,
+     AModelo, AAno, APlaca, ARenavam, AIndice);
      Result := 0;
   except
      on exception : Exception do

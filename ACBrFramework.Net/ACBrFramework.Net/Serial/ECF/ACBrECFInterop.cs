@@ -843,7 +843,7 @@ namespace ACBrFramework.ECF
 		#region DAV
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ECF_DAV_Abrir(IntPtr ecfHandle, double emissao, string decrdocumento, string numero, string situacao, string vendedor, string observacao, string cpfCnpj, string nome, string endereco, int indice);
+        public static extern int ECF_DAV_Abrir(IntPtr ecfHandle, double emissao, string decrdocumento, string numero, string situacao, string vendedor, string observacao, string cpfCnpj, string nome, string endereco, string numFabricacao, string marca, string modelo, string ano, string placa, string renavam, int indice);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DAV_Fechar(IntPtr ecfHandle, string observacao, double avlrDesconto, double avlrAcrescimo);
