@@ -87,9 +87,9 @@ namespace ACBrFramework.TEFDTeste
 
         private void ConfigSerial()
         {
-            using (SerialCFGForm serial = new SerialCFGForm())
+            using (var serial = new SerialCFGForm())
             {
-                serial.Device = acBrECF1.Device;
+                serial.Device = (ACBrDevice)acBrECF1.Device;
                 serial.ShowDialog();
                 cmbPorta.SelectedItem = acBrECF1.Device.Porta;
             }

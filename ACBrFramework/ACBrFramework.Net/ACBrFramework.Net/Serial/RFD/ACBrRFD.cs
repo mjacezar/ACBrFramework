@@ -133,7 +133,7 @@ namespace ACBrFramework.RFD
 
                 if (value == null && ecf != null)
                 {
-                    int ret = ACBrRFDInterop.RFD_SetECF(this.Handle, IntPtr.Zero);
+                    var ret = ACBrRFDInterop.RFD_SetECF(this.Handle, IntPtr.Zero);
                     CheckResult(ret);
                 }
                 else

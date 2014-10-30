@@ -86,8 +86,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <DebugSymbols>true</DebugSymbols>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Release\ACBrFramework.Net.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DebugSymbols>true</DebugSymbols>
@@ -132,6 +131,8 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>default</LangVersion>
     <ErrorReport>none</ErrorReport>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COM Interop|x64'">
     <OutputPath>bin\x64\COM Interop\</OutputPath>
@@ -278,6 +279,7 @@
       <DependentUpon>Framework64.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serial\Device\Interfaces\IACBrDevice.cs" />
     <Compile Include="Serial\DIS\ACBrDIS.cs" />
     <Compile Include="Serial\DIS\ACBrDISInterop.cs" />
     <Compile Include="Serial\DIS\Classes\Alinhamento.cs" />
@@ -297,6 +299,7 @@
     <Compile Include="Serial\ECF\Eventos\SangriaSuprimentoEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\SubtotalizaCupomEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\VendeItemEventArgs.cs" />
+    <Compile Include="Serial\ECF\Interfaces\IACBrECF.cs" />
     <Compile Include="Serial\RFD\ACBrRFD.cs" />
     <Compile Include="Serial\RFD\ACBrRFDInterop.cs" />
     <Compile Include="Serial\RFD\Eventos\CalcEADArgs.cs" />
@@ -749,7 +752,9 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)..\Dll\TlbExp.exe "$(TargetPath)" /out:"$(TargetDir)$(TargetName).tlb"</PostBuildEvent>
+    <PostBuildEvent>if "COM Interop" == "$(ConfigurationName)" (
+$(SolutionDir)..\Dll\TlbExp.exe "$(TargetPath)" /out:"$(TargetDir)$(TargetName).tlb"
+)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
