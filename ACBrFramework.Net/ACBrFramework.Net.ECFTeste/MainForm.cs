@@ -1216,9 +1216,9 @@ namespace ACBrFramework.ECFTeste
 
 		private void ConfigurarSerial()
         {
-            using (SerialCFGForm CFG = new SerialCFGForm())
+            using (var CFG = new SerialCFGForm())
             {
-                CFG.Device = acbrECF.Device;
+                CFG.Device = (ACBrDevice)acbrECF.Device;
                 CFG.ShowDialog();
             }
         }		
