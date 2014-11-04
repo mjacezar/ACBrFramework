@@ -9,7 +9,7 @@ uses
   ACBrECFClass,
   ACBrDevice,
   ACBrUtil,
-  ACBrAACDLL,
+  ACBrAACDll,
   ACBrEADDll,
   ACBrRFDDll,
   ACBrPAFClass;
@@ -11736,4 +11736,4 @@ ECF_SetOnErrorSubtotalizaNaoFiscal, ECF_SetOnErrorSuprimento, ECF_SetOnErrorVend
 ECF_SetOnMsgAguarde, ECF_SetOnMsgRetentar, ECF_SetOnPAFCalcEAD, ECF_SetOnPAFGetKeyRSA;
 
 end.
-
+

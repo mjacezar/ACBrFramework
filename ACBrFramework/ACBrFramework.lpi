@@ -27,13 +27,13 @@
       <StringTable CompanyName="Projeto: Componentes ACBr " FileDescription="Projeto: Componentes ACBr " ProductName="ACBrFramework" ProductVersion="ACBrFramework"/>
     </VersionInfo>
     <MacroValues Count="1">
-      <Macro1 Name="ACBrDir" Value="..\..\trunk\"/>
+      <Macro1 Name="ACBrDir" Value="..\..\ACBr\"/>
     </MacroValues>
     <BuildModes Count="4" Active="x86 - CDECL">
       <Item1 Name="x86 - CDECL" Default="True"/>
       <Item2 Name="x86 - STDCALL">
         <MacroValues Count="1">
-          <Macro1 Name="ACBrDir" Value="..\..\trunk\"/>
+          <Macro1 Name="ACBrDir" Value="..\..\ACBr\"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -54,7 +54,6 @@
           <CodeGeneration>
             <SmartLinkUnit Value="True"/>
             <TargetCPU Value="i386"/>
-            <TargetOS Value="win32"/>
             <Optimizations>
               <OptimizationLevel Value="3"/>
             </Optimizations>
@@ -81,7 +80,7 @@
       </Item2>
       <Item3 Name="x64 - CDECL">
         <MacroValues Count="1">
-          <Macro1 Name="ACBrDir" Value="..\..\trunk\"/>
+          <Macro1 Name="ACBrDir" Value="..\..\ACBr\"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -129,7 +128,7 @@
       </Item3>
       <Item4 Name="x64 - STDCALL">
         <MacroValues Count="1">
-          <Macro1 Name="ACBrDir" Value="..\..\trunk\"/>
+          <Macro1 Name="ACBrDir" Value="..\..\ACBr\"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -176,7 +175,7 @@
         </CompilerOptions>
       </Item4>
       <SharedMatrixOptions Count="1">
-        <Item1 ID="269401361166" Modes="x86 - CDECL,x86 - STDCALL,x64 - CDECL,x64 - STDCALL" Type="IDEMacro" MacroName="ACBrDir" Value="..\..\trunk\"/>
+        <Item1 ID="269401361166" Modes="x86 - CDECL,x86 - STDCALL,x64 - CDECL,x64 - STDCALL" Type="IDEMacro" MacroName="ACBrDir" Value="..\..\ACBr\"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
@@ -197,16 +196,14 @@
         <PackageName Value="LazUtils"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="112">
+    <Units Count="114">
       <Unit0>
         <Filename Value="ACBrFramework.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="25" Y="13"/>
+        <CursorPos X="54" Y="10"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
@@ -223,10 +220,11 @@
         <Filename Value="ACBrECFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrECFDll"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="8381"/>
-        <CursorPos X="31" Y="8390"/>
+        <TopLine Value="1"/>
+        <CursorPos X="71" Y="14"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <WindowIndex Value="0"/>
@@ -297,12 +295,14 @@
       <Unit9>
         <Filename Value="ACBrAACDll.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ACBrAACDLL"/>
+        <UnitName Value="ACBrAACDll"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1529"/>
-        <CursorPos X="1" Y="1169"/>
-        <FoldState Value=" TJiT2{J1 ps4uM2}Q]AjUoC2{L[A4AlU2{F]An2pG2~o2 pl6sE2~)]K0.e2#j8]9t52o1 T3*90N3C2E]JxP0K3S[94f0J4 piZjL0K[96M0J[II1w"/>
+        <TopLine Value="4"/>
+        <CursorPos X="16" Y="1"/>
+        <FoldState Value=" TJiT1{J1 ps4uM1}Q]AjUoC1{L[A4AlU1{F]An2pG1~o2 T3*90N3C2g"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit9>
       <Unit10>
@@ -383,8 +383,7 @@
         <Filename Value="ACBrDeviceDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrDeviceDll"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="36" Y="20"/>
@@ -426,7 +425,7 @@
         <Filename Value="ACBrTEFDll.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ACBrTEFDll"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="3869"/>
         <CursorPos X="190" Y="3884"/>
@@ -1218,8 +1217,28 @@
         <UsageCount Value="11"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit111>
+      <Unit112>
+        <Filename Value="..\..\..\..\..\..\usr\lib\lazarus\packager\registration\fcllaz.pas"/>
+        <UnitName Value="fcllaz"/>
+        <EditorIndex Value="5"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="56" Y="17"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit112>
+      <Unit113>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrDISSmakTeclado.pas"/>
+        <UnitName Value="ACBrDISSmakTeclado"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="48"/>
+        <CursorPos X="17" Y="62"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit113>
     </Units>
-    <JumpHistory Count="10" HistoryIndex="9">
+    <JumpHistory Count="16" HistoryIndex="15">
       <Position1>
         <Filename Value="ACBrECFDll.pas"/>
         <Caret Line="10349" Column="1" TopLine="28"/>
@@ -1260,6 +1279,30 @@
         <Filename Value="ACBrDeviceDll.pas"/>
         <Caret Line="517" Column="56" TopLine="495"/>
       </Position10>
+      <Position11>
+        <Filename Value="..\..\..\..\..\..\usr\lib\lazarus\packager\registration\fcllaz.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position11>
+      <Position12>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="8390" Column="31" TopLine="8381"/>
+      </Position12>
+      <Position13>
+        <Filename Value="..\..\ACBr\Fontes\ACBrSerial\ACBrDISSmakTeclado.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position13>
+      <Position14>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="12" Column="3" TopLine="1"/>
+      </Position14>
+      <Position15>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="6" Column="14" TopLine="1"/>
+      </Position15>
+      <Position16>
+        <Filename Value="ACBrECFDll.pas"/>
+        <Caret Line="12" Column="13" TopLine="1"/>
+      </Position16>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
@@ -1285,7 +1328,6 @@
     <CodeGeneration>
       <SmartLinkUnit Value="True"/>
       <TargetCPU Value="i386"/>
-      <TargetOS Value="win32"/>
       <Optimizations>
         <OptimizationLevel Value="3"/>
       </Optimizations>
@@ -1323,4 +1365,4 @@
     </Exceptions>
   </Debugging>
   <EditorMacros Count="0"/>
-</CONFIG>
+</CONFIG>
