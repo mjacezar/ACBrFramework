@@ -7,7 +7,7 @@ library ACBrFramework;
 uses
 
   ACBrDeviceDll, ACBrECFDll, ACBrPAFDll, ACBrEADDll,
-  ACBrSintegraDll, ACBrBALDll, ACBrLCBDll, ACBrAACDLL,
+  ACBrSintegraDll, ACBrBALDll, ACBrLCBDll, ACBrAACDll,
   ACBrTEFDll, ACBrCNIEEDll, ACBrSpedDll, ACBrSpedFiscalDll,
   ACBrSMSDll, ACBrIBGEDll, ACBrValidadorDll, ACBrRFDDll,
   ACBrCEPDll, ACBrDISDll
@@ -15,4 +15,4 @@ uses
 
 {$R *.res}
 begin
-end.
+end.

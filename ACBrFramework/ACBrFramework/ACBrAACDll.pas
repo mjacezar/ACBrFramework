@@ -1,4 +1,4 @@
-unit ACBrAACDLL;
+unit ACBrAACDll;
 
 interface
 
@@ -4072,4 +4072,4 @@ AAC_SetOnDepoisAbrirArquivo, AAC_SetOnDepoisGravarArquivo,
 AAC_SetVerificarRecomporNumSerie, AAC_SetVerificarRecomporValorGT;
 
 end.
-
+
