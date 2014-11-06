@@ -329,6 +329,7 @@ namespace ACBrFramework.ECF
     [Guid("7F5440D4-8D62-441B-9251-E911437D5F8F")]
     [ComSourceInterfaces(typeof(IACBrECFEvents))]
     [ClassInterface(ClassInterfaceType.AutoDual)]
+
 #endif
 
     #endregion COM Interop Attributes
@@ -560,10 +561,8 @@ namespace ACBrFramework.ECF
         }
 
 #if COM_INTEROP
-
         public event CancelaItemEventHandler OnAntesCancelaItemNaoFiscal
 #else
-
         public event EventHandler<CancelaItemEventArgs> OnAntesCancelaItemNaoFiscal
 #endif
         {
@@ -4155,6 +4154,36 @@ namespace ACBrFramework.ECF
         public void VendeItem(string codigo, string descricao, string aliquotaICMS, [MarshalAs(UnmanagedType.Currency)]decimal qtd, [MarshalAs(UnmanagedType.Currency)]decimal valorUnitario, [MarshalAs(UnmanagedType.Currency)]decimal descontoPorc = 0M, string unidade = "UN", string tipoDescontoAcrescimo = "%", string descontoAcrescimo = "D", int CodDepartamento = -1)
         {
             int ret = ACBrECFInterop.ECF_VendeItem(this.Handle, ToUTF8(codigo), ToUTF8(descricao), ToUTF8(aliquotaICMS), (double)qtd, (double)valorUnitario, (double)descontoPorc, ToUTF8(unidade), ToUTF8(tipoDescontoAcrescimo), ToUTF8(descontoAcrescimo), CodDepartamento);
+            CheckResult(ret);
+        }
+
+        public void VendeItemEx(string codigo, string descricao, string aliquotaICMS, [MarshalAs(UnmanagedType.Currency)]decimal qtd, 
+            [MarshalAs(UnmanagedType.Currency)]decimal valorUnitario, [MarshalAs(UnmanagedType.Currency)]decimal descontoPorc = 0M, 
+            string unidade = "UN", string tipoDescontoAcrescimo = "%", string descontoAcrescimo = "D", int CodDepartamento = -1,
+            string EAN13 = "", int CasasDecimaisQtde = 0, int CasasDecimaisValor = 0, char ArredondaTrunca = 'A', string NCM = "", 
+            string CFOP = "", string InformacaoAdicional = "",
+            [MarshalAs(UnmanagedType.Currency)]decimal TotalDosTributos = 0, int OrigemProduto = 0, string CST_ICMS = "", int ModalidadeBCICMS = 0,
+            [MarshalAs(UnmanagedType.Currency)]decimal PercentualReducaoBCICMS = 0, string CSOSN = "",
+            [MarshalAs(UnmanagedType.Currency)]decimal ValorBaseCalculoSN = 0, [MarshalAs(UnmanagedType.Currency)]decimal ValorICMSRetidoSN = 0,
+            [MarshalAs(UnmanagedType.Currency)]decimal AliquotaCalculoCreditoSN = 0,
+            [MarshalAs(UnmanagedType.Currency)]decimal ValorCreditoICMSSN = 0, string ItemListaServico = "",
+            string CodigoISS = "", string NaturezaOperacaoISS = "", int IndicadorIncentivoFiscalISS = 1,
+            string CodigoIBGE = "", int ModalidadeBCICMSST = 0, [MarshalAs(UnmanagedType.Currency)]decimal PercentualMargemICMSST = 0,
+            [MarshalAs(UnmanagedType.Currency)]decimal PercentualReducaoBCICMSST = 0,
+            [MarshalAs(UnmanagedType.Currency)]decimal ValorReducaoBCICMSST = 0, [MarshalAs(UnmanagedType.Currency)]decimal AliquotaICMSST = 0,
+            [MarshalAs(UnmanagedType.Currency)]decimal ValorICMSST = 0, [MarshalAs(UnmanagedType.Currency)]decimal ValorICMSDesonerado = 0,
+            int MotivoDesoneracaoICMS = 9)
+        {
+            int ret = ACBrECFInterop.ECF_VendeItemEx(this.Handle, ToUTF8(codigo), ToUTF8(descricao), ToUTF8(aliquotaICMS), (double)qtd, 
+                (double)valorUnitario, (double)descontoPorc, ToUTF8(unidade), ToUTF8(tipoDescontoAcrescimo),
+                ToUTF8(descontoAcrescimo), CodDepartamento, ToUTF8(EAN13), CasasDecimaisQtde, CasasDecimaisValor, ArredondaTrunca, ToUTF8(NCM), ToUTF8(CFOP), ToUTF8(InformacaoAdicional),
+                       (double)TotalDosTributos, OrigemProduto, ToUTF8(CST_ICMS), ModalidadeBCICMS,
+                       (double)PercentualReducaoBCICMS, ToUTF8(CSOSN), (double)ValorBaseCalculoSN, (double)ValorICMSRetidoSN,
+                       (double)AliquotaCalculoCreditoSN, (double)ValorCreditoICMSSN, ToUTF8(ItemListaServico),
+                       ToUTF8(CodigoISS), ToUTF8(NaturezaOperacaoISS), IndicadorIncentivoFiscalISS,
+                       ToUTF8(CodigoIBGE), ModalidadeBCICMSST, (double)PercentualMargemICMSST, (double)PercentualReducaoBCICMSST,
+                       (double)ValorReducaoBCICMSST, (double)AliquotaICMSST, (double)ValorICMSST, (double)ValorICMSDesonerado,
+                       MotivoDesoneracaoICMS);
             CheckResult(ret);
         }
 

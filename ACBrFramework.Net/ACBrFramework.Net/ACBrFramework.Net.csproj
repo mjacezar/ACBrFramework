@@ -273,11 +273,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Framework32.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Framework64.Designer.cs" Condition=" $(Platform) == x64 ">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Framework64.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serial\Device\Interfaces\IACBrDevice.cs" />
     <Compile Include="Serial\DIS\ACBrDIS.cs" />
@@ -713,7 +708,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Framework64.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Framework64.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

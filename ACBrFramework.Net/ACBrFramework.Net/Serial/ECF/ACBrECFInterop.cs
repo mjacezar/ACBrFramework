@@ -808,6 +808,19 @@ namespace ACBrFramework.ECF
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_VendeItem(IntPtr ecfHandle, string codigo, string descricao, string aliquotaICMS, double qtd, double valorUnitario, double descontoPorc, string unidade, string tipoDescontoAcrescimo, string descontoAcrescimo, int CodDepartamento);
 
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_VendeItemEx(IntPtr ecfHandle, string codigo, string descricao, string aliquotaICMS, 
+            double qtd, double valorUnitario, double descontoPorc, string unidade, string tipoDescontoAcrescimo, 
+            string descontoAcrescimo, int CodDepartamento, string EAN13, int CasasDecimaisQtde, int CasasDecimaisValor,
+                       char ArredondaTrunca, string NCM, string CFOP, string InformacaoAdicional,
+                       double TotalDosTributos, int OrigemProduto, string CST_ICMS, int ModalidadeBCICMS,
+                       double PercentualReducaoBCICMS, string CSOSN, double ValorBaseCalculoSN, double ValorICMSRetidoSN,
+                       double AliquotaCalculoCreditoSN, double ValorCreditoICMSSN, string ItemListaServico,
+                       string CodigoISS, string NaturezaOperacaoISS, int IndicadorIncentivoFiscalISS,
+                       string CodigoIBGE, int ModalidadeBCICMSST, double PercentualMargemICMSST, double PercentualReducaoBCICMSST,
+                       double ValorReducaoBCICMSST, double AliquotaICMSST, double ValorICMSST, double ValorICMSDesonerado,
+                       int MotivoDesoneracaoICMS);
+        
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_DescontoAcrescimoItemAnterior(IntPtr ecfHandle, double valorDescontoAcrescimo, string descontoAcrescimo, string TipoDescontoAcrescimo, int Item);
 

@@ -12,7 +12,6 @@ namespace ACBrFramework
     [Guid("29A5B338-6E3C-47D3-AA31-91965AEF568C")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
 #endif
-
     public class ACBrDevice : ACBrComposedComponent, IACBrDevice
     {
         #region Constructor
