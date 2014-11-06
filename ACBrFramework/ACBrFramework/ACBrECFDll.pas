@@ -5061,6 +5061,58 @@ begin
 
 end;
 
+Function ECF_VendeItemEx(const ecfHandle: PECFHandle;
+                       const Codigo, Descricao, AliquotaICMS : pChar;
+                       const Qtd, ValorUnitario, DescontoPorc : Double;
+                       const Unidade, TipoDescontoAcrescimo,
+                       DescontoAcrescimo : pChar; const CodDepartamento: Integer;
+                       EAN13: pChar ; CasasDecimaisQtde, CasasDecimaisValor: Integer;
+                       ArredondaTrunca: Char; NCM, CFOP, InformacaoAdicional : pChar;
+                       TotalDosTributos: Double; OrigemProduto: Integer;
+                       CST_ICMS: pChar; ModalidadeBCICMS: Integer;
+                       PercentualReducaoBCICMS: Double;
+                       CSOSN: pChar; ValorBaseCalculoSN, ValorICMSRetidoSN,
+                       AliquotaCalculoCreditoSN, ValorCreditoICMSSN: Double;
+                       ItemListaServico, CodigoISS, NaturezaOperacaoISS: pChar;
+                       IndicadorIncentivoFiscalISS: Integer;
+                       CodigoIBGE: pChar; ModalidadeBCICMSST: Integer;
+                       PercentualMargemICMSST, PercentualReducaoBCICMSST,
+                       ValorReducaoBCICMSST, AliquotaICMSST,
+                       ValorICMSST, ValorICMSDesonerado: Double;
+                       MotivoDesoneracaoICMS: Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     ecfHandle^.ECF.VendeItemEx(Codigo, Descricao, AliquotaICMS, Qtd, ValorUnitario,
+                              DescontoPorc, Unidade, TipoDescontoAcrescimo, DescontoAcrescimo,
+                              CodDepartamento, EAN13, CasasDecimaisQtde, CasasDecimaisValor,
+                              ArredondaTrunca, NCM, CFOP, InformacaoAdicional,
+                              TotalDosTributos, OrigemProduto, CST_ICMS,
+                              ModalidadeBCICMS, PercentualReducaoBCICMS,
+                              CSOSN, ValorBaseCalculoSN, ValorICMSRetidoSN,
+                              AliquotaCalculoCreditoSN, ValorCreditoICMSSN,
+                              ItemListaServico, CodigoISS, NaturezaOperacaoISS,
+                              IndicadorIncentivoFiscalISS, CodigoIBGE, ModalidadeBCICMSST,
+                              PercentualMargemICMSST, PercentualReducaoBCICMSST,
+                              ValorReducaoBCICMSST, AliquotaICMSST,
+                              ValorICMSST, ValorICMSDesonerado, MotivoDesoneracaoICMS);
+     Result := 0 ;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 Function ECF_DescontoAcrescimoItemAnterior(const ecfHandle: PECFHandle;
                                            const ValorDescontoAcrescimo : Double; const DescontoAcrescimo, TipoDescontoAcrescimo : pChar; const Item : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
@@ -11518,7 +11570,7 @@ ECF_GetQuebraLinhaRodape, ECF_SetQuebraLinhaRodape,
 { Métodos do Componente }
 
 ECF_IdentificaConsumidor, ECF_AbreCupom, ECF_LegendaInmetroProximoItem, ECF_VendeItem,
-ECF_DescontoAcrescimoItemAnterior,  ECF_SubtotalizaCupom,
+ECF_VendeItemEx, ECF_DescontoAcrescimoItemAnterior,  ECF_SubtotalizaCupom,
 ECF_EfetuaPagamento, ECF_EstornaPagamento, ECF_FechaCupom, ECF_CancelaCupom,
 ECF_CancelaItemVendido, ECF_CancelaItemVendidoParcial,
 ECF_CancelaDescontoAcrescimoItem, ECF_CancelaDescontoAcrescimoSubTotal,
@@ -11736,4 +11788,4 @@ ECF_SetOnErrorSubtotalizaNaoFiscal, ECF_SetOnErrorSuprimento, ECF_SetOnErrorVend
 ECF_SetOnMsgAguarde, ECF_SetOnMsgRetentar, ECF_SetOnPAFCalcEAD, ECF_SetOnPAFGetKeyRSA;
 
 end.
-
+

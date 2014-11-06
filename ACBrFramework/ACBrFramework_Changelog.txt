@@ -41,6 +41,14 @@ Símbolo : Significado
 
 Changelog
 
+05/11/2014
+
+-- ACBrFramework 0.9.6.4 --
+[+] Adicinado a função ECF_VendeItemEx - ACBrECF - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.6.4 --
+[+] Adicinado a função VendeItemEx - ACBrECF - Rafael Dias.
+
 14/10/2014
 
 -- ACBrFramework 0.9.6.3 --
