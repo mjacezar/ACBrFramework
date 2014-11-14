@@ -561,11 +561,17 @@ namespace ACBrFramework.ECF
 
         void AbreCupom(string cpfCnpj = "", string nome = "", string endereco = "", bool ModoPreVenda = false);
 
+#if !COM_INTEROP
         void AbreCupomVinculado(int coo, string codFormaPagto, decimal valor);
+#endif
 
         void AbreCupomVinculado(string coo, string codFormaPagto, decimal valor);
 
+#if COM_INTEROP
+        void AbreCupomVinculadoCNF(string coo, string codFormaPagto, string codComprovanteNaoFiscal, [MarshalAs(UnmanagedType.Currency)] decimal valor);
+#else
         void AbreCupomVinculado(string coo, string codFormaPagto, string codComprovanteNaoFiscal, decimal valor);
+#endif
 
         void AbreGaveta();
 
@@ -663,17 +669,41 @@ namespace ACBrFramework.ECF
 
         string LeituraCMC7();
 
+#if COM_INTEROP
+        void LeituraMemoriaFiscalPorData(DateTime dataInicial, DateTime dataFinal, bool simplificada = false);
+#else
         void LeituraMemoriaFiscal(DateTime dataInicial, DateTime dataFinal, bool simplificada = false);
+#endif
 
+#if COM_INTEROP
+        void LeituraMemoriaFiscalPorCRZ(int reducaoInicial, int reducaoFinal, bool simplificada = false);
+#else
         void LeituraMemoriaFiscal(int reducaoInicial, int reducaoFinal, bool simplificada = false);
+#endif
 
+#if COM_INTEROP
+        string LeituraMemoriaFiscalSerialPorData(DateTime dataInicial, DateTime dataFinal, bool simplificada = false);
+#else
         string LeituraMemoriaFiscalSerial(DateTime dataInicial, DateTime dataFinal, bool simplificada = false);
+#endif
 
+#if COM_INTEROP
+        string LeituraMemoriaFiscalSerialPorCRZ(int reducaoInicial, int reducaoFinal, bool simplificada = false);
+#else
         string LeituraMemoriaFiscalSerial(int reducaoInicial, int reducaoFinal, bool simplificada = false);
+#endif
 
+#if COM_INTEROP
+        void LeituraMemoriaFiscalSerialPorData(DateTime dataInicial, DateTime dataFinal, string nomeArquivo, bool simplificada = false);
+#else
         void LeituraMemoriaFiscalSerial(DateTime dataInicial, DateTime dataFinal, string nomeArquivo, bool simplificada = false);
+#endif
 
+#if COM_INTEROP
+        void LeituraMemoriaFiscalSerialPorCRZ(int reducaoInicial, int reducaoFinal, string nomeArquivo, bool simplificada = false);
+#else
         void LeituraMemoriaFiscalSerial(int reducaoInicial, int reducaoFinal, string nomeArquivo, bool simplificada = false);
+#endif
 
         void LeituraX();
 
@@ -687,7 +717,9 @@ namespace ACBrFramework.ECF
 
         void LinhaCupomVinculado(string linha);
 
+#if !COM_INTEROP
         void LinhaCupomVinculado(string[] linhas);
+#endif
 
         void LinhaRelatorioGerencial(string linha, int indiceBMP = 0);
 
@@ -705,32 +737,10 @@ namespace ACBrFramework.ECF
 
         void PafMF_GerarCAT52(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
 
-        void PafMF_LMFC_Cotepe1704(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
-
-        void PafMF_LMFC_Cotepe1704(int CRZInicial, int CRZFinal, string CaminhoArquivo);
-
-        void PafMF_LMFC_Espelho(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
-
-        void PafMF_LMFC_Espelho(int CRZInicial, int CRZFinal, string CaminhoArquivo);
-
-        void PafMF_LMFC_Impressao(DateTime DataInicial, DateTime DataFinal);
-
-        void PafMF_LMFC_Impressao(int CRZInicial, int CRZFinal);
-
-        void PafMF_LMFS_Espelho(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
-
-        void PafMF_LMFS_Espelho(int CRZInicial, int CRZFinal, string CaminhoArquivo);
-
-        void PafMF_LMFS_Impressao(DateTime DataInicial, DateTime DataFinal);
-
-        void PafMF_LMFS_Impressao(int CRZInicial, int CRZFinal);
-
-        void PafMF_LX_Impressao();
-
 #if COM_INTEROP
         void PafMF_LMFC_Cotepe1704PorData(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
 #else
-        public void PafMF_LMFC_Cotepe1704(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
+        void PafMF_LMFC_Cotepe1704(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
 #endif
 
 #if COM_INTEROP
@@ -752,6 +762,68 @@ namespace ACBrFramework.ECF
 #endif
 
 #if COM_INTEROP
+        void PafMF_LMFC_ImpressaoPorData(DateTime DataInicial, DateTime DataFinal);
+#else
+        void PafMF_LMFC_Impressao(DateTime DataInicial, DateTime DataFinal);
+#endif
+
+#if COM_INTEROP
+        void PafMF_LMFC_ImpressaoPorCRZ(int CRZInicial, int CRZFinal);
+#else
+        void PafMF_LMFC_Impressao(int CRZInicial, int CRZFinal);
+#endif
+
+#if COM_INTEROP
+        void PafMF_LMFS_EspelhoPorData(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
+#else
+        void PafMF_LMFS_Espelho(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
+#endif
+
+#if COM_INTEROP
+        void PafMF_LMFS_EspelhoPorCRZ(int CRZInicial, int CRZFinal, string CaminhoArquivo);
+#else
+        void PafMF_LMFS_Espelho(int CRZInicial, int CRZFinal, string CaminhoArquivo);
+#endif
+
+#if COM_INTEROP
+        void PafMF_LMFS_ImpressaoPorData(DateTime DataInicial, DateTime DataFinal);
+#else
+        void PafMF_LMFS_Impressao(DateTime DataInicial, DateTime DataFinal);
+#endif
+
+#if COM_INTEROP
+        void PafMF_LMFS_ImpressaoPorCRZ(int CRZInicial, int CRZFinal);
+#else
+        void PafMF_LMFS_Impressao(int CRZInicial, int CRZFinal);
+#endif
+
+ #if COM_INTEROP
+        void PafMF_MFD_Cotepe1704PorData(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
+#else
+        void PafMF_MFD_Cotepe1704(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
+#endif
+
+#if COM_INTEROP
+        void PafMF_MFD_Cotepe1704PorCOO(int COOInicial, int COOFinal, string CaminhoArquivo);
+#else
+        void PafMF_MFD_Cotepe1704(int COOInicial, int COOFinal, string CaminhoArquivo);
+#endif
+
+#if COM_INTEROP
+        void PafMF_MFD_EspelhoPorData(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
+#else
+        void PafMF_MFD_Espelho(DateTime DataInicial, DateTime DataFinal, string CaminhoArquivo);
+#endif
+
+#if COM_INTEROP
+        void PafMF_MFD_EspelhoPorCOO(int COOInicial, int COOFinal, string CaminhoArquivo);
+#else
+        void PafMF_MFD_Espelho(int COOInicial, int COOFinal, string CaminhoArquivo);
+#endif
+
+        void PafMF_LX_Impressao();
+
+#if COM_INTEROP
         void PafMF_RelDAVEmitidos(ref DAVs[] DAVs, string TituloRelatorio, int IndiceRelatorio);
 #else
         void PafMF_RelDAVEmitidos(DAVs[] DAVs, string TituloRelatorio, int IndiceRelatorio);
@@ -763,12 +835,10 @@ namespace ACBrFramework.ECF
         void PafMF_RelMeiosPagamento(FormaPagamento[] formasPagamento, string TituloRelatorio, int indiceRelatorio);
 #endif
 
-        void PafMF_RelMeiosPagamento(FormaPagamento[] formasPagamento, string TituloRelatorio, int indiceRelatorio);
-
 #if COM_INTEROP
-        void PafMF_RelParametrosConfiguracao2(string perfil, int indiceRelatorio = 1);
+        void PafMF_RelParametrosConfiguracao(InfoPaf infoPAF = null, int indiceRelatorio = 1);
 
-        void PafMF_RelParametrosConfiguracao(string perfil, int indiceRelatorio = 1);
+        void PafMF_RelParametrosConfiguracao2(string perfil, int indiceRelatorio = 1);
 #else
         void PafMF_RelParametrosConfiguracao(InfoPaf infoPAF = null, int indiceRelatorio = 1);
 
@@ -789,7 +859,7 @@ namespace ACBrFramework.ECF
 
         void ReducaoZ();
 
-        void ReducaoZ(DateTime data = default(DateTime));
+        void ReducaoZ([Optional]DateTime data);
 
         void RegistraItemNaoFiscal(string codCNF, decimal value, string obs = "");
 

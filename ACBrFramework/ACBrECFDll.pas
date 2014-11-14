@@ -2145,6 +2145,181 @@ begin
 
 end;
 
+Function ECF_InfoRodapeCupom_Imposto_GetValorAproximadoFederal(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     value := ecfHandle^.ECF.InfoRodapeCupom.Imposto.ValorAproximadoFederal;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_Imposto_SetValorAproximadoFederal(const ecfHandle: PECFHandle; const valor : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.InfoRodapeCupom.Imposto.ValorAproximadoFederal := valor;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_Imposto_GetValorAproximadoEstadual(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     value := ecfHandle^.ECF.InfoRodapeCupom.Imposto.ValorAproximadoEstadual;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_InfoRodapeCupom_Imposto_SetValorAproximadoEstadual(const ecfHandle: PECFHandle; const valor : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.InfoRodapeCupom.Imposto.ValorAproximadoEstadual := valor;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_InfoRodapeCupom_Imposto_GetValorAproximadoMunicipal(const ecfHandle: PECFHandle; var value : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     value := ecfHandle^.ECF.InfoRodapeCupom.Imposto.ValorAproximadoMunicipal;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_Imposto_SetValorAproximadoMunicipal(const ecfHandle: PECFHandle; const valor : Double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.InfoRodapeCupom.Imposto.ValorAproximadoMunicipal := valor;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function ECF_InfoRodapeCupom_Imposto_GetModoCompacto(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     if (ecfHandle^.ECF.InfoRodapeCupom.Imposto.ModoCompacto) then
+          Result := 1
+     else
+          Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_InfoRodapeCupom_Imposto_SetModoCompacto(const ecfHandle: PECFHandle; const Imprimir : Boolean) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.InfoRodapeCupom.Imposto.ModoCompacto := Imprimir;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 {%region PostoCombustivel}
 
 Function ECF_InfoRodapeCupom_PostoCombustivel_GetImprimir(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
@@ -11566,6 +11741,14 @@ ECF_GetDecimaisPreco, ECF_SetDecimaisPreco, ECF_GetDecimaisQtd, ECF_SetDecimaisQ
 ECF_GetPausaRelatorio, ECF_SetPausaRelatorio, ECF_GetDataHoraUltimaReducaoZ,
 ECF_GetReTentar, ECF_SetReTentar, ECF_GetControlePorta, ECF_SetControlePorta,
 ECF_GetQuebraLinhaRodape, ECF_SetQuebraLinhaRodape,
+ECF_InfoRodapeCupom_Imposto_GetValorAproximadoFederal,
+ECF_InfoRodapeCupom_Imposto_SetValorAproximadoFederal,
+ECF_InfoRodapeCupom_Imposto_GetValorAproximadoEstadual,
+ECF_InfoRodapeCupom_Imposto_SetValorAproximadoEstadual,
+ECF_InfoRodapeCupom_Imposto_GetValorAproximadoMunicipal,
+ECF_InfoRodapeCupom_Imposto_SetValorAproximadoMunicipal,
+ECF_InfoRodapeCupom_Imposto_GetModoCompacto,
+ECF_InfoRodapeCupom_Imposto_SetModoCompacto,
 
 { Métodos do Componente }
 

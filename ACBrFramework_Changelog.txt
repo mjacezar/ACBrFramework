@@ -41,6 +41,17 @@ Símbolo : Significado
 
 Changelog
 
+13/11/2014
+
+-- ACBrFramework 0.9.6.5 --
+[+] Implementado as novas informações de impostos "Lei de Olho no Imposto" - ACBrECF - Rafael Dias.
+http://www.projetoacbr.com.br/forum/index.php?/topic/18613-altera%C3%A7%C3%A3o-no-acbrecf-para-lei-de-olho-no-imposto/
+
+-- ACBrFramework.Net 0.9.6.5 --
+[+] Implementado as novas informações de impostos "Lei de Olho no Imposto" - ACBrECF - Rafael Dias.
+http://www.projetoacbr.com.br/forum/index.php?/topic/18613-altera%C3%A7%C3%A3o-no-acbrecf-para-lei-de-olho-no-imposto/
+[-] Corrigido a compilação em COM Interop - Rafael Dias.
+
 05/11/2014
 
 -- ACBrFramework 0.9.6.4 --

@@ -698,6 +698,30 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_InfoRodapeCupom_Imposto_SetValorAproximado(IntPtr ecfHandle, double value);
 
         [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_Imposto_GetValorAproximadoFederal(IntPtr ecfHandle, ref double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_Imposto_SetValorAproximadoFederal(IntPtr ecfHandle, double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_Imposto_GetValorAproximadoEstadual(IntPtr ecfHandle, ref double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_Imposto_SetValorAproximadoEstadual(IntPtr ecfHandle, double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_Imposto_GetValorAproximadoMunicipal(IntPtr ecfHandle, ref double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_Imposto_SetValorAproximadoMunicipal(IntPtr ecfHandle, double value);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_Imposto_GetModoCompacto(IntPtr ecfHandle);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ECF_InfoRodapeCupom_Imposto_SetModoCompacto(IntPtr ecfHandle, bool imprimir);
+
+        [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
         public static extern int ECF_InfoRodapeCupom_PostoCombustivel_GetImprimir(IntPtr ecfHandle);
 
         [DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
