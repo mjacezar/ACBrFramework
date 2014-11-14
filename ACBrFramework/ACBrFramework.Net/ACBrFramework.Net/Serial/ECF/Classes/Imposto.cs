@@ -85,6 +85,97 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+        public decimal ValorAproximadoFederal
+        {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get
+            {
+                return GetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_Imposto_GetValorAproximadoFederal);
+            }
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set
+            {
+                SetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_Imposto_SetValorAproximadoFederal, value);
+            }
+        }
+
+        public decimal ValorAproximadoEstadual
+        {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get
+            {
+                return GetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_Imposto_GetValorAproximadoEstadual);
+            }
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set
+            {
+                SetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_Imposto_SetValorAproximadoEstadual, value);
+            }
+        }
+
+        public decimal ValorAproximadoMunicipal
+        {
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [return: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            get
+            {
+                return GetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_Imposto_GetValorAproximadoMunicipal);
+            }
+            #region COM_INTEROP
+
+#if COM_INTEROP
+            [param: MarshalAs(UnmanagedType.Currency)]
+#endif
+
+            #endregion COM_INTEROP
+            set
+            {
+                SetDecimal(ACBrECFInterop.ECF_InfoRodapeCupom_Imposto_SetValorAproximadoMunicipal, value);
+            }
+        }
+
+        public bool ModoCompacto
+	    {
+	        get
+	        {
+                return GetBool(ACBrECFInterop.ECF_InfoRodapeCupom_Imposto_GetModoCompacto);
+	        }
+            set
+            {
+                SetBool(ACBrECFInterop.ECF_InfoRodapeCupom_Imposto_SetModoCompacto, value);
+            }
+
+	    }
+
 		#endregion Properties
 	}
 }
