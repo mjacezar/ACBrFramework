@@ -740,6 +740,9 @@
     <EmbeddedResource Include="Serial\RFD\ico.bmp" />
     <EmbeddedResource Include="Validador\ico.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ACBrFramework32.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

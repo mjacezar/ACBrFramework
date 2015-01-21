@@ -44,7 +44,7 @@ namespace ACBrFramework.Net.PAFTeste
                 PAF_Preenche_A();
                 PAF_Preenche_B();
                 PAF_Preenche_C();
-                PAF_Preenche_D();
+                //PAF_Preenche_D();
                 PAF_Preenche_E();
                 PAF_Preenche_H();
                 PAF_Preenche_P();
@@ -68,7 +68,7 @@ namespace ACBrFramework.Net.PAFTeste
         {
             for(int i = 0; i < 10; i++)
             {
-                acbrPAF.PAF_A.RegistroA2.Add(new ACBrPAFRegistroA2
+                acbrPAF.PafA.RegistroA2.Add(new ACBrPAFRegistroA2
                 {
                     CodigoTipoDocumento = CodigoTipoDocumento.CupomFiscal,
                     Data = DateTime.Today,
@@ -84,18 +84,18 @@ namespace ACBrFramework.Net.PAFTeste
         private void PAF_Preenche_B()
         {
             #region B1
-            acbrPAF.PAF_B.RegistroB1.RazaoSocial = txtRazaoSocial.Text;
-            acbrPAF.PAF_B.RegistroB1.CNPJ = txtCNPJ.Text;
-            acbrPAF.PAF_B.RegistroB1.UF = txtUF.Text;
-            acbrPAF.PAF_B.RegistroB1.IE = txtIE.Text;
-            acbrPAF.PAF_B.RegistroB1.IM = txtIM.Text;
+            acbrPAF.PafB.RegistroB1.RazaoSocial = txtRazaoSocial.Text;
+            acbrPAF.PafB.RegistroB1.CNPJ = txtCNPJ.Text;
+            acbrPAF.PafB.RegistroB1.UF = txtUF.Text;
+            acbrPAF.PafB.RegistroB1.IE = txtIE.Text;
+            acbrPAF.PafB.RegistroB1.IM = txtIM.Text;
             #endregion
 
             #region B2
 
             for(int i = 0; i < 10; i++)
             {
-                acbrPAF.PAF_B.RegistroB2.Add(new ACBrPAFRegistroB2
+                acbrPAF.PafB.RegistroB2.Add(new ACBrPAFRegistroB2
                                                                  {
                                                                      BOMBA = "Bomba",
                                                                      BICO = "Bico",
@@ -120,11 +120,11 @@ namespace ACBrFramework.Net.PAFTeste
         {
             List<ACBrPAFRegistroC2> RegistroC2 = new List<ACBrPAFRegistroC2>();
 
-            acbrPAF.PAF_C.RegistroC1.RazaoSocial = txtRazaoSocial.Text;
-            acbrPAF.PAF_C.RegistroC1.UF = txtUF.Text;
-            acbrPAF.PAF_C.RegistroC1.CNPJ = txtCNPJ.Text;
-            acbrPAF.PAF_C.RegistroC1.IE = txtIE.Text;
-            acbrPAF.PAF_C.RegistroC1.IM = txtIM.Text;
+            acbrPAF.PafC.RegistroC1.RazaoSocial = txtRazaoSocial.Text;
+            acbrPAF.PafC.RegistroC1.UF = txtUF.Text;
+            acbrPAF.PafC.RegistroC1.CNPJ = txtCNPJ.Text;
+            acbrPAF.PafC.RegistroC1.IE = txtIE.Text;
+            acbrPAF.PafC.RegistroC1.IM = txtIM.Text;
 
             for(int i = 0; i < 10; i++)
             {
@@ -146,7 +146,7 @@ namespace ACBrFramework.Net.PAFTeste
                 ItemC2.NRO_NOTA_FISCAL = (int)GerarDados('I', 4);
                 ItemC2.VOLUME = (int)GerarDados('I', 2);
                 ItemC2.RegistroValido = true;
-                acbrPAF.PAF_C.RegistroC2.Add(ItemC2);
+                acbrPAF.PafC.RegistroC2.Add(ItemC2);
                 ItemC2 = null;
             }
         }
@@ -157,11 +157,11 @@ namespace ACBrFramework.Net.PAFTeste
         {
             List<ACBrPAFRegistroD2> RegistroD2 = new List<ACBrPAFRegistroD2>();
 
-            acbrPAF.PAF_D.RegistroD1.RazaoSocial = txtRazaoSocial.Text;
-            acbrPAF.PAF_D.RegistroD1.UF = txtUF.Text;
-            acbrPAF.PAF_D.RegistroD1.CNPJ = txtCNPJ.Text;
-            acbrPAF.PAF_D.RegistroD1.IE = txtIE.Text;
-            acbrPAF.PAF_D.RegistroD1.IM = txtIM.Text;
+            acbrPAF.PafD.RegistroD1.RazaoSocial = txtRazaoSocial.Text;
+            acbrPAF.PafD.RegistroD1.UF = txtUF.Text;
+            acbrPAF.PafD.RegistroD1.CNPJ = txtCNPJ.Text;
+            acbrPAF.PafD.RegistroD1.IE = txtIE.Text;
+            acbrPAF.PafD.RegistroD1.IM = txtIM.Text;
 
             for(int i = 0; i < 10; i++)
             {
@@ -205,7 +205,7 @@ namespace ACBrFramework.Net.PAFTeste
                 }
 
                 ItemD2.RegistroValido = true;
-                acbrPAF.PAF_D.RegistroD2.Add(ItemD2);
+                acbrPAF.PafD.RegistroD2.Add(ItemD2);
                 ItemD2 = null;
             }
         }
@@ -215,26 +215,26 @@ namespace ACBrFramework.Net.PAFTeste
         private void PAF_Preenche_E()
         {
             #region E1
-            acbrPAF.PAF_E.RegistroE1.RazaoSocial = txtRazaoSocial.Text;
-            acbrPAF.PAF_E.RegistroE1.CNPJ = txtCNPJ.Text;
-            acbrPAF.PAF_E.RegistroE1.UF = txtUF.Text;
-            acbrPAF.PAF_E.RegistroE1.IE = txtIE.Text;
-            acbrPAF.PAF_E.RegistroE1.IM = txtIM.Text;
+            acbrPAF.PafE.RegistroE1.RazaoSocial = txtRazaoSocial.Text;
+            acbrPAF.PafE.RegistroE1.CNPJ = txtCNPJ.Text;
+            acbrPAF.PafE.RegistroE1.UF = txtUF.Text;
+            acbrPAF.PafE.RegistroE1.IE = txtIE.Text;
+            acbrPAF.PafE.RegistroE1.IM = txtIM.Text;
 
-            acbrPAF.PAF_E.RegistroE1.TIPO_ECF = "tipo";
-            acbrPAF.PAF_E.RegistroE1.MARCA_ECF = "MARCA_ECF";
-            acbrPAF.PAF_E.RegistroE1.MODELO_ECF = "MODELO_ECF";
-            acbrPAF.PAF_E.RegistroE1.NUM_FAB = "NUM_FAB";
-            acbrPAF.PAF_E.RegistroE1.MF_ADICIONAL = "MF_ADICIONAL";
-            acbrPAF.PAF_E.RegistroE1.DT_EST = DateTime.Today;
-            acbrPAF.PAF_E.RegistroE1.RegistroValido = true;
-            acbrPAF.PAF_E.RegistroE1.InclusaoExclusao = true;
+            acbrPAF.PafE.RegistroE1.TIPO_ECF = "tipo";
+            acbrPAF.PafE.RegistroE1.MARCA_ECF = "MARCA_ECF";
+            acbrPAF.PafE.RegistroE1.MODELO_ECF = "MODELO_ECF";
+            acbrPAF.PafE.RegistroE1.NUM_FAB = "NUM_FAB";
+            acbrPAF.PafE.RegistroE1.MF_ADICIONAL = "MF_ADICIONAL";
+            acbrPAF.PafE.RegistroE1.DT_EST = DateTime.Today;
+            acbrPAF.PafE.RegistroE1.RegistroValido = true;
+            acbrPAF.PafE.RegistroE1.InclusaoExclusao = true;
             #endregion
 
             #region E2
             for(int i = 0; i < 10; i++)
             {
-                acbrPAF.PAF_E.RegistroE2.Add(new ACBrPAFRegistroE2
+                acbrPAF.PafE.RegistroE2.Add(new ACBrPAFRegistroE2
                 {
                     COD_MERC = GerarDados('S', 10).ToString(),
                     DESC_MERC = "Descrição",
@@ -246,14 +246,14 @@ namespace ACBrFramework.Net.PAFTeste
             #endregion
 
             #region E3
-            acbrPAF.PAF_E.RegistroE3.DataEstoque = DateTime.Today;
-            acbrPAF.PAF_E.RegistroE3.HoraEstoque = (decimal)DateTime.Now.ToOADate();
-            acbrPAF.PAF_E.RegistroE3.MarcaECF = "MarcaECF";
-            acbrPAF.PAF_E.RegistroE3.MFAdicional = "MFAdicional";
-            acbrPAF.PAF_E.RegistroE3.ModeloECF = "ModeloECF";
-            acbrPAF.PAF_E.RegistroE3.NumeroFabricacao = "NumeroFabricacao";
-            acbrPAF.PAF_E.RegistroE3.RegistroValido = true;
-            acbrPAF.PAF_E.RegistroE3.TipoECF = "TipoECF";
+            acbrPAF.PafE.RegistroE3.DataEstoque = DateTime.Today;
+            acbrPAF.PafE.RegistroE3.HoraEstoque = (decimal)DateTime.Now.ToOADate();
+            acbrPAF.PafE.RegistroE3.MarcaECF = "MarcaECF";
+            acbrPAF.PafE.RegistroE3.MFAdicional = "MFAdicional";
+            acbrPAF.PafE.RegistroE3.ModeloECF = "ModeloECF";
+            acbrPAF.PafE.RegistroE3.NumeroFabricacao = "NumeroFabricacao";
+            acbrPAF.PafE.RegistroE3.RegistroValido = true;
+            acbrPAF.PafE.RegistroE3.TipoECF = "TipoECF";
             #endregion
         }
         #endregion
@@ -262,26 +262,26 @@ namespace ACBrFramework.Net.PAFTeste
         private void PAF_Preenche_H()
         {
             #region H1
-            acbrPAF.PAF_H.RegistroH1.RazaoSocial = txtRazaoSocial.Text;
-            acbrPAF.PAF_H.RegistroH1.CNPJ = txtCNPJ.Text;
-            acbrPAF.PAF_H.RegistroH1.UF = txtUF.Text;
-            acbrPAF.PAF_H.RegistroH1.IE = txtIE.Text;
-            acbrPAF.PAF_H.RegistroH1.IM = txtIM.Text;
+            acbrPAF.PafH.RegistroH1.RazaoSocial = txtRazaoSocial.Text;
+            acbrPAF.PafH.RegistroH1.CNPJ = txtCNPJ.Text;
+            acbrPAF.PafH.RegistroH1.UF = txtUF.Text;
+            acbrPAF.PafH.RegistroH1.IE = txtIE.Text;
+            acbrPAF.PafH.RegistroH1.IM = txtIM.Text;
 
-            acbrPAF.PAF_H.RegistroH1.TIPO_ECF = "TIPO_ECF";
-            acbrPAF.PAF_H.RegistroH1.MARCA_ECF = "MARCA_ECF";
-            acbrPAF.PAF_H.RegistroH1.MODELO_ECF = "MODELO_ECF";
-            acbrPAF.PAF_H.RegistroH1.NUM_FAB = "NUM_FAB";
-            acbrPAF.PAF_H.RegistroH1.MF_ADICIONAL = "MF_ADICIONAL";
-            acbrPAF.PAF_H.RegistroH1.DT_EST = DateTime.Today;
-            acbrPAF.PAF_H.RegistroH1.RegistroValido = true;
-            acbrPAF.PAF_H.RegistroH1.InclusaoExclusao = false;
+            acbrPAF.PafH.RegistroH1.TIPO_ECF = "TIPO_ECF";
+            acbrPAF.PafH.RegistroH1.MARCA_ECF = "MARCA_ECF";
+            acbrPAF.PafH.RegistroH1.MODELO_ECF = "MODELO_ECF";
+            acbrPAF.PafH.RegistroH1.NUM_FAB = "NUM_FAB";
+            acbrPAF.PafH.RegistroH1.MF_ADICIONAL = "MF_ADICIONAL";
+            acbrPAF.PafH.RegistroH1.DT_EST = DateTime.Today;
+            acbrPAF.PafH.RegistroH1.RegistroValido = true;
+            acbrPAF.PafH.RegistroH1.InclusaoExclusao = false;
             #endregion
 
             #region H2
             for(int i = 0; i < 10; i++)
             {
-                acbrPAF.PAF_H.RegistroH2.Add(new ACBrPAFRegistroH2
+                acbrPAF.PafH.RegistroH2.Add(new ACBrPAFRegistroH2
                 {
                     CNPJ_CRED_CARTAO = "12345678901234",
                     COO = 1212,
@@ -300,11 +300,11 @@ namespace ACBrFramework.Net.PAFTeste
         #region PAF_Preenche_P
         private void PAF_Preenche_P()
         {
-            acbrPAF.PAF_P.RegistroP1.RazaoSocial = txtRazaoSocial.Text;
-            acbrPAF.PAF_P.RegistroP1.UF = txtUF.Text;
-            acbrPAF.PAF_P.RegistroP1.CNPJ = txtCNPJ.Text;
-            acbrPAF.PAF_P.RegistroP1.IE = txtIE.Text;
-            acbrPAF.PAF_P.RegistroP1.IM = txtIM.Text;
+            acbrPAF.PafP.RegistroP1.RazaoSocial = txtRazaoSocial.Text;
+            acbrPAF.PafP.RegistroP1.UF = txtUF.Text;
+            acbrPAF.PafP.RegistroP1.CNPJ = txtCNPJ.Text;
+            acbrPAF.PafP.RegistroP1.IE = txtIE.Text;
+            acbrPAF.PafP.RegistroP1.IM = txtIM.Text;
 
             for(int i = 0; i < 10; i++)
             {
@@ -318,7 +318,7 @@ namespace ACBrFramework.Net.PAFTeste
                 ItemP2.ALIQ = (decimal)GerarDados('D', 6);
                 ItemP2.VL_UNIT = (decimal)GerarDados('D', 6);
                 ItemP2.RegistroValido = true;
-                acbrPAF.PAF_P.RegistroP2.Add(ItemP2);
+                acbrPAF.PafP.RegistroP2.Add(ItemP2);
                 ItemP2 = null;
             }
         }
@@ -484,7 +484,7 @@ namespace ACBrFramework.Net.PAFTeste
                     R1.RegistroR6.Add(R6);
                 }
 
-                acbrPAF.PAF_R.RegistroR1.Add(R1);
+                acbrPAF.PafR.RegistroR1.Add(R1);
             }
         }
         #endregion
@@ -492,11 +492,11 @@ namespace ACBrFramework.Net.PAFTeste
         #region PAF_Preenche_U
         private void PAF_Preenche_U()
         {
-            acbrPAF.PAF_U.RegistroU1.RazaoSocial = txtRazaoSocial.Text;
-            acbrPAF.PAF_U.RegistroU1.CNPJ = txtCNPJ.Text;
-            acbrPAF.PAF_U.RegistroU1.UF = txtUF.Text;
-            acbrPAF.PAF_U.RegistroU1.IE = txtIE.Text;
-            acbrPAF.PAF_U.RegistroU1.IM = txtIM.Text;
+            acbrPAF.PafU.RegistroU1.RazaoSocial = txtRazaoSocial.Text;
+            acbrPAF.PafU.RegistroU1.CNPJ = txtCNPJ.Text;
+            acbrPAF.PafU.RegistroU1.UF = txtUF.Text;
+            acbrPAF.PafU.RegistroU1.IE = txtIE.Text;
+            acbrPAF.PafU.RegistroU1.IM = txtIM.Text;
         }
         #endregion
 
@@ -506,11 +506,11 @@ namespace ACBrFramework.Net.PAFTeste
         {
             try
             {
-                acbrPAF.PAF_C.RegistroC1.RazaoSocial = txtRazaoSocial.Text;
-                acbrPAF.PAF_C.RegistroC1.UF = txtUF.Text;
-                acbrPAF.PAF_C.RegistroC1.CNPJ = txtCNPJ.Text;
-                acbrPAF.PAF_C.RegistroC1.IE = txtIE.Text;
-                acbrPAF.PAF_C.RegistroC1.IM = txtIM.Text;
+                acbrPAF.PafC.RegistroC1.RazaoSocial = txtRazaoSocial.Text;
+                acbrPAF.PafC.RegistroC1.UF = txtUF.Text;
+                acbrPAF.PafC.RegistroC1.CNPJ = txtCNPJ.Text;
+                acbrPAF.PafC.RegistroC1.IE = txtIE.Text;
+                acbrPAF.PafC.RegistroC1.IM = txtIM.Text;
 
                 for(int i = 0; i < 10; i++)
                 {
@@ -532,7 +532,7 @@ namespace ACBrFramework.Net.PAFTeste
                     ItemC2.NRO_NOTA_FISCAL = (int)GerarDados('I', 4);
                     ItemC2.VOLUME = (int)GerarDados('I', 2);
                     ItemC2.RegistroValido = true;
-                    acbrPAF.PAF_C.RegistroC2.Add(ItemC2);
+                    acbrPAF.PafC.RegistroC2.Add(ItemC2);
                     ItemC2 = null;
                 }
 
@@ -552,11 +552,11 @@ namespace ACBrFramework.Net.PAFTeste
         {
             try
             {
-                acbrPAF.PAF_D.RegistroD1.RazaoSocial = txtRazaoSocial.Text;
-                acbrPAF.PAF_D.RegistroD1.UF = txtUF.Text;
-                acbrPAF.PAF_D.RegistroD1.CNPJ = txtCNPJ.Text;
-                acbrPAF.PAF_D.RegistroD1.IE = txtIE.Text;
-                acbrPAF.PAF_D.RegistroD1.IM = txtIM.Text;
+                acbrPAF.PafD.RegistroD1.RazaoSocial = txtRazaoSocial.Text;
+                acbrPAF.PafD.RegistroD1.UF = txtUF.Text;
+                acbrPAF.PafD.RegistroD1.CNPJ = txtCNPJ.Text;
+                acbrPAF.PafD.RegistroD1.IE = txtIE.Text;
+                acbrPAF.PafD.RegistroD1.IM = txtIM.Text;
 
                 for(int i = 0; i < 10; i++)
                 {
@@ -600,7 +600,7 @@ namespace ACBrFramework.Net.PAFTeste
                     }
 
                     ItemD2.RegistroValido = true;
-                    acbrPAF.PAF_D.RegistroD2.Add(ItemD2);
+                    acbrPAF.PafD.RegistroD2.Add(ItemD2);
                     ItemD2 = null;
                 }
 
@@ -620,15 +620,15 @@ namespace ACBrFramework.Net.PAFTeste
         {
             try
             {
-                acbrPAF.PAF_N.RegistroN1.RazaoSocial = txtRazaoSocial.Text;
-                acbrPAF.PAF_N.RegistroN1.UF = txtUF.Text;
-                acbrPAF.PAF_N.RegistroN1.CNPJ = txtCNPJ.Text;
-                acbrPAF.PAF_N.RegistroN1.IE = txtIE.Text;
-                acbrPAF.PAF_N.RegistroN1.IM = txtIM.Text;
+                acbrPAF.PafN.RegistroN1.RazaoSocial = txtRazaoSocial.Text;
+                acbrPAF.PafN.RegistroN1.UF = txtUF.Text;
+                acbrPAF.PafN.RegistroN1.CNPJ = txtCNPJ.Text;
+                acbrPAF.PafN.RegistroN1.IE = txtIE.Text;
+                acbrPAF.PafN.RegistroN1.IM = txtIM.Text;
 
-                acbrPAF.PAF_N.RegistroN2.LAUDO = (string)GerarDados('S', 6); ;
-                acbrPAF.PAF_N.RegistroN2.NOME = (string)GerarDados('S', 6); ;
-                acbrPAF.PAF_N.RegistroN2.VERSAO = (string)GerarDados('S', 6);
+                acbrPAF.PafN.RegistroN2.LAUDO = (string)GerarDados('S', 6); ;
+                acbrPAF.PafN.RegistroN2.NOME = (string)GerarDados('S', 6); ;
+                acbrPAF.PafN.RegistroN2.VERSAO = (string)GerarDados('S', 6);
 
                 List<ACBrPAFRegistroN3> N3 = new List<ACBrPAFRegistroN3>();
                 ACBrPAFRegistroN3 item1 = new ACBrPAFRegistroN3()
@@ -647,8 +647,8 @@ namespace ACBrFramework.Net.PAFTeste
                 N3.Add(item1);
                 N3.Add(item2);
 
-                acbrPAF.PAF_N.RegistroN3.Clear();
-                acbrPAF.PAF_N.RegistroN3.AddRange(N3.ToArray());
+                acbrPAF.PafN.RegistroN3.Clear();
+                acbrPAF.PafN.RegistroN3.AddRange(N3.ToArray());
 
                 if(acbrPAF.SaveFileTXT_N(@"\PAF_N.txt"))
                     WriteResp("Arquivo PAF_N gerado com sucesso");
@@ -666,11 +666,11 @@ namespace ACBrFramework.Net.PAFTeste
         {
             try
             {
-                acbrPAF.PAF_P.RegistroP1.RazaoSocial = txtRazaoSocial.Text;
-                acbrPAF.PAF_P.RegistroP1.UF = txtUF.Text;
-                acbrPAF.PAF_P.RegistroP1.CNPJ = txtCNPJ.Text;
-                acbrPAF.PAF_P.RegistroP1.IE = txtIE.Text;
-                acbrPAF.PAF_P.RegistroP1.IM = txtIM.Text;
+                acbrPAF.PafP.RegistroP1.RazaoSocial = txtRazaoSocial.Text;
+                acbrPAF.PafP.RegistroP1.UF = txtUF.Text;
+                acbrPAF.PafP.RegistroP1.CNPJ = txtCNPJ.Text;
+                acbrPAF.PafP.RegistroP1.IE = txtIE.Text;
+                acbrPAF.PafP.RegistroP1.IM = txtIM.Text;
 
                 for(int i = 0; i < 10; i++)
                 {
@@ -684,7 +684,7 @@ namespace ACBrFramework.Net.PAFTeste
                     ItemP2.ALIQ = (decimal)GerarDados('D', 6);
                     ItemP2.VL_UNIT = (decimal)GerarDados('D', 6);
                     ItemP2.RegistroValido = true;
-                    acbrPAF.PAF_P.RegistroP2.Add(ItemP2);
+                    acbrPAF.PafP.RegistroP2.Add(ItemP2);
                     ItemP2 = null;
                 }
 

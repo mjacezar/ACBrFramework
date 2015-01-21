@@ -18,7 +18,7 @@ namespace ACBrFramework.PAF
 	{
 		#region Constructor
 
-		internal ACBrPAF_T(ACBrPAF Paf)
+		internal ACBrPAF_T(AcbrPaf Paf)
 			: base(Paf)
 		{
 			this.RegistroT1 = new ACBrPAFRegistroT1();

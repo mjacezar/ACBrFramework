@@ -1085,6 +1085,7 @@ namespace ACBrFramework.PAF
                                                 RegistroR5Rec[] registrosR5Rec,
                                                 RegistroR6Rec[] registrosR6Rec,
                                                 RegistroR7Rec[] registrosR7Rec);
+
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int PAF_Preenche_S(IntPtr pafHandle,
 			                                     int CountS2,

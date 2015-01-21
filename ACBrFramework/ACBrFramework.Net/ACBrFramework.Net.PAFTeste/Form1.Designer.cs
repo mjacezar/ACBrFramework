@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.acbrPAF = new ACBrFramework.PAF.ACBrPAF();
+            this.acbrPAF = new ACBrFramework.PAF.AcbrPaf();
             this.btnTipoP = new System.Windows.Forms.Button();
             this.btnTipoD = new System.Windows.Forms.Button();
             this.btnTipoC = new System.Windows.Forms.Button();
@@ -54,14 +54,14 @@
             // 
             // acbrPAF
             // 
-            this.acbrPAF.AAC = null;
+            this.acbrPAF.Aac = null;
             this.acbrPAF.AssinarArquivo = true;
             this.acbrPAF.CurMascara = "";
             this.acbrPAF.Delimitador = "";
-            this.acbrPAF.EAD = null;
+            this.acbrPAF.Ead = null;
             this.acbrPAF.Path = "C:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\IDE\\";
             this.acbrPAF.TrimString = true;
-            this.acbrPAF.OnPAFGetKeyRSA += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrPAF_OnPAFGetKeyRSA);
+            this.acbrPAF.OnPafGetKeyRsa += new System.EventHandler<ACBrFramework.ChaveEventArgs>(this.acbrPAF_OnPAFGetKeyRSA);
             // 
             // btnTipoP
             // 
@@ -294,7 +294,7 @@
 
 		#endregion
 
-        private ACBrFramework.PAF.ACBrPAF acbrPAF;
+        private ACBrFramework.PAF.AcbrPaf acbrPAF;
 		private System.Windows.Forms.Button btnTipoP;
 		private System.Windows.Forms.Button btnTipoD;
 		private System.Windows.Forms.Button btnTipoC;

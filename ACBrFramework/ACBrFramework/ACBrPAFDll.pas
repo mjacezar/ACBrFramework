@@ -1547,9 +1547,9 @@ begin
   except
   on exception : Exception do
   begin
-  pafHandle^.UltimoErro := exception.Message;
-  pafHandle^.PAF.PAF_N.LimpaRegistros;
-  Result := -1;
+    pafHandle^.UltimoErro := exception.Message;
+    pafHandle^.PAF.PAF_N.LimpaRegistros;
+    Result := -1;
   end
   end;
 end;
@@ -1808,7 +1808,7 @@ begin
     on Exception: Exception do
     begin
       pafHandle^.UltimoErro := Exception.Message;
-      pafHandle^.PAF.PAF_B.LimpaRegistros;
+      pafHandle^.PAF.PAF_S.LimpaRegistros;
       Result := -1;
     end
   end;
@@ -1870,9 +1870,9 @@ begin
   except
   on exception : Exception do
   begin
-  pafHandle^.UltimoErro := exception.Message;
-  pafHandle^.PAF.PAF_N.LimpaRegistros;
-  Result := -1;
+    pafHandle^.UltimoErro := exception.Message;
+    pafHandle^.PAF.PAF_T.LimpaRegistros;
+    Result := -1;
   end
   end;
 end;
@@ -1888,14 +1888,22 @@ begin
     Result := -2;
     Exit;
   end;
-  //continua ...
 
+  try
   pafHandle^.PAF.PAF_U.RegistroU1.RAZAOSOCIAL := RegistroU1Rec.RazaoSocial;
   pafHandle^.PAF.PAF_U.RegistroU1.CNPJ := RegistroU1Rec.CNPJ;
   pafHandle^.PAF.PAF_U.RegistroU1.IE := RegistroU1Rec.IE;
   pafHandle^.PAF.PAF_U.RegistroU1.IM := RegistroU1Rec.IM;
 
   Result := 1;
+  except
+  on exception : Exception do
+  begin
+    pafHandle^.UltimoErro := exception.Message;
+    pafHandle^.PAF.PAF_U.LimpaRegistros;
+    Result := -1;
+  end
+  end;
 end;
 
 function PAF_Preenche_TITP(const pafHandle: PPAFHandle;
@@ -2017,19 +2025,6 @@ I´ll be back...
 //end;
 
 //function PAF_Preenche_M(const pafHandle: PPAFHandle; const Arquivo: PChar): integer;
-// {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-//var
-//  i: integer;
-//begin
-//  if (pafHandle = nil) then
-//  begin
-//    Result := -2;
-//    Exit;
-//  end;
-//  //continua ...
-//end;
-
-//function PAF_Preenche_T(const pafHandle: PPAFHandle; const Arquivo: PChar): integer;
 // {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 //var
 //  i: integer;
