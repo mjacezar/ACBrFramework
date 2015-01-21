@@ -224,7 +224,7 @@ type
     CRZ: integer;
     COO: integer;
     CRO: integer;
-    DT_MOV: double;                     QTD_R2: integer;
+    DT_MOV: double;
     DT_EMI: double;
     HR_EMI: double;
     VL_VBD: double;
@@ -1249,14 +1249,6 @@ begin
         CPF_CNPJ := RegistroD2Rec[i].CPF_CNPJ;
         RegistroValido := RegistroD2Rec[i].RegistroValido;
 
-        if RegistroD2Rec[i].QTD_D3 < 1 then
-        begin
-          pafHandle^.PAF.PAF_D.LimpaRegistros;
-          pafHandle^.UltimoErro := 'O numero de itens nas DAVs não pode ser Zero';
-          Result := -1;
-          Exit;
-        end;
-
         for D := 0 to RegistroD2Rec[i].QTD_D3 - 1 do
         begin
           // adicionar os itens do dav, um para cada item
@@ -1335,13 +1327,6 @@ begin
     Exit;
   end;
 
-  if (CountE2 <= 0) then
-  begin
-    pafHandle^.UltimoErro := 'O numero de Itens não pode ser Zero';
-    Result := -1;
-    Exit;
-  end;
-
   try
     pafHandle^.PAF.PAF_E.RegistroE1.RAZAOSOCIAL := RegistroE1Rec.RAZAOSOCIAL;
     pafHandle^.PAF.PAF_E.RegistroE1.UF := RegistroE1Rec.UF;
@@ -1403,13 +1388,6 @@ begin
   if (pafHandle = nil) then
   begin
     Result := -2;
-    Exit;
-  end;
-
-  if (CountH2 <= 0) then
-  begin
-    pafHandle^.UltimoErro := 'O numero de Itens não pode ser Zero';
-    Result := -1;
     Exit;
   end;
 
@@ -1827,13 +1805,6 @@ begin
      Exit;
   end;
 
-  if(CountT2 <= 0) then
-  begin
-     pafHandle^.UltimoErro := 'O numero de Itens não pode ser Zero';
-     Result := -1;
-     Exit;
-  end;
-
   try
    pafHandle^.PAF.PAF_T.RegistroT1.RAZAOSOCIAL      := RegistroT1Rec.RAZAOSOCIAL;
    pafHandle^.PAF.PAF_T.RegistroT1.UF               := RegistroT1Rec.UF;
@@ -1937,14 +1908,6 @@ begin
         Ean := RegistroMercadoriasRec[i].Ean;
         CST := RegistroMercadoriasRec[i].CST;
         VlrUnitario := RegistroMercadoriasRec[i].VlrUnitario;
-
-        if RegistroMercadoriasRec[i].QTD_Insumos < 1 then
-        begin
-          pafHandle^.PAF.PAF_TITP.LimpaRegistros;
-          pafHandle^.UltimoErro := 'O numero de insumos não pode ser Zero';
-          Result := -1;
-          Exit;
-        end;
 
         for d := 0 to RegistroMercadoriasRec[i].QTD_Insumos - 1 do
         begin

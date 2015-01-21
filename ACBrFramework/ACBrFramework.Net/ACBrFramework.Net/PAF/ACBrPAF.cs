@@ -527,11 +527,12 @@ namespace ACBrFramework.PAF
 			var cr5 = PafR.RegistroR1.Sum(s => s.RegistroR4.Sum(c => c.RegistroR5.Count));
 			var cr6 = PafR.RegistroR1.Sum(s => s.RegistroR6.Count);
 			var cr7 = PafR.RegistroR1.Sum(s => s.RegistroR4.Sum(c => c.RegistroR7.Count) +
-												s.RegistroR6.Sum(c => c.RegistroR7.Count));
+											   s.RegistroR6.Sum(c => c.RegistroR7.Count));
 
 			#endregion Contadores
 
             #region Arrays
+
             var registrosR1Rec = new ACBrPAFInterop.RegistroR1Rec[PafR.RegistroR1.Count];
             var registrosR2Rec = new ACBrPAFInterop.RegistroR2Rec[cr2];
             var registrosR3Rec = new ACBrPAFInterop.RegistroR3Rec[cr3];
@@ -539,6 +540,7 @@ namespace ACBrFramework.PAF
             var registrosR5Rec = new ACBrPAFInterop.RegistroR5Rec[cr5];
             var registrosR6Rec = new ACBrPAFInterop.RegistroR6Rec[cr6];
             var registrosR7Rec = new ACBrPAFInterop.RegistroR7Rec[cr7];
+
             #endregion
 
             foreach(ACBrPAFRegistroR1 r1 in PafR.RegistroR1)
@@ -575,6 +577,7 @@ namespace ACBrFramework.PAF
                 #endregion
 
                 #region R2 e R3
+
                 foreach(ACBrPAFRegistroR2 r2 in r1.RegistroR2)
                 {
                     registrosR2Rec[itemR2].QTD_R3 = r2.RegistroR3.Count;
@@ -599,6 +602,7 @@ namespace ACBrFramework.PAF
 
                     itemR2++;
                 }
+
                 #endregion
 
                 #region R4, R5 e R7
