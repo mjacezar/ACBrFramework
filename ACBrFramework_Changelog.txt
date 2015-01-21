@@ -41,6 +41,14 @@ Símbolo : Significado
 
 Changelog
 
+21/01/2015
+
+-- ACBrFramework 0.9.6.6 --
+[-] Ajustes nas funções de preenchimento dos dados - ACBrPAF - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.6.6 --
+[-] Ajustes nas funções de preenchimento dos dados - ACBrPAF - Rafael Dias.
+
 13/11/2014
 
 -- ACBrFramework 0.9.6.5 --

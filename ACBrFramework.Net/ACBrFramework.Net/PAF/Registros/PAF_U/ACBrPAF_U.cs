@@ -22,7 +22,7 @@ namespace ACBrFramework.PAF
 	{
 		#region Constructor
 
-		internal ACBrPAF_U(ACBrPAF Paf)
+		internal ACBrPAF_U(AcbrPaf Paf)
 			: base(Paf)
 		{
 			RegistroU1 = new ACBrPAFRegistroU1();

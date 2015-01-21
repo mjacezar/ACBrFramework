@@ -91,7 +91,7 @@ namespace ACBrFramework.PAF
 	#endregion COM Interop Attributes
 
 	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.PAF.ico.bmp")]
-	public class ACBrPAF : ACBrComponent, IDisposable
+	public class AcbrPaf : ACBrComponent, IDisposable
 	{
 		#region Events
 
@@ -100,7 +100,7 @@ namespace ACBrFramework.PAF
 		public event ChaveEventHandler OnPAFGetKeyRSA
 #else
 
-		public event EventHandler<ChaveEventArgs> OnPAFGetKeyRSA
+		public event EventHandler<ChaveEventArgs> OnPafGetKeyRsa
 #endif
 		{
 			#region COM_INTEROP
@@ -112,7 +112,7 @@ namespace ACBrFramework.PAF
 			#endregion COM_INTEROP
 			add
 			{
-				onPAFGetKeyRSA.Add(value);
+				onPafGetKeyRsa.Add(value);
 			}
 
 			#region COM_INTEROP
@@ -124,7 +124,7 @@ namespace ACBrFramework.PAF
 			#endregion COM_INTEROP
 			remove
 			{
-				onPAFGetKeyRSA.Remove(value);
+				onPafGetKeyRsa.Remove(value);
 			}
 		}
 
@@ -132,7 +132,7 @@ namespace ACBrFramework.PAF
 
 		#region Fields
 
-		private readonly ACBrEventHandler<ChaveEventArgs, ACBrPAFInterop.PAFGetKeyRSACallback> onPAFGetKeyRSA;
+		private readonly ACBrEventHandler<ChaveEventArgs, ACBrPAFInterop.PAFGetKeyRSACallback> onPafGetKeyRsa;
 
 		private ACBrAAC aac;
 		private ACBrEAD ead;
@@ -141,9 +141,9 @@ namespace ACBrFramework.PAF
 
 		#region Constructor
 
-		public ACBrPAF()
+		public AcbrPaf()
 		{
-			onPAFGetKeyRSA = new ACBrEventHandler<ChaveEventArgs, ACBrPAFInterop.PAFGetKeyRSACallback>(this, OnPAFGetKeyRSACallBack, ACBrPAFInterop.PAF_SetOnPAFGetKeyRSA);
+			onPafGetKeyRsa = new ACBrEventHandler<ChaveEventArgs, ACBrPAFInterop.PAFGetKeyRSACallback>(this, OnPafGetKeyRsaCallBack, ACBrPAFInterop.PAF_SetOnPAFGetKeyRSA);
 		}
 
 		#endregion Constructor
@@ -211,45 +211,45 @@ namespace ACBrFramework.PAF
 		}
 
         [Browsable(false)]
-        public ACBrPAF_A PAF_A { get; private set; }
+        public ACBrPAF_A PafA { get; private set; }
                         
         [Browsable(false)]
-		public ACBrPAF_B PAF_B { get; private set; }
+		public ACBrPAF_B PafB { get; private set; }
 
 		[Browsable(false)]
-		public ACBrPAF_C PAF_C { get; private set; }
+		public ACBrPAF_C PafC { get; private set; }
 
 		[Browsable(false)]
-		public ACBrPAF_D PAF_D { get; private set; }
+		public ACBrPAF_D PafD { get; private set; }
 
 		[Browsable(false)]
-		public ACBrPAF_E PAF_E { get; private set; }
+		public ACBrPAF_E PafE { get; private set; }
 
 		[Browsable(false)]
-		public ACBrPAF_H PAF_H { get; private set; }
+		public ACBrPAF_H PafH { get; private set; }
 
 		[Browsable(false)]
-		public ACBrPAF_N PAF_N { get; private set; }
+		public ACBrPAF_N PafN { get; private set; }
 
 		[Browsable(false)]
-		public ACBrPAF_P PAF_P { get; private set; }
+		public ACBrPAF_P PafP { get; private set; }
 
 		[Browsable(false)]
-		public ACBrPAF_R PAF_R { get; private set; }
+		public ACBrPAF_R PafR { get; private set; }
 
 		[Browsable(false)]
-		public ACBrPAF_S PAF_S { get; private set; }
+		public ACBrPAF_S PafS { get; private set; }
 
 		[Browsable(false)]
-		public ACBrPAF_T PAF_T { get; private set; }
+		public ACBrPAF_T PafT { get; private set; }
 
         [Browsable(false)]
-        public ACBrPAF_U PAF_U { get; private set; }
+        public ACBrPAF_U PafU { get; private set; }
 
 		[Browsable(false)]
-		public ACBrPAF_TITP PAF_TITP { get; private set; }
+		public ACBrPAF_TITP PafTitp { get; private set; }
 
-		public ACBrAAC AAC
+		public ACBrAAC Aac
 		{
 			get
 			{
@@ -259,14 +259,14 @@ namespace ACBrFramework.PAF
 			{
 				if (value == null)
 				{
-					int ret = ACBrPAFInterop.PAF_SetAAC(this.Handle, IntPtr.Zero);
+					var ret = ACBrPAFInterop.PAF_SetAAC(this.Handle, IntPtr.Zero);
 					CheckResult(ret);
 
 					this.aac = null;
 				}
 				else
 				{
-					int ret = ACBrPAFInterop.PAF_SetAAC(this.Handle, value.Handle);
+					var ret = ACBrPAFInterop.PAF_SetAAC(this.Handle, value.Handle);
 					CheckResult(ret);
 
 					this.aac = value;
@@ -274,7 +274,7 @@ namespace ACBrFramework.PAF
 			}
 		}
 
-		public ACBrEAD EAD
+		public ACBrEAD Ead
 		{
 			get
 			{
@@ -284,14 +284,14 @@ namespace ACBrFramework.PAF
 			{
 				if (value == null)
 				{
-					int ret = ACBrPAFInterop.PAF_SetEAD(this.Handle, IntPtr.Zero);
+					var ret = ACBrPAFInterop.PAF_SetEAD(this.Handle, IntPtr.Zero);
 					CheckResult(ret);
 
 					this.aac = null;
 				}
 				else
 				{
-					int ret = ACBrPAFInterop.PAF_SetEAD(this.Handle, value.Handle);
+					var ret = ACBrPAFInterop.PAF_SetEAD(this.Handle, value.Handle);
 					CheckResult(ret);
 
 					this.ead = value;
@@ -303,9 +303,9 @@ namespace ACBrFramework.PAF
 
 		#region Methods
 
-		public bool AssinarArquivoComEAD(string arquivo)
+		public bool AssinarArquivoComEad(string arquivo)
 		{
-			int ret = ACBrPAFInterop.PAF_AssinarArquivoComEAD(this.Handle, arquivo);
+			var ret = ACBrPAFInterop.PAF_AssinarArquivoComEAD(this.Handle, arquivo);
 			CheckResult(ret);
 
 			return Convert.ToBoolean(ret);
@@ -314,27 +314,27 @@ namespace ACBrFramework.PAF
 		public bool SaveFileTXT_B(string arquivo)
 		{
             PAF_Preenche_B();
-			int ret = ACBrPAFInterop.PAF_SaveFileTXT_B(this.Handle, ToUTF8(arquivo));
+			var ret = ACBrPAFInterop.PAF_SaveFileTXT_B(this.Handle, ToUTF8(arquivo));
 			CheckResult(ret);
-			PAF_B.LimparRegistros();
+			PafB.LimparRegistros();
 			return Convert.ToBoolean(ret);
 		}
 
 		public bool SaveFileTXT_C(string arquivo)
         {
             PAF_Preenche_C();
-			int ret = ACBrPAFInterop.PAF_SaveFileTXT_C(this.Handle, ToUTF8(arquivo));
+			var ret = ACBrPAFInterop.PAF_SaveFileTXT_C(this.Handle, ToUTF8(arquivo));
 			CheckResult(ret);
-			PAF_C.LimparRegistros();
+			PafC.LimparRegistros();
 			return Convert.ToBoolean(ret);
 		}
 
 		public bool SaveFileTXT_D(string arquivo)
 		{
             PAF_Preenche_D();
-			int ret = ACBrPAFInterop.PAF_SaveFileTXT_D(this.Handle, ToUTF8(arquivo));
+			var ret = ACBrPAFInterop.PAF_SaveFileTXT_D(this.Handle, ToUTF8(arquivo));
 			CheckResult(ret);
-			PAF_D.LimparRegistros();
+			PafD.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -342,9 +342,9 @@ namespace ACBrFramework.PAF
 		public bool SaveFileTXT_E(string arquivo)
 		{
             PAF_Preenche_E();
-			int ret = ACBrPAFInterop.PAF_SaveFileTXT_E(this.Handle, ToUTF8(arquivo));
+			var ret = ACBrPAFInterop.PAF_SaveFileTXT_E(this.Handle, ToUTF8(arquivo));
 			CheckResult(ret);
-			PAF_E.LimparRegistros();
+			PafE.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -352,9 +352,9 @@ namespace ACBrFramework.PAF
 		public bool SaveFileTXT_H(string arquivo)
 		{
             PAF_Preenche_H();
-			int ret = ACBrPAFInterop.PAF_SaveFileTXT_H(this.Handle, ToUTF8(arquivo));
+			var ret = ACBrPAFInterop.PAF_SaveFileTXT_H(this.Handle, ToUTF8(arquivo));
 			CheckResult(ret);
-			PAF_H.LimparRegistros();
+			PafH.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -363,9 +363,9 @@ namespace ACBrFramework.PAF
 		{
             PAF_Preenche_N();
 
-			int ret = ACBrPAFInterop.PAF_SaveFileTXT_N(Handle, ToUTF8(arquivo));
+			var ret = ACBrPAFInterop.PAF_SaveFileTXT_N(Handle, ToUTF8(arquivo));
 			CheckResult(ret);
-			PAF_N.LimparRegistros();
+			PafN.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -373,9 +373,9 @@ namespace ACBrFramework.PAF
 		public bool SaveFileTXT_P(string arquivo)
 		{
             PAF_Preenche_P();
-			int ret = ACBrPAFInterop.PAF_SaveFileTXT_P(this.Handle, ToUTF8(arquivo));
+			var ret = ACBrPAFInterop.PAF_SaveFileTXT_P(this.Handle, ToUTF8(arquivo));
 			CheckResult(ret);
-			PAF_P.LimparRegistros();
+			PafP.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -383,9 +383,9 @@ namespace ACBrFramework.PAF
 		public bool SaveFileTXT_R(string arquivo)
 		{
             PAF_Preenche_R();
-			int ret = ACBrPAFInterop.PAF_SaveFileTXT_R(Handle, ToUTF8(arquivo));
+			var ret = ACBrPAFInterop.PAF_SaveFileTXT_R(Handle, ToUTF8(arquivo));
 			CheckResult(ret);
-			PAF_R.LimparRegistros();
+			PafR.LimparRegistros();
 			return Convert.ToBoolean(ret);
 		}
 
@@ -393,9 +393,9 @@ namespace ACBrFramework.PAF
 		{
             PAF_Preenche_T();
 
-			int ret = ACBrPAFInterop.PAF_SaveFileTXT_T(this.Handle, ToUTF8(arquivo));
+			var ret = ACBrPAFInterop.PAF_SaveFileTXT_T(this.Handle, ToUTF8(arquivo));
 			CheckResult(ret);
-			PAF_T.LimparRegistros();
+			PafT.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -404,9 +404,9 @@ namespace ACBrFramework.PAF
 		{
             PAF_Preenche_TITP();
 
-			int ret = ACBrPAFInterop.PAF_SaveFileTXT_TITP(this.Handle, arquivo.ToUTF8());
+			var ret = ACBrPAFInterop.PAF_SaveFileTXT_TITP(this.Handle, arquivo.ToUTF8());
 			CheckResult(ret);
-			PAF_TITP.LimparRegistros();
+			PafTitp.LimparRegistros();
 
 			return Convert.ToBoolean(ret);
 		}
@@ -416,15 +416,21 @@ namespace ACBrFramework.PAF
             #region Preenche os registros
                         
             PAF_Preenche_A();
+            PAF_Preenche_B();
+            PAF_Preenche_C();
             PAF_Preenche_D();
-            PAF_Preenche_E();                    
+            PAF_Preenche_E();
+            PAF_Preenche_H();
+            PAF_Preenche_N();
             PAF_Preenche_P();
             PAF_Preenche_R();
+            PAF_Preenche_T();
+            PAF_Preenche_S();
             PAF_Preenche_U();
 
             #endregion
 
-            int ret = ACBrPAFInterop.PAF_SaveFileTXT_RegistrosPAF(Handle, arquivo.ToUTF8());
+            var ret = ACBrPAFInterop.PAF_SaveFileTXT_RegistrosPAF(Handle, arquivo.ToUTF8());
 
             CheckResult(ret);
             LimparRegistros();
@@ -436,50 +442,49 @@ namespace ACBrFramework.PAF
         private void PAF_Preenche_T()
         {
             int i;
+            var registroT1Rec = new ACBrPAFInterop.RegistroHD1Rec();
+            var registroT2Rec = new ACBrPAFInterop.RegistroT2Rec[PafT.RegistroT2.Count];
 
-            ACBrPAFInterop.RegistroHD1Rec RegistroT1Rec = new ACBrPAFInterop.RegistroHD1Rec();
-            ACBrPAFInterop.RegistroT2Rec[] RegistroT2Rec = new ACBrPAFInterop.RegistroT2Rec[PAF_T.RegistroT2.Count];
+            registroT1Rec.RAZAOSOCIAL = ToUTF8(PafT.RegistroT1.RazaoSocial);
+            registroT1Rec.CNPJ = ToUTF8(PafT.RegistroT1.CNPJ);
+            registroT1Rec.UF = ToUTF8(PafT.RegistroT1.UF);
+            registroT1Rec.IE = ToUTF8(PafT.RegistroT1.IE);
+            registroT1Rec.IM = ToUTF8(PafT.RegistroT1.IM);
 
-            RegistroT1Rec.RAZAOSOCIAL = ToUTF8(PAF_T.RegistroT1.RazaoSocial);
-            RegistroT1Rec.CNPJ = ToUTF8(PAF_T.RegistroT1.CNPJ);
-            RegistroT1Rec.UF = ToUTF8(PAF_T.RegistroT1.UF);
-            RegistroT1Rec.IE = ToUTF8(PAF_T.RegistroT1.IE);
-            RegistroT1Rec.IM = ToUTF8(PAF_T.RegistroT1.IM);
-
-            for (i = 0; i < PAF_T.RegistroT2.Count; i++)
+            for (i = 0; i < PafT.RegistroT2.Count; i++)
             {
-                RegistroT2Rec[i].DT_MOV = PAF_T.RegistroT2[i].DT_MOV.ToOADate();
-                RegistroT2Rec[i].TP_DOCTO = ToUTF8(PAF_T.RegistroT2[i].TP_DOCTO);
-                RegistroT2Rec[i].SERIE = ToUTF8(PAF_T.RegistroT2[i].SERIE);
-                RegistroT2Rec[i].NUM_BILH_I = PAF_T.RegistroT2[i].NUM_BILH_I;
-                RegistroT2Rec[i].NUM_BILH_F = PAF_T.RegistroT2[i].NUM_BILH_F;
-                RegistroT2Rec[i].NUM_ECF = ToUTF8(PAF_T.RegistroT2[i].NUM_ECF);
-                RegistroT2Rec[i].CRZ = PAF_T.RegistroT2[i].CRZ;
-                RegistroT2Rec[i].CFOP = ToUTF8(PAF_T.RegistroT2[i].CFOP);
-                RegistroT2Rec[i].VL_CONT = PAF_T.RegistroT2[i].VL_CONT;
-                RegistroT2Rec[i].VL_BASECALC = PAF_T.RegistroT2[i].VL_BASECALC;
-                RegistroT2Rec[i].ALIQ = PAF_T.RegistroT2[i].ALIQ;
-                RegistroT2Rec[i].VL_IMPOSTO = PAF_T.RegistroT2[i].VL_IMPOSTO;
-                RegistroT2Rec[i].VL_ISENTAS = PAF_T.RegistroT2[i].VL_ISENTAS;
-                RegistroT2Rec[i].VL_OUTRAS = PAF_T.RegistroT2[i].VL_OUTRAS;
-                RegistroT2Rec[i].RegistroValido = PAF_T.RegistroT2[i].RegistroValido;
+                registroT2Rec[i].DT_MOV = PafT.RegistroT2[i].DT_MOV.ToOADate();
+                registroT2Rec[i].TP_DOCTO = ToUTF8(PafT.RegistroT2[i].TP_DOCTO);
+                registroT2Rec[i].SERIE = ToUTF8(PafT.RegistroT2[i].SERIE);
+                registroT2Rec[i].NUM_BILH_I = PafT.RegistroT2[i].NUM_BILH_I;
+                registroT2Rec[i].NUM_BILH_F = PafT.RegistroT2[i].NUM_BILH_F;
+                registroT2Rec[i].NUM_ECF = ToUTF8(PafT.RegistroT2[i].NUM_ECF);
+                registroT2Rec[i].CRZ = PafT.RegistroT2[i].CRZ;
+                registroT2Rec[i].CFOP = ToUTF8(PafT.RegistroT2[i].CFOP);
+                registroT2Rec[i].VL_CONT = PafT.RegistroT2[i].VL_CONT;
+                registroT2Rec[i].VL_BASECALC = PafT.RegistroT2[i].VL_BASECALC;
+                registroT2Rec[i].ALIQ = PafT.RegistroT2[i].ALIQ;
+                registroT2Rec[i].VL_IMPOSTO = PafT.RegistroT2[i].VL_IMPOSTO;
+                registroT2Rec[i].VL_ISENTAS = PafT.RegistroT2[i].VL_ISENTAS;
+                registroT2Rec[i].VL_OUTRAS = PafT.RegistroT2[i].VL_OUTRAS;
+                registroT2Rec[i].RegistroValido = PafT.RegistroT2[i].RegistroValido;
             }
 
-            int ret = ACBrPAFInterop.PAF_Preenche_T(Handle, RegistroT1Rec, RegistroT2Rec, PAF_T.RegistroT2.Count);
+            var ret = ACBrPAFInterop.PAF_Preenche_T(Handle, registroT1Rec, registroT2Rec, PafT.RegistroT2.Count);
             CheckResult(ret);
         }
 
         private void PAF_Preenche_U()
         {
-            ACBrPAFInterop.RegistroHD1Rec registroU1Rec = new ACBrPAFInterop.RegistroHD1Rec
+            var registroU1Rec = new ACBrPAFInterop.RegistroHD1Rec
             {
-                CNPJ = PAF_U.RegistroU1.CNPJ,
-                IE = PAF_U.RegistroU1.IE,
-                IM = PAF_U.RegistroU1.IM,
-                RAZAOSOCIAL = PAF_U.RegistroU1.RazaoSocial
+                CNPJ = PafU.RegistroU1.CNPJ,
+                IE = PafU.RegistroU1.IE,
+                IM = PafU.RegistroU1.IM,
+                RAZAOSOCIAL = PafU.RegistroU1.RazaoSocial
             };
 
-            int ret = ACBrPAFInterop.PAF_Preenche_U(Handle, registroU1Rec);
+            var ret = ACBrPAFInterop.PAF_Preenche_U(Handle, registroU1Rec);
             CheckResult(ret);
         }
 
@@ -487,27 +492,27 @@ namespace ACBrFramework.PAF
         {
             int i;
 
-            ACBrPAFInterop.RegistroHD1Rec RegistroN1Rec = new ACBrPAFInterop.RegistroHD1Rec();
-            ACBrPAFInterop.RegistroN2Rec RegistroN2Rec = new ACBrPAFInterop.RegistroN2Rec();
-            ACBrPAFInterop.RegistroN3Rec[] RegistroN3Rec = new ACBrPAFInterop.RegistroN3Rec[PAF_N.RegistroN3.Count];
+            var registroN1Rec = new ACBrPAFInterop.RegistroHD1Rec();
+            var registroN2Rec = new ACBrPAFInterop.RegistroN2Rec();
+            var registroN3Rec = new ACBrPAFInterop.RegistroN3Rec[PafN.RegistroN3.Count];
 
-            RegistroN1Rec.RAZAOSOCIAL = ToUTF8(PAF_N.RegistroN1.RazaoSocial);
-            RegistroN1Rec.CNPJ = ToUTF8(PAF_N.RegistroN1.CNPJ);
-            RegistroN1Rec.UF = ToUTF8(PAF_N.RegistroN1.UF);
-            RegistroN1Rec.IE = ToUTF8(PAF_N.RegistroN1.IE);
-            RegistroN1Rec.IM = ToUTF8(PAF_N.RegistroN1.IM);
+            registroN1Rec.RAZAOSOCIAL = ToUTF8(PafN.RegistroN1.RazaoSocial);
+            registroN1Rec.CNPJ = ToUTF8(PafN.RegistroN1.CNPJ);
+            registroN1Rec.UF = ToUTF8(PafN.RegistroN1.UF);
+            registroN1Rec.IE = ToUTF8(PafN.RegistroN1.IE);
+            registroN1Rec.IM = ToUTF8(PafN.RegistroN1.IM);
 
-            RegistroN2Rec.NOME = ToUTF8(PAF_N.RegistroN2.NOME);
-            RegistroN2Rec.LAUDO = ToUTF8(PAF_N.RegistroN2.LAUDO);
-            RegistroN2Rec.VERSAO = ToUTF8(PAF_N.RegistroN2.VERSAO);
+            registroN2Rec.NOME = ToUTF8(PafN.RegistroN2.NOME);
+            registroN2Rec.LAUDO = ToUTF8(PafN.RegistroN2.LAUDO);
+            registroN2Rec.VERSAO = ToUTF8(PafN.RegistroN2.VERSAO);
 
-            for (i = 0; i < PAF_N.RegistroN3.Count; i++)
+            for (i = 0; i < PafN.RegistroN3.Count; i++)
             {
-                RegistroN3Rec[i].NOME_ARQUIVO = ToUTF8(PAF_N.RegistroN3[i].NOME_ARQUIVO);
-                RegistroN3Rec[i].MD5 = ToUTF8(PAF_N.RegistroN3[i].MD5);
+                registroN3Rec[i].NOME_ARQUIVO = ToUTF8(PafN.RegistroN3[i].NOME_ARQUIVO);
+                registroN3Rec[i].MD5 = ToUTF8(PafN.RegistroN3[i].MD5);
             }
 
-            int ret = ACBrPAFInterop.PAF_Preenche_N(Handle, RegistroN1Rec, RegistroN2Rec, RegistroN3Rec, PAF_N.RegistroN3.Count);
+            var ret = ACBrPAFInterop.PAF_Preenche_N(Handle, registroN1Rec, registroN2Rec, registroN3Rec, PafN.RegistroN3.Count);
             CheckResult(ret);
         }
 
@@ -515,210 +520,210 @@ namespace ACBrFramework.PAF
         {
             #region Contadores
 
-            int ItemR1 = 0, ItemR2 = 0, ItemR3 = 0, ItemR4 = 0, ItemR5 = 0, ItemR6 = 0, ItemR7 = 0;
-			int CR2 = PAF_R.RegistroR1.Sum(s => s.RegistroR2.Count);
-			int CR3 = PAF_R.RegistroR1.Sum(s => s.RegistroR2.Sum(c => c.RegistroR3.Count));
-			int CR4 = PAF_R.RegistroR1.Sum(s => s.RegistroR4.Count);
-			int CR5 = PAF_R.RegistroR1.Sum(s => s.RegistroR4.Sum(c => c.RegistroR5.Count));
-			int CR6 = PAF_R.RegistroR1.Sum(s => s.RegistroR6.Count);
-			int CR7 = PAF_R.RegistroR1.Sum(s => s.RegistroR4.Sum(c => c.RegistroR7.Count) +
+            int itemR1 = 0, itemR2 = 0, itemR3 = 0, itemR4 = 0, itemR5 = 0, itemR6 = 0, itemR7 = 0;
+			var cr2 = PafR.RegistroR1.Sum(s => s.RegistroR2.Count);
+			var cr3 = PafR.RegistroR1.Sum(s => s.RegistroR2.Sum(c => c.RegistroR3.Count));
+			var cr4 = PafR.RegistroR1.Sum(s => s.RegistroR4.Count);
+			var cr5 = PafR.RegistroR1.Sum(s => s.RegistroR4.Sum(c => c.RegistroR5.Count));
+			var cr6 = PafR.RegistroR1.Sum(s => s.RegistroR6.Count);
+			var cr7 = PafR.RegistroR1.Sum(s => s.RegistroR4.Sum(c => c.RegistroR7.Count) +
 												s.RegistroR6.Sum(c => c.RegistroR7.Count));
 
 			#endregion Contadores
 
             #region Arrays
-            ACBrPAFInterop.RegistroR1Rec[] RegistrosR1Rec = new ACBrPAFInterop.RegistroR1Rec[PAF_R.RegistroR1.Count];
-            ACBrPAFInterop.RegistroR2Rec[] RegistrosR2Rec = new ACBrPAFInterop.RegistroR2Rec[CR2];
-            ACBrPAFInterop.RegistroR3Rec[] RegistrosR3Rec = new ACBrPAFInterop.RegistroR3Rec[CR3];
-            ACBrPAFInterop.RegistroR4Rec[] RegistrosR4Rec = new ACBrPAFInterop.RegistroR4Rec[CR4];
-            ACBrPAFInterop.RegistroR5Rec[] RegistrosR5Rec = new ACBrPAFInterop.RegistroR5Rec[CR5];
-            ACBrPAFInterop.RegistroR6Rec[] RegistrosR6Rec = new ACBrPAFInterop.RegistroR6Rec[CR6];
-            ACBrPAFInterop.RegistroR7Rec[] RegistrosR7Rec = new ACBrPAFInterop.RegistroR7Rec[CR7];
+            var registrosR1Rec = new ACBrPAFInterop.RegistroR1Rec[PafR.RegistroR1.Count];
+            var registrosR2Rec = new ACBrPAFInterop.RegistroR2Rec[cr2];
+            var registrosR3Rec = new ACBrPAFInterop.RegistroR3Rec[cr3];
+            var registrosR4Rec = new ACBrPAFInterop.RegistroR4Rec[cr4];
+            var registrosR5Rec = new ACBrPAFInterop.RegistroR5Rec[cr5];
+            var registrosR6Rec = new ACBrPAFInterop.RegistroR6Rec[cr6];
+            var registrosR7Rec = new ACBrPAFInterop.RegistroR7Rec[cr7];
             #endregion
 
-            foreach(ACBrPAFRegistroR1 R1 in PAF_R.RegistroR1)
+            foreach(ACBrPAFRegistroR1 r1 in PafR.RegistroR1)
             {
                 #region R1
 
-                RegistrosR1Rec[ItemR1].QTD_R2 = R1.RegistroR2.Count;
-                RegistrosR1Rec[ItemR1].QTD_R4 = R1.RegistroR4.Count;
-                RegistrosR1Rec[ItemR1].QTD_R6 = R1.RegistroR6.Count;
-                RegistrosR1Rec[ItemR1].NUM_FAB = ToUTF8(R1.NUM_FAB);
-                RegistrosR1Rec[ItemR1].MF_ADICIONAL = ToUTF8(R1.MF_ADICIONAL);
-                RegistrosR1Rec[ItemR1].TIPO_ECF = ToUTF8(R1.TIPO_ECF);
-                RegistrosR1Rec[ItemR1].MARCA_ECF = ToUTF8(R1.MARCA_ECF);
-                RegistrosR1Rec[ItemR1].MODELO_ECF = ToUTF8(R1.MODELO_ECF);
-                RegistrosR1Rec[ItemR1].VERSAO_SB = ToUTF8(R1.VERSAO_SB);
-                RegistrosR1Rec[ItemR1].DT_INST_SB = R1.DT_INST_SB.ToOADate();
-                RegistrosR1Rec[ItemR1].HR_INST_SB = R1.HR_INST_SB.ToOADate();
-                RegistrosR1Rec[ItemR1].NUM_SEQ_ECF = R1.NUM_SEQ_ECF;
-                RegistrosR1Rec[ItemR1].CNPJ = ToUTF8(R1.CNPJ);
-                RegistrosR1Rec[ItemR1].IE = ToUTF8(R1.IE);
-                RegistrosR1Rec[ItemR1].CNPJ_SH = ToUTF8(R1.CNPJ_SH);
-                RegistrosR1Rec[ItemR1].IE_SH = ToUTF8(R1.IE_SH);
-                RegistrosR1Rec[ItemR1].IM_SH = ToUTF8(R1.IM_SH);
-                RegistrosR1Rec[ItemR1].NOME_SH = ToUTF8(R1.NOME_SH);
-                RegistrosR1Rec[ItemR1].NOME_PAF = ToUTF8(R1.NOME_PAF);
-                RegistrosR1Rec[ItemR1].VER_PAF = ToUTF8(R1.VER_PAF);
-                RegistrosR1Rec[ItemR1].COD_MD5 = ToUTF8(R1.COD_MD5);
-                RegistrosR1Rec[ItemR1].DT_INI = R1.DT_INI.ToOADate();
-                RegistrosR1Rec[ItemR1].DT_FIN = R1.DT_FIN.ToOADate();
-                RegistrosR1Rec[ItemR1].ER_PAF_ECF = ToUTF8(R1.ER_PAF_ECF);
-                RegistrosR1Rec[ItemR1].InclusaoExclusao = R1.InclusaoExclusao;
-                RegistrosR1Rec[ItemR1].RegistroValido = R1.RegistroValido;
+                registrosR1Rec[itemR1].QTD_R2 = r1.RegistroR2.Count;
+                registrosR1Rec[itemR1].QTD_R4 = r1.RegistroR4.Count;
+                registrosR1Rec[itemR1].QTD_R6 = r1.RegistroR6.Count;
+                registrosR1Rec[itemR1].NUM_FAB = ToUTF8(r1.NUM_FAB);
+                registrosR1Rec[itemR1].MF_ADICIONAL = ToUTF8(r1.MF_ADICIONAL);
+                registrosR1Rec[itemR1].TIPO_ECF = ToUTF8(r1.TIPO_ECF);
+                registrosR1Rec[itemR1].MARCA_ECF = ToUTF8(r1.MARCA_ECF);
+                registrosR1Rec[itemR1].MODELO_ECF = ToUTF8(r1.MODELO_ECF);
+                registrosR1Rec[itemR1].VERSAO_SB = ToUTF8(r1.VERSAO_SB);
+                registrosR1Rec[itemR1].DT_INST_SB = r1.DT_INST_SB.ToOADate();
+                registrosR1Rec[itemR1].HR_INST_SB = r1.HR_INST_SB.ToOADate();
+                registrosR1Rec[itemR1].NUM_SEQ_ECF = r1.NUM_SEQ_ECF;
+                registrosR1Rec[itemR1].CNPJ = ToUTF8(r1.CNPJ);
+                registrosR1Rec[itemR1].IE = ToUTF8(r1.IE);
+                registrosR1Rec[itemR1].CNPJ_SH = ToUTF8(r1.CNPJ_SH);
+                registrosR1Rec[itemR1].IE_SH = ToUTF8(r1.IE_SH);
+                registrosR1Rec[itemR1].IM_SH = ToUTF8(r1.IM_SH);
+                registrosR1Rec[itemR1].NOME_SH = ToUTF8(r1.NOME_SH);
+                registrosR1Rec[itemR1].NOME_PAF = ToUTF8(r1.NOME_PAF);
+                registrosR1Rec[itemR1].VER_PAF = ToUTF8(r1.VER_PAF);
+                registrosR1Rec[itemR1].COD_MD5 = ToUTF8(r1.COD_MD5);
+                registrosR1Rec[itemR1].DT_INI = r1.DT_INI.ToOADate();
+                registrosR1Rec[itemR1].DT_FIN = r1.DT_FIN.ToOADate();
+                registrosR1Rec[itemR1].ER_PAF_ECF = ToUTF8(r1.ER_PAF_ECF);
+                registrosR1Rec[itemR1].InclusaoExclusao = r1.InclusaoExclusao;
+                registrosR1Rec[itemR1].RegistroValido = r1.RegistroValido;
 
                 #endregion
 
                 #region R2 e R3
-                foreach(ACBrPAFRegistroR2 R2 in R1.RegistroR2)
+                foreach(ACBrPAFRegistroR2 r2 in r1.RegistroR2)
                 {
-                    RegistrosR2Rec[ItemR2].QTD_R3 = R2.RegistroR3.Count;
-                    RegistrosR2Rec[ItemR2].NUM_USU = R2.NUM_USU;
-                    RegistrosR2Rec[ItemR2].CRZ = R2.CRZ;
-                    RegistrosR2Rec[ItemR2].COO = R2.COO;
-                    RegistrosR2Rec[ItemR2].CRO = R2.CRO;
-                    RegistrosR2Rec[ItemR2].DT_MOV = R2.DT_MOV.ToOADate();
-                    RegistrosR2Rec[ItemR2].DT_EMI = R2.DT_EMI.ToOADate();
-                    RegistrosR2Rec[ItemR2].HR_EMI = R2.HR_EMI.ToOADate();
-                    RegistrosR2Rec[ItemR2].VL_VBD = Convert.ToDouble(R2.VL_VBD);
-                    RegistrosR2Rec[ItemR2].PAR_ECF = ToUTF8(R2.PAR_ECF);
-                    RegistrosR2Rec[ItemR2].RegistroValido = R2.RegistroValido;
+                    registrosR2Rec[itemR2].QTD_R3 = r2.RegistroR3.Count;
+                    registrosR2Rec[itemR2].NUM_USU = r2.NUM_USU;
+                    registrosR2Rec[itemR2].CRZ = r2.CRZ;
+                    registrosR2Rec[itemR2].COO = r2.COO;
+                    registrosR2Rec[itemR2].CRO = r2.CRO;
+                    registrosR2Rec[itemR2].DT_MOV = r2.DT_MOV.ToOADate();
+                    registrosR2Rec[itemR2].DT_EMI = r2.DT_EMI.ToOADate();
+                    registrosR2Rec[itemR2].HR_EMI = r2.HR_EMI.ToOADate();
+                    registrosR2Rec[itemR2].VL_VBD = Convert.ToDouble(r2.VL_VBD);
+                    registrosR2Rec[itemR2].PAR_ECF = ToUTF8(r2.PAR_ECF);
+                    registrosR2Rec[itemR2].RegistroValido = r2.RegistroValido;
 
-                    foreach(ACBrPAFRegistroR3 RegistroR3 in R2.RegistroR3)
+                    foreach(ACBrPAFRegistroR3 registroR3 in r2.RegistroR3)
                     {
-                        RegistrosR3Rec[ItemR3].TOT_PARCIAL = ToUTF8(RegistroR3.TOT_PARCIAL);
-                        RegistrosR3Rec[ItemR3].VL_ACUM = Convert.ToDouble(RegistroR3.VL_ACUM);
-                        RegistrosR3Rec[ItemR3].RegistroValido = RegistroR3.RegistroValido;
-                        ItemR3++;
+                        registrosR3Rec[itemR3].TOT_PARCIAL = ToUTF8(registroR3.TOT_PARCIAL);
+                        registrosR3Rec[itemR3].VL_ACUM = Convert.ToDouble(registroR3.VL_ACUM);
+                        registrosR3Rec[itemR3].RegistroValido = registroR3.RegistroValido;
+                        itemR3++;
                     }
 
-                    ItemR2++;
+                    itemR2++;
                 }
                 #endregion
 
                 #region R4, R5 e R7
-                foreach(ACBrPAFRegistroR4 R4 in R1.RegistroR4)
+                foreach(ACBrPAFRegistroR4 r4 in r1.RegistroR4)
                 {
-                    RegistrosR4Rec[ItemR4].QTD_R5 = R4.RegistroR5.Count;
-                    RegistrosR4Rec[ItemR4].QTD_R7 = R4.RegistroR7.Count;
-                    RegistrosR4Rec[ItemR4].NUM_USU = R4.NUM_USU;
-                    RegistrosR4Rec[ItemR4].NUM_CONT = R4.NUM_CONT;
-                    RegistrosR4Rec[ItemR4].COO = R4.COO;
-                    RegistrosR4Rec[ItemR4].DT_INI = R4.DT_INI.ToOADate();
-                    RegistrosR4Rec[ItemR4].SUB_DOCTO = Convert.ToDouble(R4.SUB_DOCTO);
-                    RegistrosR4Rec[ItemR4].SUB_DESCTO = Convert.ToDouble(R4.SUB_DESCTO);
-                    RegistrosR4Rec[ItemR4].TP_DESCTO = ToUTF8(R4.TP_DESCTO);
-                    RegistrosR4Rec[ItemR4].SUB_ACRES = Convert.ToDouble(R4.SUB_ACRES);
-                    RegistrosR4Rec[ItemR4].TP_ACRES = ToUTF8(R4.TP_ACRES);
-                    RegistrosR4Rec[ItemR4].VL_TOT = Convert.ToDouble(R4.VL_TOT);
-                    RegistrosR4Rec[ItemR4].CANC = ToUTF8(R4.CANC);
-                    RegistrosR4Rec[ItemR4].VL_CA = Convert.ToDouble(R4.VL_CA);
-                    RegistrosR4Rec[ItemR4].ORDEM_DA = ToUTF8(R4.ORDEM_DA);
-                    RegistrosR4Rec[ItemR4].NOME_CLI = ToUTF8(R4.NOME_CLI);
-                    RegistrosR4Rec[ItemR4].CNPJ_CPF = ToUTF8(R4.CNPJ_CPF);
-                    RegistrosR4Rec[ItemR4].RegistroValido = R4.RegistroValido;
+                    registrosR4Rec[itemR4].QTD_R5 = r4.RegistroR5.Count;
+                    registrosR4Rec[itemR4].QTD_R7 = r4.RegistroR7.Count;
+                    registrosR4Rec[itemR4].NUM_USU = r4.NUM_USU;
+                    registrosR4Rec[itemR4].NUM_CONT = r4.NUM_CONT;
+                    registrosR4Rec[itemR4].COO = r4.COO;
+                    registrosR4Rec[itemR4].DT_INI = r4.DT_INI.ToOADate();
+                    registrosR4Rec[itemR4].SUB_DOCTO = Convert.ToDouble(r4.SUB_DOCTO);
+                    registrosR4Rec[itemR4].SUB_DESCTO = Convert.ToDouble(r4.SUB_DESCTO);
+                    registrosR4Rec[itemR4].TP_DESCTO = ToUTF8(r4.TP_DESCTO);
+                    registrosR4Rec[itemR4].SUB_ACRES = Convert.ToDouble(r4.SUB_ACRES);
+                    registrosR4Rec[itemR4].TP_ACRES = ToUTF8(r4.TP_ACRES);
+                    registrosR4Rec[itemR4].VL_TOT = Convert.ToDouble(r4.VL_TOT);
+                    registrosR4Rec[itemR4].CANC = ToUTF8(r4.CANC);
+                    registrosR4Rec[itemR4].VL_CA = Convert.ToDouble(r4.VL_CA);
+                    registrosR4Rec[itemR4].ORDEM_DA = ToUTF8(r4.ORDEM_DA);
+                    registrosR4Rec[itemR4].NOME_CLI = ToUTF8(r4.NOME_CLI);
+                    registrosR4Rec[itemR4].CNPJ_CPF = ToUTF8(r4.CNPJ_CPF);
+                    registrosR4Rec[itemR4].RegistroValido = r4.RegistroValido;
 
-                    foreach(ACBrPAFRegistroR5 RegistroR5 in R4.RegistroR5)
+                    foreach(ACBrPAFRegistroR5 registroR5 in r4.RegistroR5)
                     {
-                        RegistrosR5Rec[ItemR5].NUM_CONT = RegistroR5.NUM_CONT;
-                        RegistrosR5Rec[ItemR5].NUM_ITEM = RegistroR5.NUM_ITEM;
-                        RegistrosR5Rec[ItemR5].COD_ITEM = ToUTF8(RegistroR5.COD_ITEM);
-                        RegistrosR5Rec[ItemR5].DESC_ITEM = ToUTF8(RegistroR5.DESC_ITEM);
-                        RegistrosR5Rec[ItemR5].QTDE_ITEM = Convert.ToDouble(RegistroR5.QTDE_ITEM);
-                        RegistrosR5Rec[ItemR5].UN_MED = ToUTF8(RegistroR5.UN_MED);
-                        RegistrosR5Rec[ItemR5].VL_UNIT = Convert.ToDouble(RegistroR5.VL_UNIT);
-                        RegistrosR5Rec[ItemR5].DESCTO_ITEM = Convert.ToDouble(RegistroR5.DESCTO_ITEM);
-                        RegistrosR5Rec[ItemR5].ACRES_ITEM = Convert.ToDouble(RegistroR5.ACRES_ITEM);
-                        RegistrosR5Rec[ItemR5].VL_TOT_ITEM = Convert.ToDouble(RegistroR5.VL_TOT_ITEM);
-                        RegistrosR5Rec[ItemR5].COD_TOT_PARC = ToUTF8(RegistroR5.COD_TOT_PARC);
-                        RegistrosR5Rec[ItemR5].IND_CANC = ToUTF8(RegistroR5.IND_CANC);
-                        RegistrosR5Rec[ItemR5].QTDE_CANC = Convert.ToDouble(RegistroR5.QTDE_CANC);
-                        RegistrosR5Rec[ItemR5].VL_CANC = Convert.ToDouble(RegistroR5.VL_CANC);
-                        RegistrosR5Rec[ItemR5].VL_CANC_ACRES = Convert.ToDouble(RegistroR5.VL_CANC_ACRES);
-                        RegistrosR5Rec[ItemR5].IAT = ToUTF8(RegistroR5.IAT);
-                        RegistrosR5Rec[ItemR5].IPPT = ToUTF8(RegistroR5.IPPT);
-                        RegistrosR5Rec[ItemR5].QTDE_DECIMAL = RegistroR5.QTDE_DECIMAL;
-                        RegistrosR5Rec[ItemR5].VL_DECIMAL = RegistroR5.VL_DECIMAL;
-                        RegistrosR5Rec[ItemR5].RegistroValido = RegistroR5.RegistroValido;
-                        ItemR5++;
+                        registrosR5Rec[itemR5].NUM_CONT = registroR5.NUM_CONT;
+                        registrosR5Rec[itemR5].NUM_ITEM = registroR5.NUM_ITEM;
+                        registrosR5Rec[itemR5].COD_ITEM = ToUTF8(registroR5.COD_ITEM);
+                        registrosR5Rec[itemR5].DESC_ITEM = ToUTF8(registroR5.DESC_ITEM);
+                        registrosR5Rec[itemR5].QTDE_ITEM = Convert.ToDouble(registroR5.QTDE_ITEM);
+                        registrosR5Rec[itemR5].UN_MED = ToUTF8(registroR5.UN_MED);
+                        registrosR5Rec[itemR5].VL_UNIT = Convert.ToDouble(registroR5.VL_UNIT);
+                        registrosR5Rec[itemR5].DESCTO_ITEM = Convert.ToDouble(registroR5.DESCTO_ITEM);
+                        registrosR5Rec[itemR5].ACRES_ITEM = Convert.ToDouble(registroR5.ACRES_ITEM);
+                        registrosR5Rec[itemR5].VL_TOT_ITEM = Convert.ToDouble(registroR5.VL_TOT_ITEM);
+                        registrosR5Rec[itemR5].COD_TOT_PARC = ToUTF8(registroR5.COD_TOT_PARC);
+                        registrosR5Rec[itemR5].IND_CANC = ToUTF8(registroR5.IND_CANC);
+                        registrosR5Rec[itemR5].QTDE_CANC = Convert.ToDouble(registroR5.QTDE_CANC);
+                        registrosR5Rec[itemR5].VL_CANC = Convert.ToDouble(registroR5.VL_CANC);
+                        registrosR5Rec[itemR5].VL_CANC_ACRES = Convert.ToDouble(registroR5.VL_CANC_ACRES);
+                        registrosR5Rec[itemR5].IAT = ToUTF8(registroR5.IAT);
+                        registrosR5Rec[itemR5].IPPT = ToUTF8(registroR5.IPPT);
+                        registrosR5Rec[itemR5].QTDE_DECIMAL = registroR5.QTDE_DECIMAL;
+                        registrosR5Rec[itemR5].VL_DECIMAL = registroR5.VL_DECIMAL;
+                        registrosR5Rec[itemR5].RegistroValido = registroR5.RegistroValido;
+                        itemR5++;
                     }
 
-                    foreach(ACBrPAFRegistroR7 RegistroR7 in R4.RegistroR7)
+                    foreach(ACBrPAFRegistroR7 registroR7 in r4.RegistroR7)
                     {
-						RegistrosR7Rec[ItemR7].COO = RegistroR7.COO;
-                        RegistrosR7Rec[ItemR7].CCF = RegistroR7.CCF;
-                        RegistrosR7Rec[ItemR7].GNF = RegistroR7.GNF;
-                        RegistrosR7Rec[ItemR7].MP = ToUTF8(RegistroR7.MP);
-                        RegistrosR7Rec[ItemR7].VL_PAGTO = Convert.ToDouble(RegistroR7.VL_PAGTO);
-                        RegistrosR7Rec[ItemR7].IND_EST = ToUTF8(RegistroR7.IND_EST);
-                        RegistrosR7Rec[ItemR7].VL_EST = Convert.ToDouble(RegistroR7.VL_EST);
-                        RegistrosR7Rec[ItemR7].RegistroValido = RegistroR7.RegistroValido;
-                        ItemR7++;
+						registrosR7Rec[itemR7].COO = registroR7.COO;
+                        registrosR7Rec[itemR7].CCF = registroR7.CCF;
+                        registrosR7Rec[itemR7].GNF = registroR7.GNF;
+                        registrosR7Rec[itemR7].MP = ToUTF8(registroR7.MP);
+                        registrosR7Rec[itemR7].VL_PAGTO = Convert.ToDouble(registroR7.VL_PAGTO);
+                        registrosR7Rec[itemR7].IND_EST = ToUTF8(registroR7.IND_EST);
+                        registrosR7Rec[itemR7].VL_EST = Convert.ToDouble(registroR7.VL_EST);
+                        registrosR7Rec[itemR7].RegistroValido = registroR7.RegistroValido;
+                        itemR7++;
                     }
 
-                    ItemR4++;
+                    itemR4++;
                 }
                 #endregion
 
                 #region R6 e R7
 
-                foreach(ACBrPAFRegistroR6 R6 in R1.RegistroR6)
+                foreach(ACBrPAFRegistroR6 r6 in r1.RegistroR6)
                 {
-                    RegistrosR6Rec[ItemR6].QTD_R7 = R6.RegistroR7.Count;
-                    RegistrosR6Rec[ItemR6].NUM_USU = R6.NUM_USU;
-                    RegistrosR6Rec[ItemR6].COO = R6.COO;
-                    RegistrosR6Rec[ItemR6].GNF = R6.GNF;
-                    RegistrosR6Rec[ItemR6].GRG = R6.GRG;
-                    RegistrosR6Rec[ItemR6].CDC = R6.CDC;
-                    RegistrosR6Rec[ItemR6].DENOM = ToUTF8(R6.DENOM);
-                    RegistrosR6Rec[ItemR6].DT_FIN = R6.DT_FIN.ToOADate();
-                    RegistrosR6Rec[ItemR6].HR_FIN = R6.HR_FIN.ToOADate();
-                    RegistrosR6Rec[ItemR6].RegistroValido = R6.RegistroValido;
+                    registrosR6Rec[itemR6].QTD_R7 = r6.RegistroR7.Count;
+                    registrosR6Rec[itemR6].NUM_USU = r6.NUM_USU;
+                    registrosR6Rec[itemR6].COO = r6.COO;
+                    registrosR6Rec[itemR6].GNF = r6.GNF;
+                    registrosR6Rec[itemR6].GRG = r6.GRG;
+                    registrosR6Rec[itemR6].CDC = r6.CDC;
+                    registrosR6Rec[itemR6].DENOM = ToUTF8(r6.DENOM);
+                    registrosR6Rec[itemR6].DT_FIN = r6.DT_FIN.ToOADate();
+                    registrosR6Rec[itemR6].HR_FIN = r6.HR_FIN.ToOADate();
+                    registrosR6Rec[itemR6].RegistroValido = r6.RegistroValido;
 
-                    foreach(ACBrPAFRegistroR7 RegistroR7 in R6.RegistroR7)
+                    foreach(ACBrPAFRegistroR7 registroR7 in r6.RegistroR7)
                     {
-						RegistrosR7Rec[ItemR7].COO = RegistroR7.COO;
-                        RegistrosR7Rec[ItemR7].CCF = RegistroR7.CCF;
-                        RegistrosR7Rec[ItemR7].GNF = RegistroR7.GNF;
-                        RegistrosR7Rec[ItemR7].MP = ToUTF8(RegistroR7.MP);
-                        RegistrosR7Rec[ItemR7].VL_PAGTO = Convert.ToDouble(RegistroR7.VL_PAGTO);
-                        RegistrosR7Rec[ItemR7].IND_EST = ToUTF8(RegistroR7.IND_EST);
-                        RegistrosR7Rec[ItemR7].VL_EST = Convert.ToDouble(RegistroR7.VL_EST);
-                        RegistrosR7Rec[ItemR7].RegistroValido = RegistroR7.RegistroValido;
-                        ItemR7++;
+						registrosR7Rec[itemR7].COO = registroR7.COO;
+                        registrosR7Rec[itemR7].CCF = registroR7.CCF;
+                        registrosR7Rec[itemR7].GNF = registroR7.GNF;
+                        registrosR7Rec[itemR7].MP = ToUTF8(registroR7.MP);
+                        registrosR7Rec[itemR7].VL_PAGTO = Convert.ToDouble(registroR7.VL_PAGTO);
+                        registrosR7Rec[itemR7].IND_EST = ToUTF8(registroR7.IND_EST);
+                        registrosR7Rec[itemR7].VL_EST = Convert.ToDouble(registroR7.VL_EST);
+                        registrosR7Rec[itemR7].RegistroValido = registroR7.RegistroValido;
+                        itemR7++;
                     }
 
-                    ItemR6++;
+                    itemR6++;
                 }
 
                 #endregion
 
-                ItemR1++;
+                itemR1++;
             }
 
-            int ret = ACBrPAFInterop.PAF_Preenche_R(Handle, PAF_R.RegistroR1.Count,
-                                                            RegistrosR1Rec,
-                                                            RegistrosR2Rec,
-                                                            RegistrosR3Rec,
-                                                            RegistrosR4Rec,
-                                                            RegistrosR5Rec,
-                                                            RegistrosR6Rec,
-                                                            RegistrosR7Rec);
+            var ret = ACBrPAFInterop.PAF_Preenche_R(Handle, PafR.RegistroR1.Count,
+                                                            registrosR1Rec,
+                                                            registrosR2Rec,
+                                                            registrosR3Rec,
+                                                            registrosR4Rec,
+                                                            registrosR5Rec,
+                                                            registrosR6Rec,
+                                                            registrosR7Rec);
             CheckResult(ret);
         }
 
         private void PAF_Preenche_P()
         {
-            ACBrPAFInterop.RegistroHD1Rec registroP1Rec = new ACBrPAFInterop.RegistroHD1Rec
+            var registroP1Rec = new ACBrPAFInterop.RegistroHD1Rec
             {
-                CNPJ = PAF_P.RegistroP1.CNPJ,
-                IE = PAF_P.RegistroP1.IE,
-                IM = PAF_P.RegistroP1.IM,
-                RAZAOSOCIAL = PAF_P.RegistroP1.RazaoSocial,
-                UF = PAF_P.RegistroP1.UF
+                CNPJ = PafP.RegistroP1.CNPJ,
+                IE = PafP.RegistroP1.IE,
+                IM = PafP.RegistroP1.IM,
+                RAZAOSOCIAL = PafP.RegistroP1.RazaoSocial,
+                UF = PafP.RegistroP1.UF
             };
 
-            ACBrPAFInterop.RegistroP2Rec[] RegistrosP2Rec = (from x in PAF_P.RegistroP2
+            var registrosP2Rec = (from x in PafP.RegistroP2
                                                              select new ACBrPAFInterop.RegistroP2Rec
                                                              {
                                                                  ALIQ = (double)x.ALIQ,
@@ -732,69 +737,72 @@ namespace ACBrFramework.PAF
                                                                  VL_UNIT = (double)x.VL_UNIT
                                                              }).ToArray();
 
-            int ret = ACBrPAFInterop.PAF_Preenche_P(Handle, registroP1Rec, RegistrosP2Rec, RegistrosP2Rec.Count());
+            var ret = ACBrPAFInterop.PAF_Preenche_P(Handle, registroP1Rec, registrosP2Rec, registrosP2Rec.Count());
             CheckResult(ret);
         }
 
-		private void PAF_Preenche_S()
-		{
-			if (PAF_S.RegistroS2.Count < 1)
-				return;
+	    private void PAF_Preenche_S()
+	    {
+	        if (PafS.RegistroS2.Count < 1)
+	            return;
 
-			ACBrPAFInterop.RegistroS2Rec[] RegistrosS2Rec = (from x in PAF_S.RegistroS2
-															 select new ACBrPAFInterop.RegistroS2Rec
-															 {
-																 QTD_S3     = x.RegistroS3.Count,
-																 CNPJ       = ToUTF8(x.CNPJ),
-																 DT_ABER    = x.DT_ABER.ToOADate(),
-																 SITU       = ToUTF8(x.SITU),
-																 VL_TOT     = (double)x.VL_TOT,
-																 COO_CM     = ToUTF8(x.COO_CM),
-																 NUM_FAB_CM = ToUTF8(x.NUM_FAB_CM),
-																 COO        = ToUTF8(x.COO),
-																 NUM_FAB = ToUTF8(x.NUM_FAB)
-															 }).ToArray();
+	        var registrosS2Rec = (from x in PafS.RegistroS2
+	            select new ACBrPAFInterop.RegistroS2Rec
+	            {
+	                QTD_S3 = x.RegistroS3.Count,
+	                CNPJ = ToUTF8(x.CNPJ),
+	                DT_ABER = x.DT_ABER.ToOADate(),
+	                SITU = ToUTF8(x.SITU),
+	                VL_TOT = (double) x.VL_TOT,
+	                COO_CM = ToUTF8(x.COO_CM),
+	                NUM_FAB_CM = ToUTF8(x.NUM_FAB_CM),
+	                COO = ToUTF8(x.COO),
+	                NUM_FAB = ToUTF8(x.NUM_FAB)
+	            }).ToArray();
 
-			ACBrPAFInterop.RegistroS3Rec[] RegistrosS3Rec =  (from s in ((from x in PAF_S.RegistroS2 select x.RegistroS3.AsEnumerable())
-															  .Aggregate((i, j) => i.Concat(j)))
-															  select new ACBrPAFInterop.RegistroS3Rec
-															  {
-																  COD_ITEM   = ToUTF8(s.COD_ITEM),
-																  DESC_ITEM  = ToUTF8(s.DESC_ITEM),
-																  QTDE_ITEM  = (double)s.QTDE_ITEM,
-																  UNI_ITEM   = ToUTF8(s.UNI_ITEM),
-																  VL_UNIT    = (double)s.VL_UNIT
-															  }).ToArray();
+            var s3Count = PafS.RegistroS2.Sum(x => x.RegistroS3.Count);
+	        var registrosS3Rec = new ACBrPAFInterop.RegistroS3Rec[0];
+	        if (s3Count > 0)
+	        {
+	            registrosS3Rec = (from s in ((from x in PafS.RegistroS2 select x.RegistroS3.AsEnumerable())
+	                .Aggregate((i, j) => i.Concat(j)))
+	                select new ACBrPAFInterop.RegistroS3Rec
+	                {
+	                    COD_ITEM = ToUTF8(s.COD_ITEM),
+	                    DESC_ITEM = ToUTF8(s.DESC_ITEM),
+	                    QTDE_ITEM = (double) s.QTDE_ITEM,
+	                    UNI_ITEM = ToUTF8(s.UNI_ITEM),
+	                    VL_UNIT = (double) s.VL_UNIT
+	                }).ToArray();
+	        }
 
+	        var ret = ACBrPAFInterop.PAF_Preenche_S(Handle, registrosS2Rec.Length, registrosS2Rec, registrosS3Rec);
+	        CheckResult(ret);
+	    }
 
-
-			int ret = ACBrPAFInterop.PAF_Preenche_S(Handle, RegistrosS2Rec.Length, RegistrosS2Rec, RegistrosS3Rec);
-			CheckResult(ret);
-		}
-
-        private void PAF_Preenche_E()
+	    private void PAF_Preenche_E()
         {
             #region E1
-            ACBrPAFInterop.RegistroHD2Rec RegistroE1Rec = new ACBrPAFInterop.RegistroHD2Rec
+            var registroE1Rec = new ACBrPAFInterop.RegistroHD2Rec
             {
-                RAZAOSOCIAL = ToUTF8(PAF_E.RegistroE1.RazaoSocial),
-                CNPJ = ToUTF8(PAF_E.RegistroE1.CNPJ),
-                UF = ToUTF8(PAF_E.RegistroE1.UF),
-                IE = ToUTF8(PAF_E.RegistroE1.IE),
-                IM = ToUTF8(PAF_E.RegistroE1.IM),
-                TIPO_ECF = ToUTF8(PAF_E.RegistroE1.TIPO_ECF),
-                MARCA_ECF = ToUTF8(PAF_E.RegistroE1.MARCA_ECF),
-                MODELO_ECF = ToUTF8(PAF_E.RegistroE1.MODELO_ECF),
-                NUM_FAB = ToUTF8(PAF_E.RegistroE1.NUM_FAB),
-                MF_ADICIONAL = ToUTF8(PAF_E.RegistroE1.MF_ADICIONAL),
-                DT_EST = PAF_E.RegistroE1.DT_EST.ToOADate(),
-                RegistroValido = PAF_E.RegistroE1.RegistroValido,
-                InclusaoExclusao = PAF_E.RegistroE1.InclusaoExclusao
+                RAZAOSOCIAL = ToUTF8(PafE.RegistroE1.RazaoSocial),
+                CNPJ = ToUTF8(PafE.RegistroE1.CNPJ),
+                UF = ToUTF8(PafE.RegistroE1.UF),
+                IE = ToUTF8(PafE.RegistroE1.IE),
+                IM = ToUTF8(PafE.RegistroE1.IM),
+                TIPO_ECF = ToUTF8(PafE.RegistroE1.TIPO_ECF),
+                MARCA_ECF = ToUTF8(PafE.RegistroE1.MARCA_ECF),
+                MODELO_ECF = ToUTF8(PafE.RegistroE1.MODELO_ECF),
+                NUM_FAB = ToUTF8(PafE.RegistroE1.NUM_FAB),
+                MF_ADICIONAL = ToUTF8(PafE.RegistroE1.MF_ADICIONAL),
+                DT_EST = PafE.RegistroE1.DT_EST.ToOADate(),
+                RegistroValido = PafE.RegistroE1.RegistroValido,
+                InclusaoExclusao = PafE.RegistroE1.InclusaoExclusao
             };
             #endregion
 
             #region E2
-            ACBrPAFInterop.RegistroE2Rec[] RegistrosE2Rec = (from x in PAF_E.RegistroE2
+            var registrosE2Rec = (from x in PafE.RegistroE2
                                                              select new ACBrPAFInterop.RegistroE2Rec
                                                              {
                                                                  COD_MERC = ToUTF8(x.COD_MERC),
@@ -806,20 +814,20 @@ namespace ACBrFramework.PAF
             #endregion
 
             #region E3
-            ACBrPAFInterop.RegistroE3Rec RegistroE3Rec = new ACBrPAFInterop.RegistroE3Rec
+            var registroE3Rec = new ACBrPAFInterop.RegistroE3Rec
             {
-                DataEstoque = PAF_E.RegistroE3.DataEstoque.ToOADate(),
-                HoraEstoque = (double)PAF_E.RegistroE3.HoraEstoque,
-                MarcaECF = PAF_E.RegistroE3.MarcaECF,
-                MFAdicional = PAF_E.RegistroE3.MFAdicional,
-                ModeloECF = PAF_E.RegistroE3.ModeloECF,
-                NumeroFabricacao = PAF_E.RegistroE3.NumeroFabricacao,
-                RegistroValido = PAF_E.RegistroE3.RegistroValido,
-                TipoECF = PAF_E.RegistroE3.TipoECF,
+                DataEstoque = PafE.RegistroE3.DataEstoque.ToOADate(),
+                HoraEstoque = (double)PafE.RegistroE3.HoraEstoque,
+                MarcaECF = PafE.RegistroE3.MarcaECF,
+                MFAdicional = PafE.RegistroE3.MFAdicional,
+                ModeloECF = PafE.RegistroE3.ModeloECF,
+                NumeroFabricacao = PafE.RegistroE3.NumeroFabricacao,
+                RegistroValido = PafE.RegistroE3.RegistroValido,
+                TipoECF = PafE.RegistroE3.TipoECF,
             };
             #endregion
 
-            int ret = ACBrPAFInterop.PAF_Preenche_E(Handle, RegistroE1Rec, RegistrosE2Rec, RegistroE3Rec, PAF_E.RegistroE2.Count);
+            var ret = ACBrPAFInterop.PAF_Preenche_E(Handle, registroE1Rec, registrosE2Rec, registroE3Rec, PafE.RegistroE2.Count);
             CheckResult(ret);
         }
 
@@ -827,28 +835,28 @@ namespace ACBrFramework.PAF
         {
             #region H1
 
-			ACBrPAFInterop.RegistroHD2Rec RegistroH1Rec = new ACBrPAFInterop.RegistroHD2Rec() 
+			var registroH1Rec = new ACBrPAFInterop.RegistroHD2Rec() 
 			{ 
-				RAZAOSOCIAL = ToUTF8(PAF_H.RegistroH1.RazaoSocial), 
-				CNPJ = ToUTF8(PAF_H.RegistroH1.CNPJ),
-				UF = ToUTF8(PAF_H.RegistroH1.UF),
-				IE = ToUTF8(PAF_H.RegistroH1.IE),
-				IM = ToUTF8(PAF_H.RegistroH1.IM),
-				TIPO_ECF = ToUTF8(PAF_H.RegistroH1.TIPO_ECF),
-				MARCA_ECF = ToUTF8(PAF_H.RegistroH1.MARCA_ECF),
-				MODELO_ECF = ToUTF8(PAF_H.RegistroH1.MODELO_ECF),
-				NUM_FAB = ToUTF8(PAF_H.RegistroH1.NUM_FAB),
-				MF_ADICIONAL = ToUTF8(PAF_H.RegistroH1.MF_ADICIONAL),
-				DT_EST = PAF_H.RegistroH1.DT_EST.ToOADate(),
-				RegistroValido = PAF_H.RegistroH1.RegistroValido,
-				InclusaoExclusao = PAF_H.RegistroH1.InclusaoExclusao
+				RAZAOSOCIAL = ToUTF8(PafH.RegistroH1.RazaoSocial), 
+				CNPJ = ToUTF8(PafH.RegistroH1.CNPJ),
+				UF = ToUTF8(PafH.RegistroH1.UF),
+				IE = ToUTF8(PafH.RegistroH1.IE),
+				IM = ToUTF8(PafH.RegistroH1.IM),
+				TIPO_ECF = ToUTF8(PafH.RegistroH1.TIPO_ECF),
+				MARCA_ECF = ToUTF8(PafH.RegistroH1.MARCA_ECF),
+				MODELO_ECF = ToUTF8(PafH.RegistroH1.MODELO_ECF),
+				NUM_FAB = ToUTF8(PafH.RegistroH1.NUM_FAB),
+				MF_ADICIONAL = ToUTF8(PafH.RegistroH1.MF_ADICIONAL),
+				DT_EST = PafH.RegistroH1.DT_EST.ToOADate(),
+				RegistroValido = PafH.RegistroH1.RegistroValido,
+				InclusaoExclusao = PafH.RegistroH1.InclusaoExclusao
 			};
             
 			#endregion
 
             #region H2
 
-            ACBrPAFInterop.RegistroH2Rec[] RegistroH2Rec = (from x in PAF_H.RegistroH2
+            var registroH2Rec = (from x in PafH.RegistroH2
                                                             select new ACBrPAFInterop.RegistroH2Rec
                                                             {
                                                                 CNPJ_CRED_CARTAO = x.CNPJ_CRED_CARTAO,
@@ -863,125 +871,142 @@ namespace ACBrFramework.PAF
 
             #endregion
 
-            int ret = ACBrPAFInterop.PAF_Preenche_H(Handle, RegistroH1Rec, RegistroH2Rec, PAF_H.RegistroH2.Count);
+            var ret = ACBrPAFInterop.PAF_Preenche_H(Handle, registroH1Rec, registroH2Rec, PafH.RegistroH2.Count);
             CheckResult(ret);
         }
 
-        private void PAF_Preenche_D()
-        {
-            #region D1
+	    private void PAF_Preenche_D()
+	    {
+	        #region D1
 
-			ACBrPAFInterop.RegistroHD1Rec RegistroD1Rec = new ACBrPAFInterop.RegistroHD1Rec()
-			{
-				RAZAOSOCIAL = ToUTF8(PAF_D.RegistroD1.RazaoSocial),
-				CNPJ = ToUTF8(PAF_D.RegistroD1.CNPJ),
-				UF = ToUTF8(PAF_D.RegistroD1.UF),
-				IE = ToUTF8(PAF_D.RegistroD1.IE),
-				IM = ToUTF8(PAF_D.RegistroD1.IM)
-			};
+	        var registroD1Rec = new ACBrPAFInterop.RegistroHD1Rec()
+	        {
+	            RAZAOSOCIAL = ToUTF8(PafD.RegistroD1.RazaoSocial),
+	            CNPJ = ToUTF8(PafD.RegistroD1.CNPJ),
+	            UF = ToUTF8(PafD.RegistroD1.UF),
+	            IE = ToUTF8(PafD.RegistroD1.IE),
+	            IM = ToUTF8(PafD.RegistroD1.IM)
+	        };
 
-            #endregion D1
+	        #endregion D1
 
-			#region D2
+	        #region D2
 
-			ACBrPAFInterop.RegistroD2Rec[] RegistrosD2Rec = (from x in PAF_D.RegistroD2
-															 select new ACBrPAFInterop.RegistroD2Rec
-															 {
-																 QTD_D3 = x.RegistroD3.Count,
-																 QTD_D4 = x.RegistroD4.Count,
-																 NUM_FAB = ToUTF8(x.NUM_FAB),
-																 MF_ADICIONAL = ToUTF8(x.MF_ADICIONAL),
-																 TIPO_ECF = ToUTF8(x.TIPO_ECF),
-																 MARCA_ECF = ToUTF8(x.MARCA_ECF),
-																 MODELO_ECF = ToUTF8(x.MODELO_ECF),
-																 COO = ToUTF8(x.COO),
-																 NUM_DAV = ToUTF8(x.NUM_DAV),
-																 DT_DAV = x.DT_DAV.ToOADate(),
-																 TIT_DAV = ToUTF8(x.TIT_DAV),
-																 VLT_DAV = Convert.ToDouble(x.VLT_DAV),
-																 COO_DFV = ToUTF8(x.COO_DFV),
-																 NUMERO_ECF = ToUTF8(x.NUMERO_ECF),
-																 NOME_CLIENTE = ToUTF8(x.NOME_CLIENTE),
-																 CPF_CNPJ = ToUTF8(x.CPF_CNPJ),
-																 RegistroValido = x.RegistroValido
-															 }).ToArray();
+	        var registrosD2Rec = (from x in PafD.RegistroD2
+	            select new ACBrPAFInterop.RegistroD2Rec
+	            {
+	                QTD_D3 = x.RegistroD3.Count,
+	                QTD_D4 = x.RegistroD4.Count,
+	                NUM_FAB = ToUTF8(x.NUM_FAB),
+	                MF_ADICIONAL = ToUTF8(x.MF_ADICIONAL),
+	                TIPO_ECF = ToUTF8(x.TIPO_ECF),
+	                MARCA_ECF = ToUTF8(x.MARCA_ECF),
+	                MODELO_ECF = ToUTF8(x.MODELO_ECF),
+	                COO = ToUTF8(x.COO),
+	                NUM_DAV = ToUTF8(x.NUM_DAV),
+	                DT_DAV = x.DT_DAV.ToOADate(),
+	                TIT_DAV = ToUTF8(x.TIT_DAV),
+	                VLT_DAV = Convert.ToDouble(x.VLT_DAV),
+	                COO_DFV = ToUTF8(x.COO_DFV),
+	                NUMERO_ECF = ToUTF8(x.NUMERO_ECF),
+	                NOME_CLIENTE = ToUTF8(x.NOME_CLIENTE),
+	                CPF_CNPJ = ToUTF8(x.CPF_CNPJ),
+	                RegistroValido = x.RegistroValido
+	            }).ToArray();
 
-			#endregion
+	        #endregion
 
-			#region D3
+	        #region D3
 
-			ACBrPAFInterop.RegistroD3Rec[] RegistrosD3Rec = (from s in
-																 ((from x in PAF_D.RegistroD2 select x.RegistroD3.AsEnumerable())
-																	 .Aggregate((i, j) => i.Concat(j)))
-															 select new ACBrPAFInterop.RegistroD3Rec
-															 {
-																 DT_INCLUSAO = s.DT_INCLUSAO.ToOADate(),
-																 NUM_ITEM = s.NUM_ITEM,
-																 COD_ITEM = ToUTF8(s.COD_ITEM),
-																 DESC_ITEM = ToUTF8(s.DESC_ITEM),
-																 QTDE_ITEM = Convert.ToDouble(s.QTDE_ITEM),
-																 UNI_ITEM = ToUTF8(s.UNI_ITEM),
-																 VL_UNIT = Convert.ToDouble(s.VL_UNIT),
-																 VL_DESCTO = Convert.ToDouble(s.VL_DESCTO),
-																 VL_ACRES = Convert.ToDouble(s.VL_ACRES),
-																 VL_TOTAL = Convert.ToDouble(s.VL_TOTAL),
-																 DEC_VL_UNIT = s.DEC_VL_UNIT,
-																 DEC_QTDE_ITEM = s.DEC_QTDE_ITEM,
-																 SIT_TRIB = ToUTF8(s.SIT_TRIB),
-																 ALIQ = Convert.ToDouble(s.ALIQ),
-																 IND_CANC = ToUTF8(s.IND_CANC),
-																 RegistroValido = s.RegistroValido
-															 }).ToArray();
+	        var d3Count = PafD.RegistroD2.Sum(x => x.RegistroD3.Count);
+	        var registrosD3Rec = new ACBrPAFInterop.RegistroD3Rec[0];
+	        if (d3Count > 0)
+	        {
+	            registrosD3Rec = (((from x in PafD.RegistroD2
+	                where x.RegistroD3.Any()
+	                select x.RegistroD3.AsEnumerable())
+	                .Aggregate((pafRegistroD3S, registroD3S) =>
+	                {
+	                    if (pafRegistroD3S != null && registroD3S != null)
+	                        return pafRegistroD3S.Concat(registroD3S);
 
-			#endregion D3
+	                    return new List<ACBrPAFRegistroD3>().AsEnumerable();
+	                })).Select(s => new ACBrPAFInterop.RegistroD3Rec
+	                {
+	                    DT_INCLUSAO = s.DT_INCLUSAO.ToOADate(),
+	                    NUM_ITEM = s.NUM_ITEM,
+	                    COD_ITEM = ToUTF8(s.COD_ITEM),
+	                    DESC_ITEM = ToUTF8(s.DESC_ITEM),
+	                    QTDE_ITEM = Convert.ToDouble(s.QTDE_ITEM),
+	                    UNI_ITEM = ToUTF8(s.UNI_ITEM),
+	                    VL_UNIT = Convert.ToDouble(s.VL_UNIT),
+	                    VL_DESCTO = Convert.ToDouble(s.VL_DESCTO),
+	                    VL_ACRES = Convert.ToDouble(s.VL_ACRES),
+	                    VL_TOTAL = Convert.ToDouble(s.VL_TOTAL),
+	                    DEC_VL_UNIT = s.DEC_VL_UNIT,
+	                    DEC_QTDE_ITEM = s.DEC_QTDE_ITEM,
+	                    SIT_TRIB = ToUTF8(s.SIT_TRIB),
+	                    ALIQ = Convert.ToDouble(s.ALIQ),
+	                    IND_CANC = ToUTF8(s.IND_CANC),
+	                    RegistroValido = s.RegistroValido
+	                })).ToArray();
+	        }
 
-			#region D4
+	        #endregion D3
 
-			ACBrPAFInterop.RegistroD4Rec[] RegistrosD4Rec = (from s in
-																 ((from x in PAF_D.RegistroD2 select x.RegistroD4.AsEnumerable())
-																	 .Aggregate((i, j) => i.Concat(j)))
-															 select new ACBrPAFInterop.RegistroD4Rec
-															 {
-																 NumeroDAV = s.NumeroDAV,
-																 DataAlteracao = (double)s.DataAlteracao,
-																 HoraAlteracao = (double)s.HoraAlteracao,
-																 CodigoProdutoServico = s.CodigoProdutoServico,
-																 Descricao = s.Descricao,
-																 Quantidade = (double)s.Quantidade,
-																 Unidade = s.Unidade,
-																 ValorUnitario = (double)s.ValorUnitario,
-																 DescontoSobreItem = (double)s.DescontoSobreItem,
-																 AcrescimoSobreItem = (double)s.AcrescimoSobreItem,
-																 ValorTotalLiquido = (double)s.ValorTotalLiquido,
-																 SituacaoTributaria = s.SituacaoTributaria,
-																 Aliquota = (double)s.Aliquota,
-																 IndicadorCancelamento = s.IndicadorCancelamento,
-																 CasasDecimaisQtd = s.CasasDecimaisQtd,
-																 CasasDecimaisVlUn = s.CasasDecimaisVlUn,
-																 TipoAlteracao = s.TipoAlteracao
-															 }).ToArray();
+	        #region D4
 
-			#endregion D4			
+	        var d4Count = PafD.RegistroD2.Sum(x => x.RegistroD4.Count);
+	        var registrosD4Rec = new ACBrPAFInterop.RegistroD4Rec[0];
+	        if (d4Count > 0)
+	        {
+	            registrosD4Rec = (from s in
+	                ((from x in PafD.RegistroD2 where x.RegistroD4.Any() select x.RegistroD4.AsEnumerable())
+	                    .Where(i => i.Any()).Aggregate((i, j) => i.Concat(j)))
+	                select new ACBrPAFInterop.RegistroD4Rec
+	                {
+	                    NumeroDAV = s.NumeroDAV,
+	                    DataAlteracao = (double) s.DataAlteracao,
+	                    HoraAlteracao = (double) s.HoraAlteracao,
+	                    CodigoProdutoServico = s.CodigoProdutoServico,
+	                    Descricao = s.Descricao,
+	                    Quantidade = (double) s.Quantidade,
+	                    Unidade = s.Unidade,
+	                    ValorUnitario = (double) s.ValorUnitario,
+	                    DescontoSobreItem = (double) s.DescontoSobreItem,
+	                    AcrescimoSobreItem = (double) s.AcrescimoSobreItem,
+	                    ValorTotalLiquido = (double) s.ValorTotalLiquido,
+	                    SituacaoTributaria = s.SituacaoTributaria,
+	                    Aliquota = (double) s.Aliquota,
+	                    IndicadorCancelamento = s.IndicadorCancelamento,
+	                    CasasDecimaisQtd = s.CasasDecimaisQtd,
+	                    CasasDecimaisVlUn = s.CasasDecimaisVlUn,
+	                    TipoAlteracao = s.TipoAlteracao
+	                }).ToArray();
+	        }
 
-            int ret = ACBrPAFInterop.PAF_Preenche_D(Handle, RegistroD1Rec, RegistrosD2Rec, PAF_D.RegistroD2.Count, RegistrosD3Rec, RegistrosD4Rec, RegistrosD4Rec.Count());
-            CheckResult(ret);
-        }
+	        #endregion D4			
 
-        private void PAF_Preenche_C()
+	        var ret = ACBrPAFInterop.PAF_Preenche_D(Handle, registroD1Rec, registrosD2Rec, PafD.RegistroD2.Count,
+	            registrosD3Rec, registrosD4Rec, registrosD4Rec.Count());
+	        CheckResult(ret);
+	    }
+
+	    private void PAF_Preenche_C()
         {
             #region C1
-            ACBrPAFInterop.RegistroHD1Rec RegistroC1Rec = new ACBrPAFInterop.RegistroHD1Rec
+            var registroC1Rec = new ACBrPAFInterop.RegistroHD1Rec
                 {
-                    RAZAOSOCIAL = ToUTF8(PAF_C.RegistroC1.RazaoSocial),
-                    CNPJ = ToUTF8(PAF_C.RegistroC1.CNPJ),
-                    UF = ToUTF8(PAF_C.RegistroC1.UF),
-                    IE = ToUTF8(PAF_C.RegistroC1.IE),
-                    IM = ToUTF8(PAF_C.RegistroC1.IM)
+                    RAZAOSOCIAL = ToUTF8(PafC.RegistroC1.RazaoSocial),
+                    CNPJ = ToUTF8(PafC.RegistroC1.CNPJ),
+                    UF = ToUTF8(PafC.RegistroC1.UF),
+                    IE = ToUTF8(PafC.RegistroC1.IE),
+                    IM = ToUTF8(PafC.RegistroC1.IM)
                 };
             #endregion
 
             #region C2
-            ACBrPAFInterop.RegistroC2Rec[] RegistrosC2Rec = (from x in PAF_C.RegistroC2
+            var registrosC2Rec = (from x in PafC.RegistroC2
                                                              select new ACBrPAFInterop.RegistroC2Rec
                                                              {
                                                                  ID_ABASTECIMENTO = ToUTF8(x.ID_ABASTECIMENTO),
@@ -1004,25 +1029,25 @@ namespace ACBrFramework.PAF
 
             #endregion
 
-            int ret = ACBrPAFInterop.PAF_Preenche_C(Handle, RegistroC1Rec, RegistrosC2Rec, PAF_C.RegistroC2.Count);
+            var ret = ACBrPAFInterop.PAF_Preenche_C(Handle, registroC1Rec, registrosC2Rec, PafC.RegistroC2.Count);
             CheckResult(ret);
         }
 
         private void PAF_Preenche_B()
         {
             #region B1
-            ACBrPAFInterop.RegistroHD1Rec RegistroB1Rec = new ACBrPAFInterop.RegistroHD1Rec
+            var registroB1Rec = new ACBrPAFInterop.RegistroHD1Rec
             {
-                RAZAOSOCIAL = ToUTF8(PAF_B.RegistroB1.RazaoSocial),
-                CNPJ = ToUTF8(PAF_B.RegistroB1.CNPJ),
-                UF = ToUTF8(PAF_B.RegistroB1.UF),
-                IE = ToUTF8(PAF_B.RegistroB1.IE),
-                IM = ToUTF8(PAF_B.RegistroB1.IM)
+                RAZAOSOCIAL = ToUTF8(PafB.RegistroB1.RazaoSocial),
+                CNPJ = ToUTF8(PafB.RegistroB1.CNPJ),
+                UF = ToUTF8(PafB.RegistroB1.UF),
+                IE = ToUTF8(PafB.RegistroB1.IE),
+                IM = ToUTF8(PafB.RegistroB1.IM)
             };
             #endregion
 
             #region B2
-            ACBrPAFInterop.RegistroB2Rec[] RegistrosB2Rec = (from x in PAF_B.RegistroB2
+            var registrosB2Rec = (from x in PafB.RegistroB2
                                                              select new ACBrPAFInterop.RegistroB2Rec
                                                              {
                                                                  BOMBA = ToUTF8(x.BOMBA),
@@ -1040,13 +1065,13 @@ namespace ACBrFramework.PAF
                                                              }).ToArray();
             #endregion
 
-            int ret = ACBrPAFInterop.PAF_Preenche_B(Handle, RegistroB1Rec, RegistrosB2Rec, PAF_B.RegistroB2.Count);
+            var ret = ACBrPAFInterop.PAF_Preenche_B(Handle, registroB1Rec, registrosB2Rec, PafB.RegistroB2.Count);
             CheckResult(ret);
         }
 
         private void PAF_Preenche_A()
         {
-            ACBrPAFInterop.RegistroA2Rec[] RegistrosA2Rec = (from x in PAF_A.RegistroA2
+            var registrosA2Rec = (from x in PafA.RegistroA2
                                                              select new ACBrPAFInterop.RegistroA2Rec
                                                              {
                                                                  CodigoTipoDocumento = ((int)x.CodigoTipoDocumento).ToString(),
@@ -1056,61 +1081,61 @@ namespace ACBrFramework.PAF
 																 Valor = (double)x.Valor
                                                              }).ToArray();
 
-            int ret = ACBrPAFInterop.PAF_Preenche_A(Handle, RegistrosA2Rec, PAF_A.RegistroA2.Count);
+            var ret = ACBrPAFInterop.PAF_Preenche_A(Handle, registrosA2Rec, PafA.RegistroA2.Count);
             CheckResult(ret);
         }
 
         private void PAF_Preenche_TITP()
         {
-            int ItemIndex = 0;
-			int InsumosCount = PAF_TITP.Mercadorias.Sum(s => s.Insumos.Count);
+            var itemIndex = 0;
+			var insumosCount = PafTitp.Mercadorias.Sum(s => s.Insumos.Count);
 
-            ACBrPAFInterop.RegistroMercadoriasRec[] MercadoriasRec = new ACBrPAFInterop.RegistroMercadoriasRec[PAF_TITP.Mercadorias.Count];
-            ACBrPAFInterop.RegistroInsumosRec[] InsumosRec = new ACBrPAFInterop.RegistroInsumosRec[InsumosCount];
+            var mercadoriasRec = new ACBrPAFInterop.RegistroMercadoriasRec[PafTitp.Mercadorias.Count];
+            var insumosRec = new ACBrPAFInterop.RegistroInsumosRec[insumosCount];
 
-            for (int i = 0; i < PAF_TITP.Mercadorias.Count; i++)
+            for (var i = 0; i < PafTitp.Mercadorias.Count; i++)
             {
-                MercadoriasRec[i].Descricao = ToUTF8(PAF_TITP.Mercadorias[i].Descricao);
-                MercadoriasRec[i].Codigo = ToUTF8(PAF_TITP.Mercadorias[i].Codigo);
-                MercadoriasRec[i].Aliquota = Convert.ToDouble(PAF_TITP.Mercadorias[i].Aliquota);
-                MercadoriasRec[i].Unidade = ToUTF8(PAF_TITP.Mercadorias[i].Unidade);
-                MercadoriasRec[i].Quantidade = Convert.ToDouble(PAF_TITP.Mercadorias[i].Quantidade);
-                MercadoriasRec[i].Ean = ToUTF8(PAF_TITP.Mercadorias[i].Ean);
-                MercadoriasRec[i].CST = ToUTF8(PAF_TITP.Mercadorias[i].CST);
-                MercadoriasRec[i].VlrUnitario = Convert.ToDouble(PAF_TITP.Mercadorias[i].VlrUnitario);
-                MercadoriasRec[i].QTD_Insumos = PAF_TITP.Mercadorias[i].Insumos.Count;
+                mercadoriasRec[i].Descricao = ToUTF8(PafTitp.Mercadorias[i].Descricao);
+                mercadoriasRec[i].Codigo = ToUTF8(PafTitp.Mercadorias[i].Codigo);
+                mercadoriasRec[i].Aliquota = Convert.ToDouble(PafTitp.Mercadorias[i].Aliquota);
+                mercadoriasRec[i].Unidade = ToUTF8(PafTitp.Mercadorias[i].Unidade);
+                mercadoriasRec[i].Quantidade = Convert.ToDouble(PafTitp.Mercadorias[i].Quantidade);
+                mercadoriasRec[i].Ean = ToUTF8(PafTitp.Mercadorias[i].Ean);
+                mercadoriasRec[i].CST = ToUTF8(PafTitp.Mercadorias[i].CST);
+                mercadoriasRec[i].VlrUnitario = Convert.ToDouble(PafTitp.Mercadorias[i].VlrUnitario);
+                mercadoriasRec[i].QTD_Insumos = PafTitp.Mercadorias[i].Insumos.Count;
 
-                foreach (ACBrPAFRegistroInsumo Insumo in PAF_TITP.Mercadorias[i].Insumos)
+                foreach (ACBrPAFRegistroInsumo insumo in PafTitp.Mercadorias[i].Insumos)
                 {
-                    InsumosRec[ItemIndex].Descricao = ToUTF8(Insumo.Descricao);
-                    InsumosRec[ItemIndex].Codigo = ToUTF8(Insumo.Codigo);
-                    InsumosRec[ItemIndex].Aliquota = Convert.ToDouble(Insumo.Aliquota);
-                    InsumosRec[ItemIndex].Unidade = ToUTF8(Insumo.Unidade);
-                    InsumosRec[ItemIndex].Quantidade = Convert.ToDouble(Insumo.Quantidade);
-                    InsumosRec[ItemIndex].Ean = ToUTF8(Insumo.Ean);
-                    InsumosRec[ItemIndex].CST = ToUTF8(Insumo.CST);
-                    InsumosRec[ItemIndex].VlrUnitario = Convert.ToDouble(Insumo.VlrUnitario);
-                    ItemIndex++;
+                    insumosRec[itemIndex].Descricao = ToUTF8(insumo.Descricao);
+                    insumosRec[itemIndex].Codigo = ToUTF8(insumo.Codigo);
+                    insumosRec[itemIndex].Aliquota = Convert.ToDouble(insumo.Aliquota);
+                    insumosRec[itemIndex].Unidade = ToUTF8(insumo.Unidade);
+                    insumosRec[itemIndex].Quantidade = Convert.ToDouble(insumo.Quantidade);
+                    insumosRec[itemIndex].Ean = ToUTF8(insumo.Ean);
+                    insumosRec[itemIndex].CST = ToUTF8(insumo.CST);
+                    insumosRec[itemIndex].VlrUnitario = Convert.ToDouble(insumo.VlrUnitario);
+                    itemIndex++;
                 }
             }
 
-            int ret = ACBrPAFInterop.PAF_Preenche_TITP(this.Handle, MercadoriasRec, PAF_TITP.Mercadorias.Count, InsumosRec, PAF_TITP.Titulo.ToUTF8(),
-                                                        PAF_TITP.Data.ToOADate());
+            var ret = ACBrPAFInterop.PAF_Preenche_TITP(this.Handle, mercadoriasRec, PafTitp.Mercadorias.Count, insumosRec, PafTitp.Titulo.ToUTF8(),
+                                                        PafTitp.Data.ToOADate());
 			CheckResult(ret);
         }
 
         private void LimparRegistros()
         {
-            PAF_A.LimparRegistros();
-            PAF_B.LimparRegistros();
-            PAF_C.LimparRegistros();
-            PAF_D.LimparRegistros();
-            PAF_E.LimparRegistros();
-            PAF_N.LimparRegistros();
-            PAF_P.LimparRegistros();
-            PAF_R.LimparRegistros();
-            PAF_T.LimparRegistros();
-            PAF_U.LimparRegistros();
+            PafA.LimparRegistros();
+            PafB.LimparRegistros();
+            PafC.LimparRegistros();
+            PafD.LimparRegistros();
+            PafE.LimparRegistros();
+            PafN.LimparRegistros();
+            PafP.LimparRegistros();
+            PafR.LimparRegistros();
+            PafT.LimparRegistros();
+            PafU.LimparRegistros();
         }
 
         #endregion Preenche Registros
@@ -1120,19 +1145,19 @@ namespace ACBrFramework.PAF
         protected internal override void OnInitialize()
 		{
 			CallCreate(ACBrPAFInterop.PAF_Create);
-            PAF_A = new ACBrPAF_A(this);
-			PAF_B = new ACBrPAF_B(this);
-			PAF_C = new ACBrPAF_C(this);
-			PAF_D = new ACBrPAF_D(this);
-			PAF_E = new ACBrPAF_E(this);
-			PAF_H = new ACBrPAF_H(this);
-			PAF_N = new ACBrPAF_N(this);
-			PAF_P = new ACBrPAF_P(this);
-			PAF_R = new ACBrPAF_R(this);
-			PAF_S = new ACBrPAF_S(this);
-			PAF_T = new ACBrPAF_T(this);
-            PAF_U = new ACBrPAF_U(this);
-			PAF_TITP = new ACBrPAF_TITP(this);
+            PafA = new ACBrPAF_A(this);
+			PafB = new ACBrPAF_B(this);
+			PafC = new ACBrPAF_C(this);
+			PafD = new ACBrPAF_D(this);
+			PafE = new ACBrPAF_E(this);
+			PafH = new ACBrPAF_H(this);
+			PafN = new ACBrPAF_N(this);
+			PafP = new ACBrPAF_P(this);
+			PafR = new ACBrPAF_R(this);
+			PafS = new ACBrPAF_S(this);
+			PafT = new ACBrPAF_T(this);
+            PafU = new ACBrPAF_U(this);
+			PafTitp = new ACBrPAF_TITP(this);
 		}
 
 		protected internal override void CheckResult(int ret)
@@ -1141,7 +1166,7 @@ namespace ACBrFramework.PAF
 			{
 				case -1:
 
-					string error = GetString(ACBrPAFInterop.PAF_GetUltimoErro);
+					var error = GetString(ACBrPAFInterop.PAF_GetUltimoErro);
 					throw new ACBrException(error);
 
 				case -2:
@@ -1163,12 +1188,12 @@ namespace ACBrFramework.PAF
 		#region EventHandlers
 
 		[AllowReversePInvokeCalls]
-		private string OnPAFGetKeyRSACallBack()
+		private string OnPafGetKeyRsaCallBack()
 		{
-			ChaveEventArgs e = new ChaveEventArgs();
+			var e = new ChaveEventArgs();
 
-			if (onPAFGetKeyRSA.IsAssigned)
-				onPAFGetKeyRSA.Raise(e);
+			if (onPafGetKeyRsa.IsAssigned)
+				onPafGetKeyRsa.Raise(e);
 
 			return e.Chave;
 		}
