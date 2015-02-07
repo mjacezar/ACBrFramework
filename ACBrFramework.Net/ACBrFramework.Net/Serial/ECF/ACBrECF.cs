@@ -4322,6 +4322,15 @@ namespace ACBrFramework.ECF
             CheckResult(ret);
         }
 
+#if !COM_INTEROP
+
+        public void PafMF_RelMeiosPagamento(IEnumerable<FormaPagamento> formasPagamento, string TituloRelatorio,
+            int indiceRelatorio)
+        {
+            PafMF_RelMeiosPagamento(formasPagamento.ToArray(), TituloRelatorio, indiceRelatorio);
+        }
+#endif
+
         public void PafMF_RelIdentificacaoPafECF(IdenticacaoPaf identificacaoPAF = null, int indiceRelatorio = 0)
         {
             IdenticacaoPaf identificaPAF;
@@ -5007,22 +5016,22 @@ namespace ACBrFramework.ECF
 
             if (ret == 0)
                 return null;
-            else
+
+            FormaPagamento forma = new FormaPagamento
             {
-                FormaPagamento Forma = new FormaPagamento();
-                Forma.Data = DateTime.FromOADate(FormaRec.Data);
-                Forma.Descricao = FromUTF8(FormaRec.Descricao);
-                Forma.Indice = FromUTF8(FormaRec.Indice);
-                Forma.PermiteVinculado = FormaRec.PermiteVinculado;
-                Forma.TipoDoc = FromUTF8(FormaRec.TipoDoc);
-                Forma.Total = Convert.ToDecimal(FormaRec.Total);
+                Data = DateTime.FromOADate(FormaRec.Data),
+                Descricao = FromUTF8(FormaRec.Descricao),
+                Indice = FromUTF8(FormaRec.Indice),
+                PermiteVinculado = FormaRec.PermiteVinculado,
+                TipoDoc = FromUTF8(FormaRec.TipoDoc),
+                Total = Convert.ToDecimal(FormaRec.Total)
+            };
 
-                int count = GetInt32(ACBrECFInterop.ECF_GetFPGCount);
-                CheckResult(count);
-                CarregaFormasPagamento(count);
+            int count = GetInt32(ACBrECFInterop.ECF_GetFPGCount);
+            CheckResult(count);
+            CarregaFormasPagamento(count);
 
-                return Forma;
-            }
+            return forma;
         }
 
         public FormaPagamento AchaFPGIndice(string indice)
@@ -5033,22 +5042,21 @@ namespace ACBrFramework.ECF
 
             if (ret == 0)
                 return null;
-            else
+
+            FormaPagamento Forma = new FormaPagamento
             {
-                FormaPagamento Forma = new FormaPagamento();
-                Forma.Data = DateTime.FromOADate(FormaRec.Data);
-                Forma.Descricao = FromUTF8(FormaRec.Descricao);
-                Forma.Indice = FromUTF8(FormaRec.Indice);
-                Forma.PermiteVinculado = FormaRec.PermiteVinculado;
-                Forma.TipoDoc = FromUTF8(FormaRec.TipoDoc);
-                Forma.Total = Convert.ToDecimal(FormaRec.Total);
+                Data = DateTime.FromOADate(FormaRec.Data),
+                Descricao = FromUTF8(FormaRec.Descricao),
+                Indice = FromUTF8(FormaRec.Indice),
+                PermiteVinculado = FormaRec.PermiteVinculado,
+                TipoDoc = FromUTF8(FormaRec.TipoDoc),
+                Total = Convert.ToDecimal(FormaRec.Total)
+            };
 
-                int count = GetInt32(ACBrECFInterop.ECF_GetFPGCount);
-                CheckResult(count);
-                CarregaFormasPagamento(count);
-
-                return Forma;
-            }
+            int count = GetInt32(ACBrECFInterop.ECF_GetFPGCount);
+            CheckResult(count);
+            CarregaFormasPagamento(count);
+            return Forma;
         }
 
         public void CarregaFormasPagamento()
@@ -5068,13 +5076,15 @@ namespace ACBrFramework.ECF
                 int ret = ACBrECFInterop.ECF_GetFormaPagamento(this.Handle, ref record, i);
                 CheckResult(ret);
 
-                FormaPagamento formaPagamento = new FormaPagamento();
-                formaPagamento.Indice = FromUTF8(record.Indice);
-                formaPagamento.Descricao = FromUTF8(record.Descricao);
-                formaPagamento.PermiteVinculado = record.PermiteVinculado;
-                formaPagamento.Total = Convert.ToDecimal(record.Total);
-                formaPagamento.Data = DateTime.FromOADate(record.Data);
-                formaPagamento.TipoDoc = FromUTF8(record.TipoDoc);
+                FormaPagamento formaPagamento = new FormaPagamento
+                {
+                    Indice = FromUTF8(record.Indice),
+                    Descricao = FromUTF8(record.Descricao),
+                    PermiteVinculado = record.PermiteVinculado,
+                    Total = Convert.ToDecimal(record.Total),
+                    Data = DateTime.FromOADate(record.Data),
+                    TipoDoc = FromUTF8(record.TipoDoc)
+                };
 
                 formasPagamento[i] = formaPagamento;
             }

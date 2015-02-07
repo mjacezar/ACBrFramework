@@ -886,7 +886,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.descriptionToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.descriptionToolStripStatusLabel.Name = "descriptionToolStripStatusLabel";
-            this.descriptionToolStripStatusLabel.Size = new System.Drawing.Size(581, 17);
+            this.descriptionToolStripStatusLabel.Size = new System.Drawing.Size(612, 17);
             this.descriptionToolStripStatusLabel.Spring = true;
             this.descriptionToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1143,10 +1143,11 @@
             // 
             this.acBrECF1.AAC = null;
             this.acBrECF1.AguardaImpressao = false;
-            this.acBrECF1.ArqLOG = "";
+            this.acBrECF1.ArqLOG = "ecf_log.txt";
             this.acBrECF1.ArredondaItemMFD = false;
             this.acBrECF1.ArredondaPorQtd = false;
             this.acBrECF1.ComandoLog = "ComprovantesNaoFiscais";
+            this.acBrECF1.ControlePorta = false;
             this.acBrECF1.DecimaisPreco = 3;
             this.acBrECF1.DecimaisQtd = 3;
             this.acBrECF1.DescricaoGrande = false;
@@ -1189,12 +1190,14 @@
             this.acBrECF1.Operador = "";
             this.acBrECF1.PaginaDeCodigo = 0;
             this.acBrECF1.PausaRelatorio = 5;
+            this.acBrECF1.QuebraLinhaRodape = false;
+            this.acBrECF1.Retentar = true;
             this.acBrECF1.RFD = null;
             this.acBrECF1.OnMsgPoucoPapel += new System.EventHandler(this.acBrECF1_OnPoucoPapel);
             // 
             // acBrTEFD1
             // 
-            this.acBrTEFD1.ArqLOG = "";
+            this.acBrTEFD1.ArqLOG = "tef_log.txt";
             this.acBrTEFD1.AutoAtivar = true;
             this.acBrTEFD1.AutoEfetuarPagamento = true;
             this.acBrTEFD1.AutoFinalizarCupom = true;
@@ -1333,23 +1336,6 @@
             0,
             0,
             0});
-            this.acBrTEFD1.OnAguardaResp += new System.EventHandler<ACBrFramework.TEFD.AguardaRespEventArgs>(this.tef_OnAguardaResp);
-            this.acBrTEFD1.OnExibeMensagem += new System.EventHandler<ACBrFramework.TEFD.ExibeMensagemEventArgs>(this.tef_OnExibeMensagem);
-            this.acBrTEFD1.OnBloqueiaMouseTeclado += new System.EventHandler<ACBrFramework.TEFD.BloqueiaMouseTecladoEventArgs>(this.tef_OnBloqueiaMouseTeclado);
-            this.acBrTEFD1.OnRestauraFocoAplicacao += new System.EventHandler<ACBrFramework.TEFD.ExecutaAcaoEventArgs>(this.tef_OnRestauraFocoAplicacao);
-            this.acBrTEFD1.OnLimpaTeclado += new System.EventHandler<ACBrFramework.TEFD.ExecutaAcaoEventArgs>(this.tef_OnLimpaTeclado);
-            this.acBrTEFD1.OnComandaECF += new System.EventHandler<ACBrFramework.TEFD.ComandaECFEventArgs>(this.tef_OnComandaECF);
-            this.acBrTEFD1.OnComandaECFSubtotaliza += new System.EventHandler<ACBrFramework.TEFD.ComandaECFSubtotalizaEventArgs>(this.tef_OnComandaECFSubtotaliza);
-            this.acBrTEFD1.OnComandaECFPagamento += new System.EventHandler<ACBrFramework.TEFD.ComandaECFPagamentoEventArgs>(this.tef_OnComandaECFPagamento);
-            this.acBrTEFD1.OnComandaECFAbreVinculado += new System.EventHandler<ACBrFramework.TEFD.ComandaECFAbreVinculadoEventArgs>(this.tef_OnComandaECFAbreVinculado);
-            this.acBrTEFD1.OnComandaECFImprimeVia += new System.EventHandler<ACBrFramework.TEFD.ComandaECFImprimeViaEventArgs>(this.tef_OnComandaECFImprimeVia);
-            this.acBrTEFD1.OnInfoECF += new System.EventHandler<ACBrFramework.TEFD.InfoECFEventArgs>(this.tef_OnInfoECF);
-            this.acBrTEFD1.OnAntesFinalizarRequisicao += new System.EventHandler<ACBrFramework.TEFD.AntesFinalizarRequisicaoEventArgs>(this.tef_OnAntesFinalizarRequisicao);
-            this.acBrTEFD1.OnDepoisConfirmarTransacoes += new System.EventHandler<ACBrFramework.TEFD.DepoisConfirmarTransacoesEventArgs>(this.tef_OnDepoisConfirmarTransacoes);
-            this.acBrTEFD1.OnAntesCancelarTransacao += new System.EventHandler<ACBrFramework.TEFD.AntesCancelarTransacaoEventArgs>(this.tef_OnAntesCancelarTransacao);
-            this.acBrTEFD1.OnDepoisCancelarTransacoes += new System.EventHandler<ACBrFramework.TEFD.DepoisCancelarTransacoesEventArgs>(this.tef_OnDepoisCancelarTransacoes);
-            this.acBrTEFD1.OnMudaEstadoReq += new System.EventHandler<ACBrFramework.TEFD.MudaEstadoReqEventArgs>(this.tef_OnMudaEstadoReq);
-            this.acBrTEFD1.OnMudaEstadoResp += new System.EventHandler<ACBrFramework.TEFD.MudaEstadoRespEventArgs>(this.tef_OnMudaEstadoResp);
             // 
             // MainForm
             // 

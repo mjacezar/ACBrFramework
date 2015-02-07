@@ -7,8 +7,8 @@ using System.Text;
 namespace ACBrFramework.TEFD
 {
 	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.TEFD.ico.bmp")]
-	[TypeConverter(typeof(ExpandableObjectConverter))]
-	public sealed class ACBrTEFD : ACBrComponent, IDisposable
+	[TypeConverter(typeof(ACBrExpandableObjectConverter))]
+	public sealed class ACBrTEFD : ACBrComponent
 	{
 		#region Events
 
@@ -764,7 +764,7 @@ namespace ACBrFramework.TEFD
 		{
 			if (onExibeMensagem.IsAssigned)
 			{
-				ExibeMensagemEventArgs e = new ExibeMensagemEventArgs((OperacaoMensagem)Operacao, FromUTF8(Mensagem));
+                ExibeMensagemEventArgs e = new ExibeMensagemEventArgs((OperacaoMensagem)Operacao, FromUTF8(Mensagem));
 				onExibeMensagem.Raise(e);
 				AModalResult = e.ModalResult;
 			}
@@ -819,7 +819,7 @@ namespace ACBrFramework.TEFD
 					resp = new Resp(this, respHandle);
 				}
 
-				var e = new ComandaECFEventArgs((OperacaoECF)Operacao, resp);
+                var e = new ComandaECFEventArgs((OperacaoECF)Operacao, resp);
 				onComandaECF.Raise(e);
 				RetornoECF = e.RetornoECF ? 1 : 0;
 			}

@@ -41,6 +41,15 @@ Símbolo : Significado
 
 Changelog
 
+07/02/2015
+
+-- ACBrFramework 0.9.6.7 --
+[-] Ajustes nos eventos do TEF - ACBrTEFD - Rafael Dias.
+
+-- ACBrFramework.Net 0.9.6.7 --
+[-] Ajustes nos eventos do TEF - ACBrTEFD - Rafael Dias.
+[+] Adicionado no enum do sped as novas versões - ACBrSPEDFiscal - Rafael Dias.
+
 21/01/2015
 
 -- ACBrFramework 0.9.6.6 --

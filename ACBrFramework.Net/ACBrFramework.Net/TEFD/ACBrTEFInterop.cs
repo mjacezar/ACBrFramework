@@ -22,7 +22,7 @@ namespace ACBrFramework.TEFD
 		public delegate void AguardaRespCallback(string Arquivo, int SegundosTimeOut, ref bool Interromper);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void ExibeMsgCallback(int Operacao, string Mensagem, ref ModalResult AModalResult);
+        public delegate void ExibeMsgCallback(int Operacao, string Mensagem, ref ModalResult AModalResult);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void BloqueiaMouseTecladoCallback(bool Bloqueia, ref bool Tratado);
@@ -31,7 +31,7 @@ namespace ACBrFramework.TEFD
 		public delegate void ExecutaAcaoCallback(ref bool Tratado);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void ComandaECFCallback(int Operacao, IntPtr Resp, ref int RetornoECF);
+        public delegate void ComandaECFCallback(int Operacao, IntPtr Resp, ref int RetornoECF);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void ComandaECFSubtotalizaCallback(double DescAcre, ref int RetornoECF);

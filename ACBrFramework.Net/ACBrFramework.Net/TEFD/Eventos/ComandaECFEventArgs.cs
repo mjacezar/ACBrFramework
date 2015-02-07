@@ -6,10 +6,10 @@ namespace ACBrFramework.TEFD
 	{
 		#region Constructor
 
-		internal ComandaECFEventArgs(OperacaoECF operacao, Object resp)
+		internal ComandaECFEventArgs(OperacaoECF operacao, Resp resp)
 		{
 			this.Operacao = operacao;
-			this.Resp = resp;
+		    this.Resp = resp;
 		}
 
 		#endregion Constructor
@@ -18,7 +18,7 @@ namespace ACBrFramework.TEFD
 
 		public OperacaoECF Operacao { get; private set; }
 
-		public Object Resp { get; private set; }
+		public Resp Resp { get; private set; }
 
 		public bool RetornoECF { get; set; }
 

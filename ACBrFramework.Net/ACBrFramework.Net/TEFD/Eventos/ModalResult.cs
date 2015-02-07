@@ -1,11 +1,11 @@
 ﻿namespace ACBrFramework.TEFD
 {
-	public enum ModalResult : int
+	public enum ModalResult
 	{
 		None = 0,
 		Yes = 6,
 		No = 7,
-		OK = 1,
+		Ok = 1,
 		Cancel = 2,
 		Abort = 3,
 		Retry = 4,

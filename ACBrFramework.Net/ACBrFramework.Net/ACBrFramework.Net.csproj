@@ -170,6 +170,7 @@
     <Compile Include="AAC\Eventos\VerificarRecomporValorGTEventArgs.cs" />
     <Compile Include="ACBrFramework\ACBrClassInterop.cs" />
     <Compile Include="ACBrFramework\ACBrEventHandler.cs" />
+    <Compile Include="ACBrFramework\ACBrExpandableObjectConverter.cs" />
     <Compile Include="ACBrFramework\ACBrFrameworkExtensions.cs" />
     <Compile Include="ACBrFramework\ACBrInteropEventHandlerBase.cs" />
     <Compile Include="CEP\Classes\CEPWebService.cs" />

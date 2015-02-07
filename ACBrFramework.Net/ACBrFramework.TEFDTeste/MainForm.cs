@@ -26,7 +26,7 @@ namespace ACBrFramework.TEFDTeste
 
 			#endregion Comments
 
-			Form.CheckForIllegalCrossThreadCalls = false;
+			CheckForIllegalCrossThreadCalls = false;
 		}
 
 		public MainForm()
@@ -78,11 +78,30 @@ namespace ACBrFramework.TEFDTeste
             cmbTEFDirecao.Items.Add("Controle de Frota");
             cmbTEFDirecao.SelectedIndex = 0;
 
-			acBrTEFD1.TEFCliSiTef.OnExibeMenu += new EventHandler<TEFCliSiTefExibeMenuEventArgs>(TEFCliSiTef_OnExibeMenu);
-			acBrTEFD1.TEFCliSiTef.OnObtemCampo += new EventHandler<TEFCliSiTefObtemCampoEventArgs>(TEFCliSiTef_OnObtemCampo);
+            acBrTEFD1.OnAguardaResp += tef_OnAguardaResp;
+            acBrTEFD1.OnExibeMensagem += tef_OnExibeMensagem;
+            acBrTEFD1.OnBloqueiaMouseTeclado += tef_OnBloqueiaMouseTeclado;
+            acBrTEFD1.OnRestauraFocoAplicacao += tef_OnRestauraFocoAplicacao;
+            acBrTEFD1.OnLimpaTeclado += tef_OnLimpaTeclado;
+            acBrTEFD1.OnComandaECF += tef_OnComandaECF;
+            acBrTEFD1.OnComandaECFSubtotaliza += tef_OnComandaECFSubtotaliza;
+            acBrTEFD1.OnComandaECFPagamento += tef_OnComandaECFPagamento;
+            acBrTEFD1.OnComandaECFAbreVinculado += tef_OnComandaECFAbreVinculado;
+            acBrTEFD1.OnComandaECFImprimeVia += tef_OnComandaECFImprimeVia;
+            acBrTEFD1.OnInfoECF += tef_OnInfoECF;
+            acBrTEFD1.OnAntesFinalizarRequisicao += tef_OnAntesFinalizarRequisicao;
+            acBrTEFD1.OnDepoisConfirmarTransacoes += tef_OnDepoisConfirmarTransacoes;
+            acBrTEFD1.OnAntesCancelarTransacao += tef_OnAntesCancelarTransacao;
+            acBrTEFD1.OnDepoisCancelarTransacoes += tef_OnDepoisCancelarTransacoes;
+            acBrTEFD1.OnMudaEstadoReq += tef_OnMudaEstadoReq;
+            acBrTEFD1.OnMudaEstadoResp += tef_OnMudaEstadoResp;
+  
 
-            acBrTEFD1.TEFVeSPague.OnExibeMenu += new EventHandler<TEFVeSPagueExibeMenuEventArgs>(TEFVeSPague_OnExibeMenu);
-            acBrTEFD1.TEFVeSPague.OnObtemCampo += new EventHandler<TEFVeSPagueObtemCampoEventArgs>(TEFVeSPague_OnObtemCampo);
+			acBrTEFD1.TEFCliSiTef.OnExibeMenu += TEFCliSiTef_OnExibeMenu;
+			acBrTEFD1.TEFCliSiTef.OnObtemCampo += TEFCliSiTef_OnObtemCampo;
+
+            acBrTEFD1.TEFVeSPague.OnExibeMenu += TEFVeSPague_OnExibeMenu;
+            acBrTEFD1.TEFVeSPague.OnObtemCampo += TEFVeSPague_OnObtemCampo;
 		}
 
         private void ConfigSerial()
@@ -1079,7 +1098,7 @@ namespace ACBrFramework.TEFDTeste
 
         private void tef_OnRestauraFocoAplicacao(object sender, ExecutaAcaoEventArgs e)
 		{
-			this.Focus();
+			Focus();
 			e.Tratado = true;
 		}
 
@@ -1153,11 +1172,11 @@ namespace ACBrFramework.TEFDTeste
 			if (e.Operacao == OperacaoMensagem.OK)
 			{
 				MessageBox.Show(e.Mensagem);
-				e.ModalResult = ModalResult.OK;
+				e.ModalResult = ModalResult.Ok;
 			}
 			else if (e.Operacao == OperacaoMensagem.YesNo)
 			{
-				var ret = MessageBox.Show(this, e.Mensagem, this.Text, MessageBoxButtons.YesNo);
+				var ret = MessageBox.Show(this, e.Mensagem, Text, MessageBoxButtons.YesNo);
 				e.ModalResult = ret == DialogResult.Yes ? ModalResult.Yes : ModalResult.No;
 			}
 		}
