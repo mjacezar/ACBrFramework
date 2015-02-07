@@ -8310,28 +8310,32 @@ end;
 
 {%region PAF Espelho MFD }
 
-Function ECF_PafMF_MFD_Cotepe1704( const ecfHandle: PECFHandle; const DataInicial, DataFinal: double; const CaminhoArquivo: pChar ) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_PafMF_MFD_Cotepe1704(const ecfHandle: PECFHandle; const DataInicial,
+      DataFinal: double; const CaminhoArquivo: pChar) : Integer;
+      {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
+
 if (ecfHandle = nil) then
 begin
-Result := -2;
-Exit;
+    Result := -2;
+    Exit;
 end;
 
 try
 ecfHandle^.ECF.PafMF_MFD_Cotepe1704(DataInicial, DataFinal, CaminhoArquivo);
 Result := 0;
 except
-on exception : Exception do
-begin
-ecfHandle^.UltimoErro := exception.Message;
-Result := -1;
-end
+ on exception : Exception do
+ begin
+ ecfHandle^.UltimoErro := exception.Message;
+ Result := -1;
+ end
 end;
 end;
 
-Function ECF_PafMF_MFD_Cotepe1704_COO( const ecfHandle: PECFHandle; const COOInicial, COOFinal: Integer;
-      const PathArquivo: pChar ) : Integer ;{$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_PafMF_MFD_Cotepe1704_COO( const ecfHandle: PECFHandle;
+      const COOInicial, COOFinal: Integer; const PathArquivo: pChar) : Integer;
+      {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 if (ecfHandle = nil) then
 begin
@@ -8522,7 +8526,7 @@ begin
   end;
 end;
 
-Function ECF_PafMF_ArqMF(const ecfHandle: PECFHandle; const path : pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function ECF_PafMF_ArqMF(const ecfHandle: PECFHandle; const path: pChar) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
   if (ecfHandle = nil) then

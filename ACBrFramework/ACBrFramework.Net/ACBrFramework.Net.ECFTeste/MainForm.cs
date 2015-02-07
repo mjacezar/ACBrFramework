@@ -1167,6 +1167,16 @@ namespace ACBrFramework.ECFTeste
             }
         }
 
+        private void CarregarFormasPagamento()
+        {
+            acbrECF.CarregaFormasPagamento();
+            foreach (var formaPagamento in acbrECF.FormasPagamento)
+            {
+                WriteResp(string.Format("{0} - {1} - Vinculado {2}", formaPagamento.Indice, formaPagamento.Descricao,
+                    formaPagamento.PermiteVinculado));
+            }
+        }
+
 		#endregion Forma de Pagamento
 
 		#region PAF
@@ -1196,19 +1206,27 @@ namespace ACBrFramework.ECFTeste
 
 		private void ImprimeMeiosPgto()
 		{
-			List<FormaPagamento> FPgto = new List<FormaPagamento>();
+			var fPgto = new List<FormaPagamento>();
 
-			var item = new FormaPagamento();
+		    var item = new FormaPagamento
+		    {
+		        Data = DateTime.Now,
+		        Descricao = "Dinheiro",
+		        Indice = "01",
+		        PermiteVinculado = false,
+		        TipoDoc = "Cumpom Fiscal",
+		        Total = 10.30m
+		    };
 
-			item.Data = DateTime.Now;
-			item.Descricao = "Dinheiro";
-			item.Indice = "01";
-			item.PermiteVinculado = false;
-			item.TipoDoc = "Cumpom Fiscal";
-			item.Total = 10.30m;
-
-			FPgto.Add(item);
+		    fPgto.Add(item);
+            acbrECF.PafMF_RelMeiosPagamento(fPgto, "Forma de Pagamento", 0);
 		}
+
+	    private void ArqMf()
+	    {
+	        var arq = string.Format("{0}\\paf.mfd", Path.GetDirectoryName(Application.ExecutablePath));
+            acbrECF.PafMF_ArqMF(arq);
+	    }
 
 		#endregion PAF
 
@@ -1709,10 +1727,10 @@ namespace ACBrFramework.ECFTeste
 
 		private void carregaFormasPagamentoToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			acbrECF.CarregaFormasPagamento();
+		    CarregarFormasPagamento();
 		}
 
-		private void acharFormaDePagamentoPorIndiceToolStripMenuItem_Click(object sender, EventArgs e)
+	    private void acharFormaDePagamentoPorIndiceToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
 		}
@@ -1725,6 +1743,11 @@ namespace ACBrFramework.ECFTeste
 		{
 			ImprimeMeiosPgto();
 		}
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ArqMf();
+        }
 
 		#endregion Menu PAF        
 

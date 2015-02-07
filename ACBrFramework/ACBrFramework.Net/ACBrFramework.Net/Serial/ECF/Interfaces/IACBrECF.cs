@@ -833,6 +833,8 @@ namespace ACBrFramework.ECF
         void PafMF_RelMeiosPagamento(ref FormaPagamento[] formasPagamento, string TituloRelatorio, int indiceRelatorio);
 #else
         void PafMF_RelMeiosPagamento(FormaPagamento[] formasPagamento, string TituloRelatorio, int indiceRelatorio);
+
+        void PafMF_RelMeiosPagamento(IEnumerable<FormaPagamento> formasPagamento, string TituloRelatorio, int indiceRelatorio);
 #endif
 
 #if COM_INTEROP

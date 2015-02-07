@@ -9,7 +9,6 @@ uses
   ACBrTEFD,
   ACBrTEFDClass,
   ACBrTEFDCliSiTef,
-  ACBrTEFDVeSPague,
   ACBrUtil;
 
 {%region Ponteiros de função}
@@ -29,9 +28,9 @@ type TDepoisConfirmarTransacoes = procedure(const RespostasPendentes : TACBrTEFD
 type TAntesCancelarTransacaoCallback = procedure(const RespostaPendente : TACBrTEFDResp); cdecl;
 type TDepoisCancelarTransacoesCallback = procedure(const RespostasPendentes : TACBrTEFDRespostasPendentes); cdecl;
 type TMudaEstadoReqCallback =  procedure(const EstadoReq  : Integer); cdecl;
-type TMudaEstadoRespCallback = procedure(const EstadoResp : Integer); cdecl;
+type TMudaEstadoRespCallback = procedure(const EstadoResp : INteger); cdecl;
 type TTEFCliSiTefExibeMenuCallback = procedure(const Titulo : PChar; const Opcoes : array of PChar; const OpcoesCount : Integer; var ItemSelecionado : Integer; var VoltarMenu : Boolean); cdecl;
-type TTEFCliSiTefObtemCampoCalback = procedure(const Titulo : PChar; const TamanhoMinimo : Integer; const TamanhoMaximo : Integer; const TipoCampo : Integer; Operacao : Integer; const Resposta : PChar; const RespLen : Integer; var Digitado : Boolean; var VoltarMenu : Boolean); cdecl;
+type TTEFCliSiTefObtemCampoCalback = procedure(const Titulo : PChar; const TamanhoMinimo : Integer; const TamanhoMaximo : Integer; const TipoCampo : Integer; Operacao : TACBrTEFDCliSiTefOperacaoCampo; const Resposta : PChar; const RespLen : Integer; var Digitado : Boolean; var VoltarMenu : Boolean); cdecl;
 type TTEFVeSPagueExibeMenuCallback = procedure(const Titulo : PChar; const Opcoes : array of PChar; const OpcoesCount : Integer; const Memo : array of PChar; const MemoCount : Integer; var ItemSelecionado : Integer); cdecl;
 type TTEFVeSPagueObtemCampoCalback = procedure(const Titulo : PChar; const Mascara : PChar; const Tipo : Char; var Resposta : PChar; var Digitado : Boolean); cdecl;
 
@@ -88,6 +87,7 @@ type TEventHandlers = class
 
   procedure OnTEFVeSPagueExibeMenu(Titulo : String; Opcoes : TStringList; Memo: TStringList; var ItemSelecionado : Integer);
   procedure OnTEFVeSPagueObtemCampo(Titulo : String; Mascara : String; Tipo : AnsiChar; var Resposta : String; var Digitado : Boolean);
+
 
 end;
 
@@ -10458,7 +10458,7 @@ end;
 
 procedure TEventHandlers.OnExibeMsg(Operacao : TACBrTEFDOperacaoMensagem; Mensagem : String; var AModalResult : TModalResult);
 begin
-   OnExibeMsgCallback(Integer(Operacao), PChar(Mensagem), AModalResult);
+   OnExibeMsgCallback(Ord(Operacao), PChar(Mensagem), AModalResult);
 end;
 
 procedure TEventHandlers.OnBloqueiaMouseTeclado(Bloqueia : Boolean; var Tratado : Boolean);
@@ -10478,7 +10478,7 @@ end;
 
 procedure TEventHandlers.OnComandaECF(Operacao : TACBrTEFDOperacaoECF; Resp : TACBrTEFDResp; var RetornoECF : Integer);
 begin
-   OnComandaECFCallback(Integer(Operacao), Resp, RetornoECF);
+   OnComandaECFCallback(Ord(Operacao), Resp, RetornoECF);
 end;
 
 procedure TEventHandlers.OnComandaECFSubtotaliza(DescAcre : Double; var RetornoECF : Integer);
@@ -10511,7 +10511,7 @@ begin
         imagem[i] := PChar(linha);
    end;
 
-   OnComandaECFImprimeViaCallback(Integer(TipoRelatorio), Via, imagem, ImagemComprovante.Count, RetornoECF);
+   OnComandaECFImprimeViaCallback(Ord(TipoRelatorio), Via, imagem, ImagemComprovante.Count, RetornoECF);
 
    SetLength(imagem, 0);
 
@@ -10525,7 +10525,7 @@ const
 begin
 
    retorno := StrAlloc(retornoLen);
-   OnInfoECFCallback(Integer(Operacao), retorno, retornoLen);
+   OnInfoECFCallback(Ord(Operacao), retorno, retornoLen);
    RetornoECF := retorno;
 
 end;
@@ -10552,12 +10552,12 @@ end;
 
 procedure TEventHandlers.OnMudaEstadoReq(EstadoReq  : TACBrTEFDReqEstado);
 begin
-   OnMudaEstadoReqCallback(Integer(EstadoReq));
+   OnMudaEstadoReqCallback(Ord(EstadoReq));
 end;
 
 procedure TEventHandlers.OnMudaEstadoResp(EstadoResp : TACBrTEFDRespEstado);
 begin
-  OnMudaEstadoRespCallback(Integer(EstadoResp));
+  OnMudaEstadoRespCallback(Ord(EstadoResp));
 end;
 
 procedure TEventHandlers.OnTEFCliSiTefExibeMenu(Titulo : String; Opcoes : TStringList; var ItemSelecionado : Integer; var VoltarMenu : Boolean);
@@ -10587,7 +10587,7 @@ const
 begin
 
   resp := StrAlloc(respLen);
-  OnTEFCliSiTefObtemCampoCalback(PChar(Titulo), TamanhoMinimo, TamanhoMaximo, TipoCampo, Integer(Operacao), resp, respLen, Digitado, VoltarMenu);
+  OnTEFCliSiTefObtemCampoCalback(PChar(Titulo), TamanhoMinimo, TamanhoMaximo, TipoCampo, Operacao, resp, respLen, Digitado, VoltarMenu);
 
   Resposta := resp;
 

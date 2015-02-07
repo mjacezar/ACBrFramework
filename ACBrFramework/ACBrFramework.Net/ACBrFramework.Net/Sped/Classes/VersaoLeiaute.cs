@@ -10,6 +10,8 @@
 		Versao104,  // Código 005 - Versão 104 Ato COTEPE 01/01/2012
 		Versao105,  // Código 006 - Versão 105 Ato COTEPE 01/07/2012
         Versao106,  // Código 007 - Versão 106 Ato COTEPE 01/01/2013
-        Versao107   // Código 008 - Versão 107 Ato COTEPE 01/01/2014
+        Versao107,  // Código 008 - Versão 107 Ato COTEPE 01/01/2014
+        Versao108,  // Código 009 - Versão 108 Ato COTEPE 01/01/2015
+        Versao109   // Código 010    
     };
 }

@@ -93,7 +93,7 @@ namespace ACBrFramework
 			if (value == null) return null;
 			if (value.Length == 0) return string.Empty;
 
-			return DefaultEncoding.GetString(Encoding.Default.GetBytes(value));
+			return DefaultEncoding.GetString(Encoding.Default.GetBytes(value)).Trim();
 		}
 
 		protected string FromUTF8(StringBuilder value)
