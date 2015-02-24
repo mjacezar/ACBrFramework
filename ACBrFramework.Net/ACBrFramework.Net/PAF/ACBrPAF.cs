@@ -91,7 +91,7 @@ namespace ACBrFramework.PAF
 	#endregion COM Interop Attributes
 
 	[ToolboxBitmap(typeof(ToolboxIcons), @"ACBrFramework.PAF.ico.bmp")]
-	public class AcbrPaf : ACBrComponent, IDisposable
+	public class ACBrPAF : ACBrComponent, IDisposable
 	{
 		#region Events
 
@@ -141,7 +141,7 @@ namespace ACBrFramework.PAF
 
 		#region Constructor
 
-		public AcbrPaf()
+		public ACBrPAF()
 		{
 			onPafGetKeyRsa = new ACBrEventHandler<ChaveEventArgs, ACBrPAFInterop.PAFGetKeyRSACallback>(this, OnPafGetKeyRsaCallBack, ACBrPAFInterop.PAF_SetOnPAFGetKeyRSA);
 		}

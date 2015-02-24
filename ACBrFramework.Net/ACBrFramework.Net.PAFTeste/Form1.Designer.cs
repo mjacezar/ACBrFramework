@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.acbrPAF = new ACBrFramework.PAF.AcbrPaf();
+            this.acbrPAF = new ACBrFramework.PAF.ACBrPAF();
             this.btnTipoP = new System.Windows.Forms.Button();
             this.btnTipoD = new System.Windows.Forms.Button();
             this.btnTipoC = new System.Windows.Forms.Button();
@@ -294,7 +294,7 @@
 
 		#endregion
 
-        private ACBrFramework.PAF.AcbrPaf acbrPAF;
+        private ACBrFramework.PAF.ACBrPAF acbrPAF;
 		private System.Windows.Forms.Button btnTipoP;
 		private System.Windows.Forms.Button btnTipoD;
 		private System.Windows.Forms.Button btnTipoC;
