@@ -19,7 +19,7 @@ namespace ACBrFramework.PAF
 	{
 		#region Constructor
 
-		internal ACBrPAF_TITP(AcbrPaf Paf)
+		internal ACBrPAF_TITP(ACBrPAF Paf)
 			: base(Paf)
 		{
 			Mercadorias = new ACBrPAFRegistroMercadorias();
