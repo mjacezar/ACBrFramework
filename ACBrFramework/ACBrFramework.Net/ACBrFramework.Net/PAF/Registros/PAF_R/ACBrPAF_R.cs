@@ -38,8 +38,7 @@ namespace ACBrFramework.PAF
 		public void LimparRegistros()
 		{
 			RegistroR1.Clear();
-            RegistroR1 = null;
-		}
+        }
 
 		#endregion Methods
 	}
