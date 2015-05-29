@@ -346,6 +346,7 @@ namespace ACBrFramework.TEFD
 		}
 
 		[Category("Geral")]
+        [Obsolete("Não use esta opção pois com ela true não poderá ser feito o cielo premia.")]
 		public bool AutoEfetuarPagamento
 		{
 			get
@@ -359,6 +360,7 @@ namespace ACBrFramework.TEFD
 		}
 
 		[Category("Geral")]
+        [Obsolete("Não use esta opção pois com ela true não poderá ser feito o cielo premia.")]
 		public bool AutoFinalizarCupom
 		{
 			get
