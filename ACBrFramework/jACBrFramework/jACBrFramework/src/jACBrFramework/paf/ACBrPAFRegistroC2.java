@@ -50,7 +50,7 @@ public final class ACBrPAFRegistroC2 {
      * Valor do Encerrante capturado da bomba/bico informados nos campos 04 e 05, 
      * ao finalizar o abastecimento.
      */
-    private double encerrantaFinal;
+    private double encerranteFinal;
     /**
      * Status atribuido ao registro do abastecimento capturado da bomba conforme 
      * escrito na alínea "a" do item 1 do Requisito XXXV.
@@ -226,19 +226,19 @@ public final class ACBrPAFRegistroC2 {
     /**
      * Valor do Encerrante capturado da bomba/bico informados nos campos 04 e 05,
      * ao finalizar o abastecimento.
-     * @return the encerrantaFinal
+     * @return the encerranteFinal
      */
-    public double getEncerrantaFinal() {
-        return encerrantaFinal;
+    public double getEncerranteFinal() {
+        return encerranteFinal;
     }
 
     /**
      * Valor do Encerrante capturado da bomba/bico informados nos campos 04 e 05,
      * ao finalizar o abastecimento.
-     * @param encerrantaFinal the encerrantaFinal to set
+     * @param encerranteFinal the encerranteFinal to set
      */
-    public void setEncerrantaFinal(double encerrantaFinal) {
-        this.encerrantaFinal = encerrantaFinal;
+    public void setEncerranteFinal(double encerranteFinal) {
+        this.encerranteFinal = encerranteFinal;
     }
 
     /**

@@ -14,7 +14,7 @@ public final class ACBrPAFRegistroD3 {
     /**
      * Data de inclusao do item no DAV.
      */
-    private Date dataInclucao;
+    private Date dataInclusao;
     /**
      * Numero sequencial do item registrado no documento.
      */
@@ -80,18 +80,18 @@ public final class ACBrPAFRegistroD3 {
     // <editor-fold defaultstate="collapsed" desc="Getters - Setters">    
     /**
      * Data de inclusao do item no DAV.
-     * @return the dataInclucao
+     * @return the dataInclusao
      */
-    public Date getDataInclucao() {
-        return dataInclucao;
+    public Date getDataInclusao() {
+        return dataInclusao;
     }
 
     /**
      * Data de inclusao do item no DAV.
-     * @param dataInclucao the dataInclucao to set
+     * @param dataInclusao the dataInclusao to set
      */
-    public void setDataInclucao(Date dataInclucao) {
-        this.dataInclucao = dataInclucao;
+    public void setDataInclusao(Date dataInclusao) {
+        this.dataInclusao = dataInclusao;
     }
 
     /**

@@ -167,7 +167,7 @@ public class ProgramTestPaf {
             c2.setCoo(9);
             c2.setData(Calendar.getInstance().getTime());
             c2.setDataAbastecimento(Calendar.getInstance().getTime());
-            c2.setEncerrantaFinal(999);
+            c2.setEncerranteFinal(999);
             c2.setEncerranteInicial(333);
             c2.setHora(Calendar.getInstance().getTime());
             c2.setHoraAbastecimento(Calendar.getInstance().getTime());
@@ -212,7 +212,7 @@ public class ProgramTestPaf {
                 d3.setCasasDecimaisQtd(2);
                 d3.setCasasDecimaisVlrUn(3);
                 d3.setCodItem(String.valueOf(j));
-                d3.setDataInclucao(Calendar.getInstance().getTime());
+                d3.setDataInclusao(Calendar.getInstance().getTime());
                 d3.setDescrItem("Descricao Item " + j);
                 d3.setIndCancelamento("N");
                 d3.setNumItem(1);
@@ -407,7 +407,7 @@ public class ProgramTestPaf {
                 
                 for (int k = 0; k < pQtdeR3; k++) {
                     ACBrPAFRegistroR3 r3 = new ACBrPAFRegistroR3();    
-                    r3.setCodTotalzadorParcial("FF");
+                    r3.setCodTotalizadorParcial("FF");
                     r3.setRegistroValido(true);
                     r3.setValorAcumulado(110);                    
                     r2.getRegistrosR3().add(r3);
