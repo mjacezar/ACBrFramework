@@ -42,6 +42,12 @@ Símbolo : Significado
 
 Changelog
 
+02/06/2015
+
+-- jACBrFramework --
+[-] Ajuste do evento onBobinaAdicionaLinhas para que não haja problema de acionar o listener em ambiente multithread. Utilizar como padrão. - ACBrECF - José Mauro.
+[-] Correção da nomenclatura de campos. - ACBrPAF - José Mauro.
+
 19/09/2014
 
 -- jACBrFramework --

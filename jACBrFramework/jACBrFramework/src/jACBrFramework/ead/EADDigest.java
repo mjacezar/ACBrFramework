@@ -13,7 +13,10 @@ public enum EADDigest {
     MD5("MD5", 2),
     RMD160("RMD160", 3),
     SHA("SHA", 4),
-    SHA1("SHA1", 5);
+    SHA1("SHA1", 5),
+    SHA256("SHA256", 6),
+    SHA512("SHA512", 7);
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Attributes">    
     /**

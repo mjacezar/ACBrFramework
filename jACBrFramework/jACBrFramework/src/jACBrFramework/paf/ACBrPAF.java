@@ -413,11 +413,12 @@ public class ACBrPAF extends ACBrClass {
             lRegistrosC2[i].ID_ABASTECIMENTO = toByte(lRegistro.getIdAbastecimento(), 16);
             lRegistrosC2[i].TANQUE = toByte(lRegistro.getTanque(), 4);
             lRegistrosC2[i].BOMBA = toByte(lRegistro.getBomba(), 4);
+            lRegistrosC2[i].BICO = toByte(lRegistro.getBico(), 4);
             lRegistrosC2[i].COMBUSTIVEL = toByte(lRegistro.getCombustivel(), 21);
             lRegistrosC2[i].DATA_ABASTECIMENTO = OleDate.toOADate(lRegistro.getDataAbastecimento());
             lRegistrosC2[i].HORA_ABASTECIMENTO = OleDate.toOADate(lRegistro.getHoraAbastecimento());
             lRegistrosC2[i].ENCERRANTE_INICIAL = lRegistro.getEncerranteInicial();
-            lRegistrosC2[i].ENCERRANTE_FINAL = lRegistro.getEncerrantaFinal();
+            lRegistrosC2[i].ENCERRANTE_FINAL = lRegistro.getEncerranteFinal();
             lRegistrosC2[i].STATUS_ABASTECIMENTO = toByte(lRegistro.getStatusAbastecimento(), 11);
             lRegistrosC2[i].NRO_SERIE_ECF = toByte(lRegistro.getNumSerieEcf(), 15);
             lRegistrosC2[i].Data = OleDate.toOADate(lRegistro.getData());
@@ -474,7 +475,7 @@ public class ACBrPAF extends ACBrClass {
             
             // Populando o registro D3
             for (ACBrPAFRegistroD3 lRegistroD3 : lRegistroD2.getRegistrosD3()) {
-                lRegistrosD3[iDxD3].DT_INCLUSAO = OleDate.toOADate(lRegistroD3.getDataInclucao());
+                lRegistrosD3[iDxD3].DT_INCLUSAO = OleDate.toOADate(lRegistroD3.getDataInclusao());
                 lRegistrosD3[iDxD3].NUM_ITEM = lRegistroD3.getNumItem();
                 lRegistrosD3[iDxD3].COD_ITEM = toByte(lRegistroD3.getCodItem(), 15);
                 lRegistrosD3[iDxD3].DESC_ITEM = toByte(lRegistroD3.getDescrItem(), 101);
@@ -769,7 +770,7 @@ public class ACBrPAF extends ACBrClass {
 
                 // Montando o registro R3.
                 for (ACBrPAFRegistroR3 r3 : r2.getRegistrosR3()) {
-                    registrosR3[itemR3].TOT_PARCIAL = toByte(r3.getCodTotalzadorParcial(), 8);
+                    registrosR3[itemR3].TOT_PARCIAL = toByte(r3.getCodTotalizadorParcial(), 8);
                     registrosR3[itemR3].VL_ACUM = r3.getValorAcumulado();
                     registrosR3[itemR3++].RegistroValido = converteBooleanToByte(r3.isRegistroValido());
                 }

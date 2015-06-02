@@ -18,6 +18,18 @@ import java.util.Date;
 import java.util.EventObject;
 
 public final class ACBrECF extends ACBrClass {
+    //<editor-fold defaultstate="collapsed" desc="Events Properties">
+    /**
+     * Evento que disparado ao adicionar alguma linha no cupom fiscal.
+     */
+    private final ACBrECFInterop.BobinaAdicionaLinhasCallback onBobinaAdicionaLinhas = new ACBrECFInterop.BobinaAdicionaLinhasCallback() {
+        @Override
+        public void invoke(String linhas, String operacao) {
+            onBobinaAdicionaLinhas(toUTF8(linhas), toUTF8(operacao));
+        }
+    };
+    //</editor-fold>
+
     // <editor-fold defaultstate="collapsed" desc="Fields">
     private ACBrDevice device;
     private Aliquota[] aliquotas;
@@ -655,12 +667,7 @@ public final class ACBrECF extends ACBrClass {
     //<editor-fold defaultstate="collapsed" desc="onBobinaAdicionaLinhas">
     public void addOnBobinaAdicionaLinhas(ACBrEventListener<BobinaAdicionaLinhasEventObject> listener) {
         if (!hasListeners("onBobinaAdicionaLinhas")) {
-            ACBrECFInterop.INSTANCE.ECF_SetOnBobinaAdicionaLinhas(getHandle(), new ACBrECFInterop.BobinaAdicionaLinhasCallback() {
-                @Override
-                public void invoke(String linhas, String operacao) {
-                    onBobinaAdicionaLinhas(toUTF8(linhas), toUTF8(operacao));
-                }
-            });
+            ACBrECFInterop.INSTANCE.ECF_SetOnBobinaAdicionaLinhas(getHandle(), onBobinaAdicionaLinhas);
         }
 
         addListener("onBobinaAdicionaLinhas", listener);

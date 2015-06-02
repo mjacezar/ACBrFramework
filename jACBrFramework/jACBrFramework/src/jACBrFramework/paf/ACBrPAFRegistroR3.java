@@ -12,7 +12,7 @@ public final class ACBrPAFRegistroR3 {
     /**
      * Codigo do totalizador.
      */
-    private String codTotalzadorParcial;
+    private String codTotalizadorParcial;
     /**
      * Valor acumulado no totalizador, relativo a respectiva Reducao Z.
      */
@@ -25,18 +25,18 @@ public final class ACBrPAFRegistroR3 {
     // <editor-fold defaultstate="collapsed" desc="Getters - Setters">    
     /**
      * Codigo do totalizador.
-     * @return the codTotalzadorParcial
+     * @return the codTotalizadorParcial
      */
-    public String getCodTotalzadorParcial() {
-        return codTotalzadorParcial;
+    public String getCodTotalizadorParcial() {
+        return codTotalizadorParcial;
     }
 
     /**
      * Codigo do totalizador.
-     * @param codTotalzadorParcial the codTotalzadorParcial to set
+     * @param codTotalizadorParcial the codTotalizadorParcial to set
      */
-    public void setCodTotalzadorParcial(String codTotalzadorParcial) {
-        this.codTotalzadorParcial = codTotalzadorParcial;
+    public void setCodTotalizadorParcial(String codTotalizadorParcial) {
+        this.codTotalizadorParcial = codTotalizadorParcial;
     }
 
     /**

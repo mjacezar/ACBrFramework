@@ -1081,7 +1081,7 @@ public class ACBrTEFD extends ACBrClass {
     }
 
     private void onExibeMensagem(int pOperacao, String pMensagem, IntByReference pAModalResult) {
-        ExibeMsgEventObject e = new ExibeMsgEventObject(this, OperacaoMensagem.valueOf(pOperacao), toUTF8(pMensagem));
+        ExibeMsgEventObject e = new ExibeMsgEventObject(this, OperacaoMensagem.valueOf(pOperacao), pMensagem);
         notifyListeners("onExibeMensagem", e);
         pAModalResult.setValue(e.getaModalResult().getValue());
         //pAModalResult = e.getaModalResult();
@@ -1219,8 +1219,8 @@ public class ACBrTEFD extends ACBrClass {
     }
 
     private void onComandaECFPagamento(String pIndiceECF, double pValor, IntByReference pRetornoECF) {
-        double valor = pValor; //.getDouble(0);
-        ComandaECFPagamentoEventObject e = new ComandaECFPagamentoEventObject(this, toUTF8(pIndiceECF), valor);
+        double valor = pValor; 
+        ComandaECFPagamentoEventObject e = new ComandaECFPagamentoEventObject(this, pIndiceECF, valor);
         notifyListeners("onComandaECFPagamento", e);
         pRetornoECF.setValue(e.getRetornoEcf().getValue());
     }
@@ -1242,7 +1242,7 @@ public class ACBrTEFD extends ACBrClass {
     }
 
     private void onComandaECFAbreVinculado(String pCOO, String pIndiceECF, double pValor, IntByReference pRetornoECF) {
-        ComandaECFAbreVinculadoEventObject e = new ComandaECFAbreVinculadoEventObject(this, toUTF8(pCOO), toUTF8(pIndiceECF), pValor);
+        ComandaECFAbreVinculadoEventObject e = new ComandaECFAbreVinculadoEventObject(this, pCOO, pIndiceECF, pValor);
         notifyListeners("onComandaECFAbreVinculado", e);
         pRetornoECF.setValue(e.getRetornoEcf().getValue());
     }
