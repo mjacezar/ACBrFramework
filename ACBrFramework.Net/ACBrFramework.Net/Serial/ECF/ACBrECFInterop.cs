@@ -811,6 +811,12 @@ namespace ACBrFramework.ECF
 		public static extern int ECF_ConfigBarras_SetLarguraLinha(IntPtr ecfHandle, int value);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ConfigBarras_GetMargem(IntPtr ecfHandle, ref int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ECF_ConfigBarras_SetMargem(IntPtr ecfHandle, int value);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int ECF_ConfigBarras_GetMostrarCodigo(IntPtr ecfHandle);
 
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
