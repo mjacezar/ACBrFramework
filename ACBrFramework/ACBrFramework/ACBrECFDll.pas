@@ -2939,6 +2939,50 @@ begin
 
 end;
 
+Function ECF_ConfigBarras_GetMargem(const ecfHandle: PECFHandle; var value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     value := ecfHandle^.ECF.ConfigBarras.Margem;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function ECF_ConfigBarras_SetMargem(const ecfHandle: PECFHandle; const value : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+  if (ecfHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     ecfHandle^.ECF.ConfigBarras.Margem := value;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        ecfHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 Function ECF_ConfigBarras_GetMostrarCodigo(const ecfHandle: PECFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -11843,6 +11887,7 @@ ECF_Consumidor_AtribuiConsumidor, ECF_Consumidor_Zera,
 
 ECF_ConfigBarras_GetAltura, ECF_ConfigBarras_SetAltura,
 ECF_ConfigBarras_GetLarguraLinha, ECF_ConfigBarras_SetLarguraLinha,
+ECF_ConfigBarras_GetMargem, ECF_ConfigBarras_SetMargem,
 ECF_ConfigBarras_GetMostrarCodigo, ECF_ConfigBarras_SetMostrarCodigo,
 
 { Leitura Memoria Fiscal }

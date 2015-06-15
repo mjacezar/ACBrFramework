@@ -58,6 +58,18 @@ namespace ACBrFramework.ECF
 			}
 		}
 
+		public int Margem
+		{
+			get
+			{
+				return GetInt32(ACBrECFInterop.ECF_ConfigBarras_GetMargem);
+			}
+			set
+			{
+				SetInt32(ACBrECFInterop.ECF_ConfigBarras_SetMargem, value);
+			}
+		}
+
 		public bool MostrarCodigo
 		{
 			get
