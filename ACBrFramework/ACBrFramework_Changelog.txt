@@ -41,6 +41,12 @@ Símbolo : Significado
 
 Changelog
 
+10/07/2015
+
+-- ACBrFramework 0.9.6.9
+[-] Possivel correção para o erro do SPED Registro 1370 - ACBrSPEDFiscal - Rafael Dias.
+	http://www.projetoacbr.com.br/forum/topic/22579-erro-ao-salvar-o-sped/
+
 15/06/2015
 
 -- ACBrFramework 0.9.6.8

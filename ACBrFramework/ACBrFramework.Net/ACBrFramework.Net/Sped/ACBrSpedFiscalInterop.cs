@@ -685,7 +685,7 @@ namespace ACBrFramework.Sped
 			public string COD_ITEM;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
-			public string NUM_TANQU;
+			public string NUM_TANQUE;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
