@@ -2344,6 +2344,53 @@ begin
 
 end;
 
+Function AAC_IdentPaf_Paf_GetPerfilRequisitos(const aacHandle: PaacHandle; Buffer : pChar; const BufferLen : Integer) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+var
+  StrTmp : String;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+ try
+     StrTmp := aacHandle^.AAC.IdentPAF.Paf.PerfilRequisitos;
+     StrPLCopy(Buffer, StrTmp, BufferLen);
+     Result := length(StrTmp);
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
+Function AAC_IdentPaf_Paf_SetPerfilRequisitos(const aacHandle: PaacHandle; const Perfil : pChar) : Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+begin
+
+  if (aacHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     aacHandle^.AAC.IdentPAF.Paf.PerfilRequisitos := Perfil;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        aacHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+
+end;
+
 {%endregion}
 
 {%region DADOS DE APLICAÇÕES ESPECIAIS}
@@ -4007,6 +4054,7 @@ AAC_IdentPaf_Paf_GetSistemaOperacional,AAC_IdentPaf_Paf_SetSistemaOperacional,
 AAC_IdentPaf_Paf_GetVersao, AAC_IdentPaf_Paf_SetVersao,
 AAC_IdentPaf_Paf_PrincipalExe_GetNome,AAC_IdentPaf_Paf_PrincipalExe_SetNome,
 AAC_IdentPaf_Paf_PrincipalExe_GetMD5,AAC_IdentPaf_Paf_PrincipalExe_SetMD5,
+AAC_IdentPaf_Paf_GetPerfilRequisitos,AAC_IdentPaf_Paf_SetPerfilRequisitos,
 
 //especiais
 AAC_IdentPaf_Paf_GetIndiceTecnicoProd,AAC_IdentPaf_Paf_SetIndiceTecnicoProd,
@@ -4072,4 +4120,4 @@ AAC_SetOnDepoisAbrirArquivo, AAC_SetOnDepoisGravarArquivo,
 AAC_SetVerificarRecomporNumSerie, AAC_SetVerificarRecomporValorGT;
 
 end.
-
+

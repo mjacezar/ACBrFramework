@@ -439,6 +439,12 @@ namespace ACBrFramework.AAC
 		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int AAC_IdentPaf_Paf_SetTrocoEmCartao(IntPtr aacHandle, bool check);
 
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_GetPerfilRequisitos(IntPtr aacHandle, StringBuilder buffer, int bufferLen);
+
+		[DllImport(ACBr, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int AAC_IdentPaf_Paf_SetPerfilRequisitos(IntPtr aacHandle, string perfil);
+
 		#endregion Dados Criterios UF
 
 		#region Posto Combustiveis

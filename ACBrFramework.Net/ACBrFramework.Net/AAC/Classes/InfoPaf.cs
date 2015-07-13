@@ -38,7 +38,7 @@ namespace ACBrFramework.AAC
 
 		#region Dados do Aplicativo
 
-		public string NomeAplicativo
+		public string Nome
 		{
 			get
 			{
@@ -50,43 +50,7 @@ namespace ACBrFramework.AAC
 			}
 		}
 
-		public string LinguagemAplicativo
-		{
-			get
-			{
-				return GetString(ACBrAACInterop.AAC_IdentPaf_Paf_GetLinguagem);
-			}
-			set
-			{
-				SetString(ACBrAACInterop.AAC_IdentPaf_Paf_SetLinguagem, value);
-			}
-		}
-
-		public string BancoDeDadosAplicativo
-		{
-			get
-			{
-				return GetString(ACBrAACInterop.AAC_IdentPaf_Paf_GetBancoDados);
-			}
-			set
-			{
-				SetString(ACBrAACInterop.AAC_IdentPaf_Paf_SetBancoDados, value);
-			}
-		}
-
-		public string SistemaOperacionalAplicativo
-		{
-			get
-			{
-				return GetString(ACBrAACInterop.AAC_IdentPaf_Paf_GetSistemaOperacional);
-			}
-			set
-			{
-				SetString(ACBrAACInterop.AAC_IdentPaf_Paf_SetSistemaOperacional, value);
-			}
-		}
-
-		public string VersaoAplicativo
+		public string Versao
 		{
 			get
 			{
@@ -98,7 +62,43 @@ namespace ACBrFramework.AAC
 			}
 		}
 
-		public string PrincipalExeAplicativo
+		public string BancoDeDados
+		{
+			get
+			{
+				return GetString(ACBrAACInterop.AAC_IdentPaf_Paf_GetBancoDados);
+			}
+			set
+			{
+				SetString(ACBrAACInterop.AAC_IdentPaf_Paf_SetBancoDados, value);
+			}
+		}
+
+		public string Linguagem
+		{
+			get
+			{
+				return GetString(ACBrAACInterop.AAC_IdentPaf_Paf_GetLinguagem);
+			}
+			set
+			{
+				SetString(ACBrAACInterop.AAC_IdentPaf_Paf_SetLinguagem, value);
+			}
+		}
+
+		public string SistemaOperacional
+		{
+			get
+			{
+				return GetString(ACBrAACInterop.AAC_IdentPaf_Paf_GetSistemaOperacional);
+			}
+			set
+			{
+				SetString(ACBrAACInterop.AAC_IdentPaf_Paf_SetSistemaOperacional, value);
+			}
+		}
+
+		public string PrincipalExe
 		{
 			get
 			{
@@ -110,7 +110,7 @@ namespace ACBrFramework.AAC
 			}
 		}
 
-		public string MD5Aplicativo
+		public string MD5PrincipalExe
 		{
 			get
 			{
@@ -138,18 +138,6 @@ namespace ACBrFramework.AAC
 			}
 		}
 
-		public TipoIntegracao TipoIntegracao
-		{
-			get
-			{
-				return (TipoIntegracao)GetInt32(ACBrAACInterop.AAC_IdentPaf_Paf_GetIntegracaoPafECF);
-			}
-			set
-			{
-				SetInt32(ACBrAACInterop.AAC_IdentPaf_Paf_SetIntegracaoPafECF, (int)value);
-			}
-		}
-
 		public TipoDesenvolvimento TipoDesenvolvimento
 		{
 			get
@@ -159,6 +147,18 @@ namespace ACBrFramework.AAC
 			set
 			{
 				SetInt32(ACBrAACInterop.AAC_IdentPaf_Paf_SetTipoDesenvolvimento, (int)value);
+			}
+		}
+
+		public TipoIntegracao TipoIntegracaoPAFECF
+		{
+			get
+			{
+				return (TipoIntegracao)GetInt32(ACBrAACInterop.AAC_IdentPaf_Paf_GetIntegracaoPafECF);
+			}
+			set
+			{
+				SetInt32(ACBrAACInterop.AAC_IdentPaf_Paf_SetIntegracaoPafECF, (int)value);
 			}
 		}
 
@@ -214,6 +214,18 @@ namespace ACBrFramework.AAC
 			}
 		}
 
+		public bool DAVConfAnexoII
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetDAVConfAnexoII);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetDAVConfAnexoII, value);
+			}
+		}
+
 		public bool RealizaLancamentoMesa
 		{
 			get
@@ -226,19 +238,111 @@ namespace ACBrFramework.AAC
 			}
 		}
 
-		public bool RealizaDAVConfAnexoII
+		#endregion Dados de Nao Concomitancia
+
+		#region Posto Combustiveis
+
+		public bool ImpedeVendaVlrZero
 		{
 			get
 			{
-				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetDAVConfAnexoII);
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetImpedeVendaVlrZero);
 			}
 			set
 			{
-				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetDAVConfAnexoII, value);
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetImpedeVendaVlrZero, value);
 			}
 		}
 
-		#endregion Dados de Nao Concomitancia
+		public bool AcumulaVolumeDiario
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetAcumulaVolumeDiario);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetAcumulaVolumeDiario, value);
+			}
+		}
+
+		public bool ArmazenaEncerranteIniFinal
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetArmazenaEncerranteIniFinal);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetArmazenaEncerranteIniFinal, value);
+			}
+		}
+
+		public bool EmiteContrEncerrAposREDZLEIX
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetEmiteContrEncerrAposREDZLEIX);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetEmiteContrEncerrAposREDZLEIX, value);
+			}
+		}
+
+		public bool IntegradoComBombas
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetIntegradoComBombas);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetIntegradoComBombas, value);
+			}
+		}
+
+		public bool CriaAbastDivergEncerrante
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetCriaAbastDivergEncerrante);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetCriaAbastDivergEncerrante, value);
+			}
+		}
+
+		public bool CadastroPlacaBomba
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetCadastroPlacaBomba);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetCadastroPlacaBomba, value);
+			}
+		}
+
+		#endregion Posto Combustiveis
+
+		#region Transporte Passageiros
+
+		public bool TransportePassageiro
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetTransportePassageiro);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetTransportePassageiro, value);
+			}
+		}
+
+		#endregion Transporte Passageiros
 
 		#region Dados de Aplicacoes Especiais
 
@@ -414,18 +518,6 @@ namespace ACBrFramework.AAC
 			}
 		}
 
-		public bool ParaibaLegal
-		{
-			get
-			{
-				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetParaibaLegal);
-			}
-			set
-			{
-				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetParaibaLegal, value);
-			}
-		}
-
 		public bool NotaLegalDF
 		{
 			get
@@ -435,6 +527,18 @@ namespace ACBrFramework.AAC
 			set
 			{
 				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetNotaLegalDF, value);
+			}
+		}
+
+		public bool ParaibaLegal
+		{
+			get
+			{
+				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetParaibaLegal);
+			}
+			set
+			{
+				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetParaibaLegal, value);
 			}
 		}
 
@@ -452,109 +556,21 @@ namespace ACBrFramework.AAC
 
 		#endregion Dados Criterios UF
 
-		#region Posto Combustiveis
+		#region Req 02.01 em diante
 
-		public bool AcumulaVolumeDiario
+		public string PerfilRequisitos
 		{
 			get
 			{
-				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetAcumulaVolumeDiario);
+				return GetString(ACBrAACInterop.AAC_IdentPaf_Paf_GetPerfilRequisitos);
 			}
 			set
 			{
-				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetAcumulaVolumeDiario, value);
+				SetString(ACBrAACInterop.AAC_IdentPaf_Paf_SetPerfilRequisitos, value);
 			}
 		}
 
-		public bool ArmazenaEncerranteIniFinal
-		{
-			get
-			{
-				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetArmazenaEncerranteIniFinal);
-			}
-			set
-			{
-				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetArmazenaEncerranteIniFinal, value);
-			}
-		}
-
-		public bool CadastroPlacaBomba
-		{
-			get
-			{
-				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetCadastroPlacaBomba);
-			}
-			set
-			{
-				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetCadastroPlacaBomba, value);
-			}
-		}
-
-		public bool EmiteContrEncerrAposREDZLEIX
-		{
-			get
-			{
-				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetEmiteContrEncerrAposREDZLEIX);
-			}
-			set
-			{
-				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetEmiteContrEncerrAposREDZLEIX, value);
-			}
-		}
-
-		public bool ImpedeVendaVlrZero
-		{
-			get
-			{
-				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetImpedeVendaVlrZero);
-			}
-			set
-			{
-				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetImpedeVendaVlrZero, value);
-			}
-		}
-
-		public bool IntegradoComBombas
-		{
-			get
-			{
-				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetIntegradoComBombas);
-			}
-			set
-			{
-				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetIntegradoComBombas, value);
-			}
-		}
-
-		public bool CriaAbastDivergEncerrante
-		{
-			get
-			{
-				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetCriaAbastDivergEncerrante);
-			}
-			set
-			{
-				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetCriaAbastDivergEncerrante, value);
-			}
-		}
-
-		#endregion Posto Combustiveis
-
-		#region Transporte Passageiros
-
-		public bool TransportePassageiro
-		{
-			get
-			{
-				return GetBool(ACBrAACInterop.AAC_IdentPaf_Paf_GetTransportePassageiro);
-			}
-			set
-			{
-				SetBool(ACBrAACInterop.AAC_IdentPaf_Paf_SetTransportePassageiro, value);
-			}
-		}
-
-		#endregion Transporte Passageiros
+		#endregion Req 02.01 em diante
 
 		#endregion Properties
 	}
