@@ -41,6 +41,10 @@ Símbolo : Significado
 
 Changelog
 
+13/07/2015
+-- ACBrFramework 0.9.6.10
+[+] Inclusão da propriedade AAC.IdentPaf.Paf.PerfilRequisitos - Rafael Batiati
+
 10/07/2015
 
 -- ACBrFramework 0.9.6.9
@@ -50,7 +54,7 @@ Changelog
 15/06/2015
 
 -- ACBrFramework 0.9.6.8
-[*] Inclusão da propriedade "Margem" na classe ConfigBarras
+[*] Inclusão da propriedade "Margem" na classe ConfigBarras - Rafael Batiati
 	http://www.projetoacbr.com.br/forum/index.php?/topic/22083-acbrecf-centralizar-c%C3%B3digo-de-barras/
 
 07/02/2015
