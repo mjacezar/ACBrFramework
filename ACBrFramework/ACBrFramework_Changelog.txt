@@ -44,6 +44,7 @@ Changelog
 13/07/2015
 -- ACBrFramework 0.9.6.10
 [+] Inclusão da propriedade AAC.IdentPaf.Paf.PerfilRequisitos - Rafael Batiati
+[*] Renomeado as propriedades do AAC.IdentPaf.Paf para padronização com ACBr
 
 10/07/2015
 
