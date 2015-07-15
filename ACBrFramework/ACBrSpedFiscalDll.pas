@@ -3458,7 +3458,6 @@ begin
   end;
 end;
 
-
 Function SPDF_Bloco_C_RegistroC370New(const spdfHandle: PSPDFHandle; const registroC370 : BlocoCRegistroC370) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -3720,7 +3719,6 @@ begin
      end
   end;
 end;
-
 
 Function SPDF_Bloco_C_RegistroC490New(const spdfHandle: PSPDFHandle; const registroC490 : BlocoCRegistroC490) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -4085,7 +4083,6 @@ begin
   end;
 end;
 
-
 Function SPDF_Bloco_C_RegistroC790New(const spdfHandle: PSPDFHandle; const registroC790 : BlocoCRegistroC790) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -4242,7 +4239,6 @@ begin
   end;
 end;
 
-
 Function SPDF_Bloco_C_RegistroC890New(const spdfHandle: PSPDFHandle; const registroC890 : BlocoCRegistroC890) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -4272,7 +4268,6 @@ begin
      end
   end;
 end;
-
 
 Function SPDF_Bloco_C_RegistroC990_GetQTD_LIN_C(const spdfHandle: PSPDFHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -6863,9 +6858,6 @@ SPDF_Bloco_0_Registro0450New,
 SPDF_Bloco_0_Registro0460New,
 SPDF_Bloco_0_Registro0500New,
 SPDF_Bloco_0_Registro0600New,
-SPDF_Bloco_1_Registro1700New,
-SPDF_Bloco_1_Registro1710New,
-SPDF_Bloco_1_Registro1800New,
 SPDF_Bloco_0_Registro0990_GetQTD_LIN_0,
 
 {%endregion Bloco0}
@@ -6892,6 +6884,9 @@ SPDF_Bloco_1_Registro1390New,
 SPDF_Bloco_1_Registro1400New,
 SPDF_Bloco_1_Registro1500New,
 SPDF_Bloco_1_Registro1600New,
+SPDF_Bloco_1_Registro1700New,
+SPDF_Bloco_1_Registro1710New,
+SPDF_Bloco_1_Registro1800New,
 SPDF_Bloco_1_Registro1990_GetQTD_LIN_1,
 
 {%endregion Bloco1}
