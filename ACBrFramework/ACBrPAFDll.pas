@@ -43,6 +43,7 @@ type
     CNPJ: array[0..14] of char;
     IE: array[0..14] of char;
     IM: array[0..14] of char;
+    InclusaoExclusao: boolean;
   end;
 
 type
@@ -398,7 +399,6 @@ type
     MarcaECF: array[0..20] of char;
     ModeloECF: array[0..20] of char;
     DataEstoque: double;
-    HoraEstoque: double;
     RegistroValido: boolean;
   end;
 // Log de Alteração de Itens do DAV
@@ -406,7 +406,6 @@ type
   TRegistroD4Rec = record
     NumeroDAV: array[0..13] of char;
     DataAlteracao: double;
-    HoraAlteracao: double;
     CodigoProdutoServico: array[0..14] of char;
     Descricao: array[0..100] of char;
     Quantidade: double;
@@ -432,7 +431,6 @@ type
     IdentificacoLinha: double;
     DescricaoLinha: array[0..80] of char;
     DataPartida: double;
-    HorarioPartida: double;
     CodigoTipoViagem: double;
   end;
 // Bilhetes de Passagens do Manifesto – Transporte de Passageiros
@@ -472,7 +470,6 @@ type
     CCF: integer;
     COO: integer;
     DataEmissao: double;
-    HoraEmissao: double;
     Modalidade: double;
     Categoria: double;
     IdentificacaoLinha: array[0..8] of char;
@@ -480,7 +477,6 @@ type
     Codigodestino: array[0..20] of char;
     TipoServico: integer;
     DataViagem: double;
-    HorarioViagem: double;
     TipoViagem: integer;
     Poltrona: integer;
     Plataforma: array[0..15] of char;
@@ -513,7 +509,6 @@ type
     GNF: integer;
     GRG: integer;
     DataEmissao: double;
-    HoraEmissao: double;
     Modalidade: integer;
     Categoria: integer;
     IdentificacaoLinha: array[0..8] of char;
@@ -521,7 +516,6 @@ type
     Codigodestino: array[0..20] of char;
     TipoServico: integer;
     DataViagem: double;
-    HorarioViagem: double;
     TipoViagem: integer;
     Poltrona: integer;
     Plataforma: array[0..15] of char;
@@ -1865,6 +1859,7 @@ begin
   pafHandle^.PAF.PAF_U.RegistroU1.CNPJ := RegistroU1Rec.CNPJ;
   pafHandle^.PAF.PAF_U.RegistroU1.IE := RegistroU1Rec.IE;
   pafHandle^.PAF.PAF_U.RegistroU1.IM := RegistroU1Rec.IM;
+  pafHandle^.PAF.PAF_U.RegistroU1.InclusaoExclusao := RegistroU1Rec.InclusaoExclusao;
 
   Result := 1;
   except

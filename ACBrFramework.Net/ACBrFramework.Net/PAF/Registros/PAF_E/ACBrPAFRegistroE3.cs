@@ -21,7 +21,6 @@ namespace ACBrFramework.PAF
         public string MarcaECF { get; set; }
         public string ModeloECF { get; set; }
         public DateTime DataEstoque { get; set; }
-        public decimal HoraEstoque { get; set; }
         public bool RegistroValido { get; set; }
         #endregion Properties
     }

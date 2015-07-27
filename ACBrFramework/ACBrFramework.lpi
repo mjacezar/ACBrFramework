@@ -271,10 +271,13 @@
       <Unit10>
         <Filename Value="ACBrPAFDll.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="699"/>
-        <CursorPos Y="1880"/>
+        <UnitName Value="ACBrPAFDll"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="501"/>
+        <CursorPos X="24" Y="518"/>
         <UsageCount Value="225"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit10>
       <Unit11>
@@ -338,6 +341,7 @@
       <Unit19>
         <Filename Value="ACBrSpedDll.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="ACBrSpedDll"/>
         <EditorIndex Value="1"/>
         <CursorPos Y="10"/>
         <UsageCount Value="211"/>
@@ -1016,9 +1020,9 @@
       <Unit116>
         <Filename Value="ACBrLFDdll.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="7"/>
-        <CursorPos X="16"/>
+        <UnitName Value="ACBrLFDDll"/>
+        <EditorIndex Value="8"/>
+        <CursorPos X="89" Y="20"/>
         <FoldState Value=" TJU1{H1 pngqF1{53 TLV0O2 T3j00P4 piajW0N]9j0jX0K[I4YjP0J424A"/>
         <UsageCount Value="23"/>
         <Loaded Value="True"/>
@@ -1026,6 +1030,7 @@
       </Unit116>
       <Unit117>
         <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFD.pas"/>
+        <UnitName Value="ACBrLFD"/>
         <EditorIndex Value="3"/>
         <TopLine Value="206"/>
         <CursorPos X="14" Y="214"/>
@@ -1035,6 +1040,7 @@
       </Unit117>
       <Unit118>
         <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFDBloco_0_Class.pas"/>
+        <UnitName Value="ACBrLFDBloco_0_Class"/>
         <EditorIndex Value="4"/>
         <TopLine Value="779"/>
         <CursorPos X="28" Y="799"/>
@@ -1044,7 +1050,8 @@
       </Unit118>
       <Unit119>
         <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFDBloco_0.pas"/>
-        <EditorIndex Value="8"/>
+        <UnitName Value="ACBrLFDBloco_0"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="463"/>
         <CursorPos X="17" Y="486"/>
         <UsageCount Value="11"/>
@@ -1053,6 +1060,7 @@
       </Unit119>
       <Unit120>
         <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFDBlocos.pas"/>
+        <UnitName Value="ACBrLFDBlocos"/>
         <EditorIndex Value="2"/>
         <TopLine Value="388"/>
         <CursorPos X="23" Y="409"/>
@@ -1063,9 +1071,9 @@
       <Unit121>
         <Filename Value="ACBrLFDBlocosDll.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="ACBrLFDBlocosDll"/>
         <EditorIndex Value="5"/>
         <CursorPos X="37" Y="3"/>
-        <FoldState Value=" TCIQD44"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -1079,119 +1087,123 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit122>
     </Units>
-    <JumpHistory Count="28" HistoryIndex="27">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="3342" Column="35" TopLine="3301"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="93" Column="18" TopLine="66"/>
       </Position1>
       <Position2>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Column="16"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="398" Column="25" TopLine="371"/>
       </Position2>
       <Position3>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="12" Column="18"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="405" Column="27" TopLine="378"/>
       </Position3>
       <Position4>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="68" Column="25" TopLine="32"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="430" Column="25" TopLine="403"/>
       </Position4>
       <Position5>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="559" Column="18" TopLine="547"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="469" Column="25" TopLine="442"/>
       </Position5>
       <Position6>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="735" Column="29" TopLine="723"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="476" Column="24" TopLine="449"/>
       </Position6>
       <Position7>
-        <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFD.pas"/>
-        <Caret Line="194" Column="36" TopLine="92"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="508" Column="25" TopLine="481"/>
       </Position7>
       <Position8>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="11" Column="10"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="515" Column="24" TopLine="488"/>
       </Position8>
       <Position9>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="744" Column="44" TopLine="728"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="48" Column="51" TopLine="37"/>
       </Position9>
       <Position10>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="770" Column="45" TopLine="758"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="72" Column="5" TopLine="48"/>
       </Position10>
       <Position11>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="758" Column="73" TopLine="754"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="90" Column="18" TopLine="67"/>
       </Position11>
       <Position12>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="795" Column="8" TopLine="782"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="96" Column="18" TopLine="73"/>
       </Position12>
       <Position13>
-        <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFDBloco_0_Class.pas"/>
-        <Caret Line="115" Column="14" TopLine="103"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="402" Column="18" TopLine="379"/>
       </Position13>
       <Position14>
-        <Filename Value="acbrlfdblocosdll.pas"/>
-        <Caret Line="167" Column="14" TopLine="125"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="410" Column="18" TopLine="387"/>
       </Position14>
       <Position15>
-        <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFDBloco_0_Class.pas"/>
-        <Caret Line="115" Column="14" TopLine="103"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="436" Column="18" TopLine="413"/>
       </Position15>
       <Position16>
-        <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFDBloco_0.pas"/>
-        <Caret Line="99" Column="18" TopLine="73"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="476" Column="18" TopLine="453"/>
       </Position16>
       <Position17>
-        <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFD.pas"/>
-        <Caret Line="143" Column="32" TopLine="119"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="484" Column="18" TopLine="461"/>
       </Position17>
       <Position18>
-        <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFD.pas"/>
-        <Caret Line="711" Column="20" TopLine="685"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="517" Column="18" TopLine="494"/>
       </Position18>
       <Position19>
-        <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFD.pas"/>
-        <Caret Line="923" Column="37" TopLine="900"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="525" Column="18" TopLine="502"/>
       </Position19>
       <Position20>
-        <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFDBloco_0_Class.pas"/>
-        <Caret Line="131" Column="32" TopLine="111"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="1120" Column="22" TopLine="1107"/>
       </Position20>
       <Position21>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="15" Column="21" TopLine="2"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="71" Column="5" TopLine="56"/>
       </Position21>
       <Position22>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="822" Column="52" TopLine="782"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="1175" Column="48" TopLine="1161"/>
       </Position22>
       <Position23>
-        <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFD.pas"/>
-        <Caret Line="214" Column="14" TopLine="206"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="90" Column="5" TopLine="75"/>
       </Position23>
       <Position24>
-        <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFDBloco_0_Class.pas"/>
-        <Caret Line="47" Column="3" TopLine="32"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="1181" Column="34" TopLine="1167"/>
       </Position24>
       <Position25>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="814" Column="5" TopLine="697"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Column="24"/>
       </Position25>
       <Position26>
-        <Filename Value="acbrlfddll.pas"/>
-        <Caret Line="902" Column="32" TopLine="852"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="401" Column="25" TopLine="379"/>
       </Position26>
       <Position27>
-        <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFDBloco_0_Class.pas"/>
-        <Caret Line="122" Column="14" TopLine="102"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="408" Column="27" TopLine="389"/>
       </Position27>
       <Position28>
-        <Filename Value="..\..\ACBr\Fontes\ACBrLFD\ACBrLFDBloco_0_Class.pas"/>
-        <Caret Line="131" Column="32" TopLine="105"/>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="443" Column="45" TopLine="429"/>
       </Position28>
+      <Position29>
+        <Filename Value="ACBrPAFDll.pas"/>
+        <Caret Line="479" Column="24" TopLine="462"/>
+      </Position29>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

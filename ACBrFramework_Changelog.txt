@@ -41,6 +41,12 @@ Símbolo : Significado
 
 Changelog
 
+15/07/2015
+-- ACBrFramework 0.9.6.11
+[+] Inclusão da propriedade InclusaoExclusao no registro U1 do ACBrPAF - Rafael Batiati
+[*] Excluído propriedades HORA que não estavam sendo utilizadas nos registros do PAF
+	Apenas um campo DateTime é o suficiente
+
 13/07/2015
 -- ACBrFramework 0.9.6.10
 [+] Inclusão da propriedade AAC.IdentPaf.Paf.PerfilRequisitos - Rafael Batiati

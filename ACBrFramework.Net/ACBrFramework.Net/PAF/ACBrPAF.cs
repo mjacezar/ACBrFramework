@@ -821,7 +821,6 @@ namespace ACBrFramework.PAF
             var registroE3Rec = new ACBrPAFInterop.RegistroE3Rec
             {
                 DataEstoque = PafE.RegistroE3.DataEstoque.ToOADate(),
-                HoraEstoque = (double)PafE.RegistroE3.HoraEstoque,
                 MarcaECF = PafE.RegistroE3.MarcaECF,
                 MFAdicional = PafE.RegistroE3.MFAdicional,
                 ModeloECF = PafE.RegistroE3.ModeloECF,
@@ -970,8 +969,7 @@ namespace ACBrFramework.PAF
 	                select new ACBrPAFInterop.RegistroD4Rec
 	                {
 	                    NumeroDAV = s.NumeroDAV,
-	                    DataAlteracao = (double) s.DataAlteracao,
-	                    HoraAlteracao = (double) s.HoraAlteracao,
+	                    DataAlteracao = s.DataAlteracao.ToOADate(),
 	                    CodigoProdutoServico = s.CodigoProdutoServico,
 	                    Descricao = s.Descricao,
 	                    Quantidade = (double) s.Quantidade,
