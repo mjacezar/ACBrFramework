@@ -840,9 +840,6 @@ namespace ACBrFramework.PAF
             [MarshalAs(UnmanagedType.R8)]
             public double DataAlteracao;
 
-            [MarshalAs(UnmanagedType.R8)]
-            public double HoraAlteracao;
-
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
             public string CodigoProdutoServico;
 
@@ -906,9 +903,6 @@ namespace ACBrFramework.PAF
 
             [MarshalAs(UnmanagedType.R8)]
             public double DataEstoque;
-
-            [MarshalAs(UnmanagedType.R8)]
-            public double HoraEstoque;
 
             [MarshalAs(UnmanagedType.U1)]
             public bool RegistroValido;

@@ -32,6 +32,8 @@ namespace ACBrFramework.PAF
 
 		public string IM { get; set; }
 
+		public bool InclusaoExclusao { get; set; }
+
 		#endregion Properties
 	}
 }

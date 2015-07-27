@@ -246,8 +246,7 @@ namespace ACBrFramework.Net.PAFTeste
             #endregion
 
             #region E3
-            acbrPAF.PafE.RegistroE3.DataEstoque = DateTime.Today;
-            acbrPAF.PafE.RegistroE3.HoraEstoque = (decimal)DateTime.Now.ToOADate();
+            acbrPAF.PafE.RegistroE3.DataEstoque = DateTime.Now;
             acbrPAF.PafE.RegistroE3.MarcaECF = "MarcaECF";
             acbrPAF.PafE.RegistroE3.MFAdicional = "MFAdicional";
             acbrPAF.PafE.RegistroE3.ModeloECF = "ModeloECF";

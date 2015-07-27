@@ -73,21 +73,21 @@ namespace ACBrFramework.ECFTeste
 			aacCNPJTextBox.Text = acbrAAC.IdentPaf.Empresa.CNPJ;
 
 			//Dados do aplicativo
-			aacBancoDadosTextBox.Text = acbrAAC.IdentPaf.Paf.BancoDeDadosAplicativo;
-			aacLinguagemTextBox.Text = acbrAAC.IdentPaf.Paf.LinguagemAplicativo;
-			aacMD5TextBox.Text = acbrAAC.IdentPaf.Paf.MD5Aplicativo;
-			aacNomePAFTextBox.Text = acbrAAC.IdentPaf.Paf.NomeAplicativo;
-			aacPrincipalExeTextBox.Text = acbrAAC.IdentPaf.Paf.PrincipalExeAplicativo;
-			aacSOTextBox.Text = acbrAAC.IdentPaf.Paf.SistemaOperacionalAplicativo;
-			aacVersaoTextBox.Text = acbrAAC.IdentPaf.Paf.VersaoAplicativo;
+			aacBancoDadosTextBox.Text = acbrAAC.IdentPaf.Paf.BancoDeDados;
+			aacLinguagemTextBox.Text = acbrAAC.IdentPaf.Paf.Linguagem;
+			aacMD5TextBox.Text = acbrAAC.IdentPaf.Paf.MD5PrincipalExe;
+			aacNomePAFTextBox.Text = acbrAAC.IdentPaf.Paf.Nome;
+			aacPrincipalExeTextBox.Text = acbrAAC.IdentPaf.Paf.PrincipalExe;
+			aacSOTextBox.Text = acbrAAC.IdentPaf.Paf.SistemaOperacional;
+			aacVersaoTextBox.Text = acbrAAC.IdentPaf.Paf.Versao;
 
 			//Dados de funcionalidade
 			aacTipoDesenvolvimentoComboBox.SelectedItem = acbrAAC.IdentPaf.Paf.TipoDesenvolvimento;
 			aacTipoFuncionamentoComboBox.SelectedItem = acbrAAC.IdentPaf.Paf.TipoFuncionamento;
-			aacTipoIntegracaoComboBox.SelectedItem = acbrAAC.IdentPaf.Paf.TipoIntegracao;
+			aacTipoIntegracaoComboBox.SelectedItem = acbrAAC.IdentPaf.Paf.TipoIntegracaoPAFECF;
 
 			//Dados de não concomitância
-			aacRealizaDavAnexoIICheckBox.Checked = acbrAAC.IdentPaf.Paf.RealizaDAVConfAnexoII;
+			aacRealizaDavAnexoIICheckBox.Checked = acbrAAC.IdentPaf.Paf.DAVConfAnexoII;
 			aacRealizaDavECFCheckBox.Checked = acbrAAC.IdentPaf.Paf.RealizaDAVECF;
 			aacRealizaDavNaoFiscalCheckBox.Checked = acbrAAC.IdentPaf.Paf.RealizaDAVNaoFiscal;
 			aacRealizaDavOSCheckBox.Checked = acbrAAC.IdentPaf.Paf.RealizaDAVOS;
@@ -153,13 +153,13 @@ namespace ACBrFramework.ECFTeste
 			acbrAAC.IdentPaf.Empresa.CNPJ = aacCNPJTextBox.Text;
 
 			//Dados do aplicativo
-			acbrAAC.IdentPaf.Paf.BancoDeDadosAplicativo = aacBancoDadosTextBox.Text;
-			acbrAAC.IdentPaf.Paf.LinguagemAplicativo = aacLinguagemTextBox.Text;
-			acbrAAC.IdentPaf.Paf.MD5Aplicativo = aacMD5TextBox.Text;
-			acbrAAC.IdentPaf.Paf.NomeAplicativo = aacNomePAFTextBox.Text;
-			acbrAAC.IdentPaf.Paf.PrincipalExeAplicativo = aacPrincipalExeTextBox.Text;
-			acbrAAC.IdentPaf.Paf.SistemaOperacionalAplicativo = aacSOTextBox.Text;
-			acbrAAC.IdentPaf.Paf.VersaoAplicativo = aacVersaoTextBox.Text;
+			acbrAAC.IdentPaf.Paf.BancoDeDados = aacBancoDadosTextBox.Text;
+			acbrAAC.IdentPaf.Paf.Linguagem = aacLinguagemTextBox.Text;
+			acbrAAC.IdentPaf.Paf.MD5PrincipalExe = aacMD5TextBox.Text;
+			acbrAAC.IdentPaf.Paf.Nome = aacNomePAFTextBox.Text;
+			acbrAAC.IdentPaf.Paf.PrincipalExe = aacPrincipalExeTextBox.Text;
+			acbrAAC.IdentPaf.Paf.SistemaOperacional = aacSOTextBox.Text;
+			acbrAAC.IdentPaf.Paf.Versao = aacVersaoTextBox.Text;
 
 			//Dados de funcionalidade
 			if (aacTipoDesenvolvimentoComboBox.SelectedItem != null)
@@ -172,11 +172,11 @@ namespace ACBrFramework.ECFTeste
 			}
 			if (aacTipoIntegracaoComboBox.SelectedItem != null)
 			{
-				acbrAAC.IdentPaf.Paf.TipoIntegracao = (TipoIntegracao)aacTipoIntegracaoComboBox.SelectedItem;
+				acbrAAC.IdentPaf.Paf.TipoIntegracaoPAFECF = (TipoIntegracao)aacTipoIntegracaoComboBox.SelectedItem;
 			}
 
 			//Dados de não concomitância
-			acbrAAC.IdentPaf.Paf.RealizaDAVConfAnexoII = aacRealizaDavAnexoIICheckBox.Checked;
+			acbrAAC.IdentPaf.Paf.DAVConfAnexoII = aacRealizaDavAnexoIICheckBox.Checked;
 			acbrAAC.IdentPaf.Paf.RealizaDAVECF = aacRealizaDavECFCheckBox.Checked;
 			acbrAAC.IdentPaf.Paf.RealizaDAVNaoFiscal = aacRealizaDavNaoFiscalCheckBox.Checked;
 			acbrAAC.IdentPaf.Paf.RealizaDAVOS = aacRealizaDavOSCheckBox.Checked;
