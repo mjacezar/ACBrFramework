@@ -8,7 +8,9 @@ namespace ACBrFramework.PAF
 		#region Properties
 
 		public string COD_ITEM { get; set; }
+
 		public string DESC_ITEM { get; set; }
+
 		public decimal QTDE_ITEM
 		{
 			#region COM_INTEROP
@@ -28,7 +30,9 @@ namespace ACBrFramework.PAF
 			#endregion COM_INTEROP
 			set;
 		}
+
 		public string UNI_ITEM { get; set; }
+
 		public decimal VL_UNIT
 		{
 			#region COM_INTEROP
@@ -48,6 +52,8 @@ namespace ACBrFramework.PAF
 			#endregion COM_INTEROP
 			set;
 		}
+
+		public bool RegistroValido { get; set; }
 
 		#endregion Properties
 	}

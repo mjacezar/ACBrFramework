@@ -152,6 +152,11 @@ type
 
 type
   TRegistroH2Rec = record
+    NUM_FAB: array[0..20] of char;
+    MF_ADICIONAL: array[0..1] of char;
+    TIPO_ECF: array[0..7] of char;
+    MARCA_ECF: array[0..20] of char;
+    MODELO_ECF: array[0..20] of char;
     CNPJ_CRED_CARTAO: array[0..14] of char;
     COO: integer;
     CCF: integer;
@@ -562,24 +567,27 @@ type
 // Mesa/Conta de Cliente
 type
   TRegistroS2Rec = record
-    QTD_S3     : integer;
-    CNPJ       : array[0..14] of char;
-    DT_ABER    : double;
-    SITU       : array[0..1] of char;
-    VL_TOT     : double;
-    COO_CM     : array[0..9] of char;
-    NUM_FAB_CM : array[0..20] of char;
-    COO        : array[0..9] of char;
-    NUM_FAB    : array[0..20] of char;
+    QTD_S3         : integer;
+    CNPJ           : array[0..14] of char;
+    DT_ABER        : double;
+    NUM_MESA       : array[0..13] of char;
+    SITU           : array[0..1] of char;
+    VL_TOT         : double;
+    COO_CM         : array[0..9] of char;
+    NUM_FAB_CM     : array[0..20] of char;
+    COO            : array[0..9] of char;
+    NUM_FAB        : array[0..20] of char;
+    RegistroValido : boolean;
   end;
 
 type
   TRegistroS3Rec = record
-    COD_ITEM   : array[0..14] of char;
-    DESC_ITEM  : array[0..100] of char;
-    QTDE_ITEM  : double;
-    UNI_ITEM   : array[0..3] of char;
-    VL_UNIT    : double;
+    COD_ITEM       : array[0..14] of char;
+    DESC_ITEM      : array[0..100] of char;
+    QTDE_ITEM      : double;
+    UNI_ITEM       : array[0..3] of char;
+    VL_UNIT        : double;
+    RegistroValido : boolean;
   end;
 
 {%endregion}
@@ -1407,6 +1415,11 @@ begin
       with pafHandle^.PAF.PAF_H.RegistroH2.New do
       begin
         RegistroValido := RegistroH2Rec[i].RegistroValido;
+        NUM_FAB := RegistroH2Rec[i].NUM_FAB;
+        MF_ADICIONAL := RegistroH2Rec[i].MF_ADICIONAL;
+        TIPO_ECF := RegistroH2Rec[i].TIPO_ECF;
+        MARCA_ECF := RegistroH2Rec[i].MARCA_ECF;
+        MODELO_ECF := RegistroH2Rec[i].MODELO_ECF;
         CNPJ_CRED_CARTAO := RegistroH2Rec[i].CNPJ_CRED_CARTAO;
         COO := RegistroH2Rec[i].COO;
         CCF := RegistroH2Rec[i].CCF;
@@ -1751,24 +1764,28 @@ begin
     begin
       with pafHandle^.PAF.PAF_S.RegistroS2.New do
       begin
-        CNPJ        := RegistroS2Rec[i].CNPJ;
-        DT_ABER     := RegistroS2Rec[i].DT_ABER;
-        SITU        := RegistroS2Rec[i].SITU;
-        VL_TOT      := RegistroS2Rec[i].VL_TOT;
-        COO_CM      := RegistroS2Rec[i].COO_CM;
-        NUM_FAB_CM  := RegistroS2Rec[i].NUM_FAB_CM;
-        COO         := RegistroS2Rec[i].COO;
-        NUM_FAB     := RegistroS2Rec[i].NUM_FAB;
+        CNPJ           := RegistroS2Rec[i].CNPJ;
+        DT_ABER        := RegistroS2Rec[i].DT_ABER;
+        NUM_MESA       := RegistroS2Rec[i].NUM_MESA;
+        SITU           := RegistroS2Rec[i].SITU;
+        VL_TOT         := RegistroS2Rec[i].VL_TOT;
+        COO_CM         := RegistroS2Rec[i].COO_CM;
+        NUM_FAB_CM     := RegistroS2Rec[i].NUM_FAB_CM;
+        COO            := RegistroS2Rec[i].COO;
+        NUM_FAB        := RegistroS2Rec[i].NUM_FAB;
+        RegistroValido := RegistroS2Rec[i].RegistroValido;
 
         for d := 0 to RegistroS2Rec[i].QTD_S3 - 1 do
         begin
           with RegistroS3.New do
           begin
-            COD_ITEM   := RegistroS3Rec[IndexS3].COD_ITEM;
-            DESC_ITEM  := RegistroS3Rec[IndexS3].DESC_ITEM;
-            QTDE_ITEM  := RegistroS3Rec[IndexS3].QTDE_ITEM;
-            UNI_ITEM   := RegistroS3Rec[IndexS3].UNI_ITEM;
-            VL_UNIT    := RegistroS3Rec[IndexS3].VL_UNIT;
+            NUM_MESA       := RegistroS2Rec[i].NUM_MESA;
+            COD_ITEM       := RegistroS3Rec[IndexS3].COD_ITEM;
+            DESC_ITEM      := RegistroS3Rec[IndexS3].DESC_ITEM;
+            QTDE_ITEM      := RegistroS3Rec[IndexS3].QTDE_ITEM;
+            UNI_ITEM       := RegistroS3Rec[IndexS3].UNI_ITEM;
+            VL_UNIT        := RegistroS3Rec[IndexS3].VL_UNIT;
+            RegistroValido := RegistroS3Rec[IndexS3].RegistroValido;
             Inc(IndexS3);
           end;
         end;

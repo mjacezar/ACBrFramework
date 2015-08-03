@@ -29,8 +29,13 @@ namespace ACBrFramework.PAF
 		#region Properties
 
 		public string CNPJ { get; set; }
+
 		public DateTime DT_ABER { get; set; }
+
+		public string NUM_MESA { get; set; }
+		
 		public string SITU { get; set; }
+		
 		public decimal VL_TOT
 		{
 			#region COM_INTEROP
@@ -51,9 +56,15 @@ namespace ACBrFramework.PAF
 			set;
 		}
 		public string COO_CM { get; set; }
+
 		public string NUM_FAB_CM { get; set; }
+
 		public string COO { get; set; }
+
 		public string NUM_FAB { get; set; }
+
+		public bool RegistroValido { get; set; }
+
 		public List<ACBrPAFRegistroS3> RegistroS3 { get; private set; }
 
 		#endregion Properties

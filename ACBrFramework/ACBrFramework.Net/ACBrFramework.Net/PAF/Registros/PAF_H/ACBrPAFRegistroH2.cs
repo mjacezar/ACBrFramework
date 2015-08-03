@@ -19,6 +19,16 @@ namespace ACBrFramework.PAF
 	{
 		#region Properties
 
+		public string NUM_FAB { get; set; }
+
+		public string MF_ADICIONAL { get; set; }
+
+		public string TIPO_ECF { get; set; }
+
+		public string MARCA_ECF { get; set; }
+
+		public string MODELO_ECF { get; set; }
+
 		public string CNPJ_CRED_CARTAO { get; set; }
 
 		public int COO { get; set; }
@@ -49,6 +59,8 @@ namespace ACBrFramework.PAF
 		public string CPF { get; set; }
 
 		public string Titulo { get; set; }
+
+		public bool InclusaoExclusao { get; set; }
 
 		public bool RegistroValido { get; set; }
 

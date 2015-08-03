@@ -80,11 +80,11 @@ begin
 end;
 
 {
-DESTRÓI o objeto TACBrSPEDFiscal e libera a memória utilizada.
+DESTRÓI o objeto TACBrLFD e libera a memória utilizada.
 Esta função deve SEMPRE ser chamada pela aplicação que utiliza a DLL
 quando o componente não mais for utilizado.
 }
-Function LFD_Destroy(var lfdHandle: PTFDHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
+Function LFD_Destroy(lfdHandle: PTFDHandle): Integer; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF}  export;
 begin
 
   if (lfdHandle = nil) then
@@ -541,7 +541,7 @@ begin
   end;
 end;
 
-Function LDF_SaveFileTXT(const lfdHandle: PTFDHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function LFD_SaveFileTXT(const lfdHandle: PTFDHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
  if (lfdHandle = nil) then
@@ -742,7 +742,9 @@ begin
      COD_MUN       := registro0000.COD_MUN;
      IM            := registro0000.IM;
      SUFRAMA       := registro0000.SUFRAMA;
-
+     COD_CONTEUDO  := TACBrConteudoArquivo(registro0000.COD_CONTEUDO);
+     FANTASIA      := registro0000.FANTASIA;
+     NIRE          := registro0000.NIRE;
      end;
 
      Result := 0;
@@ -768,6 +770,7 @@ begin
      with lfdHandle^.LFD.Bloco_0.Registro0001New do
      begin
           IND_MOV:= TACBrLIndicadorMovimento(registro0001.IND_MOV);
+          COD_MUN:= registro0001.COD_MUN;
      end;
      Result := 0;
   except
@@ -791,16 +794,44 @@ begin
   try
      with lfdHandle^.LFD.Bloco_0.Registro0005New do
      begin
-
-       NOMERESP     := registro0005.FANTASIA;
+       NOMERESP     := registro0005.NOMERESP;
+       COD_ASS      := registro0005.COD_ASS;
+       CPFRESP      := registro0005.CPFRESP;
        CEP          := registro0005.CEP;
        ENDERECO     := registro0005.ENDERECO;
        NUM          := registro0005.NUM;
        COMPL        := registro0005.COMPL;
        BAIRRO       := registro0005.BAIRRO;
+       CEP_CP       := registro0005.CEP_CP;
+       CP           := registro0005.CP;
        FONE         := registro0005.FONE;
        FAX          := registro0005.FAX;
        EMAIL        := registro0005.EMAIL;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_0_Registro0025New(const lfdHandle: PTFDHandle; const registro0025 : Bloco0Registro0025) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with lfdHandle^.LFD.Bloco_0.Registro0025New do
+     begin
+        CODBF_ICMS := TACBrCODBFICMS(registro0025.CODBF_ICMS);
+        CODBF_ISS := TACBrCODBFISS(registro0025.CODBF_ISS);
      end;
      Result := 0;
   except
@@ -830,14 +861,18 @@ begin
        CRC        := registro0100.CRC;
        CNPJ       := registro0100.CNPJ;
        CEP        := registro0100.CEP;
+       CEP_CF     := registro0100.CEP_CP;
+       CP         := registro0100.CP;
        ENDERECO   := registro0100.ENDERECO;
        NUM        := registro0100.NUM;
        COMPL      := registro0100.COMPL;
        BAIRRO     := registro0100.BAIRRO;
+       UF         := registro0100.UF;
        FONE       := registro0100.FONE;
        FAX        := registro0100.FAX;
        EMAIL      := registro0100.EMAIL;
        COD_MUN    := registro0100.COD_MUN;
+       COD_ASS    :=  registro0100.COD_ASS[0];
      end;
      Result := 0;
   except
@@ -868,13 +903,16 @@ begin
      COD_PAIS    := registro0150.COD_PAIS;
      CNPJ        := registro0150.CNPJ;
      CPF         := registro0150.CPF;
+     IE_ST       := registro0150.IE_ST;
      IE          := registro0150.IE;
+     IM          := registro0150.IM;
      COD_MUN     := registro0150.COD_MUN;
      SUFRAMA     := registro0150.SUFRAMA;
      ENDERECO    := registro0150.ENDERECO;
      NUM         := registro0150.NUM;
      COMPL       := registro0150.COMPL;
      BAIRRO      := registro0150.BAIRRO;
+     UF          := registro0150.UF;
 
      end;
 
@@ -901,40 +939,15 @@ begin
 
      with lfdHandle^.LFD.Bloco_0.Registro0175New do
      begin
-
-        DT_ALT   := TDateTime(registro0175.DT_ALT);
-        NR_CAMPO := registro0175.NR_CAMPO;
-        CONT_ANT := registro0175.CONT_ANT;
-
-     end;
-
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_0_Registro0190New(const lfdHandle: PTFDHandle; const registro0190 : Bloco0Registro0190) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-
-     with lfdHandle^.LFD.Bloco_0.Registro0190New do
-     begin
-
-        UNID  := registro0190.UNID;
-        DESCR := registro0190.DESCR;
-
+         CEP        := registro0175.CEP;
+         ENDERECO   := registro0175.ENDERECO;
+         NUM        := registro0175.NUM;
+         COMPL      := registro0175.COMPL;
+         BAIRRO     := registro0175.BAIRRO;
+         CEP_CP     := registro0175.CEP_CP;
+         CP         := registro0175.CP;
+         FONE       := registro0175.FONE;
+         FAX        := registro0175.FAX;
      end;
 
      Result := 0;
@@ -963,15 +976,8 @@ begin
 
         COD_ITEM     := registro0200.COD_ITEM;
         DESCR_ITEM   := registro0200.DESCR_ITEM;
-        COD_BARRA    := registro0200.COD_BARRA;
-        COD_ANT_ITEM := registro0200.COD_ANT_ITEM;
-        UNID_INV     := registro0200.UNID_INV;
-        TIPO_ITEM    := TACBrTipoItem(registro0200.TIPO_ITEM);
-        COD_NCM      := registro0200.COD_NCM;
-        EX_IPI       := registro0200.EX_IPI;
         COD_GEN      := registro0200.COD_GEN;
         COD_LST      := registro0200.COD_LST;
-        ALIQ_ICMS    := registro0200.ALIQ_ICMS;
 
      end;
 
@@ -1016,7 +1022,7 @@ begin
   end;
 end;
 
-Function LFD_Bloco_0_Registro0206New(const lfdHandle: PTFDHandle; const registro0206 : Bloco0Registro0206) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function LFD_Bloco_0_Registro0210New(const lfdHandle: PTFDHandle; const registro0210 : Bloco0Registro0210) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
  if (lfdHandle = nil) then
@@ -1027,243 +1033,16 @@ begin
 
   try
 
-     with lfdHandle^.LFD.Bloco_0.Registro0206New do
+     with lfdHandle^.LFD.Bloco_0.Registro0210New do
      begin
-
-        COD_COMB := registro0206.COD_COMB;
-
-     end;
-
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_0_Registro0220New(const lfdHandle: PTFDHandle; const registro0220 : Bloco0Registro0220) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-
-     with lfdHandle^.LFD.Bloco_0.Registro0220New do
-     begin
-
-          UNID_CONV := registro0220.UNID_CONV;
-          FAT_CONV  := registro0220.FAT_CONV;
-
-     end;
-
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_0_Registro0300New(const lfdHandle: PTFDHandle; const registro0300 : Bloco0Registro0300) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-
-     with lfdHandle^.LFD.Bloco_0.Registro0300New do
-     begin
-        COD_IND_BEM := registro0300.COD_IND_BEM;
-        IDENT_MERC  := registro0300.IDENT_MERC;
-        DESCR_ITEM  := registro0300.DESCR_ITEM;
-        COD_PRNC    := registro0300.COD_PRNC;
-        COD_CTA     := registro0300.COD_CTA;
-        NR_PARC     := registro0300.NR_PARC;
-     end;
-
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_0_Registro0305New(const lfdHandle: PTFDHandle; const registro0305 : Bloco0Registro0305) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-
-     with lfdHandle^.LFD.Bloco_0.Registro0305New do
-     begin
-
-        COD_CCUS  := registro0305.COD_CCUS;
-        FUNC      := registro0305.FUNC;
-        VIDA_UTIL := registro0305.VIDA_UTIL;
-
-     end;
-
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_0_Registro0400New(const lfdHandle: PTFDHandle; const registro0400 : Bloco0Registro0400) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-
-     with lfdHandle^.LFD.Bloco_0.Registro0400New do
-     begin
-
-        COD_NAT   := registro0400.COD_NAT;
-        DESCR_NAT := registro0400.DESCR_NAT;
-
-     end;
-
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_0_Registro0450New(const lfdHandle: PTFDHandle; const registro0450 : Bloco0Registro0450) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-
-     with lfdHandle^.LFD.Bloco_0.Registro0450New do
-     begin
-
-        COD_INF := registro0450.COD_INF;
-        TXT     := registro0450.TXT;
-     end;
-
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_0_Registro0460New(const lfdHandle: PTFDHandle; const registro0460 : Bloco0Registro0460) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-
-     with lfdHandle^.LFD.Bloco_0.Registro0460New do
-     begin
-
-        COD_OBS := registro0460.COD_OBS;
-        TXT     := registro0460.TXT;
-     end;
-
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_0_Registro0500New(const lfdHandle: PTFDHandle; const registro0500 : Bloco0Registro0500) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_0.Registro0500New do
-     begin
-          DT_ALT      := TDateTime(registro0500.DT_ALT);
-          COD_NAT_CC  := registro0500.COD_NAT_CC;
-          IND_CTA     := registro0500.IND_CTA;
-          NIVEL       := registro0500.NIVEL;
-          COD_CTA     := registro0500.COD_CTA;
-          NOME_CTA    := registro0500.NOME_CTA;
-     end;
-
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_0_Registro0600New(const lfdHandle: PTFDHandle; const registro0600 : Bloco0Registro0600) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_0.Registro0600New do
-     begin
-          DT_ALT    := TDateTime(registro0600.DT_ALT);
-          COD_CCUS  := registro0600.COD_CCUS;
-          CCUS      := registro0600.CCUS;
+        UNID_ITEM 	  := registro0210.UNID_ITEM;
+	COD_ITEM_COMP     := registro0210.COD_ITEM_COMP;
+	QTD_COMP	  := registro0210.QTD_COMP;
+	UNID_COMP 	  := registro0210.UNID_COMP;
+	PERDA_COMP	  := registro0210.PERDA_COMP;
+	DT_INI_COMP	  := registro0210.DT_INI_COMP;
+	DT_FIN_COMP 	  := registro0210.DT_FIN_COMP;
+	IND_ALT 	  := TACBrIndAlteracao(registro0210.IND_ALT);
      end;
 
      Result := 0;
@@ -1287,6 +1066,252 @@ begin
 
   try
      Result := lfdHandle^.LFD.Bloco_0.Registro0990.QTD_LIN_0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion Bloco0}
+
+{%region BlocoA}
+
+Function LFD_Bloco_A_GetDT_INI(const lfdHandle: PTFDHandle; var dtIni : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     dtIni  := Double(lfdHandle^.LFD.Bloco_A.DT_INI);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_A_SetDT_INI(const lfdHandle: PTFDHandle; const dtIni : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     lfdHandle^.LFD.Bloco_A.DT_INI := TDateTime(dtIni);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_A_GetDT_FIN(const lfdHandle: PTFDHandle; var dtFin : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     dtFin  := Double(lfdHandle^.LFD.Bloco_A.DT_FIN);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_A_SetDT_FIN(const lfdHandle: PTFDHandle; const dtFin : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     lfdHandle^.LFD.Bloco_A.DT_FIN := TDateTime(dtFin);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_A_GetGravado(const lfdHandle: PTFDHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if lfdHandle^.LFD.Bloco_A.Gravado then
+     Result := 1
+     else
+     Result := 0;
+
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_A_RegistroA001New(const lfdHandle: PTFDHandle; const registroA001 : BlocoARegistroA001) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     with lfdHandle^.LFD.Bloco_A.RegistroA001New do
+     begin
+          IND_MOV:= TACBrLIndicadorMovimento(registroA001.IND_MOV);
+          COD_MUN:= registroA001.COD_MUN;
+     end;
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_A_RegistroA350New(const lfdHandle: PTFDHandle; const registroA350 : BlocoARegistroA350) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+
+     with lfdHandle^.LFD.Bloco_A.RegistroA350New do
+     begin
+        CPF_CONS        := registroA350.CPF_CONS;
+        CNPJ_CONS       := registroA350.CNPJ_CONS;
+        COD_MOD         := registroA350.COD_MOD;
+        COD_SIT         := TACBrlSituacaoDocto(registroA350.COD_SIT);
+        ECF_CX          := registroA350.ECF_CX;
+        ECF_FAB         := registroA350.ECF_FAB;
+        CRO             := registroA350.CRO;
+        CRZ             := registroA350.CRZ;
+        NUM_DOC         := registroA350.NUM_DOC;
+        DT_DOC          := registroA350.DT_DOC;
+        COP             := registroA350.COP;
+        VL_DOC          := registroA350.VL_DOC;
+        VL_CANC_ISS     := registroA350.VL_CANC_ISS;
+        VL_CANC_ICMS    := registroA350.VL_CANC_ICMS;
+        VL_DESC_ISS     := registroA350.VL_DESC_ISS;
+        VL_DESC_ICMS    := registroA350.VL_DESC_ICMS;
+        VL_ACMO_ISS     := registroA350.VL_ACMO_ISS;
+        VL_ACMO_ICMS    := registroA350.VL_ACMO_ICMS;
+        VL_BC_ISS       := registroA350.VL_BC_ISS;
+        VL_ISS          := registroA350.VL_ISS;
+        VL_ISN_ISS      := registroA350.VL_ISN_ISS;
+        VL_NT_ISS       := registroA350.VL_NT_ISS;
+        VL_RET_ISS      := registroA350.VL_RET_ISS;
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_A_RegistroA360New(const lfdHandle: PTFDHandle; const registroA360 : BlocoARegistroA360) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+
+     with lfdHandle^.LFD.Bloco_A.RegistroA360New do
+     begin
+        NUM_ITEM      := registroA360.NUM_ITEM;
+        COD_ITEM      := registroA360.COD_ITEM;
+        UNID          := registroA360.UNID;
+        VL_UNIT       := registroA360.VL_UNIT;
+        QTD           := registroA360.QTD;
+        QTDCANC       := registroA360.QTDCANC;
+        VL_DESC_I     := registroA360.VL_DESC_I;
+        VL_ACMO_I     := registroA360.VL_ACMO_I;
+        VL_CANC_I     := registroA360.VL_CANC_I;
+        VL_ITEM       := registroA360.VL_ITEM;
+        CTISS         := registroA360.CTISS;
+        VL_BC_ISS_I   := registroA360.VL_BC_ISS_I;
+        ALIQ_ISS      := registroA360.ALIQ_ISS;
+        VL_ISS_I      := registroA360.VL_ISS_I;
+        VL_ISN_ISS_I  := registroA360.VL_ISN_ISS_I;
+        VL_NT_ISS_I   := registroA360.VL_NT_ISS_I;
+        VL_RT_ISS_I   := registroA360.VL_RT_ISS_I;
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+Function LFD_Bloco_A_RegistroA990_GetQTD_LIN_A(const lfdHandle: PTFDHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := lfdHandle^.LFD.Bloco_A.RegistroA990.QTD_LIN_A;
   except
      on exception : Exception do
      begin
@@ -1420,7 +1445,8 @@ begin
   try
      with lfdHandle^.LFD.Bloco_C.RegistroC001New do
      begin
-          IND_MOV:= TACBrIndicadorMovimento(registroC001.IND_MOV);
+          IND_MOV:= TACBrLIndicadorMovimento(registroC001.IND_MOV);
+          COD_MUN:= registroC001.COD_MUN;
      end;
      Result := 0;
   except
@@ -1432,7 +1458,7 @@ begin
   end;
 end;
 
-Function LFD_Bloco_C_RegistroC100New(const lfdHandle: PTFDHandle; const registroC100 : BlocoCRegistroC100) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function LFD_Bloco_C_RegistroC020New(const lfdHandle: PTFDHandle; const registroC020 : BlocoCRegistroC020) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
  if (lfdHandle = nil) then
@@ -1442,36 +1468,35 @@ begin
   end;
 
   try
-     with lfdHandle^.LFD.Bloco_C.RegistroC100New do
+     with lfdHandle^.LFD.Bloco_C.RegistroC020New do
      begin
-          IND_OPER      := TACBrTipoOperacao(registroC100.IND_OPER);
-          IND_EMIT      := TACBrEmitente(registroC100.IND_EMIT);
-          COD_PART      := registroC100.COD_PART;
-          COD_MOD       := registroC100.COD_MOD;
-          COD_SIT       := TACBrSituacaoDocto(registroC100.COD_SIT);
-          SER           := registroC100.SER;
-          NUM_DOC       := registroC100.NUM_DOC;
-          CHV_NFE       := registroC100.CHV_NFE;
-          DT_DOC        := TDateTime(registroC100.DT_DOC);
-          DT_E_S        := TDateTime(registroC100.DT_E_S);
-          VL_DOC        := registroC100.VL_DOC;
-          IND_PGTO      := TACBrTipoPagamento(registroC100.IND_PGTO);
-          VL_DESC       := registroC100.VL_DESC;
-          VL_ABAT_NT    := registroC100.VL_ABAT_NT;
-          VL_MERC       := registroC100.VL_MERC;
-          IND_FRT       := TACBrTipoFrete(registroC100.IND_FRT);
-          VL_FRT        := registroC100.VL_FRT;
-          VL_SEG        := registroC100.VL_SEG;
-          VL_OUT_DA     := registroC100.VL_OUT_DA;
-          VL_BC_ICMS    := registroC100.VL_BC_ICMS;
-          VL_ICMS       := registroC100.VL_ICMS;
-          VL_BC_ICMS_ST := registroC100.VL_BC_ICMS_ST;
-          VL_ICMS_ST    := registroC100.VL_ICMS_ST;
-          VL_IPI        := registroC100.VL_IPI;
-          VL_PIS        := registroC100.VL_PIS;
-          VL_COFINS     := registroC100.VL_COFINS;
-          VL_PIS_ST     := registroC100.VL_PIS_ST;
-          VL_COFINS_ST  := registroC100.VL_COFINS_ST;
+        IND_OPER    := TACBrlTipoOperacao(registroC020.IND_OPER);
+        IND_EMIT    := TACBrlEmitente(registroC020.IND_EMIT);
+        COD_PART    := registroC020.COD_PART;
+        COD_MOD     := registroC020.COD_MOD;
+        COD_SIT     := TACBrlSituacaoDocto(registroC020.COD_SIT);
+        SER         := registroC020.SER;
+        NUM_DOC     := registroC020.NUM_DOC;
+        CHV_NFE     := registroC020.CHV_NFE;
+        DT_EMIS     := TDateTime(registroC020.DT_EMIS);
+        DT_DOC      := TDateTime(registroC020.DT_DOC);
+        COD_NAT     := registroC020.COD_NAT;
+        IND_PGTO    := TACBrlTipoPagamento(registroC020.IND_PGTO);
+        VL_DOC      := registroC020.VL_DOC;
+        VL_DESC     := registroC020.VL_DESC;
+        VL_ACMO     := registroC020.VL_ACMO;
+        VL_MERC     := registroC020.VL_MERC;
+        IND_FRT     := TACBrTipoFrete(registroC020.IND_FRT);
+        VL_FRT      := registroC020.VL_FRT;
+        VL_SEG      := registroC020.VL_SEG;
+        VL_OUT_DA   := registroC020.VL_OUT_DA;
+        VL_BC_ICMS  := registroC020.VL_BC_ICMS;
+        VL_ICMS     := registroC020.VL_ICMS;
+        VL_BC_ST    := registroC020.VL_BC_ST;
+        VL_ICMS_ST  := registroC020.VL_ICMS_ST;
+        VL_AT       := registroC020.VL_AT;
+        VL_IPI      := registroC020.VL_IPI;
+        COD_INF_OBS := registroC020.COD_INF_OBS;
      end;
      Result := 0;
   except
@@ -1483,7 +1508,7 @@ begin
   end;
 end;
 
-Function LFD_Bloco_C_RegistroC110New(const lfdHandle: PTFDHandle; const registroC110 : BlocoCRegistroC110) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function LFD_Bloco_C_RegistroC550New(const lfdHandle: PTFDHandle; const registroC550 : BlocoCRegistroC550) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
  if (lfdHandle = nil) then
@@ -1493,10 +1518,24 @@ begin
   end;
 
   try
-     with lfdHandle^.LFD.Bloco_C.RegistroC110New do
+     with lfdHandle^.LFD.Bloco_C.RegistroC550New do
      begin
-          COD_INF      := registroC110.COD_INF;
-          TXT_COMPL    := registroC110.TXT_COMPL;
+        CPF_CONS   := registroC550.CPF_CONS;
+        CNPJ_CONS  := registroC550.CNPJ_CONS;
+        COD_MOD    := registroC550.COD_MOD;
+        COD_SIT    := TACBrlSituacaoDocto(registroC550.COD_SIT);
+        SER        := registroC550.SER;
+        SUB        := registroC550.SUB;
+        NUM_DOC    := registroC550.NUM_DOC;
+        DT_DOC     := registroC550.DT_DOC;
+        COP        := registroC550.COP;
+        VL_DOC     := registroC550.VL_DOC;
+        VL_DESC    := registroC550.VL_DESC;
+        VL_ACMO    := registroC550.VL_ACMO;
+        VL_MERC    := registroC550.VL_MERC;
+        VL_BC_ICMS := registroC550.VL_BC_ICMS;
+        VL_ICMS    := registroC550.VL_ICMS;
+        COD_INF_OBS:= registroC550.COD_INF_OBS;
      end;
      Result := 0;
   except
@@ -1508,7 +1547,7 @@ begin
   end;
 end;
 
-Function LFD_Bloco_C_RegistroC105New(const lfdHandle: PTFDHandle; const registroC105 : BlocoCRegistroC105) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function LFD_Bloco_C_RegistroC555New(const lfdHandle: PTFDHandle; const registroC555 : BlocoCRegistroC555) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
  if (lfdHandle = nil) then
@@ -1518,1361 +1557,21 @@ begin
   end;
 
   try
-     with lfdHandle^.LFD.Bloco_C.RegistroC105New do
-     begin
-          OPER   := TACBrTipoOperacaoST(registroC105.OPER);
-          UF     := registroC105.UF;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC111New(const lfdHandle: PTFDHandle; const registroC111 : BlocoCRegistroC111) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC111New do
-     begin
-         NUM_PROC   := registroC111.NUM_PROC;
-         IND_PROC   := TACBrOrigemProcesso(registroC111.IND_PROC);
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC112New(const lfdHandle: PTFDHandle; const registroC112 : BlocoCRegistroC112) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC112New do
-     begin
-        COD_DA     :=   TACBrDoctoArrecada(registroC112.COD_DA);
-        UF         :=   registroC112.UF;
-        NUM_DA     :=   registroC112.NUM_DA;
-        COD_AUT    :=   registroC112.COD_AUT;
-        VL_DA      :=   registroC112.VL_DA;
-        DT_VCTO    :=   TDateTime(registroC112.DT_VCTO);
-        DT_PGTO    :=   TDateTime(registroC112.DT_PGTO);
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC113New(const lfdHandle: PTFDHandle; const registroC113 : BlocoCRegistroC113) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC113New do
-     begin
-         IND_OPER   := TACBrTipoOperacao(registroC113.IND_OPER);
-         IND_EMIT   := TACBrEmitente(registroC113.IND_EMIT);
-         COD_PART   := registroC113.COD_PART;
-         COD_MOD    := registroC113.COD_MOD;
-         SER        := registroC113.SER;
-         SUB        := registroC113.SUB;
-         NUM_DOC    := registroC113.NUM_DOC;
-         DT_DOC     := TDateTime(registroC113.DT_DOC);
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC114New(const lfdHandle: PTFDHandle; const registroC114 : BlocoCRegistroC114) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC114New do
-     begin
-        COD_MOD   :=  registroC114.COD_MOD;
-        ECF_FAB   :=  registroC114.ECF_FAB;
-        ECF_CX    :=  registroC114.ECF_CX;
-        NUM_DOC   :=  registroC114.NUM_DOC;
-        DT_DOC    :=  TDateTime(registroC114.DT_DOC);
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC115New(const lfdHandle: PTFDHandle; const registroC115 : BlocoCRegistroC115) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC115New do
-     begin
-        IND_CARGA     := TACBrTipoTransporte(registroC115.IND_CARGA);
-        CNPJ_COL      := registroC115.CNPJ_COL;
-        IE_COL        := registroC115.IE_COL;
-        CPF_COL       := registroC115.CPF_COL;
-        COD_MUN_COL   := registroC115.COD_MUN_COL;
-        CNPJ_ENTG     := registroC115.CNPJ_ENTG;
-        IE_ENTG       := registroC115.IE_ENTG;
-        CPF_ENTG      := registroC115.CPF_ENTG;
-        COD_MUN_ENTG  := registroC115.COD_MUN_ENTG;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC116New(const lfdHandle: PTFDHandle; const registroC116 : BlocoCRegistroC116) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC116New do
-     begin
-         COD_MOD   := registroC116.COD_MOD;
-         NR_SAT    := registroC116.NR_SAT;
-         CHV_CFE   := registroC116.CHV_CFE;
-         NUM_CFE   := registroC116.NUM_CFE;
-         DT_DOC    := TDateTime(registroC116.DT_DOC);
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC120New(const lfdHandle: PTFDHandle; const registroC120 : BlocoCRegistroC120) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC120New do
-     begin
-         COD_DOC_IMP   := TACBrDoctoImporta(registroC120.COD_DOC_IMP);
-         NUM_DOC__IMP  := registroC120.NUM_DOC__IMP;
-         PIS_IMP       := registroC120.PIS_IMP;
-         COFINS_IMP    := registroC120.COFINS_IMP;
-         NUM_ACDRAW    := registroC120.NUM_ACDRAW;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC130New(const lfdHandle: PTFDHandle; const registroC130 : BlocoCRegistroC130) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC130New do
-     begin
-        VL_SERV_NT     := registroC130.VL_SERV_NT;
-        VL_BC_ISSQN    := registroC130.VL_BC_ISSQN;
-        VL_ISSQN       := registroC130.VL_ISSQN;
-        VL_BC_IRRF     := registroC130.VL_BC_IRRF;
-        VL_IRRF        := registroC130.VL_IRRF;
-        VL_BC_PREV     := registroC130.VL_BC_PREV;
-        VL_PREV        := registroC130.VL_PREV;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC140New(const lfdHandle: PTFDHandle; const registroC140 : BlocoCRegistroC140) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC140New do
-     begin
-          IND_EMIT   :=  TACBrEmitente(registroC140.IND_EMIT);
-          IND_TIT    :=  TACBrTipoTitulo(registroC140.IND_TIT);
-          DESC_TIT   :=  registroC140.DESC_TIT;
-          NUM_TIT    :=  registroC140.NUM_TIT;
-          QTD_PARC   :=  registroC140.QTD_PARC;
-          VL_TIT     :=  registroC140.VL_TIT;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC141New(const lfdHandle: PTFDHandle; const registroC141 : BlocoCRegistroC141) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC141New do
-     begin
-        NUM_PARC := registroC141.NUM_PARC;
-        DT_VCTO  := TDateTime(registroC141.DT_VCTO);
-        VL_PARC  := registroC141.VL_PARC;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC160New(const lfdHandle: PTFDHandle; const registroC160 : BlocoCRegistroC160) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC160New do
-     begin
-       COD_PART   :=  registroC160.COD_PART;
-       VEIC_ID    :=  registroC160.VEIC_ID;
-       QTD_VOL    :=  registroC160.QTD_VOL;
-       PESO_BRT   :=  registroC160.PESO_BRT;
-       PESO_LIQ   :=  registroC160.PESO_LIQ;
-       UF_ID      :=  registroC160.UF_ID;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC165New(const lfdHandle: PTFDHandle; const registroC165 : BlocoCRegistroC165) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC165New do
-     begin
-        COD_PART  := registroC165.COD_PART;
-        VEIC_ID   := registroC165.VEIC_ID;
-        COD_AUT   := registroC165.COD_AUT;
-        NR_PASSE  := registroC165.NR_PASSE;
-        HORA      := registroC165.HORA;
-        TEMPER    := registroC165.TEMPER;
-        QTD_VOL   := registroC165.QTD_VOL;
-        PESO_BRT  := registroC165.PESO_BRT;
-        PESO_LIQ  := registroC165.PESO_LIQ;
-        NOM_MOT   := registroC165.NOM_MOT;
-        CPF       := registroC165.CPF;
-        UF_ID     := registroC165.UF_ID;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC170New(const lfdHandle: PTFDHandle; const registroC170 : BlocoCRegistroC170) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC170New do
-     begin
-         NUM_ITEM        := registroC170.NUM_ITEM;
-         COD_ITEM        := registroC170.COD_ITEM;
-         DESCR_COMPL     := registroC170.DESCR_COMPL;
-         QTD             := registroC170.QTD;
-         UNID            := registroC170.UNID;
-         VL_ITEM         := registroC170.VL_ITEM;
-         VL_DESC         := registroC170.VL_DESC;
-         IND_MOV         := TACBrMovimentacaoFisica(registroC170.IND_MOV);
-         CST_ICMS        := registroC170.CST_ICMS;
-         CFOP            := registroC170.CFOP;
-         COD_NAT         := registroC170.COD_NAT;
-         VL_BC_ICMS      := registroC170.VL_BC_ICMS;
-         ALIQ_ICMS       := registroC170.ALIQ_ICMS;
-         VL_ICMS         := registroC170.VL_ICMS;
-         VL_BC_ICMS_ST   := registroC170.VL_BC_ICMS_ST;
-         ALIQ_ST         := registroC170.ALIQ_ST;
-         VL_ICMS_ST      := registroC170.VL_ICMS_ST;
-         IND_APUR        := TACBrApuracaoIPI(registroC170.IND_APUR);
-         CST_IPI         := registroC170.CST_IPI;
-         COD_ENQ         := registroC170.COD_ENQ;
-         VL_BC_IPI       := registroC170.VL_BC_IPI;
-         ALIQ_IPI        := registroC170.ALIQ_IPI;
-         VL_IPI          := registroC170.VL_IPI;
-         CST_PIS         := registroC170.CST_PIS;
-         VL_BC_PIS       := registroC170.VL_BC_PIS;
-         ALIQ_PIS_PERC   := registroC170.ALIQ_PIS_PERC;
-         QUANT_BC_PIS    := registroC170.QUANT_BC_PIS;
-         ALIQ_PIS_R      := registroC170.ALIQ_PIS_R;
-         VL_PIS          := registroC170.VL_PIS;
-         CST_COFINS      := registroC170.CST_COFINS;
-         VL_BC_COFINS    := registroC170.VL_BC_COFINS;
-         ALIQ_COFINS_PERC:= registroC170.ALIQ_COFINS_PERC;
-         QUANT_BC_COFINS := registroC170.QUANT_BC_COFINS;
-         ALIQ_COFINS_R   := registroC170.ALIQ_COFINS_R;
-         VL_COFINS       := registroC170.VL_COFINS;
-         COD_CTA         := registroC170.COD_CTA;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC171New(const lfdHandle: PTFDHandle; const registroC171 : BlocoCRegistroC171) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC171New do
-     begin
-          NUM_TANQUE := registroC171.NUM_TANQUE;
-          QTDE       := registroC171.QTDE;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC172New(const lfdHandle: PTFDHandle; const registroC172 : BlocoCRegistroC172) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC172New do
-     begin
-         VL_BC_ISSQN := registroC172.VL_BC_ISSQN;
-         ALIQ_ISSQN  := registroC172.ALIQ_ISSQN;
-         VL_ISSQN    := registroC172.VL_ISSQN;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC173New(const lfdHandle: PTFDHandle; const registroC173 : BlocoCRegistroC173) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC173New do
-     begin
-        LOTE_MED   := registroC173.LOTE_MED;
-        QTD_ITEM   := registroC173.QTD_ITEM;
-        DT_FAB     := TDateTime(registroC173.DT_FAB);
-        DT_VAL     := TDateTime(registroC173.DT_VAL);
-        IND_MED    := TACBrTipoBaseMedicamento(registroC173.IND_MED);
-        TP_PROD    := TACBrTipoProduto(registroC173.TP_PROD);
-        VL_TAB_MAX := registroC173.VL_TAB_MAX;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC174New(const lfdHandle: PTFDHandle; const registroC174 : BlocoCRegistroC174) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC174New do
-     begin
-         IND_ARM      := TACBrTipoArmaFogo(registroC174.IND_ARM);
-         NUM_ARM      := registroC174.NUM_ARM;
-         DESCR_COMPL  := registroC174.DESCR_COMPL;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC175New(const lfdHandle: PTFDHandle; const registroC175 : BlocoCRegistroC175) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC175New do
-     begin
-         IND_VEIC_OPER  := TACBrTipoOperacaoVeiculo(registroC175.IND_VEIC_OPER);
-         CNPJ           := registroC175.CNPJ;
-         UF             := registroC175.UF;
-         CHASSI_VEIC    := registroC175.CHASSI_VEIC;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC176New(const lfdHandle: PTFDHandle; const registroC176 : BlocoCRegistroC176) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC176New do
-     begin
-         COD_MOD_ULT_E   := registroC176.COD_MOD_ULT_E;
-         NUM_DOC_ULT_E   := registroC176.NUM_DOC_ULT_E;
-         SER_ULT_E       := registroC176.SER_ULT_E;
-         DT_ULT_E        := TDateTime(registroC176.DT_ULT_E);
-         COD_PART_ULT_E  := registroC176.COD_PART_ULT_E;
-         QUANT_ULT_E     := registroC176.QUANT_ULT_E;
-         VL_UNIT_ULT_E   := registroC176.VL_UNIT_ULT_E;
-         VL_UNIT_BC_ST   := registroC176.VL_UNIT_BC_ST;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC177New(const lfdHandle: PTFDHandle; const registroC177 : BlocoCRegistroC177) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC177New do
-     begin
-         COD_SELO_IPI  := registroC177.COD_SELO_IPI;
-         QT_SELO_IPI   := registroC177.QT_SELO_IPI;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC178New(const lfdHandle: PTFDHandle; const registroC178 : BlocoCRegistroC178) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC178New do
-     begin
-        CL_ENQ     :=  registroC178.CL_ENQ;
-        VL_UNID    :=  registroC178.VL_UNID;
-        QUANT_PAD  :=  registroC178.QUANT_PAD;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC179New(const lfdHandle: PTFDHandle; const registroC179 : BlocoCRegistroC179) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC179New do
-     begin
-         BC_ST_ORIG_DEST := registroC179.BC_ST_ORIG_DEST;
-         ICMS_ST_REP     := registroC179.ICMS_ST_REP;
-         ICMS_ST_COMPL   := registroC179.ICMS_ST_COMPL;
-         BC_RET          := registroC179.BC_RET;
-         ICMS_RET        := registroC179.ICMS_RET;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC190New(const lfdHandle: PTFDHandle; const registroC190 : BlocoCRegistroC190) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC190New do
-     begin
-        CST_ICMS       :=  registroC190.CST_ICMS;
-        CFOP           :=  registroC190.CFOP;
-        ALIQ_ICMS      :=  registroC190.ALIQ_ICMS;
-        VL_OPR         :=  registroC190.VL_OPR;
-        VL_BC_ICMS     :=  registroC190.VL_BC_ICMS;
-        VL_ICMS        :=  registroC190.VL_ICMS;
-        VL_BC_ICMS_ST  :=  registroC190.VL_BC_ICMS_ST;
-        VL_ICMS_ST     :=  registroC190.VL_ICMS_ST;
-        VL_RED_BC      :=  registroC190.VL_RED_BC;
-        VL_IPI         :=  registroC190.VL_IPI;
-        COD_OBS        :=  registroC190.COD_OBS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC195New(const lfdHandle: PTFDHandle; const registroC195 : BlocoCRegistroC195) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC195New do
-     begin
-       COD_OBS   := registroC195.COD_OBS;
-       TXT_COMPL := registroC195.TXT_COMPL;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC197New(const lfdHandle: PTFDHandle; const registroC197 : BlocoCRegistroC197) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC197New do
-     begin
-        COD_AJ          := registroC197.COD_AJ;
-        DESCR_COMPL_AJ  := registroC197.DESCR_COMPL_AJ;
-        COD_ITEM        := registroC197.COD_ITEM;
-        VL_BC_ICMS      := registroC197.VL_BC_ICMS;
-        ALIQ_ICMS       := registroC197.ALIQ_ICMS;
-        VL_ICMS         := registroC197.VL_ICMS;
-        VL_OUTROS       := registroC197.VL_OUTROS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC300New(const lfdHandle: PTFDHandle; const registroC300 : BlocoCRegistroC300) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC300New do
-     begin
-        COD_MOD      := registroC300.COD_MOD;
-        SER          := registroC300.SER;
-        SUB          := registroC300.SUB;
-        NUM_DOC_INI  := registroC300.NUM_DOC_INI;
-        NUM_DOC_FIN  := registroC300.NUM_DOC_FIN;
-        DT_DOC       := TDateTime(registroC300.DT_DOC);
-        VL_DOC       := registroC300.VL_DOC;
-        VL_PIS       := registroC300.VL_PIS;
-        VL_COFINS    := registroC300.VL_COFINS;
-        COD_CTA      := registroC300.COD_CTA;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC310New(const lfdHandle: PTFDHandle; const registroC310 : BlocoCRegistroC310) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC310New do
-     begin
-        NUM_DOC_CANC := registroC310.NUM_DOC_CANC;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC320New(const lfdHandle: PTFDHandle; const registroC320 : BlocoCRegistroC320) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC320New do
-     begin
-          CST_ICMS    := registroC320.CST_ICMS;
-          CFOP        := registroC320.CFOP;
-          ALIQ_ICMS   := registroC320.ALIQ_ICMS;
-          VL_OPR      := registroC320.VL_OPR;
-          VL_BC_ICMS  := registroC320.VL_BC_ICMS;
-          VL_ICMS     := registroC320.VL_ICMS;
-          VL_RED_BC   := registroC320.VL_RED_BC;
-          COD_OBS     := registroC320.COD_OBS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC321New(const lfdHandle: PTFDHandle; const registroC321 : BlocoCRegistroC321) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC321New do
-     begin
-         COD_ITEM    := registroC321.COD_ITEM;
-         QTD         := registroC321.QTD;
-         UNID        := registroC321.UNID;
-         VL_ITEM     := registroC321.VL_ITEM;
-         VL_DESC     := registroC321.VL_DESC;
-         VL_BC_ICMS  := registroC321.VL_BC_ICMS;
-         VL_ICMS     := registroC321.VL_ICMS;
-         VL_PIS      := registroC321.VL_PIS;
-         VL_COFINS   := registroC321.VL_COFINS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC350New(const lfdHandle: PTFDHandle; const registroC350 : BlocoCRegistroC350) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC350New do
-     begin
-        SER       := registroC350.SER;
-        SUB_SER   := registroC350.SUB_SER;
-        NUM_DOC   := registroC350.NUM_DOC;
-        DT_DOC    := TDateTime(registroC350.DT_DOC);
-        CNPJ_CPF  := registroC350.CNPJ_CPF;
-        VL_MERC   := registroC350.VL_MERC;
-        VL_DOC    := registroC350.VL_DOC;
-        VL_DESC   := registroC350.VL_DESC;
-        VL_PIS    := registroC350.VL_PIS;
-        VL_COFINS := registroC350.VL_COFINS;
-        COD_CTA   := registroC350.COD_CTA;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC370New(const lfdHandle: PTFDHandle; const registroC370 : BlocoCRegistroC370) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC370New do
-     begin
-        NUM_ITEM  := registroC370.NUM_ITEM;
-        COD_ITEM  := registroC370.COD_ITEM;
-        QTD       := registroC370.QTD;
-        UNID      := registroC370.UNID;
-        VL_ITEM   := registroC370.VL_ITEM;
-        VL_DESC   := registroC370.VL_DESC;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC390New(const lfdHandle: PTFDHandle; const registroC390 : BlocoCRegistroC390) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC390New do
-     begin
-        CST_ICMS    := registroC390.CST_ICMS;
-        CFOP        := registroC390.CFOP;
-        ALIQ_ICMS   := registroC390.ALIQ_ICMS;
-        VL_OPR      := registroC390.VL_OPR;
-        VL_BC_ICMS  := registroC390.VL_BC_ICMS;
-        VL_ICMS     := registroC390.VL_ICMS;
-        VL_RED_BC   := registroC390.VL_RED_BC;
-        COD_OBS     := registroC390.COD_OBS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC400New(const lfdHandle: PTFDHandle; const registroC400 : BlocoCRegistroC400) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC400New do
-     begin
-        COD_MOD := registroC400.COD_MOD;
-        ECF_MOD := registroC400.ECF_MOD;
-        ECF_FAB := registroC400.ECF_FAB;
-        ECF_CX  := registroC400.ECF_CX;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC405New(const lfdHandle: PTFDHandle; const registroC405 : BlocoCRegistroC405) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC405New do
-     begin
-        DT_DOC       := TDateTime(registroC405.DT_DOC);
-        CRO          := registroC405.CRO;
-        CRZ          := registroC405.CRZ;
-        NUM_COO_FIN  := registroC405.NUM_COO_FIN;
-        GT_FIN       := registroC405.GT_FIN;
-        VL_BRT       := registroC405.VL_BRT;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC410New(const lfdHandle: PTFDHandle; const registroC410 : BlocoCRegistroC410) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC410New do
-     begin
-         VL_PIS      := registroC410.VL_PIS;
-         VL_COFINS   := registroC410.VL_COFINS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC420New(const lfdHandle: PTFDHandle; const registroC420 : BlocoCRegistroC420) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC420New do
-     begin
-         COD_TOT_PAR   := registroC420.COD_TOT_PAR;
-         VLR_ACUM_TOT  := registroC420.VLR_ACUM_TOT;
-         NR_TOT        := registroC420.NR_TOT;
-         DESCR_NR_TOT  := registroC420.DESCR_NR_TOT;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC425New(const lfdHandle: PTFDHandle; const registroC425 : BlocoCRegistroC425) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC425New do
-     begin
-        COD_ITEM  := registroC425.COD_ITEM;
-        QTD       := registroC425.QTD;
-        UNID      := registroC425.UNID;
-        VL_ITEM   := registroC425.VL_ITEM;
-        VL_PIS    := registroC425.VL_PIS;
-        VL_COFINS := registroC425.VL_COFINS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC460New(const lfdHandle: PTFDHandle; const registroC460 : BlocoCRegistroC460) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC460New do
-     begin
-        COD_MOD   := registroC460.COD_MOD;
-        COD_SIT   := TACBrSituacaoDocto(registroC460.COD_SIT);
-        NUM_DOC   := registroC460.NUM_DOC;
-        DT_DOC    := TDateTime(registroC460.DT_DOC);
-        VL_DOC    := registroC460.VL_DOC;
-        VL_PIS    := registroC460.VL_PIS;
-        VL_COFINS := registroC460.VL_COFINS;
-        CPF_CNPJ  := registroC460.CPF_CNPJ;
-        NOM_ADQ   := registroC460.NOM_ADQ;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC470New(const lfdHandle: PTFDHandle; const registroC470 : BlocoCRegistroC470) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC470New do
-     begin
-        COD_ITEM   := registroC470.COD_ITEM;
-        QTD        := registroC470.QTD;
-        QTD_CANC   := registroC470.QTD_CANC;
-        UNID       := registroC470.UNID;
-        VL_ITEM    := registroC470.VL_ITEM;
-        CST_ICMS   := registroC470.CST_ICMS;
-        CFOP       := registroC470.CFOP;
-        ALIQ_ICMS  := registroC470.ALIQ_ICMS;
-        VL_PIS     := registroC470.VL_PIS;
-        VL_COFINS  := registroC470.VL_COFINS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC490New(const lfdHandle: PTFDHandle; const registroC490 : BlocoCRegistroC490) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC490New do
-     begin
-          CST_ICMS   := registroC490.CST_ICMS;
-          CFOP       := registroC490.CFOP;
-          ALIQ_ICMS  := registroC490.ALIQ_ICMS;
-          VL_OPR     := registroC490.VL_OPR;
-          VL_BC_ICMS := registroC490.VL_BC_ICMS;
-          VL_ICMS    := registroC490.VL_ICMS;
-          COD_OBS    := registroC490.COD_OBS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC495New(const lfdHandle: PTFDHandle; const registroC495 : BlocoCRegistroC495) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC495New do
-     begin
-        ALIQ_ICMS   := registroC495.ALIQ_ICMS;
-        COD_ITEM    := registroC495.COD_ITEM;
-        QTD         := registroC495.QTD;
-        QTD_CANC    := registroC495.QTD_CANC;
-        UNID        := registroC495.UNID;
-        VL_ITEM     := registroC495.VL_ITEM;
-        VL_DESC     := registroC495.VL_DESC;
-        VL_CANC     := registroC495.VL_CANC;
-        VL_ACMO     := registroC495.VL_ACMO;
-        VL_BC_ICMS  := registroC495.VL_BC_ICMS;
-        VL_ICMS     := registroC495.VL_ICMS;
-        VL_ISEN     := registroC495.VL_ISEN;
-        VL_NT       := registroC495.VL_NT;
-        VL_ICMS_ST  := registroC495.VL_ICMS_ST;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC500New(const lfdHandle: PTFDHandle; const registroC500 : BlocoCRegistroC500) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC500New do
-     begin
-          IND_OPER           :=  TACBrTipoOperacao(registroC500.IND_OPER);
-          IND_EMIT           :=  TACBrEmitente(registroC500.IND_EMIT);
-          COD_PART           :=  registroC500.COD_PART;
-          COD_MOD            :=  registroC500.COD_MOD;
-          COD_SIT            :=  TACBrSituacaoDocto(registroC500.COD_SIT);
-          SER                :=  registroC500.SER;
-          SUB                :=  registroC500.SUB;
-          COD_CONS           :=  registroC500.COD_CONS;
-          NUM_DOC            :=  registroC500.NUM_DOC;
-          DT_DOC             :=  TDateTime(registroC500.DT_DOC);
-          DT_E_S             :=  TDateTime(registroC500.DT_E_S);
-          VL_DOC             :=  registroC500.VL_DOC;
-          VL_DESC            :=  registroC500.VL_DESC;
-          VL_FORN            :=  registroC500.VL_FORN;
-          VL_SERV_NT         :=  registroC500.VL_SERV_NT;
-          VL_TERC            :=  registroC500.VL_TERC;
-          VL_DA              :=  registroC500.VL_DA;
-          VL_BC_ICMS         :=  registroC500.VL_BC_ICMS;
-          VL_ICMS            :=  registroC500.VL_ICMS;
-          VL_BC_ICMS_ST      :=  registroC500.VL_BC_ICMS_ST;
-          VL_ICMS_ST         :=  registroC500.VL_ICMS_ST;
-          COD_INF            :=  registroC500.COD_INF;
-          VL_PIS             :=  registroC500.VL_PIS;
-          VL_COFINS          :=  registroC500.VL_COFINS;
-          TP_LIGACAO         :=  TACBrTipoLigacao(registroC500.TP_LIGACAO);
-          COD_GRUPO_TENSAO   :=  TACBrGrupoTensao(registroC500.COD_GRUPO_TENSAO);
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC510New(const lfdHandle: PTFDHandle; const registroC510 : BlocoCRegistroC510) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC510New do
-     begin
-         NUM_ITEM       := registroC510.NUM_ITEM;
-         COD_ITEM       := registroC510.COD_ITEM;
-         COD_CLASS      := registroC510.COD_CLASS;
-         QTD            := registroC510.QTD;
-         UNID           := registroC510.UNID;
-         VL_ITEM        := registroC510.VL_ITEM;
-         VL_DESC        := registroC510.VL_DESC;
-         CST_ICMS       := registroC510.CST_ICMS;
-         CFOP           := registroC510.CFOP;
-         VL_BC_ICMS     := registroC510.VL_BC_ICMS;
-         ALIQ_ICMS      := registroC510.ALIQ_ICMS;
-         VL_ICMS        := registroC510.VL_ICMS;
-         VL_BC_ICMS_ST  := registroC510.VL_BC_ICMS_ST;
-         ALIQ_ST        := registroC510.ALIQ_ST;
-         VL_ICMS_ST     := registroC510.VL_ICMS_ST;
-         IND_REC        := TACBrTipoReceita(registroC510.IND_REC);
-         COD_PART       := registroC510.COD_PART;
-         VL_PIS         := registroC510.VL_PIS;
-         VL_COFINS      := registroC510.VL_COFINS;
-         COD_CTA        := registroC510.COD_CTA;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC590New(const lfdHandle: PTFDHandle; const registroC590 : BlocoCRegistroC590) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC590New do
-     begin
-         CST_ICMS       := registroC590.CST_ICMS;
-         CFOP           := registroC590.CFOP;
-         ALIQ_ICMS      := registroC590.ALIQ_ICMS;
-         VL_OPR         := registroC590.VL_OPR;
-         VL_BC_ICMS     := registroC590.VL_BC_ICMS;
-         VL_ICMS        := registroC590.VL_ICMS;
-         VL_BC_ICMS_ST  := registroC590.VL_BC_ICMS_ST;
-         VL_ICMS_ST     := registroC590.VL_ICMS_ST;
-         VL_RED_BC      := registroC590.VL_RED_BC;
-         COD_OBS        := registroC590.COD_OBS;
+     with lfdHandle^.LFD.Bloco_C.RegistroC555New do
+     begin
+        NUM_ITEM      := registroC555.NUM_ITEM;
+        COD_ITEM      := registroC555.COD_ITEM;
+        UNID          := registroC555.UNID;
+        VL_UNIT       := registroC555.VL_UNIT;
+        QTD           := registroC555.QTD;
+        VL_DESC_I     := registroC555.VL_DESC_I;
+        VL_ACMO_I     := registroC555.VL_ACMO_I;
+        VL_ITEM       := registroC555.VL_ITEM;
+        CST           := registroC555.CST;
+        CFOP          := registroC555.CFOP;
+        VL_BC_ICMS_I  := registroC555.VL_BC_ICMS_I;
+        ALIQ_ICMS     := registroC555.ALIQ_ICMS;
+        VL_ICMS_I     := registroC555.VL_ICMS_I;
      end;
      Result := 0;
   except
@@ -2896,27 +1595,31 @@ begin
   try
      with lfdHandle^.LFD.Bloco_C.RegistroC600New do
      begin
-        COD_MOD           := registroC600.COD_MOD;
-        COD_MUN           := registroC600. COD_MUN;
-        SER               := registroC600.SER;
-        SUB               := registroC600.SUB;
-        COD_CONS          := registroC600.COD_CONS;
-        QTD_CONS          := registroC600.QTD_CONS;
-        QTD_CANC          := registroC600.QTD_CANC;
-        DT_DOC            := TDateTime(registroC600.DT_DOC);
-        VL_DOC            := registroC600.VL_DOC;
-        VL_DESC           := registroC600.VL_DESC;
-        CONS              := registroC600.CONS;
-        VL_FORN           := registroC600.VL_FORN;
-        VL_SERV_NT        := registroC600.VL_SERV_NT;
-        VL_TERC           := registroC600.VL_TERC;
-        VL_DA             := registroC600.VL_DA;
-        VL_BC_ICMS        := registroC600.VL_BC_ICMS;
-        VL_ICMS           := registroC600.VL_ICMS;
-        VL_BC_ICMS_ST     := registroC600.VL_BC_ICMS_ST;
-        VL_ICMS_ST        := registroC600.VL_ICMS_ST;
-        VL_PIS            := registroC600.VL_PIS;
-        VL_COFINS         := registroC600.VL_COFINS;
+        CPF_CONS       := registroC600.CPF_CONS;
+        CNPJ_CONS      := registroC600.CNPJ_CONS;
+        COD_MOD        := registroC600.COD_MOD;
+        COD_SIT        := TACBrlSituacaoDocto(registroC600.COD_SIT);
+        ECF_CX         := registroC600.ECF_CX;
+        ECF_FAB        := registroC600.ECF_FAB;
+        CRO            := registroC600.CRO;
+        CRZ            := registroC600.CRZ;
+        NUM_DOC        := registroC600.NUM_DOC;
+        DT_DOC         := registroC600.DT_DOC;
+        COP            := registroC600.COP;
+        VL_DOC         := registroC600.VL_DOC;
+        VL_CANC_ICMS   := registroC600.VL_CANC_ICMS;
+        VL_DESC_ICMS   := registroC600.VL_DESC_ICMS;
+        VL_ACMO_ICMS   := registroC600.VL_ACMO_ICMS;
+        VL_CANC_ISS    := registroC600.VL_CANC_ISS;
+        VL_DESC_ISS    := registroC600.VL_DESC_ISS;
+        VL_ACMO_ISS    := registroC600.VL_ACMO_ISS;
+        VL_BC_ICMS     := registroC600.VL_BC_ICMS;
+        VL_ICMS        := registroC600.VL_ICMS;
+        VL_ISN         := registroC600.VL_ISN;
+        VL_NT          := registroC600.VL_NT;
+        VL_ST          := registroC600.VL_ST;
+        VL_ISS         := registroC600.VL_ISS;
+        VL_ICMS_ST     := registroC600.VL_ICMS_ST;
      end;
      Result := 0;
   except
@@ -2928,7 +1631,7 @@ begin
   end;
 end;
 
-Function LFD_Bloco_C_RegistroC601New(const lfdHandle: PTFDHandle; const registroC601 : BlocoCRegistroC601) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+Function LFD_Bloco_C_RegistroC605New(const lfdHandle: PTFDHandle; const registroC605 : BlocoCRegistroC605) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
  if (lfdHandle = nil) then
@@ -2938,9 +1641,28 @@ begin
   end;
 
   try
-     with lfdHandle^.LFD.Bloco_C.RegistroC601New do
+     with lfdHandle^.LFD.Bloco_C.RegistroC605New do
      begin
-        NUM_DOC_CANC           := registroC601.NUM_DOC_CANC;
+        NUM_ITEM      := registroC605.NUM_ITEM;
+        COD_ITEM      := registroC605.COD_ITEM;
+        UNID          := registroC605.UNID;
+        VL_UNIT       := registroC605.VL_UNIT;
+        QTD           := registroC605.QTD;
+        QTD_CANC_I    := registroC605.QTD_CANC_I;
+        VL_ITEM       := registroC605.VL_ITEM;
+        VL_DESC_I     := registroC605.VL_DESC_I;
+        VL_CANC_I     := registroC605.VL_CANC_I;
+        VL_ACMO_I     := registroC605.VL_ACMO_I;
+        VL_ISS        := registroC605.VL_ISS;
+        CST           := registroC605.CST;
+        CFOP          := registroC605.CFOP;
+        VL_BC_ICMS_I  := registroC605.VL_BC_ICMS_I;
+        ALIQ_ICMS     := registroC605.ALIQ_ICMS;
+        VL_ICMS_I     := registroC605.VL_ICMS_I;
+        VL_ISN_I      := registroC605.VL_ISN_I;
+        VL_NT_I       := registroC605.VL_NT_I;
+        VL_ST_I       := registroC605.VL_ST_I;
+        VL_ICMS_ST_I  := registroC605.VL_ICMS_ST_I;
      end;
      Result := 0;
   except
@@ -2951,296 +1673,6 @@ begin
      end
   end;
 end;
-
-Function LFD_Bloco_C_RegistroC610New(const lfdHandle: PTFDHandle; const registroC610 : BlocoCRegistroC610) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC610New do
-     begin
-         COD_CLASS    := registroC610.COD_CLASS;
-         COD_ITEM     := registroC610.COD_ITEM;
-         QTD          := registroC610.QTD;
-         UNID         := registroC610.UNID;
-         VL_ITEM      := registroC610.VL_ITEM;
-         VL_DESC      := registroC610.VL_DESC;
-         CST_ICMS     := registroC610.CST_ICMS;
-         CFOP         := registroC610.CFOP;
-         ALIQ_ICMS    := registroC610.ALIQ_ICMS;
-         VL_BC_ICMS   := registroC610.VL_BC_ICMS;
-         VL_ICMS      := registroC610.VL_ICMS;
-         VL_BC_ICMS_ST:= registroC610.VL_BC_ICMS_ST;
-         VL_ICMS_ST   := registroC610.VL_ICMS_ST;
-         VL_PIS       := registroC610.VL_PIS;
-         VL_COFINS    := registroC610.VL_COFINS;
-         COD_CTA      := registroC610.COD_CTA;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC690New(const lfdHandle: PTFDHandle; const registroC690 : BlocoCRegistroC690) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC690New do
-     begin
-        CST_ICMS         := registroC690.CST_ICMS;
-        CFOP             := registroC690.CFOP;
-        ALIQ_ICMS        := registroC690.ALIQ_ICMS;
-        VL_OPR           := registroC690.VL_OPR;
-        VL_BC_ICMS       := registroC690.VL_BC_ICMS;
-        VL_ICMS          := registroC690.VL_ICMS;
-        VL_RED_BC        := registroC690.VL_RED_BC;
-        VL_BC_ICMS_ST    := registroC690.VL_BC_ICMS_ST;
-        VL_ICMS_ST       := registroC690.VL_ICMS_ST;
-        COD_OBS          := registroC690.COD_OBS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC700New(const lfdHandle: PTFDHandle; const registroC700 : BlocoCRegistroC700) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC700New do
-     begin
-         COD_MOD        := registroC700.COD_MOD;
-         SER            := registroC700.SER;
-         NRO_ORD_INI    := registroC700.NRO_ORD_INI;
-         NRO_ORD_FIN    := registroC700.NRO_ORD_FIN;
-         DT_DOC_INI     := TDateTime(registroC700.DT_DOC_INI);
-         DT_DOC_FIN     := TDateTime(registroC700.DT_DOC_FIN);
-         NOM_MEST       := registroC700.NOM_MEST;
-         CHV_COD_DIG    := registroC700.CHV_COD_DIG;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC790New(const lfdHandle: PTFDHandle; const registroC790 : BlocoCRegistroC790) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC790New do
-     begin
-        CST_ICMS         := registroC790.CST_ICMS;
-        CFOP             := registroC790.CFOP;
-        ALIQ_ICMS        := registroC790.ALIQ_ICMS;
-        VL_OPR           := registroC790.VL_OPR;
-        VL_BC_ICMS       := registroC790.VL_BC_ICMS;
-        VL_ICMS          := registroC790.VL_ICMS;
-        VL_BC_ICMS_ST    := registroC790.VL_BC_ICMS_ST;
-        VL_ICMS_ST       := registroC790.VL_ICMS_ST;
-        VL_RED_BC        := registroC790.VL_RED_BC;
-        COD_OBS          := registroC790.COD_OBS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC791New(const lfdHandle: PTFDHandle; const registroC791 : BlocoCRegistroC791) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC791New do
-     begin
-       UF             := registroC791.UF;
-       VL_BC_ICMS_ST  := registroC791.VL_BC_ICMS_ST;
-       VL_ICMS_ST     := registroC791.VL_ICMS_ST;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC800New(const lfdHandle: PTFDHandle; const registroC800 : BlocoCRegistroC800) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC800New do
-     begin
-        COD_MOD        := registroC800.COD_MOD;
-        COD_SIT        := TACBrSituacaoDocto(registroC800.COD_SIT);
-        NUM_CFE        := registroC800.NUM_CFE;
-        DT_DOC         := TDateTime(registroC800.DT_DOC);
-        VL_CFE         := registroC800.VL_CFE;
-        VL_PIS         := registroC800.VL_PIS;
-        VL_COFINS      := registroC800.VL_COFINS;
-        CNPJ_CPF       := registroC800.CNPJ_CPF;
-        NR_SAT         := registroC800.NR_SAT;
-        CHV_CFE        := registroC800.CHV_CFE;
-        VL_DESC        := registroC800.VL_DESC;
-        VL_MERC        := registroC800.VL_MERC;
-        VL_OUT_DA      := registroC800.VL_OUT_DA;
-        VL_ICMS        := registroC800.VL_ICMS;
-        VL_PIS_ST      := registroC800.VL_PIS_ST;
-        VL_COFINS_ST   := registroC800.VL_COFINS_ST;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC850New(const lfdHandle: PTFDHandle; const registroC850 : BlocoCRegistroC850) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC850New do
-     begin
-        CST_ICMS    := registroC850.CST_ICMS;
-        CFOP        := registroC850.CFOP;
-        ALIQ_ICMS   := registroC850.ALIQ_ICMS;
-        VL_OPR      := registroC850.VL_OPR;
-        VL_BC_ICMS  := registroC850.VL_BC_ICMS;
-        VL_ICMS     := registroC850.VL_ICMS;
-        COD_OBS     := registroC850.COD_OBS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC860New(const lfdHandle: PTFDHandle; const registroC860 : BlocoCRegistroC860) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC860New do
-     begin
-          COD_MOD  := registroC860.COD_MOD;
-          NR_SAT   := registroC860.NR_SAT;
-          DT_DOC   := TDateTime(registroC860.DT_DOC);
-          DOC_INI  := registroC860.DOC_INI;
-          DOC_FIN  := registroC860.DOC_FIN;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
-Function LFD_Bloco_C_RegistroC890New(const lfdHandle: PTFDHandle; const registroC890 : BlocoCRegistroC890) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
- if (lfdHandle = nil) then
-  begin
-     Result := -2;
-     Exit;
-  end;
-
-  try
-     with lfdHandle^.LFD.Bloco_C.RegistroC890New do
-     begin
-        CST_ICMS    := registroC890.CST_ICMS;
-        CFOP        := registroC890.CFOP;
-        ALIQ_ICMS   := registroC890.ALIQ_ICMS;
-        VL_OPR      := registroC890.VL_OPR;
-        VL_BC_ICMS  := registroC890.VL_BC_ICMS;
-        VL_ICMS     := registroC890.VL_ICMS;
-        COD_OBS     := registroC890.COD_OBS;
-     end;
-     Result := 0;
-  except
-     on exception : Exception do
-     begin
-        lfdHandle^.UltimoErro := exception.Message;
-        Result := -1;
-     end
-  end;
-end;
-
 Function LFD_Bloco_C_RegistroC990_GetQTD_LIN_C(const lfdHandle: PTFDHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
 
@@ -3262,6 +1694,212 @@ begin
 end;
 
 {%endregion BlocoC}
+
+
+{%region Bloco9}
+
+Function LFD_Bloco_9_GetDT_INI(const lfdHandle: PTFDHandle; var dtIni : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     dtIni  := Double(lfdHandle^.LFD.Bloco_9.DT_INI);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_9_SetDT_INI(const lfdHandle: PTFDHandle; const dtIni : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     lfdHandle^.LFD.Bloco_9.DT_INI := TDateTime(dtIni);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_9_GetDT_FIN(const lfdHandle: PTFDHandle; var dtFin : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     dtFin  := Double(lfdHandle^.LFD.Bloco_9.DT_FIN);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_9_SetDT_FIN(const lfdHandle: PTFDHandle; const dtFin : double) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     lfdHandle^.LFD.Bloco_9.DT_FIN := TDateTime(dtFin);
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_9_GetGravado(const lfdHandle: PTFDHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     if lfdHandle^.LFD.Bloco_9.Gravado then
+     Result := 1
+     else
+     Result := 0;
+
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_9_Registro9001New(const lfdHandle: PTFDHandle; const registro9001 : Bloco9Registro9001) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+
+     with lfdHandle^.LFD.Bloco_9.Registro9001 do
+     BEGIN
+          IND_MOV := TACBrLIndicadorMovimento(registro9001.IND_MOV);
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_9_Registro9900New(const lfdHandle: PTFDHandle; const registro9900 : Bloco9Registro9900) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+
+     with lfdHandle^.LFD.Bloco_9.Registro9900.New do
+     BEGIN
+          REG_BLC := registro9900.REG_BLC;
+          QTD_REG_BLC := registro9900.QTD_REG_BLC;
+     end;
+
+     Result := 0;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_9_Registro9990_GetQTD_LIN_9(const lfdHandle: PTFDHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := lfdHandle^.LFD.Bloco_9.Registro9990.QTD_LIN_9;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+Function LFD_Bloco_9_Registro9999_GetQTD_LIN(const lfdHandle: PTFDHandle) : Integer ; {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
+begin
+
+ if (lfdHandle = nil) then
+  begin
+     Result := -2;
+     Exit;
+  end;
+
+  try
+     Result := lfdHandle^.LFD.Bloco_9.Registro9999.QTD_LIN;
+  except
+     on exception : Exception do
+     begin
+        lfdHandle^.UltimoErro := exception.Message;
+        Result := -1;
+     end
+  end;
+end;
+
+{%endregion Bloco9}
 
 exports
 
@@ -3292,25 +1930,30 @@ LFD_Bloco_0_GetGravado,
 LFD_Bloco_0_Registro0000New,
 LFD_Bloco_0_Registro0001New,
 LFD_Bloco_0_Registro0005New,
-LFD_Bloco_0_Registro0015New,
+LFD_Bloco_0_Registro0025New,
 LFD_Bloco_0_Registro0100New,
 LFD_Bloco_0_Registro0150New,
 LFD_Bloco_0_Registro0175New,
-LFD_Bloco_0_Registro0190New,
 LFD_Bloco_0_Registro0200New,
 LFD_Bloco_0_Registro0205New,
-LFD_Bloco_0_Registro0206New,
-LFD_Bloco_0_Registro0220New,
-LFD_Bloco_0_Registro0300New,
-LFD_Bloco_0_Registro0305New,
-LFD_Bloco_0_Registro0400New,
-LFD_Bloco_0_Registro0450New,
-LFD_Bloco_0_Registro0460New,
-LFD_Bloco_0_Registro0500New,
-LFD_Bloco_0_Registro0600New,
+LFD_Bloco_0_Registro0210New,
 LFD_Bloco_0_Registro0990_GetQTD_LIN_0,
 
 {%endregion Bloco0}
+
+
+{%region BlocoA}
+
+LFD_Bloco_A_GetDT_INI, LFD_Bloco_A_SetDT_INI,
+LFD_Bloco_A_GetDT_FIN, LFD_Bloco_A_SetDT_FIN,
+LFD_Bloco_A_GetGravado,
+LFD_Bloco_A_RegistroA001New,
+LFD_Bloco_A_RegistroA350New,
+LFD_Bloco_A_RegistroA360New,
+LFD_Bloco_A_RegistroA990_GetQTD_LIN_A,
+
+{%endregion BlocoA}
+
 
 {%region BlocoC}
 
@@ -3318,67 +1961,27 @@ LFD_Bloco_C_GetDT_INI, LFD_Bloco_C_SetDT_INI,
 LFD_Bloco_C_GetDT_FIN, LFD_Bloco_C_SetDT_FIN,
 LFD_Bloco_C_GetGravado,
 LFD_Bloco_C_RegistroC001New,
-LFD_Bloco_C_RegistroC100New,
-LFD_Bloco_C_RegistroC110New,
-LFD_Bloco_C_RegistroC105New,
-LFD_Bloco_C_RegistroC111New,
-LFD_Bloco_C_RegistroC112New,
-LFD_Bloco_C_RegistroC113New,
-LFD_Bloco_C_RegistroC114New,
-LFD_Bloco_C_RegistroC115New,
-LFD_Bloco_C_RegistroC116New,
-LFD_Bloco_C_RegistroC120New,
-LFD_Bloco_C_RegistroC130New,
-LFD_Bloco_C_RegistroC140New,
-LFD_Bloco_C_RegistroC141New,
-LFD_Bloco_C_RegistroC160New,
-LFD_Bloco_C_RegistroC165New,
-LFD_Bloco_C_RegistroC170New,
-LFD_Bloco_C_RegistroC171New,
-LFD_Bloco_C_RegistroC172New,
-LFD_Bloco_C_RegistroC173New,
-LFD_Bloco_C_RegistroC174New,
-LFD_Bloco_C_RegistroC175New,
-LFD_Bloco_C_RegistroC176New,
-LFD_Bloco_C_RegistroC177New,
-LFD_Bloco_C_RegistroC178New,
-LFD_Bloco_C_RegistroC179New,
-LFD_Bloco_C_RegistroC190New,
-LFD_Bloco_C_RegistroC195New,
-LFD_Bloco_C_RegistroC197New,
-LFD_Bloco_C_RegistroC300New,
-LFD_Bloco_C_RegistroC310New,
-LFD_Bloco_C_RegistroC320New,
-LFD_Bloco_C_RegistroC321New,
-LFD_Bloco_C_RegistroC350New,
-LFD_Bloco_C_RegistroC370New,
-LFD_Bloco_C_RegistroC390New,
-LFD_Bloco_C_RegistroC400New,
-LFD_Bloco_C_RegistroC405New,
-LFD_Bloco_C_RegistroC410New,
-LFD_Bloco_C_RegistroC420New,
-LFD_Bloco_C_RegistroC425New,
-LFD_Bloco_C_RegistroC460New,
-LFD_Bloco_C_RegistroC470New,
-LFD_Bloco_C_RegistroC490New,
-LFD_Bloco_C_RegistroC495New,
-LFD_Bloco_C_RegistroC500New,
-LFD_Bloco_C_RegistroC510New,
-LFD_Bloco_C_RegistroC590New,
+LFD_Bloco_C_RegistroC020New,
+LFD_Bloco_C_RegistroC550New,
+LFD_Bloco_C_RegistroC555New,
 LFD_Bloco_C_RegistroC600New,
-LFD_Bloco_C_RegistroC601New,
-LFD_Bloco_C_RegistroC610New,
-LFD_Bloco_C_RegistroC690New,
-LFD_Bloco_C_RegistroC700New,
-LFD_Bloco_C_RegistroC790New,
-LFD_Bloco_C_RegistroC791New,
-LFD_Bloco_C_RegistroC800New,
-LFD_Bloco_C_RegistroC850New,
-LFD_Bloco_C_RegistroC860New,
-LFD_Bloco_C_RegistroC890New,
-LFD_Bloco_C_RegistroC990_GetQTD_LIN_C
+LFD_Bloco_C_RegistroC605New,
+LFD_Bloco_C_RegistroC990_GetQTD_LIN_C,
 
 {%endregion BlocoC}
+
+{%region Bloco9}
+
+LFD_Bloco_9_GetDT_INI, LFD_Bloco_9_SetDT_INI,
+LFD_Bloco_9_GetDT_FIN, LFD_Bloco_9_SetDT_FIN,
+LFD_Bloco_9_GetGravado,
+LFD_Bloco_9_Registro9001New,
+LFD_Bloco_9_Registro9900New,
+LFD_Bloco_9_Registro9990_GetQTD_LIN_9,
+LFD_Bloco_9_Registro9999_GetQTD_LIN;
+
+{%endregion Bloco9}
+
 
 end.
 
