@@ -481,7 +481,8 @@ namespace ACBrFramework.PAF
                 CNPJ = PafU.RegistroU1.CNPJ,
                 IE = PafU.RegistroU1.IE,
                 IM = PafU.RegistroU1.IM,
-                RAZAOSOCIAL = PafU.RegistroU1.RazaoSocial
+                RAZAOSOCIAL = PafU.RegistroU1.RazaoSocial,
+				InclusaoExclusao = PafU.RegistroU1.InclusaoExclusao
             };
 
             var ret = ACBrPAFInterop.PAF_Preenche_U(Handle, registroU1Rec);
@@ -747,40 +748,47 @@ namespace ACBrFramework.PAF
 
 	    private void PAF_Preenche_S()
 	    {
-	        if (PafS.RegistroS2.Count < 1)
-	            return;
+	        if (PafS.RegistroS2.Count == 0) return;
 
-	        var registrosS2Rec = (from x in PafS.RegistroS2
-	            select new ACBrPAFInterop.RegistroS2Rec
-	            {
-	                QTD_S3 = x.RegistroS3.Count,
-	                CNPJ = ToUTF8(x.CNPJ),
-	                DT_ABER = x.DT_ABER.ToOADate(),
-	                SITU = ToUTF8(x.SITU),
-	                VL_TOT = (double) x.VL_TOT,
-	                COO_CM = ToUTF8(x.COO_CM),
-	                NUM_FAB_CM = ToUTF8(x.NUM_FAB_CM),
-	                COO = ToUTF8(x.COO),
-	                NUM_FAB = ToUTF8(x.NUM_FAB)
-	            }).ToArray();
+			var registrosS2Rec = new List<ACBrPAFInterop.RegistroS2Rec>();
+			var registrosS3Rec = new List<ACBrPAFInterop.RegistroS3Rec>();
 
-            var s3Count = PafS.RegistroS2.Sum(x => x.RegistroS3.Count);
-	        var registrosS3Rec = new ACBrPAFInterop.RegistroS3Rec[0];
-	        if (s3Count > 0)
-	        {
-	            registrosS3Rec = (from s in ((from x in PafS.RegistroS2 select x.RegistroS3.AsEnumerable())
-	                .Aggregate((i, j) => i.Concat(j)))
-	                select new ACBrPAFInterop.RegistroS3Rec
+			foreach (ACBrPAFRegistroS2 s2 in PafS.RegistroS2)
+			{
+				var registroS2Rec = new ACBrPAFInterop.RegistroS2Rec
+				{
+					QTD_S3 = s2.RegistroS3.Count,
+					CNPJ = ToUTF8(s2.CNPJ),
+					DT_ABER = s2.DT_ABER.ToOADate(),
+					NUM_MESA = s2.NUM_MESA,
+					SITU = ToUTF8(s2.SITU),
+					VL_TOT = (double)s2.VL_TOT,
+					COO_CM = ToUTF8(s2.COO_CM),
+					NUM_FAB_CM = ToUTF8(s2.NUM_FAB_CM),
+					COO = ToUTF8(s2.COO),
+					NUM_FAB = ToUTF8(s2.NUM_FAB),
+					RegistroValido = s2.RegistroValido
+				};
+
+				registrosS2Rec.Add(registroS2Rec);
+
+				foreach (ACBrPAFRegistroS3 s3 in s2.RegistroS3)
+				{
+					var registroS3Rec = new ACBrPAFInterop.RegistroS3Rec
 	                {
-	                    COD_ITEM = ToUTF8(s.COD_ITEM),
-	                    DESC_ITEM = ToUTF8(s.DESC_ITEM),
-	                    QTDE_ITEM = (double) s.QTDE_ITEM,
-	                    UNI_ITEM = ToUTF8(s.UNI_ITEM),
-	                    VL_UNIT = (double) s.VL_UNIT
-	                }).ToArray();
-	        }
+	                    COD_ITEM = ToUTF8(s3.COD_ITEM),
+	                    DESC_ITEM = ToUTF8(s3.DESC_ITEM),
+	                    QTDE_ITEM = (double) s3.QTDE_ITEM,
+	                    UNI_ITEM = ToUTF8(s3.UNI_ITEM),
+	                    VL_UNIT = (double)s3.VL_UNIT,
+						RegistroValido = s3.RegistroValido,
+	                };
 
-	        var ret = ACBrPAFInterop.PAF_Preenche_S(Handle, registrosS2Rec.Length, registrosS2Rec, registrosS3Rec);
+					registrosS3Rec.Add(registroS3Rec);
+				}
+			}
+
+	        var ret = ACBrPAFInterop.PAF_Preenche_S(Handle, registrosS2Rec.Count, registrosS2Rec.ToArray(), registrosS3Rec.ToArray());
 	        CheckResult(ret);
 	    }
 
@@ -862,6 +870,11 @@ namespace ACBrFramework.PAF
             var registroH2Rec = (from x in PafH.RegistroH2
                                                             select new ACBrPAFInterop.RegistroH2Rec
                                                             {
+																NUM_FAB = x.NUM_FAB,
+																MF_ADICIONAL = x.MF_ADICIONAL,
+																TIPO_ECF = x.TIPO_ECF,
+																MARCA_ECF = x.MARCA_ECF,
+																MODELO_ECF = x.MODELO_ECF,
                                                                 CNPJ_CRED_CARTAO = x.CNPJ_CRED_CARTAO,
                                                                 COO = x.COO,
                                                                 CCF = x.CCF,
@@ -869,7 +882,7 @@ namespace ACBrFramework.PAF
                                                                 DT_TROCO = x.DT_TROCO.ToOADate(),
                                                                 CPF = x.CPF,
                                                                 Titulo = x.Titulo,
-                                                                RegistroValido = false
+                                                                RegistroValido = x.RegistroValido
                                                             }).ToArray();
 
             #endregion

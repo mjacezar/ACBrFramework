@@ -41,6 +41,12 @@ Símbolo : Significado
 
 Changelog
 
+03/08/2015
+-- ACBrFramework 0.9.6.12
+[+] Inclusão do componente ACBrLFD - Rafael Batiati
+Alguns blocos e registros ainda pendentes
+[*] Correções de bugs nos registros do PAF
+
 15/07/2015
 -- ACBrFramework 0.9.6.11
 [+] Inclusão da propriedade InclusaoExclusao no registro U1 do ACBrPAF - Rafael Batiati

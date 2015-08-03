@@ -40,6 +40,9 @@ namespace ACBrFramework.PAF
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
 			public string IM;
+
+			[MarshalAs(UnmanagedType.U1)]
+			public bool InclusaoExclusao;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -309,6 +312,21 @@ namespace ACBrFramework.PAF
 		[StructLayout(LayoutKind.Sequential)]
 		public struct RegistroH2Rec
 		{
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
+			public string NUM_FAB;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
+			public string MF_ADICIONAL;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+			public string TIPO_ECF;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
+			public string MARCA_ECF;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
+			public string MODELO_ECF;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
 			public string CNPJ_CRED_CARTAO;
 
@@ -920,6 +938,9 @@ namespace ACBrFramework.PAF
 			[MarshalAs(UnmanagedType.R8)]
 			public double DT_ABER;
 
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
+			public string NUM_MESA;
+
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
 			public string SITU;
 
@@ -937,6 +958,9 @@ namespace ACBrFramework.PAF
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 21)]
 			public string NUM_FAB;
+
+			[MarshalAs(UnmanagedType.U1)]
+			public bool RegistroValido;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -956,6 +980,9 @@ namespace ACBrFramework.PAF
 
 			[MarshalAs(UnmanagedType.R8)]
 			public double VL_UNIT;
+
+			[MarshalAs(UnmanagedType.U1)]
+			public bool RegistroValido;
 		}
 
 		#endregion Interop Types

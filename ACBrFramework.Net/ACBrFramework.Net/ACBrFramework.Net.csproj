@@ -153,7 +153,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AAC\ACBrAAC.cs" />
+    <Compile Include="AAC\ACBrAAC.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="AAC\Classes\Arquivo.cs" />
     <Compile Include="AAC\Classes\Arquivos.cs" />
     <Compile Include="AAC\Classes\AACECF.cs" />
@@ -178,24 +180,97 @@
     <Compile Include="CEP\Classes\Enderecos.cs" />
     <Compile Include="CEP\Eventos\AntesAbrirHTTPEventArgs.cs" />
     <Compile Include="ACBrFramework\ChaveEventArgs.cs" />
-    <Compile Include="ACBrFramework\ACBrComponent.cs" />
+    <Compile Include="ACBrFramework\ACBrComponent.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="ACBrFramework\ACBrComposedComponent.cs" />
     <Compile Include="ACBrFramework\ACBrException.cs" />
     <Compile Include="ACBrFramework\ACBrInteropBase.cs" />
-    <Compile Include="CEP\ACBrCEP.cs" />
+    <Compile Include="CEP\ACBrCEP.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="CEP\ACBrCEPInterop.cs" />
-    <Compile Include="CNIEE\ACBrCNIEE.cs" />
+    <Compile Include="CNIEE\ACBrCNIEE.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="CNIEE\ACBrCNIEEInterop.cs" />
     <Compile Include="CNIEE\Registro.cs" />
     <Compile Include="CNIEE\Classes\Exporta.cs" />
     <Compile Include="ACBrFramework\ACBrListInterop.cs" />
-    <Compile Include="EAD\ACBrEAD.cs" />
+    <Compile Include="EAD\ACBrEAD.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="EAD\ACBrEADInterop.cs" />
     <Compile Include="EAD\Classes\EADDigest.cs" />
-    <Compile Include="IBGE\ACBrIBGE.cs" />
+    <Compile Include="IBGE\ACBrIBGE.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="IBGE\ACBrIBGEInterop.cs" />
     <Compile Include="IBGE\Classes\Cidade.cs" />
-    <Compile Include="PAF\ACBrPAF.cs" />
+    <Compile Include="LFD\Classes\ParticipacaoSocietaria.cs" />
+    <Compile Include="LFD\Classes\Escolaridade.cs" />
+    <Compile Include="LFD\Classes\HabilitacaoProfissional.cs" />
+    <Compile Include="LFD\Classes\TipoCompensacaoISS.cs" />
+    <Compile Include="LFD\Classes\TipoDeducaoISS.cs" />
+    <Compile Include="LFD\Classes\TotalAquisicaoPrestacao.cs" />
+    <Compile Include="LFD\Classes\DataInventario.cs" />
+    <Compile Include="LFD\Classes\ObsMapaResumo.cs" />
+    <Compile Include="LFD\Classes\TipoTotalECF.cs" />
+    <Compile Include="LFD\Classes\IndicadorCirculacao.cs" />
+    <Compile Include="LFD\Classes\TipoOperacao.cs" />
+    <Compile Include="LFD\Classes\Emitente.cs" />
+    <Compile Include="LFD\Classes\TipoPagamento.cs" />
+    <Compile Include="LFD\Classes\TipoFrete.cs" />
+    <Compile Include="LFD\Classes\OrigemProcesso.cs" />
+    <Compile Include="LFD\Classes\TipoOperacaoST.cs" />
+    <Compile Include="LFD\Classes\DoctoArrecada.cs" />
+    <Compile Include="LFD\Classes\TipoTransporte.cs" />
+    <Compile Include="LFD\Classes\TipoTitulo.cs" />
+    <Compile Include="LFD\Classes\TipoBaseMedicamento.cs" />
+    <Compile Include="LFD\Classes\TipoProduto.cs" />
+    <Compile Include="LFD\Classes\TipoArmaFogo.cs" />
+    <Compile Include="LFD\Classes\TipoOperacaoVeiculo.cs" />
+    <Compile Include="LFD\Classes\TipoReceita.cs" />
+    <Compile Include="LFD\Classes\TipoVeiculo.cs" />
+    <Compile Include="LFD\Classes\TipoNavegacao.cs" />
+    <Compile Include="LFD\Classes\TipoTarifa.cs" />
+    <Compile Include="LFD\Classes\NaturezaFrete.cs" />
+    <Compile Include="LFD\Classes\IndTipoReceita.cs" />
+    <Compile Include="LFD\Classes\ServicoPrestado.cs" />
+    <Compile Include="LFD\Classes\MovimentoST.cs" />
+    <Compile Include="LFD\Classes\TipoAjuste.cs" />
+    <Compile Include="LFD\Classes\OrigemDocto.cs" />
+    <Compile Include="LFD\Classes\PosseItem.cs" />
+    <Compile Include="LFD\Classes\Medicao.cs" />
+    <Compile Include="LFD\Classes\GrupoTensao.cs" />
+    <Compile Include="LFD\Classes\ClasseConsumo.cs" />
+    <Compile Include="LFD\Classes\TipoLigacao.cs" />
+    <Compile Include="LFD\Classes\Dispositivo.cs" />
+    <Compile Include="LFD\Classes\TipoAssinante.cs" />
+    <Compile Include="LFD\Classes\TipoEntradaDados.cs" />
+    <Compile Include="LFD\Classes\ConteudoArquivo.cs" />
+    <Compile Include="LFD\Classes\TipoEscrFiscal.cs" />
+    <Compile Include="LFD\Classes\TipoEscrContabil.cs" />
+    <Compile Include="LFD\Classes\TipoTributacao.cs" />
+    <Compile Include="LFD\Classes\AnexoRT.cs" />
+    <Compile Include="LFD\Classes\AnexoCRD.cs" />
+    <Compile Include="LFD\Classes\CODBFICMS.cs" />
+    <Compile Include="LFD\Classes\CODBFISS.cs" />
+    <Compile Include="LFD\Classes\IndAlteracao.cs" />
+    <Compile Include="LFD\Classes\IndCompICMS.cs" />
+    <Compile Include="LFD\Registros\BlocoA\BlocoA.cs" />
+    <Compile Include="LFD\Registros\BlocoA\RegistroA360.cs" />
+    <Compile Include="LFD\Registros\BlocoA\RegistroA350.cs" />
+    <Compile Include="LFD\Registros\BlocoA\RegistroA001.cs" />
+    <Compile Include="LFD\Registros\BlocoA\RegistroA990.cs" />
+    <Compile Include="LFD\Registros\BlocoC\RegistroC605.cs" />
+    <Compile Include="LFD\Registros\BlocoC\RegistroC555.cs" />
+    <Compile Include="LFD\Registros\BlocoC\RegistroC550.cs" />
+    <Compile Include="LFD\Registros\BlocoC\RegistroC600.cs" />
+    <Compile Include="LFD\Registros\BlocoC\RegistroC020.cs" />
+    <Compile Include="PAF\ACBrPAF.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="PAF\ACBrPAFInterop.cs" />
     <Compile Include="PAF\Classes\TipoDesenvolvimento.cs" />
     <Compile Include="PAF\Classes\TipoFuncionamento.cs" />
@@ -276,7 +351,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serial\Device\Interfaces\IACBrDevice.cs" />
-    <Compile Include="Serial\DIS\ACBrDIS.cs" />
+    <Compile Include="Serial\DIS\ACBrDIS.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="Serial\DIS\ACBrDISInterop.cs" />
     <Compile Include="Serial\DIS\Classes\Alinhamento.cs" />
     <Compile Include="Serial\DIS\Classes\EfeitoExibir.cs" />
@@ -296,17 +373,23 @@
     <Compile Include="Serial\ECF\Eventos\SubtotalizaCupomEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\VendeItemEventArgs.cs" />
     <Compile Include="Serial\ECF\Interfaces\IACBrECF.cs" />
-    <Compile Include="Serial\RFD\ACBrRFD.cs" />
+    <Compile Include="Serial\RFD\ACBrRFD.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="Serial\RFD\ACBrRFDInterop.cs" />
     <Compile Include="Serial\RFD\Eventos\CalcEADArgs.cs" />
     <Compile Include="Serial\RFD\Eventos\OnCalcHashLogArgs.cs" />
     <Compile Include="Serial\Device\ACBrDevice.cs" />
     <Compile Include="Serial\Device\ACBrDeviceInterop.cs" />
-    <Compile Include="Serial\BAL\ACBrBAL.cs" />
+    <Compile Include="Serial\BAL\ACBrBAL.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="Serial\BAL\ACBrBALInterop.cs" />
     <Compile Include="Serial\BAL\Eventos\LePesoEventArgs.cs" />
     <Compile Include="Serial\BAL\Classes\ModeloBal.cs" />
-    <Compile Include="Serial\ECF\ACBrECF.cs" />
+    <Compile Include="Serial\ECF\ACBrECF.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="Serial\ECF\ACBrECFInterop.cs" />
     <Compile Include="Serial\ECF\Classes\CHQEstado.cs" />
     <Compile Include="Serial\ECF\Classes\ConfigBarras.cs" />
@@ -332,12 +415,16 @@
     <Compile Include="Serial\ECF\Eventos\ChequeEstadoEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\EfetuaPagamentoEventArgs.cs" />
     <Compile Include="Serial\ECF\Eventos\FechaCupomEventArgs.cs" />
-    <Compile Include="Serial\LCB\ACBrLCB.cs" />
+    <Compile Include="Serial\LCB\ACBrLCB.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="Serial\LCB\ACBrLCBInterop.cs" />
     <Compile Include="Serial\Device\Classes\SerialHandShake.cs" />
     <Compile Include="Serial\Device\Classes\SerialParity.cs" />
     <Compile Include="Serial\Device\Classes\SerialStopBits.cs" />
-    <Compile Include="Serial\SMS\ACBrSMS.cs" />
+    <Compile Include="Serial\SMS\ACBrSMS.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="Serial\SMS\ACBrSMSInterop.cs" />
     <Compile Include="Serial\SMS\Classes\Filtro.cs" />
     <Compile Include="Serial\SMS\Classes\MensagemCollection.cs" />
@@ -346,7 +433,9 @@
     <Compile Include="Serial\SMS\Classes\Sincronismo.cs" />
     <Compile Include="Serial\SMS\Classes\Mensagem.cs" />
     <Compile Include="Serial\SMS\Classes\OnProgressoEventArgs.cs" />
-    <Compile Include="Sintegra\ACBrSintegra.cs" />
+    <Compile Include="Sintegra\ACBrSintegra.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="Sintegra\ACBrSintegraInterop.cs" />
     <Compile Include="Sintegra\Classes\TipoReceita.cs" />
     <Compile Include="Sintegra\Classes\VersaoEan.cs" />
@@ -395,6 +484,37 @@
     <Compile Include="Sintegra\Registro\Registro 85\SintegraRegistros85.cs" />
     <Compile Include="Sintegra\Registro\Registro 86\SintegraRegistro86.cs" />
     <Compile Include="Sintegra\Registro\Registro 86\SintegraRegistros86.cs" />
+    <Compile Include="LFD\ACBrLFD.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
+    <Compile Include="LFD\ACBrLFDInterop.cs" />
+    <Compile Include="LFD\Classes\CodFinalidade.cs" />
+    <Compile Include="LFD\Classes\IndicadorMovimento.cs" />
+    <Compile Include="LFD\Classes\SituacaoDocto.cs" />
+    <Compile Include="LFD\Classes\TipoItem.cs" />
+    <Compile Include="LFD\Classes\VersaoLeiaute.cs" />
+    <Compile Include="LFD\Eventos\ErrorEventArgs.cs" />
+    <Compile Include="LFD\Registros\Bloco0\Bloco0.cs" />
+    <Compile Include="LFD\Registros\Bloco0\Registro0000.cs" />
+    <Compile Include="LFD\Registros\Bloco0\Registro0001.cs" />
+    <Compile Include="LFD\Registros\Bloco0\Registro0005.cs" />
+    <Compile Include="LFD\Registros\Bloco0\Registro0025.cs" />
+    <Compile Include="LFD\Registros\Bloco0\Registro0100.cs" />
+    <Compile Include="LFD\Registros\Bloco0\Registro0150.cs" />
+    <Compile Include="LFD\Registros\Bloco0\Registro0175.cs" />
+    <Compile Include="LFD\Registros\Bloco0\Registro0200.cs" />
+    <Compile Include="LFD\Registros\Bloco0\Registro0205.cs" />
+    <Compile Include="LFD\Registros\Bloco0\Registro0210.cs" />
+    <Compile Include="LFD\Registros\Bloco0\Registro0990.cs" />
+    <Compile Include="LFD\Registros\Bloco9\Bloco9.cs" />
+    <Compile Include="LFD\Registros\Bloco9\Registro9001.cs" />
+    <Compile Include="LFD\Registros\Bloco9\Registro9900.cs" />
+    <Compile Include="LFD\Registros\Bloco9\Registro9990.cs" />
+    <Compile Include="LFD\Registros\Bloco9\Registro9999.cs" />
+    <Compile Include="LFD\Registros\BlocoC\BlocoC.cs" />
+    <Compile Include="LFD\Registros\BlocoC\RegistroC001.cs" />
+    <Compile Include="LFD\Registros\BlocoC\RegistroC990.cs" />
+    <Compile Include="LFD\Registros\RegistroList.cs" />
     <Compile Include="Sped\Eventos\ErrorEventArgs.cs" />
     <Compile Include="Sped\Registros\Bloco0\Bloco0.cs" />
     <Compile Include="Sped\Registros\Bloco0\Registro0200.cs" />
@@ -413,7 +533,9 @@
     <Compile Include="Sped\Registros\Bloco1\Registro1990.cs" />
     <Compile Include="Sped\Registros\Bloco1\Registro1001.cs" />
     <Compile Include="Sped\Registros\Bloco9\Bloco9.cs" />
-    <Compile Include="Sped\ACBrSpedFiscal.cs" />
+    <Compile Include="Sped\ACBrSpedFiscal.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="Sped\ACBrSpedFiscalInterop.cs" />
     <Compile Include="Sped\Classes\ApuracaoIPI.cs" />
     <Compile Include="Sped\Classes\Atividade.cs" />
@@ -629,7 +751,9 @@
     <Compile Include="Sped\Registros\Bloco9\Registro9990.cs" />
     <Compile Include="Sped\Registros\Bloco9\Registro9900.cs" />
     <Compile Include="Sped\Registros\RegistroList.cs" />
-    <Compile Include="TEFD\ACBrTEFD.cs" />
+    <Compile Include="TEFD\ACBrTEFD.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="TEFD\Classes\TEFVeSPague.cs" />
     <Compile Include="TEFD\Classes\TefAuttar.cs" />
     <Compile Include="TEFD\Classes\TefCliSiTef.cs" />
@@ -677,7 +801,9 @@
     <Compile Include="TEFD\Eventos\TEFCliSiTefObtemCampoEventArgs.cs" />
     <Compile Include="TEFD\Classes\RespostasPendentes.cs" />
     <Compile Include="UnmanagedResources.cs" />
-    <Compile Include="Validador\ACBrValidador.cs" />
+    <Compile Include="Validador\ACBrValidador.cs">
+      <SubType>ACBr</SubType>
+    </Compile>
     <Compile Include="Validador\ACBrValidadorInterop.cs" />
     <Compile Include="Validador\Classes\CalcDigFormula.cs" />
     <Compile Include="Validador\Classes\Modulo.cs" />
@@ -740,6 +866,9 @@
     <EmbeddedResource Include="IBGE\ico.bmp" />
     <EmbeddedResource Include="Serial\RFD\ico.bmp" />
     <EmbeddedResource Include="Validador\ico.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LFD\ico.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
