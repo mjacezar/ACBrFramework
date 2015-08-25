@@ -32,13 +32,9 @@ public final class ACBrPAFRegistroE3 {
      */
     private String modeloEcf;
     /**
-     * Data da atualizacao do estoque.
+     * Data e hora da atualizacao do estoque.
      */
     private Date dataEstoque;
-    /**
-     * Hora da atualizacao do estoque.
-     */
-    private Date horaEstoque;
     /**
      * Se true o registro e valido.
      */
@@ -126,7 +122,7 @@ public final class ACBrPAFRegistroE3 {
     }
 
     /**
-     * Data da atualizacao do estoque.
+     * Data e hora da atualizacao do estoque.
      * @return the dataEstoque
      */
     public Date getDataEstoque() {
@@ -134,27 +130,11 @@ public final class ACBrPAFRegistroE3 {
     }
 
     /**
-     * Data da atualizacao do estoque.
+     * Data e hora da atualizacao do estoque.
      * @param dataEstoque the dataEstoque to set
      */
     public void setDataEstoque(Date dataEstoque) {
         this.dataEstoque = dataEstoque;
-    }
-
-    /**
-     * Hora da atualizacao do estoque.
-     * @return the horaEstoque
-     */
-    public Date getHoraEstoque() {
-        return horaEstoque;
-    }
-
-    /**
-     * Hora da atualizacao do estoque.
-     * @param horaEstoque the horaEstoque to set
-     */
-    public void setHoraEstoque(Date horaEstoque) {
-        this.horaEstoque = horaEstoque;
     }
 
     /**

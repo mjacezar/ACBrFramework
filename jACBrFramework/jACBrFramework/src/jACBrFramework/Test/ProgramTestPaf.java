@@ -269,7 +269,6 @@ public class ProgramTestPaf {
         pRegistroE.getRegistroE1().setUf("MG");
         
         pRegistroE.getRegistroE3().setDataEstoque(Calendar.getInstance().getTime());
-        pRegistroE.getRegistroE3().setHoraEstoque(Calendar.getInstance().getTime());
         pRegistroE.getRegistroE3().setMarcaEcf("Bema");
         pRegistroE.getRegistroE3().setMfAdicional("AD");
         pRegistroE.getRegistroE3().setModeloEcf("4000");
