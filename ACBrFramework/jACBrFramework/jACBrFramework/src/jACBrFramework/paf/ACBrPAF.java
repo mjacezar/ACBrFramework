@@ -567,7 +567,6 @@ public class ACBrPAF extends ACBrClass {
         lRegistroE3.MarcaECF = toByte(paf_E.getRegistroE3().getMarcaEcf(), 21);
         lRegistroE3.ModeloECF = toByte(paf_E.getRegistroE3().getModeloEcf(), 21);
         lRegistroE3.DataEstoque = OleDate.toOADate(paf_E.getRegistroE3().getDataEstoque());
-        lRegistroE3.HoraEstoque = OleDate.toOADate(paf_E.getRegistroE3().getHoraEstoque());
         lRegistroE3.RegistroValido = converteBooleanToByte(paf_E.getRegistroE3().isRegistroValido());
          
         int ret = ACBrPAFInterop.INSTANCE.PAF_Preenche_E(getHandle(), lRegistroE1, 
@@ -755,7 +754,6 @@ public class ACBrPAF extends ACBrClass {
             // Montando o registro R2 e R3.
             for (ACBrPAFRegistroR2 r2 : r1.getRegistrosR2()) {
                 // Montando o registro R2.
-                registrosR2[itemR2].QTD_R2 = r1.getRegistrosR2().size();
                 registrosR2[itemR2].QTD_R3 = r2.getRegistrosR3().size();
                 registrosR2[itemR2].NUM_USU = r2.getNumeroUsuario();
                 registrosR2[itemR2].CRZ = r2.getCrz();
@@ -885,11 +883,13 @@ public class ACBrPAF extends ACBrClass {
                 lRegistrosS2[i].CNPJ = toByte(lRegistro.getCnpj(), 15);
                 lRegistrosS2[i].DT_ABER = OleDate.toOADate(lRegistro.getDtHrAbertura());
                 lRegistrosS2[i].SITU = toByte(lRegistro.getSituacao(), 2);
+                lRegistrosS2[i].NUM_MESA = toByte(lRegistro.getNumMesa(), 2);
                 lRegistrosS2[i].VL_TOT = lRegistro.getVlrTotal();
                 lRegistrosS2[i].COO_CM = toByte(lRegistro.getCooConfMesa(), 10);
                 lRegistrosS2[i].NUM_FAB_CM = toByte(lRegistro.getNumFabricacaoEcfConfMesa(), 21);
                 lRegistrosS2[i].COO = toByte(lRegistro.getCoo(), 10);
                 lRegistrosS2[i].NUM_FAB = toByte(lRegistro.getNumFabricacaoEcf(), 21);
+                lRegistrosS2[i].RegistroValido = converteBooleanToByte(lRegistro.isRegistroValido());
                 lRegistrosS2[i].QTD_S3 = lRegistro.getRegistrosS3().size();
                 i++;
                 lQtdeS3 += lRegistro.getRegistrosS3().size();
@@ -905,6 +905,7 @@ public class ACBrPAF extends ACBrClass {
                     lRegistrosS3[i].QTDE_ITEM = lRegistroS3.getQuantidade();
                     lRegistrosS3[i].UNI_ITEM = toByte(lRegistroS3.getUnidadeMedida(), 4);
                     lRegistrosS3[i].VL_UNIT = lRegistroS3.getVlrUnitario();
+                    lRegistrosS3[i].RegistroValido = converteBooleanToByte(lRegistroS3.isRegistroValido());
                     i++;
                 }
             }

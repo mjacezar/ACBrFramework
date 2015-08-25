@@ -194,12 +194,11 @@ public interface ACBrPAFInterop extends InteropLib {
 		public byte[] MarcaECF = new byte[21];
 		public byte[] ModeloECF = new byte[21];
 		public double DataEstoque;
-		public double HoraEstoque;
 		public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
-			return Arrays.asList("NumeroFabricacao" , "MFAdicional" , "TipoECF" , "MarcaECF" , "ModeloECF" , "DataEstoque" , "HoraEstoque" , "RegistroValido");
+			return Arrays.asList("NumeroFabricacao" , "MFAdicional" , "TipoECF" , "MarcaECF" , "ModeloECF" , "DataEstoque" , "RegistroValido");
 		}
 
 		public static class ByReference extends RegistroE3Rec implements Structure.ByReference { }
@@ -389,7 +388,6 @@ public interface ACBrPAFInterop extends InteropLib {
 	}
 
 	public static class RegistroR2Rec extends Structure {
-		public int QTD_R2;
 		public int QTD_R3;
 		public int NUM_USU;
 		public int CRZ;
@@ -404,7 +402,7 @@ public interface ACBrPAFInterop extends InteropLib {
 
 		@Override
 		protected List<String> getFieldOrder() {
-			return Arrays.asList("QTD_R3" , "NUM_USU" , "CRZ" , "COO" , "CRO" , "DT_MOV" , "QTD_R2", "DT_EMI" , "HR_EMI" , "VL_VBD" , "PAR_ECF" , "RegistroValido");
+			return Arrays.asList("QTD_R3" , "NUM_USU" , "CRZ" , "COO" , "CRO" , "DT_MOV", "DT_EMI", "HR_EMI" , "VL_VBD" , "PAR_ECF" , "RegistroValido");
 		}
 
 		public static class ByReference extends RegistroR2Rec implements Structure.ByReference { }
@@ -529,16 +527,18 @@ public interface ACBrPAFInterop extends InteropLib {
 		public int QTD_S3;
 		public byte[] CNPJ = new byte[15];
 		public double DT_ABER;
+        public byte[] NUM_MESA = new byte[14];
 		public byte[] SITU = new byte[2];
 		public double VL_TOT;
 		public byte[] COO_CM = new byte[10];
 		public byte[] NUM_FAB_CM = new byte[21];
 		public byte[] COO = new byte[10];
 		public byte[] NUM_FAB = new byte[21];
+        public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
-			return Arrays.asList("QTD_S3" , "CNPJ" , "DT_ABER" , "SITU" , "VL_TOT" , "COO_CM" , "NUM_FAB_CM" , "COO" , "NUM_FAB");
+			return Arrays.asList("QTD_S3" , "CNPJ" , "DT_ABER" ,"NUM_MESA", "SITU" , "VL_TOT" , "COO_CM" , "NUM_FAB_CM" , "COO" , "NUM_FAB", "RegistroValido");
 		}
 
 		public static class ByReference extends RegistroS2Rec implements Structure.ByReference { }
@@ -551,10 +551,11 @@ public interface ACBrPAFInterop extends InteropLib {
 		public double QTDE_ITEM;
 		public byte[] UNI_ITEM = new byte[4];
 		public double VL_UNIT;
+        public byte RegistroValido;
 
 		@Override
 		protected List<String> getFieldOrder() {
-			return Arrays.asList("COD_ITEM" , "DESC_ITEM" , "QTDE_ITEM" , "UNI_ITEM" , "VL_UNIT");
+			return Arrays.asList("COD_ITEM" , "DESC_ITEM" , "QTDE_ITEM" , "UNI_ITEM" , "VL_UNIT", "RegistroValido");
 		}
 
 		public static class ByReference extends RegistroS3Rec implements Structure.ByReference { }
