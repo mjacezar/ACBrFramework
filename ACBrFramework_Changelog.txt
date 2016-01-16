@@ -41,6 +41,11 @@ Símbolo : Significado
 
 Changelog
 
+16/01/2016
+-- ACBrFramework 0.9.7.1
+[-] Mudado as funções PadLeft para PadRight, conforme orientação 
+    instruções de modificação do Trunk2 mostrado pelo Daniel Simoes - Rafael Dias
+
 15/01/2016
 -- ACBrFramework 0.9.7.0
 [*] Modificado o ACBrFramework para usar o Trunk2 do ACBr - joaoelson
