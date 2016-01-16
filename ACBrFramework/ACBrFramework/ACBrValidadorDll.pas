@@ -962,7 +962,7 @@ begin
   end;
 
   try
-     StrTmp := valHandle^.Val.FormatarCEP(CEP);
+     StrTmp := valHandle^.Val.Formatar;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
      Result := 0;
@@ -987,7 +987,7 @@ begin
   end;
 
   try
-     StrTmp := valHandle^.Val.FormatarCheque(Cheque);
+     StrTmp := valHandle^.Val.Formatar;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
      Result := 0;
@@ -1012,7 +1012,7 @@ begin
   end;
 
   try
-     StrTmp := valHandle^.Val.FormatarCNPJ(CNPJ);
+     StrTmp := valHandle^.Val.Formatar;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
      Result := 0;
@@ -1037,7 +1037,7 @@ begin
   end;
 
   try
-     StrTmp := valHandle^.Val.FormatarCPF(CPF);
+     StrTmp := valHandle^.Val.Formatar;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
      Result := 0;
@@ -1062,7 +1062,7 @@ begin
   end;
 
   try
-     StrTmp := valHandle^.Val.FormatarIE(IE, UF);
+     StrTmp := valHandle^.Val.Formatar;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
      Result := 0;
@@ -1087,7 +1087,7 @@ begin
   end;
 
   try
-     StrTmp := valHandle^.Val.FormatarPIS(PIS);
+     StrTmp := valHandle^.Val.Formatar;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
      Result := 0;
@@ -1112,7 +1112,7 @@ begin
   end;
 
   try
-     StrTmp := valHandle^.Val.FormatarSUFRAMA(SUFRAMA);
+     StrTmp := valHandle^.Val.Formatar;
      StrPLCopy(Buffer, StrTmp, BufferLen);
      Result := length(StrTmp);
      Result := 0;

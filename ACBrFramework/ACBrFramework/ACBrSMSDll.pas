@@ -969,7 +969,7 @@ begin
   end;
 
   try
-     msgcHandle^.Menssagens.LoadFromFrile(arquivo);
+     msgcHandle^.Menssagens.LoadFromFile(arquivo);
      Result := msgcHandle^.Menssagens.Count;
   except
      on exception : Exception do

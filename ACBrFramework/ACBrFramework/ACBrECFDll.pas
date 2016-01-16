@@ -5752,7 +5752,7 @@ begin
         ecfHandle^.ECF.CarregaAliquotas ;
 
       for I := 0 to ecfHandle^.ECF.Aliquotas.Count -1 do
-         strTmp := strTmp + padL(ecfHandle^.ECF.Aliquotas[I].Indice,4)
+         strTmp := strTmp + PadLeft(ecfHandle^.ECF.Aliquotas[I].Indice,4)
                       + ' '
                       + ecfHandle^.ECF.Aliquotas[I].Tipo
                       + FormatFloat('#0.00', ecfHandle^.ECF.Aliquotas[I].Aliquota) + '|' ;
@@ -5807,7 +5807,7 @@ begin
       ecfHandle^.ECF.LerTotaisAliquota ;
 
       for I := 0 to ecfHandle^.ECF.Aliquotas.Count -1 do
-         strTmp := strTmp + padL(ecfHandle^.ECF.Aliquotas[I].Indice,4) +
+         strTmp := strTmp + PadLeft(ecfHandle^.ECF.Aliquotas[I].Indice,4) +
                             FormatFloat('########0.00', ecfHandle^.ECF.Aliquotas[I].Total ) + '|' ;
 
 
@@ -5861,9 +5861,9 @@ begin
    try
       ICMS := ecfHandle^.ECF.AchaICMSAliquota( Aliq, Tipo  ) ;
       if ICMS <> nil then
-              ret_pos := pchar(padL(ICMS.Indice,4))
+              ret_pos := pchar(PadLeft(ICMS.Indice,4))
       else
-         ret_pos := pchar(padL('-1',4));
+         ret_pos := pchar(PadLeft('-1',4));
       Result := 0 ;
    except
      on exception : Exception do
@@ -6012,7 +6012,7 @@ begin
          if ecfHandle^.ECF.FormasPagamento[I].PermiteVinculado then
             Vinc := 'V' ;
 
-         strTmp := strTmp + padL(ecfHandle^.ECF.FormasPagamento[I].Indice,4)
+         strTmp := strTmp + PadLeft(ecfHandle^.ECF.FormasPagamento[I].Indice,4)
                       + ' '
                       + Vinc
                       + ecfHandle^.ECF.FormasPagamento[I].Descricao
@@ -6047,7 +6047,7 @@ begin
       ecfHandle^.ECF.LerTotaisFormaPagamento ;
 
       for I := 0 to ecfHandle^.ECF.FormasPagamento.Count -1 do
-         strTmp := strTmp + padL(ecfHandle^.ECF.FormasPagamento[I].Indice,4)
+         strTmp := strTmp + PadLeft(ecfHandle^.ECF.FormasPagamento[I].Indice,4)
                       + FormatFloat('########0.00', ecfHandle^.ECF.FormasPagamento[I].Total ) + '|' ;
 
 
@@ -6421,7 +6421,7 @@ begin
          if ecfHandle^.ECF.ComprovantesNaoFiscais[I].PermiteVinculado then
             Vinc := 'V' ;
 
-         resp := resp + padL(ecfHandle^.ECF.ComprovantesNaoFiscais[I].Indice,4)
+         resp := resp + PadLeft(ecfHandle^.ECF.ComprovantesNaoFiscais[I].Indice,4)
                       + ' '
                       + Vinc
                       + ecfHandle^.ECF.ComprovantesNaoFiscais[I].Descricao
@@ -6457,7 +6457,7 @@ begin
       ecfHandle^.ECF.LerTotaisComprovanteNaoFiscal;
 
       for I := 0 to ecfHandle^.ECF.ComprovantesNaoFiscais.Count -1 do
-         resp := resp + padL(ecfHandle^.ECF.ComprovantesNaoFiscais[I].Indice,4)
+         resp := resp + PadLeft(ecfHandle^.ECF.ComprovantesNaoFiscais[I].Indice,4)
                       + FormatFloat('########0.00', ecfHandle^.ECF.ComprovantesNaoFiscais[I].Total ) + '|' ;
 
 
