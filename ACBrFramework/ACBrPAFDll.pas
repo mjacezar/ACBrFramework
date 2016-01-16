@@ -750,108 +750,6 @@ begin
 
 end;
 
-function PAF_GetDelimitador(const pafHandle: PPAFHandle; Buffer: PChar;
-  const BufferLen: integer): integer; {$IFDEF STDCALL} stdcall;
- {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  StrTmp: string;
-begin
-
-  if (pafHandle = nil) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-
-  try
-    StrTmp := pafHandle^.PAF.Delimitador;
-    StrPLCopy(Buffer, StrTmp, BufferLen);
-    Result := length(StrTmp);
-  except
-    on Exception: Exception do
-    begin
-      pafHandle^.UltimoErro := Exception.Message;
-      Result := -1;
-    end
-  end;
-
-end;
-
-function PAF_SetDelimitador(const pafHandle: PPAFHandle;
-  const Delimitador: PChar): integer; {$IFDEF STDCALL} stdcall;
- {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (pafHandle = nil) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-
-  try
-    pafHandle^.PAF.Delimitador := Delimitador;
-    Result := 0;
-  except
-    on Exception: Exception do
-    begin
-      pafHandle^.UltimoErro := Exception.Message;
-      Result := -1;
-    end
-  end;
-
-end;
-
-function PAF_GetCurMascara(const pafHandle: PPAFHandle; Buffer: PChar;
-  const BufferLen: integer): integer; {$IFDEF STDCALL} stdcall;
- {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-var
-  StrTmp: string;
-begin
-
-  if (pafHandle = nil) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-
-  try
-    StrTmp := pafHandle^.PAF.CurMascara;
-    StrPLCopy(Buffer, StrTmp, BufferLen);
-    Result := length(StrTmp);
-  except
-    on Exception: Exception do
-    begin
-      pafHandle^.UltimoErro := Exception.Message;
-      Result := -1;
-    end
-  end;
-
-end;
-
-function PAF_SetCurMascara(const pafHandle: PPAFHandle;
-  const CurMascara: PChar): integer; {$IFDEF STDCALL} stdcall;
- {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
-begin
-
-  if (pafHandle = nil) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-
-  try
-    pafHandle^.PAF.CurMascara := CurMascara;
-    Result := 0;
-  except
-    on Exception: Exception do
-    begin
-      pafHandle^.UltimoErro := Exception.Message;
-      Result := -1;
-    end
-  end;
-
-end;
-
 function PAF_GetTrimString(const pafHandle: PPAFHandle): integer;
  {$IFDEF STDCALL} stdcall; {$ENDIF} {$IFDEF CDECL} cdecl; {$ENDIF} export;
 begin
@@ -1186,8 +1084,6 @@ begin
         RegistroValido := RegistroC2Rec[i].RegistroValido;
       end;
     end;
-
-    pafHandle^.PAF.CurMascara := '';
 
     Result := 1;
   except
@@ -2027,13 +1923,12 @@ begin
   end;
 
   try
-    if (pafHandle^.PAF.SaveFileTXT_B(Arquivo)) then
-      Result := 1
-    else
-      Result := 0;
+    pafHandle^.PAF.PAF_B.SaveToFile;
+    Result := 1
   except
     on Exception: Exception do
     begin
+      Result := 0;
       pafHandle^.UltimoErro := Exception.Message;
       pafHandle^.PAF.PAF_B.LimpaRegistros;
       Result := -1;
@@ -2054,23 +1949,12 @@ begin
       Exit;
     end;
 
-    OldMask := pafHandle^.PAF.CurMascara;
-    pafHandle^.PAF.CurMascara := '';
-
-    if (pafHandle^.PAF.SaveFileTXT_C(Arquivo)) then
-    begin
-      pafHandle^.PAF.CurMascara := OldMask;
-      Result := 1;
-    end
-    else
-    begin
-      pafHandle^.PAF.CurMascara := OldMask;
-      Result := 0;
-    end
-
+    pafHandle^.PAF.PAF_C.SaveToFile;
+    Result := 1;
   except
     on Exception: Exception do
     begin
+      Result := 0;
       pafHandle^.UltimoErro := Exception.Message;
       pafHandle^.PAF.PAF_C.LimpaRegistros;
       Result := -1;
@@ -2089,7 +1973,7 @@ begin
   end;
 
   try
-    if (pafHandle^.PAF.SaveFileTXT_D(Arquivo)) then
+    if (pafHandle^.PAF.SaveToFile_RegistrosPAF(Arquivo)) then
       Result := 1
     else
       Result := 0;
@@ -2117,8 +2001,7 @@ begin
   end;
 
   try
-
-    if (pafHandle^.PAF.SaveFileTXT_E(Arquivo)) then
+    if (pafHandle^.PAF.SaveToFile_RegistrosPAF(Arquivo)) then
       Result := 1
     else
       Result := 0;
@@ -2146,7 +2029,7 @@ begin
 
   try
 
-    if (pafHandle^.PAF.SaveFileTXT_H(Arquivo)) then
+    if (pafHandle^.PAF.SaveToFile_RegistrosPAF(Arquivo)) then
       Result := 1
     else
       Result := 0;
@@ -2174,7 +2057,7 @@ begin
 
   try
 
-    if (pafHandle^.PAF.SaveFileTXT_N(Arquivo)) then
+    if (pafHandle^.PAF.SaveToFile_N(Arquivo)) then
       Result := 1
     else
       Result := 0;
@@ -2202,7 +2085,7 @@ begin
 
   try
 
-    if (pafHandle^.PAF.SaveFileTXT_P(Arquivo)) then
+    if (pafHandle^.PAF.SaveToFile_RegistrosPAF(Arquivo)) then
       Result := 1
     else
       Result := 0;
@@ -2231,7 +2114,7 @@ begin
 
   try
 
-    if (pafHandle^.PAF.SaveFileTXT_R(Arquivo)) then
+    if (pafHandle^.PAF.SaveToFile_RegistrosPAF(Arquivo)) then
       Result := 1
     else
       Result := 0;
@@ -2260,7 +2143,7 @@ begin
 
   try
 
-    if (pafHandle^.PAF.SaveFileTXT_T(Arquivo)) then
+    if (pafHandle^.PAF.SaveToFile_RegistrosPAF(Arquivo)) then
       Result := 1
     else
       Result := 0;
@@ -2286,7 +2169,7 @@ begin
   end;
 
   try
-    if (pafHandle^.PAF.SaveFileTXT_TITP(Arquivo)) then
+    if (pafHandle^.PAF.SaveToFile_TITP(Arquivo)) then
       Result := 1
     else
       Result := 0;
@@ -2312,7 +2195,7 @@ begin
   end;
 
   try
-    if (pafHandle^.PAF.SaveFileTXT_RegistrosPAF(Arquivo)) then
+    if (pafHandle^.PAF.SaveToFile_RegistrosPAF(Arquivo)) then
       Result := 1
     else
       Result := 0;
@@ -2420,10 +2303,6 @@ exports
   { Propriedades Componente }
   PAF_GetPath,
   PAF_SetPath,
-  PAF_GetDelimitador,
-  PAF_SetDelimitador,
-  PAF_GetCurMascara,
-  PAF_SetCurMascara,
   PAF_GetTrimString,
   PAF_SetTrimString,
   PAF_GetAssinarArquivo,
